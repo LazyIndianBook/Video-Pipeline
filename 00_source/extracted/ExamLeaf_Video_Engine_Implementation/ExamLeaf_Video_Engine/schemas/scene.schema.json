@@ -1,0 +1,289 @@
+{
+  "$defs": {
+    "Claim": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "statement": {
+          "title": "Statement",
+          "type": "string"
+        },
+        "source_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Source Ids",
+          "type": "array"
+        },
+        "assumptions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Assumptions",
+          "type": "array"
+        },
+        "status": {
+          "default": "draft",
+          "enum": [
+            "draft",
+            "machine_checked",
+            "expert_approved"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "statement",
+        "source_ids"
+      ],
+      "title": "Claim",
+      "type": "object"
+    },
+    "Cue": {
+      "additionalProperties": false,
+      "properties": {
+        "start_s": {
+          "minimum": 0,
+          "title": "Start S",
+          "type": "number"
+        },
+        "end_s": {
+          "exclusiveMinimum": 0,
+          "title": "End S",
+          "type": "number"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "role": {
+          "default": "explain",
+          "enum": [
+            "explain",
+            "question",
+            "feedback",
+            "recap"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "voice": {
+          "default": "steady",
+          "enum": [
+            "steady",
+            "curious",
+            "deliberate",
+            "light",
+            "reassuring"
+          ],
+          "title": "Voice",
+          "type": "string"
+        },
+        "answer_visible": {
+          "default": false,
+          "title": "Answer Visible",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "start_s",
+        "end_s",
+        "text"
+      ],
+      "title": "Cue",
+      "type": "object"
+    },
+    "SourceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 3,
+          "title": "Id",
+          "type": "string"
+        },
+        "uri": {
+          "title": "Uri",
+          "type": "string"
+        },
+        "locator": {
+          "title": "Locator",
+          "type": "string"
+        },
+        "rights_status": {
+          "enum": [
+            "owned",
+            "permission",
+            "open_reference",
+            "unconfirmed"
+          ],
+          "title": "Rights Status",
+          "type": "string"
+        },
+        "claim_scope": {
+          "title": "Claim Scope",
+          "type": "string"
+        },
+        "retrieved_at": {
+          "title": "Retrieved At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "uri",
+        "locator",
+        "rights_status",
+        "claim_scope",
+        "retrieved_at"
+      ],
+      "title": "SourceRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "id": {
+      "pattern": "^[a-z][a-z0-9_-]{2,70}$",
+      "title": "Id",
+      "type": "string"
+    },
+    "subject": {
+      "enum": [
+        "physics",
+        "chemistry",
+        "mathematics",
+        "biology"
+      ],
+      "title": "Subject",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "rc_charge",
+        "atom_balance",
+        "chain_rule",
+        "mendel_cross"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "objective": {
+      "title": "Objective",
+      "type": "string"
+    },
+    "class_context": {
+      "title": "Class Context",
+      "type": "string"
+    },
+    "duration_s": {
+      "exclusiveMinimum": 0,
+      "maximum": 600,
+      "title": "Duration S",
+      "type": "number"
+    },
+    "fps": {
+      "default": 24,
+      "maximum": 60,
+      "minimum": 1,
+      "title": "Fps",
+      "type": "integer"
+    },
+    "parameters": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "integer"
+          },
+          {
+            "type": "string"
+          },
+          {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          }
+        ]
+      },
+      "title": "Parameters",
+      "type": "object"
+    },
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Assumptions",
+      "type": "array"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/SourceRef"
+      },
+      "minItems": 1,
+      "title": "Sources",
+      "type": "array"
+    },
+    "claims": {
+      "items": {
+        "$ref": "#/$defs/Claim"
+      },
+      "minItems": 1,
+      "title": "Claims",
+      "type": "array"
+    },
+    "cues": {
+      "items": {
+        "$ref": "#/$defs/Cue"
+      },
+      "minItems": 1,
+      "title": "Cues",
+      "type": "array"
+    },
+    "status": {
+      "default": "technical_preview",
+      "enum": [
+        "technical_preview",
+        "review_pending",
+        "approved"
+      ],
+      "title": "Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "subject",
+    "kind",
+    "title",
+    "objective",
+    "class_context",
+    "duration_s",
+    "parameters",
+    "assumptions",
+    "sources",
+    "claims",
+    "cues"
+  ],
+  "title": "SceneSpec",
+  "type": "object"
+}

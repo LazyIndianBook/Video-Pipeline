@@ -1,0 +1,87 @@
+{
+  "scene_id": "mathematics_chain",
+  "aspect": "9:16",
+  "cache_key": "ff790de805dcba9290f8f98cc5cd85112c164e3cbca9b73c1e2951c18e7d0376",
+  "cache_hit": false,
+  "sha256": "c2a9231c48dd95ff5109d078b2d277b90f76643bd42fdbc9ff59962e97c3a858",
+  "video": "mathematics_chain_9x16.mp4",
+  "render_wall_seconds": 27.576,
+  "frames": 720,
+  "resolution": [
+    720,
+    1280
+  ],
+  "render_status": "passed",
+  "release_status": "blocked_pending_audio_and_expert_review",
+  "audio_status": "intentionally_silent_technical_preview",
+  "science": {
+    "scene_id": "mathematics_chain",
+    "checks": [
+      {
+        "name": "template_parameter_contract",
+        "passed": true,
+        "detail": "This visual template is the reviewed (3x+1)^2 fixture; build a new template for another expression"
+      },
+      {
+        "name": "symbolic_derivative",
+        "passed": true,
+        "detail": "18*x + 6"
+      },
+      {
+        "name": "finite_difference_crosscheck",
+        "passed": true,
+        "detail": "max finite-difference error 1.24e-10"
+      },
+      {
+        "name": "real_domain",
+        "passed": true,
+        "detail": "Polynomial and derivative valid for all real x"
+      }
+    ],
+    "boundary": "Checks cover the specified model only; they do not establish curriculum fit or expert approval."
+  },
+  "media_qa": {
+    "passed": true,
+    "checks": {
+      "dimensions": true,
+      "duration": true,
+      "frame_count": true,
+      "codec": true,
+      "pixel_format": true
+    },
+    "duration_s": 30.0,
+    "frames": 720,
+    "width": 720,
+    "height": 1280,
+    "audio_present": false
+  },
+  "layout_qa": {
+    "passed": true,
+    "sampled_frames": 10,
+    "issues": [],
+    "boundary": "Canvas bounds only. Does not prove absence of all overlaps or mobile readability."
+  },
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "packages": {
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "sympy": "1.14.0",
+      "pydantic": "2.13.5",
+      "CairoSVG": "2.8.2",
+      "Pillow": "12.3.0",
+      "rdkit": "2025.9.4"
+    },
+    "ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+    "font_sha256": "57f73e11f51999432bf7ab22ce55b6f945d5eca1bf824404cfa9ec2e3718c84e"
+  },
+  "invoice_cost_usd": 0.0,
+  "billing_note": "No external generation APIs invoked. Local execution was not separately invoiced or cloud-priced.",
+  "warnings": [
+    "Not a full ten-minute pilot.",
+    "Academic correctness not signed off by a teacher.",
+    "Voice quality and alignment untested.",
+    "No student-learning study performed."
+  ]
+}

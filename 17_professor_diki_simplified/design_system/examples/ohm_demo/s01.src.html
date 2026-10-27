@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>phy-ohm-diki-demo s01: one board, hook to end card (Professor Diki Simplified 2.0.0)</title>
+<!-- HOW TO USE: copy this file to <video>/s01.src.html (ONE scene per short: every beat lives in this file), fix the
+     relative paths below, replace the SCENE BLOCK and the two inline fallbacks, then build a self-contained copy with
+     tools/build_scene.py (inlines these files, runs the brand + structural gates and the seek lint).
+     Read order for builders: 05_DESIGN_SYSTEM.md, tokens.json, this file, diki_scene.css, diki_runtime.js, the component.
+     The stage below is fixed chrome: the world (#world) is generated from tokens.world for the scene's subject, the
+     opening ident (#ident) shows the brand from frame 0 and is gone by 2.5 s, the title lane holds the headline chips,
+     the think plate and the end-card wordmark; the result and card lanes sit on taped paper sheets. -->
+<link rel="stylesheet" href="../../tokens.css">
+<link rel="stylesheet" href="../../diki_scene.css">
+</head>
+<body>
+<div id="stage">
+  <svg id="world" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+  <svg id="underlay" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+  <div id="lane-title" class="lane">
+    <div id="think-plate"><span data-fx="display.ui.think_prompt"></span></div>
+    <div id="wordmark" data-fx="display.ui.endcard_line1"></div>
+  </div>
+  <div id="lane-diagram" class="lane"></div>
+  <div id="lane-result" class="lane"><div id="result-main"></div><div id="endline-wrap"><span id="endline" data-fx="display.ui.endcard_line2"></span></div></div>
+  <div id="lane-card" class="lane"></div>
+  <div id="lane-caption" class="lane"></div>
+  <svg id="overlay" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+  <div id="ident" aria-label="Professor Diki Simplified">Professor Diki Simplified</div>
+</div>
+
+<!-- [2] INLINE FALLBACKS (preview only; production injects __CUE_SHEET__ and __FIXTURE__). build_scene.py
+     replaces both blocks. Built with --script ../ohm_demo/script.json --fixture fixtures/fixture.json (see README in 05_DESIGN_SYSTEM.md). -->
+<script type="application/json" id="cue-sheet-inline">
+{"schema_version":"1.0","scene_id":"diki-base-demo","fps":30,"duration":7.2,"language":"en-IN","alignment_source":"example",
+ "narration_audio_sha256":null,"script_sha256":null,
+ "words":[{"w":"Does","t0":0.3,"t1":0.6},{"w":"current","t0":0.65,"t1":1.1},{"w":"double","t0":1.15,"t1":1.6},
+          {"w":"Predict","t0":1.9,"t1":2.3},{"w":"it","t0":2.35,"t1":2.6},
+          {"w":"Professor","t0":4.6,"t1":5.0},{"w":"Diki","t0":5.05,"t1":5.3},{"w":"Simplified","t0":5.35,"t1":5.8}],
+ "beats":[0.0,1.9,4.6],
+ "cues":[{"id":"c01","at":1.1,"kind":"emphasis","element_id":"demo_badge","word_index":2},
+         {"id":"c02","at":2.15,"kind":"reveal","element_id":"eq_rule","word_index":4}],
+ "sfx":[],
+ "meta":{"beats_text":[
+   {"id":"b01","slot":"hook.question_reveal","text":"Does current double?","headline":"Does current double?","start":0.3,"end":1.6,"word_range":[0,3]},
+   {"id":"b02","slot":"check.predict","text":"Predict it.","headline":"Predict it","start":1.9,"end":2.6,"word_range":[3,5]},
+   {"id":"b03","slot":"outro.brand","text":"Professor Diki Simplified.","headline":"","start":4.6,"end":5.8,"word_range":[5,8]}],
+  "think_windows":[{"beat":"b02","seconds":1.4,"start":2.9,"end":4.3}]}}
+</script>
+<script type="application/json" id="fixture-inline">
+{"_note":"BASE DEMO DATA - not science content.",
+ "display":{"condition":"constant temperature","sym":{"V":"V","I":"I","R":"R"},"ops":{"eq":"=","times":"×"},
+            "ui":{"think_prompt":"Pause. Predict.","unknown":"?","endcard_line1":"Professor Diki Simplified","endcard_line2":"Free lesson: base demo"}}}
+</script>
+
+<!-- [3] DESIGN SYSTEM (classic scripts, relative paths: they work from file:// and are inlined by build_scene.py) -->
+<script src="../../tokens.js"></script>
+<script src="../../diki_runtime.js"></script>
+<script src="../../components/badge.js"></script>
+<script src="../../components/equation.js"></script>
+<script src="../../components/caption.js"></script>
+<script src="../../components/card.js"></script>
+<script src="../../components/physics_circuit.js"></script>
+<script src="../../components/chemistry_species.js"></script>
+<script src="../../components/biology_tracer.js"></script>
+
+<!-- [4] SCENE BLOCK - the only part a builder writes. build(D, FX) runs once in ready(): mount ONE persistent
+     hero in the diagram lane, register it (D.hero + D.PreserveObject), then wire verbs to cue/beat/think refs.
+     Never hard-code seconds; never write CSS animation; never tear the hero down (it changes, it does not leave). -->
+<script>
+window.DIKI_SCENE = {
+  subject: 'physics',                                     // world: paper sky, kraft workbench, dark wood table
+  captions: false,
+  card: true,                                             // 'carded' layout: board + result sheet + ONE card sheet (PD-18)
+  build(D) {
+    // 1. the hero: one circuit of stickers, mounted once, preserved for the whole lesson (end card included)
+    const C = D.Components.physicsCircuit.mount(D.lane('diagram').el, null, {});
+    D.hero(C.hero); D.PreserveObject(C.hero, { name: 'circuit' });
+
+    // 2. circuit states bound to cues (SwapPart = resistor <-> lamp in place; ChangeValue = readouts)
+    D.StateTable(C, {
+      initial: 'base',
+      states: {
+        base:    { v: 'fx:parameters.v1', i: 'fx:results.i1', load: 0, heat: 0, badge: 0, badgeDim: 0 },
+        four:    { v: 'fx:parameters.v2', i: null },                 // the answer slot shows "?"
+        four_i:  { i: 'fx:results.i2' },
+        cond:    { badge: 1 },
+        lamp:    { load: 1 },
+        hot:     { heat: 1 },
+        broken:  { badgeDim: 1 },
+        lamp_i:  { i: 'fx:results.lamp_i2' },
+        back:    { load: 0, heat: 0, badgeDim: 0, i: 'fx:results.i2' },
+        six:     { v: 'fx:parameters.v3', i: null },
+        six_i:   { i: 'fx:results.i3' }
+      },
+      steps: [
+        { at: 'cue:c04', state: 'four',   verb: 'ChangeValue' },
+        { at: 'cue:c06', state: 'four_i', verb: 'ChangeValue' },
+        { at: 'cue:c11', state: 'cond',   verb: 'Badge' },
+        { at: 'cue:c12', state: 'lamp',   verb: 'SwapPart' },
+        { at: 'cue:c13', state: 'hot',    verb: 'SwapPart' },
+        { at: 'cue:c14', state: 'broken', verb: 'StrikeThrough' },
+        { at: 'cue:c15', state: 'lamp_i', verb: 'ChangeValue' },
+        { at: 'cue:c16', state: 'back',   verb: 'SwapPart' },
+        { at: 'cue:c17', state: 'six',    verb: 'ChangeValue' },
+        { at: 'cue:c18', state: 'six_i',  verb: 'ChangeValue' }
+      ]
+    });
+    D.Emphasize(C.el.badge, 'cue:c11+0.24');
+    D.StrikeThrough(C.el.badge, 'cue:c14', { until: 'cue:c16' });
+
+    // 3. result sheet: before | x2 | after kept side by side, then the ratio, the name, the mismatch
+    const sym = (s, role) => ({ parts: [{ fx: 'display.sym.' + s }], role, italic: true });
+    const op = o => ({ parts: [{ fx: 'display.ops.' + o }], role: 'ink' });
+    const q = (fx, unit, role, dec) => ({ parts: [{ fx, dec }, { fx: unit }], role });
+    const DI = 'display.decimals.i';
+    const E = D.Components.equation.mount(document.getElementById('result-main'), null, {
+      terms: {
+        V: sym('V', 'voltage'), eqV: op('eq'), v1: q('parameters.v1', 'display.v_unit', 'voltage'),
+        V2: sym('V', 'voltage'), eqV2: op('eq'), v2: q('parameters.v2', 'display.v_unit', 'voltage'),
+        I: sym('I', 'current'), eqI: op('eq'), i1: q('results.i1', 'display.i_unit', 'current', DI),
+        I2: sym('I', 'current'), eqI2: op('eq'), i2: q('results.i2', 'display.i_unit', 'current', DI),
+        iq: { parts: [{ fx: 'display.ui.unknown' }], role: 'current' },
+        mv: { parts: [{ fx: 'display.times' }, { fx: 'results.ratio_v' }], role: 'voltage' },
+        mi: { parts: [{ fx: 'display.times' }, { fx: 'results.ratio_i' }], role: 'current' },
+        div: op('div'), eqR: op('eq'), r10: q('results.v_over_i', 'display.r_unit', 'resistance'), R: sym('R', 'resistance'),
+        il: q('results.lamp_i2', 'display.i_unit', 'current', DI), ne: { parts: [{ fx: 'display.ops.ne' }], role: 'mismatch' },
+        iexp: q('results.i2', 'display.i_unit', 'muted', DI)
+      },
+      states: {
+        A:     { layout: 'grid', rows: [{ l: ['V', 'eqV', 'v1'] }, { l: ['I', 'eqI', 'i1'] }] },
+        ABq:   { layout: 'grid', rows: [{ l: ['V', 'eqV', 'v1'], r: ['V2', 'eqV2', 'v2'] }, { l: ['I', 'eqI', 'i1'], r: ['I2', 'eqI2', 'iq'] }] },
+        AB:    { layout: 'grid', rows: [{ l: ['V', 'eqV', 'v1'], r: ['V2', 'eqV2', 'v2'] }, { l: ['I', 'eqI', 'i1'], r: ['I2', 'eqI2', 'i2'] }] },
+        ABm1:  { layout: 'grid', rows: [{ l: ['V', 'eqV', 'v1'], m: ['mv'], r: ['V2', 'eqV2', 'v2'] }, { l: ['I', 'eqI', 'i1'], r: ['I2', 'eqI2', 'i2'] }] },
+        ABm2:  { layout: 'grid', rows: [{ l: ['V', 'eqV', 'v1'], m: ['mv'], r: ['V2', 'eqV2', 'v2'] }, { l: ['I', 'eqI', 'i1'], m: ['mi'], r: ['I2', 'eqI2', 'i2'] }] },
+        ratio: { layout: 'line', terms: ['V', 'div', 'I', 'eqR', 'r10'] },
+        named: { layout: 'line', terms: ['V', 'div', 'I', 'eqR', 'R'] },
+        miss:  { layout: 'line', terms: ['I', 'eqI', 'il', 'ne', 'iexp'] }
+      }
+    });
+    E.drive([
+      D.CompareStates('ABq', 'cue:c04'),
+      D.CompareStates('AB', 'cue:c06'),
+      D.CompareStates('ABm1', 'cue:c07'),
+      D.CompareStates('ABm2', 'cue:c08'),
+      D.EquationTransform('ratio', 'cue:c09'),
+      D.EquationTransform('named', 'cue:c10'),
+      D.RevealMismatch('miss', 'cue:c15'),
+      D.EquationTransform('named', 'cue:c16')
+    ], { initial: 'A' });
+
+    // 4. links and the prediction slots
+    D.MapSymbol(E.el('R'), C.el.resistor, 'cue:c10', { until: 'cue:c12', side: 'left' });
+    D.PauseForPrediction([C.el.i_readout, E.el('iq')], 'b02');
+    D.PauseForPrediction([C.el.i_readout], 'b06');
+
+    // 5. structure (PD-18) on the card sheet, never empty: the table is up from frame 0 with the first reading and
+    //    fills as readings land (the V ÷ I cells only at the ratio beat); the definition replaces it while the law is named; the points close the lesson and
+    //    stay on the end card as the ticked answer sheet.
+    const lane = D.lane('card').el;
+    const tr = (v, i, at, ratioAt) => ({ cells: [{ fx: v, role: 'voltage' }, { fx: i, dec: DI, role: 'current' }, { fx: 'results.v_over_i', role: 'resistance', at: ratioAt }], at });
+    const Tb = D.Components.card.mount(lane, null, { id: 'card_table', kind: 'table', table: {
+      head: ['display.card.head.v', 'display.card.head.i', 'display.card.head.ratio'],
+      rows: [tr('parameters.v1', 'results.i1', null, 'cue:c09'), tr('parameters.v2', 'results.i2', 'cue:c06', 'cue:c09'), tr('parameters.v3', 'results.i3', 'cue:c18')] } });   // V / I cells: a ruled empty slot until the ratio beat (c09)
+    D.Card(Tb.el, null, { windows: [[0, 'cue:c10'], ['cue:c16', 'cue:c19']] });
+    const Df = D.Components.card.mount(lane, null, { id: 'card_def', kind: 'definition', definition: { term: 'display.card.def.term', text: 'display.card.def.text' } });
+    D.Card(Df.el, 'cue:c10', { until: 'cue:c16' });
+    const Pt = D.Components.card.mount(lane, null, { id: 'card_points', kind: 'points', points: [
+      { fx: 'display.card.points.p1', at: 'cue:c19' }, { fx: 'display.card.points.p2', at: 'cue:c19+0.5' }, { fx: 'display.card.points.p3', at: 'cue:c19+1.0' }] });
+    D.Card(Pt.el, 'cue:c19');
+  }
+};
+</script>
+
+<!-- [5] CONTRACT BLOCK - keep as is (seek contract 1.0.0: DURATION, async seek, ready, __errors, injected
+     __CUE_SHEET__/__FIXTURE__ > ?cues=/?fixture= > inline, seeded PRNG only, fonts preloaded, offline). -->
+<script>
+(function () {
+'use strict';
+const Q = new URLSearchParams(location.search);
+const num = (k, d) => { const v = parseFloat(Q.get(k)); return isFinite(v) ? v : d; };
+const FPS = num('fps', 30), SEED = num('seed', 20261016);
+
+window.__errors = [];
+const report = (code, severity, message, t) => window.__errors.push({ code, severity, message, t: t == null ? null : t });
+const fail = (code, message, t) => { report(code, 'error', message, t); const e = new Error(code + ': ' + message); e.code = code; return e; };
+
+/* seeded randomness only (F04). rngAt is stateless: same (seed, i) -> same value in any seek order. */
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const rngAt = (seed, i) => mulberry32((seed ^ Math.imul(i + 1, 0x9E3779B1)) >>> 0)();
+
+const deepFreeze = o => { Object.values(o).forEach(v => { if (v && typeof v === 'object') deepFreeze(v); }); return Object.freeze(o); };
+async function loadJson(inject, param, inlineId, what) {
+  if (inject) return { data: inject, source: 'injected' };
+  const path = Q.get(param);
+  if (path) {
+    try { const r = await fetch(path); if (!r.ok) throw new Error('HTTP ' + r.status); return { data: await r.json(), source: 'path' }; }
+    catch (e) {
+      if (Q.get('strict') === '1') throw fail('E_' + what + '_LOAD', 'cannot load ' + path + ': ' + e.message);
+      report('W_' + what + '_FALLBACK', 'warning', 'cannot load ' + path + ' (' + e.message + '); inline fallback used. Not valid for production.');
+      return { data: JSON.parse(document.getElementById(inlineId).textContent), source: 'inline-fallback' };
+    }
+  }
+  return { data: JSON.parse(document.getElementById(inlineId).textContent), source: 'inline' };
+}
+function checkSheet(s) {
+  if (!s || !(s.duration > 0) || !isFinite(s.duration) || !Array.isArray(s.words) || !Array.isArray(s.cues)) throw fail('E_CUES_INVALID', 'cue sheet needs finite duration>0, words[], cues[]');
+  s.words.forEach((w, i) => { if (i && w.t0 < s.words[i - 1].t0) throw fail('E_CUES_INVALID', 'words[' + i + '] not monotonic'); });
+}
+
+window.FPS = FPS;
+window.DURATION = 7.2;                                  // synchronous default; final value comes from the cue sheet in ready()
+window.SCENE_META = { contract: '1.0.0', videoCount: 0, designSystem: 'professor-diki-simplified 2.0.0', notes: 'paper collage; one scene per short; board persists' };
+window.ready = (async () => {
+  const D = window.Diki, T = window.DIKI_TOKENS;
+  if (!D || !T) throw fail('E_READY', 'design system scripts (tokens.js, diki_runtime.js) not loaded');
+  const s = await loadJson(window.__CUE_SHEET__, 'cues', 'cue-sheet-inline', 'CUES'); const SHEET = s.data; window.__cueSource = s.source; checkSheet(SHEET);
+  const f = await loadJson(window.__FIXTURE__, 'fixture', 'fixture-inline', 'FIXTURE'); const FX = deepFreeze(f.data); window.__fixtureSource = f.source;
+  window.DURATION = SHEET.duration;
+  window.FRAME_COUNT = Math.round(window.DURATION * FPS);
+  if (SHEET.fps !== FPS) report('W_FPS_MISMATCH', 'warning', 'cue sheet fps ' + SHEET.fps + ' != render fps ' + FPS + '; times stay in seconds');
+  await Promise.all(T.font.preload.map(p => document.fonts.load(p.weight + ' 40px "' + p.family + '"', p.text).catch(e => report('E_FONT_LOAD', 'error', p.family + ': ' + e.message))));
+  const SC = window.DIKI_SCENE || {}, stage = document.getElementById('stage');
+  const captions = !!SC.captions || Q.get('captions') === '1';
+  const layout = captions ? 'captioned' : (SC.card || Q.get('card') === '1') ? 'carded' : 'default';
+  if (captions && SC.card) report('W_LAYOUT', 'warning', 'captions and a card cannot share a frame; captioned layout used');
+  D.init({ sheet: SHEET, fx: FX, report, fail, stage, captions, layout, subject: SC.subject });
+  D.rngAt = i => rngAt(SEED, i);                        // the only randomness a scene may use
+  D.bindFx(stage);
+  D.buildChrome();
+  if (typeof SC.build === 'function') SC.build(D, FX);
+  if (captions) { const cap = D.Components.caption.mount(document.getElementById('lane-caption'), FX, { sheet: SHEET }); D.track(t => cap.set({ t })); }
+  // cues: every element_id must exist (W_CUE_NO_ELEMENT); 'emphasis' cues get Emphasize automatically,
+  // every other kind is wired by the scene through D.when('cue:<id>').
+  SHEET.cues.forEach(c => {
+    const el = c.element_id && document.getElementById(c.element_id);
+    if (!el) { if (c.kind !== 'hold') report('W_CUE_NO_ELEMENT', 'warning', 'cue ' + c.id + ' targets missing element ' + c.element_id); return; }
+    if (c.kind === 'emphasis') D.Emphasize(el, c.at);
+  });
+  D.finalize();
+  if (Q.get('safe') === '1') stage.classList.add('safe');
+  await document.fonts.ready;
+})().catch(e => { if (!e.code) report('E_READY', 'error', e.message); throw e; });
+
+let chain = Promise.resolve();                          // serialise seeks
+window.seek = async function seek(t) {
+  const prev = chain; let done; chain = new Promise(r => { done = r; });
+  try {
+    await prev; await window.ready;
+    if (typeof t !== 'number' || !isFinite(t)) throw fail('E_BAD_T', 'seek(t) needs a finite number of seconds, got ' + t);
+    const tc = Math.min(Math.max(t, 0), window.DURATION);
+    window.Diki.render(tc);
+    await document.fonts.ready;                         // no rAF: the harness triggers the capture
+    await Promise.all(Array.from(document.images).map(i => i.decode().catch(e => report('E_ASSET_LOAD', 'error', i.src + ': ' + e.message, tc))));
+    return { t: tc, frame: Math.round(tc * FPS) };
+  } finally { done(); }
+};
+window.__hf = window.__hf || { get duration() { return window.DURATION; }, seek: t => window.seek(t) };   // shape unverified [N68]
+
+if (Q.get('preview') === '1') window.ready.then(() => { const r = document.createElement('input'); r.type = 'range'; r.id = 'scrub'; r.min = 0; r.max = window.DURATION; r.step = 1 / FPS; r.value = 0; r.oninput = () => window.seek(parseFloat(r.value)); document.body.appendChild(r); });
+if (Q.has('t')) window.ready.then(() => window.seek(num('t', 0)));
+})();
+</script>
+</body>
+</html>

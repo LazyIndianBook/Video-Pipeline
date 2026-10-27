@@ -1,0 +1,1212 @@
+{
+ "video_id": "phy-ohm-pd-04",
+ "voice": {
+  "path": "B",
+  "provider": "local",
+  "model_id": "voxcpm2-4bit",
+  "voice_id": "ref-876b843068d2",
+  "persona": "persona/super-teacher#core",
+  "rate_scale": 1.2,
+  "note": "TEST voice designed with VoxCPM2 (PD-29a), not for release; re-measure rate_scale on the first narration (PD-22)",
+  "reference": "default_reference.wav sha256 66cb1f4d3e373b1b",
+  "instruct": "Brisk, energetic English teaching. Clear pronunciation, natural emphasis, and short natural pauses.",
+  "inference_timesteps": 10,
+  "cfg_value": 2.0,
+  "test_voice": true
+ },
+ "fps": 30,
+ "lead_in_s": 0.3,
+ "script_v2": true,
+ "room_tone_dbfs": -66.0,
+ "tempo": 0.96,
+ "beats": [
+  {
+   "id": "b01",
+   "scene": "s01",
+   "slot": "hook.question_reveal",
+   "start": 0.3,
+   "end": 9.505,
+   "audio_s": 9.667,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 152,
+   "request_id": "voxcpm2-4bit-ref-876b843068d2-seed20261016",
+   "sha256": "01edf051b0e3cb3497d4e7b2e9fd9f6a1b477d1e1f40ee11fcd875f3a0434312",
+   "words": [
+    {
+     "w": "What",
+     "t0": 0.3,
+     "t1": 0.529
+    },
+    {
+     "w": "is",
+     "t0": 0.529,
+     "t1": 0.738
+    },
+    {
+     "w": "Ohm's",
+     "t0": 0.738,
+     "t1": 1.217
+    },
+    {
+     "w": "law",
+     "t0": 1.217,
+     "t1": 1.467
+    },
+    {
+     "w": "When",
+     "t0": 2.071,
+     "t1": 2.196
+    },
+    {
+     "w": "electricity",
+     "t0": 2.196,
+     "t1": 2.675
+    },
+    {
+     "w": "passes",
+     "t0": 2.675,
+     "t1": 3.237
+    },
+    {
+     "w": "through",
+     "t0": 3.237,
+     "t1": 3.592
+    },
+    {
+     "w": "a",
+     "t0": 3.592,
+     "t1": 3.737
+    },
+    {
+     "w": "wire",
+     "t0": 3.737,
+     "t1": 4.092
+    },
+    {
+     "w": "something",
+     "t0": 4.529,
+     "t1": 4.717
+    },
+    {
+     "w": "pushes",
+     "t0": 4.717,
+     "t1": 5.133
+    },
+    {
+     "w": "it",
+     "t0": 5.133,
+     "t1": 5.404
+    },
+    {
+     "w": "along",
+     "t0": 5.404,
+     "t1": 5.758
+    },
+    {
+     "w": "That",
+     "t0": 6.425,
+     "t1": 6.612
+    },
+    {
+     "w": "push",
+     "t0": 6.612,
+     "t1": 6.862
+    },
+    {
+     "w": "is",
+     "t0": 6.862,
+     "t1": 7.092
+    },
+    {
+     "w": "called",
+     "t0": 7.092,
+     "t1": 7.363
+    },
+    {
+     "w": "voltage",
+     "t0": 7.363,
+     "t1": 7.842
+    },
+    {
+     "w": "and",
+     "t0": 8.217,
+     "t1": 8.321
+    },
+    {
+     "w": "we",
+     "t0": 8.321,
+     "t1": 8.467
+    },
+    {
+     "w": "measure",
+     "t0": 8.467,
+     "t1": 8.738
+    },
+    {
+     "w": "it",
+     "t0": 8.738,
+     "t1": 8.967
+    },
+    {
+     "w": "in",
+     "t0": 8.967,
+     "t1": 9.196
+    },
+    {
+     "w": "volts",
+     "t0": 9.196,
+     "t1": 9.425
+    }
+   ],
+   "energy": "high"
+  },
+  {
+   "id": "b02",
+   "scene": "s01",
+   "slot": "explain.definition",
+   "start": 9.595,
+   "end": 13.928,
+   "audio_s": 4.667,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 59,
+   "request_id": "voxcpm2-4bit-ref-876b843068d2-seed20261016",
+   "sha256": "94cd80a3b8d3aeaf6e2f81fa3cb225d585760bd796098048d8af1bd5b9a09c2f",
+   "words": [
+    {
+     "w": "The",
+     "t0": 9.625,
+     "t1": 9.744
+    },
+    {
+     "w": "flow",
+     "t0": 9.744,
+     "t1": 10.098
+    },
+    {
+     "w": "is",
+     "t0": 10.098,
+     "t1": 10.348
+    },
+    {
+     "w": "called",
+     "t0": 10.348,
+     "t1": 10.703
+    },
+    {
+     "w": "current",
+     "t0": 10.703,
+     "t1": 11.161
+    },
+    {
+     "w": "this",
+     "t0": 11.64,
+     "t1": 11.89
+    },
+    {
+     "w": "meter",
+     "t0": 11.89,
+     "t1": 12.14
+    },
+    {
+     "w": "reads",
+     "t0": 12.14,
+     "t1": 12.515
+    },
+    {
+     "w": "it",
+     "t0": 12.515,
+     "t1": 12.786
+    },
+    {
+     "w": "in",
+     "t0": 12.786,
+     "t1": 12.973
+    },
+    {
+     "w": "amperes",
+     "t0": 12.973,
+     "t1": 13.848
+    }
+   ],
+   "energy": "mid"
+  },
+  {
+   "id": "b03",
+   "scene": "s01",
+   "slot": "explain.definition",
+   "start": 14.048,
+   "end": 17.649,
+   "audio_s": 3.667,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 59,
+   "request_id": "voxcpm2-4bit-ref-876b843068d2-seed20261016",
+   "sha256": "51a016aa980a38fb2c761bbd8e8b2be5331fd9b63356f2c1abb7c1e051264e03",
+   "words": [
+    {
+     "w": "Each",
+     "t0": 14.048,
+     "t1": 14.236
+    },
+    {
+     "w": "wire",
+     "t0": 14.236,
+     "t1": 14.548
+    },
+    {
+     "w": "holds",
+     "t0": 14.548,
+     "t1": 14.84
+    },
+    {
+     "w": "the",
+     "t0": 14.84,
+     "t1": 15.027
+    },
+    {
+     "w": "flow",
+     "t0": 15.027,
+     "t1": 15.257
+    },
+    {
+     "w": "back",
+     "t0": 15.257,
+     "t1": 15.59
+    },
+    {
+     "w": "that",
+     "t0": 16.069,
+     "t1": 16.09
+    },
+    {
+     "w": "is",
+     "t0": 16.09,
+     "t1": 16.236
+    },
+    {
+     "w": "resistance",
+     "t0": 16.236,
+     "t1": 16.736
+    },
+    {
+     "w": "in",
+     "t0": 16.736,
+     "t1": 17.173
+    },
+    {
+     "w": "ohms",
+     "t0": 17.173,
+     "t1": 17.569
+    }
+   ],
+   "energy": "mid"
+  },
+  {
+   "id": "b04",
+   "scene": "s01",
+   "slot": "explain.definition",
+   "start": 17.769,
+   "end": 22.891,
+   "audio_s": 5.501,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 92,
+   "request_id": "voxcpm2-4bit-ref-876b843068d2-seed20261017",
+   "sha256": "ff3b2b409281f2bfb3ecb47a01990186ca6834c3bcc842d8f2a809020d90d8bf",
+   "words": [
+    {
+     "w": "Ohm's",
+     "t0": 17.769,
+     "t1": 18.165
+    },
+    {
+     "w": "law",
+     "t0": 18.165,
+     "t1": 18.352
+    },
+    {
+     "w": "says",
+     "t0": 18.352,
+     "t1": 18.602
+    },
+    {
+     "w": "the",
+     "t0": 18.602,
+     "t1": 18.832
+    },
+    {
+     "w": "current",
+     "t0": 18.832,
+     "t1": 19.123
+    },
+    {
+     "w": "goes",
+     "t0": 19.123,
+     "t1": 19.394
+    },
+    {
+     "w": "up",
+     "t0": 19.394,
+     "t1": 19.623
+    },
+    {
+     "w": "with",
+     "t0": 19.623,
+     "t1": 19.811
+    },
+    {
+     "w": "the",
+     "t0": 19.811,
+     "t1": 19.977
+    },
+    {
+     "w": "push",
+     "t0": 19.977,
+     "t1": 20.29
+    },
+    {
+     "w": "as",
+     "t0": 20.79,
+     "t1": 20.915
+    },
+    {
+     "w": "long",
+     "t0": 20.915,
+     "t1": 21.123
+    },
+    {
+     "w": "as",
+     "t0": 21.123,
+     "t1": 21.311
+    },
+    {
+     "w": "the",
+     "t0": 21.311,
+     "t1": 21.477
+    },
+    {
+     "w": "temperature",
+     "t0": 21.477,
+     "t1": 21.894
+    },
+    {
+     "w": "stays",
+     "t0": 21.894,
+     "t1": 22.29
+    },
+    {
+     "w": "the",
+     "t0": 22.29,
+     "t1": 22.54
+    },
+    {
+     "w": "same",
+     "t0": 22.54,
+     "t1": 22.811
+    }
+   ],
+   "energy": "mid"
+  },
+  {
+   "id": "b05",
+   "scene": "s01",
+   "slot": "explain.formal",
+   "start": 23.011,
+   "end": 31.695,
+   "audio_s": 9.001,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 103,
+   "request_id": "voxcpm2-4bit-ref-876b843068d2-seed20261016",
+   "sha256": "9c1df208aedda64c582de29b914d8c2ff538a4e25a225fb06d78a20dd0c23a6b",
+   "words": [
+    {
+     "w": "So",
+     "t0": 23.011,
+     "t1": 23.24
+    },
+    {
+     "w": "voltage",
+     "t0": 23.24,
+     "t1": 23.678
+    },
+    {
+     "w": "equals",
+     "t0": 23.678,
+     "t1": 24.053
+    },
+    {
+     "w": "current",
+     "t0": 24.053,
+     "t1": 24.553
+    },
+    {
+     "w": "times",
+     "t0": 24.553,
+     "t1": 24.99
+    },
+    {
+     "w": "resistance",
+     "t0": 24.99,
+     "t1": 25.573
+    },
+    {
+     "w": "V",
+     "t0": 26.157,
+     "t1": 26.261
+    },
+    {
+     "w": "equals",
+     "t0": 26.261,
+     "t1": 26.719
+    },
+    {
+     "w": "I",
+     "t0": 26.719,
+     "t1": 27.073
+    },
+    {
+     "w": "R",
+     "t0": 27.073,
+     "t1": 27.428
+    },
+    {
+     "w": "Then",
+     "t0": 27.907,
+     "t1": 28.032
+    },
+    {
+     "w": "I",
+     "t0": 28.032,
+     "t1": 28.428
+    },
+    {
+     "w": "is",
+     "t0": 28.428,
+     "t1": 28.678
+    },
+    {
+     "w": "V",
+     "t0": 28.678,
+     "t1": 28.928
+    },
+    {
+     "w": "over",
+     "t0": 28.928,
+     "t1": 29.157
+    },
+    {
+     "w": "R",
+     "t0": 29.157,
+     "t1": 29.553
+    },
+    {
+     "w": "and",
+     "t0": 30.011,
+     "t1": 30.073
+    },
+    {
+     "w": "R",
+     "t0": 30.073,
+     "t1": 30.469
+    },
+    {
+     "w": "is",
+     "t0": 30.469,
+     "t1": 30.74
+    },
+    {
+     "w": "V",
+     "t0": 30.74,
+     "t1": 30.99
+    },
+    {
+     "w": "over",
+     "t0": 30.99,
+     "t1": 31.261
+    },
+    {
+     "w": "I",
+     "t0": 31.261,
+     "t1": 31.615
+    }
+   ],
+   "energy": "low"
+  },
+  {
+   "id": "b06",
+   "scene": "s01",
+   "slot": "explain.mechanism",
+   "start": 31.815,
+   "end": 34.562,
+   "audio_s": 3.001,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 48,
+   "request_id": "voxcpm2-4bit-ref-876b843068d2-seed20261016",
+   "sha256": "5a7530c6df2e948fb539488da4abee6264771f639e91a233d0de1cb9e4943049",
+   "words": [
+    {
+     "w": "Two",
+     "t0": 31.815,
+     "t1": 32.002
+    },
+    {
+     "w": "volts",
+     "t0": 32.002,
+     "t1": 32.273
+    },
+    {
+     "w": "over",
+     "t0": 32.273,
+     "t1": 32.565
+    },
+    {
+     "w": "ten",
+     "t0": 32.565,
+     "t1": 32.836
+    },
+    {
+     "w": "ohms",
+     "t0": 32.836,
+     "t1": 33.211
+    },
+    {
+     "w": "gives",
+     "t0": 33.211,
+     "t1": 33.377
+    },
+    {
+     "w": "point",
+     "t0": 33.377,
+     "t1": 33.669
+    },
+    {
+     "w": "two",
+     "t0": 33.669,
+     "t1": 33.982
+    },
+    {
+     "w": "amperes",
+     "t0": 33.982,
+     "t1": 34.482
+    }
+   ],
+   "energy": "high"
+  },
+  {
+   "id": "b07",
+   "scene": "s01",
+   "slot": "explain.mechanism",
+   "start": 34.682,
+   "end": 38.428,
+   "audio_s": 4.001,
+   "pause_after_s": 0.5,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "land",
+    "seconds": 0.5
+   },
+   "chars": 69,
+   "request_id": "voxcpm2-4bit-ref-876b843068d2-seed20261016",
+   "sha256": "a06be9ee3874fdac89d1dc3deeea03b1cdce5c7e5fbb71c83d2ed23d0d0cfc85",
+   "words": [
+    {
+     "w": "Double",
+     "t0": 34.682,
+     "t1": 34.994
+    },
+    {
+     "w": "the",
+     "t0": 34.994,
+     "t1": 35.161
+    },
+    {
+     "w": "push",
+     "t0": 35.161,
+     "t1": 35.39
+    },
+    {
+     "w": "to",
+     "t0": 35.39,
+     "t1": 35.598
+    },
+    {
+     "w": "four",
+     "t0": 35.598,
+     "t1": 35.932
+    },
+    {
+     "w": "volts",
+     "t0": 35.932,
+     "t1": 36.265
+    },
+    {
+     "w": "and",
+     "t0": 36.265,
+     "t1": 36.723
+    },
+    {
+     "w": "the",
+     "t0": 36.723,
+     "t1": 36.848
+    },
+    {
+     "w": "current",
+     "t0": 36.848,
+     "t1": 37.119
+    },
+    {
+     "w": "doubles",
+     "t0": 37.119,
+     "t1": 37.515
+    },
+    {
+     "w": "to",
+     "t0": 37.515,
+     "t1": 37.744
+    },
+    {
+     "w": "point",
+     "t0": 37.744,
+     "t1": 37.932
+    },
+    {
+     "w": "four",
+     "t0": 37.932,
+     "t1": 38.348
+    }
+   ],
+   "energy": "peak"
+  },
+  {
+   "id": "b08",
+   "scene": "s01",
+   "slot": "worked.step",
+   "start": 38.848,
+   "end": 44.303,
+   "audio_s": 5.667,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 90,
+   "request_id": "voxcpm2-4bit-ref-876b843068d2-seed20261016",
+   "sha256": "e679ec3549013779253f43f57b08554052dc9dc9928301a7072ed6311c69405f",
+   "words": [
+    {
+     "w": "Keep",
+     "t0": 38.848,
+     "t1": 39.078
+    },
+    {
+     "w": "two",
+     "t0": 39.078,
+     "t1": 39.453
+    },
+    {
+     "w": "volts",
+     "t0": 39.453,
+     "t1": 39.828
+    },
+    {
+     "w": "double",
+     "t0": 40.265,
+     "t1": 40.411
+    },
+    {
+     "w": "the",
+     "t0": 40.411,
+     "t1": 40.619
+    },
+    {
+     "w": "resistance",
+     "t0": 40.619,
+     "t1": 40.973
+    },
+    {
+     "w": "to",
+     "t0": 40.973,
+     "t1": 41.369
+    },
+    {
+     "w": "twenty",
+     "t0": 41.369,
+     "t1": 41.786
+    },
+    {
+     "w": "ohms",
+     "t0": 41.786,
+     "t1": 42.244
+    },
+    {
+     "w": "and",
+     "t0": 42.473,
+     "t1": 42.557
+    },
+    {
+     "w": "the",
+     "t0": 42.557,
+     "t1": 42.703
+    },
+    {
+     "w": "current",
+     "t0": 42.703,
+     "t1": 42.953
+    },
+    {
+     "w": "halves",
+     "t0": 42.953,
+     "t1": 43.369
+    },
+    {
+     "w": "to",
+     "t0": 43.369,
+     "t1": 43.619
+    },
+    {
+     "w": "point",
+     "t0": 43.619,
+     "t1": 43.807
+    },
+    {
+     "w": "one",
+     "t0": 43.807,
+     "t1": 44.223
+    }
+   ],
+   "energy": "high"
+  },
+  {
+   "id": "b09",
+   "scene": "s01",
+   "slot": "explain.condition",
+   "start": 44.423,
+   "end": 49.358,
+   "audio_s": 5.334,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 88,
+   "request_id": "voxcpm2-4bit-ref-876b843068d2-seed20261016",
+   "sha256": "0a5cf7567d96ed515fea7cd3b1541f51024cfe4f3b61365aa16b6fea1c472f69",
+   "words": [
+    {
+     "w": "Voltage",
+     "t0": 44.423,
+     "t1": 44.882
+    },
+    {
+     "w": "against",
+     "t0": 44.882,
+     "t1": 45.194
+    },
+    {
+     "w": "current",
+     "t0": 45.194,
+     "t1": 45.653
+    },
+    {
+     "w": "makes",
+     "t0": 45.653,
+     "t1": 46.028
+    },
+    {
+     "w": "a",
+     "t0": 46.028,
+     "t1": 46.257
+    },
+    {
+     "w": "straight",
+     "t0": 46.257,
+     "t1": 46.569
+    },
+    {
+     "w": "line",
+     "t0": 46.569,
+     "t1": 46.882
+    },
+    {
+     "w": "through",
+     "t0": 46.882,
+     "t1": 47.132
+    },
+    {
+     "w": "zero",
+     "t0": 47.132,
+     "t1": 47.569
+    },
+    {
+     "w": "Its",
+     "t0": 47.986,
+     "t1": 48.09
+    },
+    {
+     "w": "slope",
+     "t0": 48.09,
+     "t1": 48.444
+    },
+    {
+     "w": "is",
+     "t0": 48.444,
+     "t1": 48.715
+    },
+    {
+     "w": "the",
+     "t0": 48.715,
+     "t1": 48.861
+    },
+    {
+     "w": "resistance",
+     "t0": 48.861,
+     "t1": 49.278
+    }
+   ],
+   "energy": "mid"
+  },
+  {
+   "id": "b10",
+   "scene": "s01",
+   "slot": "explain.condition",
+   "start": 49.478,
+   "end": 53.37,
+   "audio_s": 4.167,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 63,
+   "request_id": "voxcpm2-4bit-ref-876b843068d2-seed20261016",
+   "sha256": "8d943ee611a5014baa8ab764fe3336ac2825fe0d7dcff1e7791aac604a4d7cf5",
+   "words": [
+    {
+     "w": "But",
+     "t0": 49.478,
+     "t1": 49.623
+    },
+    {
+     "w": "a",
+     "t0": 49.623,
+     "t1": 49.748
+    },
+    {
+     "w": "hot",
+     "t0": 49.748,
+     "t1": 49.978
+    },
+    {
+     "w": "bulb's",
+     "t0": 49.978,
+     "t1": 50.394
+    },
+    {
+     "w": "line",
+     "t0": 50.394,
+     "t1": 50.644
+    },
+    {
+     "w": "bends",
+     "t0": 50.644,
+     "t1": 51.04
+    },
+    {
+     "w": "because",
+     "t0": 51.353,
+     "t1": 51.665
+    },
+    {
+     "w": "its",
+     "t0": 51.665,
+     "t1": 51.894
+    },
+    {
+     "w": "filament",
+     "t0": 51.894,
+     "t1": 52.332
+    },
+    {
+     "w": "resists",
+     "t0": 52.332,
+     "t1": 52.853
+    },
+    {
+     "w": "more",
+     "t0": 52.853,
+     "t1": 53.29
+    }
+   ],
+   "energy": "high"
+  },
+  {
+   "id": "b11",
+   "scene": "s01",
+   "slot": "recap.statement",
+   "start": 53.49,
+   "end": 55.508,
+   "audio_s": 2.167,
+   "pause_after_s": 0.5,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "land",
+    "seconds": 0.5
+   },
+   "chars": 31,
+   "request_id": "voxcpm2-4bit-ref-876b843068d2-seed20261016",
+   "sha256": "4aa072a4ee02ac4429c945160d6b6d8f29ea6d167640f5bfa57ee756665de0b8",
+   "words": [
+    {
+     "w": "Twice",
+     "t0": 53.49,
+     "t1": 53.803
+    },
+    {
+     "w": "the",
+     "t0": 53.803,
+     "t1": 54.011
+    },
+    {
+     "w": "push",
+     "t0": 54.011,
+     "t1": 54.282
+    },
+    {
+     "w": "twice",
+     "t0": 54.719,
+     "t1": 54.886
+    },
+    {
+     "w": "the",
+     "t0": 54.886,
+     "t1": 55.136
+    },
+    {
+     "w": "flow",
+     "t0": 55.136,
+     "t1": 55.428
+    }
+   ],
+   "energy": "high"
+  },
+  {
+   "id": "b12",
+   "scene": "s01",
+   "slot": "close.next_step",
+   "start": 55.928,
+   "end": 57.758,
+   "audio_s": 2.001,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 41,
+   "request_id": "voxcpm2-4bit-ref-876b843068d2-seed20261016",
+   "sha256": "6a15ca398df6e2ff933525185246af57001b818c37cd3fc244991291e94a925e",
+   "words": [
+    {
+     "w": "Try",
+     "t0": 55.928,
+     "t1": 56.157
+    },
+    {
+     "w": "more",
+     "t0": 56.157,
+     "t1": 56.386
+    },
+    {
+     "w": "cases",
+     "t0": 56.386,
+     "t1": 56.761
+    },
+    {
+     "w": "in",
+     "t0": 56.761,
+     "t1": 57.011
+    },
+    {
+     "w": "the",
+     "t0": 57.011,
+     "t1": 57.136
+    },
+    {
+     "w": "free",
+     "t0": 57.136,
+     "t1": 57.344
+    },
+    {
+     "w": "lesson",
+     "t0": 57.344,
+     "t1": 57.678
+    }
+   ],
+   "energy": "mid"
+  },
+  {
+   "id": "b13",
+   "scene": "s01",
+   "slot": "outro.brand",
+   "start": 57.878,
+   "end": 59.353,
+   "audio_s": 1.667,
+   "pause_after_s": 0.0,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "unlabelled",
+    "seconds": 0.0
+   },
+   "chars": 26,
+   "request_id": "voxcpm2-4bit-ref-876b843068d2-seed20261016",
+   "sha256": "4c3ca54ab23428d53069834b4991b4c823f88ae0cf5e1c5f43e2fff9a2d35881",
+   "words": [
+    {
+     "w": "Professor",
+     "t0": 57.878,
+     "t1": 58.294
+    },
+    {
+     "w": "Diki",
+     "t0": 58.294,
+     "t1": 58.648
+    },
+    {
+     "w": "Simplified",
+     "t0": 58.648,
+     "t1": 59.273
+    }
+   ],
+   "energy": "mid"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "start": 0.0,
+   "end": 60.2,
+   "duration": 60.2
+  }
+ ],
+ "pauses": [
+  {
+   "beat": "b01",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 9.425,
+   "end": 9.625
+  },
+  {
+   "beat": "b02",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 13.848,
+   "end": 14.048
+  },
+  {
+   "beat": "b03",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 17.569,
+   "end": 17.769
+  },
+  {
+   "beat": "b04",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 22.811,
+   "end": 23.011
+  },
+  {
+   "beat": "b05",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 31.615,
+   "end": 31.815
+  },
+  {
+   "beat": "b06",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 34.482,
+   "end": 34.682
+  },
+  {
+   "beat": "b07",
+   "purpose": "land",
+   "seconds": 0.5,
+   "start": 38.348,
+   "end": 38.848
+  },
+  {
+   "beat": "b08",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 44.223,
+   "end": 44.423
+  },
+  {
+   "beat": "b09",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 49.278,
+   "end": 49.478
+  },
+  {
+   "beat": "b10",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 53.29,
+   "end": 53.49
+  },
+  {
+   "beat": "b11",
+   "purpose": "land",
+   "seconds": 0.5,
+   "start": 55.428,
+   "end": 55.928
+  },
+  {
+   "beat": "b12",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 57.678,
+   "end": 57.878
+  }
+ ],
+ "total_duration_s": 60.2,
+ "chars_total": 921,
+ "narration_audio_sha256": "fa57f90a6382c0d7e4c51a181df44c5831b8ee3c59a6c0b274c127c3fe34e042",
+ "script_sha256": "b55c96e00612d4fb6e662ebbf72e64da42d6642548e056904daa5095fae78252"
+}

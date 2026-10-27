@@ -1,0 +1,54 @@
+{
+ "video_id": "phy-ohm-pd-02",
+ "fps": 30,
+ "viewport": [
+  1080,
+  1920
+ ],
+ "seed": 20261016,
+ "scenes": [
+  {
+   "id": "s01",
+   "file": "scenes/s01.html",
+   "scene_sha256": "082bb3a8eabe4a73e07bb84c67d95a3d3317abf1ebb8089ba1def3e5a67ccbe7",
+   "cue_sheet_sha256": "2cc54e8e45bb0a9a8c464c7519114e426568d9d3f1e7ed6a8428beb0142fe93d",
+   "cue_source": "injected",
+   "fixture_source": "injected",
+   "duration": 59.2,
+   "frames": 1776,
+   "errors": [],
+   "warnings": [],
+   "encode_exit": 0,
+   "capture_s": 969.7,
+   "frame_hashes_sample": {
+    "0": "3a606a6aeb05ef45fef1027577aad8c7757b696164b3bb86bde183ada4a0c455",
+    "888": "929eb8aab660621280cbd2bae6462f1ea5452ae1a7c0e5ed645973a4c6507666",
+    "1775": "88d782cbb1ffbb718e528d5f35d20066ca78da3348fdcb261a06ae199c155a53"
+   },
+   "frames_sha256": "57fc7772c137050d0aa633038bcccb38ce7b1c6565d56bdcba07ce4c817f300e",
+   "deterministic_rerender": true,
+   "deterministic_mismatched_frames": 0,
+   "deterministic_sampled_frames": 1776
+  }
+ ],
+ "script_sha256": "6592b5e5bf7582dae08831bc61b047fb7c19f787a3ed66d2951c80f407c7af9a",
+ "narration_audio_sha256": "8bd7bff8bac3a0ef1144205d03258e83b0b2ee91a27acddce732fb2fab91eedf",
+ "started": "2026-10-16T23:38:34",
+ "browser": "155.0.8059.82",
+ "audio_events": [
+  {
+   "file": "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/17_professor_diki_simplified/brand/motif/diki_end_motif_v1.wav",
+   "at": 58.379,
+   "gain_db": -3.0,
+   "kind": "end_motif"
+  }
+ ],
+ "audio_final_sha256": "e5ca35d4591bb4083f25ed50a790989a5dfc7a8f655eca65ca4b3b2525a2c9fb",
+ "output": {
+  "file": "phy-ohm-pd-02.mp4",
+  "sha256": "43c86e16f87ce1f9251f6d485d1895451955317bedb50cbcbff073ab50b6b8a1",
+  "bytes": 6070375
+ },
+ "total_errors": 0,
+ "finished": "2026-10-17T00:10:51"
+}

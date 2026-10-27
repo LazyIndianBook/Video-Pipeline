@@ -1,0 +1,740 @@
+[
+ {
+  "id": "A1-01",
+  "video": "physics",
+  "t": "00:11-00:22",
+  "evidence": "b02 'Pause and predict the current at four volts.' Frames t012-t022 show only R = 10 Ω, V = 4 V, I = ?. The 2 V current (0.2 A) is never spoken or shown before the window; it first appears at 00:24 ('zero point two amperes').",
+  "problem": "The prediction is unanswerable without already knowing I = V/R, the law the video is about to teach. The ASM stem in lesson_graph says 'carries 0.2 A at two volts' but the builder dropped the baseline from the hook. A weak-foundation learner can only guess; the 5.51 s window is dead time.",
+  "root_cause": {
+   "layer": "script + builder prompt",
+   "location": "script.json b01/b02; PILOT_CONTRACT §3 has no rule that a predict must be answerable from what was already shown"
+  },
+  "effect": "comprehension, confidence (learner fails the first task), attention (5.5 s of silence with nothing to do)",
+  "severity": "critical",
+  "fix": {
+   "what": "Give the baseline before asking: 'Two volts, and the meter reads 0.2 amperes. Now four volts. What will the meter read?' Show I = 0.2 A on the ammeter in s01.",
+   "where": "script.json b01/b02; new rule SQ-25 'predict is answerable' in 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §15; 16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: every fixture value that ASM.answer depends on, other than the asked quantity, must appear in an earlier beat's fx_refs; fail otherwise."
+  }
+ },
+ {
+  "id": "A1-02",
+  "video": "physics",
+  "t": "00:14-00:17, 00:46-00:57",
+  "evidence": "'Then decide whether always is safe.' / 'But always is not safe.' Headline 'always is not safe' on screen t048-t057.",
+  "problem": "Two tasks in one window (compute, then judge a word). Using 'always' as a noun is meta-language a 15-year-old must decode; it reads as a translation. The external audit flagged the same phrase.",
+  "root_cause": {
+   "layer": "brief + PILOT_CONTRACT §3 headline-subset rule",
+   "location": "physics/brief.md (prompt prescribed verbatim); PILOT_CONTRACT §3 'headline words must be a subset of the beat's spoken words' locks the odd phrase onto the screen"
+  },
+  "effect": "comprehension, perceived quality (sounds machine-written)",
+  "severity": "major",
+  "fix": {
+   "what": "One task per window. Hook: 'Twice the voltage: twice the current, every time?' Confront: 'Not every time. Here is a bulb.' Headline 'not every time'.",
+   "where": "physics script.json b02/b05; 16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 (add: check.predict asks exactly one question, ≤ 15 words)",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: count '?' and task verbs in check.predict text; reject >1 question or a quoted word used as a noun."
+  }
+ },
+ {
+  "id": "A1-03",
+  "video": "physics",
+  "t": "00:22-00:32",
+  "evidence": "'At two volts, the current is zero point two amperes. At four volts, it is zero point four amperes.' Cards fill in I = 0.2 A (t025) with no '2 ÷ 10'; the circuit and ammeter vanish at t023.",
+  "problem": "Numbers are announced, not measured or derived. The learner never sees where 0.2 A comes from (no meter reading, no division). Super Teacher Step 2 'reveal your decisions' is not applied.",
+  "root_cause": {
+   "layer": "script + storyboard",
+   "location": "script.json b03; storyboard s03 replaces the circuit with cards"
+  },
+  "effect": "comprehension (weak learners cannot reproduce the step), retention",
+  "severity": "major",
+  "fix": {
+   "what": "Keep the circuit; read the values off the ammeter ('the meter now reads 0.4'). If a calculation is shown, say the decision: 'Current is voltage shared by resistance: two divided by ten.'",
+   "where": "physics script.json b03; 03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Step 2 checklist; storyboard rule 'the measuring instrument stays on screen'",
+   "control": "Reviewer rubric item: each explain/worked beat contains at least one spoken decision ('so', 'because', 'that is why')."
+  }
+ },
+ {
+  "id": "A1-04",
+  "video": "physics",
+  "t": "00:05-00:07, 00:33-00:45",
+  "evidence": "Hook: 'a resistor of ten ohms'. Then: 'voltage divided by current stays ten ohms at both points. That constant is the resistance: voltage equals current multiplied by resistance.'",
+  "problem": "Circular Aha: the resistor was labelled 10 Ω before any reading, and the currents were computed from it, so 'discovering' V/I = 10 Ω reveals nothing. Three forms of one relation (implied I = V/R, V/I, V = I × R) arrive in 12 s with no transformation shown.",
+  "root_cause": {
+   "layer": "script",
+   "location": "script.json b01/b04; lesson_graph WRK-ohm-two-points step order"
+  },
+  "effect": "Aha moment lost; cognitive load at the densest beat (128 wpm)",
+  "severity": "major",
+  "fix": {
+   "what": "Start with an unlabelled resistor and two meter readings; let the learner see that V ÷ I gives the same number twice; then name it: 'That unchanging number is the resistance, ten ohms.' Use one form (V = I × R) on screen.",
+   "where": "physics script.json + lesson_graph WRK order; 03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Step 6 'tempting interpretation → revealing contrast → fresh prediction'",
+   "control": "Lesson-graph lint: a quantity the video claims to 'discover' may not appear in fx_refs of any earlier beat."
+  }
+ },
+ {
+  "id": "A1-05",
+  "video": "physics",
+  "t": "00:00-00:45",
+  "evidence": "No sentence gives a picture of why current doubles (push vs. narrowness, flow). Sequence is numbers → ratio → equation.",
+  "problem": "Definition before intuition, against the founder mandate. A learner who cannot picture voltage as a push has nothing to hang 'proportional' on.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 slot grammar",
+   "location": "§3 concept_intro order has no explain.analogy / intuition slot; Super Teacher Step 4 ladder ('familiar observation → visual relationship → plain language → formal') is not enforced"
+  },
+  "effect": "comprehension, retention",
+  "severity": "major",
+  "fix": {
+   "what": "Add an intuition rung before the formal term, e.g. 'Voltage is the push; the resistor is the narrow part. Push twice as hard through the same narrow part and twice as much flows' with its non-mapping spoken ('nothing is used up').",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 slot list (add explain.intuition or explain.analogy before the first formal term); 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §3; ANL contract 03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Step 5",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: the first beat that cites an equation or formal term must be preceded by a beat citing an ANL or a familiar-observation node."
+  }
+ },
+ {
+  "id": "A1-06",
+  "video": "physics",
+  "t": "00:58-01:05",
+  "evidence": "'So, for a conductor at constant temperature, current is proportional to voltage...' First use of 'conductor' (resistor until then) and of 'proportional'. 'Potential difference' and 'ohmic', both named in the brief, are never said.",
+  "problem": "New terms appear for the first time in the recap; the noun changes from resistor to conductor without notice. The NCERT exam statement uses 'potential difference' and 'directly proportional', which the learner never hears explained.",
+  "root_cause": {
+   "layer": "script + SCRIPTING_REGISTRY §5/SQ-07",
+   "location": "SQ-07 register check is report-only; no rule bans new terms in recap.statement; concept_intro grammar has no explain.definition slot"
+  },
+  "effect": "comprehension, exam readiness",
+  "severity": "major",
+  "fix": {
+   "what": "Introduce 'potential difference (voltage)' and 'directly proportional (double one, the other doubles)' in plain words at first use; keep one noun; recap repeats only terms already defined.",
+   "where": "physics script.json b04/b06; lesson_graph add VOC nodes; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §15 new SQ-26 'no new term in recap; every VOC term gets plain meaning at first use'",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: collect content words per beat; flag any VOC term whose first occurrence is in recap.statement."
+  }
+ },
+ {
+  "id": "A1-07",
+  "video": "physics",
+  "t": "00:46-00:57",
+  "evidence": "'A filament bulb gets hot, so its resistance rises, and the current no longer doubles.' Frames t050-t057: 'R ↑' chip and struck '×2'; no meter value for the bulb.",
+  "problem": "The misconception is confronted by assertion. There is no reading that shows the current failing to double, and 'why it gets hot' is skipped.",
+  "root_cause": {
+   "layer": "brief fixture spec + SQ-23",
+   "location": "physics/brief.md fixture has no bulb data; SQ-23 asks for a 'change glyph', not a measured counter-value"
+  },
+  "effect": "trust, retention (no evidence to remember)",
+  "severity": "major",
+  "fix": {
+   "what": "Add an illustrative, reviewed bulb fixture (e.g. 2 V → 0.2 A, 4 V → 0.3 A, marked SIM with what_is_lost) and show the meter reading 0.3, not 0.4, in the same loop.",
+   "where": "physics fixtures/compute.py + lesson_graph SIM node (academic review); 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §15 SQ-23 (require a fixture-bound counter-value)",
+   "control": "SQ-23 detector: the confront scene must bind ≥1 results.* field that differs from the worked case."
+  }
+ },
+ {
+  "id": "A1-08",
+  "video": "physics",
+  "t": "00:00-00:05",
+  "evidence": "'Does twice the voltage always mean twice the current?' Board empty t001-t004; circuit draws from t005.",
+  "problem": "An abstract textbook question with no object or stakes, spoken over an empty board. It assumes the learner already knows what voltage and current are.",
+  "root_cause": {
+   "layer": "brief + production-rules example",
+   "location": "Creative brief C01 and 02 §I1 example used verbatim"
+  },
+  "effect": "attention in the first 3 s, perceived quality",
+  "severity": "major",
+  "fix": {
+   "what": "Open on a concrete object already drawn: 'One cell lights this bulb. Two cells: twice the current?' or a phone charger; then move to the resistor.",
+   "where": "physics script.json b01; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §9 hook rules (add: hook names a visible object in the first sentence)",
+   "control": "Storyboard gate: first frame with narration must show the hook object (frame t001 non-empty)."
+  }
+ },
+ {
+  "id": "A1-09",
+  "video": "physics",
+  "t": "00:33-00:45",
+  "evidence": "'For this resistor...' spoken while the frame shows only two cards (t023-t046), no resistor.",
+  "problem": "Script points at something the picture no longer shows; the physical referent is lost during the key explanation.",
+  "root_cause": {
+   "layer": "storyboard",
+   "location": "physics/opus/storyboard.md s03"
+  },
+  "effect": "comprehension",
+  "severity": "major",
+  "fix": {
+   "what": "Keep the persistent circuit and place the cards beside it, or say 'for these two readings'.",
+   "where": "physics storyboard s03; contract §4 'persistent diagram' rule",
+   "control": "QA: for every deictic phrase ('this', 'here is') the cued element must be visible at that word's t0."
+  }
+ },
+ {
+  "id": "A1-10",
+  "video": "physics",
+  "t": "00:57-01:05",
+  "evidence": "Recap over an empty board t058-t060; recap visual shows 'constant temperature' + V = I × R but not the bulb exception.",
+  "problem": "The recap restates rather than retrieves, and drops the boundary the misconception beat built.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 recap.statement slot",
+   "location": "§3 offers recap.statement only; check.retrieval optional"
+  },
+  "effect": "retention",
+  "severity": "minor",
+  "fix": {
+   "what": "Recap as a two-line contrast built on the persistent board: resistor ✓ doubles / bulb ✗; ask before stating.",
+   "where": "physics script.json b06; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §3 (prefer recap.retrieval in concept_intro)",
+   "control": "Storyboard gate: the recap reuses ≥2 elements from earlier scenes; no empty board."
+  }
+ },
+ {
+  "id": "A1-11",
+  "video": "chemistry",
+  "t": "00:00-00:05",
+  "evidence": "'Hydrogen burns in oxygen to make water. Write it down:' Next phrase starts 0.9 s later; frames t001-t005 show molecules, no burning.",
+  "problem": "An instruction the learner cannot obey (no time to write), and 'burns' has no picture.",
+  "root_cause": {
+   "layer": "script",
+   "location": "chemistry script.json b01"
+  },
+  "effect": "attention, trust in instructions",
+  "severity": "minor",
+  "fix": {
+   "what": "Drop 'Write it down' or make it a real learner-controlled pause; show a small flame on the first word.",
+   "where": "chemistry script.json b01; storyboard s01",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: imperative verbs 'write/draw/solve' require a following think or pause-video window."
+  }
+ },
+ {
+  "id": "A1-12",
+  "video": "chemistry",
+  "t": "00:08-00:22",
+  "evidence": "Hook: 'Count the atoms. Did an atom just vanish?' Predict: 'Count the oxygen atoms on each side. Which side is short?' Molecules on screen show 2 vs 1 teal atoms; 5.56 s silence.",
+  "problem": "The hook already sets the same counting task and hints at the answer (something vanished on the right). The predict is a two-option choice visible in the picture, so the window is longer than the task.",
+  "root_cause": {
+   "layer": "script + think_window default",
+   "location": "builder rewrote the brief hook; think_window_s fixed at 5 (contract §3 4-6)"
+  },
+  "effect": "attention (dead time), perceived pace",
+  "severity": "major",
+  "fix": {
+   "what": "Hook asks a different question ('Hydrogen plus oxygen gives water. Is anything missing?') and the predict asks for a number ('How many oxygen atoms on the right?') with a 2-3 s window.",
+   "where": "chemistry script.json b01/b02; 16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 think window",
+   "control": "Window length from task_kind (see A1-29)."
+  }
+ },
+ {
+  "id": "A1-13",
+  "video": "chemistry",
+  "t": "00:04-00:08",
+  "evidence": "'H two plus O two gives H two O.' No sentence says the small 2 belongs to H only, or that H₂ is a pair of joined atoms.",
+  "problem": "The prerequisite (reading subscripts) is assumed. Super Teacher Step 3 names exactly this prerequisite for this topic.",
+  "root_cause": {
+   "layer": "Super Teacher guide gap",
+   "location": "Step 3 prescribes a 30-60 s repair, which cannot fit a 60 s video; no short-format rule"
+  },
+  "effect": "comprehension for weak foundations",
+  "severity": "major",
+  "fix": {
+   "what": "One 3 s repair sentence on the molecule picture: 'H two: two hydrogen atoms stuck together.'",
+   "where": "03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Step 3 (add a short-format rule: one ≤ 8-word prerequisite sentence on the visual)",
+   "control": "Lesson graph field prerequisite_repair required for concept_intro; check_script verifies a beat cites it."
+  }
+ },
+ {
+  "id": "A1-14",
+  "video": "chemistry",
+  "t": "00:30-00:32, 00:55-00:59",
+  "evidence": "'That is the law of conservation of mass.' 'Change the coefficients in front, never the subscripts inside.' First use of 'coefficients' and 'subscripts'; frames t051-t060 highlight the subscript but never label 'coefficient' or 'subscript'.",
+  "problem": "The exam terms arrive inside a prohibition, never pointed at. 'Mass' is named although the beat is about atoms.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 slot grammar",
+   "location": "concept_intro has no explain.definition slot ('plain meaning first, then the exam term', SR §3)"
+  },
+  "effect": "exam readiness, comprehension",
+  "severity": "major",
+  "fix": {
+   "what": "Name the term on the thing: 'This big two in front is a coefficient: it means two whole molecules.' Label it on screen.",
+   "where": "chemistry script.json b04; 16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3; storyboard label",
+   "control": "SQ-26 (term defined at first use) plus SQ-22 'shown' extension for VOC terms."
+  }
+ },
+ {
+  "id": "A1-15",
+  "video": "chemistry",
+  "t": "00:36-00:48",
+  "evidence": "'Put a two in front of water. Oxygen: two and two. Hydrogen is four on the right, so put a two in front of hydrogen.'",
+  "problem": "The recount is good, but the decisions are hidden: why fix water, why two, why hydrogen became four (2 molecules × 2 atoms). Three changes in 12 s.",
+  "root_cause": {
+   "layer": "script + SQ-24",
+   "location": "SQ-24 requires a recount, not the decision behind each change"
+  },
+  "effect": "comprehension, transfer to new equations",
+  "severity": "major",
+  "fix": {
+   "what": "'Oxygen is short on the right, so make more water: two waters. Two waters carry four hydrogens, so now hydrogen is short on the left.'",
+   "where": "chemistry script.json b04; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md SQ-24 (add 'names the reason for each change')",
+   "control": "Reviewer rubric: each worked.step sentence that changes a quantity contains a reason clause."
+  }
+ },
+ {
+  "id": "A1-16",
+  "video": "chemistry",
+  "t": "00:49-00:59",
+  "evidence": "'That is hydrogen peroxide, a different substance.'",
+  "problem": "Strong contrast, but 'a different substance' is abstract. The natural, true hook (the first-aid antiseptic that fizzes on a cut, not something you drink) and the Super Teacher guide's own line 'a very efficient way to solve a different question' are unused.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 + registry humour pro-rata",
+   "location": "no analogy/light-line slot; SR §5 caps formats under 120 s at one light line but nothing prompts it"
+  },
+  "effect": "retention, warmth",
+  "severity": "minor",
+  "fix": {
+   "what": "'H two O two is hydrogen peroxide, the antiseptic in a first-aid kit. You wanted water and wrote down the antiseptic instead.' (needs a sourced CLM).",
+   "where": "chemistry lesson_graph (add sourced CLM) + script b05",
+   "control": "Recent-script ledger records 'light line: none/what' per script."
+  }
+ },
+ {
+  "id": "A1-17",
+  "video": "chemistry",
+  "t": "00:22-00:48",
+  "evidence": "Molecule pictures leave at t023; the tally shows circles; 'Put a two in front of water' adds no second water molecule.",
+  "problem": "Narration speaks about molecules while the picture switches to a ledger the learner must reconcile.",
+  "root_cause": {
+   "layer": "storyboard",
+   "location": "chemistry/opus/storyboard.md s03"
+  },
+  "effect": "comprehension",
+  "severity": "minor",
+  "fix": {
+   "what": "Keep the molecules and duplicate the water molecule on 'two'; tally beside it.",
+   "where": "chemistry storyboard s03",
+   "control": "QA deictic/visibility check as A1-09."
+  }
+ },
+ {
+  "id": "A1-18",
+  "video": "biology",
+  "t": "00:00-00:07",
+  "evidence": "'A banyan tree can weigh more than a herd of elephants.' (204 wpm). Frames t004-t007: one small elephant beside the tree, no weighing.",
+  "problem": "Spoken 'herd' versus one drawn elephant; the comparison is never visualised. The hook is the fastest beat in all three videos. The node type 'hook_colour' is outside the schema and sidesteps closure.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §8 fixture rule + builder",
+   "location": "'Never put a number on screen that is not a fixture field' turned 'fifty' into 'herd' and one elephant; no hook-colour policy"
+  },
+  "effect": "perceived quality, comprehension of scale",
+  "severity": "major",
+  "fix": {
+   "what": "Fixture the comparison (banyan mass estimate vs elephant mass, sourced) or say what is drawn: 'heavier than this elephant, many times over'; slow to ≤ 160 wpm.",
+   "where": "biology script.json b01, lesson_graph (replace hook_colour with a sourced CLM or SIM); 16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3",
+   "control": "check_script rejects node types not in the schema; pace check per beat ≤ 165 wpm."
+  }
+ },
+ {
+  "id": "A1-19",
+  "video": "biology",
+  "t": "00:04-00:13",
+  "evidence": "Hook: 'where did all that wood come from?' Predict: 'Where did the carbon in that wood come from...?'",
+  "problem": "The question shifts from wood to carbon with no bridge; a weak learner does not know wood is built from carbon.",
+  "root_cause": {
+   "layer": "script",
+   "location": "biology script.json b01/b02"
+  },
+  "effect": "comprehension",
+  "severity": "major",
+  "fix": {
+   "what": "One bridge sentence: 'Wood is made mostly of sugar chains, and sugar is built on carbon. So where did the carbon come from?'",
+   "where": "biology script.json b02",
+   "control": "Reviewer rubric: every noun in the predict question is introduced by an earlier beat or the level glossary."
+  }
+ },
+ {
+  "id": "A1-20",
+  "video": "biology",
+  "t": "00:19-00:47",
+  "evidence": "After the window, b03 opens 'Green plants make their own food.' 'Air' is implied at 00:23 ('enters from the air'); the explicit answer comes at 00:47, 28 s after the window.",
+  "problem": "The learner's prediction is not answered when they want it; the interaction loop (ask → attempt → answer → repair) breaks.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 + builder",
+   "location": "§3 does not require the first post-window sentence to answer; SQ-23 is concept_intro-only and report-only"
+  },
+  "effect": "confidence, attention",
+  "severity": "major",
+  "fix": {
+   "what": "First sentence after the window: 'The air. Most of that wood came out of thin air.' Then explain how.",
+   "where": "biology script.json b03; 16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 (beat after check.predict opens with the answer)",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: the beat after check.predict must cite the ASM via answers_after and contain the ASM.answer key token in its first sentence."
+  }
+ },
+ {
+  "id": "A1-21",
+  "video": "biology",
+  "t": "00:23-00:40",
+  "evidence": "'through stomata', 'absorbed by chlorophyll', 'making glucose', 'Count the carbon: six atoms on each side'. Frames t035-t040 show 'C6 = C6' with no highlight linking the C in CO₂ to glucose.",
+  "problem": "Three terms with no plain meaning (tiny leaf pores, the green pigment, a sugar) and an unscaffolded formula count (reading 6CO₂ and C₆H₁₂O₆).",
+  "root_cause": {
+   "layer": "script + SQ-07 report-only",
+   "location": "no term-definition rule; storyboard has no tracer for carbon atoms"
+  },
+  "effect": "comprehension for weak foundations",
+  "severity": "major",
+  "fix": {
+   "what": "'stomata, tiny pores in the leaf'; 'chlorophyll, the green colour'; 'glucose, a sugar'. Highlight each C as it moves from CO₂ into glucose.",
+   "where": "biology script.json b03/b04; storyboard s03 tracer",
+   "control": "SQ-26 term rule; SQ-22 shown extension."
+  }
+ },
+ {
+  "id": "A1-22",
+  "video": "biology",
+  "t": "00:40-00:52",
+  "evidence": "'Many think a plant is built from soil. But soil mainly gives water and minerals... About forty percent of glucose, by mass, is carbon.' Frames t041-t042: empty sky under 'Many think'.",
+  "problem": "Confront by assertion, no evidence; it ends on a mass-percentage detour (a new concept) instead of the soil story. The classic evidence (van Helmont's willow: the tree gained tens of kilograms over five years while the soil lost only grams) is absent.",
+  "root_cause": {
+   "layer": "brief + SQ-23",
+   "location": "biology/brief.md suggested the 40 % line; SQ-23 report-only; MIS confront has no evidence requirement"
+  },
+  "effect": "trust, retention, Aha",
+  "severity": "major",
+  "fix": {
+   "what": "Replace the 40 % sentence with the willow story as the evidence (sourced, reviewed): 'Five years, the tree gained about seventy kilos; the soil lost only about fifty-seven grams.'",
+   "where": "biology lesson_graph (sourced CLM, academic review), script b05, fixture",
+   "control": "SQ-23 requires a sourced observation or fixture counter-value in every confront."
+  }
+ },
+ {
+  "id": "A1-23",
+  "video": "biology",
+  "t": "00:47-01:00",
+  "evidence": "No sentence says glucose is built into cellulose/wood; recap: 'So a tree's carbon came from the air.' Board resets to an empty mound t053-t054.",
+  "problem": "The causal chain air → sugar → wood stays implicit, although CLM-carbon-from-air holds it in its reasoning field.",
+  "root_cause": {
+   "layer": "script",
+   "location": "biology script.json b05/b06"
+  },
+  "effect": "comprehension, transfer",
+  "severity": "major",
+  "fix": {
+   "what": "'The plant strings glucose into cellulose, and cellulose is wood.' Show a labelled tracer, not a reaction.",
+   "where": "biology script.json; storyboard s04/s05",
+   "control": "Closure check: every reasoning step of a cited key CLM must be spoken or shown."
+  }
+ },
+ {
+  "id": "A1-24",
+  "video": "biology",
+  "t": "00:52-01:00",
+  "evidence": "'Carbon dioxide and water, with sunlight and chlorophyll, make glucose and oxygen.'",
+  "problem": "Third spoken run of the word equation; recap restates, no retrieval.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 recap.statement",
+   "location": "recap.statement only"
+  },
+  "effect": "attention",
+  "severity": "minor",
+  "fix": {
+   "what": "Ask first: 'Which of the four came from the air?' then state.",
+   "where": "biology script.json b06; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §3 recap.retrieval",
+   "control": "Ledger: recap form recorded per script."
+  }
+ },
+ {
+  "id": "A1-25",
+  "video": "all",
+  "t": "whole video",
+  "evidence": "All three: hook.question_reveal → check.predict (5 s) → explain ×1-2 → worked/confront → recap.statement → spoken disclosure; 5 scenes each; same opening of beat 3 (answer statement).",
+  "problem": "One beat skeleton for three subjects; the scripts feel templated (founder: 'repetitive structures').",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 + briefs",
+   "location": "§3 fixed order enforced by check_script.py; all three briefs written from one template"
+  },
+  "effect": "perceived quality, attention across a series",
+  "severity": "major",
+  "fix": {
+   "what": "Offer 3-4 concept_intro archetypes (predict-first, worked-error-first, contradiction-demo, story-evidence) chosen per topic; keep only the invariants (one predict, one confront, one transfer, close).",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §4 F8; briefs template",
+   "control": "SQ-18 recent-script ledger blocking within a batch: no two consecutive videos share opening type and beat order."
+  }
+ },
+ {
+  "id": "A1-26",
+  "video": "all",
+  "t": "physics 00:11, biology 00:12; biology 00:40",
+  "evidence": "'Pause and predict' (physics, biology); 'Many think...'; plate 'Pause. Predict.' in all three.",
+  "problem": "Stock phrasing caused by the pipeline: the plate words must be spoken because on-screen text must be a subset of narration (biology build_notes: 'Speak \"Pause and predict\" so the chip is legal').",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 headline-subset rule + §4 plate",
+   "location": "§3 on-screen subset rule; §4 'Pause. Predict.' plate"
+  },
+  "effect": "naturalness, perceived AI-ness",
+  "severity": "minor",
+  "fix": {
+   "what": "Exempt UI chrome (display.ui.*) from the subset rule; plate states the task ('Count the O atoms'); ban the phrase list in SQ-06.",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3/§4; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md SQ-06 phrase list",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: phrase blacklist ('pause and predict', 'many think', 'let's dive') per batch."
+  }
+ },
+ {
+  "id": "A1-27",
+  "video": "all",
+  "t": "before recap in every video",
+  "evidence": "No new case is ever posed. Physics ends at the bulb; chemistry at the H₂O₂ trap; biology at the recap.",
+  "problem": "No transfer: the learner never applies the idea alone, so the target feeling 'I can solve these myself' cannot occur. Super Teacher Step 6 ('Aha must be followed by a fresh prediction') and 02 §I3/§I4 are not met.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 slot grammar",
+   "location": "§3 concept_intro has no transfer slot; check.retrieval optional; SR §4 F8 close (next_artefact_pointer) replaced by the disclosure"
+  },
+  "effect": "transfer, confidence, retention",
+  "severity": "critical",
+  "fix": {
+   "what": "Mandatory check.transfer before recap with a 2-4 s window and conditional feedback. Physics: '6 V across the same resistor?' → 0.6 A. Chemistry: 'Mg + O₂ → MgO: what goes in front?' Biology: 'A potted plant gains 2 kg. Did the pot of soil lose 2 kg?'",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §3/§4 F8; lesson_graph ASM-transfer node + fixture",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: concept_intro fails without a check.transfer beat whose ASM differs in at least one parameter from the worked item."
+  }
+ },
+ {
+  "id": "A1-28",
+  "video": "all",
+  "t": "physics 01:06-01:12, chemistry 01:07-01:13, biology 01:01-01:07",
+  "evidence": "'AI-generated narration; script by ExamLeaf.' spoken at 75-77 wpm, then 2.2 s silence.",
+  "problem": "Spoken ExamLeaf breaks the founder brand rule; the video ends on a legal line, not a learning close; 4.4 s of a 60 s budget.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 outro text + SQ-12",
+   "location": "§3 'its text must be exactly...'; SQ-12 does not require the disclosure to be spoken"
+  },
+  "effect": "brand, ending quality, duration overrun",
+  "severity": "critical",
+  "fix": {
+   "what": "Disclosure as on-screen caption and description metadata; spoken close is one learning next step plus 'Professor Diki Simplified'.",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §15 SQ-12; packaging registry",
+   "control": "check_script rejects 'ExamLeaf' in any spoken text; outro slot becomes close.next_step."
+  }
+ },
+ {
+  "id": "A1-29",
+  "video": "all",
+  "t": "physics 00:17-00:22, chemistry 00:16-00:22, biology 00:13-00:19",
+  "evidence": "Measured silences 5.51 / 5.56 / 5.25 s for: an unanswerable calculation, a visible 2-option count, a 3-option intuition guess.",
+  "problem": "One window length for three different tasks; it fits only biology. The plate says 'Pause. Predict.' without saying what to produce (02 §F1).",
+  "root_cause": {
+   "layer": "think_window default",
+   "location": "PILOT_CONTRACT §3 'think_window_s 4-6'; briefs '5 s'; ST Step 7 / 02 §G3 give 4-8 s for simple predictions"
+  },
+  "effect": "attention, pace",
+  "severity": "major",
+  "fix": {
+   "what": "Add task_kind to check.predict (spot-visible 1.5-2.5 s, count 2-3 s, choose-intuition 3-4 s, compute 5-6 s or pause-video) and derive think_window_s; plate names the task. Treat the values as A/B hypotheses.",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3; 03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Step 7 table; 02_learning_psychology/INSTRUCTIONS_production_rules.md §G3",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: think_window_s must fall in the task_kind range."
+  }
+ },
+ {
+  "id": "A1-30",
+  "video": "all",
+  "t": "first sentence after each window",
+  "evidence": "Physics: 'At two volts, the current is...'; chemistry: 'Left: two oxygen atoms.'; biology: 'Green plants make their own food.'",
+  "problem": "No conditional feedback for the likely wrong answer ('If you said soil...', 'If you said the left side...').",
+  "root_cause": {
+   "layer": "Super Teacher loop not in contract",
+   "location": "ST Step 7 loop and SQ-05 exist, but §3 has no feedback field"
+  },
+  "effect": "confidence (wrong guessers are not repaired)",
+  "severity": "major",
+  "fix": {
+   "what": "Each check beat carries feedback.likely_wrong and the next beat speaks it in ≤ 10 words.",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 schema; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §3 check.* rule",
+   "control": "check_script: check.predict requires ASM.feedback; next beat cites it."
+  }
+ },
+ {
+  "id": "A1-31",
+  "video": "all",
+  "t": "throughout",
+  "evidence": "Textbook sentences: 'Green plants make their own food.' 'That is the law of conservation of mass.' 'That constant is the resistance...' 'you/we' count: physics 1, chemistry 0, biology 0.",
+  "problem": "Register is a narrated textbook, not a teacher (no revealed decisions, no address to the learner). Sentences are short; the problem is voice, not length.",
+  "root_cause": {
+   "layer": "SCRIPTING_REGISTRY §14 closure + builder prompt",
+   "location": "closure pushes builders to paraphrase CLM statements (CLM-autotroph is spoken verbatim); the ST 'Conversational repair pass' (Step 13) is not in the contract reading list"
+  },
+  "effect": "attention, warmth, perceived quality",
+  "severity": "major",
+  "fix": {
+   "what": "Make the conversational repair pass a required step after closure passes; closure checks tokens and conditions, not phrasing.",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §2 reading list + §7; 03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Step 13",
+   "control": "Reviewer rubric: ≥ 1 revealed decision per explain/worked beat; similarity of spoken sentence to CLM.statement > 0.9 is flagged."
+  }
+ },
+ {
+  "id": "A1-32",
+  "video": "all",
+  "t": "throughout",
+  "evidence": "Zero analogies, zero light moments, zero stories in 211 s of narration.",
+  "problem": "Zero humour is allowed, but the natural, concept-carrying options (pipe/push, recipe copies, peroxide antiseptic, the willow experiment) are all missed.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 slot grammar",
+   "location": "no analogy or story slot; SR §5 humour pro-rata"
+  },
+  "effect": "attention, retention",
+  "severity": "major",
+  "fix": {
+   "what": "Allow one ANL (with its non-mapping) or one story-evidence beat per concept_intro; each must pass ST Step 8's 'concept survives' test.",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3; 03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Steps 5 and 8",
+   "control": "Ledger field 'analogy/story: id or none'; reviewer flags 'none' when the lesson_graph offers an ANL."
+  }
+ },
+ {
+  "id": "A1-33",
+  "video": "all",
+  "t": "recap",
+  "evidence": "No sentence turns the idea into exam form (NCERT statement of Ohm's law; 'balanced chemical equation'; raw materials/products).",
+  "problem": "Weak exam focus, against the mandate.",
+  "root_cause": {
+   "layer": "SCRIPTING_REGISTRY §4 F8",
+   "location": "F8 'Exam-language conversion: None'"
+  },
+  "effect": "exam readiness",
+  "severity": "minor",
+  "fix": {
+   "what": "One exam-form line in recap: 'In the exam, write: ...'.",
+   "where": "15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §4 F8 (set 'one sentence')",
+   "control": "check_script: recap of concept_intro cites one exam_language sentence."
+  }
+ },
+ {
+  "id": "A1-M1",
+  "video": "all",
+  "t": "last 15 s of each video",
+  "evidence": "No beat asks the learner to do anything after 00:22 (physics), 00:22 (chemistry) or 00:19 (biology). The last learner action is the predict, and in physics it is unanswerable (A1-01).",
+  "problem": "The learner never has a small success before the end, so 'I can do this one' cannot happen. Every success in the video belongs to the narrator.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 slot grammar",
+   "location": "no transfer or faded-step slot; the only interaction sits in the first third"
+  },
+  "effect": "motivation, confidence, retention",
+  "severity": "critical",
+  "fix": {
+   "what": "Payoff rule: the last interactive beat lands between 70 and 90 % of runtime. It is a transfer the learner can answer using only the rule just taught (one changed parameter), with a 2-4 s window, then the answer and one calibrated line ('If you said 0.6 amperes, you just used Ohm's law on a new circuit').",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 (check.transfer position); 03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Step 6/7 short-format annex",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: check.transfer start ∈ [0.70, 0.90] × planned duration; its ASM answer is derivable from fixtures already shown; confidence line is conditional ('If you…'), never unconditional praise (SQ-05)."
+  }
+ },
+ {
+  "id": "A1-M2",
+  "video": "all",
+  "t": "whole video",
+  "evidence": "Tag sequence identical in all three: curious → curious/thoughtful → calm → calm/thoughtful → thoughtful → warm → calm. Beat wpm, physics 162 → 142 → 150 → 128 → 146 → 136 → 75; chemistry 151 → 153 → 142 → 146 → 139 → 134 → 75; biology 204 → 164 → 158 → 125 → 161 → 146 → 77. Each ends with 2.2 s of silence.",
+  "problem": "The energy peaks in the first 10 s and falls from there. The payoff beats are tagged calm or thoughtful, so the moment of understanding gets no lift. The video ends at its lowest energy, on a legal line.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 tag set + Super Teacher Step 10",
+   "location": "only [curious] [calm] [warm] [thoughtful] allowed, with no tag for a bright payoff; 02 §G4 arc ('calm conclusion') read as 'decline'"
+  },
+  "effect": "momentum, perceived energy",
+  "severity": "major",
+  "fix": {
+   "what": "Energy-curve rule: the energy rises toward the payoff. The payoff beat is tagged [excited] or [warm] with emphasis on the payoff word. No beat after the payoff is more than 15 wpm slower than the explain band. The last spoken beat is the close, never the disclosure. Add one bright tag to the allowed set and test it on the voice.",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 tags; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §13 tag grammar; 03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Step 10",
+   "control": "QA energy curve: per-beat wpm and tag plotted; fail if the payoff beat is the lowest-energy beat before the close, or the video ends on a beat < 120 wpm."
+  }
+ },
+ {
+  "id": "A1-M3",
+  "video": "physics",
+  "t": "00:11-00:57",
+  "evidence": "Effort: 'Pause and predict the current at four volts.' (cannot be answered). Payoff: 'Twice the voltage, twice the current.' [calm] at 00:30. Twist: 'But always is not safe.' [thoughtful], an assertion.",
+  "problem": "Curiosity is opened ('always?') but the effort is blocked, so the payoff confirms a guess the learner could not own. The twist is announced, not revealed: there is no moment where the meter surprises them.",
+  "root_cause": {
+   "layer": "script + slot grammar",
+   "location": "b02 givens missing; b05 asserts rather than shows"
+  },
+  "effect": "motivation, Aha",
+  "severity": "major",
+  "fix": {
+   "what": "Make the effort doable (show 0.2 A). Land the payoff on the meter ('the meter reads 0.4: exactly double'). Stage the twist as a second prediction ('Same trick with a bulb?') answered by the meter reading 0.3.",
+   "where": "physics script.json b01-b05; fixture bulb SIM",
+   "control": "M8 rule (second open question after first payoff) + SQ-25."
+  }
+ },
+ {
+  "id": "A1-M4",
+  "video": "chemistry",
+  "t": "00:11-00:48",
+  "evidence": "Effort: 'Which side is short?' while the picture already shows 2 vs 1. Payoff: 'Four and four. Balanced.' at 00:47, done by the narrator.",
+  "problem": "Curiosity ('Did an atom just vanish?') is good, but the learner's effort is trivial and the satisfying act (balancing) is done for them, so the success is not theirs.",
+  "root_cause": {
+   "layer": "script",
+   "location": "b02 task too easy; b04 fully worked, no faded step"
+  },
+  "effect": "motivation, confidence",
+  "severity": "major",
+  "fix": {
+   "what": "Fade the worked step: the narrator fixes oxygen, then asks 'Hydrogen is two on the left, four on the right. What goes in front of H₂?' (3 s window), then 'Two. Balanced, and you did that one.' This can double as the transfer if time is short.",
+   "where": "chemistry script.json b02/b04",
+   "control": "check_script: in a worked.step with ≥ 2 changes, the last change is posed to the learner (worked.faded_twin) unless a check.transfer follows."
+  }
+ },
+ {
+  "id": "A1-M5",
+  "video": "biology",
+  "t": "00:42-00:52",
+  "evidence": "'But soil mainly gives water and minerals; the carbon in wood comes from the air. About forty percent of glucose, by mass, is carbon.'",
+  "problem": "The strongest payoff in the set, that a tree is built mostly out of air, is buried after a semicolon, comes 28 s after the window, and is immediately buried again under a new number.",
+  "root_cause": {
+   "layer": "script + brief",
+   "location": "b05 sentence order; the 40 % line comes from the brief"
+  },
+  "effect": "Aha, momentum",
+  "severity": "major",
+  "fix": {
+   "what": "Payoff-sentence rule: the answer to the hook question is its own sentence of ≤ 8 words, spoken within 3 s of the window ending or as the climax of the confront, followed by a ≥ 0.8 s pause and no new number in that beat ('The air. Your tree is built from air.').",
+   "where": "biology script.json b03/b05; 16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 beat rules",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: locate the sentence carrying ASM.answer; check word count ≤ 8, pause_after ≥ 0.8 s, no fixture number in the same beat after it."
+  }
+ },
+ {
+  "id": "A1-M6",
+  "video": "all",
+  "t": "see evidence",
+  "evidence": "Energy-draining sentences: physics 'That constant is the resistance: voltage equals current multiplied by resistance.' / 'So, for a conductor at constant temperature, current is proportional to voltage, and resistance is the constant ratio.'; chemistry 'That is the law of conservation of mass.' / 'So each element needs the same count on both sides.' / 'Atoms are conserved, so count every element on both sides, and balance with coefficients only.'; biology 'Green plants make their own food.' / 'Sunlight, absorbed by chlorophyll, drives the change, making glucose and oxygen.' / 'About forty percent of glucose, by mass, is carbon.'",
+  "problem": "These are definition and summary sentences with an abstract subject and no consequence for the learner. They carry the textbook's energy, not the teacher's.",
+  "root_cause": {
+   "layer": "SCRIPTING_REGISTRY §14 closure + no sentence rules",
+   "location": "closure encourages restating CLM.statement; no rule for active subject, contrast or consequence"
+  },
+  "effect": "attention, motivation",
+  "severity": "major",
+  "fix": {
+   "what": "Sentence rules: (a) every explain beat contains a consequence or contrast word ('so', 'but', 'which means') tied to something visible; (b) at least one sentence per beat has the learner or 'we' as subject or addressee; (c) no standalone naming sentence ('That is the law of…'): name the term inside a sentence that uses it; (d) the recap is one sentence the learner could say aloud.",
+   "where": "03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Step 2 + short-format annex; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §15 SQ-07 (make (a)-(c) blocking for concept_intro)",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: per-beat regex for consequence/contrast words and second-person/we; reject 'That is the <term>' as a full sentence."
+  }
+ },
+ {
+  "id": "A1-M7",
+  "video": "all",
+  "t": "final 6-7 s",
+  "evidence": "Close = 'AI-generated narration; script by ExamLeaf.' Brief C01 CTA 'Try the free lesson' is not used; nothing says what the learner can do next.",
+  "problem": "The learner leaves no more pulled forward than when the recap ended, with no reason to open the free lesson.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 outro + SCRIPTING_REGISTRY §4 F8",
+   "location": "§3 replaced F8's next_artefact_pointer close with the disclosure"
+  },
+  "effect": "motivation, conversion to the free lesson",
+  "severity": "major",
+  "fix": {
+   "what": "Close rule: one sentence of ≤ 15 words naming the next capability as an open question the free lesson answers ('Why does the bulb's graph curve? That's the full free lesson.'), then the Professor Diki Simplified end motif. No hype, no promise of marks, no product name beyond 'free lesson' (SR §9).",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 close.next_step; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §4 F8, §9",
+   "control": "check_script: last spoken beat slot = close.next_step, ≤ 15 words, contains a question or capability verb, no 'ExamLeaf', no SQ-09 phrases."
+  }
+ },
+ {
+  "id": "A1-M8",
+  "video": "all",
+  "t": "after the first payoff",
+  "evidence": "Chemistry resolves its hook at 00:25 ('Right: only one'); biology implicitly at 00:23; after that, no new question pulls the learner forward (chemistry's 'Why not write H two O two?' is answered in the same breath).",
+  "problem": "Momentum depends on an open question. Once the hook closes, the second half has nothing to pull the learner forward.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 slot grammar",
+   "location": "no open-loop rule; rhetorical questions allowed without a pause"
+  },
+  "effect": "momentum",
+  "severity": "major",
+  "fix": {
+   "what": "Open-loop rule: within 3 s of the first payoff, open a second, smaller question (the twist or the tempting shortcut) and hold it for ≥ 1.5 s or until the visual answers it. At most one rhetorical question per video is answered instantly.",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3; 03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Step 6 (tempting interpretation → revealing contrast)",
+   "control": "QA: list open questions with open/close times; fail if any stretch > 15 s of narration has no open question and no learner task."
+  }
+ }
+]

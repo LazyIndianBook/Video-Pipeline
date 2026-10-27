@@ -1,0 +1,265 @@
+{
+ "fixture_id": "FIX-chem-balance-water",
+ "video_id": "chem-balance-ci-01",
+ "compute": "fixtures/compute.py",
+ "display": {
+  "ops": {
+   "plus": "+",
+   "arrow": "→",
+   "eq": "=",
+   "neq": "≠"
+  },
+  "elements": {
+   "H": {
+    "symbol": "H",
+    "name": "hydrogen"
+   },
+   "O": {
+    "symbol": "O",
+    "name": "oxygen"
+   }
+  },
+  "species": {
+   "H2": {
+    "unicode": "H₂",
+    "name": "hydrogen",
+    "parts": [
+     {
+      "symbol": "H",
+      "sub": "2"
+     }
+    ]
+   },
+   "O2": {
+    "unicode": "O₂",
+    "name": "oxygen",
+    "parts": [
+     {
+      "symbol": "O",
+      "sub": "2"
+     }
+    ]
+   },
+   "H2O": {
+    "unicode": "H₂O",
+    "name": "water",
+    "parts": [
+     {
+      "symbol": "H",
+      "sub": "2"
+     },
+     {
+      "symbol": "O",
+      "sub": ""
+     }
+    ]
+   },
+   "H2O2": {
+    "unicode": "H₂O₂",
+    "name": "hydrogen peroxide",
+    "parts": [
+     {
+      "symbol": "H",
+      "sub": "2"
+     },
+     {
+      "symbol": "O",
+      "sub": "2"
+     }
+    ]
+   }
+  },
+  "coefficients": {
+   "unbalanced": {
+    "H2": "",
+    "O2": "",
+    "H2O": ""
+   },
+   "step1": {
+    "H2": "",
+    "O2": "",
+    "H2O": "2"
+   },
+   "balanced": {
+    "H2": "2",
+    "O2": "",
+    "H2O": "2"
+   }
+  },
+  "counts": {
+   "unbalanced": {
+    "left": {
+     "H": "2",
+     "O": "2"
+    },
+    "right": {
+     "H": "2",
+     "O": "1"
+    }
+   },
+   "step1": {
+    "left": {
+     "H": "2",
+     "O": "2"
+    },
+    "right": {
+     "H": "4",
+     "O": "2"
+    }
+   },
+   "balanced": {
+    "left": {
+     "H": "4",
+     "O": "2"
+    },
+    "right": {
+     "H": "4",
+     "O": "2"
+    }
+   }
+  },
+  "ui": {
+   "think_prompt": "Pause. Predict."
+  }
+ },
+ "parameters": {
+  "species": {
+   "H2": {
+    "H": 2
+   },
+   "O2": {
+    "O": 2
+   },
+   "H2O": {
+    "H": 2,
+    "O": 1
+   },
+   "H2O2": {
+    "H": 2,
+    "O": 2
+   }
+  },
+  "equations": {
+   "unbalanced": {
+    "lhs": [
+     [
+      1,
+      "H2"
+     ],
+     [
+      1,
+      "O2"
+     ]
+    ],
+    "rhs": [
+     [
+      1,
+      "H2O"
+     ]
+    ]
+   },
+   "step1": {
+    "lhs": [
+     [
+      1,
+      "H2"
+     ],
+     [
+      1,
+      "O2"
+     ]
+    ],
+    "rhs": [
+     [
+      2,
+      "H2O"
+     ]
+    ]
+   },
+   "balanced": {
+    "lhs": [
+     [
+      2,
+      "H2"
+     ],
+     [
+      1,
+      "O2"
+     ]
+    ],
+    "rhs": [
+     [
+      2,
+      "H2O"
+     ]
+    ]
+   }
+  }
+ },
+ "results": {
+  "unbalanced": {
+   "left": {
+    "H": 2,
+    "O": 2
+   },
+   "right": {
+    "H": 2,
+    "O": 1
+   },
+   "match": {
+    "H": true,
+    "O": false
+   },
+   "balanced": false,
+   "coefficients": {
+    "H2": 1,
+    "O2": 1,
+    "H2O": 1
+   }
+  },
+  "step1": {
+   "left": {
+    "H": 2,
+    "O": 2
+   },
+   "right": {
+    "H": 4,
+    "O": 2
+   },
+   "match": {
+    "H": false,
+    "O": true
+   },
+   "balanced": false,
+   "coefficients": {
+    "H2": 1,
+    "O2": 1,
+    "H2O": 2
+   }
+  },
+  "balanced": {
+   "left": {
+    "H": 4,
+    "O": 2
+   },
+   "right": {
+    "H": 4,
+    "O": 2
+   },
+   "match": {
+    "H": true,
+    "O": true
+   },
+   "balanced": true,
+   "coefficients": {
+    "H2": 2,
+    "O2": 1,
+    "H2O": 2
+   }
+  },
+  "peroxide_atoms": {
+   "H": 2,
+   "O": 2
+  }
+ }
+}

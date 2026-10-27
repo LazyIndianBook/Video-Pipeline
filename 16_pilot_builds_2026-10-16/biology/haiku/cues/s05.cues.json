@@ -1,0 +1,220 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "bio-photosyn-ci-01-s05",
+ "fps": 30,
+ "duration": 13.833,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "d1f95c0aa2e81578b788ba3ab68691fb6b3fba330869335d92f623c7d73c3f7d",
+ "script_sha256": "fb56e0d2da7e69198ff182ee889c4beda47930cfe7a3435f4099ea3176e5093f",
+ "words": [
+  {
+   "w": "Green",
+   "t0": 0.187,
+   "t1": 0.427
+  },
+  {
+   "w": "plants",
+   "t0": 0.507,
+   "t1": 0.907
+  },
+  {
+   "w": "make",
+   "t0": 0.987,
+   "t1": 1.227
+  },
+  {
+   "w": "glucose",
+   "t0": 1.307,
+   "t1": 1.787,
+   "occurrence": 1
+  },
+  {
+   "w": "and",
+   "t0": 1.867,
+   "t1": 1.947,
+   "occurrence": 1
+  },
+  {
+   "w": "oxygen",
+   "t0": 2.027,
+   "t1": 2.987
+  },
+  {
+   "w": "About",
+   "t0": 3.147,
+   "t1": 3.307
+  },
+  {
+   "w": "forty",
+   "t0": 3.387,
+   "t1": 3.667
+  },
+  {
+   "w": "percent",
+   "t0": 3.707,
+   "t1": 4.027
+  },
+  {
+   "w": "of",
+   "t0": 4.107,
+   "t1": 4.187
+  },
+  {
+   "w": "glucose",
+   "t0": 4.267,
+   "t1": 4.747,
+   "occurrence": 2
+  },
+  {
+   "w": "is",
+   "t0": 4.827,
+   "t1": 4.907
+  },
+  {
+   "w": "carbon",
+   "t0": 4.987,
+   "t1": 5.707,
+   "occurrence": 1
+  },
+  {
+   "w": "and",
+   "t0": 5.787,
+   "t1": 5.867,
+   "occurrence": 2
+  },
+  {
+   "w": "that",
+   "t0": 5.987,
+   "t1": 6.107
+  },
+  {
+   "w": "carbon",
+   "t0": 6.187,
+   "t1": 6.587,
+   "occurrence": 2
+  },
+  {
+   "w": "came",
+   "t0": 6.667,
+   "t1": 6.827
+  },
+  {
+   "w": "from",
+   "t0": 6.907,
+   "t1": 6.987
+  },
+  {
+   "w": "the",
+   "t0": 7.067,
+   "t1": 7.147
+  },
+  {
+   "w": "air",
+   "t0": 7.227,
+   "t1": 7.787
+  },
+  {
+   "w": "AI-generated",
+   "t0": 8.467,
+   "t1": 9.427
+  },
+  {
+   "w": "narration",
+   "t0": 9.507,
+   "t1": 10.467
+  },
+  {
+   "w": "script",
+   "t0": 10.627,
+   "t1": 11.027
+  },
+  {
+   "w": "by",
+   "t0": 11.107,
+   "t1": 11.267
+  },
+  {
+   "w": "ExamLeaf",
+   "t0": 11.347,
+   "t1": 12.307
+  }
+ ],
+ "beats": [
+  0.027,
+  8.387
+ ],
+ "cues": [
+  {
+   "id": "c31",
+   "at": 0.457,
+   "kind": "reveal",
+   "element_id": "leaf_recap",
+   "word_index": 1
+  },
+  {
+   "id": "c24",
+   "at": 1.257,
+   "kind": "reveal",
+   "element_id": "glucose_formula",
+   "word_index": 3
+  },
+  {
+   "id": "c25",
+   "at": 1.977,
+   "kind": "reveal",
+   "element_id": "oxygen_formula",
+   "word_index": 5
+  },
+  {
+   "id": "c26",
+   "at": 3.337,
+   "kind": "emphasis",
+   "element_id": "percent_block",
+   "word_index": 7
+  },
+  {
+   "id": "c27",
+   "at": 6.137,
+   "kind": "reveal",
+   "element_id": "carbon_tag",
+   "word_index": 15
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "bio-photosyn-ci-01",
+  "scene": "s05",
+  "beat_ids": [
+   "b07",
+   "b08"
+  ],
+  "beats_text": [
+   {
+    "id": "b07",
+    "slot": "recap.statement",
+    "text": "Green plants make glucose and oxygen. About forty percent of glucose is carbon, and that carbon came from the air.",
+    "headline": "glucose and oxygen",
+    "start": 0.187,
+    "end": 7.787,
+    "word_range": [
+     0,
+     20
+    ]
+   },
+   {
+    "id": "b08",
+    "slot": "outro.disclosure",
+    "text": "AI-generated narration; script by ExamLeaf.",
+    "headline": "",
+    "start": 8.467,
+    "end": 12.307,
+    "word_range": [
+     20,
+     25
+    ]
+   }
+  ],
+  "think_windows": []
+ }
+}

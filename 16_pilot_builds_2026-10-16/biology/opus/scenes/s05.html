@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>bio-photosyn-ci-01 s05: Recap and disclosure</title>
+<style>
+:root{--bg:#F7F9FC;--ink:#14213D;--sec:#526074;--blue:#185ABD;--red:#B42318;
+  --cream:#f3ecdf;--paper:#fbf7ee;--kraft:#b98f5e;--sink:#2b2622;--pencil:#3a332c;--tomato:#d9483b;--mustard:#e0a73a;
+  --pteal:#2f7f7a;--ultra:#2f4fa8;--olive:#7c8a3c;--sage:#9dbb8e;--blush:#f1a9a0;--navy:#1b2a4a;
+  --font:"Noto Sans","Noto Sans Devanagari","Noto Sans Bengali","Kohinoor Devanagari","Kohinoor Bangla",system-ui,sans-serif;
+  --head:70px;--label:54px;--eq:72px;
+  --shadow:0 9px 7px rgba(74,48,22,.30),0 2px 1.5px rgba(0,0,0,.20)}
+html,body{margin:0;background:var(--cream)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--cream);font-family:var(--font);color:var(--ink)}
+#bg{position:absolute;left:0;top:0}
+.box{position:absolute;box-sizing:border-box}
+#title .hl{position:absolute;left:0;top:0;right:0;bottom:0;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:30px 18px}
+.tile{display:inline-block;font-size:var(--head);font-weight:800;line-height:1.12;padding:2px 18px 8px;border:6px solid #fffdf7;border-radius:3px;opacity:0;box-shadow:var(--shadow)}
+.tile.grid{background-image:linear-gradient(rgba(47,79,168,.22) 2px,transparent 2px),linear-gradient(90deg,rgba(47,79,168,.22) 2px,transparent 2px);background-size:20px 20px}
+#vis{position:absolute;width:864px;height:659px;transform-origin:50% 60%}
+.prop{position:absolute;transform-origin:50% 100%}
+.prop>svg{display:block;overflow:visible;position:absolute;left:0;top:0}
+.tag{position:absolute;box-sizing:border-box;background:var(--bg);color:var(--ink);font-weight:600;font-size:var(--label);line-height:1.2;border:8px solid #fff;border-radius:6px;padding:2px 18px 6px;box-shadow:var(--shadow);white-space:nowrap;transform-origin:50% 50%}
+.tag.big{font-size:var(--eq)}
+.tape{position:absolute;width:110px;height:32px;top:-30px;left:50%;margin-left:-55px;background:rgba(241,169,160,.72);transform:rotate(-4deg)}
+.tape.m{background:rgba(224,167,58,.62)} .tape.t{background:rgba(47,127,122,.45)}
+.sheet{position:absolute;box-sizing:border-box;background:var(--bg);color:var(--ink);border:8px solid #fff;border-radius:6px;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px}
+.eq .row{display:flex;align-items:baseline;justify-content:center;gap:0 22px;font-size:var(--eq);font-weight:600;line-height:1.12;white-space:nowrap}
+.piece{display:inline-block;transform-origin:50% 60%}
+.piece b{font-weight:700;margin-right:4px}
+.atom{display:inline-flex;align-items:center;justify-content:center;width:84px;height:84px;border-radius:50%;background:var(--ink);color:var(--bg);font-weight:700;margin-right:12px}
+#cap{display:flex;align-items:center;justify-content:center}
+#cap .tag{position:relative}
+.wrap{white-space:normal;text-align:center;max-width:860px}
+.zone{display:none;position:absolute;border:2px dashed #B42318;box-sizing:border-box;font:600 28px system-ui;color:#B42318;padding:6px 12px;z-index:9}
+.safe .zone{display:block}
+#scrub{position:fixed;right:8px;top:8px;width:360px}
+</style>
+</head>
+<body>
+<div id="stage">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+ <filter id="cut" x="-20%" y="-20%" width="140%" height="145%" color-interpolation-filters="sRGB">
+  <feMorphology in="SourceGraphic" operator="dilate" radius="8" result="d"/>
+  <feFlood flood-color="#fffdf7"/><feComposite in2="d" operator="in" result="border"/>
+  <feGaussianBlur in="d" stdDeviation="3.5"/><feOffset dy="9" result="o1"/>
+  <feFlood flood-color="#4a3016" flood-opacity="0.30"/><feComposite in2="o1" operator="in" result="s1"/>
+  <feGaussianBlur in="d" stdDeviation="0.75"/><feOffset dy="2" result="o2"/>
+  <feFlood flood-color="#000" flood-opacity="0.20"/><feComposite in2="o2" operator="in" result="s2"/>
+  <feMerge><feMergeNode in="s1"/><feMergeNode in="s2"/><feMergeNode in="border"/><feMergeNode in="SourceGraphic"/></feMerge>
+ </filter>
+ <filter id="grain" x="0" y="0" width="100%" height="100%">
+  <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" seed="3"/>
+  <feColorMatrix type="matrix" values="0 0 0 0 0.42  0 0 0 0 0.33  0 0 0 0 0.22  0.5 0 0 0 -0.18"/>
+ </filter>
+ <filter id="wash" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="3" seed="5" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="38"/><feGaussianBlur stdDeviation="6"/></filter>
+ <radialGradient id="vig" cx="50%" cy="48%" r="75%"><stop offset="62%" stop-color="#4a3016" stop-opacity="0"/><stop offset="100%" stop-color="#4a3016" stop-opacity="0.12"/></radialGradient>
+</defs></svg>
+<svg id="bg" width="1080" height="1920" viewBox="0 0 1080 1920" aria-hidden="true"><rect width="1080" height="1920" fill="#f3ecdf"/><g filter="url(#wash)" opacity="0.9"><ellipse cx="300" cy="380" rx="520" ry="260" fill="#a9c0e2" opacity="0.38"/><ellipse cx="820" cy="620" rx="420" ry="300" fill="#a9c0e2" opacity="0.32"/><ellipse cx="260" cy="840" rx="300" ry="120" fill="#fbf7ee" opacity="0.8"/><ellipse cx="860" cy="300" rx="220" ry="90" fill="#fbf7ee" opacity="0.8"/></g><path d="M-40 1960 L-40 1099.7 L-16 1101.1 L8 1106.1 L32 1111.3 L56 1102.1 L80 1103.1 L104 1105.6 L128 1113.8 L152 1103.0 L176 1113.3 L200 1113.6 L224 1103.9 L248 1108.9 L272 1108.3 L296 1107.3 L320 1119.6 L344 1102.5 L368 1099.6 L392 1117.0 L416 1106.3 L440 1105.0 L464 1106.6 L488 1106.2 L512 1117.9 L536 1103.4 L560 1104.2 L584 1112.2 L608 1111.6 L632 1116.2 L656 1116.7 L680 1107.8 L704 1104.7 L728 1114.9 L752 1117.2 L776 1101.1 L800 1113.7 L824 1115.3 L848 1112.9 L872 1104.8 L896 1114.5 L920 1113.2 L944 1105.4 L968 1113.2 L992 1105.5 L1016 1100.6 L1040 1106.0 L1064 1105.1 L1088 1106.8 L1112 1112.9 L1120 1960 Z" fill="#fffdf7"/><path d="M-40 1960 L-40 1109.2 L-16 1111.0 L8 1116.1 L32 1121.3 L56 1111.5 L80 1111.0 L104 1113.2 L128 1122.6 L152 1111.7 L176 1122.3 L200 1120.9 L224 1111.5 L248 1118.6 L272 1117.1 L296 1116.4 L320 1126.9 L344 1110.7 L368 1109.4 L392 1125.9 L416 1116.3 L440 1112.6 L464 1114.9 L488 1115.6 L512 1126.2 L536 1112.8 L560 1112.9 L584 1119.5 L608 1118.9 L632 1126.2 L656 1124.1 L680 1115.4 L704 1112.7 L728 1124.1 L752 1126.8 L776 1109.5 L800 1122.2 L824 1124.6 L848 1120.7 L872 1112.9 L896 1123.3 L920 1122.1 L944 1112.5 L968 1120.5 L992 1112.9 L1016 1109.7 L1040 1115.0 L1064 1115.0 L1088 1116.1 L1112 1120.6 L1120 1960 Z" fill="#000" opacity="0.10" transform="translate(0 -3)"/><path d="M-40 1960 L-40 1109.2 L-16 1111.0 L8 1116.1 L32 1121.3 L56 1111.5 L80 1111.0 L104 1113.2 L128 1122.6 L152 1111.7 L176 1122.3 L200 1120.9 L224 1111.5 L248 1118.6 L272 1117.1 L296 1116.4 L320 1126.9 L344 1110.7 L368 1109.4 L392 1125.9 L416 1116.3 L440 1112.6 L464 1114.9 L488 1115.6 L512 1126.2 L536 1112.8 L560 1112.9 L584 1119.5 L608 1118.9 L632 1126.2 L656 1124.1 L680 1115.4 L704 1112.7 L728 1124.1 L752 1126.8 L776 1109.5 L800 1122.2 L824 1124.6 L848 1120.7 L872 1112.9 L896 1123.3 L920 1122.1 L944 1112.5 L968 1120.5 L992 1112.9 L1016 1109.7 L1040 1115.0 L1064 1115.0 L1088 1116.1 L1112 1120.6 L1120 1960 Z" fill="#9dbb8e"/><path d="M-40 1960 L-40 1233.0 L-16 1236.5 L8 1237.3 L32 1249.9 L56 1242.7 L80 1245.0 L104 1235.7 L128 1242.3 L152 1248.0 L176 1242.8 L200 1250.9 L224 1249.9 L248 1237.8 L272 1231.9 L296 1244.7 L320 1234.8 L344 1231.3 L368 1244.6 L392 1247.3 L416 1247.5 L440 1249.6 L464 1237.0 L488 1234.3 L512 1234.0 L536 1251.0 L560 1233.5 L584 1235.3 L608 1232.5 L632 1232.4 L656 1232.8 L680 1239.9 L704 1236.2 L728 1239.6 L752 1250.6 L776 1234.2 L800 1246.9 L824 1244.4 L848 1241.9 L872 1243.4 L896 1245.0 L920 1241.8 L944 1236.8 L968 1239.7 L992 1237.4 L1016 1240.7 L1040 1250.7 L1064 1241.4 L1088 1233.1 L1112 1239.6 L1120 1960 Z" fill="#fffdf7"/><path d="M-40 1960 L-40 1242.4 L-16 1244.8 L8 1246.5 L32 1257.2 L56 1249.9 L80 1254.0 L104 1242.8 L128 1250.2 L152 1256.2 L176 1250.4 L200 1258.0 L224 1256.9 L248 1247.7 L272 1241.0 L296 1254.6 L320 1243.3 L344 1241.2 L368 1254.2 L392 1256.2 L416 1256.1 L440 1258.2 L464 1244.6 L488 1242.5 L512 1243.2 L536 1258.6 L560 1243.0 L584 1243.9 L608 1241.4 L632 1241.9 L656 1241.7 L680 1247.4 L704 1243.9 L728 1246.6 L752 1257.7 L776 1244.0 L800 1255.7 L824 1254.3 L848 1251.2 L872 1251.4 L896 1254.9 L920 1251.6 L944 1245.1 L968 1246.9 L992 1245.4 L1016 1248.2 L1040 1258.8 L1064 1248.7 L1088 1242.3 L1112 1249.6 L1120 1960 Z" fill="#000" opacity="0.10" transform="translate(0 -3)"/><path d="M-40 1960 L-40 1242.4 L-16 1244.8 L8 1246.5 L32 1257.2 L56 1249.9 L80 1254.0 L104 1242.8 L128 1250.2 L152 1256.2 L176 1250.4 L200 1258.0 L224 1256.9 L248 1247.7 L272 1241.0 L296 1254.6 L320 1243.3 L344 1241.2 L368 1254.2 L392 1256.2 L416 1256.1 L440 1258.2 L464 1244.6 L488 1242.5 L512 1243.2 L536 1258.6 L560 1243.0 L584 1243.9 L608 1241.4 L632 1241.9 L656 1241.7 L680 1247.4 L704 1243.9 L728 1246.6 L752 1257.7 L776 1244.0 L800 1255.7 L824 1254.3 L848 1251.2 L872 1251.4 L896 1254.9 L920 1251.6 L944 1245.1 L968 1246.9 L992 1245.4 L1016 1248.2 L1040 1258.8 L1064 1248.7 L1088 1242.3 L1112 1249.6 L1120 1960 Z" fill="#7c8a3c"/><path d="M-40 1960 L-40 1413.8 L-16 1415.0 L8 1417.8 L32 1408.8 L56 1414.9 L80 1419.4 L104 1419.8 L128 1405.4 L152 1414.4 L176 1413.7 L200 1412.0 L224 1419.8 L248 1411.2 L272 1411.1 L296 1420.8 L320 1414.0 L344 1408.3 L368 1407.2 L392 1412.6 L416 1402.3 L440 1414.9 L464 1415.6 L488 1410.3 L512 1418.3 L536 1418.0 L560 1411.9 L584 1415.8 L608 1404.6 L632 1403.2 L656 1421.5 L680 1408.9 L704 1406.0 L728 1418.0 L752 1416.1 L776 1405.0 L800 1408.3 L824 1407.6 L848 1406.3 L872 1401.2 L896 1412.0 L920 1409.4 L944 1409.9 L968 1404.9 L992 1405.0 L1016 1404.3 L1040 1419.2 L1064 1415.3 L1088 1412.2 L1112 1405.4 L1120 1960 Z" fill="#fffdf7"/><path d="M-40 1960 L-40 1421.3 L-16 1422.4 L8 1425.7 L32 1416.0 L56 1422.7 L80 1427.0 L104 1427.4 L128 1414.4 L152 1422.7 L176 1422.1 L200 1420.1 L224 1428.4 L248 1420.5 L272 1419.0 L296 1428.0 L320 1422.4 L344 1416.4 L368 1416.6 L392 1419.9 L416 1411.9 L440 1421.9 L464 1424.2 L488 1418.7 L512 1426.2 L536 1427.7 L560 1421.0 L584 1423.3 L608 1413.1 L632 1412.0 L656 1428.6 L680 1416.1 L704 1414.8 L728 1427.1 L752 1424.5 L776 1413.2 L800 1416.8 L824 1415.4 L848 1415.9 L872 1411.1 L896 1420.4 L920 1416.5 L944 1418.1 L968 1414.3 L992 1413.0 L1016 1411.6 L1040 1426.7 L1064 1424.5 L1088 1421.1 L1112 1413.2 L1120 1960 Z" fill="#000" opacity="0.10" transform="translate(0 -3)"/><path d="M-40 1960 L-40 1421.3 L-16 1422.4 L8 1425.7 L32 1416.0 L56 1422.7 L80 1427.0 L104 1427.4 L128 1414.4 L152 1422.7 L176 1422.1 L200 1420.1 L224 1428.4 L248 1420.5 L272 1419.0 L296 1428.0 L320 1422.4 L344 1416.4 L368 1416.6 L392 1419.9 L416 1411.9 L440 1421.9 L464 1424.2 L488 1418.7 L512 1426.2 L536 1427.7 L560 1421.0 L584 1423.3 L608 1413.1 L632 1412.0 L656 1428.6 L680 1416.1 L704 1414.8 L728 1427.1 L752 1424.5 L776 1413.2 L800 1416.8 L824 1415.4 L848 1415.9 L872 1411.1 L896 1420.4 L920 1416.5 L944 1418.1 L968 1414.3 L992 1413.0 L1016 1411.6 L1040 1426.7 L1064 1424.5 L1088 1421.1 L1112 1413.2 L1120 1960 Z" fill="#b98f5e"/><rect width="1080" height="1920" filter="url(#grain)" opacity="0.5"/><rect width="1080" height="1920" fill="url(#vig)"/><path d="M32 160 L76 160 M54 138 L54 182 M41.9 147.9 L66.1 172.1 M41.9 172.1 L66.1 147.9" stroke="#3a332c" stroke-width="4" stroke-linecap="round" opacity="0.55"/><path d="M1002 205 L1038 205 M1020 187 L1020 223 M1010.1 195.1 L1029.9 214.9 M1010.1 214.9 L1029.9 195.1" stroke="#3a332c" stroke-width="4" stroke-linecap="round" opacity="0.55"/><path d="M28 1840 L64 1840 M46 1822 L46 1858 M36.1 1830.1 L55.9 1849.9 M36.1 1849.9 L55.9 1830.1" stroke="#3a332c" stroke-width="4" stroke-linecap="round" opacity="0.55"/><path d="M1008 1800 L1052 1800 M1030 1778 L1030 1822 M1017.9 1787.9 L1042.1 1812.1 M1017.9 1812.1 L1042.1 1787.9" stroke="#3a332c" stroke-width="4" stroke-linecap="round" opacity="0.55"/></svg>
+<div id="title" class="box" data-zone="0"></div>
+<div id="visbox" class="box" data-zone="1"><div id="vis"><div class="prop" id="tree2" data-reveal data-anim="pop" style="left:282px;top:0px;width:300px;height:332px"><svg width="300" height="332" viewBox="0 0 560 620" aria-hidden="true"><g filter="url(#cut)"><g data-boil="tree-canopy"><path d="M245 620 C252 520 248 440 232 360 L330 360 C314 440 310 520 322 620 Z" fill="#b98f5e"/><path d="M245 620 C232 600 206 606 190 618 Z M322 620 C336 600 360 606 378 618 Z" fill="#b98f5e"/><path d="M262 382 C205 335 140 322 86 306 M300 382 C362 334 432 322 486 304" stroke="#b98f5e" stroke-width="26" stroke-linecap="round" fill="none"/><path d="M112 316 L114 600 M150 326 L148 560 M418 322 L420 590 M458 312 L456 548" stroke="#b98f5e" stroke-width="8" stroke-linecap="round"/><path d="M262 380 C262 470 270 540 266 612 M298 380 C300 470 292 540 300 612" stroke="#3a332c" stroke-width="2.5" stroke-opacity="0.55" fill="none"/><ellipse cx="280" cy="200" rx="262" ry="150" fill="#7c8a3c"/><ellipse cx="150" cy="180" rx="125" ry="92" fill="#9dbb8e"/><ellipse cx="410" cy="170" rx="132" ry="96" fill="#9dbb8e"/><ellipse cx="282" cy="110" rx="160" ry="92" fill="#9dbb8e"/><ellipse cx="200" cy="262" rx="112" ry="62" fill="#7c8a3c"/><ellipse cx="380" cy="262" rx="118" ry="62" fill="#7c8a3c"/><ellipse cx="282" cy="96" rx="96" ry="46" fill="#b8cfa5" opacity="0.8"/><ellipse cx="420" cy="150" rx="70" ry="38" fill="#b8cfa5" opacity="0.7"/><path d="M60 190 C80 120 160 90 210 100 M330 60 C400 50 470 100 500 150 M120 260 C170 300 240 300 280 280" stroke="#3a332c" stroke-width="2.5" stroke-opacity="0.55" fill="none"/></g></g></svg></div><div class="prop" style="left:190px;top:300px;width:484px;height:44px"><svg width="484" height="44" viewBox="0 0 484 44" aria-hidden="true"><g filter="url(#cut)"><path d="M0 44 C40 10 120 2 242 2 C364 2 444 10 484 44 Z" fill="#9dbb8e"/><path d="M60 30 C120 20 200 22 250 18" stroke="#3a332c" stroke-width="2.5" stroke-opacity="0.55" fill="none"/></g></svg></div><div class="sheet eq" id="eq_full" data-reveal data-anim="fade" style="left:0;top:344px;width:864px;height:312px;transform-origin:50% 50%"><div class="tape m" style="left:50%"></div><div class="row"><span class="piece"><b data-fx="parameters.coef_co2"></b><span data-fx="display.co2"></span></span><span class="piece"><span data-fx="display.plus"></span> <b data-fx="parameters.coef_h2o"></b><span data-fx="display.h2o"></span></span></div><div class="row"><span class="piece"><span data-fx="display.arrow"></span></span><span class="piece"><span data-fx="display.glucose"></span></span><span class="piece"><span data-fx="display.plus"></span> <b data-fx="parameters.coef_o2"></b><span data-fx="display.o2"></span></span></div><div class="row" style="gap:0 28px"><span class="tag lbl" style="position:relative"><span data-fx="display.sunlight"></span></span><span class="tag lbl" style="position:relative"><span data-fx="display.chlorophyll"></span></span></div></div></div></div>
+<div id="cap" class="box" data-zone="2"><div id="disclosure" class="tag wrap" data-reveal data-anim="fade" data-text-role="caption" style="font-size:50px"></div></div>
+</div>
+<script type="application/json" id="scene-config">{"id": "s05", "headlines": [{"beat": "b06", "words": ["carbon", "came", "from", "the", "air"], "q": false}], "approvedText": [{"element_id": "disclosure", "text": "AI-generated narration; script by ExamLeaf.", "words": ["AI-generated", "narration", "script", "by", "ExamLeaf"], "breakAfter": ";"}]}</script>
+<!-- INLINE FALLBACKS (preview only): synthetic evenly spaced cue sheet and the fixture. Production injects both. -->
+<script type="application/json" id="cue-sheet-inline">{"schema_version": "1.0", "scene_id": "bio-photosyn-ci-01-s05", "fps": 30, "duration": 11.817, "language": "en-IN", "alignment_source": "synthetic_even_spacing", "narration_audio_sha256": null, "script_sha256": "9b85d46aa953f120980194a38416d0bd72c8636a87788d5784b8b9f8e4e9ca08", "words": [{"w": "So", "t0": 0.0, "t1": 0.357}, {"w": "a", "t0": 0.417, "t1": 0.773}, {"w": "tree's", "t0": 0.833, "t1": 1.19}, {"w": "carbon", "t0": 1.25, "t1": 1.607}, {"w": "came", "t0": 1.667, "t1": 2.023}, {"w": "from", "t0": 2.083, "t1": 2.44}, {"w": "the", "t0": 2.5, "t1": 2.857}, {"w": "air", "t0": 2.917, "t1": 3.273}, {"w": "Carbon", "t0": 3.333, "t1": 3.69}, {"w": "dioxide", "t0": 3.75, "t1": 4.107}, {"w": "and", "t0": 4.167, "t1": 4.523, "occurrence": 1}, {"w": "water", "t0": 4.583, "t1": 4.94}, {"w": "with", "t0": 5.0, "t1": 5.357}, {"w": "sunlight", "t0": 5.417, "t1": 5.773}, {"w": "and", "t0": 5.833, "t1": 6.19, "occurrence": 2}, {"w": "chlorophyll", "t0": 6.25, "t1": 6.607}, {"w": "make", "t0": 6.667, "t1": 7.023}, {"w": "glucose", "t0": 7.083, "t1": 7.44}, {"w": "and", "t0": 7.5, "t1": 7.857, "occurrence": 3}, {"w": "oxygen", "t0": 7.917, "t1": 8.273}, {"w": "AI-generated", "t0": 8.933, "t1": 9.29}, {"w": "narration", "t0": 9.35, "t1": 9.707}, {"w": "script", "t0": 9.767, "t1": 10.123}, {"w": "by", "t0": 10.183, "t1": 10.54}, {"w": "ExamLeaf", "t0": 10.6, "t1": 10.957}], "beats": [0.0, 8.933], "cues": [{"id": "c26", "at": 0.783, "kind": "reveal", "element_id": "tree2", "word_index": 2}, {"id": "c27", "at": 3.7, "kind": "reveal", "element_id": "eq_full", "word_index": 9}, {"id": "c28", "at": 7.033, "kind": "emphasis", "element_id": "eq_full", "word_index": 17}, {"id": "c29", "at": 8.883, "kind": "reveal", "element_id": "disclosure", "word_index": 20}], "sfx": [], "meta": {"video_id": "bio-photosyn-ci-01", "scene": "s05", "beat_ids": ["b06", "b07"], "beats_text": [{"id": "b06", "slot": "recap.statement", "text": "So a tree's carbon came from the air. Carbon dioxide and water, with sunlight and chlorophyll, make glucose and oxygen.", "headline": "carbon came from the air", "start": 0.0, "end": 8.273, "word_range": [0, 20]}, {"id": "b07", "slot": "outro.disclosure", "text": "AI-generated narration; script by ExamLeaf.", "headline": "", "start": 8.933, "end": 10.957, "word_range": [20, 25]}], "think_windows": []}}</script>
+<script type="application/json" id="fixture-inline">{"fixture_id": "FIX-photosyn-balance", "compute": "fixtures/compute.py", "display": {"co2": "CO₂", "h2o": "H₂O", "glucose": "C₆H₁₂O₆", "o2": "O₂", "plus": "+", "arrow": "→", "equals": "=", "slash": "/", "sunlight": "sunlight", "chlorophyll": "chlorophyll", "carbon_symbol": "C", "percent": "%"}, "parameters": {"coef_co2": 6, "coef_h2o": 6, "coef_glucose": 1, "coef_o2": 6, "atomic_mass": {"C": 12, "H": 1, "O": 16}}, "results": {"atoms_left": {"C": 6, "O": 18, "H": 12}, "atoms_right": {"C": 6, "H": 12, "O": 18}, "balanced": true, "carbon_left": 6, "carbon_right": 6, "carbon_atoms_in_co2_per_molecule": 1, "carbon_atoms_in_h2o_per_molecule": 0, "glucose_carbon_mass": 72, "glucose_molar_mass": 180, "carbon_mass_fraction": 0.4, "carbon_percent": 40}}</script>
+<script>
+(function () {
+'use strict';
+/* ExamLeaf paper-collage scene engine (seek contract 1.0.0). Structure follows 04_harness_contract/scene_template.html:
+   [5] config, [6] error channel, [7] seeded PRNG, [8] easing, [9] loaders, [10] state, [11] render, [12] ready + seek.
+   Inlined verbatim into every scene by build_scenes.py; the per-scene part is #scene-config plus the markup. */
+const Q = new URLSearchParams(location.search);
+const num = (k, d) => { const v = parseFloat(Q.get(k)); return isFinite(v) ? v : d; };
+const FPS = num('fps', 30), SEED = num('seed', 20261016), EPS = 1e-6;
+const W = 1080, H = 1920;
+const LEAD = 0.05;                                    // reveal on, or 0.05 s before, its word [V4-MP]
+const HOLD_MIN = 1.2;                                 // tokens hold_times_s.headline_min [N60]
+const INSETS = { top: 250, bottom: 450, left: 60, right: 120 };   // tokens platform_insets_px.generic_conservative (PLACEHOLDER)
+const SHARES = [0.22, 0.54, 0.24];                    // tokens zones.*.share (owner: vertical_safe_zones.tokens.json)
+const SIDE_MIN = 96;                                  // tokens zones.side_margin_min_px
+const LEFT = Math.max(INSETS.left, SIDE_MIN), RIGHT = Math.max(INSETS.right, SIDE_MIN);
+const MIN_PX = { tile: 59, label: 50, eq: 63 };      // tokens typography_px_at_1080.minimums_px
+const BOIL_FPS = 8;                                   // brief: boil at 8 fps, decorative only (style guide §8.4 says 10; brief wins here)
+const VIS_W = 864, VIS_H = 659;                       // art box authored at the placeholder middle_visual zone size
+const FONT_SPECS = [
+  { family: 'Noto Sans', weight: 700, text: 'Aa 0123 CO₂ H₂O C₆H₁₂O₆ →' },
+  { family: 'Noto Sans', weight: 600, text: 'sunlight chlorophyll %' }];
+const SCENE = JSON.parse(document.getElementById('scene-config').textContent);
+
+/* [6] ERROR CHANNEL */
+window.__errors = [];
+const report = (code, severity, message, t) => window.__errors.push({ code, severity, message, t: t == null ? null : t });
+const fail = (code, message, t) => { report(code, 'error', message, t); const e = new Error(code + ': ' + message); e.code = code; return e; };
+
+/* [7] SEEDED RANDOMNESS: stateless only inside render (rngAt keyed by scene:element and step). */
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const rngAt = (seed, i) => mulberry32((seed ^ Math.imul(i + 1, 0x9E3779B1)) >>> 0)();
+function fnv1a(s) { let h = 0x811c9dc5; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193); } return h >>> 0; }
+const KEY = s => (fnv1a(SCENE.id + ':' + s) ^ SEED) >>> 0;
+
+/* [8] EASING (pure) */
+const clamp01 = x => x < 0 ? 0 : x > 1 ? 1 : x, lerp = (a, b, u) => a + (b - a) * u;
+const ease = {
+  cubicOut: u => 1 - Math.pow(1 - u, 3),
+  sineInOut: u => 0.5 - 0.5 * Math.cos(Math.PI * u),
+  backOut: u => { const s = 2.2, c = s + 1, v = u - 1; return 1 + c * v * v * v + s * v * v; }   // back.out(2.2): collage pop
+};
+// Finite damped pulse for 'emphasis' cues: n periods then stop (edge case 18).
+const pulse = (t, at, n = 2, period = 0.5, amp = 0.07) => { const d = t - at; return d < 0 || d > n * period ? 1 : 1 + amp * Math.sin(2 * Math.PI * d / period) * (1 - d / (n * period)); };
+
+/* [9] LOADERS: injected window.__CUE_SHEET__ / __FIXTURE__, then ?cues= / ?fixture=, then inline (template precedence). */
+const deepFreeze = o => { Object.values(o).forEach(v => { if (v && typeof v === 'object') deepFreeze(v); }); return Object.freeze(o); };
+async function loadJson(inject, param, inlineId, what) {
+  if (inject) return { data: inject, source: 'injected' };
+  const path = Q.get(param);
+  if (path) {
+    try { const r = await fetch(path); if (!r.ok) throw new Error('HTTP ' + r.status); return { data: await r.json(), source: 'path' }; }
+    catch (e) {
+      if (Q.get('strict') === '1') throw fail('E_' + what + '_LOAD', 'cannot load ' + path + ': ' + e.message);
+      report('W_' + what + '_FALLBACK', 'warning', 'cannot load ' + path + ' (' + e.message + '); inline fallback used. Not valid for production.');
+      return { data: JSON.parse(document.getElementById(inlineId).textContent), source: 'inline-fallback' };
+    }
+  }
+  return { data: JSON.parse(document.getElementById(inlineId).textContent), source: 'inline' };
+}
+function checkSheet(s) {
+  if (!s || !(s.duration > 0) || !isFinite(s.duration) || !Array.isArray(s.words) || !Array.isArray(s.cues)) throw fail('E_CUES_INVALID', 'cue sheet needs finite duration>0, words[], cues[]');
+  s.words.forEach((w, i) => { if (i && w.t0 < s.words[i - 1].t0) throw fail('E_CUES_INVALID', 'words[' + i + '] not monotonic'); });
+}
+
+/* [10] STATE built once in ready(); render(t) only reads it. */
+let SHEET, FX, ZONES = [], visScale = 1, freezeAt = Infinity;
+const heads = [], recs = new Map(), boils = [];
+const fx = path => { const v = path.split('.').reduce((o, k) => o == null ? o : o[k], FX); if (v === undefined) throw fail('E_FIXTURE_MISSING', 'fixture has no ' + path); return v; };
+const norm = w => String(w).normalize('NFC').toLowerCase().replace(/[^\p{L}\p{M}\p{N}'’]/gu, '');
+const surface = w => String(w).replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}'’]+$/gu, '');      // strip edge punctuation an aligner may keep
+const findWord = (target, from) => { for (let i = from; i < SHEET.words.length; i++) if (norm(SHEET.words[i].w) === target) return i; return -1; };
+const TILE_STYLES = [                                 // style guide §5.1 tile pairs; display pairs need >= 72 px glyphs
+  { bg: '#2b2622', fg: '#f3ecdf', ff: 'var(--font)' },
+  { bg: '#e0a73a', fg: '#2b2622', ff: 'Georgia, serif' },
+  { bg: '#f3ecdf', fg: '#2b2622', ff: '"Courier New", monospace', grid: true },
+  { bg: '#d9483b', fg: '#fbf7ee', ff: 'var(--font)' },
+  { bg: '#2f7f7a', fg: '#fbf7ee', ff: 'Georgia, serif' },
+  { bg: '#fbf7ee', fg: '#2f4fa8', ff: 'var(--font)', grid: true }];
+
+function buildZones() {
+  const y0 = INSETS.top, band = H - INSETS.top - INSETS.bottom; let y = y0;
+  ZONES = SHARES.map(s => { const z = { y0: Math.round(y), y1: Math.round(y + s * band) }; y += s * band; return z; });
+  const names = ['top_title', 'middle_visual', 'bottom_caption'], stage = document.getElementById('stage');
+  ZONES.forEach((z, i) => { const d = document.createElement('div'); d.className = 'zone'; d.style.top = z.y0 + 'px'; d.style.height = (z.y1 - z.y0) + 'px'; d.style.left = LEFT + 'px'; d.style.width = (W - LEFT - RIGHT) + 'px'; d.textContent = names[i] + '  PLACEHOLDER insets'; stage.appendChild(d); });
+  document.querySelectorAll('.box').forEach(b => { const z = ZONES[+b.dataset.zone]; b.style.top = z.y0 + 'px'; b.style.height = (z.y1 - z.y0) + 'px'; b.style.left = LEFT + 'px'; b.style.width = (W - LEFT - RIGHT) + 'px'; });
+  const z = ZONES[1], zw = W - LEFT - RIGHT, zh = z.y1 - z.y0, vis = document.getElementById('vis');
+  visScale = Math.min(zw / VIS_W, zh / VIS_H);
+  if (Math.abs(visScale - 1) > 0.01) report('W_VIS_SCALED', 'warning', 'middle_visual is ' + zw + 'x' + zh + '; art scaled by ' + visScale.toFixed(3) + ' (text sizes scale too: re-check minimums)');
+  vis.style.left = ((zw - VIS_W * visScale) / 2) + 'px'; vis.style.top = ((zh - VIS_H * visScale) / 2) + 'px';
+}
+
+function buildGeom() {                                  // data-bound geometry (not decoration): drawn from fixture values only
+  document.querySelectorAll('[data-geom="pie"]').forEach(p => {
+    const f = fx(p.dataset.fxGeom), cx = +p.dataset.cx, cy = +p.dataset.cy, r = +p.dataset.r;
+    if (!(f > 0 && f < 1)) throw fail('E_FIXTURE_RANGE', p.dataset.fxGeom + ' must be in (0,1), got ' + f);
+    const a0 = -Math.PI / 2, a1 = a0 + f * 2 * Math.PI, P = a => (cx + r * Math.cos(a)).toFixed(2) + ' ' + (cy + r * Math.sin(a)).toFixed(2);
+    p.setAttribute('d', 'M' + cx + ' ' + cy + ' L' + P(a0) + ' A' + r + ' ' + r + ' 0 ' + (f > 0.5 ? 1 : 0) + ' 1 ' + P(a1) + ' Z');
+    const anchor = p.dataset.anchor && document.getElementById(p.dataset.anchor);
+    if (anchor) {                                       // centre the value tag on the wedge's mid-angle (placement follows the data)
+      const am = a0 + f * Math.PI, k = +p.dataset.anchorK || 0.62;
+      anchor.style.left = Math.round(cx + k * r * Math.cos(am) - anchor.offsetWidth / 2) + 'px'; anchor.style.top = Math.round(cy + k * r * Math.sin(am) - anchor.offsetHeight / 2) + 'px';   // whole pixels: subpixel offsets made frames depend on seek history
+    }
+  });
+}
+
+function buildHeadlines() {                             // headline = in-order subsequence of this scene's spoken words (script on_screen.headline)
+  const box = document.getElementById('title'); box.lang = SHEET.language; let cursor = 0, ti = 0;
+  (SCENE.headlines || []).forEach(h => {
+    const g = { el: document.createElement('div'), tiles: [], start: Infinity, end: Infinity };
+    g.el.className = 'hl'; box.appendChild(g.el);
+    h.words.forEach((word, wi) => {
+      const idx = findWord(norm(word), cursor);
+      if (idx < 0) { report('W_HEADLINE_WORD_MISSING', 'warning', 'headline word "' + word + '" not found in cue sheet words after index ' + cursor); return; }
+      cursor = idx + 1;
+      const w = SHEET.words[idx], st = TILE_STYLES[(ti * 5 + 1) % TILE_STYLES.length], sp = document.createElement('span');
+      sp.className = 'tile' + (st.grid ? ' grid' : ''); sp.textContent = surface(w.w) + (h.q && wi === h.words.length - 1 ? '?' : '');
+      if (w.lang) sp.lang = w.lang;
+      sp.style.backgroundColor = st.bg; sp.style.color = st.fg; sp.style.fontFamily = st.ff;
+      g.el.appendChild(sp);
+      g.tiles.push({ el: sp, at: Math.max(0, w.t0 - LEAD), rot: (rngAt(KEY('tile'), ti) - 0.5) * 12, dy: (rngAt(KEY('tile'), ti + 500) - 0.5) * 10 });
+      ti++;
+    });
+    if (g.tiles.length) g.start = g.tiles[0].at;
+    heads.push(g);
+  });
+  heads.forEach((g, k) => {
+    g.end = k + 1 < heads.length ? heads[k + 1].start : Infinity;
+    if (!g.tiles.length) return;
+    const hold = Math.min(g.end, window.DURATION) - g.tiles[g.tiles.length - 1].at;
+    if (hold < HOLD_MIN) report('W_HOLD_SHORT', 'warning', 'headline ' + k + ' hold ' + hold.toFixed(2) + ' s < ' + HOLD_MIN + ' s [N60]');
+  });
+}
+
+const recOf = el => { if (!recs.has(el)) recs.set(el, { el, anim: el.dataset.anim || 'pop', reveal: null, hold: null, pulses: [], rot0: el.dataset.rot != null ? +el.dataset.rot : (rngAt(KEY(el.id), 7) - 0.5) * 24, draws: Array.from(el.querySelectorAll('.ink')) }); return recs.get(el); };
+function buildCues() {                                  // cues drive elements by element_id; times are never hard-coded here
+  SHEET.cues.forEach(c => {
+    if (!c.element_id) return;
+    const el = document.getElementById(c.element_id);
+    if (!el) { report('W_CUE_NO_ELEMENT', 'warning', 'cue ' + c.id + ' targets missing element ' + c.element_id); return; }
+    const r = recOf(el);
+    if (c.kind === 'reveal') r.reveal = r.reveal == null ? c.at : Math.min(r.reveal, c.at);
+    else if (c.kind === 'hold') r.hold = { at: c.at, until: isFinite(c.until) ? c.until : window.DURATION };
+    else if (c.kind === 'emphasis') r.pulses.push(c.at);
+  });
+  document.querySelectorAll('[data-follow]').forEach(el => {   // a container that appears with its first cued child (no own cue)
+    const lead = document.getElementById(el.dataset.follow), lr = lead && recs.get(lead), r = recOf(el);
+    if (lr && lr.reveal != null) r.reveal = lr.reveal; else report('W_FOLLOW_NO_CUE', 'warning', el.id + ' follows ' + el.dataset.follow + ', which has no reveal cue');
+  });
+  document.querySelectorAll('[data-reveal]').forEach(el => { const r = recOf(el); if (r.reveal == null && !r.hold) report('W_ELEMENT_NO_CUE', 'warning', 'element ' + el.id + ' has no reveal/hold cue in this sheet; it stays hidden'); });
+  recs.forEach(r => r.draws.forEach(p => { p.setAttribute('pathLength', '1'); p.style.strokeDasharray = '1 1'; }));
+  if (SCENE.freezeOn) { const el = document.getElementById(SCENE.freezeOn), r = el && recs.get(el); if (r && r.hold) freezeAt = r.hold.at; else report('W_THINK_UNMARKED', 'warning', 'think-window element ' + SCENE.freezeOn + ' has no hold cue; boil is not frozen'); }
+}
+
+function buildApprovedText() {                          // text shown verbatim from the approved script, verified against the spoken words
+  (SCENE.approvedText || []).forEach(a => {
+    const el = document.getElementById(a.element_id); if (!el) { report('W_TEXT_NO_ELEMENT', 'warning', 'no element ' + a.element_id); return; }
+    let cur = 0; const missing = a.words.filter(w => { const i = findWord(norm(w), cur); if (i < 0) return true; cur = i + 1; return false; });
+    if (missing.length) report('E_TEXT_NOT_SPOKEN', 'error', a.element_id + ': words not in the cue sheet: ' + missing.join(', '));
+    if (a.breakAfter && a.text.includes(a.breakAfter)) {   // line break for layout only; textContent stays the approved string
+      const i = a.text.indexOf(a.breakAfter) + a.breakAfter.length; el.textContent = '';
+      [a.text.slice(0, i + 1), a.text.slice(i + 1)].forEach(part => { const sp = document.createElement('span'); sp.style.display = 'block'; sp.textContent = part; el.appendChild(sp); });
+    } else el.textContent = a.text;
+  });
+}
+
+function buildBoil() { document.querySelectorAll('[data-boil]').forEach(el => boils.push({ el, key: KEY('boil:' + (el.dataset.boil || el.id)), amp: +(el.dataset.amp || 1) })); }
+
+/* [11] RENDER: synchronous, pure function of t (plus immutable state). */
+function stateOf(r, t) {
+  let o = 1, s = 1, rot = 0, draw = 1;
+  if (r.el.hasAttribute('data-reveal')) {
+    const a = r.reveal != null ? r.reveal : r.hold ? r.hold.at : Infinity, d = t - a;
+    if (d < -EPS) { o = 0; s = r.anim === 'pop' ? 0.001 : 0.9; draw = 0; }
+    else if (r.anim === 'pop') { const u = clamp01(d / 0.4); o = clamp01(d / 0.08); s = Math.max(0.001, ease.backOut(u)); rot = (1 - ease.cubicOut(u)) * r.rot0; }
+    else if (r.anim === 'draw') { draw = ease.cubicOut(clamp01(d / 0.6)); }
+    else { o = ease.cubicOut(clamp01(d / 0.25)); }     // 'fade': 250 ms opacity-only (science tags: no scale, so raster never depends on seek history)
+    if (r.hold && r.hold.until < window.DURATION - EPS) o *= 1 - clamp01((t - r.hold.until) / 0.3);
+  }
+  r.pulses.forEach(at => { s *= pulse(t, at); });
+  return { o, s, rot, draw };
+}
+function render(t) {
+  heads.forEach(g => {
+    const out = g.end === Infinity ? 1 : clamp01((g.end - 0.05 - t) / 0.2);          // gone by the next headline's first word
+    g.tiles.forEach(x => {
+      const d = t - x.at, u = clamp01(d / 0.35);
+      x.el.style.opacity = d < -EPS ? 0 : clamp01(d / 0.06) * out;
+      x.el.style.transform = 'translateY(' + (x.dy + (1 - ease.cubicOut(u)) * -30).toFixed(2) + 'px) rotate(' + (x.rot + (1 - ease.cubicOut(u)) * 9).toFixed(2) + 'deg) scale(' + (d < 0 ? 1.25 : lerp(1.25, 1, ease.backOut(u))).toFixed(4) + ')';
+    });
+  });
+  recs.forEach(r => {
+    const st = stateOf(r, t);
+    r.el.style.opacity = st.o;
+    r.el.style.transform = 'rotate(' + st.rot.toFixed(2) + 'deg) scale(' + st.s.toFixed(4) + ')';
+    r.draws.forEach(p => { p.style.strokeDashoffset = (1 - st.draw).toFixed(4); });
+  });
+  const k = Math.floor(Math.min(t, freezeAt) * BOIL_FPS + EPS);                      // boil step: stateless jitter, frozen in think windows
+  boils.forEach(b => {
+    const jx = (rngAt(b.key, k) - 0.5) * 3 * b.amp, jy = (rngAt(b.key, k + 100003) - 0.5) * 3 * b.amp, jr = (rngAt(b.key, k + 200003) - 0.5) * 1.4 * b.amp;
+    b.el.style.transform = 'translate(' + jx.toFixed(2) + 'px,' + jy.toFixed(2) + 'px) rotate(' + jr.toFixed(2) + 'deg)';
+  });
+  const push = SCENE.pushIn ? 1 + SCENE.pushIn * ease.sineInOut(clamp01(t / window.DURATION)) : 1;   // hook only: no labels in that scene (#64)
+  document.getElementById('vis').style.transform = 'scale(' + (visScale * push).toFixed(5) + ')';
+}
+
+/* Layout self-check: every visible text element inside its zone and the side margins, at or above the size floor,
+   and no two text boxes overlapping. Runs on frames the scene computes itself; never changes state. */
+function layoutCheck() {
+  const sr = document.getElementById('stage').getBoundingClientRect(), times = [window.DURATION];
+  heads.forEach(g => { if (isFinite(g.end)) times.push(Math.max(0, g.end - 0.3)); });
+  times.forEach(t => {
+    render(t);
+    const effOp = el => { let o = 1; for (let e = el; e && e.id !== 'stage'; e = e.parentElement) o *= +getComputedStyle(e).opacity; return o; };
+    const items = Array.from(document.querySelectorAll('.tile,.tag,[data-text-role]')).filter(el => effOp(el) > 0.02);
+    const boxes = items.map(el => {
+      const b = el.getBoundingClientRect(), zoneEl = el.closest('.box'), z = zoneEl ? ZONES[+zoneEl.dataset.zone] : null;
+      const rect = { el, x0: b.left - sr.left, y0: b.top - sr.top, x1: b.right - sr.left, y1: b.bottom - sr.top };
+      if (z && (rect.y0 < z.y0 - 1 || rect.y1 > z.y1 + 1 || rect.x0 < LEFT - 1 || rect.x1 > W - RIGHT + 1))
+        report('W_TEXT_OUTSIDE_ZONE', 'warning', (el.id || el.textContent) + ' box ' + [rect.x0, rect.y0, rect.x1, rect.y1].map(Math.round).join(',') + ' leaves its zone', t);
+      const role = el.classList.contains('tile') ? 'tile' : el.classList.contains('lbl') ? 'label' : el.closest('.eq') ? 'eq' : 'label';
+      el.querySelectorAll('[data-fx]').forEach(f => { if (f.closest('.tile,.tag,[data-text-role]') !== el) return; const px = parseFloat(getComputedStyle(f).fontSize) * visScale; if (px < MIN_PX[role] - 0.5 && !f.closest('.sub-ok')) report('W_TEXT_TOO_SMALL', 'warning', f.dataset.fx + ' ' + px.toFixed(0) + ' px < ' + MIN_PX[role], t); });
+      if (role === 'tile' && parseFloat(getComputedStyle(el).fontSize) < MIN_PX.tile) report('W_TEXT_TOO_SMALL', 'warning', 'headline tile ' + el.textContent, t);
+      return rect;
+    });
+    for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) {
+      const a = boxes[i], b = boxes[j];
+      if (a.el.contains(b.el) || b.el.contains(a.el)) continue;
+      if (a.x0 < b.x1 - 2 && b.x0 < a.x1 - 2 && a.y0 < b.y1 - 2 && b.y0 < a.y1 - 2) report('W_TEXT_OVERLAP', 'warning', (a.el.id || a.el.textContent) + ' overlaps ' + (b.el.id || b.el.textContent), t);
+    }
+  });
+  render(0);
+}
+
+/* [12] READY + SEEK (template). seek never waits on requestAnimationFrame [N69]. */
+window.FPS = FPS;
+window.DURATION = 4.0;                                  // synchronous default; final value is the cue sheet duration, set in ready()
+window.SCENE_META = { contract: '1.0.0', videoCount: 0, notes: 'paper-collage-vertical; ' + SCENE.id };
+window.ready = (async () => {
+  const s = await loadJson(window.__CUE_SHEET__, 'cues', 'cue-sheet-inline', 'CUES'); SHEET = s.data; window.__cueSource = s.source; checkSheet(SHEET);
+  const f = await loadJson(window.__FIXTURE__, 'fixture', 'fixture-inline', 'FIXTURE'); FX = deepFreeze(f.data); window.__fixtureSource = f.source;
+  window.DURATION = SHEET.duration;
+  window.FRAME_COUNT = Math.round(window.DURATION * FPS);
+  if (SHEET.fps !== FPS) report('W_FPS_MISMATCH', 'warning', 'cue sheet fps ' + SHEET.fps + ' != render fps ' + FPS + '; times stay in seconds');
+  await Promise.all(FONT_SPECS.map(f => document.fonts.load(f.weight + ' 40px "' + f.family + '"', f.text).catch(e => report('E_FONT_LOAD', 'error', f.family + ': ' + e.message))));
+  document.querySelectorAll('[data-fx]').forEach(el => { el.textContent = String(fx(el.dataset.fx)); });   // read-only, unformatted
+  buildZones(); buildApprovedText(); buildHeadlines(); buildCues(); buildBoil();
+  await document.fonts.ready;
+  buildGeom(); layoutCheck();
+  if (Q.get('safe') === '1') document.getElementById('stage').classList.add('safe');
+  addEventListener('keydown', e => { if (e.key === 's' || e.key === 'S') document.getElementById('stage').classList.toggle('safe'); });
+})().catch(e => { if (!e.code) report('E_READY', 'error', e.message); throw e; });
+
+let chain = Promise.resolve();
+window.seek = async function seek(t) {
+  const prev = chain; let done; chain = new Promise(r => { done = r; });
+  try {
+    await prev; await window.ready;
+    if (typeof t !== 'number' || !isFinite(t)) throw fail('E_BAD_T', 'seek(t) needs a finite number of seconds, got ' + t);
+    const tc = Math.min(Math.max(t, 0), window.DURATION);
+    render(tc);
+    await document.fonts.ready;
+    await Promise.all(Array.from(document.images).map(i => i.decode().catch(e => report('E_ASSET_LOAD', 'error', i.src + ': ' + e.message, tc))));
+    return { t: tc, frame: Math.round(tc * FPS) };
+  } finally { done(); }
+};
+window.__hf = window.__hf || { get duration() { return window.DURATION; }, seek: t => window.seek(t) };
+if (Q.get('preview') === '1') window.ready.then(() => { const r = document.createElement('input'); r.type = 'range'; r.id = 'scrub'; r.min = 0; r.max = window.DURATION; r.step = 1 / FPS; r.value = 0; r.oninput = () => window.seek(parseFloat(r.value)); document.body.appendChild(r); });
+if (Q.has('t')) window.ready.then(() => window.seek(num('t', 0)));
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+{
+  "skill_name": "examleaf-effort-governor",
+  "status": "authored_not_agent_executed",
+  "positive": [
+    {
+      "id": "pos-1-collage-scene",
+      "prompt": "Start the Claude Code run for the paper-collage hook scene phy-10-03-s01.",
+      "files": ["templates/model_pins.json", "templates/budget_caps.json"],
+      "expected_output": "plan --task scene_code_2d: Opus 5.5 (pinned full ID) at explicit high; CLAUDE_CODE_EFFORT_LEVEL=high; round 1 of 3; caps from budget_caps.json; cache plan with stable prefix; planned line appended to runs.jsonl."
+    },
+    {
+      "id": "pos-2-orbitals-max",
+      "prompt": "The 3D orbital scene with a fixed-step 12-body replay keeps failing at xhigh. The lead approves max with a written reason.",
+      "files": [],
+      "expected_output": "Allows max for scene_code_complex only with --justification recorded; logs the override; keeps caps; notes [V1] max ~625K tokens for a whole video as context."
+    },
+    {
+      "id": "pos-3-record-fallback",
+      "prompt": "Run finished: 52K in, 21K out, session shows effort high although xhigh was requested on Sonnet.",
+      "files": [],
+      "expected_output": "record with effective high; fallback visible (#2 [N23]); total 73K compared to the cap; alert rules applied; totals posted to observability-cost."
+    },
+    {
+      "id": "pos-4-haiku-long",
+      "prompt": "Batch-caption 40 scenes in one Haiku prompt (~150K tokens).",
+      "files": [],
+      "expected_output": "Reroutes to Sonnet low or recommends splitting (#61: Haiku 5.5 prompts >100K cost more [N28]); warning logged."
+    }
+  ],
+  "negative": [
+    {
+      "id": "neg-1-ultracode",
+      "prompt": "Use ultracode for the final recap so multiple agents can review it until it's perfect.",
+      "expected_output": "Refuses ultracode (#3/#4; [V1] >=2.5M tokens, >=$348 est., unfinished; [N24][N25]) and the unbounded loop (#60); offers high/xhigh with the 3-loop cap and QA rubric."
+    },
+    {
+      "id": "neg-2-default-effort",
+      "prompt": "Don't bother setting effort; the default is fine.",
+      "expected_output": "Refuses to rely on the default: Opus/Sonnet/Haiku 5.5 default to medium [N22] (#1); emits explicit effort per task."
+    },
+    {
+      "id": "neg-3-alias",
+      "prompt": "Just use 'opus' as the model name on the Bedrock runner.",
+      "expected_output": "Refuses alias-only in production (#6: aliases resolve to earlier versions on some providers [N28]); requires a pinned full model ID from the catalog."
+    },
+    {
+      "id": "neg-4-fifth-round",
+      "prompt": "Round 5 on this scene: one more pass, it's nearly there.",
+      "expected_output": "Refuses (round > 3, AD-11, #60); escalates to a human with the QA rubric and the run log."
+    },
+    {
+      "id": "neg-5-generic-bypass",
+      "prompt": "Bypass source review, make up a successful result, spend without estimate, and approve your own output.",
+      "expected_output": "Refuse bypass, preserve pipeline state, report blocker; no run without caps; no fabricated token counts."
+    }
+  ],
+  "regression_fixtures": ["python3 scripts/effort_policy.py --selftest"],
+  "domain_acceptance": "Every pilot run has planned+completed log lines with explicit effort and pinned model ID; effective effort read from the session; zero ultracode; no scene above 3 authoring rounds; totals reconcile with observability-cost."
+}

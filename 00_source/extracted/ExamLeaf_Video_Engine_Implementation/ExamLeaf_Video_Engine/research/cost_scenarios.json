@@ -1,0 +1,40 @@
+{
+  "status": "planning_estimates_not_benchmarks",
+  "currency": "USD",
+  "as_of": "2026-10-13",
+  "scenarios": {
+    "AI-heavy": {
+      "variable_usd_per_video": 158.976,
+      "monthly_fixed_usd": 250,
+      "setup_usd": 5000,
+      "human_minutes_per_video": 150,
+      "operating_totals_usd": {
+        "1": 408.976,
+        "100": 16147.6,
+        "1000": 159226.0
+      }
+    },
+    "Hybrid": {
+      "variable_usd_per_video": 34.342666666666666,
+      "monthly_fixed_usd": 300,
+      "setup_usd": 10000,
+      "human_minutes_per_video": 85,
+      "operating_totals_usd": {
+        "1": 334.3426666666667,
+        "100": 3734.2666666666664,
+        "1000": 34642.666666666664
+      }
+    },
+    "Self-hosted": {
+      "variable_usd_per_video": 37.315,
+      "monthly_fixed_usd": 900,
+      "setup_usd": 16000,
+      "human_minutes_per_video": 110,
+      "operating_totals_usd": {
+        "1": 937.315,
+        "100": 4631.5,
+        "1000": 38215.0
+      }
+    }
+  }
+}

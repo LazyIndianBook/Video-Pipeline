@@ -1,0 +1,43 @@
+{
+ "fixture_id": "FIX-ohm-cs60-sample",
+ "compute": "(sample: values from 16_pilot_builds_2026-10-16/physics/opus/fixtures/compute.py plus v3 = 6 V, i3 = v3 / R = 0.6 A)",
+ "parameters": {
+  "resistance_ohm": 10,
+  "v1": 2,
+  "v2": 4,
+  "v3": 6
+ },
+ "results": {
+  "i1": 0.2,
+  "i2": 0.4,
+  "ratio_v": 2,
+  "ratio_i": 2,
+  "v_over_i_1": 10,
+  "v_over_i_2": 10,
+  "i3": 0.6
+ },
+ "display": {
+  "r_label": "R =",
+  "r_unit": "Ω",
+  "v_label": "V =",
+  "v_unit": "V",
+  "i_label": "I =",
+  "i_unit": "A",
+  "ammeter_symbol": "A",
+  "vi_label": "V / I =",
+  "times": "×",
+  "equation": "V = I × R",
+  "condition": "constant temperature",
+  "lamp_label": "filament lamp",
+  "r_symbol": "R",
+  "rises": "↑",
+  "ui": {
+   "think_prompt": "Your prediction?",
+   "transfer_prompt": "Your turn",
+   "brand": "Professor Diki Simplified",
+   "free_lesson": "Free lesson: Ohm's law"
+  },
+  "tool": "I = V ÷ R",
+  "ratio_x2": "× 2"
+ }
+}

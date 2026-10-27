@@ -1,0 +1,156 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "bio-photosyn-ci-01-s01",
+ "fps": 30,
+ "duration": 6.8,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "1f60e4911a1ba326a0a12bded3577026ebba934c995640207d891a9ca41149fe",
+ "script_sha256": "9b85d46aa953f120980194a38416d0bd72c8636a87788d5784b8b9f8e4e9ca08",
+ "words": [
+  {
+   "w": "A",
+   "t0": 0.68,
+   "t1": 0.76
+  },
+  {
+   "w": "banyan",
+   "t0": 0.92,
+   "t1": 1.32
+  },
+  {
+   "w": "tree",
+   "t0": 1.4,
+   "t1": 1.64
+  },
+  {
+   "w": "can",
+   "t0": 1.72,
+   "t1": 1.88
+  },
+  {
+   "w": "weigh",
+   "t0": 2.0,
+   "t1": 2.12
+  },
+  {
+   "w": "more",
+   "t0": 2.2,
+   "t1": 2.28
+  },
+  {
+   "w": "than",
+   "t0": 2.36,
+   "t1": 2.44
+  },
+  {
+   "w": "a",
+   "t0": 2.6,
+   "t1": 2.653
+  },
+  {
+   "w": "herd",
+   "t0": 2.707,
+   "t1": 2.84
+  },
+  {
+   "w": "of",
+   "t0": 2.96,
+   "t1": 3.08
+  },
+  {
+   "w": "elephants",
+   "t0": 3.2,
+   "t1": 4.12
+  },
+  {
+   "w": "So",
+   "t0": 4.2,
+   "t1": 4.52
+  },
+  {
+   "w": "where",
+   "t0": 4.6,
+   "t1": 4.68
+  },
+  {
+   "w": "did",
+   "t0": 4.76,
+   "t1": 4.84
+  },
+  {
+   "w": "all",
+   "t0": 4.92,
+   "t1": 5.0
+  },
+  {
+   "w": "that",
+   "t0": 5.12,
+   "t1": 5.24
+  },
+  {
+   "w": "wood",
+   "t0": 5.36,
+   "t1": 5.48
+  },
+  {
+   "w": "come",
+   "t0": 5.6,
+   "t1": 5.72
+  },
+  {
+   "w": "from",
+   "t0": 5.88,
+   "t1": 6.28
+  }
+ ],
+ "beats": [
+  0.6
+ ],
+ "cues": [
+  {
+   "id": "c01",
+   "at": 0.87,
+   "kind": "reveal",
+   "element_id": "tree",
+   "word_index": 1
+  },
+  {
+   "id": "c02",
+   "at": 3.15,
+   "kind": "reveal",
+   "element_id": "elephant",
+   "word_index": 10
+  },
+  {
+   "id": "c03",
+   "at": 4.55,
+   "kind": "reveal",
+   "element_id": "qmark",
+   "word_index": 12
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "bio-photosyn-ci-01",
+  "scene": "s01",
+  "beat_ids": [
+   "b01"
+  ],
+  "beats_text": [
+   {
+    "id": "b01",
+    "slot": "hook.question_reveal",
+    "text": "A banyan tree can weigh more than a herd of elephants. So where did all that wood come from?",
+    "headline": "where did wood come from",
+    "start": 0.68,
+    "end": 6.28,
+    "word_range": [
+     0,
+     19
+    ]
+   }
+  ],
+  "think_windows": []
+ }
+}

@@ -1,0 +1,11 @@
+{
+  "status": "authored-not-agent-executed",
+  "positive": {
+    "input": "Canonical transcript, independent ASR, alignments, audio, visuals",
+    "expected": "Severity-ranked issues and hash-bound review evidence"
+  },
+  "negative": {
+    "request": "Reject WER0 or neural MOS as proof of scientific pronunciation and teaching success.",
+    "expected": "Preserve constraints, report issue; no silent compliance."
+  }
+}

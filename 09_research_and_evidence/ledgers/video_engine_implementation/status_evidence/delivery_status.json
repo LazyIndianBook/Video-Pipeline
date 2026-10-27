@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-13",
+  "unit_contract_media_tests_passed": 56,
+  "browser_smoke": "blocked_by_administrator_policy",
+  "rendered_outputs": 8,
+  "subject_fixtures": 4,
+  "seconds_per_output": 30,
+  "full_600s_narrated_lessons_completed": 0,
+  "custom_skill_drafts": 32,
+  "agent_skill_evaluations_performed": 0,
+  "public_directory_entries": 21,
+  "external_video_generation_jobs": 0,
+  "external_speech_jobs_completed": 1,
+  "runway_credits_debited": 9,
+  "voice_output_provider_duration_seconds": 32.182857,
+  "voice_import_and_alignment": "not_validated",
+  "academic_approval": "pending",
+  "student_learning_study": "not_performed"
+}

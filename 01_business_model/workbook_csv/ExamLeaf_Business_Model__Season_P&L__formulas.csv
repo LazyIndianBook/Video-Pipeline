@@ -1,0 +1,14 @@
+SEASON P&L | ALL MONEY COLUMNS IN INR; NO DIGITAL-ONLY SALES ASSUMED,,,,,,,,,,,,
+,,,,,,,,,,,,
+Case,Retained books,Publisher gross realization,Output GST reserve,Net publisher revenue,Print cash / edition expense,Other variable cost,Contribution,Fixed spend,Operating profit,Operating margin,Units printed,Profit if output GST 0%
+='Unit Economics'!B3,='Unit Economics'!B4,='Unit Economics'!B19*B4,=C4-E4,='Unit Economics'!B20*B4,='Unit Economics'!B5*'Unit Economics'!B6,='Unit Economics'!B41*B4,=E4-F4-G4,='Unit Economics'!B7,=H4-I4,=J4/E4,='Unit Economics'!B5,=J4+D4
+='Unit Economics'!C3,='Unit Economics'!C4,='Unit Economics'!C19*B5,=C5-E5,='Unit Economics'!C20*B5,='Unit Economics'!C5*'Unit Economics'!C6,='Unit Economics'!C41*B5,=E5-F5-G5,='Unit Economics'!C7,=H5-I5,=J5/E5,='Unit Economics'!C5,=J5+D5
+='Unit Economics'!D3,='Unit Economics'!D4,='Unit Economics'!D19*B6,=C6-E6,='Unit Economics'!D20*B6,='Unit Economics'!D5*'Unit Economics'!D6,='Unit Economics'!D41*B6,=E6-F6-G6,='Unit Economics'!D7,=H6-I6,=J6/E6,='Unit Economics'!D5,=J6+D6
+='Unit Economics'!E3,='Unit Economics'!E4,='Unit Economics'!E19*B7,=C7-E7,='Unit Economics'!E20*B7,='Unit Economics'!E5*'Unit Economics'!E6,='Unit Economics'!E41*B7,=E7-F7-G7,='Unit Economics'!E7,=H7-I7,=J7/E7,='Unit Economics'!E5,=J7+D7
+='Unit Economics'!F3,='Unit Economics'!F4,='Unit Economics'!F19*B8,=C8-E8,='Unit Economics'!F20*B8,='Unit Economics'!F5*'Unit Economics'!F6,='Unit Economics'!F41*B8,=E8-F8-G8,='Unit Economics'!F7,=H8-I8,=J8/E8,='Unit Economics'!F5,=J8+D8
+='Unit Economics'!G3,='Unit Economics'!G4,='Unit Economics'!G19*B9,=C9-E9,='Unit Economics'!G20*B9,='Unit Economics'!G5*'Unit Economics'!G6,='Unit Economics'!G41*B9,=E9-F9-G9,='Unit Economics'!G7,=H9-I9,=J9/E9,='Unit Economics'!G5,=J9+D9
+='Unit Economics'!H3,='Unit Economics'!H4,='Unit Economics'!H19*B10,=C10-E10,='Unit Economics'!H20*B10,='Unit Economics'!H5*'Unit Economics'!H6,='Unit Economics'!H41*B10,=E10-F10-G10,='Unit Economics'!H7,=H10-I10,=J10/E10,='Unit Economics'!H5,=J10+D10
+='Unit Economics'!I3,='Unit Economics'!I4,='Unit Economics'!I19*B11,=C11-E11,='Unit Economics'!I20*B11,='Unit Economics'!I5*'Unit Economics'!I6,='Unit Economics'!I41*B11,=E11-F11-G11,='Unit Economics'!I7,=H11-I11,=J11/E11,='Unit Economics'!I5,=J11+D11
+='Unit Economics'!J3,='Unit Economics'!J4,='Unit Economics'!J19*B12,=C12-E12,='Unit Economics'!J20*B12,='Unit Economics'!J5*'Unit Economics'!J6,='Unit Economics'!J41*B12,=E12-F12-G12,='Unit Economics'!J7,=H12-I12,=J12/E12,='Unit Economics'!J5,=J12+D12
+,,,,,,,,,,,,
+,,,,,,,,,,,,

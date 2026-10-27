@@ -1,0 +1,118 @@
+{
+  "id": "mathematics_chain_full_pilot",
+  "status": "blueprint_only",
+  "duration_s": 600,
+  "subject": "mathematics",
+  "technical_scene": "mathematics_chain",
+  "objective": "Differentiate a squared linear expression using the chain rule.",
+  "prerequisites": [
+    "Real x; polynomial function.",
+    "The tangent and displayed derivative share the same symbolic model."
+  ],
+  "board_mapping_status": "pending current syllabus and ExamLeaf source review",
+  "beats": [
+    {
+      "start_s": 0,
+      "duration_s": 25,
+      "end_s": 25,
+      "purpose": "curiosity",
+      "task": "A concrete misconception and prediction, no sensational statistic.",
+      "script_status": "requires_authoring_and_review"
+    },
+    {
+      "start_s": 25,
+      "duration_s": 35,
+      "end_s": 60,
+      "purpose": "prerequisite",
+      "task": "Check essential terms and symbols; link a separate foundation route.",
+      "script_status": "requires_authoring_and_review"
+    },
+    {
+      "start_s": 60,
+      "duration_s": 60,
+      "end_s": 120,
+      "purpose": "intuitive_model",
+      "task": "Make the central relation visible with one focus.",
+      "script_status": "requires_authoring_and_review"
+    },
+    {
+      "start_s": 120,
+      "duration_s": 60,
+      "end_s": 180,
+      "purpose": "formal_model",
+      "task": "Connect plain language to formal notation and assumptions.",
+      "script_status": "requires_authoring_and_review"
+    },
+    {
+      "start_s": 180,
+      "duration_s": 90,
+      "end_s": 270,
+      "purpose": "worked_example",
+      "task": "Explain why each step is selected, preserving the diagram.",
+      "script_status": "requires_authoring_and_review"
+    },
+    {
+      "start_s": 270,
+      "duration_s": 45,
+      "end_s": 315,
+      "purpose": "micro_recap",
+      "task": "Hide the key result and ask for reconstruction.",
+      "script_status": "requires_authoring_and_review"
+    },
+    {
+      "start_s": 315,
+      "duration_s": 75,
+      "end_s": 390,
+      "purpose": "guided_example",
+      "task": "Fade one step; allow a learner-controlled pause.",
+      "script_status": "requires_authoring_and_review"
+    },
+    {
+      "start_s": 390,
+      "duration_s": 65,
+      "end_s": 455,
+      "purpose": "independent_practice",
+      "task": "Remove the worked method; show answer only after the attempt.",
+      "script_status": "requires_authoring_and_review"
+    },
+    {
+      "start_s": 455,
+      "duration_s": 55,
+      "end_s": 510,
+      "purpose": "feedback",
+      "task": "Address the precise likely mistake and provide a changed problem.",
+      "script_status": "requires_authoring_and_review"
+    },
+    {
+      "start_s": 510,
+      "duration_s": 50,
+      "end_s": 560,
+      "purpose": "exam_conversion",
+      "task": "Return to answer language, units, labels and conditions.",
+      "script_status": "requires_authoring_and_review"
+    },
+    {
+      "start_s": 560,
+      "duration_s": 40,
+      "end_s": 600,
+      "purpose": "confidence_and_spacing",
+      "task": "Ask what was done independently; assign one delayed retrieval task.",
+      "script_status": "requires_authoring_and_review"
+    }
+  ],
+  "audio_status": "not_generated",
+  "mandatory_reviews": [
+    "academic",
+    "full_render",
+    "native_language_when_localized"
+  ],
+  "success_measures": [
+    "zero critical science errors",
+    "full timed voice listen",
+    "mobile visual review",
+    "independent item",
+    "delayed retrieval",
+    "measured human_minutes",
+    "measured generation_and_render_cost"
+  ]
+}

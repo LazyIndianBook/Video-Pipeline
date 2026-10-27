@@ -1,0 +1,31 @@
+<!--CSS-->
+.frame .eq{font-size:104px}
+.frame .label{position:absolute;left:44px;top:190px;white-space:nowrap}
+.frame svg{position:absolute;left:0;top:0}
+#hl_sub{position:absolute;background:var(--hl);mix-blend-mode:multiply;border-radius:10px}
+<!--BODY-->
+<!--JS-->
+/* s04 subscript trap: editorial A-over-B comparison in two equal frames. A: the tempting H2O2 (subscript changed, highlighted).
+   B: the coefficient fix (two water molecules). Names come from the fixture; no red cross (correct by explanation). */
+function frame(id, y, key, coefState, copies, nameId) {
+  const f = card($('stage'), 72, y, 936, 290, id); f.classList.add('frame', 'cue'); f.dataset.reveal = '1';
+  const row = el('div', 'eq', f); row.style.left = '44px'; row.style.top = '58px'; row.appendChild(formula(key, coefState, id + '_formula'));
+  const name = el('div', 'label', f); name.dataset.fx = 'display.species.' + key + '.name'; if (nameId) { name.id = nameId; name.classList.add('cue'); name.dataset.reveal = '1'; }
+  const svg = svgEl('svg', { width: 936, height: 290, viewBox: '0 0 936 290' }, f);
+  molecule(svg, key, 700, 145, copies, copies > 1 ? 0.95 : 1.25);
+  return f;
+}
+function build(under, over) {
+  buildHeadline({ beat: 0, words: [['a', 1], ['different', 1], ['substance', 1, true]] });
+  frame('frame_a', 540, 'H2O2', null, 1, 'name_a');
+  const hl = el('div', '', $('frame_a')); hl.id = 'hl_sub'; hl.dataset.emph = 'swipe'; hl.classList.add('cue'); hl.dataset.reveal = '1';
+  $('frame_a').insertBefore(hl, $('frame_a').firstChild);
+  const yd = 858; svgEl('line', { x1: 330, y1: yd, x2: 750, y2: yd, stroke: SEC, 'stroke-width': 3 }, over);
+  svgEl('rect', { x: 528, y: yd - 12, width: 24, height: 24, transform: `rotate(45 540 ${yd})`, fill: PAPER, stroke: SEC, 'stroke-width': 3 }, over);
+  frame('frame_b', 886, 'H2O', 'balanced', fx('parameters.equations.balanced.rhs.0.0'));
+}
+function afterLayout() {   // highlighter sits exactly behind the subscript that was changed (last part of H2O2)
+  const f = relBox($('frame_a')), subs = $('frame_a_formula').querySelectorAll('sub'), b = relBox(subs[subs.length - 1]);
+  Object.assign($('hl_sub').style, { left: (b.x - f.x - 10) + 'px', top: (b.y - f.y - 4) + 'px', width: (b.w + 20) + 'px', height: (b.h + 8) + 'px' });
+}
+function draw(t) {}

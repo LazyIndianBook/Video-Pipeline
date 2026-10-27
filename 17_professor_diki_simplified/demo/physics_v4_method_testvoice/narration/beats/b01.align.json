@@ -1,0 +1,147 @@
+{
+ "cache_key": "9bf0558a14231765",
+ "beat": "b01",
+ "chars": 152,
+ "request_id": "voxcpm2-4bit-ref-876b843068d2-seed20261016",
+ "model_id": "voxcpm2-4bit",
+ "voice_id": "ref-876b843068d2",
+ "take": 1,
+ "seed": 20261016,
+ "generation_s": 26.9,
+ "unmatched_words": 0,
+ "words": [
+  {
+   "w": "What",
+   "t0": 0.0,
+   "t1": 0.22
+  },
+  {
+   "w": "is",
+   "t0": 0.22,
+   "t1": 0.42
+  },
+  {
+   "w": "Ohm's",
+   "t0": 0.42,
+   "t1": 0.88
+  },
+  {
+   "w": "law",
+   "t0": 0.88,
+   "t1": 1.12
+  },
+  {
+   "w": "When",
+   "t0": 1.7,
+   "t1": 1.82
+  },
+  {
+   "w": "electricity",
+   "t0": 1.82,
+   "t1": 2.28
+  },
+  {
+   "w": "passes",
+   "t0": 2.28,
+   "t1": 2.82
+  },
+  {
+   "w": "through",
+   "t0": 2.82,
+   "t1": 3.16
+  },
+  {
+   "w": "a",
+   "t0": 3.16,
+   "t1": 3.3
+  },
+  {
+   "w": "wire",
+   "t0": 3.3,
+   "t1": 3.64
+  },
+  {
+   "w": "something",
+   "t0": 4.06,
+   "t1": 4.24
+  },
+  {
+   "w": "pushes",
+   "t0": 4.24,
+   "t1": 4.64
+  },
+  {
+   "w": "it",
+   "t0": 4.64,
+   "t1": 4.9
+  },
+  {
+   "w": "along",
+   "t0": 4.9,
+   "t1": 5.24
+  },
+  {
+   "w": "That",
+   "t0": 5.88,
+   "t1": 6.06
+  },
+  {
+   "w": "push",
+   "t0": 6.06,
+   "t1": 6.3
+  },
+  {
+   "w": "is",
+   "t0": 6.3,
+   "t1": 6.52
+  },
+  {
+   "w": "called",
+   "t0": 6.52,
+   "t1": 6.78
+  },
+  {
+   "w": "voltage",
+   "t0": 6.78,
+   "t1": 7.24
+  },
+  {
+   "w": "and",
+   "t0": 7.6,
+   "t1": 7.7
+  },
+  {
+   "w": "we",
+   "t0": 7.7,
+   "t1": 7.84
+  },
+  {
+   "w": "measure",
+   "t0": 7.84,
+   "t1": 8.1
+  },
+  {
+   "w": "it",
+   "t0": 8.1,
+   "t1": 8.32
+  },
+  {
+   "w": "in",
+   "t0": 8.32,
+   "t1": 8.54
+  },
+  {
+   "w": "volts",
+   "t0": 8.54,
+   "t1": 8.76
+  }
+ ],
+ "provider_alignment": null,
+ "alignment_source": "forced_alignment",
+ "stt": {
+  "model": "models/whisper-small.en-asr-fp16",
+  "heard": "What is Ohm's law? When electricity passes through a wire, something pushes it along. That push is called voltage, and we measure it in volts.",
+  "match_ratio": 1.0,
+  "diffs": []
+ }
+}

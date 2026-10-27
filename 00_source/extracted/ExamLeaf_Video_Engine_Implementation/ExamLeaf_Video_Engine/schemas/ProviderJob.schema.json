@@ -1,0 +1,76 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "idempotency_key": {
+      "minLength": 8,
+      "title": "Idempotency Key",
+      "type": "string"
+    },
+    "provider": {
+      "title": "Provider",
+      "type": "string"
+    },
+    "model": {
+      "title": "Model",
+      "type": "string"
+    },
+    "provider_job_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Provider Job Id"
+    },
+    "state": {
+      "default": "planned",
+      "enum": [
+        "planned",
+        "reserved",
+        "submitted",
+        "running",
+        "succeeded",
+        "failed",
+        "unknown"
+      ],
+      "title": "State",
+      "type": "string"
+    },
+    "estimated_cents": {
+      "minimum": 0,
+      "title": "Estimated Cents",
+      "type": "integer"
+    },
+    "actual_cents": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Actual Cents"
+    },
+    "input_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Input Sha256",
+      "type": "string"
+    }
+  },
+  "required": [
+    "idempotency_key",
+    "provider",
+    "model",
+    "estimated_cents",
+    "input_sha256"
+  ],
+  "title": "ProviderJob",
+  "type": "object"
+}

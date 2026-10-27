@@ -1,0 +1,2244 @@
+[
+ {
+  "id": "A4-03",
+  "video": "all",
+  "t": "",
+  "evidence": "b07 text 'AI-generated narration; script by ExamLeaf.' spoken (≈4 s) and shown in s05 of all three; qa A7 confirms it was spoken correctly.",
+  "problem": "Legacy ExamLeaf brand is spoken and visible; there is no Professor Diki Simplified identity.",
+  "root_cause": {
+   "layer": "tooling constant+contract+validator",
+   "location": "16_pilot_builds_2026-10-16/tooling/pilotlib.py L13 DISCLOSURE; tooling/check_script.py L47 (exact equality); PILOT_CONTRACT.md §3 (outro text) and §4 (outro scene shows it)"
+  },
+  "effect": "A brand violation is enforced by our own validator; the disclosure also costs about 6 s of runtime.",
+  "severity": "critical",
+  "fix": {
+   "what": "No spoken brand/disclosure beat; final 1.5 s end card from brand.end_card 'Professor Diki Simplified' + brand.ai_label; ban /examleaf/i in script, VTT, transcript, visible DOM. Founder/legal to confirm on-screen AI label satisfies SQ-12.",
+   "where": "pilotlib.py; check_script.py; PILOT_CONTRACT §3/§4; fixture brand.*; qa.py new A12 brand_hygiene",
+   "control": "rung 1 component (end card) + rung 3 validator (A12; regression: all three current scripts fail)"
+  },
+  "_lens": "A4"
+ },
+ {
+  "id": "A4-12",
+  "video": "all",
+  "t": "",
+  "evidence": "qa.py A1–A10 passed 10/10 on all three Opus builds; examleaf-anim-qa qa_rubric.md L55 excludes teaching quality and pacing; A4 samples only id+text elements; PK-D01…D19 have no implementation.",
+  "problem": "QA measures render success, not the learning sequence, persistence, size, empty/static time, brand or per-beat pacing.",
+  "root_cause": {
+   "layer": "validator coverage",
+   "location": "16_pilot_builds_2026-10-16/tooling/qa.py; 12_advanced_animations_with_claude/03_skills/examleaf-anim-qa/references/qa_rubric.md L55; 08_production_kit/RESTRICTIONS.md (15 'proposed' verifiers)"
+  },
+  "effect": "Defects pass every gate and recur.",
+  "severity": "critical",
+  "fix": {
+   "what": "Add A11–A21 (duration, brand, think fit, time to useful, max static, empty middle, persistence, hero size, identity, learning sequence, per-beat pacing); restrictions_lint.py fails any 'block' rule whose verifier is 'proposed'.",
+   "where": "tooling/qa.py; tooling/regress.py; 08_production_kit/restrictions_lint.py",
+   "control": "rung 3 validator + regression suite of frozen Opus negatives"
+  },
+  "_lens": "A4"
+ },
+ {
+  "id": "A1-27",
+  "video": "all",
+  "t": "before recap in every video",
+  "evidence": "No new case is ever posed. Physics ends at the bulb; chemistry at the H₂O₂ trap; biology at the recap.",
+  "problem": "No transfer: the learner never applies the idea alone, so the target feeling 'I can solve these myself' cannot occur. Super Teacher Step 6 ('Aha must be followed by a fresh prediction') and 02 §I3/§I4 are not met.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 slot grammar",
+   "location": "§3 concept_intro has no transfer slot; check.retrieval optional; SR §4 F8 close (next_artefact_pointer) replaced by the disclosure"
+  },
+  "effect": "transfer, confidence, retention",
+  "severity": "critical",
+  "fix": {
+   "what": "Mandatory check.transfer before recap with a 2-4 s window and conditional feedback. Physics: '6 V across the same resistor?' → 0.6 A. Chemistry: 'Mg + O₂ → MgO: what goes in front?' Biology: 'A potted plant gains 2 kg. Did the pot of soil lose 2 kg?'",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §3/§4 F8; lesson_graph ASM-transfer node + fixture",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: concept_intro fails without a check.transfer beat whose ASM differs in at least one parameter from the worked item."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A5-05",
+  "video": "all",
+  "t": "final 5 s of each video",
+  "evidence": "The last spoken words are the credit. Playbook §5.1: 'Short explanation -> exact free lesson -> small independent attempt'; brief C01 CTA 'Try the free lesson' (PDF p.26); 07_end_to_end_pipeline_instructions/05_SHORTS_and_REELS_PROCEDURE.md principle 2: 'one relevant CTA'. script.json has no field naming a lesson or next step; the v1 SLOTS end at outro.disclosure (pilotlib.py:11-12 as found); PILOT_CONTRACT:79 allows 'nothing else promotional'; FORMAT_REGISTRY F8 closes with next_artefact_pointer and F5 allows one learning next step. At 18:52 V2_SLOTS gained close.next_step and outro.brand, and 17_professor_diki_simplified/format/sample_v2_script.json closes with an open-loop question, a free-lesson line and the brand, but check_script enforces slot order only: no next_step_ref, no topic equality, no check that the open-loop question is answered in the lesson.",
+  "problem": "No video points to the exact free lesson, so the playbook funnel (Short -> lesson -> attempt -> preview) and C01's objective 'qualified lesson starts' cannot happen or be measured; the Short is a dead end.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 slot grammar + script schema",
+   "location": "PILOT_CONTRACT.md:62,79; tooling/pilotlib.py:11-12; script.json schema (no next_step_ref)"
+  },
+  "effect": "Conversion: the Short's only job is unperformed.",
+  "severity": "critical",
+  "fix": {
+   "what": "Add slot close.next_step (close_kind next_artefact_pointer) with a required next_step_ref = the parent lesson id. Spoken: 'Try the free lesson on {topic}.' then 'Professor Diki Simplified.' End-card line 'Free lesson: {topic}'. The header lesson code equals the ref's code.",
+   "where": "PILOT_CONTRACT §3; tooling/pilotlib.py SLOTS; tooling/check_script.py; script.json schema; format/concept_short_60",
+   "control": "check_script: close.next_step present, next_step_ref resolves to an approved lesson artefact, the spoken and end-card topic strings equal that artefact's topic, and the open-loop question maps to an ASM or OBJ node of that lesson (SCRIPTING_REGISTRY §10)."
+  },
+  "_lens": "A5"
+ },
+ {
+  "id": "A1-M1",
+  "video": "all",
+  "t": "last 15 s of each video",
+  "evidence": "No beat asks the learner to do anything after 00:22 (physics), 00:22 (chemistry) or 00:19 (biology). The last learner action is the predict, and in physics it is unanswerable (A1-01).",
+  "problem": "The learner never has a small success before the end, so 'I can do this one' cannot happen. Every success in the video belongs to the narrator.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 slot grammar",
+   "location": "no transfer or faded-step slot; the only interaction sits in the first third"
+  },
+  "effect": "motivation, confidence, retention",
+  "severity": "critical",
+  "fix": {
+   "what": "Payoff rule: the last interactive beat lands between 70 and 90 % of runtime. It is a transfer the learner can answer using only the rule just taught (one changed parameter), with a 2-4 s window, then the answer and one calibrated line ('If you said 0.6 amperes, you just used Ohm's law on a new circuit').",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 (check.transfer position); 03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Step 6/7 short-format annex",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: check.transfer start ∈ [0.70, 0.90] × planned duration; its ASM answer is derivable from fixtures already shown; confidence line is conditional ('If you…'), never unconditional praise (SQ-05)."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A3-02",
+  "video": "all",
+  "t": "phy 65.08–71.93; chem 66.17–73.20; bio 60.44–67.10",
+  "evidence": "Recap end to video end = 6.61 / 6.70 / 6.52 s: 0.84–0.98 s gap, a 3.9–4.0 s spoken line at 74–77 wpm ('AI-generated narration; script by ExamLeaf.'), then a 2.2 s tail. The narrator says 'ExamLeaf' in every video.",
+  "problem": "About 10 % of each video is a slow, spoken legal line, and it speaks the publisher brand the founder removed from videos.",
+  "root_cause": {
+   "layer": "contract + tooling",
+   "location": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 outro.disclosure exact text; 16_pilot_builds_2026-10-16/tooling/pilotlib.py DISCLOSURE; 16_pilot_builds_2026-10-16/tooling/check_script.py exact-match check; RD-45 Path B template"
+  },
+  "effect": "The video ends on a flat, slow line instead of the recap; brand violation; 6.5 s that a 60 s short cannot spare.",
+  "severity": "critical",
+  "fix": {
+   "what": "Drop the spoken disclosure slot. Put the disclosure as on-screen text in the caption lane during the close, plus the platform AI label and the description. Wording without 'ExamLeaf' (brand auditor/lead to fix the template; RD-45 amendment)",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3, 16_pilot_builds_2026-10-16/tooling/pilotlib.py DISCLOSURE, 16_pilot_builds_2026-10-16/tooling/check_script.py, RD-45",
+   "control": "lint: no 'ExamLeaf' in any spoken text; QA: disclosure text present on screen ≥1.5 s in the last scene"
+  },
+  "_lens": "A3"
+ },
+ {
+  "id": "A1-28",
+  "video": "all",
+  "t": "physics 01:06-01:12, chemistry 01:07-01:13, biology 01:01-01:07",
+  "evidence": "'AI-generated narration; script by ExamLeaf.' spoken at 75-77 wpm, then 2.2 s silence.",
+  "problem": "Spoken ExamLeaf breaks the founder brand rule; the video ends on a legal line, not a learning close; 4.4 s of a 60 s budget.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 outro text + SQ-12",
+   "location": "§3 'its text must be exactly...'; SQ-12 does not require the disclosure to be spoken"
+  },
+  "effect": "brand, ending quality, duration overrun",
+  "severity": "critical",
+  "fix": {
+   "what": "Disclosure as on-screen caption and description metadata; spoken close is one learning next step plus 'Professor Diki Simplified'.",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §15 SQ-12; packaging registry",
+   "control": "check_script rejects 'ExamLeaf' in any spoken text; outro slot becomes close.next_step."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A2-01",
+  "video": "all",
+  "t": "physics 22.4, 46.3, 57.4; chemistry 21.5, 49.2, 59.8; biology 6.8, 18.7, 39.8, 52.3",
+  "evidence": "frames/physics/t022.jpg->t023.jpg (circuit replaced by two empty cards), t046->t047 (cards replaced by an empty loop), t056->t057 (empty board); chemistry/t021->t023 (molecules replaced by a ledger), t049->t050 (blank + divider); biology tree t006 -> polaroids t012 -> seedling t020 -> empty sky t040 -> pot+pie t047 -> small tree t056",
+  "problem": "The explanatory object does not persist. At every scene cut the diagram the voice is reasoning about is removed and a different representation is built from empty. Physics shows the circuit, then cards, then the circuit again, then a checklist. Chemistry drops the molecules for a separate atom ledger. Biology switches representation five times.",
+  "root_cause": {
+   "layer": "render/template",
+   "location": "16_pilot_builds_2026-10-16/<subject>/opus/render/concat.txt (hard-cut concat of independently built s0N.mp4); each scenes/s0N.html owns its own L3 markup; physics build_notes.md §4 rule 4 ('carry the previous scene's end state') is prose only, with no state hand-off in 04_harness_contract/contract.md and no persistence check in qa/report.md A1-A10"
+  },
+  "effect": "The learner has to rebuild the mental model at each cut and reconcile two encodings (molecules vs ledger, circuit vs cards). This is the external audit's main verdict and it is confirmed here.",
+  "severity": "critical",
+  "fix": {
+   "what": "One persistent board per video: scenes become beats in a single scene document (or receive the previous scene's final DOM/state via a carry manifest); elements leave only when the storyboard names a reason. Change the storyboard schema to a board timeline with add/change/remove events instead of per-scene 'On screen' lists.",
+   "where": "04_harness_contract/scene_template.html + contract.md (new carry/board section); PILOT_CONTRACT storyboard schema; examleaf-anim-qa",
+   "control": "QA gate persistence_check: at every beat boundary the hero element's bbox IoU with the previous frame ≥ 0.8 unless the cue sheet has an explicit 'replace' event with a reason; fail otherwise"
+  },
+  "_lens": "A2"
+ },
+ {
+  "id": "A5-01",
+  "video": "all",
+  "t": "physics 65.9-71.9 s; chemistry 67.1-73.2 s; biology 61.2-67.1 s",
+  "evidence": "narration/timeline.json b07 word 'ExamLeaf' t0-t1 = 69.16-70.00 (physics:817), 70.14-71.18 (chemistry:837), 64.34-65.18 (biology:817). Tesseract OCR of the 1-fps frames reads 'script by ExamLeaf' in physics t070-t072, chemistry t071-t073, biology t062-t067 (12 of 212 frames). qa/transcript.json:2 hears 'Script by Examleaf.' in all three. The same bytes sit in deliverables/*opus_reference.mp4.",
+  "problem": "The retired brand is spoken once and shown 2.8-5.9 s in every Opus video, against the founder rule that only 'Professor Diki Simplified' is audience-facing and ExamLeaf is publisher metadata. See also A1-28.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 outro text + tooling that enforces it",
+   "location": "16_pilot_builds_2026-10-16_pilot_builds_2026-10-16/PILOT_CONTRACT.md:62,79 (unchanged); tooling/pilotlib.py:13 DISCLOSURE (as found; now :23, v1 only); tooling/check_script.py:47-48 and :72-73 (as found; now :268-269 and :301-302, the v1 branch, which fails any other outro text); script.json b07 (physics:84, chemistry:88, biology:457)"
+  },
+  "effect": "Brand. The pipeline cannot emit a compliant video: check_script.py rejects a corrected script, so every future build inherits the string.",
+  "severity": "critical",
+  "fix": {
+   "what": "One brand source (17_professor_diki_simplified/brand/strings.json); retire the v1 branch that still requires the string (the three builds are v1); update PILOT_CONTRACT §3/§4; delete the spoken disclosure beat; the end card carries the brand line and the path's disclosure line; regenerate b07 audio, cues, VTT, scenes and MP4 from the corrected script (the 26 derived lines are outputs, never hand-edited).",
+   "where": "PILOT_CONTRACT.md §3/§4; tooling/pilotlib.py; tooling/check_script.py; the three script.json files",
+   "control": "Status at 18:52: v2 check_script already rejects ExamLeaf in beat text, on_screen and video_id/topic/title/outro, qa.py A12 runs brand_check.py, and tooling/test_v2.py has the negative case. Remaining: the v1 branch still requires the string, PILOT_CONTRACT.md:62,79 is unchanged, and the cue beats_text and fixture display strings are not scanned by check_script."
+  },
+  "_lens": "A5"
+ },
+ {
+  "id": "A2-10",
+  "video": "all",
+  "t": "whole videos",
+  "evidence": "frames/physics/t030.jpg (notebook board, pencil, shelf, Chalkboard-style handwriting); chemistry/t031.jpg (halftone band, bold serif + sans); biology/t024.jpg (storybook collage, ransom tiles, washi tape)",
+  "problem": "The three videos look like three channels: three backgrounds, three headline systems, three layout grammars and three motion characters. Building them in three styles on purpose was a mistake for a single brand ('Professor Diki Simplified').",
+  "root_cause": {
+   "layer": "brief/style_guide",
+   "location": "16_pilot_builds_2026-10-16/{physics,chemistry,biology}/brief.md line 9 assigns a different style per subject; 05_style_guides/README.md tie-breaker (2) 'One illustrative style per lesson' and no brand layer above the styles"
+  },
+  "effect": "No recognisable series identity, lower trust, and the founder's 'visually inconsistent'. Per-video design work is also multiplied.",
+  "severity": "critical",
+  "fix": {
+   "what": "One brand system: a single board look, type family, colour roles and motion verbs for all subjects. A style guide becomes at most an illustration skin for analogy inserts, never the teaching board.",
+   "where": "05_style_guides (new brand_system.md + tokens); PILOT_CONTRACT brief schema (drop per-subject 'style')",
+   "control": "QA brand_consistency: background, title lane, fonts and board frame match the brand template hash across videos"
+  },
+  "_lens": "A2"
+ },
+ {
+  "id": "A1-01",
+  "video": "physics",
+  "t": "00:11-00:22",
+  "evidence": "b02 'Pause and predict the current at four volts.' Frames t012-t022 show only R = 10 Ω, V = 4 V, I = ?. The 2 V current (0.2 A) is never spoken or shown before the window; it first appears at 00:24 ('zero point two amperes').",
+  "problem": "The prediction is unanswerable without already knowing I = V/R, the law the video is about to teach. The ASM stem in lesson_graph says 'carries 0.2 A at two volts' but the builder dropped the baseline from the hook. A weak-foundation learner can only guess; the 5.51 s window is dead time.",
+  "root_cause": {
+   "layer": "script + builder prompt",
+   "location": "script.json b01/b02; PILOT_CONTRACT §3 has no rule that a predict must be answerable from what was already shown"
+  },
+  "effect": "comprehension, confidence (learner fails the first task), attention (5.5 s of silence with nothing to do)",
+  "severity": "critical",
+  "fix": {
+   "what": "Give the baseline before asking: 'Two volts, and the meter reads 0.2 amperes. Now four volts. What will the meter read?' Show I = 0.2 A on the ammeter in s01.",
+   "where": "script.json b01/b02; new rule SQ-25 'predict is answerable' in 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §15; 16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: every fixture value that ASM.answer depends on, other than the asked quantity, must appear in an earlier beat's fx_refs; fail otherwise."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A4-01",
+  "video": "all",
+  "t": "",
+  "evidence": "Muxed lengths 71.93 / 73.2 / 67.1 s (timeline.json); check_script estimated physics 68 s and printed OK; qa A8 pass.",
+  "problem": "Videos exceed the 60 s target by 7–13 s.",
+  "root_cause": {
+   "layer": "contract+validator",
+   "location": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §0/§3 ('60–70 s', target_duration_s 65); each brief.md 'Format'; tooling/check_script.py L82–84 (estimate omits LEAD_IN_S 0.6 / TAIL_S 1.6, never fails); tooling/qa.py A8 (55–80 s, warn only)"
+  },
+  "effect": "About 11 s of fixed overhead (lead-in, 5 s think, pauses, spoken disclosure, tail) ships by contract.",
+  "severity": "major",
+  "fix": {
+   "what": "Hard max 60.0 s muxed, plan 52–58 s; full estimate incl. lead-in, tail, pauses, think, outro; fail over 58 s.",
+   "where": "PILOT_CONTRACT §0/§3; check_script.py; qa.py new A11 duration_hard",
+   "control": "rung 2 schema (target_duration_s ≤ 58) + rung 3 validator (A11; regression: physics/opus must fail at 71.93 s)"
+  },
+  "_lens": "A4"
+ },
+ {
+  "id": "A4-02",
+  "video": "all",
+  "t": "",
+  "evidence": "think_window_s = 5 in all three scripts; measured silence 5.51 s (physics 17.0–22.5 s); check_script L49 rejects < 4 s; qa A8 requires ≥ 4 s.",
+  "problem": "The same 5 s silence follows every predict prompt, simple ones included; pauses carry no purpose label.",
+  "root_cause": {
+   "layer": "brief+contract+validator",
+   "location": "16_pilot_builds_2026-10-16/<subject>/brief.md ('5 s think window'); PILOT_CONTRACT.md §3 ('4–6'); tooling/check_script.py L49; tooling/qa.py A8; source 03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md L437 (long-form '4–8 seconds' carried into a Short)"
+  },
+  "effect": "Dead time, low tempo; the audit's 1.4 s annotated window cannot pass our validator.",
+  "severity": "major",
+  "fix": {
+   "what": "think_kind enum with bands (recall 1.2–2.0, predict_one_step 1.4–3.0, compute 3.0–5.0 s); pause_kind per pause; plate states what to produce when > 2 s.",
+   "where": "PILOT_CONTRACT §3; script schema; check_script.py; qa.py new A13 think_fit",
+   "control": "rung 2 schema + rung 3 validator (regression: 5 s with kind recall or predict_one_step fails)"
+  },
+  "_lens": "A4"
+ },
+ {
+  "id": "A4-04",
+  "video": "all",
+  "t": "",
+  "evidence": "Physics recap board replaces the circuit at 57.4 s (s05 start); biology tree → choices → equation → pot → pie → tree; render/concat.txt joins five scene MP4s; Opus physics notes: 's05 opened on an empty board'.",
+  "problem": "Boards reset at scene boundaries; no persistent visual explanation.",
+  "root_cause": {
+   "layer": "contract+tooling+brief+exemplar",
+   "location": "16_pilot_builds_2026-10-16/<subject>/brief.md 'Scenes' lists; PILOT_CONTRACT.md §4 (one HTML per scene, scene time from 0); tooling/narrate.py L131–141 (tiling); tooling/render.py L72–74 (ffmpeg concat -c copy); 08_production_kit/skills/examleaf-fill-concept-intro/SKILL.md §3 (one archetype per scene)"
+  },
+  "effect": "Learner rebuilds context after every cut; representation switching weakens the explanation.",
+  "severity": "major",
+  "fix": {
+   "what": "Persistent stage: hero data-rep survives every boundary unless scenes[].reset_reason; ≤ 2 representation switches; meta.carry_in state injected; allow one long scene per video.",
+   "where": "scene_template.html; PILOT_CONTRACT §4; narrate.py; render.py; qa.py new A17 persistence (IoU ≥ 0.6)",
+   "control": "rung 1 template default + rung 3 validator (regression: physics/opus fails at the 57.4 s boundary)"
+  },
+  "_lens": "A4"
+ },
+ {
+  "id": "A4-05",
+  "video": "all",
+  "t": "",
+  "evidence": "Physics s01 reveals 2.23 → 9.67 s in an 11.2 s scene; longest no-change spans chemistry s03 8.96 s (25.6 s), s05 8.35 s (64.8 s), s02 6.5–7.6 s in all three.",
+  "problem": "Diagrams become useful late; long static stretches.",
+  "root_cause": {
+   "layer": "template default+rule",
+   "location": "12_advanced_animations_with_claude/04_harness_contract/scene_template.html (cued elements opacity 0, reveal at t0−0.05); validate_cue_sheet.py (warns > 0.10 s early); vertical_safe_zones.tokens.json hold_times_s (floor 1.2 s, no maximum); Kit SKILL.md §3 ('one reveal per part on the word that names it')"
+  },
+  "effect": "The diagram is complete only once the narration has named every part; attention drifts during static spans.",
+  "severity": "major",
+  "fix": {
+   "what": "Hero visible at t = 0, cues annotate; motion.max_static_s 3.0.",
+   "where": "scene_template.html; tokens; qa.py new A14 time_to_useful (≥ 80 % hero ink by 1.5 s hook / 0.5 s scene) and A15 max_static (≤ 3.0 s)",
+   "control": "rung 1 + rung 3 (regression: physics s01 fails A14, chemistry fails A15)"
+  },
+  "_lens": "A4"
+ },
+ {
+  "id": "A4-08",
+  "video": "all",
+  "t": "",
+  "evidence": "Briefs: doodle-handdrawn / editorial-vox / paper-collage-vertical; builders chose Chalkboard SE, Georgia, collage faces; style README §2 selects per scene job.",
+  "problem": "Visual identity varies per video.",
+  "root_cause": {
+   "layer": "brief+style system",
+   "location": "16_pilot_builds_2026-10-16/<subject>/brief.md 'Style'; 12_advanced_animations_with_claude/05_style_guides/README.md §2; PILOT_CONTRACT.md §4 'system stack' vs style fonts_ban; COMPARISON_and_GAPS.md L-09 (fonts not vendored)"
+  },
+  "effect": "No recognisable Professor Diki Simplified series look.",
+  "severity": "major",
+  "fix": {
+   "what": "One house identity professor-diki@1.0 (one headline face, one math face, paper #F5F2EA, ink #16263A, subject accent only); style enum single value; vendor fonts.",
+   "where": "script schema; style_tokens.json; qa.py new A19 identity",
+   "control": "rung 2 schema + rung 1 tokens + rung 3 validator (regression: chemistry/opus fails on face)"
+  },
+  "_lens": "A4"
+ },
+ {
+  "id": "A4-09",
+  "video": "all",
+  "t": "",
+  "evidence": "'That is the law of conservation of mass', 'Green plants make their own food'; pilot graph schema has no analogy type; SQ-10 needs ANL; 4 of 7 beats tagged calm/thoughtful; rubric D3 rewards 'register fits l9_10'.",
+  "problem": "Textbook register; no intuition-first analogy or story.",
+  "root_cause": {
+   "layer": "schema+contract+rubric (partly builder judgement)",
+   "location": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 (sentence may not assert beyond nodes), §5 (node types); briefs 'Teach:' lines; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md SQ-05/06/07 report-only, SQ-10; tooling/pilotlib.py ALLOWED_TAGS; tooling/JUDGE_RUBRIC.md D3"
+  },
+  "effect": "Correct but dull narration; weak learners are not given an intuition.",
+  "severity": "major",
+  "fix": {
+   "what": "Add ANL node type (maps, breaks_at, formal_return); slots concrete → explain.mechanism (cites SIM/ANL) before name.formal; implement SQ-06 stock-phrase list in check_script.",
+   "where": "lesson_graph schema; PILOT_CONTRACT §3/§5; check_script.py; JUDGE_RUBRIC.md",
+   "control": "rung 2 schema + rung 3 validator + rung 4 exemplar"
+  },
+  "_lens": "A4"
+ },
+ {
+  "id": "A4-11",
+  "video": "all",
+  "t": "",
+  "evidence": "pilotlib.SLOTS has no transfer slot; check.retrieval optional and unused in all three; F8 close next_artefact_pointer replaced by disclosure.",
+  "problem": "No transfer question and no learning check; C01's closing question missing.",
+  "root_cause": {
+   "layer": "contract+schema",
+   "location": "16_pilot_builds_2026-10-16/tooling/pilotlib.py SLOTS; PILOT_CONTRACT.md §3; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §4 F8"
+  },
+  "effect": "Videos explain but never verify that the learner can apply the idea.",
+  "severity": "major",
+  "fix": {
+   "what": "Required check.transfer with new fixture numbers, answer after its think window.",
+   "where": "pilotlib.py SLOTS; check_script.py; qa.py new A20 learning_sequence",
+   "control": "rung 2 schema + rung 3 validator"
+  },
+  "_lens": "A4"
+ },
+ {
+  "id": "A4-13",
+  "video": "all",
+  "t": "",
+  "evidence": "JUDGE_RUBRIC: comparative A vs B with gap_for_weaker; judges saw contact sheets + 3 frames per scene, one subject each; Kit SKILL.md §9 'Golden (candidates)' = physics/opus, chemistry/opus; eval bars 'pedagogy ≥ 18, visual ≥ 14' anchored to Opus.",
+  "problem": "The review loop measured Haiku against Opus, never Opus against the target, and encoded Opus defects as the exemplar.",
+  "root_cause": {
+   "layer": "review loop+exemplar",
+   "location": "16_pilot_builds_2026-10-16/tooling/JUDGE_RUBRIC.md; 12_advanced_animations_with_claude/08_production_kit/skills/examleaf-fill-concept-intro/SKILL.md §9–§10"
+  },
+  "effect": "Slow pacing, resets and brand were scored 15–19/20 and propagated.",
+  "severity": "major",
+  "fix": {
+   "what": "Absolute scorecard (external weights, threshold 85, hard gates A11/A12/A20), full MP4 with audio, a cross-video panel; re-card Opus pilots as negatives.",
+   "where": "JUDGE_RUBRIC.md; Kit SKILL.md §9/§10",
+   "control": "rung 4 exemplar + rung 5 process, backed by rung 3 hard gates"
+  },
+  "_lens": "A4"
+ },
+ {
+  "id": "A2-04",
+  "video": "all",
+  "t": "0-3 s",
+  "evidence": "frames/physics/t001.jpg (empty board + pencil), t002 ('twice the'); chemistry/t001.jpg (halftone only), t002 (one H2), headline absent until t011; biology/t001.jpg (empty sky and ground), headline tiles at t006",
+  "problem": "The hook frame is empty. Neither the question nor the object is on screen in the first 1-3 s. The chemistry question text only appears at 10-11 s.",
+  "root_cause": {
+   "layer": "contract/template",
+   "location": "Kit card rule 1 (physics build_notes.md §4) and tokens motion.reveal_rule: on-screen words are revealed only at their spoken t0, one word at a time (s01.html buildHeadlines). The circuit is cued to 'current' (cue c03 at 3.28 s) and then drawn over ≈1.2 s. No rule requires content in frame 0"
+  },
+  "effect": "Shorts are decided in the first second. An empty board loses swipers and wastes the hook line.",
+  "severity": "major",
+  "fix": {
+   "what": "Hook component: frame 0 shows the complete question object (the circuit with the 2 V/4 V change, the unbalanced equation, the tree with '?') and the full question in the title lane. Speech then animates only emphasis.",
+   "where": "scene_template hook archetype; contract.md §3 hook beat",
+   "control": "QA first_frame_check: frame 0 middle-zone coverage ≥ 60% of the hook's final coverage and title lane non-empty"
+  },
+  "_lens": "A2"
+ },
+ {
+  "id": "A5-08",
+  "video": "all",
+  "t": "0-73.2 s",
+  "evidence": "Distinct claim nodes cited in script.json node_ids: physics 4 (CLM-ohm-proportional, CLM-resistance-constant, CLM-ohm-condition, CLM-filament), chemistry 5, biology 8 (autotroph, raw materials, light and chlorophyll, products, carbon balance, carbon from air, soil supplies, 40% carbon fraction). Durations 71.9 / 73.2 / 67.1 s against the 20-60 s ShortSpec cap (07_end_to_end_pipeline_instructions/10_DECISIONS_and_CONFLICT_RESOLUTIONS.md RD-19; FORMAT_REGISTRY F5). Playbook §4.1: 'Short videos teach one idea; long-form units preserve accuracy'.",
+  "problem": "Each video is a mini-lesson, not a one-idea entry point: the long-form job is half-done in 70 s, which costs clarity and leaves no reason to continue to the lesson.",
+  "root_cause": {
+   "layer": "format definition",
+   "location": "PILOT_CONTRACT §3 (6-8 beats, 1,000 characters, no idea budget); FORMAT_REGISTRY F8 vs F5"
+  },
+  "effect": "Comprehension load, overrun, weaker click-through.",
+  "severity": "major",
+  "fix": {
+   "what": "format/concept_short_60 gets an idea budget: one root claim, at most one condition, at most one misconception, one check; everything else belongs to the parent lesson.",
+   "where": "format/concept_short_60; tooling/check_script.py; lesson_graph short_root_node",
+   "control": "check_script fails when distinct claim ids > 2 (plus one misconception). Duration (60 +/- 1 s, A11) and 120-135 spoken words are already enforced by the 18:52 v2 path (cf. A3-01)."
+  },
+  "_lens": "A5"
+ },
+ {
+  "id": "A3-01",
+  "video": "all",
+  "t": "0–73.2 s",
+  "evidence": "Durations 71.93 / 73.20 / 67.10 s (phy/chem/bio). Content speech 55.6 / 57.2 / 51.4 s at 147 / 147 / 159 active wpm, but silence ≥0.3 s is 18.7 / 20.9 / 17.2 s (26–29 % of runtime); effective rate 113 / 115 / 122 wpm. check_script estimate (words/2.4 + pauses) gives ~68 s for physics vs 71.9 s measured and never gates; QA A8 accepts 55–80 s.",
+  "problem": "7–13 s over a 60 s short. The slow feel comes from dead time and the spoken outro, not from the speaking rate.",
+  "root_cause": {
+   "layer": "contract + tooling",
+   "location": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 'Target 60–70 s'; script.json target_duration_s 65; 16_pilot_builds_2026-10-16/tooling/check_script.py est (omits lead-in, tail, ~0.25 s provider pad per beat; prints only); 16_pilot_builds_2026-10-16/tooling/qa.py A8 total 55–80 s"
+  },
+  "effect": "Short exceeds the Shorts/Reels attention window; retention loss in the last 10 s, where the recap sits.",
+  "severity": "major",
+  "fix": {
+   "what": "Hard 60.0 s ceiling for short_form; time budget per slot; estimator includes LEAD_IN_S + TAIL_S + 0.25 s/beat and fails when est > target; QA A8 fails >60.0 s",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3, 16_pilot_builds_2026-10-16/tooling/check_script.py, 16_pilot_builds_2026-10-16/tooling/qa.py A8",
+   "control": "gate: total_duration_s ≤ 60.0 and effective_wpm ≥ 135"
+  },
+  "_lens": "A3"
+ },
+ {
+  "id": "A1-M8",
+  "video": "all",
+  "t": "after the first payoff",
+  "evidence": "Chemistry resolves its hook at 00:25 ('Right: only one'); biology implicitly at 00:23; after that, no new question pulls the learner forward (chemistry's 'Why not write H two O two?' is answered in the same breath).",
+  "problem": "Momentum depends on an open question. Once the hook closes, the second half has nothing to pull the learner forward.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 slot grammar",
+   "location": "no open-loop rule; rhetorical questions allowed without a pause"
+  },
+  "effect": "momentum",
+  "severity": "major",
+  "fix": {
+   "what": "Open-loop rule: within 3 s of the first payoff, open a second, smaller question (the twist or the tempting shortcut) and hold it for ≥ 1.5 s or until the visual answers it. At most one rhetorical question per video is answered instantly.",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3; 03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Step 6 (tempting interpretation → revealing contrast)",
+   "control": "QA: list open questions with open/close times; fail if any stretch > 15 s of narration has no open question and no learner task."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-M7",
+  "video": "all",
+  "t": "final 6-7 s",
+  "evidence": "Close = 'AI-generated narration; script by ExamLeaf.' Brief C01 CTA 'Try the free lesson' is not used; nothing says what the learner can do next.",
+  "problem": "The learner leaves no more pulled forward than when the recap ended, with no reason to open the free lesson.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 outro + SCRIPTING_REGISTRY §4 F8",
+   "location": "§3 replaced F8's next_artefact_pointer close with the disclosure"
+  },
+  "effect": "motivation, conversion to the free lesson",
+  "severity": "major",
+  "fix": {
+   "what": "Close rule: one sentence of ≤ 15 words naming the next capability as an open question the free lesson answers ('Why does the bulb's graph curve? That's the full free lesson.'), then the Professor Diki Simplified end motif. No hype, no promise of marks, no product name beyond 'free lesson' (SR §9).",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 close.next_step; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §4 F8, §9",
+   "control": "check_script: last spoken beat slot = close.next_step, ≤ 15 words, contains a question or capability verb, no 'ExamLeaf', no SQ-09 phrases."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-30",
+  "video": "all",
+  "t": "first sentence after each window",
+  "evidence": "Physics: 'At two volts, the current is...'; chemistry: 'Left: two oxygen atoms.'; biology: 'Green plants make their own food.'",
+  "problem": "No conditional feedback for the likely wrong answer ('If you said soil...', 'If you said the left side...').",
+  "root_cause": {
+   "layer": "Super Teacher loop not in contract",
+   "location": "ST Step 7 loop and SQ-05 exist, but §3 has no feedback field"
+  },
+  "effect": "confidence (wrong guessers are not repaired)",
+  "severity": "major",
+  "fix": {
+   "what": "Each check beat carries feedback.likely_wrong and the next beat speaks it in ≤ 10 words.",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 schema; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §3 check.* rule",
+   "control": "check_script: check.predict requires ASM.feedback; next beat cites it."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A2-15",
+  "video": "all",
+  "t": "last 2-4 s",
+  "evidence": "frames/physics/t070-t072; chemistry/t072-t073; biology/t064-t067 (static frame, 'AI-generated narration / script by ExamLeaf', 2.2 s silence)",
+  "problem": "Every video ends on a static disclosure with the ExamLeaf name. There is no Professor Diki Simplified mark, no closing question and no pointer to the free lesson.",
+  "root_cause": {
+   "layer": "contract",
+   "location": "04_harness_contract/contract.md §3 disclosure text 'AI-generated narration; script by ExamLeaf.'; s05 disclosure lines in each scenes/s05.html"
+  },
+  "effect": "A brand violation under the founder's rule, and a weak last impression.",
+  "severity": "major",
+  "fix": {
+   "what": "End card component (≤ 1.5 s): the Professor Diki Simplified mark plus a one-line transfer question. The disclosure wording drops ExamLeaf and sits as a small fixed badge or in the description, as policy allows.",
+   "where": "contract.md §3; scene_template outro",
+   "control": "QA OCR + transcript: 'ExamLeaf' absent from frames and audio; the final 2 s contain the brand mark"
+  },
+  "_lens": "A2"
+ },
+ {
+  "id": "A5-03",
+  "video": "all",
+  "t": "n/a",
+  "evidence": "As found (18:18) qa.py checks A1-A10: A7 diffs the STT transcript against the script that contains the string, so 'Examleaf' scores as a match; there is no OCR, VTT, cue-sheet or sidecar scan. At 18:52 qa.py gained A12 (brand_check.py, DOM text at sampled times, captions.vtt, STT transcript). brand_check.py reads script text, narration/timeline.json words (narrate.py align_words() matches provider character timings to the script's surface words, so they are the sent text, not the audio), scene text nodes and fixtures. Tesseract read 'ExamLeaf' in 12 of 212 frames at 540x960, so a raster layer is feasible. MP4 containers carry only encoder tags.",
+  "problem": "As found, no gate would catch a brand error outside the script text (a TTS mispronouncing 'Diki', a stale caption file, a frame-level string, a sidecar title). After A12 the remaining blind spots are the spoken audio when A7 is skipped, the final pixels and the sidecar.",
+  "root_cause": {
+   "layer": "tooling/qa.py + brand_check scan scope (partly remediated at 18:52)",
+   "location": "16_pilot_builds_2026-10-16_pilot_builds_2026-10-16/tooling/qa.py A7 (lines 125-148); 17_professor_diki_simplified/brand/brand_check.py scan_scope"
+  },
+  "effect": "Brand and trust: a defect can reach an export with every automated check green.",
+  "severity": "major",
+  "fix": {
+   "what": "Close what is left: make A12 fail (not pass) when A7 is skipped on a release build; add a fuzzy (>=0.8) presence check of 'Professor Diki Simplified' on the STT outro; OCR of the muxed MP4 at 1 fps (absence of ExamLeaf, presence of the end-card brand); scan cues/*.json beats_text and the sidecar title, description and hashtags once the sidecar exists; add F10 (\\bDiki\\b outside the exact string).",
+   "where": "tooling/qa.py a12_brand; brand/brand_check.py; brand/strings.json forbidden[]",
+   "control": "Negative tests: ExamLeaf in beat text, in a VTT, in a frame (OCR) and in a sidecar title each fail; 'Published by ExamLeaf.' in the credits block passes."
+  },
+  "_lens": "A5"
+ },
+ {
+  "id": "A5-06",
+  "video": "all",
+  "t": "n/a",
+  "evidence": "Playbook CTA text is 'Try the free lesson' (C01 script and caption). Pipeline: Q-COMM.copy bans /free (lesson|chapter|...)/ in titles and descriptions (PACKAGING:103, a Recommendation); SCRIPTING_REGISTRY:218 'The script never names a product or destination'; RD-49 (founder, 15 Oct 2026) 'the video pipeline should not care about what is free'; CE-68 retired destination_resource_id; PACKAGING:159 'nothing is added at upload'. PD-10 allows the line in shorts and 17_professor_diki_simplified/06_BRAND_and_AUDIO_IDENTITY.md §7 item 1 leaves the conflict open. brand/strings.json cta_options say 'linked below'; 07_end_to_end_pipeline_instructions/05_SHORTS_and_REELS_PROCEDURE.md SH8 notes the YouTube related-video link needs account access and Reels caption links are not verified anywhere in the repo.",
+  "problem": "The playbook's CTA cannot be authored or approved under the current rules, and the proposed spoken variants either promise a link location the platform may not offer or bake a price-class claim ('free') into the master.",
+  "root_cause": {
+   "layer": "business-layer intent vs pipeline rules",
+   "location": "PACKAGING_and_DISTRIBUTION_REGISTRY.md:103,139,159,237; SCRIPTING_REGISTRY.md:218; 07_end_to_end_pipeline_instructions/10_DECISIONS_and_CONFLICT_RESOLUTIONS.md RD-49; brand/strings.json cta_options"
+  },
+  "effect": "Blocks the playbook funnel or forces a per-video waiver; a 'linked below' line can be false on a channel.",
+  "severity": "major",
+  "fix": {
+   "what": "Adopt PD-10 with three guards: say the topic, not a location ('Try the free lesson on {topic}.'); emit 'free' only when the destination plays without sign-up (07_end_to_end_pipeline_instructions/06_QA_GATES_and_RELEASE.md:228) and bind the line to a COPY approval; a designation change withdraws the Short (CE-34). Amend SCRIPTING §9, Q-COMM and §4.6 for concept_short_60 only. Alternative: a platform end-screen element carries 'free'.",
+   "where": "SCRIPTING_REGISTRY §9; PACKAGING §4.1/§4.4/§4.6; brand/strings.json; 15_content_engine_v2/DECISIONS_CE.md row",
+   "control": "Q-COMM waiver keyed to the format; destination check (opens without login); negative test: 'linked below' in a Reels build fails."
+  },
+  "_lens": "A5"
+ },
+ {
+  "id": "A5-10",
+  "video": "all",
+  "t": "n/a",
+  "evidence": "Playbook pp.13-14: per title 12 free 10-minute lessons, 24 six-minute question explanations and one 90-minute paper (354 accepted minutes; 2,124 for six titles at Rs 120 = Rs 2,54,880). Shorts sit outside it: production Rs 500-1,600 each (Rs 11,700 for the ten primary briefs) inside a Rs 25,000 envelope that funds 'a small creative wave using existing approved assets'. 07_end_to_end_pipeline_instructions/05_SHORTS_and_REELS_PROCEDURE.md: a Short is a recomposed complete unit of an approved lesson. The pilots are standalone concept intros: new script, scenes and fixture, no parent lesson id.",
+  "problem": "The format's real job (entry to the exact lesson at near-zero marginal cost) is not encoded: nothing links a Short to its lesson, shares its fixture or reuses its scenes, so the CTA cannot be exact and numbers can differ between Short and lesson.",
+  "root_cause": {
+   "layer": "pilot scope",
+   "location": "PILOT_CONTRACT §1/§3 (no parent_lesson_id); script.json schema; lesson_graph.json"
+  },
+  "effect": "Cost not reusable; numbers or diagram may mismatch after the click.",
+  "severity": "major",
+  "fix": {
+   "what": "concept_short_60 takes parent_lesson_id, unit_root_node_ids and the lesson's fixture; scenes are the lesson's scenes re-seeked where they exist. Destination types: lesson (C01, C04), question explanation (C05, C06), paper unit (C15).",
+   "where": "format/concept_short_60 spec; script.json schema; 07_end_to_end_pipeline_instructions/05_SHORTS_and_REELS_PROCEDURE.md procedure",
+   "control": "Schema: parent_lesson_id required; QA: every number on screen equals the parent fixture value."
+  },
+  "_lens": "A5"
+ },
+ {
+  "id": "A5-11",
+  "video": "all",
+  "t": "n/a",
+  "evidence": "Playbook §4.2: 'test English and native-reviewed Assamese explanations first'; Appendix B: Hindi is 'a future adaptation test'; brief C18. Pipeline: CE-L5 launches en-IN, Hinglish and hi-IN; MATURITY_MODEL_and_ROADMAP.md:14,33 puts Assamese at level 5; 11_human_feel_voice_audio_research/PLAYBOOK_human_crafted_vertical_video.md:3 'Assamese comes later'. PILOT_CONTRACT:71: the render box has no Noto fonts; qa.py (A1-A10, and A11-A21 added at 18:52) has no glyph check; the tokens' bengali_assamese 1.8 s hold and smoke strings are unused.",
+  "problem": "Language priority is inverted between playbook and pipeline, and the Opus pipeline can neither render nor check Assamese, so C18 and the playbook's first language test cannot be built.",
+  "root_cause": {
+   "layer": "locale roadmap + tooling",
+   "location": "15_content_engine_v2/DECISIONS_CE.md CE-L5; 15_content_engine_v2/MATURITY_MODEL_and_ROADMAP.md:14,33; tooling/qa.py; PILOT_CONTRACT.md:71"
+  },
+  "effect": "Blocks C18 and Assam-organic distribution.",
+  "severity": "major",
+  "fix": {
+   "what": "Reorder the locale roadmap (en-IN, then as-IN with a human voice; Hindi later); vendor a Bengali-Assamese font stack; add a glyph-coverage check on the token smoke strings; apply the Indic hold multiplier in the cue builder; keep the brand string Latin in every locale.",
+   "where": "DECISIONS_CE.md; MATURITY_MODEL_and_ROADMAP.md; tooling/qa.py (A12 glyphs); preflight.sh fonts",
+   "control": "qa.py glyph check fails on tofu for the Assamese letters; brand_check accepts the Latin brand inside as-IN builds."
+  },
+  "_lens": "A5"
+ },
+ {
+  "id": "A5-13",
+  "video": "all",
+  "t": "n/a",
+  "evidence": "Playbook §2.3 (p.6): 'one ExamLeaf Instagram account, one Facebook Page and one audience-coherent YouTube channel', one master brand. Founder rule 16 Oct: the audience-facing identity of educational videos is Professor Diki Simplified. The sidecar has no brand or publisher field (PACKAGING §6; 'publisher' there is a role), and the example credits blocks (PACKAGING:467,569) name no publisher.",
+  "problem": "The account plan still makes ExamLeaf the audience-facing channel; parents (the 'unfamiliar publisher' objection, playbook §1.1) would meet either no publisher link or the wrong brand.",
+  "root_cause": {
+   "layer": "business playbook vs pipeline",
+   "location": "ExamLeaf_Growth_Playbook §2.3; PACKAGING_and_DISTRIBUTION_REGISTRY.md §6 sidecar schema"
+  },
+  "effect": "Brand and trust; handles are hard to change after launch.",
+  "severity": "major",
+  "fix": {
+   "what": "Educational channel and accounts 'Professor Diki Simplified' (YouTube and Instagram); commerce accounts 'ExamLeaf' (Facebook Page, ads, Merchant, site, checkout); About page and description footer 'Published by ExamLeaf.'; add a sidecar publisher field; amend playbook §2.3; name reviewers on the About page.",
+   "where": "playbook §2.3 (business layer); packaging_profile.schema.json; brand/strings.json",
+   "control": "Sidecar publisher = 'ExamLeaf' and the credits block carries 'Published by ExamLeaf.'; title and description scans allow ExamLeaf only there."
+  },
+  "_lens": "A5"
+ },
+ {
+  "id": "A5-04",
+  "video": "all",
+  "t": "outro: physics 65.9-69.9 s; chemistry 67.1-71.1 s; biology 61.2-65.1 s",
+  "evidence": "b07 audio is 4.0 s at 75-77 wpm plus a 1.6 s tail (narrate.py TAIL_S as found at :14, now TAIL_S_V1 in pilotlib.py), and 43-50 TTS characters of the ~2,285 left this month; the text omits 'reviewed by'. 07_end_to_end_pipeline_instructions/06_QA_GATES_and_RELEASE.md §6.4 requires a description line, the YouTube synthetic toggle, the Meta label and C2PA, and PACKAGING §7 an end-card line; no document requires a spoken disclosure. The slot outro.disclosure exists only in PILOT_CONTRACT:62, tooling/pilotlib.py SLOTS (as found :11-12, now :21-22) and the Production Kit (SKILL.md:34); v2 uses close.next_step (SCRIPTING_REGISTRY §4, FORMAT_REGISTRY F8). At 18:52 check_script v2 rejects a spoken disclosure and requires the on-screen line.",
+  "problem": "The pilot turned a metadata and end-card duty into a 4 s spoken legal line in the slot where v2 puts the next-step pointer. It spends about 7% of the runtime and a quota slice, and one fixed string serves a pilot and a release alike (no reviewer clause, no release-class switch).",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 slot grammar vs SCRIPTING_REGISTRY §4/F5/F8",
+   "location": "PILOT_CONTRACT.md:62; tooling/pilotlib.py SLOTS; 12_advanced_animations_with_claude/08_production_kit/skills/examleaf-fill-concept-intro/SKILL.md:34"
+  },
+  "effect": "Runtime, ending quality and disclosure honesty (a pilot cannot be told from a release).",
+  "severity": "major",
+  "fix": {
+   "what": "Take disclosure off the spoken track: end-card line (Path B 'AI-generated narration'; Path A 'Performed by {name} · voice converted with AI'), description line with 'reviewed by {Reviewer}' only when approvals exist, platform toggle and Meta label, C2PA kept; add an end-card slot to the short format; select the string by release_class (pilot or release).",
+   "where": "PILOT_CONTRACT §3/§4; 15_content_engine_v2/FORMAT_REGISTRY.md F5/F8; 15_content_engine_v2/subsystems/VOICE_and_PERSONA_REGISTRY.md §3.9; 07_end_to_end_pipeline_instructions/06_QA_GATES_and_RELEASE.md §6.4; Production Kit skill and skeleton",
+   "control": "Already in v2 check_script: no spoken disclosure; on-screen line must match the path pattern. Remaining: Q-DISC.placement placements_required includes end_card_line; release_class selects the string; a release sidecar without 'reviewed by' fails; FORMAT_REGISTRY F5/F8 and PILOT_CONTRACT still describe the spoken slot."
+  },
+  "_lens": "A5"
+ },
+ {
+  "id": "A3-03",
+  "video": "all",
+  "t": "phy 17.00–22.50; chem 16.08–21.65; bio 13.62–18.87",
+  "evidence": "Think windows 5.51 / 5.56 / 5.25 s, all from think_window_s = 5. Prompts: chem 'Which side is short?' is a binary count (2 vs 1) with the equation on screen; bio is a 3-option choice; phy asks a one-step calculation plus 'decide whether always is safe', a judgement the learner has no evidence for yet. The window is digital silence (−inf dBFS in the MP4).",
+  "problem": "One duration for prompts of very different difficulty; the easy ones leave 3–4 s of dead air, which the external audit and both judge panels flagged.",
+  "root_cause": {
+   "layer": "script schema + contract + decision",
+   "location": "script.json think_window_s; 16_pilot_builds_2026-10-16/tooling/check_script.py 4–6 s rule; 16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3; RD-11 (5–8 s, default 6 s)"
+  },
+  "effect": "Students who answer in 1 s wait 4 s; the hold reads as a stall and costs ~3.5 s per video.",
+  "severity": "major",
+  "fix": {
+   "what": "Replace think_window_s with pause{purpose, difficulty, s}; durations by the pause policy table (recall 1.5 s, choose 2.0 s, compute 3.0 s, multi-step = 'pause the video' + 1.0 s hold); prompt must be answerable from what is on screen. Amend RD-11 with a short_form row (lead decision)",
+   "where": "script.json schema, 16_pilot_builds_2026-10-16/tooling/check_script.py, 16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3, RD-11",
+   "control": "lint: think pause s matches the table for its difficulty ±10 %; prompt answerable (answer key fields all already shown)"
+  },
+  "_lens": "A3"
+ },
+ {
+  "id": "A3-M1",
+  "video": "all",
+  "t": "phy 22.4–65.3; chem 21.5–66.5; bio 18.8–60.6",
+  "evidence": "Per-beat curve, written as wpm / tag / silence before→after. Physics: b01 163 curious 0.71→0.91; b02 144 curious 0.91→5.51; b03 153 calm 5.51→0.89; b04 129 thoughtful 0.89→1.02; b05 146 thoughtful 1.02→1.03; b06 144 warm 1.03→0.94; b07 75 calm 0.94→2.19. Chemistry: 152 curious / 156 thoughtful / 143 calm / 146 calm / 140 thoughtful / 143 warm / 74 none. Biology: 204 curious / 166 curious / 160 calm / 127 thoughtful / 164 thoughtful / 147 warm / 77 calm. Flat zone after the think window, 33–38 s in each video: beat RMS within ±0.5 dB (phy −22.7 to −23.4 dBFS) and beat median F0 131–141 Hz (phy). Energy peaks in the hook and never peaks again; every teaching beat sits between two ≥0.6 s silences.",
+  "problem": "No arc. Energy is front-loaded, flat through the explanation, and lowest at the outro, so the learner is not pulled forward.",
+  "root_cause": {
+   "layer": "narration direction + contract",
+   "location": "PILOT_CONTRACT §3 four low-arousal tags; one tag per long beat; no energy-curve target anywhere"
+  },
+  "effect": "The founder's 'not motivating enough'.",
+  "severity": "major",
+  "fix": {
+   "what": "Energy-curve target per slot (direction sheet: hook up, reveal up, turn = second peak, recap warm), with short beats so the tag changes every 2–6 s",
+   "where": "narration direction sheet, PILOT_CONTRACT §3, qa.py",
+   "control": "gate: reveal and turn beats ≥ video median +1 st F0 or +1 dB; no run of >20 s of beats within ±0.5 dB and ±1 st"
+  },
+  "_lens": "A3"
+ },
+ {
+  "id": "A3-M2",
+  "video": "all",
+  "t": "phy 31.2; chem 34.6; bio 21.4–23.2",
+  "evidence": "Time to first insight (the first new relationship the learner can use, not setup or a question): physics 'twice the voltage, twice the current' at 31.2 s (0.4 A shown at 27.9 s); chemistry 'each element needs the same count on both sides' at 34.6 s, and the first method ('Put a two in front of water') at 36.8 s; biology 'carbon dioxide enters from the air' at 21.4–23.2 s. The physics prediction (11.2–17.1 s) asks for a current before any tool is given (I = V/R is never said, and 0.2 A at 2 V is never shown), so a weak learner can only guess.",
+  "problem": "The learner waits 21–35 s for something usable, and the 'small effort' is a guess rather than an effort that can succeed.",
+  "root_cause": {
+   "layer": "script beat rules",
+   "location": "script.json beat/slot rules (16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md): hook → check.predict order without a 'give the tool' beat; no time-to-insight target"
+  },
+  "effect": "No early win, so curiosity is not converted into competence.",
+  "severity": "major",
+  "fix": {
+   "what": "Beat rule: within the first 10 s, give one concrete tool the learner can use (e.g. 'ten ohms: divide the volts by ten'), then ask a prediction that the tool makes solvable",
+   "where": "scripting framework, check_script.py",
+   "control": "gate: first insight word t0 ≤ 10 s, and the prediction's answer is derivable from on-screen fields"
+  },
+  "_lens": "A3"
+ },
+ {
+  "id": "A3-M5",
+  "video": "all",
+  "t": "phy 57.40–71.93; chem 59.78–73.20; bio 52.34–67.10",
+  "evidence": "Every close is a recap restatement → spoken disclosure → 2.2 s silence. The optional check.retrieval slot is unused in all three; there is no transfer question (e.g. the external audit's 6 V → 0.6 A), no conditional-confidence line, and no next step (brief C01's CTA 'Try the free lesson' is absent).",
+  "problem": "The video stops rather than closes; the learner is never shown they can do one on their own.",
+  "root_cause": {
+   "layer": "contract slot order",
+   "location": "PILOT_CONTRACT §3: check.retrieval optional, outro.disclosure mandatory and spoken; no transfer slot"
+  },
+  "effect": "No earned confidence ('I can do this one') and no pull towards the next lesson.",
+  "severity": "major",
+  "fix": {
+   "what": "Mandatory close: transfer question (2–3 s window from the pause table) → answer + conditional confidence ('If you got 0.6 A, you can use this rule.') → one-line next step → 0.4–0.8 s motif. Disclosure on screen",
+   "where": "PILOT_CONTRACT §3, check_script.py, scripting framework",
+   "control": "gate: a transfer.check slot exists after the misconception slot; the last spoken line is a next step or a confidence line, not the disclosure"
+  },
+  "_lens": "A3"
+ },
+ {
+  "id": "A6-07",
+  "video": "all",
+  "t": "physics 00:09-00:59; chemistry 00:29-00:45; biology 00:20-00:48",
+  "evidence": "Pixel samples of the 1-fps frames. physics: V, I and R labels share one ink (t030: V = 2 V RGB 32,40,60; I = 0.2 A 31,40,60; V = 4 V 30,38,58; t010: R label 30,43,67), so no quantity has a colour; blue appears on ×2, the underline and ticks, and amber marks both the condition chip (t036) and 'R ↑' (t053). chemistry t046: oxygen atoms (12,113,126), the coefficient 2 (29,125,135) and '=' (26,121,133) are one teal. biology t049: headline tiles change colour per word (carbon 210,159,64; from 60,85,159; the 51,125,120; air 214,82,70) with no mapping, and the correct answer 'air' sits on a red tile.",
+  "problem": "Colour does not carry the variable: in physics V, I and R are indistinguishable, in chemistry one teal means oxygen, coefficient and balanced at once, in biology colour is decoration. A6 technique 6: one colour per quantity across captions, diagram, equation and graph, so the pin can be 'named, coloured, pinned'. Colour coding raised retention and transfer [S16] and signalling has d about 0.38 [S17]. Same defect as A2-09; A6 adds that headline words and the pin share the quantity's colour and that colour is never the only cue.",
+  "root_cause": {
+   "layer": "template + style guide",
+   "location": "12_advanced_animations_with_claude/05_style_guides/doodle-handdrawn.md §1 item 3 ('Subject accents decorate; they never encode …'); editorial-vox.md §4 ('one accent per scene'); paper-collage-vertical.md §5.1 (nine tile styles, no colour roles); vertical_safe_zones.tokens.json palette has hue names and no roles. See A2-09."
+  },
+  "effect": "comprehension: the learner cannot follow which number is which across headline, label and readout; the cheapest tracking aid is unused.",
+  "severity": "major",
+  "fix": {
+   "what": "One colour per quantity, identical in headline words, diagram labels, equation, readout and pin (roles in tokens: voltage, current, resistance, held, changed, mismatch). Never colour alone: V, I and R share lightness (L* 39-47) and resistance versus error is ΔE about 10 under simulated deuteranopia [S60], so every role also carries a letter or a line style.",
+   "where": "17_professor_diki_simplified/design_system/tokens.json colour roles (add a non-colour cue per role) and 05_DESIGN_SYSTEM.md §2; 03_PROFESSOR_DIKI_SCRIPT_FRAMEWORK.md §4.1; A2-09's tokens fix",
+   "control": "Lint: every coloured element declares data-role, one role per hue per short, headline words that name a quantity take its role colour; roles that sit close under simulated deuteranopia must differ by a letter or a line style."
+  },
+  "_lens": "A6"
+ },
+ {
+  "id": "A1-29",
+  "video": "all",
+  "t": "physics 00:17-00:22, chemistry 00:16-00:22, biology 00:13-00:19",
+  "evidence": "Measured silences 5.51 / 5.56 / 5.25 s for: an unanswerable calculation, a visible 2-option count, a 3-option intuition guess.",
+  "problem": "One window length for three different tasks; it fits only biology. The plate says 'Pause. Predict.' without saying what to produce (02 §F1).",
+  "root_cause": {
+   "layer": "think_window default",
+   "location": "PILOT_CONTRACT §3 'think_window_s 4-6'; briefs '5 s'; ST Step 7 / 02 §G3 give 4-8 s for simple predictions"
+  },
+  "effect": "attention, pace",
+  "severity": "major",
+  "fix": {
+   "what": "Add task_kind to check.predict (spot-visible 1.5-2.5 s, count 2-3 s, choose-intuition 3-4 s, compute 5-6 s or pause-video) and derive think_window_s; plate names the task. Treat the values as A/B hypotheses.",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3; 03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Step 7 table; 02_learning_psychology/INSTRUCTIONS_production_rules.md §G3",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: think_window_s must fall in the task_kind range."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A2-12",
+  "video": "all",
+  "t": "physics 10-11, 53-57; chemistry 21-23; biology 46-52",
+  "evidence": "frames/physics/t010->t011 (V = 2 V replaced in place by V = 4 V), t055 ('×2' struck out, ammeter blank, no current value); chemistry/t021->t023 (molecules re-encoded as small circles); biology/t051.jpg (40% pie, a mass-fraction detour)",
+  "problem": "Some visual changes have no causal role, and the key causal change is missing. Physics destroys the 2 V state that must be compared and rebuilds it later as cards. Physics strikes '×2' at the lamp without showing a current. Chemistry does not keep atom identity across the transformation. Biology shows a pie instead of the air → leaf → glucose → wood path.",
+  "root_cause": {
+   "layer": "storyboard/fixture",
+   "location": "16_pilot_builds_2026-10-16/physics/opus/scenes/s01.html scene-spec swaps [[v1_chip, v2_chip]]; physics fixture FIX-ohm-two-points has no lamp values; chemistry s03 builds a new tally instead of moving s01 molecules; biology storyboard s04 pie"
+  },
+  "effect": "The 'what changed and why' is left to the voice, and the exception is asserted rather than shown.",
+  "severity": "major",
+  "fix": {
+   "what": "CompareStates verb: before and after side by side on the same board. Add a lamp fixture (e.g. 2 V → 0.20 A, 4 V → 0.32 A) so the ammeter shows the non-doubling. Use a carbon tracer that keeps the same atoms from CO₂ into glucose and wood.",
+   "where": "storyboard schema (each change names cause and changed quantity); fixtures",
+   "control": "Lint: every reveal/change cue carries 'changes' (quantity) and 'because' (beat id); QA: a misconception beat must change at least one fixture value on screen"
+  },
+  "_lens": "A2"
+ },
+ {
+  "id": "A2-09",
+  "video": "all",
+  "t": "physics 11, 28-45, 53; chemistry 27-49; biology 6-66",
+  "evidence": "frames/physics/t028.jpg (V, I, R all ink; blue only for ×2/underline/ticks), t053 (amber for both condition and 'R ↑'); chemistry/t042.jpg (teal = oxygen atoms, '=', coefficients, tick, panel tint); biology/t024.jpg, t051.jpg (tile colours vary per word; red on 'air' and 'food')",
+  "problem": "Colour carries no semantics. Voltage, current and resistance have no colours. One hue carries several roles (chemistry teal has five). Red, the error token, marks the correct answer 'air'. Across videos, teal means oxygen in one and decoration in another.",
+  "root_cause": {
+   "layer": "style_guide",
+   "location": "12_advanced_animations_with_claude/05_style_guides/doodle-handdrawn.md §1 item 3 ('Subject accents decorate; they never encode a quantity'); editorial-vox.md §4 ('one accent per scene'); paper-collage-vertical.md §5.1 tile styles chosen by seeded PRNG; vertical_safe_zones.tokens.json palette_light has hue names and no roles"
+  },
+  "effect": "This misses the cheapest tool for tracking what changed, and colour noise competes with meaning.",
+  "severity": "major",
+  "fix": {
+   "what": "Semantic colour roles in the tokens: quantity.voltage, quantity.current, quantity.resistance, state.changed, state.condition, state.mismatch, element.H/O/C, each a fixed hue across all subjects. Ink stays the default. A hue carries one role per video.",
+   "where": "vertical_safe_zones.tokens.json (new colour_roles); every style guide",
+   "control": "Lint colour_roles: every coloured element declares data-role; one role per hue per video; red only for state.mismatch/error"
+  },
+  "_lens": "A2"
+ },
+ {
+  "id": "A6-06",
+  "video": "all",
+  "t": "physics 22.4, 46.4, 57; chemistry 22, 49-50; biology 6.8, 39.8, 52",
+  "evidence": "Frames: physics t022 (circuit, R = 10 Ω, V = 4 V) to t023 (two empty cards); t046 (cards) to t047 (loop without the resistor); t056 (lamp) to t060 (empty board with one resistor symbol). chemistry t019 (molecules) to t025 (tally rows, no molecules); t046 (balanced equation) to t050 (blank board and a divider). biology t004 (banyan and elephant) to t008 (backdrop without the tree); t035 (equation sheet) to t042 (empty sky); the banyan returns at t054. V = 2 V is overwritten by V = 4 V in place (t010 to t014), so the 2 V state is gone before the comparison.",
+  "problem": "No short keeps one object that values and tokens move inside. The diagram is rebuilt at every cut, so the pin and the readout cannot persist from the turn to the release, and each change is a swap that gives the eye nothing to track. Benchmarks keep one visual and move things inside it: 3Blue1Brown wants every movement deliberate and each visual to make the narration's one point [S35]; animated transitions improved object tracking over static swaps [S15]. Same defect as A2-01 and A4-04; A6 adds that the pin and the readout belong to that object. Technique 5.",
+  "root_cause": {
+   "layer": "template + contract",
+   "location": "16_pilot_builds_2026-10-16/tooling/render.py ('# concat + mux': ffmpeg concat of independently built scene MP4s); PILOT_CONTRACT.md §4 (one HTML per scene, scene time from 0); Kit skill §3 (one archetype per scene). See A2-01 and A4-04."
+  },
+  "effect": "comprehension: the learner rebuilds the mental model at each cut, and the pin cannot be seen to slip because the pinned object is gone when the release arrives.",
+  "severity": "major",
+  "fix": {
+   "what": "One persistent board (PD-03): the pin element, the turned quantity and the readout live on it from the pin beat to the release; values and tokens move inside it in steps of at most 0.9 s (a count ticks, atoms travel, a label turns) and the 2 V state is kept for comparison; elements leave only with a named reason.",
+   "where": "17_professor_diki_simplified/DIKI_CONTRACT.md §1 (PD-03) and design_system/diki_runtime.js verbs (CompareStates, SwapPart); 03_PROFESSOR_DIKI_SCRIPT_FRAMEWORK.md §4.1",
+   "control": "QA persistence (A17): hero similarity of at least 0.6 between 1 s samples before the end card; the pin element id is present in every sample from its beat to the release beat."
+  },
+  "_lens": "A6"
+ },
+ {
+  "id": "A2-06",
+  "video": "all",
+  "t": "physics 23-32, 41, 48; chemistry 10, 27, 61; biology 20, 42",
+  "evidence": "frames/physics/t025-t031 ('the current' with a hole where 'twice' lands at t032), t041 ('That constant'), t048 ('always is'); chemistry/t011 ('Did an atom'), t028 ('never'); biology/t020 ('plants'), t042 ('carbon')",
+  "problem": "Headlines build word by word in speaking order. Physics s03 reads 'the current' for 9 s because 'twice' is the second spoken 'twice'. The titles act as a karaoke copy of the narration, not as a claim.",
+  "root_cause": {
+   "layer": "scene_code/contract",
+   "location": "16_pilot_builds_2026-10-16/physics/opus/scenes/s03.html data-words=\"twice:2 the:1 current:1\"; s01.html buildHeadlines() reveals each word at x.t0 - LEAD; kit rule 1 'on-screen text is only ... words looked up in the cue sheet'"
+  },
+  "effect": "Fragments are meaningless while they persist, they compete with the diagram, and they duplicate the audio.",
+  "severity": "major",
+  "fix": {
+   "what": "The headline is a pre-composed claim of ≤ 5 words, shown whole at its cue. Word matching is used only to time it. Show at most one claim per beat.",
+   "where": "contract.md text rules; scene_template headline component",
+   "control": "Lint: headline text must be a contiguous phrase that is complete at first display; QA OCR on frames: no headline frame shows a partial phrase for > 0.5 s"
+  },
+  "_lens": "A2"
+ },
+ {
+  "id": "A2-05",
+  "video": "all",
+  "t": "physics 3-11, 22-31; chemistry 3-9",
+  "evidence": "frames/physics/t005-t011 (loop, then resistor, R, V=2 V, V=4 V stroke by stroke); t023 (empty cards) to t031 (rows written word by word); chemistry/t002-t009 (molecules, then formulas, appear one by one)",
+  "problem": "Staged builds delay usefulness. The physics circuit is useful only at about 8 s and the ratio cards only at about 31 s. Each stroke draws on and each value waits for its word.",
+  "root_cause": {
+   "layer": "scene_code",
+   "location": "16_pilot_builds_2026-10-16/physics/opus/scenes/s01.html runtime: stroke draw duration s.dur = Math.min(1.2, Math.max(0.25, s.len/1100)) for every stroke of a 'draw' element; every value is a separate reveal cue"
+  },
+  "effect": "Slow, 'writing on a board' feel (the founder's 'slow, boring'); the eye waits instead of reasoning.",
+  "severity": "major",
+  "fix": {
+   "what": "Reveal budget: structure appears whole in ≤ 300 ms (Place). Animate only the quantity that changes (ChangeValue 180-300 ms). Use draw-on only when the drawing is the mechanism (TracePath).",
+   "where": "tokens motion.* (add reveal_budget_ms); scene_template draw defaults; doodle-handdrawn.md §2",
+   "control": "Lint: draw-on duration > 0.4 s needs a 'mechanism' tag; QA time_to_useful ≤ 1.5 s after the beat starts"
+  },
+  "_lens": "A2"
+ },
+ {
+  "id": "A2-16",
+  "video": "all",
+  "t": "physics 41-46, 62-72; biology 6-67",
+  "evidence": "frames/physics/t042.jpg ('resistance' widow), t064 ('voltage' widow), Chalkboard-style headline over Noto Sans labels; biology/t024.jpg (5 tiles, 4 fonts in one headline)",
+  "problem": "Typography: the handwriting fallback face looks like a comic font, headlines wrap with widows, and biology headlines exceed the 3-word ransom cap and mix four faces.",
+  "root_cause": {
+   "layer": "style_guide/template",
+   "location": "05_style_guides/README.md §12 (display fonts not vendored; system fallback Chalkboard SE); paper-collage-vertical.md §5.1 3-word cap not linted; no line-balance in the headline CSS (.hl .row flex-wrap)"
+  },
+  "effect": "It looks cheap and inconsistent across videos.",
+  "severity": "major",
+  "fix": {
+   "what": "One vendored sans family (e.g. Inter or Noto Sans, 600/800) plus KaTeX math. Use text-wrap: balance and a 5-word headline cap.",
+   "where": "tokens font_policy; scene_template CSS",
+   "control": "Lint: fonts resolve to vendored files (SHA match); headline ≤ 5 words; no single-word last line"
+  },
+  "_lens": "A2"
+ },
+ {
+  "id": "A2-02",
+  "video": "all",
+  "t": "physics 57-60; chemistry 49-50; biology 7-9, 40-41",
+  "evidence": "frames/physics/t057.jpg (empty board), t059-t060 (bare zigzag only); chemistry/t050.jpg (blank page with a divider); biology/t008.jpg (empty kraft band), t040-t041 (empty sky)",
+  "problem": "The screen goes blank or almost blank after a reset, for 1-3.5 s, while narration continues ('So, for a conductor...', 'Why not write H two O two?', 'Many think a plant is built from soil').",
+  "root_cause": {
+   "layer": "storyboard/scene_code",
+   "location": "Every element of the new scene is a reveal target cued to a later word: physics s05 conductor_icon<-So, cond_chip<-temperature; chemistry s04 frame_a<-write; biology s04 soil_pot<-soil (storyboard.md cue columns). The runtime renders reveal targets at opacity 0 until their cue (s01.html render(), reveals map)"
+  },
+  "effect": "Dead air on screen right where the misconception or recap starts; attention drops at the most important beats; it reads as a glitch.",
+  "severity": "major",
+  "fix": {
+   "what": "Frame-0 rule for every beat: the carried board is visible at t0 of the beat; only the new element waits for its word.",
+   "where": "contract.md §cue rules; scene_template.html",
+   "control": "QA empty_middle_seconds = 0: per 1-fps frame, ink coverage of the middle zone ≥ 8% (or ≥ 70% of the beat's final coverage); hard fail"
+  },
+  "_lens": "A2"
+ },
+ {
+  "id": "A3-M6",
+  "video": "all",
+  "t": "see A3-02, 03, 05, 06, 07",
+  "evidence": "Audio dead time: lead-in, dead inter-beat gaps, think time above the pause-table value, the spoken disclosure and the tail. Physics 0.71+0.91+1.03+0.94+2.51+4.00+2.19 = 12.3 s; chemistry 0.70+0.93+0.70+0.98+4.06+4.00+2.25 = 13.6 s; biology 0.70+0.81+0.92+0.84+3.25+3.92+2.18 = 12.6 s. That is 17–19 % of each video, before counting visual dead time (judges: physics opens on a 3–3.5 s empty board; biology s04 has 2.2 s of empty sky).",
+  "problem": "About one second in six does nothing.",
+  "root_cause": {
+   "layer": "tooling + contract",
+   "location": "narrate.py LEAD_IN_S / TAIL_S / gap handling; think_window_s; spoken disclosure"
+  },
+  "effect": "Momentum loss, and most of the 7–13 s overrun.",
+  "severity": "major",
+  "fix": {
+   "what": "The A3-02/03/05/06/07 fixes together",
+   "where": "narrate.py, script schema, PILOT_CONTRACT",
+   "control": "gate: unlabelled silence ≥ 0.6 s = 0; total dead time ≤ 2.0 s"
+  },
+  "_lens": "A3"
+ },
+ {
+  "id": "A1-M6",
+  "video": "all",
+  "t": "see evidence",
+  "evidence": "Energy-draining sentences: physics 'That constant is the resistance: voltage equals current multiplied by resistance.' / 'So, for a conductor at constant temperature, current is proportional to voltage, and resistance is the constant ratio.'; chemistry 'That is the law of conservation of mass.' / 'So each element needs the same count on both sides.' / 'Atoms are conserved, so count every element on both sides, and balance with coefficients only.'; biology 'Green plants make their own food.' / 'Sunlight, absorbed by chlorophyll, drives the change, making glucose and oxygen.' / 'About forty percent of glucose, by mass, is carbon.'",
+  "problem": "These are definition and summary sentences with an abstract subject and no consequence for the learner. They carry the textbook's energy, not the teacher's.",
+  "root_cause": {
+   "layer": "SCRIPTING_REGISTRY §14 closure + no sentence rules",
+   "location": "closure encourages restating CLM.statement; no rule for active subject, contrast or consequence"
+  },
+  "effect": "attention, motivation",
+  "severity": "major",
+  "fix": {
+   "what": "Sentence rules: (a) every explain beat contains a consequence or contrast word ('so', 'but', 'which means') tied to something visible; (b) at least one sentence per beat has the learner or 'we' as subject or addressee; (c) no standalone naming sentence ('That is the law of…'): name the term inside a sentence that uses it; (d) the recap is one sentence the learner could say aloud.",
+   "where": "03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Step 2 + short-format annex; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §15 SQ-07 (make (a)-(c) blocking for concept_intro)",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: per-beat regex for consequence/contrast words and second-person/we; reject 'That is the <term>' as a full sentence."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-31",
+  "video": "all",
+  "t": "throughout",
+  "evidence": "Textbook sentences: 'Green plants make their own food.' 'That is the law of conservation of mass.' 'That constant is the resistance...' 'you/we' count: physics 1, chemistry 0, biology 0.",
+  "problem": "Register is a narrated textbook, not a teacher (no revealed decisions, no address to the learner). Sentences are short; the problem is voice, not length.",
+  "root_cause": {
+   "layer": "SCRIPTING_REGISTRY §14 closure + builder prompt",
+   "location": "closure pushes builders to paraphrase CLM statements (CLM-autotroph is spoken verbatim); the ST 'Conversational repair pass' (Step 13) is not in the contract reading list"
+  },
+  "effect": "attention, warmth, perceived quality",
+  "severity": "major",
+  "fix": {
+   "what": "Make the conversational repair pass a required step after closure passes; closure checks tokens and conditions, not phrasing.",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §2 reading list + §7; 03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Step 13",
+   "control": "Reviewer rubric: ≥ 1 revealed decision per explain/worked beat; similarity of spoken sentence to CLM.statement > 0.9 is flagged."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-32",
+  "video": "all",
+  "t": "throughout",
+  "evidence": "Zero analogies, zero light moments, zero stories in 211 s of narration.",
+  "problem": "Zero humour is allowed, but the natural, concept-carrying options (pipe/push, recipe copies, peroxide antiseptic, the willow experiment) are all missed.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 slot grammar",
+   "location": "no analogy or story slot; SR §5 humour pro-rata"
+  },
+  "effect": "attention, retention",
+  "severity": "major",
+  "fix": {
+   "what": "Allow one ANL (with its non-mapping) or one story-evidence beat per concept_intro; each must pass ST Step 8's 'concept survives' test.",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3; 03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Steps 5 and 8",
+   "control": "Ledger field 'analogy/story: id or none'; reviewer flags 'none' when the lesson_graph offers an ANL."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A2-07",
+  "video": "all",
+  "t": "throughout",
+  "evidence": "frames/physics/t030.jpg (board ≈ 904×574 px of 1080×1920 = 25%; circuit ink ≈ 17%; everything below y≈1200 empty in 60 of 72 frames); chemistry/t042.jpg (ledger ≈ 930×450 = 20%; lower 45% empty t023-t049); biology/t033.jpg (art ≈ 29%, the rest decorative bleed)",
+  "problem": "Explanation uses only 17-29% of the frame. The bottom third is empty or decorative in every video.",
+  "root_cause": {
+   "layer": "tokens",
+   "location": "12_advanced_animations_with_claude/04_harness_contract/vertical_safe_zones.tokens.json platform_insets_px.generic_conservative (top 250, bottom 450; measured:false) and zones shares 0.22/0.54/0.24 -> middle zone y 518-1177 (659 px, 27% of the frame area); the caption zone is reserved for a VTT that was never burnt in (physics build_notes.md §6 'No captions drawn')"
+  },
+  "effect": "Small diagrams, small labels and an amateur look on a phone. The audit's 'small explanatory content' is confirmed.",
+  "severity": "major",
+  "fix": {
+   "what": "Measure the insets (procedure in the tokens). Set the diagram area to ≥ 45% of the frame area (about y 380-1340). Use the caption lane only when captions are burnt in, and give it back to the diagram otherwise.",
+   "where": "vertical_safe_zones.tokens.json zones + platform_insets_px; scene_template buildZones()",
+   "control": "QA content_area: the middle-zone content bbox ≥ 40% of the frame area in ≥ 80% of seconds"
+  },
+  "_lens": "A2"
+ },
+ {
+  "id": "A1-25",
+  "video": "all",
+  "t": "whole video",
+  "evidence": "All three: hook.question_reveal → check.predict (5 s) → explain ×1-2 → worked/confront → recap.statement → spoken disclosure; 5 scenes each; same opening of beat 3 (answer statement).",
+  "problem": "One beat skeleton for three subjects; the scripts feel templated (founder: 'repetitive structures').",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 + briefs",
+   "location": "§3 fixed order enforced by check_script.py; all three briefs written from one template"
+  },
+  "effect": "perceived quality, attention across a series",
+  "severity": "major",
+  "fix": {
+   "what": "Offer 3-4 concept_intro archetypes (predict-first, worked-error-first, contradiction-demo, story-evidence) chosen per topic; keep only the invariants (one predict, one confront, one transfer, close).",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §4 F8; briefs template",
+   "control": "SQ-18 recent-script ledger blocking within a batch: no two consecutive videos share opening type and beat order."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-M2",
+  "video": "all",
+  "t": "whole video",
+  "evidence": "Tag sequence identical in all three: curious → curious/thoughtful → calm → calm/thoughtful → thoughtful → warm → calm. Beat wpm, physics 162 → 142 → 150 → 128 → 146 → 136 → 75; chemistry 151 → 153 → 142 → 146 → 139 → 134 → 75; biology 204 → 164 → 158 → 125 → 161 → 146 → 77. Each ends with 2.2 s of silence.",
+  "problem": "The energy peaks in the first 10 s and falls from there. The payoff beats are tagged calm or thoughtful, so the moment of understanding gets no lift. The video ends at its lowest energy, on a legal line.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 tag set + Super Teacher Step 10",
+   "location": "only [curious] [calm] [warm] [thoughtful] allowed, with no tag for a bright payoff; 02 §G4 arc ('calm conclusion') read as 'decline'"
+  },
+  "effect": "momentum, perceived energy",
+  "severity": "major",
+  "fix": {
+   "what": "Energy-curve rule: the energy rises toward the payoff. The payoff beat is tagged [excited] or [warm] with emphasis on the payoff word. No beat after the payoff is more than 15 wpm slower than the explain band. The last spoken beat is the close, never the disclosure. Add one bright tag to the allowed set and test it on the voice.",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 tags; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §13 tag grammar; 03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Step 10",
+   "control": "QA energy curve: per-beat wpm and tag plotted; fail if the payoff beat is the lowest-energy beat before the close, or the video ends on a beat < 120 wpm."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A3-12",
+  "video": "all",
+  "t": "whole video",
+  "evidence": "voice_id JBFqnCBsd6RMkjVDRZzb = ElevenLabs premade 'George' (British storyteller), language 'en', while script.json locale is en-IN and the voice guide asks for 'clear Indian English'. persona/super-teacher#core resolves to no admitted voice entry; the voice_id is hard-coded in the contract example.",
+  "problem": "A British storyteller voice is not Professor Diki: wrong accent for Class 9–10 Assam/India learners, and no owned identity.",
+  "root_cause": {
+   "layer": "voice registry",
+   "location": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §1–2 (stock voice); 15_content_engine_v2/subsystems/VOICE_and_PERSONA_REGISTRY.md (spec only, no admitted en-IN Path B entry)"
+  },
+  "effect": "Lower trust and relatability; brand cannot own the voice.",
+  "severity": "major",
+  "fix": {
+   "what": "Create a 'Professor Diki' voice identity: adult Indian English teacher, warm, bright, crisp STEM consonants. Audition 3 candidates (2 Voice Library en-IN voices, 1 Voice Design) on one 60 s golden passage; pick by native-editor and teacher ratings; pin in the registry",
+   "where": "VOICE_and_PERSONA_REGISTRY, script.json voice, 16_pilot_builds_2026-10-16/PILOT_CONTRACT.md",
+   "control": "gate: voice_id must resolve to an admitted registry entry with locale en-IN"
+  },
+  "_lens": "A3"
+ },
+ {
+  "id": "A6-04",
+  "video": "all",
+  "t": "whole video",
+  "evidence": "No sampled frame carries a caption or keyword line: physics t030, t036, t060; chemistry t030, t046, t062; biology t021, t035, t049 and the three contact sheets show only headlines, the think plate and, at the end, the disclosure; the bottom third is otherwise empty. Build notes: physics 'No captions drawn; assumed the lead's VTT', chemistry 'No captions (the lead owns those)', biology 'Contract §3 \"nothing else on screen\" conflicts with … the style guide's caption track (I burned in no captions)'. Blind judges: 'No narration captions in bottom_caption' (judging/chemistry/verdict_visual.json, Opus) and 'Neither build uses the bottom caption zone for a caption track' (judging/biology/verdict_visual.json). tooling/render.py muxes video and mix_norm.wav only.",
+  "problem": "A viewer with the sound off sees 2-3-word headlines; the explanation exists only in the audio. Creators report that feeds autoplay muted and that text overlays help [S44]; Professor Dave highlights keywords [S38]; narration plus on-screen text beat narration alone for second-language viewers in one study [S62]. No India sound-off data was found (A6 §4).",
+  "root_cause": {
+   "layer": "contract + tooling",
+   "location": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 ('Nothing else is written on screen anywhere') conflicts with the style guides' caption track (editorial-vox.md §6 layout table; paper-collage-vertical.md §5.5) and §1 assigns narration/ to the lead, which the builders read as the lead owning captions (their build notes); tooling/narrate.py ('# captions' block) writes only a sidecar VTT and tooling/render.py has no caption step, so nobody owns a burnt-in track."
+  },
+  "effect": "accessibility and reach: muted viewers, deaf and hard-of-hearing viewers and second-language learners lose the narration; keyword emphasis relies on the headline subset alone.",
+  "severity": "major",
+  "fix": {
+   "what": "Own a caption lane: verbatim beat text in chunks of at most 42 characters by 2 lines and 20 characters per second (six words need at least 1.8 s) [S55], with the changed quantity or negation highlighted as the keyword [S38]; exempt caption text from the on-screen-text subset rule; decide burnt-in versus platform captions per channel and test on Shorts and Reels.",
+   "where": "PILOT_CONTRACT.md §3 (caption exemption); 17_professor_diki_simplified/05_DESIGN_SYSTEM.md layouts and design_system/tokens.json lanes (the caption lane exists only in layout 'captioned', and 'carded' (PD-18) excludes captions, so the default layouts still ship none); design_system/components/caption.js",
+   "control": "QA: OCR the caption lane at 2 fps and require caption text on screen for every spoken sentence; caption lint on the text actually shown (see A6-05)."
+  },
+  "_lens": "A6"
+ },
+ {
+  "id": "A3-09",
+  "video": "all",
+  "t": "whole video; phy 46.36–56.60 turn",
+  "evidence": "Tags used: [curious] 5, [calm] 6, [thoughtful] 6, [warm] 3, none 1 (chem b07); only the 4 contract tags, all low-to-medium arousal. Beat median F0 (autocorrelation tracker) falls from the hook (phy 151, chem 159, bio 176 Hz) to the turn (phy 131, bio 143 Hz) and the outro (126–133 Hz). Pre-norm beat RMS spans −22.7 to −24.4 dBFS (chem b02 −26.2). Programme LRA 3.2–3.9 LU. Chem modes 'thoughtful', 'calm', 'warm' are outside the six-mode enum; the guide maps deliberate→[calm], the builds used [thoughtful].",
+  "problem": "The energy curve decays instead of building to the 'aha'; the physics turn ('But always is not safe') is the lowest-pitched teaching beat.",
+  "root_cause": {
+   "layer": "contract + voice registry",
+   "location": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 tag list; 16_pilot_builds_2026-10-16/tooling/pilotlib.py ALLOWED_TAGS; one tag per long multi-intent beat; no mode→tag table enforced"
+  },
+  "effect": "Flat, 'somewhat boring' delivery the founder named; reveals do not feel like reveals (perceptual confirmation needed).",
+  "severity": "major",
+  "fix": {
+   "what": "Tag vocabulary per beat type (direction sheet); split beats at mental-action boundaries so each gets its own tag; audition candidate tags on the chosen voice and admit only those with a measured F0/level/rate change",
+   "where": "16_pilot_builds_2026-10-16/tooling/pilotlib.py ALLOWED_TAGS, 16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3, 16_pilot_builds_2026-10-16/tooling/check_script.py",
+   "control": "QA tag coverage: ≥3 distinct tags; reveal/turn beat F0 median ≥ video median +1 st or RMS +1 dB"
+  },
+  "_lens": "A3"
+ },
+ {
+  "id": "A5-02",
+  "video": "all (templates)",
+  "t": "n/a",
+  "evidence": "Authored literals outside the builds: 'ExamLeaf practice question' on screen at 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md:198,425, 15_content_engine_v2/FORMAT_REGISTRY.md:109, 15_content_engine_v2/subsystems/INTERACTION_and_ASSESSMENT_REGISTRY.md:159, 15_content_engine_v2/subsystems/VISUAL_STYLE_and_ANIMATION_REGISTRY.md:228 and spoken at 15_content_engine_v2/subsystems/VOICE_and_PERSONA_REGISTRY.md:416; 'ExamLeaf brand voice / ExamLeaf voice / ExamLeaf audio logo' at 11_human_feel_voice_audio_research/PLAYBOOK_human_crafted_vertical_video.md:52 and 11_human_feel_voice_audio_research/REPORT_human_crafted_feel_vertical_videos.md:19,74,185; sonic motif id music/motif-examleaf at 15_content_engine_v2/subsystems/MUSIC_and_SOUND_REGISTRY.md:25; 'EXAMLEAF' drawn top-left on every frame by 04_video_engine/implementation_v2/src/examleaf/visuals.py:78 (8 proof MP4s and 32 SVGs in outputs/); playbook brief C03 script 'ExamLeaf connects the explanation to the practice' (PDF p.27). Five more are commerce or product-demo copy to confirm: C02 (p.26), C13 (p.30) and the title 'How One ExamLeaf Question Links to Its Explanation' at 07_end_to_end_pipeline_instructions/05_SHORTS_and_REELS_PROCEDURE.md:92, 01_business_model/REEL_BACKLOG_36.md:164, 01_business_model/FULL_business_model_launch_financial_plan.md:369.",
+  "problem": "The brand is baked into video templates, voice naming and the sonic-logo id, so any new video that uses these slots shows or speaks ExamLeaf even after the contract is fixed.",
+  "root_cause": {
+   "layer": "registries, legacy renderer and playbook briefs",
+   "location": "the files and lines listed in evidence"
+  },
+  "effect": "Brand regression on every original-question video, every speech-to-speech voice credit, the sonic logo and any revived legacy render.",
+  "severity": "major",
+  "fix": {
+   "what": "Replace with 'Original practice question', 'the Professor Diki Simplified voice', music/diki-end-motif (PD-11) and the lockup text; delete the C03 sentence and keep its no-guarantee clause; keep ExamLeaf only in the five commerce items after the founder confirms their scope; record a ledger row.",
+   "where": "the listed files; 15_content_engine_v2/DECISIONS_CE.md (ledger row)",
+   "control": "brand_check.py repo mode over 15_content_engine_v2, 12_advanced_animations_with_claude, 16_pilot_builds_2026-10-16 and 17_professor_diki_simplified/skills, with an allowlist (examleaf-* skill ids, paths, schema titles, 'Published by ExamLeaf.')."
+  },
+  "_lens": "A5"
+ },
+ {
+  "id": "A1-18",
+  "video": "biology",
+  "t": "00:00-00:07",
+  "evidence": "'A banyan tree can weigh more than a herd of elephants.' (204 wpm). Frames t004-t007: one small elephant beside the tree, no weighing.",
+  "problem": "Spoken 'herd' versus one drawn elephant; the comparison is never visualised. The hook is the fastest beat in all three videos. The node type 'hook_colour' is outside the schema and sidesteps closure.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §8 fixture rule + builder",
+   "location": "'Never put a number on screen that is not a fixture field' turned 'fifty' into 'herd' and one elephant; no hook-colour policy"
+  },
+  "effect": "perceived quality, comprehension of scale",
+  "severity": "major",
+  "fix": {
+   "what": "Fixture the comparison (banyan mass estimate vs elephant mass, sourced) or say what is drawn: 'heavier than this elephant, many times over'; slow to ≤ 160 wpm.",
+   "where": "biology script.json b01, lesson_graph (replace hook_colour with a sourced CLM or SIM); 16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3",
+   "control": "check_script rejects node types not in the schema; pace check per beat ≤ 165 wpm."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-19",
+  "video": "biology",
+  "t": "00:04-00:13",
+  "evidence": "Hook: 'where did all that wood come from?' Predict: 'Where did the carbon in that wood come from...?'",
+  "problem": "The question shifts from wood to carbon with no bridge; a weak learner does not know wood is built from carbon.",
+  "root_cause": {
+   "layer": "script",
+   "location": "biology script.json b01/b02"
+  },
+  "effect": "comprehension",
+  "severity": "major",
+  "fix": {
+   "what": "One bridge sentence: 'Wood is made mostly of sugar chains, and sugar is built on carbon. So where did the carbon come from?'",
+   "where": "biology script.json b02",
+   "control": "Reviewer rubric: every noun in the predict question is introduced by an earlier beat or the level glossary."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-20",
+  "video": "biology",
+  "t": "00:19-00:47",
+  "evidence": "After the window, b03 opens 'Green plants make their own food.' 'Air' is implied at 00:23 ('enters from the air'); the explicit answer comes at 00:47, 28 s after the window.",
+  "problem": "The learner's prediction is not answered when they want it; the interaction loop (ask → attempt → answer → repair) breaks.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 + builder",
+   "location": "§3 does not require the first post-window sentence to answer; SQ-23 is concept_intro-only and report-only"
+  },
+  "effect": "confidence, attention",
+  "severity": "major",
+  "fix": {
+   "what": "First sentence after the window: 'The air. Most of that wood came out of thin air.' Then explain how.",
+   "where": "biology script.json b03; 16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 (beat after check.predict opens with the answer)",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: the beat after check.predict must cite the ASM via answers_after and contain the ASM.answer key token in its first sentence."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-21",
+  "video": "biology",
+  "t": "00:23-00:40",
+  "evidence": "'through stomata', 'absorbed by chlorophyll', 'making glucose', 'Count the carbon: six atoms on each side'. Frames t035-t040 show 'C6 = C6' with no highlight linking the C in CO₂ to glucose.",
+  "problem": "Three terms with no plain meaning (tiny leaf pores, the green pigment, a sugar) and an unscaffolded formula count (reading 6CO₂ and C₆H₁₂O₆).",
+  "root_cause": {
+   "layer": "script + SQ-07 report-only",
+   "location": "no term-definition rule; storyboard has no tracer for carbon atoms"
+  },
+  "effect": "comprehension for weak foundations",
+  "severity": "major",
+  "fix": {
+   "what": "'stomata, tiny pores in the leaf'; 'chlorophyll, the green colour'; 'glucose, a sugar'. Highlight each C as it moves from CO₂ into glucose.",
+   "where": "biology script.json b03/b04; storyboard s03 tracer",
+   "control": "SQ-26 term rule; SQ-22 shown extension."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-22",
+  "video": "biology",
+  "t": "00:40-00:52",
+  "evidence": "'Many think a plant is built from soil. But soil mainly gives water and minerals... About forty percent of glucose, by mass, is carbon.' Frames t041-t042: empty sky under 'Many think'.",
+  "problem": "Confront by assertion, no evidence; it ends on a mass-percentage detour (a new concept) instead of the soil story. The classic evidence (van Helmont's willow: the tree gained tens of kilograms over five years while the soil lost only grams) is absent.",
+  "root_cause": {
+   "layer": "brief + SQ-23",
+   "location": "biology/brief.md suggested the 40 % line; SQ-23 report-only; MIS confront has no evidence requirement"
+  },
+  "effect": "trust, retention, Aha",
+  "severity": "major",
+  "fix": {
+   "what": "Replace the 40 % sentence with the willow story as the evidence (sourced, reviewed): 'Five years, the tree gained about seventy kilos; the soil lost only about fifty-seven grams.'",
+   "where": "biology lesson_graph (sourced CLM, academic review), script b05, fixture",
+   "control": "SQ-23 requires a sourced observation or fixture counter-value in every confront."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-M5",
+  "video": "biology",
+  "t": "00:42-00:52",
+  "evidence": "'But soil mainly gives water and minerals; the carbon in wood comes from the air. About forty percent of glucose, by mass, is carbon.'",
+  "problem": "The strongest payoff in the set, that a tree is built mostly out of air, is buried after a semicolon, comes 28 s after the window, and is immediately buried again under a new number.",
+  "root_cause": {
+   "layer": "script + brief",
+   "location": "b05 sentence order; the 40 % line comes from the brief"
+  },
+  "effect": "Aha, momentum",
+  "severity": "major",
+  "fix": {
+   "what": "Payoff-sentence rule: the answer to the hook question is its own sentence of ≤ 8 words, spoken within 3 s of the window ending or as the climax of the confront, followed by a ≥ 0.8 s pause and no new number in that beat ('The air. Your tree is built from air.').",
+   "where": "biology script.json b03/b05; 16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 beat rules",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: locate the sentence carrying ASM.answer; check word count ≤ 8, pause_after ≥ 0.8 s, no fixture number in the same beat after it."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-23",
+  "video": "biology",
+  "t": "00:47-01:00",
+  "evidence": "No sentence says glucose is built into cellulose/wood; recap: 'So a tree's carbon came from the air.' Board resets to an empty mound t053-t054.",
+  "problem": "The causal chain air → sugar → wood stays implicit, although CLM-carbon-from-air holds it in its reasoning field.",
+  "root_cause": {
+   "layer": "script",
+   "location": "biology script.json b05/b06"
+  },
+  "effect": "comprehension, transfer",
+  "severity": "major",
+  "fix": {
+   "what": "'The plant strings glucose into cellulose, and cellulose is wood.' Show a labelled tracer, not a reaction.",
+   "where": "biology script.json; storyboard s04/s05",
+   "control": "Closure check: every reasoning step of a cited key CLM must be spoken or shown."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A2-08",
+  "video": "biology, chemistry",
+  "t": "biology 33-66; chemistry 23-49",
+  "evidence": "frames/biology/t038.jpg, t060.jpg (C₆H₁₂O₆ subscripts ≈ 20 px tall at 1080, ≈ 7 px on a 360 px phone); chemistry/t042.jpg (ledger atoms ≈ 36 px circles, thin hollow H)",
+  "problem": "Science glyphs are below legibility: the glucose subscripts are Unicode subscript code points, and the chemistry ledger atoms are tiny.",
+  "root_cause": {
+   "layer": "fixture/tokens",
+   "location": "16_pilot_builds_2026-10-16/biology/opus fixture display.glucose = \"C₆H₁₂O₆\" (Unicode subscripts) set at --eq:72px in scenes/s03.html; the tokens typography_px_at_1080.minimums_px cover only label/equation/heading, with no subscript or glyph floor; QA A4 checks zones, not glyph size"
+  },
+  "effect": "A learner cannot read the formula that carries the carbon count, and the 6=6 claim cannot be checked by eye.",
+  "severity": "major",
+  "fix": {
+   "what": "Typeset formulas with one math component (KaTeX or <sub> at ≥ 0.65 em, ≥ 40 px rendered). Add the token minimums_px.subscript = 40 and minimums_px.atom_glyph = 56.",
+   "where": "tokens typography_px_at_1080.minimums_px; shared formula component",
+   "control": "QA glyph_size: render bounding boxes of every data-fx glyph incl. sub/superscripts; fail below the minimum"
+  },
+  "_lens": "A2"
+ },
+ {
+  "id": "A1-13",
+  "video": "chemistry",
+  "t": "00:04-00:08",
+  "evidence": "'H two plus O two gives H two O.' No sentence says the small 2 belongs to H only, or that H₂ is a pair of joined atoms.",
+  "problem": "The prerequisite (reading subscripts) is assumed. Super Teacher Step 3 names exactly this prerequisite for this topic.",
+  "root_cause": {
+   "layer": "Super Teacher guide gap",
+   "location": "Step 3 prescribes a 30-60 s repair, which cannot fit a 60 s video; no short-format rule"
+  },
+  "effect": "comprehension for weak foundations",
+  "severity": "major",
+  "fix": {
+   "what": "One 3 s repair sentence on the molecule picture: 'H two: two hydrogen atoms stuck together.'",
+   "where": "03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Step 3 (add a short-format rule: one ≤ 8-word prerequisite sentence on the visual)",
+   "control": "Lesson graph field prerequisite_repair required for concept_intro; check_script verifies a beat cites it."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-12",
+  "video": "chemistry",
+  "t": "00:08-00:22",
+  "evidence": "Hook: 'Count the atoms. Did an atom just vanish?' Predict: 'Count the oxygen atoms on each side. Which side is short?' Molecules on screen show 2 vs 1 teal atoms; 5.56 s silence.",
+  "problem": "The hook already sets the same counting task and hints at the answer (something vanished on the right). The predict is a two-option choice visible in the picture, so the window is longer than the task.",
+  "root_cause": {
+   "layer": "script + think_window default",
+   "location": "builder rewrote the brief hook; think_window_s fixed at 5 (contract §3 4-6)"
+  },
+  "effect": "attention (dead time), perceived pace",
+  "severity": "major",
+  "fix": {
+   "what": "Hook asks a different question ('Hydrogen plus oxygen gives water. Is anything missing?') and the predict asks for a number ('How many oxygen atoms on the right?') with a 2-3 s window.",
+   "where": "chemistry script.json b01/b02; 16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 think window",
+   "control": "Window length from task_kind (see A1-29)."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-M4",
+  "video": "chemistry",
+  "t": "00:11-00:48",
+  "evidence": "Effort: 'Which side is short?' while the picture already shows 2 vs 1. Payoff: 'Four and four. Balanced.' at 00:47, done by the narrator.",
+  "problem": "Curiosity ('Did an atom just vanish?') is good, but the learner's effort is trivial and the satisfying act (balancing) is done for them, so the success is not theirs.",
+  "root_cause": {
+   "layer": "script",
+   "location": "b02 task too easy; b04 fully worked, no faded step"
+  },
+  "effect": "motivation, confidence",
+  "severity": "major",
+  "fix": {
+   "what": "Fade the worked step: the narrator fixes oxygen, then asks 'Hydrogen is two on the left, four on the right. What goes in front of H₂?' (3 s window), then 'Two. Balanced, and you did that one.' This can double as the transfer if time is short.",
+   "where": "chemistry script.json b02/b04",
+   "control": "check_script: in a worked.step with ≥ 2 changes, the last change is posed to the learner (worked.faded_twin) unless a check.transfer follows."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-14",
+  "video": "chemistry",
+  "t": "00:30-00:32, 00:55-00:59",
+  "evidence": "'That is the law of conservation of mass.' 'Change the coefficients in front, never the subscripts inside.' First use of 'coefficients' and 'subscripts'; frames t051-t060 highlight the subscript but never label 'coefficient' or 'subscript'.",
+  "problem": "The exam terms arrive inside a prohibition, never pointed at. 'Mass' is named although the beat is about atoms.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 slot grammar",
+   "location": "concept_intro has no explain.definition slot ('plain meaning first, then the exam term', SR §3)"
+  },
+  "effect": "exam readiness, comprehension",
+  "severity": "major",
+  "fix": {
+   "what": "Name the term on the thing: 'This big two in front is a coefficient: it means two whole molecules.' Label it on screen.",
+   "where": "chemistry script.json b04; 16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3; storyboard label",
+   "control": "SQ-26 (term defined at first use) plus SQ-22 'shown' extension for VOC terms."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-15",
+  "video": "chemistry",
+  "t": "00:36-00:48",
+  "evidence": "'Put a two in front of water. Oxygen: two and two. Hydrogen is four on the right, so put a two in front of hydrogen.'",
+  "problem": "The recount is good, but the decisions are hidden: why fix water, why two, why hydrogen became four (2 molecules × 2 atoms). Three changes in 12 s.",
+  "root_cause": {
+   "layer": "script + SQ-24",
+   "location": "SQ-24 requires a recount, not the decision behind each change"
+  },
+  "effect": "comprehension, transfer to new equations",
+  "severity": "major",
+  "fix": {
+   "what": "'Oxygen is short on the right, so make more water: two waters. Two waters carry four hydrogens, so now hydrogen is short on the left.'",
+   "where": "chemistry script.json b04; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md SQ-24 (add 'names the reason for each change')",
+   "control": "Reviewer rubric: each worked.step sentence that changes a quantity contains a reason clause."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A6-02",
+  "video": "chemistry",
+  "t": "00:36-00:59",
+  "evidence": "b04 turns two coefficients (36.8-48.7 s: 'Put a two in front of water … put a two in front of hydrogen'; the tally recounts at t038 and t046) while no spoken word, and no sampled frame t007-t046, marks the subscripts as fixed. The pin is spoken only in b05, after the release: 'Why not write H two O two? That is hydrogen peroxide' (49.4-55.3 s), then 'Change the coefficients in front, never the subscripts inside' (55.4-59.3 s). The H₂O₂ board first shows at t051 and the subscript highlight at t052.",
+  "problem": "The pin (subscripts stay) is declared after both the turn (coefficients) and the release (peroxide), so the release lands as a new fact and not as the pin slipping. A6 §6 for balancing: pin the subscripts in H₂O, turn a coefficient while the atom tally answers, release once by editing a subscript. Weak subscript grasp makes learners break the rule [S28]. Technique 3 and 4.",
+  "root_cause": {
+   "layer": "contract + script",
+   "location": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 slot grammar has no pin slot, so the subscript rule landed at the end of the confront beat (chemistry/opus/script.json b05); Kit skill §3 slot s04 provides a changed-subscript highlight but no marker for subscripts that stay fixed."
+  },
+  "effect": "comprehension and exam errors: the learner meets 'coefficients only' as a prohibition after the fix, not as the held condition of the fix, so the rule is stored as a fact about H₂O₂ and not as the frame for balancing [S28].",
+  "severity": "major",
+  "fix": {
+   "what": "Mark the subscripts as pinned in the first 8 s (a pin badge on each small 2: 'two atoms stuck together'), say 'coefficients change, subscripts stay', turn one coefficient at a time with the tally answering, release once by editing a subscript (H₂O to H₂O₂) and name the new substance, then restate the rule with the pin's name.",
+   "where": "chemistry lesson_graph (place CLM-subscript-identity before the worked step); 03_PROFESSOR_DIKI_SCRIPT_FRAMEWORK.md §4.1; skills/professor-diki-script/SKILL.md; references/script_v2_fields.md (pin, turn, release)",
+   "control": "Same check as A6-01 (pin precedes the first turn, one turn per beat, one release that restates the rule); cue sheet: a pin element for the subscripts exists from 8 s at the latest to the release beat."
+  },
+  "_lens": "A6"
+ },
+ {
+  "id": "A5-07",
+  "video": "physics",
+  "t": "0-71.9 s",
+  "evidence": "C01 (playbook p.26): hook 'Double the voltage. Does current always double?'; one circuit; constant conditions highlighted; finish with one question; CTA; 45-60 s; R = 2 ohm (1 A and 2 A). Opus: the question starts at 0.6 s inside a 10 s hook beat with an empty board for ~3 s; the circuit is drawn in s01, s02, s04 and absent in s03, s05; the first condition is spoken at 34.4 s ('constant temperature', b04), then 'constant resistance' at 55.4 s (b05); predict at 11-22 s, no closing question; no CTA; 71.9 s; R = 10 ohm (0.2 and 0.4 A); adds the resistance definition, V = I x R and the filament lamp.",
+  "problem": "The video keeps C01's hook and condition idea but drops the closing question and the CTA, states the condition late and under two names, and runs 12 s over.",
+  "root_cause": {
+   "layer": "pilot brief + contract",
+   "location": "16_pilot_builds_2026-10-16_pilot_builds_2026-10-16/physics/brief.md (own fixture and format, not C01); PILOT_CONTRACT §3"
+  },
+  "effect": "Intent drift: the first playbook test cell (C01) is not what was built, and nothing checks conformance to a brief.",
+  "severity": "major",
+  "fix": {
+   "what": "Make the playbook brief and the build agree: one fixture shared by the brief, the Short and the free lesson (C01 text says 2 ohm; the pilot and the lead's sample use 10 ohm, so edit one side once), the condition said within the first 8 s and named once, one closing transfer question, the CTA, 60 s. Keep the filament lamp only if it is the boundary of the one idea and fits.",
+   "where": "physics/brief.md; 17_professor_diki_simplified/demo/physics_v2 script; PILOT_CONTRACT §3",
+   "control": "brief_conformance check: a machine-readable row per C0x (hook text, fixture values, condition time, closing question, CTA, max length) diffed against script.json and the cue sheet."
+  },
+  "_lens": "A5"
+ },
+ {
+  "id": "A1-08",
+  "video": "physics",
+  "t": "00:00-00:05",
+  "evidence": "'Does twice the voltage always mean twice the current?' Board empty t001-t004; circuit draws from t005.",
+  "problem": "An abstract textbook question with no object or stakes, spoken over an empty board. It assumes the learner already knows what voltage and current are.",
+  "root_cause": {
+   "layer": "brief + production-rules example",
+   "location": "Creative brief C01 and 02 §I1 example used verbatim"
+  },
+  "effect": "attention in the first 3 s, perceived quality",
+  "severity": "major",
+  "fix": {
+   "what": "Open on a concrete object already drawn: 'One cell lights this bulb. Two cells: twice the current?' or a phone charger; then move to the resistor.",
+   "where": "physics script.json b01; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §9 hook rules (add: hook names a visible object in the first sentence)",
+   "control": "Storyboard gate: first frame with narration must show the hook object (frame t001 non-empty)."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-05",
+  "video": "physics",
+  "t": "00:00-00:45",
+  "evidence": "No sentence gives a picture of why current doubles (push vs. narrowness, flow). Sequence is numbers → ratio → equation.",
+  "problem": "Definition before intuition, against the founder mandate. A learner who cannot picture voltage as a push has nothing to hang 'proportional' on.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 slot grammar",
+   "location": "§3 concept_intro order has no explain.analogy / intuition slot; Super Teacher Step 4 ladder ('familiar observation → visual relationship → plain language → formal') is not enforced"
+  },
+  "effect": "comprehension, retention",
+  "severity": "major",
+  "fix": {
+   "what": "Add an intuition rung before the formal term, e.g. 'Voltage is the push; the resistor is the narrow part. Push twice as hard through the same narrow part and twice as much flows' with its non-mapping spoken ('nothing is used up').",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 slot list (add explain.intuition or explain.analogy before the first formal term); 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §3; ANL contract 03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Step 5",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: the first beat that cites an equation or formal term must be preceded by a beat citing an ANL or a familiar-observation node."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-04",
+  "video": "physics",
+  "t": "00:05-00:07, 00:33-00:45",
+  "evidence": "Hook: 'a resistor of ten ohms'. Then: 'voltage divided by current stays ten ohms at both points. That constant is the resistance: voltage equals current multiplied by resistance.'",
+  "problem": "Circular Aha: the resistor was labelled 10 Ω before any reading, and the currents were computed from it, so 'discovering' V/I = 10 Ω reveals nothing. Three forms of one relation (implied I = V/R, V/I, V = I × R) arrive in 12 s with no transformation shown.",
+  "root_cause": {
+   "layer": "script",
+   "location": "script.json b01/b04; lesson_graph WRK-ohm-two-points step order"
+  },
+  "effect": "Aha moment lost; cognitive load at the densest beat (128 wpm)",
+  "severity": "major",
+  "fix": {
+   "what": "Start with an unlabelled resistor and two meter readings; let the learner see that V ÷ I gives the same number twice; then name it: 'That unchanging number is the resistance, ten ohms.' Use one form (V = I × R) on screen.",
+   "where": "physics script.json + lesson_graph WRK order; 03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Step 6 'tempting interpretation → revealing contrast → fresh prediction'",
+   "control": "Lesson-graph lint: a quantity the video claims to 'discover' may not appear in fx_refs of any earlier beat."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A6-01",
+  "video": "physics",
+  "t": "00:09-00:35",
+  "evidence": "R = 10 Ω is on the board from about 6 s (seen in t010) but is never called held; b01 turns V ('Now we make it four volts', 8.8-10.7 s; t014 shows V = 4 V, I = ?). 'constant' is first spoken at 34.36 s (b04, timeline.json) and the amber 'constant temperature' chip is first on screen at t036 (absent in t034-t035): 24 s after the turn and 5 s after the 0.2 A and 0.4 A readings it governs (spoken 24.5-29.9 s). In between, the cards (t030) show V and I only, and the resistor itself leaves the board at the 22.4 s cut (t022 to t023) and again at 46.4 s (t047). Kit card rule 3 (physics build_notes §4): 'Put the beat's condition … in the same beat as any claim that needs it (SQ-20)'.",
+  "problem": "No quantity is declared held before the first change. R = 10 Ω is a plain label while V turns, and the condition that makes I follow V (constant temperature) arrives after the readings it governs, then comes back as 'constant resistance' at 55.4 s (see A5-07). A6's Pin, Turn, Release grammar needs the pin first, so that one change, one readout and one release read as 'one thing changes, watch what answers'. Technique 3 (pin and turn) and 4 (release the pin).",
+  "root_cause": {
+   "layer": "registry + skill",
+   "location": "15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §15 SQ-20(a) ('same beat or an earlier beat' as the claim) and SQ-22 (glyph on the word where the condition is first spoken) are both satisfied by a late condition; 12_advanced_animations_with_claude/08_production_kit/skills/examleaf-fill-concept-intro/SKILL.md §3 slot s03 ('cond_chip' sits in the compare panel) and rule 3; lesson_graph SIM-constant-temperature is first cited in b04."
+  },
+  "effect": "comprehension and transfer: a weak-foundation learner cannot tell what is held while one quantity changes, so 2 V to 4 V reads as 'more voltage, more current' and not as a controlled test. Control-of-variables training improved performance and transferred [S10]; students doubt that an ohmic R stays fixed as V varies [S11]; the Class 10 practical varies one quantity and reads two [S48, S66].",
+  "severity": "major",
+  "fix": {
+   "what": "Pin before turn: within the first 8 s say and show each held quantity with a named, coloured pin ('Ten ohms, held. Temperature, held.'), then turn exactly one quantity (V 2 to 4 V) with one persistent readout answering, then release once (the heating filament) and restate the rule with the pin's own name. One name for the condition throughout.",
+   "where": "03_PROFESSOR_DIKI_SCRIPT_FRAMEWORK.md §4.1; skills/professor-diki-script/SKILL.md (Step 7 block); references/script_v2_fields.md (new pin, turn, release fields); SCRIPTING_REGISTRY SQ-20 and SQ-22 (the condition glyph must precede the first ChangeValue on the quantity it governs)",
+   "control": "check_pd_script.py: fail unless every pinned quantity is named and shown by 8 s and before the first beat that changes the turned quantity, there is exactly one turned quantity and one release beat, and the release restates the rule with the pin's name. Cue-sheet QA: the pin element is visible in every sample from its beat to the release."
+  },
+  "_lens": "A6"
+ },
+ {
+  "id": "A1-M3",
+  "video": "physics",
+  "t": "00:11-00:57",
+  "evidence": "Effort: 'Pause and predict the current at four volts.' (cannot be answered). Payoff: 'Twice the voltage, twice the current.' [calm] at 00:30. Twist: 'But always is not safe.' [thoughtful], an assertion.",
+  "problem": "Curiosity is opened ('always?') but the effort is blocked, so the payoff confirms a guess the learner could not own. The twist is announced, not revealed: there is no moment where the meter surprises them.",
+  "root_cause": {
+   "layer": "script + slot grammar",
+   "location": "b02 givens missing; b05 asserts rather than shows"
+  },
+  "effect": "motivation, Aha",
+  "severity": "major",
+  "fix": {
+   "what": "Make the effort doable (show 0.2 A). Land the payoff on the meter ('the meter reads 0.4: exactly double'). Stage the twist as a second prediction ('Same trick with a bulb?') answered by the meter reading 0.3.",
+   "where": "physics script.json b01-b05; fixture bulb SIM",
+   "control": "M8 rule (second open question after first payoff) + SQ-25."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-02",
+  "video": "physics",
+  "t": "00:14-00:17, 00:46-00:57",
+  "evidence": "'Then decide whether always is safe.' / 'But always is not safe.' Headline 'always is not safe' on screen t048-t057.",
+  "problem": "Two tasks in one window (compute, then judge a word). Using 'always' as a noun is meta-language a 15-year-old must decode; it reads as a translation. The external audit flagged the same phrase.",
+  "root_cause": {
+   "layer": "brief + PILOT_CONTRACT §3 headline-subset rule",
+   "location": "physics/brief.md (prompt prescribed verbatim); PILOT_CONTRACT §3 'headline words must be a subset of the beat's spoken words' locks the odd phrase onto the screen"
+  },
+  "effect": "comprehension, perceived quality (sounds machine-written)",
+  "severity": "major",
+  "fix": {
+   "what": "One task per window. Hook: 'Twice the voltage: twice the current, every time?' Confront: 'Not every time. Here is a bulb.' Headline 'not every time'.",
+   "where": "physics script.json b02/b05; 16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 (add: check.predict asks exactly one question, ≤ 15 words)",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: count '?' and task verbs in check.predict text; reject >1 question or a quoted word used as a noun."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-03",
+  "video": "physics",
+  "t": "00:22-00:32",
+  "evidence": "'At two volts, the current is zero point two amperes. At four volts, it is zero point four amperes.' Cards fill in I = 0.2 A (t025) with no '2 ÷ 10'; the circuit and ammeter vanish at t023.",
+  "problem": "Numbers are announced, not measured or derived. The learner never sees where 0.2 A comes from (no meter reading, no division). Super Teacher Step 2 'reveal your decisions' is not applied.",
+  "root_cause": {
+   "layer": "script + storyboard",
+   "location": "script.json b03; storyboard s03 replaces the circuit with cards"
+  },
+  "effect": "comprehension (weak learners cannot reproduce the step), retention",
+  "severity": "major",
+  "fix": {
+   "what": "Keep the circuit; read the values off the ammeter ('the meter now reads 0.4'). If a calculation is shown, say the decision: 'Current is voltage shared by resistance: two divided by ten.'",
+   "where": "physics script.json b03; 03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md Step 2 checklist; storyboard rule 'the measuring instrument stays on screen'",
+   "control": "Reviewer rubric item: each explain/worked beat contains at least one spoken decision ('so', 'because', 'that is why')."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-09",
+  "video": "physics",
+  "t": "00:33-00:45",
+  "evidence": "'For this resistor...' spoken while the frame shows only two cards (t023-t046), no resistor.",
+  "problem": "Script points at something the picture no longer shows; the physical referent is lost during the key explanation.",
+  "root_cause": {
+   "layer": "storyboard",
+   "location": "physics/opus/storyboard.md s03"
+  },
+  "effect": "comprehension",
+  "severity": "major",
+  "fix": {
+   "what": "Keep the persistent circuit and place the cards beside it, or say 'for these two readings'.",
+   "where": "physics storyboard s03; contract §4 'persistent diagram' rule",
+   "control": "QA: for every deictic phrase ('this', 'here is') the cued element must be visible at that word's t0."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-07",
+  "video": "physics",
+  "t": "00:46-00:57",
+  "evidence": "'A filament bulb gets hot, so its resistance rises, and the current no longer doubles.' Frames t050-t057: 'R ↑' chip and struck '×2'; no meter value for the bulb.",
+  "problem": "The misconception is confronted by assertion. There is no reading that shows the current failing to double, and 'why it gets hot' is skipped.",
+  "root_cause": {
+   "layer": "brief fixture spec + SQ-23",
+   "location": "physics/brief.md fixture has no bulb data; SQ-23 asks for a 'change glyph', not a measured counter-value"
+  },
+  "effect": "trust, retention (no evidence to remember)",
+  "severity": "major",
+  "fix": {
+   "what": "Add an illustrative, reviewed bulb fixture (e.g. 2 V → 0.2 A, 4 V → 0.3 A, marked SIM with what_is_lost) and show the meter reading 0.3, not 0.4, in the same loop.",
+   "where": "physics fixtures/compute.py + lesson_graph SIM node (academic review); 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §15 SQ-23 (require a fixture-bound counter-value)",
+   "control": "SQ-23 detector: the confront scene must bind ≥1 results.* field that differs from the worked case."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-06",
+  "video": "physics",
+  "t": "00:58-01:05",
+  "evidence": "'So, for a conductor at constant temperature, current is proportional to voltage...' First use of 'conductor' (resistor until then) and of 'proportional'. 'Potential difference' and 'ohmic', both named in the brief, are never said.",
+  "problem": "New terms appear for the first time in the recap; the noun changes from resistor to conductor without notice. The NCERT exam statement uses 'potential difference' and 'directly proportional', which the learner never hears explained.",
+  "root_cause": {
+   "layer": "script + SCRIPTING_REGISTRY §5/SQ-07",
+   "location": "SQ-07 register check is report-only; no rule bans new terms in recap.statement; concept_intro grammar has no explain.definition slot"
+  },
+  "effect": "comprehension, exam readiness",
+  "severity": "major",
+  "fix": {
+   "what": "Introduce 'potential difference (voltage)' and 'directly proportional (double one, the other doubles)' in plain words at first use; keep one noun; recap repeats only terms already defined.",
+   "where": "physics script.json b04/b06; lesson_graph add VOC nodes; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §15 new SQ-26 'no new term in recap; every VOC term gets plain meaning at first use'",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: collect content words per beat; flag any VOC term whose first occurrence is in recap.statement."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A2-03",
+  "video": "physics",
+  "t": "46.3-49.8",
+  "evidence": "frames/physics/t047.jpg, t048.jpg, t049.jpg",
+  "problem": "The s04 loop is redrawn with a gap where the resistor was, so for about 3.5 s the screen shows an open circuit while the voice says 'But always is not safe'. The bulb only appears on 'filament'.",
+  "root_cause": {
+   "layer": "scene_code/storyboard",
+   "location": "16_pilot_builds_2026-10-16/physics/opus/scenes/s04.html (#circuit drawn from empty; #bulb reveal cued to 'filament'); storyboard.md row s04 'bulb <- filament'"
+  },
+  "effect": "It shows physically wrong information (no current can flow), and it wastes the opening of the exception beat.",
+  "severity": "major",
+  "fix": {
+   "what": "Swap the component in place on the persistent board (SwapPart verb: resistor fades to bulb in 300 ms on 'filament') and never redraw unchanged structure.",
+   "where": "scene_template motion verbs; storyboard schema",
+   "control": "QA structural check: a circuit fixture must be a closed loop in every frame where it is visible (all nodes connected)"
+  },
+  "_lens": "A2"
+ },
+ {
+  "id": "A3-M4",
+  "video": "physics, biology",
+  "t": "phy window end 22.50 → 27.89 (0.4 A) and → 46.44–53.64 ('always'); bio 18.87 → 23.24 ('air') → 37.34 / 47.34",
+  "evidence": "Physics: the numeric part of the prediction pays off 5.4 s after the window (good), but the 'is always safe?' part pays off 24–31 s later. Biology: the answer is implied 4.4 s after the window ('from the air'), stated 18.5 s after ('all from carbon dioxide'), and stated again 28.5 s after ('the carbon in wood comes from the air'), with the 40 % detour in between. Chemistry: answered 4.0 s after the window ('Right: only one'), but the hook already half-answered it. No video confirms the learner's prediction ('If you said 0.4 A, you were right').",
+  "problem": "The payoff is diffuse or delayed, so the learner never gets a clear 'I called it' moment.",
+  "root_cause": {
+   "layer": "script beat rules",
+   "location": "script.json beat/slot rules (16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md): no payoff-placement rule; the predict prompt may hold two questions"
+  },
+  "effect": "Lost reward moment, which is the core motivation loop.",
+  "severity": "major",
+  "fix": {
+   "what": "One question per prediction; the answer lands ≤ 3 s after the window, as a short standalone line plus an explicit confirmation ('If you said air: right.'), followed by the why",
+   "where": "scripting framework, check_script.py",
+   "control": "gate: answer word t0 − window end ≤ 3.0 s; one '?' per check.predict"
+  },
+  "_lens": "A3"
+ },
+ {
+  "id": "A2-13",
+  "video": "physics, biology",
+  "t": "physics 57.4-71.9; biology 52.3-67.1",
+  "evidence": "frames/physics/t061-t072 (tick + 'constant temperature' + boxed V = I × R + bare zigzag); biology/t056-t067 (small tree + equation tags); compare chemistry/t063 (balanced equation, molecule copies, H 4 = 4, O 2 = 2)",
+  "problem": "The physics and biology recaps are not real summaries. The physics recap drops the 2→4 V, 0.2→0.4 A result and the lamp boundary. The biology recap shrinks the tree and repeats the equation without the carbon path. Chemistry's recap is a good summary.",
+  "root_cause": {
+   "layer": "template",
+   "location": "Kit card §3 recap archetype 'ticks, disclosure.lines' (physics build_notes.md); recap scenes built from scratch rather than as the board's final state"
+  },
+  "effect": "There is no consolidation image to remember, and the recap is the frame most likely to be screenshotted.",
+  "severity": "major",
+  "fix": {
+   "what": "The recap is the persistent board in its final state, with the changed quantity highlighted, plus one result line in the result area.",
+   "where": "scene_template recap archetype; storyboard schema",
+   "control": "QA recap_coverage: the recap frame contains ≥ 70% of the data-role elements introduced in the explanation beats"
+  },
+  "_lens": "A2"
+ },
+ {
+  "id": "A4-06",
+  "video": "all",
+  "t": "",
+  "evidence": "Template buildText reveals one span per spoken word; buildCues scale 0.6→1 backOut; physics s01 words translateY/scale backOut and headline fades out at beat end.",
+  "problem": "Headlines write slowly and vanish each beat; measured quantities pop with elastic overshoot.",
+  "root_cause": {
+   "layer": "template default",
+   "location": "12_advanced_animations_with_claude/04_harness_contract/scene_template.html buildText/buildCues; 16_pilot_builds_2026-10-16/physics/opus/scenes/s01.html render()"
+  },
+  "effect": "Slow reading start, per-beat title resets, playful motion on science values.",
+  "severity": "minor",
+  "fix": {
+   "what": "Headline whole on first word (200 ms fade), persists until replaced; reveals cubicOut opacity 180–300 ms; lint F15 bans backOut/scale/translate on [data-fx] and headline spans.",
+   "where": "scene_template.html; lint_seek_contract.js",
+   "control": "rung 1 template default + rung 3 lint"
+  },
+  "_lens": "A4"
+ },
+ {
+  "id": "A4-07",
+  "video": "all",
+  "t": "",
+  "evidence": "tokens: insets top 250 / bottom 450, shares 0.22/0.54/0.24 → middle_visual y 518–1177 (659 px, 34 % of frame); caption zone holds no captions (both judge panels).",
+  "problem": "Explanatory content is small.",
+  "root_cause": {
+   "layer": "tokens",
+   "location": "12_advanced_animations_with_claude/04_harness_contract/vertical_safe_zones.tokens.json zones; Kit R-023 min_fill 'proposed'"
+  },
+  "effect": "Diagrams and labels read small on phones; reserved area stays empty.",
+  "severity": "minor",
+  "fix": {
+   "what": "Tokens 2.0 shares 0.16/0.66/0.18 when no burned captions; zones.middle_visual.min_fill 0.7.",
+   "where": "tokens; scene_template.html mirror; qa.py new A18 hero_size (≥ 0.70)",
+   "control": "rung 1 token default + rung 3 validator"
+  },
+  "_lens": "A4"
+ },
+ {
+  "id": "A4-10",
+  "video": "all",
+  "t": "",
+  "evidence": "Biology brief asks about 'the carbon in the wood', claims 'most dry mass is carbon', offers 'about forty percent'; fixture computes carbon in glucose; physics brief 'decide whether always is safe'.",
+  "problem": "Wood→carbon question mismatch, 40 % detour and stiff phrasing were seeded by the briefs.",
+  "root_cause": {
+   "layer": "brief authoring (no brief gate)",
+   "location": "16_pilot_builds_2026-10-16/biology/brief.md, physics/brief.md; biology/opus/build_notes.md §4 rule 4"
+  },
+  "effect": "Builders inherited an off-chain fact and a question that does not match its answer.",
+  "severity": "minor",
+  "fix": {
+   "what": "Brief gate: question_target named by hook, predict answer and confront answer; every spoken fixture value on_chain: true.",
+   "where": "examleaf-anim-brief / brief schema; new brief_check.py",
+   "control": "rung 2 schema + rung 3 validator (regression: biology brief fails)"
+  },
+  "_lens": "A4"
+ },
+ {
+  "id": "A4-14",
+  "video": "all",
+  "t": "",
+  "evidence": "Per-beat wpm 128–162 inside one video (measurements.json); qa A8 checks only the whole-video mean 125–160.",
+  "problem": "Pacing is not checked per beat or by purpose (dense vs recap).",
+  "root_cause": {
+   "layer": "validator coverage",
+   "location": "16_pilot_builds_2026-10-16/tooling/qa.py A8; SCRIPTING_REGISTRY.md §2 bands (ordinary/dense/recap) not applied in pilot"
+  },
+  "effect": "Uniform delivery; dense beats are not slowed and recaps are not quickened.",
+  "severity": "minor",
+  "fix": {
+   "what": "Each beat carries a pace band; check per-beat wpm against its band ±5 %.",
+   "where": "script schema; qa.py new A21 beat_pacing",
+   "control": "rung 2 schema + rung 3 validator"
+  },
+  "_lens": "A4"
+ },
+ {
+  "id": "A3-06",
+  "video": "all",
+  "t": "0.00–0.70 s",
+  "evidence": "First word at 0.70–0.71 s in all three (LEAD_IN_S 0.6 + provider head 0.10–0.12 s). Judges add a 3–3.5 s empty board at the physics open.",
+  "problem": "The scroll-stop moment opens on silence.",
+  "root_cause": {
+   "layer": "tooling",
+   "location": "16_pilot_builds_2026-10-16/tooling/narrate.py LEAD_IN_S = 0.6"
+  },
+  "effect": "Weaker hook retention in the first second.",
+  "severity": "minor",
+  "fix": {
+   "what": "LEAD_IN_S = 0.15 and trim provider head, so the first word starts ≤0.3 s; the first frame already shows the hook visual",
+   "where": "16_pilot_builds_2026-10-16/tooling/narrate.py",
+   "control": "QA: first word t0 ≤ 0.30 s"
+  },
+  "_lens": "A3"
+ },
+ {
+  "id": "A3-10",
+  "video": "all",
+  "t": "bio 47.34 ('air'), 11.44 ('air'); phy 47.64 ('not'), 9.72 ('four'), 1.08/3.00 ('twice')",
+  "evidence": "Word level vs beat median (alignment windows, ±80 ms): bio b05 reveal word 'air' −7.1 dB, bio b02 'air' −5.3 dB; phy b05 'not' −0.4 dB, 0.16 s; phy b01 changed value 'four' 0.16 s, the same as 'two', and 'twice' −2.5/−2.0 dB. Phy b03 'four' +4–5 dB and chem b04 'four' +4.6 dB do land.",
+  "problem": "Where the changed quantity or reveal word ends its sentence, declination drops it below the beat median.",
+  "root_cause": {
+   "layer": "script schema + contract",
+   "location": "script.json has no emphasis field (05 schema has direction.emphasis); v4 has no emphasis control; scripting rules do not keep the key word out of the falling sentence end"
+  },
+  "effect": "The one word the learner must notice is the quietest (perceptual confirmation needed).",
+  "severity": "minor",
+  "fix": {
+   "what": "emphasis_words field per beat; script rule: put the changed quantity in a short standalone sentence ('Four volts.') or before the final word; regenerate a beat that fails",
+   "where": "script.json schema, scripting framework, QA",
+   "control": "QA: each emphasis word RMS ≥ beat median and duration ≥ beat median per syllable"
+  },
+  "_lens": "A3"
+ },
+ {
+  "id": "A3-15",
+  "video": "all",
+  "t": "every beat",
+  "evidence": "Provider word end times run 0.08 s past the audio file end on 18 of 21 beats (file lengths are multiples of 0.08 s); first-word t0 trails energy onset by 0.04–0.34 s.",
+  "problem": "Cue anchors can sit 1–3 frames late against the audio.",
+  "root_cause": {
+   "layer": "tooling",
+   "location": "16_pilot_builds_2026-10-16/tooling/narrate.py align_words trusts provider times"
+  },
+  "effect": "Small reveal-sync drift.",
+  "severity": "minor",
+  "fix": {
+   "what": "Snap first/last word to the energy onset/offset; report the offset",
+   "where": "16_pilot_builds_2026-10-16/tooling/narrate.py",
+   "control": "QA: |alignment − energy edge| ≤ 2 frames"
+  },
+  "_lens": "A3"
+ },
+ {
+  "id": "A3-04",
+  "video": "all",
+  "t": "every inter-beat gap and the think window",
+  "evidence": "narrate.py writes b'\\x00\\x00' between beats: gaps are exact digital zero, while the beat files have a −86 to −88 dBFS floor. The playbook (Step 8) asks for room tone, never digital silence.",
+  "problem": "Voice-to-silence transitions are hard gates; on headphones that can read as a dropout (perceptual check needed; I cannot listen).",
+  "root_cause": {
+   "layer": "tooling",
+   "location": "16_pilot_builds_2026-10-16/tooling/narrate.py mix writer (writeframes of zeros)"
+  },
+  "effect": "Small artificial feel at every join.",
+  "severity": "minor",
+  "fix": {
+   "what": "Fill gaps with a seeded room-tone loop at about −60 dBFS (or the measured beat floor), with 10 ms fades at beat edges",
+   "where": "16_pilot_builds_2026-10-16/tooling/narrate.py",
+   "control": "QA: no run of exact-zero samples > 50 ms inside the programme"
+  },
+  "_lens": "A3"
+ },
+ {
+  "id": "A2-17",
+  "video": "all",
+  "t": "every scene boundary",
+  "evidence": "frames/biology/t006->t008 and t018->t020 (background strips change layout); chemistry/t049->t050 (cut to blank); physics headline fades 0.2 s before each cut",
+  "problem": "Transitions are hard cuts between independently rendered scenes. The backgrounds jump, and no transition expresses a relation.",
+  "root_cause": {
+   "layer": "render",
+   "location": "render/concat.txt (ffmpeg concat of s0N.mp4); paper-collage sheet transitions specified but not used"
+  },
+  "effect": "Cuts feel like slides changing rather than one continuous explanation.",
+  "severity": "minor",
+  "fix": {
+   "what": "No cuts inside a video. Continuity comes from the persistent board, with an occasional camera reframe (zoom to a part) as the only transition verb.",
+   "where": "render pipeline; scene_template",
+   "control": "QA: frame-to-frame background difference at beat boundaries below threshold"
+  },
+  "_lens": "A2"
+ },
+ {
+  "id": "A5-12",
+  "video": "all",
+  "t": "n/a",
+  "evidence": "11_human_feel_voice_audio_research/PLAYBOOK_human_crafted_vertical_video.md §6.3 (lines 499, 504, 507) puts a short logo at the lesson cold open and a full logo plus bed at outro and CTA; MUSIC_and_SOUND_REGISTRY L4 (line 35) puts logo-core-short at the open of F1; the founder mandate and the external audit §21 ask for no opening jingle and one 0.4-0.8 s end motif. The Opus mixes are voice only (narrate.py has no music or logo code), so no sonic brand exists yet; the id music/motif-examleaf (MUSIC:25) names the old brand.",
+  "problem": "Documents still prescribe an opening logo and a 1.5-3 s outro logo, and name the old brand in the motif id; the new identity needs one short end motif, renamed.",
+  "root_cause": {
+   "layer": "MUSIC registry + playbook 11",
+   "location": "15_content_engine_v2/subsystems/MUSIC_and_SOUND_REGISTRY.md:25,35,53-57; 11_human_feel_voice_audio_research/PLAYBOOK_human_crafted_vertical_video.md:296,450,499-507"
+  },
+  "effect": "Audio identity and runtime.",
+  "severity": "minor",
+  "fix": {
+   "what": "Shorts and long lessons use the end motif only (L3/L4 rewritten); id music/diki-end-motif (PD-11); never over speech or a spoken number.",
+   "where": "MUSIC_and_SOUND_REGISTRY.md; 11_human_feel_voice_audio_research/PLAYBOOK_human_crafted_vertical_video.md §6.3",
+   "control": "Cue-sheet validator: motif <= 0.8 s, starts after the last word, no overlap with words[]."
+  },
+  "_lens": "A5"
+ },
+ {
+  "id": "A5-14",
+  "video": "all",
+  "t": "n/a",
+  "evidence": "12_advanced_animations_with_claude/07_benchmark_and_pilot_plan/PILOT_three_test_lessons.md:92 'End card (brand and call to action text)'; 12_advanced_animations_with_claude/06_prompts_and_templates/negative_tests.md:712 says the end card can say where to find the book; Production Kit skeleton:11 and PILOT_CONTRACT:79 forbid promotional text; 07_end_to_end_pipeline_instructions/05_SHORTS_and_REELS_PROCEDURE.md SH5 and 12_advanced_animations_with_claude/05_style_guides/doodle-handdrawn.md:168 specify a CTA card; PACKAGING:237 puts the disclosure line on the end card.",
+  "problem": "Five documents disagree on what an end card may contain, and one invites commerce onto an educational card.",
+  "root_cause": {
+   "layer": "templates",
+   "location": "the files and lines in evidence"
+  },
+  "effect": "Builders improvise; QA cannot test one rule.",
+  "severity": "minor",
+  "fix": {
+   "what": "One end-card spec: brand line, path disclosure line, 'Free lesson: {topic}'; forbid URL, QR, handle, price and book-finding text; rewrite the negative-test answer.",
+   "where": "17_professor_diki_simplified/design_system end card; negative_tests.md:712; PILOT_three_test_lessons.md R5; Production Kit skeleton",
+   "control": "Scene lint: outro text nodes are data-fx from display.ui.endcard_line1..3 (PD-13) and match brand/strings.json patterns."
+  },
+  "_lens": "A5"
+ },
+ {
+  "id": "A5-15",
+  "video": "all",
+  "t": "n/a",
+  "evidence": "ffmpeg metadata dump of the three MP4s and their deliverables copies: only major_brand and encoder tags; no title, artist or copyright. PACKAGING:243-245: CE-38 strips container metadata (-map_metadata -1) so masters are bit-identical. brand/strings.json publisher.rule lists 'MP4 artist/copyright tags' and brand_check scans the MP4 title tag.",
+  "problem": "The planned MP4 artist and copyright tags conflict with stripped masters; publisher metadata has no home that is both hashed and present.",
+  "root_cause": {
+   "layer": "brand spec vs packaging",
+   "location": "brand/strings.json publisher.rule; PACKAGING_and_DISTRIBUTION_REGISTRY.md §7 C2PA paragraph"
+  },
+  "effect": "Publisher metadata missing, or master hash drift.",
+  "severity": "minor",
+  "fix": {
+   "what": "Carry the publisher in the sidecar and the C2PA manifest (producer); if container tags are wanted, write them in the export step after the master hash is taken.",
+   "where": "strings.json publisher.rule; PACKAGING §7",
+   "control": "Export check: sidecar.publisher present and the master hash unchanged by tagging."
+  },
+  "_lens": "A5"
+ },
+ {
+  "id": "A3-11",
+  "video": "all",
+  "t": "phy 0.76–4.32, chem 0.76–11.32, bio 0.68–6.20",
+  "evidence": "Yes/no questions rise (phy 'current?' +4.5 st, chem 'vanish?' +7.0 st); bio 'choose' list rises to 'air' +5.7 st. Phrase ends reach the tracker floor (bio 'come from?' ~79 Hz, −18 st; phy 'across it', 'four volts' 70–75 Hz), consistent with creaky endings or tracker error.",
+  "problem": "Question intonation is fine; creaky phrase-final endings on a deep voice would read as tired (needs a listen).",
+  "root_cause": {
+   "layer": "voice",
+   "location": "stock voice George (deep mature male)"
+  },
+  "effect": "Possible low-energy endings.",
+  "severity": "minor",
+  "fix": {
+   "what": "Include terminal-creak in the voice audition rubric",
+   "where": "VOICE_and_PERSONA_REGISTRY audition",
+   "control": "perceptual check on the golden passage"
+  },
+  "_lens": "A3"
+ },
+ {
+  "id": "A3-05",
+  "video": "all",
+  "t": "phy 10.47, 45.40, 56.43, 65.08; chem 11.11, 59.18, 66.17; bio 6.10, 51.49, 60.44 (dead); phy 32.10, chem 36.21, 48.52, bio 27.33, 38.83 (protected)",
+  "evidence": "Inter-beat silences ≥0.6 s: phy 5 (0.89–1.03 s), chem 4 (0.60–0.98 s), bio 5 (0.76–1.08 s), 4.1–6.1 s per video outside lead/think/tail. Each = provider tail 0.14–0.36 s + pause_after_s 0.3–0.8 + provider head 0.06–0.18 s. Most coincide with scene cuts (phy 11.2, 46.33, 57.4; chem 11.9, 49.23, 59.77; bio 6.8, 39.8, 52.33).",
+  "problem": "Pauses carry no purpose. About half land a result (protected); the rest are transitions or resets (dead time). The phy 56.43–57.46 gap is the 00:57 reset the external audit named.",
+  "root_cause": {
+   "layer": "script schema + tooling",
+   "location": "script.json pause_after_s (free number, no purpose); 16_pilot_builds_2026-10-16/tooling/narrate.py keeps provider head/tail; scene start snapped to the next beat's first word"
+  },
+  "effect": "Rhythm stalls at every scene change; ~2–3 s recoverable per video.",
+  "severity": "minor",
+  "fix": {
+   "what": "Trim each beat to energy onset/offset (−40 dB, ±30 ms pad) before placement; pause_after becomes pause{purpose: join|land|inspect, s} from the table; scene changes must not add silence",
+   "where": "16_pilot_builds_2026-10-16/tooling/narrate.py, script.json schema, 16_pilot_builds_2026-10-16/tooling/check_script.py",
+   "control": "QA silence-with-purpose: every silence ≥0.6 s must overlap a labelled pause; unlabelled ≥0.6 s fails"
+  },
+  "_lens": "A3"
+ },
+ {
+  "id": "A3-M3",
+  "video": "all",
+  "t": "phy 31.17–34.79, 34.79–38.03, 42.87–46.33; chem 25.57–34.53, 39.17–42.69; bio 35.45–39.80, 44.17–47.29",
+  "evidence": "Change events (cue reveals, cue emphases, scene cuts) during the explanation span: physics 18 in 34.9 s (5.2 per 10 s, mean 1.94 s); chemistry 17 in 38.1 s (4.5 per 10 s, mean 2.24 s); biology 18 in 33.5 s (5.4 per 10 s, mean 1.86 s). Gaps over 3 s: physics 3, chemistry 2 (the longest is 8.96 s with no cue while the conservation law is spoken), biology 2. Counted from cue sheets only; animation between cues is the visual auditors' scope.",
+  "problem": "The average rate meets the 1–3 s rhythm, but the explanation stalls exactly where the abstract statements are spoken.",
+  "root_cause": {
+   "layer": "script beat rules + cue authoring",
+   "location": "script.json cues (no rule tying each sentence to a visual change); qa.py has no density check"
+  },
+  "effect": "Attention drops in the hardest sentences.",
+  "severity": "minor",
+  "fix": {
+   "what": "Rule: every spoken clause anchors a meaningful visual change (ChangeValue, MapSymbol, TracePath…); a law statement must act on the persistent diagram",
+   "where": "scripting framework, cue schema, qa.py",
+   "control": "gate: no gap > 3.0 s between change events from the end of the think window to the recap; ≥ 4 events per 10 s"
+  },
+  "_lens": "A3"
+ },
+ {
+  "id": "A3-07",
+  "video": "all",
+  "t": "phy 69.75–71.94; chem 70.96–73.22; bio 64.93–67.11",
+  "evidence": "Tail silence 2.19 / 2.25 / 2.18 s = last beat's pause_after_s (0.4 / 0.5 / 0.4) + TAIL_S 1.6 + provider tail ~0.2. The final beat's pause_after is added before the tail (double count). No end motif.",
+  "problem": "2.2 s of silent hold at the end of every video.",
+  "root_cause": {
+   "layer": "tooling",
+   "location": "16_pilot_builds_2026-10-16/tooling/narrate.py: t = end + pause_after + think; total = t + TAIL_S"
+  },
+  "effect": "Dead end; no sonic close.",
+  "severity": "minor",
+  "fix": {
+   "what": "Ignore pause_after on the last beat; TAIL_S = 0.8 s carrying the 0.4–0.8 s end motif and the end card",
+   "where": "16_pilot_builds_2026-10-16/tooling/narrate.py",
+   "control": "QA: tail ≤ 1.0 s and motif present"
+  },
+  "_lens": "A3"
+ },
+ {
+  "id": "A1-26",
+  "video": "all",
+  "t": "physics 00:11, biology 00:12; biology 00:40",
+  "evidence": "'Pause and predict' (physics, biology); 'Many think...'; plate 'Pause. Predict.' in all three.",
+  "problem": "Stock phrasing caused by the pipeline: the plate words must be spoken because on-screen text must be a subset of narration (biology build_notes: 'Speak \"Pause and predict\" so the chip is legal').",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 headline-subset rule + §4 plate",
+   "location": "§3 on-screen subset rule; §4 'Pause. Predict.' plate"
+  },
+  "effect": "naturalness, perceived AI-ness",
+  "severity": "minor",
+  "fix": {
+   "what": "Exempt UI chrome (display.ui.*) from the subset rule; plate states the task ('Count the O atoms'); ban the phrase list in SQ-06.",
+   "where": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3/§4; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md SQ-06 phrase list",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: phrase blacklist ('pause and predict', 'many think', 'let's dive') per batch."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A2-14",
+  "video": "all",
+  "t": "physics 17-22; chemistry 16-21; biology 14-18",
+  "evidence": "frames/physics/t019.jpg (static circuit, I = ?, 'Pause. Predict.'); chemistry/t018.jpg (halos on O atoms, brackets); biology/t016.jpg (three polaroids; the question is about carbon)",
+  "problem": "Think-window frames are uneven. Chemistry scaffolds the count well. Physics gives no visual for the second ask ('whether always is safe'). Biology asks about carbon but shows no carbon. All three use the same static plate for 5 s.",
+  "root_cause": {
+   "layer": "contract/template",
+   "location": "16_pilot_builds_2026-10-16/*/opus/script.json think_window_s 5 (fixed); scene-spec think {element: think_plate, words [pause, predict]}"
+  },
+  "effect": "Weaker retrieval for low-foundation learners; the same plate three times looks templated.",
+  "severity": "minor",
+  "fix": {
+   "what": "The think frame shows exactly the givens plus an answer slot (I = ? A) and nothing else. Its length follows difficulty (timing owned by A1).",
+   "where": "scene_template think component",
+   "control": "Lint: the think beat must highlight every fixture field the answer needs (data-given)"
+  },
+  "_lens": "A2"
+ },
+ {
+  "id": "A1-33",
+  "video": "all",
+  "t": "recap",
+  "evidence": "No sentence turns the idea into exam form (NCERT statement of Ohm's law; 'balanced chemical equation'; raw materials/products).",
+  "problem": "Weak exam focus, against the mandate.",
+  "root_cause": {
+   "layer": "SCRIPTING_REGISTRY §4 F8",
+   "location": "F8 'Exam-language conversion: None'"
+  },
+  "effect": "exam readiness",
+  "severity": "minor",
+  "fix": {
+   "what": "One exam-form line in recap: 'In the exam, write: ...'.",
+   "where": "15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §4 F8 (set 'one sentence')",
+   "control": "check_script: recap of concept_intro cites one exam_language sentence."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A2-11",
+  "video": "all",
+  "t": "throughout",
+  "evidence": "frames/physics/t030.jpg (shelf of books, pencil, hatch marks, boiling board outline); chemistry/t001.jpg (halftone band); biology/t012.jpg, t024.jpg (torn strips, sparkles, washi tape, polaroids, kraft board, ransom tiles)",
+  "problem": "Decoration carries no meaning: the shelf, pencil, hatch shadows, boiling outlines, paper grain, halftone, washi tape, sparkles, torn strips and ransom tiles. Also, the physics circuit (a labelled structure) is statically wobbled, against Rule 0.",
+  "root_cause": {
+   "layer": "style_guide/scene_code",
+   "location": "doodle-handdrawn.md §3 depth rules ('at least four layers', 'Flat is a known failure') force props; physics/opus/scenes/s01.html pathD(base, seed, WOBBLE_AMP=1.6) is applied to every data-pts stroke including #circuit, contrary to 05_style_guides/README.md Rule 0 ('never wobbled')"
+  },
+  "effect": "It costs frame area and attention and gives a template look. The wobbled circuit reads as sketchy rather than precise.",
+  "severity": "minor",
+  "fix": {
+   "what": "Drop the props and boil from teaching beats. Depth comes from one board surface and one shadow. Labelled structures are drawn clean.",
+   "where": "doodle-handdrawn.md §3; scene_template stroke builder",
+   "control": "Lint: elements without data-role in the middle zone ≤ 2; no wobble/boil on any element inside a data-bound group"
+  },
+  "_lens": "A2"
+ },
+ {
+  "id": "A6-08",
+  "video": "all",
+  "t": "throughout",
+  "evidence": "No analogy in any script (141, 145 and 141 spoken words; no 'like', 'imagine', 'picture', 'pipe', 'crowd' or story marker); the three lesson graphs hold no analogy node (types: objective, claim, misconception, simplification, worked_item, assessment_item, fixture, plus biology's hook_colour) and PILOT_CONTRACT §5 lists no analogy type. Physics defines resistance only as 'the constant' of V/I at 40.2 s (b04) and gives voltage and resistance no everyday picture (the circuit diagram is symbols only).",
+  "problem": "No short offers a familiar-object analogy with its break point. Benchmarks use one analogy and say where it stops: Ciechanowski states each model's limit [S42]; the crowd-through-gates picture fixed a pipe-model error about resistors [S26], and engineers still over-apply water [S27]. Same gap as A1-32 and A4-09. Technique 12.",
+  "root_cause": {
+   "layer": "contract + registry",
+   "location": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 slots and §5 node types (no analogy slot, no ANL node, and no sentence may assert beyond its nodes); SCRIPTING_REGISTRY.md SQ-10 permits an ANL that the pilot graph schema cannot hold. See A4-09."
+  },
+  "effect": "comprehension and memorability: a weak-foundation learner gets a rule with no picture to hang it on.",
+  "severity": "minor",
+  "fix": {
+   "what": "Allow one analogy per short, with its break point said in the same breath, mapped by an ANL node (maps, breaks_at, formal_return) and drawn from the familiar object the lesson already uses; never causal personification, never two.",
+   "where": "PILOT_CONTRACT.md §5 (ANL node type) and §3; 17_professor_diki_simplified/format/concept_short_60.md graph inputs (already permits one ANL with a non-mapping); 03_PROFESSOR_DIKI_SCRIPT_FRAMEWORK.md §4 analogy rule",
+   "control": "Script ledger field 'analogy: id or none'; if used, the beat states the non-mapping (SQ-10) and check_pd_script.py rejects a second analogy."
+  },
+  "_lens": "A6"
+ },
+ {
+  "id": "A3-13",
+  "video": "all",
+  "t": "whole video",
+  "evidence": "mix.wav contains only beat audio; render.py muxes mix_norm.wav alone. No SFX on any event, no end motif, no bed (the bed absence is correct).",
+  "problem": "No audio identity, and the meaningful events (balanced tick, current doubling, CO2 entering) get no sound.",
+  "root_cause": {
+   "layer": "tooling + cue schema",
+   "location": "16_pilot_builds_2026-10-16/tooling/narrate.py mix; 16_pilot_builds_2026-10-16/tooling/render.py mux; cue kinds lack 'sfx'"
+  },
+  "effect": "Silent brand; events land on the eye only.",
+  "severity": "minor",
+  "fix": {
+   "what": "Add cue kind 'sfx' (≤3 per short, only on state changes) and one owned 0.4–0.8 s end motif in the tail; no bed under science; SFX 18–22 dB under the voice",
+   "where": "16_pilot_builds_2026-10-16/tooling/narrate.py, render.py, cue schema",
+   "control": "QA: sfx count ≤3; no sfx within ±250 ms of a spoken number/unit word; motif only after the last word"
+  },
+  "_lens": "A3"
+ },
+ {
+  "id": "A3-14",
+  "video": "all",
+  "t": "whole video",
+  "evidence": "MP4 integrated −16.9 / −16.8 / −16.7 LUFS, TP −1.5 / −1.4 / −1.4 dBTP, LRA 3.7 / 3.9 / 3.2 LU. narrate.py runs single-pass dynamic loudnorm (I=−16, TP=−1.5, LRA=11); the house master (05 qa.master) is two-pass linear to −16, TP ≤ −1. No Reels/Shorts variant.",
+  "problem": "Within the ±1 LU house tolerance but biased 0.7–0.9 LU low; dynamic mode can flatten.",
+  "root_cause": {
+   "layer": "tooling",
+   "location": "16_pilot_builds_2026-10-16/tooling/narrate.py loudnorm call; 16_pilot_builds_2026-10-16/tooling/qa.py A6 tolerance ±1"
+  },
+  "effect": "Slightly quieter than intended; quieter than typical feed content (platform targets unverified).",
+  "severity": "minor",
+  "fix": {
+   "what": "Use the two-pass linear master to −16.0 ±0.3 LUFS for the archive and long-form; add a short-form delivery variant at −14 LUFS / −1 dBTP [hypothesis; measure what each platform does to an upload]",
+   "where": "16_pilot_builds_2026-10-16/tooling/narrate.py, 16_pilot_builds_2026-10-16/tooling/qa.py A6",
+   "control": "QA: |I − target| ≤ 0.5 on the final encoded MP4, TP ≤ −1.0"
+  },
+  "_lens": "A3"
+ },
+ {
+  "id": "A6-05",
+  "video": "all",
+  "t": "whole video (sidecar captions.vtt)",
+  "evidence": "narration/captions.vtt holds one cue per beat with the whole beat text on one line: physics 5 of 7 cues exceed 84 characters (longest 182, b04, 12.6 s), chemistry 5 of 7 (longest 189, b03, 14.8 s), biology 6 of 7 (longest 171, b05, 11.9 s). Speed is within limits (11-16 characters per second); length is not: the guide allows 42 characters per line, two lines, 20 characters per second [S55]. narrate.py writes next(b['text']) per beat.",
+  "problem": "The sidecar caption track cannot be read at speaking pace: a 189-character cue is 4.5 times the 42-character line limit and stays up for 14.8 s, so a player has to wrap it to five lines.",
+  "root_cause": {
+   "layer": "tooling",
+   "location": "16_pilot_builds_2026-10-16/tooling/narrate.py ('# captions' block, about L240-246): one cue per beat, text = beat text, no chunking."
+  },
+  "effect": "If the file is uploaded as the caption track, captions run five lines tall and stay up for 10-15 s over the diagram.",
+  "severity": "minor",
+  "fix": {
+   "what": "Chunk captions on clause boundaries to at most 42 characters by 2 lines and 20 characters per second, timed from words[].t0/t1; use the same chunker for the burnt-in lane (A6-04).",
+   "where": "16_pilot_builds_2026-10-16/tooling/narrate.py (caption builder); 17_professor_diki_simplified/design_system/components/caption.js (it caps chunks at 7 words, not at 42 characters)",
+   "control": "Lint on captions.vtt: at most 84 characters per cue, 42 per line, 2 lines, 20 characters per second; regression: the three Opus VTTs fail."
+  },
+  "_lens": "A6"
+ },
+ {
+  "id": "A5-09",
+  "video": "biology",
+  "t": "00:00-00:06 and 00:40-00:52",
+  "evidence": "b01 'A banyan tree can weigh more than a herd of elephants.' cites HK-banyan-herd (type hook_colour, assertive false, source_ids []). b05 'Many think a plant is built from soil' asserts how common a belief is; MIS-plants-eat-soil has no source.",
+  "problem": "Two spoken assertions have no source node. The persona rule no_claims_outside_closure and SCRIPTING §3 ('a misconception is a tempting idea, never fact') require every assertive sentence to map to approved nodes; the playbook's trust rule bars invented claims.",
+  "root_cause": {
+   "layer": "script + lesson graph",
+   "location": "biology/opus/lesson_graph.json HK-banyan-herd; biology/opus/script.json b01, b05"
+  },
+  "effect": "Trust if a viewer or reviewer checks the comparison; academic review would block it.",
+  "severity": "minor",
+  "fix": {
+   "what": "Source the comparison in a node or turn it into a question ('How can one tree get so heavy?'); phrase the misconception as 'It is tempting to think a plant is built from soil.'",
+   "where": "biology script.json; SCRIPTING_REGISTRY §15 (new check)",
+   "control": "check_script: a hook_colour node may not contain a comparative or a number unless source_ids is non-empty."
+  },
+  "_lens": "A5"
+ },
+ {
+  "id": "A1-24",
+  "video": "biology",
+  "t": "00:52-01:00",
+  "evidence": "'Carbon dioxide and water, with sunlight and chlorophyll, make glucose and oxygen.'",
+  "problem": "Third spoken run of the word equation; recap restates, no retrieval.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 recap.statement",
+   "location": "recap.statement only"
+  },
+  "effect": "attention",
+  "severity": "minor",
+  "fix": {
+   "what": "Ask first: 'Which of the four came from the air?' then state.",
+   "where": "biology script.json b06; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §3 recap.retrieval",
+   "control": "Ledger: recap form recorded per script."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A3-08",
+  "video": "biology, physics",
+  "t": "bio 0.60–6.20, 6.80–13.76, 39.82–51.74; phy 0.60–10.60, 32.92–45.56; bio 27.98–39.02",
+  "evidence": "Per-beat active wpm: bio b01 204 (19 words in 5.6 s), bio b02 166, bio b05 164, phy b01 163; slow beats phy b04 129 and bio b04 127 (both tagged [thoughtful], both carry the formula). Chemistry 140–156 throughout. QA A8 averages all beats over file seconds (125–160 band), so nothing is gated per beat.",
+  "problem": "The biology hook is hurried and its predict beat is fast; the formula beats sit at the slow edge.",
+  "root_cause": {
+   "layer": "tooling + contract",
+   "location": "16_pilot_builds_2026-10-16/tooling/qa.py A8 (aggregate only); v4 has no speed control, so the tag sets the pace; no per-beat target in script.json"
+  },
+  "effect": "Comprehension risk on the fastest hook; drag on the formula beats.",
+  "severity": "minor",
+  "fix": {
+   "what": "Add target_wpm per beat type (hook 150–170, ordinary 145–160, symbolic 120–135, recap 150–165); on fail rewrite the text shorter, never speed past ×1.1",
+   "where": "script.json schema, 16_pilot_builds_2026-10-16/tooling/qa.py new A8b, 16_pilot_builds_2026-10-16/tooling/narrate.py report",
+   "control": "gate: each beat's active wpm (first to last word) inside its band"
+  },
+  "_lens": "A3"
+ },
+ {
+  "id": "A1-11",
+  "video": "chemistry",
+  "t": "00:00-00:05",
+  "evidence": "'Hydrogen burns in oxygen to make water. Write it down:' Next phrase starts 0.9 s later; frames t001-t005 show molecules, no burning.",
+  "problem": "An instruction the learner cannot obey (no time to write), and 'burns' has no picture.",
+  "root_cause": {
+   "layer": "script",
+   "location": "chemistry script.json b01"
+  },
+  "effect": "attention, trust in instructions",
+  "severity": "minor",
+  "fix": {
+   "what": "Drop 'Write it down' or make it a real learner-controlled pause; show a small flame on the first word.",
+   "where": "chemistry script.json b01; storyboard s01",
+   "control": "16_pilot_builds_2026-10-16/tooling/check_script.py: imperative verbs 'write/draw/solve' require a following think or pause-video window."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-17",
+  "video": "chemistry",
+  "t": "00:22-00:48",
+  "evidence": "Molecule pictures leave at t023; the tally shows circles; 'Put a two in front of water' adds no second water molecule.",
+  "problem": "Narration speaks about molecules while the picture switches to a ledger the learner must reconcile.",
+  "root_cause": {
+   "layer": "storyboard",
+   "location": "chemistry/opus/storyboard.md s03"
+  },
+  "effect": "comprehension",
+  "severity": "minor",
+  "fix": {
+   "what": "Keep the molecules and duplicate the water molecule on 'two'; tally beside it.",
+   "where": "chemistry storyboard s03",
+   "control": "QA deictic/visibility check as A1-09."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A1-16",
+  "video": "chemistry",
+  "t": "00:49-00:59",
+  "evidence": "'That is hydrogen peroxide, a different substance.'",
+  "problem": "Strong contrast, but 'a different substance' is abstract. The natural, true hook (the first-aid antiseptic that fizzes on a cut, not something you drink) and the Super Teacher guide's own line 'a very efficient way to solve a different question' are unused.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 + registry humour pro-rata",
+   "location": "no analogy/light-line slot; SR §5 caps formats under 120 s at one light line but nothing prompts it"
+  },
+  "effect": "retention, warmth",
+  "severity": "minor",
+  "fix": {
+   "what": "'H two O two is hydrogen peroxide, the antiseptic in a first-aid kit. You wanted water and wrote down the antiseptic instead.' (needs a sourced CLM).",
+   "where": "chemistry lesson_graph (add sourced CLM) + script b05",
+   "control": "Recent-script ledger records 'light line: none/what' per script."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A2-19",
+  "video": "chemistry",
+  "t": "36.7-49.2",
+  "evidence": "frames/chemistry/t038-t049 (headline 'never created or destroyed' while the equation is balanced; only a ≈ 50 px tick at t049)",
+  "problem": "The headline goes stale during the worked step, and the 'Balanced' result has no result area.",
+  "root_cause": {
+   "layer": "style_guide",
+   "location": "editorial-vox.md §5 mix rule 'One headline per scene'; storyboard s03 merges b03 and b04"
+  },
+  "effect": "The aha moment (balanced) is understated.",
+  "severity": "minor",
+  "fix": {
+   "what": "A result area under the board shows each step's state (e.g. 'O: 2 = 2', then 'Balanced').",
+   "where": "scene_template result area",
+   "control": "Lint: each worked.step beat writes to the result area"
+  },
+  "_lens": "A2"
+ },
+ {
+  "id": "A6-03",
+  "video": "chemistry, biology",
+  "t": "chemistry 00:00-00:11, 00:49; biology 00:00-00:07, 00:40",
+  "evidence": "chemistry b01 'Hydrogen burns in oxygen to make water. Write it down … Did an atom just vanish?' (nodes CLM-reaction-water, SIM-skeletal-only); MIS-change-subscript is first cited in b05 (49.3 s) and the H₂O₂ board first shows at t051. biology b01 'A banyan tree can weigh more than a herd of elephants. So where did all that wood come from?' (HK-banyan-herd, ASM-carbon-source); the brief's hook ended 'Not mainly from the soil', which the builder cut ('it leaks the predict answer', biology build_notes §4 rule 3); 'soil' returns as one of three equal option cards at 9.7 s (complete by t013) and as 'Many think a plant is built from soil' at 40.1 s (MIS-plants-eat-soil, b05). Physics b01 cites MIS-always-doubles and asks 'always?'.",
+  "problem": "Neither hook puts the learner's likely wrong move in front of them: the misconception nodes are used only in the 40-49 s confront beats, and the chemistry hook asks about a conclusion ('vanish') instead of the temptation ('just change the little 2?'). A6 technique 1 opens on the tempting wrong answer and refutes it inside the short [S01, S03, S04, S09]; among the Opus builds only physics does this.",
+  "root_cause": {
+   "layer": "registry + contract",
+   "location": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 ('The hook must not state the answer that check.predict asks for', SQ-04) was applied to cut the tempting error from the biology hook (build_notes §4 rule 3); SCRIPTING_REGISTRY.md §4 F8 sets the hook kind to realworld (§9 offers short.misconception only for F5); Kit skill §3 s01 ('no answer anywhere') has no slot for a tempting answer, and the misconception appears only in s04 (confront)."
+  },
+  "effect": "retention and correction: the learner never commits to the error before the method, so the correction effect for confident errors [S09] cannot operate and the refutation lands as an aside 40-49 s in; refutation versions beat concise ones (d about 0.8, from an abstract summary) [S01].",
+  "severity": "minor",
+  "fix": {
+   "what": "Let the hook (or the predict's options) carry the tempting wrong answer from the lesson graph's MIS node, on the board at frame 0 ('Just change the little 2?', 'Does a tree eat soil?'), with the correct answer still hidden; the confront beat then refutes it with evidence.",
+   "where": "SCRIPTING_REGISTRY.md SQ-04 (clarify: the tempting wrong answer may be shown, the correct answer stays hidden) and §4 F8 hook kinds; PILOT_CONTRACT.md §3; 03_PROFESSOR_DIKI_SCRIPT_FRAMEWORK.md §4.1; skills/professor-diki-script/SKILL.md Step 5",
+   "control": "check_pd_script.py: when the lesson graph holds a MIS node, it must appear in the node_ids of the hook or predict beat and again in misconception.confront; the hook ledger records kind 'tempting_answer' so it varies across a batch."
+  },
+  "_lens": "A6"
+ },
+ {
+  "id": "A1-10",
+  "video": "physics",
+  "t": "00:57-01:05",
+  "evidence": "Recap over an empty board t058-t060; recap visual shows 'constant temperature' + V = I × R but not the bulb exception.",
+  "problem": "The recap restates rather than retrieves, and drops the boundary the misconception beat built.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 recap.statement slot",
+   "location": "§3 offers recap.statement only; check.retrieval optional"
+  },
+  "effect": "retention",
+  "severity": "minor",
+  "fix": {
+   "what": "Recap as a two-line contrast built on the persistent board: resistor ✓ doubles / bulb ✗; ask before stating.",
+   "where": "physics script.json b06; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §3 (prefer recap.retrieval in concept_intro)",
+   "control": "Storyboard gate: the recap reuses ≥2 elements from earlier scenes; no empty board."
+  },
+  "_lens": "A1"
+ },
+ {
+  "id": "A2-18",
+  "video": "physics",
+  "t": "36-46, 50-56",
+  "evidence": "frames/physics/t036.jpg ('constant temperature' chip straddles the board edge and the shelf), t044 (V = I × R box on the board's bottom edge), t051 ('filament lamp' label inside the loop)",
+  "problem": "Elements crowd or touch outlines.",
+  "root_cause": {
+   "layer": "scene_code/qa",
+   "location": "16_pilot_builds_2026-10-16/physics/opus/scenes/s03.html #cond_chip placed at the board top edge; qa A4 checks zones, not overlaps; build_notes.md §5 'Nothing touching an outline?' is a manual question"
+  },
+  "effect": "Perceived sloppiness; the condition chip reads as a sticker, not a property of the circuit.",
+  "severity": "minor",
+  "fix": {
+   "what": "Attach the condition to the object (a chip anchored to the resistor), with layout from the board grid.",
+   "where": "scene_template layout grid",
+   "control": "QA overlap detector: data-role element bbox vs any outline stroke ≥ 16 px clearance"
+  },
+  "_lens": "A2"
+ }
+]

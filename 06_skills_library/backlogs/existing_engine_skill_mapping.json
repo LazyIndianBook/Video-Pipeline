@@ -1,0 +1,33 @@
+{
+  "examleaf-super-teacher": [
+    "super-teacher-scriptwriter",
+    "dialogue-naturalizer"
+  ],
+  "examleaf-analogy-humour": [
+    "educational-storytelling",
+    "humour-meme-director"
+  ],
+  "examleaf-interaction-design": [
+    "student-psychology-director",
+    "interactive-teaching-director"
+  ],
+  "examleaf-voice-direction": [
+    "voice-acting-director",
+    "pacing-controller",
+    "stem-pronunciation"
+  ],
+  "examleaf-voice-synthesis": [
+    "tts-provider-adapter"
+  ],
+  "examleaf-alignment-localize": [
+    "speech-animation-synchronizer",
+    "multilingual-director"
+  ],
+  "examleaf-audio-caption-qa": [
+    "audio-production-engineer",
+    "narration-quality-reviewer"
+  ],
+  "examleaf-observability-cost": [
+    "cost-regeneration-optimizer"
+  ]
+}

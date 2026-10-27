@@ -1,0 +1,40 @@
+EXAMLEAF | SCALE IS NOT A SUBSTITUTE FOR UNIT ECONOMICS,,,,,,,,,
+,,,,,,,,,
+Case,Books,Net revenue ₹ lakh,Contribution ₹/book,Fixed ₹ lakh,Profit ₹ lakh,Margin,Peak gap ₹ lakh,Funding +15% ₹ lakh,Static break-even
+='Season P&L'!A4,='Season P&L'!B4,='Season P&L'!E4/100000,='Unit Economics'!B43,='Season P&L'!I4/100000,='Season P&L'!J4/100000,='Season P&L'!K4,"=MAX(0,-MIN('Cash Flow'!M5:M16))/100000",=H4*(1+'Global Inputs'!$B$12),='Unit Economics'!B45
+='Season P&L'!A5,='Season P&L'!B5,='Season P&L'!E5/100000,='Unit Economics'!C43,='Season P&L'!I5/100000,='Season P&L'!J5/100000,='Season P&L'!K5,"=MAX(0,-MIN('Cash Flow'!M21:M32))/100000",=H5*(1+'Global Inputs'!$B$12),='Unit Economics'!C45
+='Season P&L'!A6,='Season P&L'!B6,='Season P&L'!E6/100000,='Unit Economics'!D43,='Season P&L'!I6/100000,='Season P&L'!J6/100000,='Season P&L'!K6,"=MAX(0,-MIN('Cash Flow'!M37:M48))/100000",=H6*(1+'Global Inputs'!$B$12),='Unit Economics'!D45
+='Season P&L'!A7,='Season P&L'!B7,='Season P&L'!E7/100000,='Unit Economics'!E43,='Season P&L'!I7/100000,='Season P&L'!J7/100000,='Season P&L'!K7,"=MAX(0,-MIN('Cash Flow'!M53:M64))/100000",=H7*(1+'Global Inputs'!$B$12),='Unit Economics'!E45
+='Season P&L'!A8,='Season P&L'!B8,='Season P&L'!E8/100000,='Unit Economics'!F43,='Season P&L'!I8/100000,='Season P&L'!J8/100000,='Season P&L'!K8,"=MAX(0,-MIN('Cash Flow'!M69:M80))/100000",=H8*(1+'Global Inputs'!$B$12),='Unit Economics'!F45
+='Season P&L'!A9,='Season P&L'!B9,='Season P&L'!E9/100000,='Unit Economics'!G43,='Season P&L'!I9/100000,='Season P&L'!J9/100000,='Season P&L'!K9,"=MAX(0,-MIN('Cash Flow'!M85:M96))/100000",=H9*(1+'Global Inputs'!$B$12),='Unit Economics'!G45
+='Season P&L'!A10,='Season P&L'!B10,='Season P&L'!E10/100000,='Unit Economics'!H43,='Season P&L'!I10/100000,='Season P&L'!J10/100000,='Season P&L'!K10,"=MAX(0,-MIN('Cash Flow'!M101:M112))/100000",=H10*(1+'Global Inputs'!$B$12),='Unit Economics'!H45
+='Season P&L'!A11,='Season P&L'!B11,='Season P&L'!E11/100000,='Unit Economics'!I43,='Season P&L'!I11/100000,='Season P&L'!J11/100000,='Season P&L'!K11,"=MAX(0,-MIN('Cash Flow'!M117:M128))/100000",=H11*(1+'Global Inputs'!$B$12),='Unit Economics'!I45
+='Season P&L'!A12,='Season P&L'!B12,='Season P&L'!E12/100000,='Unit Economics'!J43,='Season P&L'!I12/100000,='Season P&L'!J12/100000,='Season P&L'!K12,"=MAX(0,-MIN('Cash Flow'!M133:M144))/100000",=H12*(1+'Global Inputs'!$B$12),='Unit Economics'!J45
+,,,,,,,,,
+,,,,,,,,,
+"BASE CASE: 500 copies validate execution; 5,000 still do not recover full season costs. At 50,000 copies, positive profit requires disciplined pricing, sell-through, acquisition and collections. This is a model, not a sales forecast.",,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+Retained books,Conservative profit ₹ lakh,Base profit ₹ lakh,Optimistic profit ₹ lakh,,,,,,
+=B4,=F4,=F5,=F6,,,,,,
+=B7,=F7,=F8,=F9,,,,,,
+=B10,=F10,=F11,=F12,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,

@@ -1,0 +1,1874 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://examleaf.local/schemas/v2/subsystems/script_spec.json",
+  "title": "ExamLeaf Script Spec v1",
+  "description": "Sentence-level, hash-bound script for one artefact (format x level x locale x request), produced at S6 from the Format Plan and EPP. Every assertive sentence maps to approved graph nodes (closure, CE-12). Spoken text, display text, direction and renderer events are separate fields. Compiles to the 05 NarrationPlan and the ST beat table. Approval state lives only in approval records. Hash canon: NFC then RFC 8785 JCS then SHA-256 over the content body (corrected 15 Oct 2026). sha256 (record hash) excludes the fields sha256, status, timing_status, closure, qa_results, recent_script_ledger, rehearsal and provenance.created_at (check and lifecycle records, written after the content is fixed). script_content_sha256 (the hash GA-Δ binds and CE-34 re-affirmation compares) also excludes script_content_sha256, script_spec_id, version, request_id, epp_hash, format_plan_sha256, graph_subtree_sha256, pins, fills and the whole provenance object; beats (sentences, direction, cues, planned_ms), derived_surface, disclosure, locale and beat_map_of stay in. See subsystems/SCRIPTING_REGISTRY.md.",
+  "$comment": "Commercial-term lint (CE-L1/RD-49): CI rejects, case-insensitively, any match of (price|pricing|paid|is_free|free_|premium|entitle|subscri|sku|paywall|unlock|monetis|monetiz|revenue|discount|coupon|tier|destination_resource|cta_destination|funnel|purchase_|checkout_|product_id|offer_|trial_|utm_|campaign_|affiliate_|activation_code|storefront) applied to every object key at every depth (including REN fields keys), every required entry, pattern key and enum or const value (updated 15 Oct 2026, safety-13). No property in this schema matches. Registry ids are patterns; Q-SCHEMA checks that each equals the value resolved in the artefact's EPP and is pinned there, so a new format, level, family, locale, persona or overlay needs no schema change (corrected 15 Oct 2026). The slot_id, itype, response_mode and safety_class enums stay closed. 15 Oct 2026 (stitch): per-kind id character sets follow Architecture §3.1 (no dot in locale or persona ids; variant #[a-z][a-z0-9_-]*); pins keys match packaging_profile metadata_sidecar.pins; ad_sentences and meaning_fully_spoken added to beats (skills-12); variant_id follows content_request.variant. Exempt: the editorial fields series_position, flagship and demo_kind.",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "local_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]*$"
+    },
+    "node_ref": {
+      "type": "string",
+      "description": "Graph node id, optionally with a #sub-locator for a WRK step or STY beat (for example WRK-ohm-12v6#3).",
+      "pattern": "^(OBJ|CLM|CON|ANL|MIS|WRK|ASM|SIM|ACT|STY|VOC|TXT|MED|REN|SRC)-[A-Za-z0-9_.-]+(#[A-Za-z0-9_.-]+)?$"
+    },
+    "fixture_ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Fixture id with optional @version and #case, as listed in the WRK/CLM fixture_ids."
+    },
+    "format_id": {
+      "type": "string",
+      "pattern": "^format/[a-z0-9_]+$"
+    },
+    "level_id": {
+      "type": "string",
+      "pattern": "^level/[a-z0-9_]+$"
+    },
+    "persona_id": {
+      "type": "string",
+      "pattern": "^persona/[a-z0-9][a-z0-9_-]*$",
+      "description": "Persona ids owned by VOICE_and_PERSONA_REGISTRY.md §2.2; the architecture persona names are variants."
+    },
+    "family_id": {
+      "type": "string",
+      "pattern": "^family/[a-z0-9_]+$"
+    },
+    "overlay_id": {
+      "type": "string",
+      "pattern": "^overlay/[a-z0-9_]+$"
+    },
+    "locale_id": {
+      "type": "string",
+      "pattern": "^locale/[a-z0-9][a-z0-9_-]*$"
+    },
+    "slot_id": {
+      "type": "string",
+      "enum": [
+        "hook.realworld",
+        "hook.question_reveal",
+        "hook.surprise",
+        "explain.ladder_step",
+        "explain.definition",
+        "explain.analogy",
+        "explain.derivation_step",
+        "worked.step",
+        "worked.faded_twin",
+        "check.interpolated",
+        "check.predict",
+        "check.retrieval",
+        "misconception.elicit",
+        "misconception.confront",
+        "misconception.retest",
+        "recap.retrieval",
+        "recap.statement",
+        "marking.scheme",
+        "exam.pattern",
+        "exam.time_plan",
+        "compare.dimension",
+        "activity.setup",
+        "activity.do",
+        "activity.observe",
+        "activity.safety_cue",
+        "story.beat",
+        "story.song_chant",
+        "card.front",
+        "card.back",
+        "qa.doubt_statement",
+        "qa.answer",
+        "source.show",
+        "source.read",
+        "source.interpret",
+        "perspective.position",
+        "map.node",
+        "map.link",
+        "viva.prompt",
+        "viva.model_answer",
+        "teach.move",
+        "bridge.return_link",
+        "chapter.title",
+        "close.next_step"
+      ]
+    },
+    "tagged_range_int": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "max": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "tag": {
+          "type": "string",
+          "enum": [
+            "Recommendation",
+            "Hypothesis",
+            "Inherited",
+            "Evidence"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pilot_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "min",
+        "max",
+        "tag"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "tag": {
+                "const": "Hypothesis"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "owner",
+              "pilot_ref"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "min": {
+                "type": "null"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "tag": {
+                "const": "Hypothesis"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "token": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "A number, date, name, unit, symbol or term extracted from a sentence. Must match a field of a referenced node or a fixture output after NFC and spoken-math normalisation.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "number",
+            "date",
+            "name",
+            "unit",
+            "symbol",
+            "term"
+          ]
+        },
+        "node_id": {
+          "$ref": "#/definitions/node_ref"
+        },
+        "field": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fixture_ref": {
+          "$ref": "#/definitions/fixture_ref"
+        }
+      },
+      "required": [
+        "text",
+        "kind"
+      ],
+      "anyOf": [
+        {
+          "required": [
+            "node_id",
+            "field"
+          ]
+        },
+        {
+          "required": [
+            "fixture_ref"
+          ]
+        }
+      ]
+    },
+    "sentence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sentence_id": {
+          "$ref": "#/definitions/local_id"
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "assertive",
+            "exam_language",
+            "citation",
+            "analogy",
+            "misconception_statement",
+            "question_prompt",
+            "feedback",
+            "humour",
+            "story_frame",
+            "instruction",
+            "transition",
+            "rhetorical",
+            "call_response",
+            "disclosure"
+          ]
+        },
+        "spoken_text": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[^\\[\\]<>]*$",
+          "description": "Clean spoken words only. No editorial tags, SSML or markup (05 §7.2; 03 Step 10)."
+        },
+        "display_text": {
+          "type": "string",
+          "minLength": 1,
+          "description": "On-screen form (equations, labels); externalised to string tables (CE-39)."
+        },
+        "lang": {
+          "type": "string",
+          "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$",
+          "description": "BCP-47 tag when the whole sentence differs from the script locale; a switch inside a sentence uses spans."
+        },
+        "node_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/node_ref"
+          },
+          "uniqueItems": true
+        },
+        "fixture_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/fixture_ref"
+          },
+          "uniqueItems": true
+        },
+        "tokens": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/token"
+          }
+        },
+        "assertive": {
+          "type": "boolean",
+          "description": "True unless a deterministic Kit template marks the sentence non-assertive (non_assertive_template_id); the claim flagger only adds flags, never removes one (CE-28; Q-CLOSURE)."
+        },
+        "is_new_wording": {
+          "type": "boolean",
+          "description": "True when the wording is not verbatim from a node or an approved earlier script; highlighted at GA-Δ."
+        },
+        "non_assertive_template_id": {
+          "type": "string",
+          "pattern": "^NAT-[a-z0-9_.-]+$",
+          "description": "Registered deterministic Kit template (rung K) that emitted this sentence verbatim and marks it non-assertive."
+        },
+        "spans": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Code-switched spans in order; the concatenation of spans[].text equals spoken_text (closure-check lint). Required for locale/hinglish and when language_pair is present.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "lang": {
+                "type": "string",
+                "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+              }
+            },
+            "required": [
+              "text",
+              "lang"
+            ]
+          }
+        }
+      },
+      "required": [
+        "sentence_id",
+        "role",
+        "spoken_text",
+        "node_ids",
+        "assertive"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "enum": [
+                  "assertive",
+                  "exam_language",
+                  "citation",
+                  "analogy",
+                  "misconception_statement",
+                  "question_prompt",
+                  "feedback",
+                  "humour"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "node_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "assertive": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "node_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "assertive": {
+                "const": false
+              }
+            },
+            "required": [
+              "assertive"
+            ]
+          },
+          "then": {
+            "required": [
+              "non_assertive_template_id"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "enum": [
+                  "assertive",
+                  "exam_language",
+                  "citation"
+                ]
+              }
+            },
+            "required": [
+              "role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "node_ids": {
+                "contains": {
+                  "pattern": "^((CLM|SIM|ASM)-|WRK-[A-Za-z0-9_.-]+#)"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "const": "analogy"
+              }
+            },
+            "required": [
+              "role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "node_ids": {
+                "contains": {
+                  "pattern": "^ANL-"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "const": "misconception_statement"
+              }
+            },
+            "required": [
+              "role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "node_ids": {
+                "contains": {
+                  "pattern": "^MIS-"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "const": "question_prompt"
+              }
+            },
+            "required": [
+              "role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "node_ids": {
+                "contains": {
+                  "pattern": "^(ASM-|WRK-[A-Za-z0-9_.-]+#)"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "const": "feedback"
+              }
+            },
+            "required": [
+              "role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "node_ids": {
+                "contains": {
+                  "pattern": "^(ASM|MIS)-"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "const": "story_frame"
+              },
+              "assertive": {
+                "const": true
+              }
+            },
+            "required": [
+              "role",
+              "assertive"
+            ]
+          },
+          "then": {
+            "properties": {
+              "node_ids": {
+                "contains": {
+                  "pattern": "^STY-[A-Za-z0-9_.-]+#"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "cue": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cue_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]*$"
+        },
+        "phrase": {
+          "type": "string",
+          "minLength": 1
+        },
+        "occurrence": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1
+        },
+        "edge": {
+          "type": "string",
+          "enum": [
+            "start",
+            "end"
+          ],
+          "default": "start"
+        },
+        "action": {
+          "type": "string",
+          "enum": [
+            "show",
+            "highlight",
+            "transform",
+            "hide",
+            "reveal-answer"
+          ]
+        },
+        "element_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "cue_id",
+        "phrase",
+        "action"
+      ]
+    },
+    "beat": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "beat_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]*$",
+          "description": "Compatible with the 05 NarrationPlan segment_id pattern."
+        },
+        "chapter": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "slot": {
+          "$ref": "#/definitions/slot_id"
+        },
+        "slot_params": {
+          "type": "object"
+        },
+        "repeat_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "objective_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^OBJ-[A-Za-z0-9_.-]+$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "hook_kind": {
+          "type": "string",
+          "enum": [
+            "realworld",
+            "question_reveal",
+            "surprise",
+            "contradiction",
+            "unfinished_task",
+            "none"
+          ]
+        },
+        "close_kind": {
+          "type": "string",
+          "enum": [
+            "delayed_practice",
+            "capability_check",
+            "next_artefact_pointer",
+            "open_loop",
+            "retest",
+            "calm_end",
+            "none"
+          ]
+        },
+        "direction": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "mode": {
+              "type": "string",
+              "enum": [
+                "curious",
+                "steady",
+                "deliberate",
+                "light",
+                "reassuring",
+                "focused"
+              ]
+            },
+            "wpm_band": {
+              "type": "string",
+              "enum": [
+                "ordinary",
+                "dense",
+                "recap",
+                "teacher_set"
+              ]
+            },
+            "target_wpm": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 80,
+              "maximum": 185,
+              "description": "Resolved from the EPP pacing band; null for teacher_set (Cal levels). Never authored by hand (CE-16)."
+            },
+            "emphasis": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            },
+            "notes": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "mode",
+            "wpm_band",
+            "target_wpm"
+          ],
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "wpm_band": {
+                    "const": "teacher_set"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "target_wpm": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "pause_after": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "none",
+                "beat",
+                "think",
+                "pause-video"
+              ]
+            },
+            "seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 30
+            },
+            "prompt": {
+              "type": "string",
+              "minLength": 1
+            },
+            "interaction_id": {
+              "type": "string",
+              "pattern": "^II-[A-Za-z0-9_.-]+$"
+            }
+          },
+          "required": [
+            "kind",
+            "seconds"
+          ],
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "kind": {
+                    "const": "none"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "seconds": {
+                    "const": 0
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "kind": {
+                    "const": "beat"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "seconds": {
+                    "exclusiveMinimum": 0,
+                    "maximum": 4
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "kind": {
+                    "const": "think"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "seconds": {
+                    "minimum": 4,
+                    "multipleOf": 0.5
+                  }
+                },
+                "required": [
+                  "prompt",
+                  "interaction_id"
+                ]
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "kind": {
+                    "const": "pause-video"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "seconds": {
+                    "exclusiveMinimum": 0,
+                    "multipleOf": 0.5
+                  }
+                },
+                "required": [
+                  "prompt",
+                  "interaction_id"
+                ]
+              }
+            }
+          ]
+        },
+        "cues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cue"
+          }
+        },
+        "answers_after": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]*$",
+          "description": "Earlier beat whose protected window must end before any reveal-answer cue or answer sentence here (05 §7.2)."
+        },
+        "interaction_id": {
+          "type": "string",
+          "pattern": "^II-[A-Za-z0-9_.-]+$"
+        },
+        "visual_essential": {
+          "type": "boolean"
+        },
+        "sting": {
+          "type": "boolean"
+        },
+        "word_budget": {
+          "$ref": "#/definitions/tagged_range_int"
+        },
+        "sentences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/sentence"
+          },
+          "minItems": 1
+        },
+        "planned_ms": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Planned beat duration in milliseconds (integer, so the hash canon never sees a computed float)."
+        },
+        "ad_sentences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/sentence"
+          },
+          "minItems": 1,
+          "description": "Audio-description sentences (each carries node_ids[] via the sentence definition). Required when visual_essential is true and the meaning is not fully spoken (PACKAGING §10); authored by super-teacher-scriptwriter at S6, closure-checked at S7, shown at GA-Δ (15 Oct 2026)."
+        },
+        "meaning_fully_spoken": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "beat_id",
+        "chapter",
+        "slot",
+        "objective_ids",
+        "direction",
+        "pause_after",
+        "sentences"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "visual_essential": {
+                "const": true
+              },
+              "meaning_fully_spoken": {
+                "const": false
+              }
+            },
+            "required": [
+              "visual_essential",
+              "meaning_fully_spoken"
+            ]
+          },
+          "then": {
+            "required": [
+              "ad_sentences"
+            ]
+          }
+        }
+      ]
+    },
+    "fill": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "beat_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]*$"
+        },
+        "cascade_rung": {
+          "type": "string",
+          "enum": [
+            "kit_template",
+            "haiku",
+            "sonnet",
+            "opus",
+            "human"
+          ]
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "author",
+            "review",
+            "repair"
+          ]
+        },
+        "model_profile_ref": {
+          "type": "string",
+          "pattern": "^model/[a-z0-9][a-z0-9_.-]*@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "description": "Pinned ModelProfile (full model id behind it), never a bare alias (P5, CE-L6)."
+        },
+        "effort": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        "max_justification_ref": {
+          "type": "string",
+          "pattern": "^LEDGER-[A-Za-z0-9_.-]+$",
+          "description": "Written ledger justification for effort max (08)."
+        },
+        "kit_version": {
+          "$ref": "#/definitions/semver"
+        },
+        "prompt_template_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "output_sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "attempt": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "result": {
+          "type": "string",
+          "enum": [
+            "accepted",
+            "rejected",
+            "escalated"
+          ]
+        }
+      },
+      "required": [
+        "beat_id",
+        "cascade_rung",
+        "role",
+        "output_sha256",
+        "attempt",
+        "result"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "cascade_rung": {
+                "enum": [
+                  "haiku",
+                  "sonnet",
+                  "opus"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "model_profile_ref",
+              "effort",
+              "kit_version"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "cascade_rung": {
+                "const": "kit_template"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "kit_version"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "effort": {
+                "const": "max"
+              }
+            },
+            "required": [
+              "effort"
+            ]
+          },
+          "then": {
+            "required": [
+              "max_justification_ref"
+            ]
+          }
+        }
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "author_kind": {
+          "type": "string",
+          "enum": [
+            "human",
+            "model",
+            "import"
+          ]
+        },
+        "author_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "model_profile_ref": {
+          "type": "string",
+          "pattern": "^model/[a-z0-9][a-z0-9_.-]*@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "description": "Pinned ModelProfile (full model id behind it), never a bare alias (P5, CE-L6)."
+        },
+        "effort": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        "max_justification_ref": {
+          "type": "string",
+          "pattern": "^LEDGER-[A-Za-z0-9_.-]+$",
+          "description": "Written ledger justification for effort max (08)."
+        },
+        "kit_version": {
+          "$ref": "#/definitions/semver"
+        },
+        "import_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "author_kind",
+        "author_id",
+        "created_at"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "author_kind": {
+                "const": "model"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "model_profile_ref",
+              "effort",
+              "kit_version"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "author_kind": {
+                "const": "import"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "import_ref"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "effort": {
+                "const": "max"
+              }
+            },
+            "required": [
+              "effort"
+            ]
+          },
+          "then": {
+            "required": [
+              "max_justification_ref"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "properties": {
+    "script_spec_id": {
+      "type": "string",
+      "pattern": "^SS-[A-Za-z0-9_.-]+$"
+    },
+    "version": {
+      "$ref": "#/definitions/semver"
+    },
+    "hash_canon": {
+      "const": "JCS-RFC8785+NFC"
+    },
+    "sha256": {
+      "$ref": "#/definitions/sha256"
+    },
+    "script_content_sha256": {
+      "$ref": "#/definitions/sha256",
+      "description": "Content hash bound by GA-Δ (resolver-07): NFC, JCS, SHA-256 with the exclusions listed in the schema description. Pin-only registry bumps leave it unchanged."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "machine_checked",
+        "submitted",
+        "superseded",
+        "revoked"
+      ]
+    },
+    "timing_status": {
+      "type": "string",
+      "enum": [
+        "PLANNED_NOT_AUDIO_MEASURED",
+        "AUDIO_MEASURED"
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "pattern": "^CR-[A-Za-z0-9_.-]+$"
+    },
+    "epp_hash": {
+      "$ref": "#/definitions/sha256"
+    },
+    "format_plan_sha256": {
+      "$ref": "#/definitions/sha256"
+    },
+    "graph_subtree_sha256": {
+      "$ref": "#/definitions/sha256"
+    },
+    "pins": {
+      "type": "object",
+      "description": "Every registry entry the script depends on, as entry@version: sha256 (copied from the EPP pins). A persona pin may carry its variant (persona/<id>@x.y.z#<variant>). Key pattern matches packaging_profile.schema.json metadata_sidecar.pins (15 Oct 2026): no reviewer/ or gs/ key; packaging only as its bytes half packaging/<id>@x.y.z#render.",
+      "minProperties": 1,
+      "propertyNames": {
+        "pattern": "^(((format|slot|level|overlay|safety|a11y|persona|family|locale|style|voice|model|kit|harness|qa|music|lex|budget)/[a-z0-9][a-z0-9_.-]*@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(#[a-z][a-z0-9_-]*)?)|(packaging/[a-z0-9][a-z0-9_-]*@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)#render))$"
+      },
+      "additionalProperties": {
+        "$ref": "#/definitions/sha256"
+      }
+    },
+    "format": {
+      "$ref": "#/definitions/format_id"
+    },
+    "variant_id": {
+      "type": "string",
+      "pattern": "^[a-z]+\\.[a-z0-9_]+$",
+      "description": "Format variant, as content_request.variant and format_spec format_variants (for example short.misconception); aligned 15 Oct 2026 (walkthrough-05)."
+    },
+    "level": {
+      "$ref": "#/definitions/level_id"
+    },
+    "safety_class": {
+      "type": "string",
+      "enum": [
+        "safety/ac0",
+        "safety/ac1",
+        "safety/ac2"
+      ]
+    },
+    "persona": {
+      "$ref": "#/definitions/persona_id"
+    },
+    "persona_variant": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]*$"
+    },
+    "register_overlay": {
+      "type": "string",
+      "enum": [
+        "persona/exam-coach"
+      ],
+      "description": "Exam Strategist register (variant strategist), applied on top of the level persona under an exam overlay (R11). Never at AC0."
+    },
+    "exam_overlay": {
+      "$ref": "#/definitions/overlay_id"
+    },
+    "family": {
+      "$ref": "#/definitions/family_id"
+    },
+    "locale": {
+      "$ref": "#/definitions/locale_id"
+    },
+    "language_pair": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Language-learning formats only: medium and target locales. Filled from the EPP (Resolver R9a: resolved.target_locale for family/languages_literature; medium = resolved locale), 15 Oct 2026.",
+      "properties": {
+        "medium": {
+          "$ref": "#/definitions/locale_id"
+        },
+        "target": {
+          "$ref": "#/definitions/locale_id"
+        }
+      },
+      "required": [
+        "medium",
+        "target"
+      ]
+    },
+    "voice_path": {
+      "type": "string",
+      "enum": [
+        "A",
+        "B",
+        "mixed"
+      ]
+    },
+    "voice_path_by_chapter": {
+      "type": "object",
+      "description": "Single-file F16 series only: voice path per chapter number.",
+      "propertyNames": {
+        "pattern": "^[1-9][0-9]*$"
+      },
+      "additionalProperties": {
+        "enum": [
+          "A",
+          "B"
+        ]
+      },
+      "minProperties": 2
+    },
+    "render_target": {
+      "type": "string",
+      "enum": [
+        "video",
+        "audio_only",
+        "print"
+      ],
+      "$comment": "15 Oct 2026 (CE-119, lead ruling CE-124): print added so the enum matches content_request, format_spec and epp, and so GA-Δ binds a print artefact's text through script_content_sha256. The voice-path, beat-timing and duration rules of this schema are still written for video and audio; relaxing them for print is P1-19 (level-3+) and must land before the first print artefact."
+    },
+    "interaction_spec_id": {
+      "type": "string",
+      "pattern": "^IS-[A-Za-z0-9_.-]+$"
+    },
+    "beat_map_of": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "For a locale edition: the master Script Spec whose beat map this edition keeps.",
+      "properties": {
+        "script_spec_id": {
+          "type": "string",
+          "pattern": "^SS-[A-Za-z0-9_.-]+$"
+        },
+        "sha256": {
+          "$ref": "#/definitions/sha256",
+          "description": "The master's script_content_sha256."
+        }
+      },
+      "required": [
+        "script_spec_id",
+        "sha256"
+      ]
+    },
+    "duration_budget_s": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "min",
+        "max"
+      ]
+    },
+    "word_budget": {
+      "$ref": "#/definitions/tagged_range_int"
+    },
+    "beats": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/beat"
+      },
+      "minItems": 1
+    },
+    "closure": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "fail",
+            "not_run"
+          ]
+        },
+        "checker_version": {
+          "$ref": "#/definitions/semver"
+        },
+        "assertive_sentences": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "mapped_sentences": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unmapped_sentence_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/local_id"
+          },
+          "uniqueItems": true
+        },
+        "unmatched_tokens": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "unconfronted_mis_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^MIS-[A-Za-z0-9_.-]+$"
+          },
+          "uniqueItems": true
+        },
+        "checked_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "status",
+        "assertive_sentences",
+        "mapped_sentences",
+        "unmapped_sentence_ids",
+        "unmatched_tokens",
+        "unconfronted_mis_ids"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "pass"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "unmapped_sentence_ids": {
+                "maxItems": 0
+              },
+              "unmatched_tokens": {
+                "maxItems": 0
+              },
+              "unconfronted_mis_ids": {
+                "maxItems": 0
+              }
+            },
+            "required": [
+              "checker_version",
+              "checked_at"
+            ]
+          }
+        }
+      ]
+    },
+    "derived_surface": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "What GA-Δ must see highlighted while reading the whole script (CE-13).",
+      "properties": {
+        "sim_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SIM-[A-Za-z0-9_.-]+$"
+          },
+          "uniqueItems": true
+        },
+        "anl_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^ANL-[A-Za-z0-9_.-]+$"
+          },
+          "uniqueItems": true
+        },
+        "new_wording_sentence_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/local_id"
+          },
+          "uniqueItems": true
+        },
+        "interaction_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^II-[A-Za-z0-9_.-]+$"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "sim_ids",
+        "anl_ids",
+        "new_wording_sentence_ids",
+        "interaction_ids"
+      ]
+    },
+    "disclosure": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "RD-45 disclosure record. Text lives in the voice registry entry, per locale.",
+      "properties": {
+        "template": {
+          "type": "string",
+          "enum": [
+            "path_a",
+            "path_a_direct",
+            "path_b",
+            "mixed"
+          ]
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "standard",
+            "child"
+          ]
+        },
+        "text_ref": {
+          "type": "string",
+          "pattern": "^voice/[a-z0-9][a-z0-9_-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?#[a-z0-9_.-]+$"
+        },
+        "locale": {
+          "$ref": "#/definitions/locale_id"
+        }
+      },
+      "required": [
+        "template",
+        "variant",
+        "text_ref",
+        "locale"
+      ]
+    },
+    "fills": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/fill"
+      }
+    },
+    "qa_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "check_id": {
+            "type": "string",
+            "pattern": "^SQ-[0-9]{2}$"
+          },
+          "result": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "fail",
+              "report_only_flag",
+              "not_applicable"
+            ]
+          },
+          "detail": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "check_id",
+          "result"
+        ]
+      }
+    },
+    "recent_script_ledger": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "window": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "repeated_sentence_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/local_id"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "window",
+        "repeated_sentence_ids"
+      ]
+    },
+    "provenance": {
+      "$ref": "#/definitions/provenance"
+    },
+    "rehearsal": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Timed read-aloud before GA-Δ when any beat has wpm_band teacher_set (SCRIPTING §2, null-budget scripts). Excluded from both hashes.",
+      "properties": {
+        "measured_s": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "beat_seconds": {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[a-z][a-z0-9_-]*$"
+          },
+          "additionalProperties": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          }
+        },
+        "reader_role": {
+          "type": "string",
+          "enum": [
+            "path_a_performer",
+            "author"
+          ]
+        },
+        "take_sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "measured_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "measured_s",
+        "reader_role",
+        "measured_at"
+      ]
+    }
+  },
+  "required": [
+    "script_spec_id",
+    "version",
+    "hash_canon",
+    "script_content_sha256",
+    "status",
+    "timing_status",
+    "request_id",
+    "epp_hash",
+    "format_plan_sha256",
+    "graph_subtree_sha256",
+    "pins",
+    "format",
+    "level",
+    "safety_class",
+    "persona",
+    "persona_variant",
+    "family",
+    "locale",
+    "voice_path",
+    "render_target",
+    "interaction_spec_id",
+    "duration_budget_s",
+    "word_budget",
+    "beats",
+    "closure",
+    "derived_surface",
+    "disclosure",
+    "fills",
+    "provenance"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "safety_class": {
+            "const": "safety/ac0"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "voice_path": {
+            "const": "A"
+          },
+          "disclosure": {
+            "properties": {
+              "variant": {
+                "const": "child"
+              }
+            }
+          },
+          "beats": {
+            "items": {
+              "properties": {
+                "close_kind": {
+                  "not": {
+                    "const": "next_artefact_pointer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "voice_path": {
+            "const": "A"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "disclosure": {
+            "properties": {
+              "template": {
+                "enum": [
+                  "path_a",
+                  "path_a_direct"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "voice_path": {
+            "const": "B"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "disclosure": {
+            "properties": {
+              "template": {
+                "const": "path_b"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "register_overlay"
+        ]
+      },
+      "then": {
+        "required": [
+          "exam_overlay"
+        ],
+        "properties": {
+          "safety_class": {
+            "not": {
+              "const": "safety/ac0"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "voice_path": {
+            "const": "mixed"
+          }
+        },
+        "required": [
+          "voice_path"
+        ]
+      },
+      "then": {
+        "properties": {
+          "format": {
+            "const": "format/series"
+          },
+          "disclosure": {
+            "properties": {
+              "template": {
+                "const": "mixed"
+              }
+            }
+          }
+        },
+        "required": [
+          "voice_path_by_chapter"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "locale": {
+            "const": "locale/as-in"
+          }
+        },
+        "required": [
+          "locale"
+        ]
+      },
+      "then": {
+        "properties": {
+          "disclosure": {
+            "properties": {
+              "template": {
+                "const": "path_a_direct"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "level": {
+            "const": "level/l1_2"
+          }
+        },
+        "required": [
+          "level"
+        ]
+      },
+      "then": {
+        "properties": {
+          "locale": {
+            "not": {
+              "const": "locale/hinglish"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "submitted"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "closure": {
+            "properties": {
+              "status": {
+                "const": "pass"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "locale": {
+            "const": "locale/hinglish"
+          }
+        },
+        "required": [
+          "locale"
+        ]
+      },
+      "then": {
+        "properties": {
+          "beats": {
+            "items": {
+              "properties": {
+                "sentences": {
+                  "items": {
+                    "required": [
+                      "spans"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "language_pair"
+        ]
+      },
+      "then": {
+        "properties": {
+          "beats": {
+            "items": {
+              "properties": {
+                "sentences": {
+                  "items": {
+                    "required": [
+                      "spans"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

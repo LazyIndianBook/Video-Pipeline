@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>phy-ohm-ci-01 s04: Filament exception (seek contract 1.0.0)</title>
+<style>
+/* [1] TOKENS - mirrored from vertical_safe_zones.tokens.json and style_tokens.json (doodle-handdrawn). Tokens files win. */
+:root{--bg:#F7F9FC;--ink:#14213D;--sec:#526074;--blue:#185ABD;--amber:#9A5B00;
+  --tint-blue:#CFDCF1;--tint-blue28:#B9CCEA;--tint-sec:#D9DDE4;--tint-amber:#E6DDCF;
+  --font:"Noto Sans","Noto Sans Devanagari","Noto Sans Bengali","Kohinoor Devanagari","Kohinoor Bangla",system-ui,sans-serif;
+  --hand:"Kalam","Caveat","Chalkboard SE","Marker Felt",var(--font);
+  --head:84px;--label:56px;--eq:76px}
+html,body{margin:0;background:var(--bg)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-family:var(--font);color:var(--ink)}
+#art{position:absolute;left:0;top:0}
+.box{position:absolute;left:0;box-sizing:border-box}
+/* headline: one span per WORD (never per code point); handwriting face for words only, never for numbers or units */
+.hl{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0}
+.hl .row{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:0 24px;font:700 var(--head)/1.25 var(--hand);text-align:center}
+.w{display:inline-block;opacity:0}
+.hl svg{overflow:visible}
+/* SVG text roles */
+.lbl{font:600 var(--label) var(--font);fill:var(--ink)}
+.eq{font:700 var(--eq) var(--font);fill:var(--ink)}
+.cap{font:600 52px var(--font);fill:var(--sec)}
+.think{font:700 64px var(--hand);fill:var(--ink)}
+.ink{fill:none;stroke:var(--ink);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.det{stroke-width:3}.emph{stroke-width:7}
+.hatch{stroke-width:3;opacity:.6}
+.far{stroke:var(--sec);stroke-width:3}.mid{stroke:var(--sec);stroke-width:4}
+.paper{fill:var(--bg)}
+#stage g[id]{transform-box:fill-box;transform-origin:50% 100%}
+/* debug overlay - off by default; ?safe=1 or the S key */
+.zone{display:none;position:absolute;border:2px dashed #B42318;box-sizing:border-box;font:600 28px system-ui;color:#B42318;padding:6px 12px}
+.safe .zone{display:block}
+</style>
+</head>
+<body>
+<div id="stage">
+ <svg id="art" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+  <defs><filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="1016"/><feColorMatrix type="saturate" values="0"/></filter></defs>
+  <!-- L0 paper + static seeded grain (decorative; under every plate, so off captions and fixture panels) -->
+  <rect width="1080" height="1920" filter="url(#grain)" opacity="0.08" style="mix-blend-mode:multiply"/>
+  <g data-zone="1">
+  <g class="layer" data-par="0.25"><!-- L1 far: shelf and window, 18% tint, 0.6x outline -->
+   <path class="fill" style="fill:var(--tint-sec)" data-closed="1" data-pts="772,4 806,4 806,100 772,100"/>
+   <path class="fill" style="fill:var(--tint-sec)" data-closed="1" data-pts="850,-8 882,-8 882,100 850,100"/>
+   <path class="ink far boil" data-closed="1" data-pts="772,4 806,4 806,100 772,100"/>
+   <path class="ink far boil" data-closed="1" data-pts="812,16 842,16 842,100 812,100"/>
+   <path class="ink far boil" data-closed="1" data-pts="850,-8 882,-8 882,100 850,100"/>
+   <path class="ink far boil" data-closed="1" data-pts="892,22 920,22 920,100 892,100"/>
+   <path class="ink far boil" data-pts="760,100 940,100"/>
+  </g>
+  <g class="layer" data-par="0.6"><!-- L2 mid: board, tint fill off-register, 0.8x outline, hatch contact shadow -->
+   <path class="fill" style="fill:var(--tint-blue)" data-closed="1" data-pts="-20,70 884,70 884,640 -20,640"/>
+   <path class="ink mid boil" data-closed="1" data-pts="-20,70 884,70 884,640 -20,640"/>
+   <g data-hatch="878,652,34,5"></g>
+  </g>
+  <g class="layer" data-par="0"><!-- L3 subject: circuit and fixture-bound labels; never drifted or boiled -->
+   <g id="circuit"><path class="ink" data-closed="1" data-pts="110,230 754,230 754,560 110,560"/><rect style="fill:var(--tint-blue)" x="400" y="520" width="64" height="80"/><path class="ink" data-pts="416,500 416,620"/><path class="ink emph" data-pts="448,528 448,592"/><g id="ammeter" style="transform-origin:50% 50%"><circle class="paper" cx="754" cy="395" r="58"/><path class="ink" data-circle="754,395,58"/>
+     <text class="lbl" x="754" y="415" text-anchor="middle" data-fx="display.ammeter_symbol"></text><g data-hatch="800,446,28,4"></g></g></g>
+   <g id="bulb" data-anim="draw"><circle class="paper" cx="432" cy="230" r="64"/><path class="fill" style="fill:var(--tint-amber)" data-circle="432,230,58"/>
+     <path class="ink" data-circle="432,230,64"/><path class="ink det" data-pts="368,230 396,230 404,212 412,248 420,212 428,248 436,212 444,248 452,212 460,248 468,230 496,230"/></g>
+   <g id="lamp_label"><text class="lbl" x="432" y="370" text-anchor="middle" data-fx="display.lamp_label"></text></g>
+   <g id="heat" data-anim="draw"><path class="ink det boil" style="stroke:var(--sec)" data-pts="372,150 360,128 374,106 362,84"/><path class="ink det boil" style="stroke:var(--sec)" data-pts="432,146 420,122 434,98 422,74"/><path class="ink det boil" style="stroke:var(--sec)" data-pts="492,150 480,128 494,106 482,84"/></g>
+   <g id="r_rise" style="transform-origin:50% 50%"><path class="paper" data-closed="1" data-pts="560,120 700,120 700,200 560,200"/><path class="ink det" style="stroke:var(--amber)" data-closed="1" data-pts="560,120 700,120 700,200 560,200"/>
+     <text class="lbl" x="630" y="180" text-anchor="middle"><tspan data-fx="display.r_symbol"></tspan> <tspan data-fx="display.rises"></tspan></text></g>
+   <g id="not_double" data-anim="draw"><text class="lbl" style="font-size:64px" x="250" y="470" text-anchor="middle"><tspan data-fx="display.times"></tspan><tspan data-fx="results.ratio_i"></tspan></text>
+     <path class="ink det" data-pts="198,466 304,418"/></g>
+  </g>
+  <g class="layer" data-par="1.4"><!-- L4 foreground: pencil cropped by the frame edge -->
+   <path class="fill" style="fill:var(--tint-blue28)" data-closed="1" data-pts="-105,719 135,654 125,615 -115,681"/>
+   <path class="ink boil" style="stroke-width:6" data-closed="1" data-pts="-105,719 135,654 190,618 125,615 -115,681"/>
+   <path class="ink boil" style="stroke-width:6" data-pts="135,654 125,615"/>
+  </g>
+  </g>
+  
+ </svg>
+ <div id="title" class="box" data-zone="0"><div class="hl" data-beat="0" data-words="always:1 is:1 not:1 safe:1"><div class="row"></div></div></div>
+</div>
+<!-- Scene layout spec: element roles only; no times, no science values -->
+<script type="application/json" id="scene-spec">{"id": "s04"}</script>
+<!-- INLINE FALLBACKS: synthetic cue sheet (even spacing) and the fixture, for standalone preview only -->
+<script type="application/json" id="cue-sheet-inline">{"schema_version": "1.0", "scene_id": "phy-ohm-ci-01-s04", "fps": 30, "duration": 11.617, "language": "en-IN", "alignment_source": "synthetic_even_spacing", "narration_audio_sha256": null, "script_sha256": "cf2a4a3da3233d15b72dfb09f353504544608bf99699191cbcb9b920baf104e7", "words": [{"w": "But", "t0": 0.0, "t1": 0.357}, {"w": "always", "t0": 0.417, "t1": 0.773}, {"w": "is", "t0": 0.833, "t1": 1.19}, {"w": "not", "t0": 1.25, "t1": 1.607}, {"w": "safe", "t0": 1.667, "t1": 2.023}, {"w": "A", "t0": 2.083, "t1": 2.44}, {"w": "filament", "t0": 2.5, "t1": 2.857}, {"w": "bulb", "t0": 2.917, "t1": 3.273}, {"w": "gets", "t0": 3.333, "t1": 3.69}, {"w": "hot", "t0": 3.75, "t1": 4.107}, {"w": "so", "t0": 4.167, "t1": 4.523}, {"w": "its", "t0": 4.583, "t1": 4.94}, {"w": "resistance", "t0": 5.0, "t1": 5.357, "occurrence": 1}, {"w": "rises", "t0": 5.417, "t1": 5.773}, {"w": "and", "t0": 5.833, "t1": 6.19}, {"w": "the", "t0": 6.25, "t1": 6.607, "occurrence": 1}, {"w": "current", "t0": 6.667, "t1": 7.023}, {"w": "no", "t0": 7.083, "t1": 7.44}, {"w": "longer", "t0": 7.5, "t1": 7.857}, {"w": "doubles", "t0": 7.917, "t1": 8.273}, {"w": "The", "t0": 8.333, "t1": 8.69, "occurrence": 2}, {"w": "rule", "t0": 8.75, "t1": 9.107}, {"w": "needs", "t0": 9.167, "t1": 9.523}, {"w": "constant", "t0": 9.583, "t1": 9.94}, {"w": "resistance", "t0": 10.0, "t1": 10.357, "occurrence": 2}], "beats": [0.0], "cues": [{"id": "c22", "at": 2.45, "kind": "reveal", "element_id": "bulb", "word_index": 6}, {"id": "c23", "at": 2.867, "kind": "reveal", "element_id": "lamp_label", "word_index": 7}, {"id": "c24", "at": 3.7, "kind": "reveal", "element_id": "heat", "word_index": 9}, {"id": "c25", "at": 5.367, "kind": "reveal", "element_id": "r_rise", "word_index": 13}, {"id": "c26", "at": 7.867, "kind": "reveal", "element_id": "not_double", "word_index": 19}, {"id": "c27", "at": 9.533, "kind": "emphasis", "element_id": "r_rise", "word_index": 23}], "sfx": [], "meta": {"video_id": "phy-ohm-ci-01", "scene": "s04", "beat_ids": ["b05"], "think_windows": []}}</script>
+<script type="application/json" id="fixture-inline">{"fixture_id": "FIX-ohm-two-points", "compute": "fixtures/compute.py", "parameters": {"resistance_ohm": 10, "v1": 2, "v2": 4}, "results": {"i1": 0.2, "i2": 0.4, "ratio_v": 2, "ratio_i": 2, "v_over_i_1": 10, "v_over_i_2": 10}, "display": {"r_label": "R =", "r_unit": "Ω", "v_label": "V =", "v_unit": "V", "i_label": "I =", "i_unit": "A", "ammeter_symbol": "A", "vi_label": "V / I =", "times": "×", "equation": "V = I × R", "condition": "constant temperature", "lamp_label": "filament lamp", "r_symbol": "R", "rises": "↑"}}</script>
+<script>
+(function () {
+'use strict';
+/* [5] CONFIG - from URL parameters only; the page never reads the clock.
+   ?fps=30 ?cues=path.json ?fixture=path.json ?seed=N ?safe=1 ?t=SECONDS ?preview=1 ?strict=1 */
+const Q = new URLSearchParams(location.search);
+const num = (k, d) => { const v = parseFloat(Q.get(k)); return isFinite(v) ? v : d; };
+const SPEC = JSON.parse(document.getElementById('scene-spec').textContent);   // layout spec: no times, no science
+const FPS = num('fps', 30), SEED = num('seed', 20261016), EPS = 1e-6;
+const W = 1080, H = 1920, NS = 'http://www.w3.org/2000/svg';
+const LEAD = 0.05;                                    // reveal on, or 0.05 s before, its word [V4-MP]
+const HOLD_MIN = 1.2;                                 // tokens hold_times_s.headline_min
+const INSETS = { top: 250, bottom: 450, left: 60, right: 120 };   // PLACEHOLDER: tokens platform_insets_px.generic_conservative
+const SHARES = [0.22, 0.54, 0.24];                    // tokens zones.*.share
+const SIDE_MIN = 96;                                  // tokens zones.side_margin_min_px
+const LEFT = Math.max(INSETS.left, SIDE_MIN), RIGHT = Math.max(INSETS.right, SIDE_MIN);
+const BOIL_FPS = 10, BOIL_AMP = 1.0, WOBBLE_AMP = 1.6, SEG_PX = 16;   // doodle-handdrawn §2.1
+const DRIFT_PX = 20;                                  // x L4 parallax 1.4 = 28 px <= 30 px (§3.2)
+const LOCK_S = 0.8;                                   // no drift from a cue to cue + 0.8 s (#64)
+const FONT_SPECS = [
+  { family: 'Noto Sans', weight: 600, text: 'V = I × R Ω 0.4 A' },
+  { family: 'Chalkboard SE', weight: 700, text: 'twice the voltage' },
+  { family: 'Kalam', weight: 700, text: 'Pause Predict' }];
+
+/* [6] ERROR CHANNEL */
+window.__errors = [];
+const report = (code, severity, message, t) => window.__errors.push({ code, severity, message, t: t == null ? null : t });
+const fail = (code, message, t) => { report(code, 'error', message, t); const e = new Error(code + ': ' + message); e.code = code; return e; };
+
+/* [7] SEEDED RANDOMNESS: streams only while building; rngAt (stateless) inside render */
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const rngAt = (seed, i) => mulberry32((seed ^ Math.imul(i + 1, 0x9E3779B1)) >>> 0)();
+const hashSeed = s => { let h = 2166136261 ^ SEED; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; };
+
+/* [8] EASING - pure functions of progress */
+const clamp01 = x => x < 0 ? 0 : x > 1 ? 1 : x, lerp = (a, b, u) => a + (b - a) * u;
+const ease = {
+  cubicOut: u => 1 - Math.pow(1 - u, 3),
+  p1InOut: u => u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2,          // power1.inOut (draw-on)
+  backOut: u => { const s = 1.70158, c = s + 1, v = u - 1; return 1 + c * v * v * v + s * v * v; } };
+const prog = (t, t0, dur, e) => ease[e || 'cubicOut'](clamp01((t - t0) / dur));
+const pulse = (t, at, n = 2, period = 0.5, amp = 0.08) => { const d = t - at; return d < 0 || d > n * period ? 1 : 1 + amp * Math.sin(2 * Math.PI * d / period) * (1 - d / (n * period)); };
+
+/* [9] LOADERS - injected, then ?cues= path, then inline (warning) */
+const deepFreeze = o => { Object.values(o).forEach(v => { if (v && typeof v === 'object') deepFreeze(v); }); return Object.freeze(o); };
+async function loadJson(inject, param, inlineId, what) {
+  if (inject) return { data: inject, source: 'injected' };
+  const path = Q.get(param);
+  if (path) {
+    try { const r = await fetch(path); if (!r.ok) throw new Error('HTTP ' + r.status); return { data: await r.json(), source: 'path' }; }
+    catch (e) {
+      if (Q.get('strict') === '1') throw fail('E_' + what + '_LOAD', 'cannot load ' + path + ': ' + e.message);
+      report('W_' + what + '_FALLBACK', 'warning', 'cannot load ' + path + ' (' + e.message + '); inline fallback used. Not valid for production.');
+      return { data: JSON.parse(document.getElementById(inlineId).textContent), source: 'inline-fallback' };
+    }
+  }
+  return { data: JSON.parse(document.getElementById(inlineId).textContent), source: 'inline' };
+}
+function checkSheet(s) {
+  if (!s || !(s.duration > 0) || !isFinite(s.duration) || !Array.isArray(s.words) || !Array.isArray(s.cues)) throw fail('E_CUES_INVALID', 'cue sheet needs finite duration>0, words[], cues[]');
+  s.words.forEach((w, i) => { if (i && w.t0 < s.words[i - 1].t0) throw fail('E_CUES_INVALID', 'words[' + i + '] not monotonic'); });
+}
+
+/* [10] STATE built once in ready(); render(t) only reads it */
+let SHEET, FX, ZONES = [], BEATS = [];
+const strokes = [], heads = [], reveals = {}, pulses = [], locks = [], layers = [];
+let think = null, disc = null, swaps = [];
+const fx = path => { const v = path.split('.').reduce((o, k) => o == null ? o : o[k], FX); if (v === undefined) throw fail('E_FIXTURE_MISSING', 'fixture has no ' + path); return v; };
+const norm = w => w.normalize('NFC').toLowerCase().replace(/[^\p{L}\p{M}\p{N}'’]/gu, '');
+
+function buildZones() {
+  const band = H - INSETS.top - INSETS.bottom; let y = INSETS.top;
+  ZONES = SHARES.map(s => { const z = { y0: Math.round(y), y1: Math.round(y + s * band) }; y += s * band; return z; });
+  const stage = document.getElementById('stage');
+  ['top_title', 'middle_visual', 'bottom_caption'].forEach((n, i) => { const d = document.createElement('div'); d.className = 'zone'; Object.assign(d.style, { top: ZONES[i].y0 + 'px', height: (ZONES[i].y1 - ZONES[i].y0) + 'px', left: LEFT + 'px', width: (W - LEFT - RIGHT) + 'px' }); d.textContent = n + '  PLACEHOLDER insets'; stage.appendChild(d); });
+  document.querySelectorAll('.box[data-zone]').forEach(b => { const z = ZONES[+b.dataset.zone]; Object.assign(b.style, { top: z.y0 + 'px', height: (z.y1 - z.y0) + 'px', left: LEFT + 'px', width: (W - LEFT - RIGHT) + 'px' }); });
+  document.querySelectorAll('g[data-zone]').forEach(g => g.setAttribute('transform', 'translate(' + LEFT + ' ' + ZONES[+g.dataset.zone].y0 + ')'));
+}
+
+/* Hand-drawn strokes: resample to ~16 px, seeded normal offsets (static wobble), optional boil re-seeded at 10 fps.
+   Endpoints of open strokes stay anchored. Text is never wobbled. */
+const P = s => s.trim().split(/\s+/).map(p => p.split(',').map(Number));
+function resample(pts, closed) {
+  if (closed) pts = pts.concat([pts[0]]);
+  const out = [pts[0]];
+  for (let i = 1; i < pts.length; i++) { const [ax, ay] = pts[i - 1], [bx, by] = pts[i], n = Math.max(1, Math.round(Math.hypot(bx - ax, by - ay) / SEG_PX)); for (let k = 1; k <= n; k++) out.push([lerp(ax, bx, k / n), lerp(ay, by, k / n)]); }
+  return out;
+}
+function pathD(pts, seed, amp, closed) {       // closed: pts[n-1] repeats pts[0]
+  const n = pts.length, m = closed ? n - 1 : n;
+  const q = pts.map((p, i) => {
+    if (!closed && (i === 0 || i === n - 1)) return p;
+    const j = i % m, a = pts[closed ? (j - 1 + m) % m : i - 1], b = pts[closed ? (j + 1) % m : i + 1];
+    let nx = a[1] - b[1], ny = b[0] - a[0]; const L = Math.hypot(nx, ny) || 1;
+    const o = (rngAt(seed, j) - 0.5) * 2 * amp; return [p[0] + nx / L * o, p[1] + ny / L * o];
+  });
+  const f = p => p[0].toFixed(1) + ' ' + p[1].toFixed(1);
+  let d = 'M' + f(q[0]);
+  if (n === 2) return d + 'L' + f(q[1]);
+  for (let i = 1; i < n - 1; i++) d += 'Q' + f(q[i]) + ' ' + f([(q[i][0] + q[i + 1][0]) / 2, (q[i][1] + q[i + 1][1]) / 2]);
+  return d + 'L' + f(q[n - 1]) + (closed ? 'Z' : '');
+}
+function buildStrokes() {
+  document.querySelectorAll('[data-hatch]').forEach(g => {           // 45° hatch shadow, light from top-left
+    const [x, y, len, n] = g.dataset.hatch.split(',').map(Number);
+    for (let i = 0; i < n; i++) { const p = document.createElementNS(NS, 'path'); p.setAttribute('class', 'ink hatch'); p.dataset.pts = (x + i * 12) + ',' + y + ' ' + (x + i * 12 - len * 0.707) + ',' + (y + len * 0.707); g.appendChild(p); }
+  });
+  let idx = 0;
+  document.querySelectorAll('[data-pts],[data-circle]').forEach(el => {
+    let pts, closed = el.dataset.closed === '1';
+    if (el.dataset.circle) { const [cx, cy, r] = el.dataset.circle.split(',').map(Number), m = Math.max(16, Math.round(2 * Math.PI * r / SEG_PX)); pts = []; for (let k = 0; k < m; k++) pts.push([cx + r * Math.cos(2 * Math.PI * k / m), cy + r * Math.sin(2 * Math.PI * k / m)]); closed = true; }
+    else pts = P(el.dataset.pts);
+    const host = el.closest('[id]'), seed = hashSeed(SPEC.id + ':' + (host ? host.id : '') + ':' + (idx++));
+    const base = resample(pts, closed), isFill = el.classList.contains('fill');
+    if (isFill) { const r = mulberry32(seed); el.setAttribute('transform', 'translate(' + (2 + r() * 4).toFixed(1) + ' ' + (2 + r() * 4).toFixed(1) + ')'); }   // off-register fill
+    const s = { el, base, seed, closed, boil: el.classList.contains('boil'), fill: isFill, hatch: el.classList.contains('hatch') };
+    el.setAttribute('d', pathD(base, seed, WOBBLE_AMP, closed));
+    if (!isFill) { el.setAttribute('pathLength', '1'); s.len = el.getTotalLength(); }
+    strokes.push(s);
+  });
+}
+
+/* Beats and words: scene-local beat starts come from the sheet; words are matched by (beat, word, occurrence in beat). */
+function buildBeats() {
+  const marks = Array.isArray(SHEET.beats) && SHEET.beats.length ? SHEET.beats : [0];
+  BEATS = marks.map((b0, i) => ({ t0: b0, words: SHEET.words.filter(w => w.t0 >= b0 - EPS && (i + 1 >= marks.length || w.t0 < marks[i + 1] - EPS)) }));
+}
+function wordAt(beat, w, occ) {
+  const B = BEATS[beat]; if (!B) { report('E_TEXT_WORD_MISSING', 'error', 'beat ' + beat + ' not in cue sheet'); return null; }
+  let n = 0; for (const x of B.words) if (norm(x.w) === norm(w) && ++n === occ) return x;
+  report('E_TEXT_WORD_MISSING', 'error', 'word "' + w + '" #' + occ + ' not spoken in beat ' + beat); return null;
+}
+function buildHeadlines() {
+  const box = document.getElementById('title'); box.lang = SHEET.language;
+  const groups = Array.from(box.querySelectorAll('.hl'));
+  groups.forEach(g => {
+    const row = g.querySelector('.row'), after = row.querySelector('.after'), words = [];
+    g.dataset.words.split(' ').forEach(tok => {
+      const [w, occ] = tok.split(':'), x = wordAt(+g.dataset.beat, w, +occ || 1); if (!x) return;
+      const sp = document.createElement('span'); sp.className = 'w'; sp.textContent = x.w; if (x.lang) sp.lang = x.lang;
+      row.insertBefore(sp, after); words.push({ el: sp, at: Math.max(0, x.t0 - LEAD) });
+    });
+    heads.push({ el: g, words, start: words.length ? Math.min(...words.map(w => w.at)) : 0, last: words.length ? Math.max(...words.map(w => w.at)) : 0 });
+  });
+  heads.forEach((h, i) => { h.end = i + 1 < heads.length ? heads[i + 1].start : Infinity;
+    const hold = Math.min(h.end, window.DURATION) - h.last;
+    if (hold < HOLD_MIN) report('W_HOLD_SHORT', 'warning', 'headline ' + i + ' hold ' + hold.toFixed(2) + ' s < ' + HOLD_MIN + ' s [N60]'); });
+}
+function buildWordText(spec) {                       // think plate and disclosure: words from the sheet, never typed
+  const host = document.getElementById(spec.element); if (!host) { report('W_CUE_NO_ELEMENT', 'warning', 'missing ' + spec.element); return null; }
+  const B = BEATS[spec.beat]; if (!B) { report('E_TEXT_WORD_MISSING', 'error', 'beat ' + spec.beat + ' not in cue sheet'); return null; }
+  const picked = spec.words ? spec.words.map(([w, o]) => wordAt(spec.beat, w, o)).filter(Boolean) : B.words;
+  const lines = host.querySelectorAll('text.line'), parts = [];
+  let li = 0, inLine = 0;
+  picked.forEach(x => {
+    if (spec.lines && inLine >= spec.lines[li] && li + 1 < lines.length) { li++; inLine = 0; }
+    const ts = document.createElementNS(NS, 'tspan');
+    ts.textContent = (inLine ? ' ' : '') + (spec.caps ? x.w.charAt(0).toUpperCase() + x.w.slice(1) : x.w) + (spec.stop ? '.' : '');
+    lines[li].appendChild(ts); parts.push({ el: ts, at: Math.max(0, x.t0 - LEAD) }); inLine++;
+  });
+  return { host, parts, last: B.words.length ? B.words[B.words.length - 1] : null };
+}
+
+function buildCues() {
+  SHEET.cues.forEach(c => {
+    const el = c.element_id && document.getElementById(c.element_id);
+    if (!el) { report('W_CUE_NO_ELEMENT', 'warning', 'cue ' + c.id + ' targets missing element ' + c.element_id); return; }
+    if (c.kind === 'reveal') { if (!reveals[c.element_id] || c.at < reveals[c.element_id].at) reveals[c.element_id] = { el, at: c.at, draw: el.dataset.anim === 'draw' }; locks.push([c.at, c.at + LOCK_S]); }
+    if (c.kind === 'emphasis') { pulses.push({ id: c.element_id, el, at: c.at }); locks.push([c.at, c.at + LOCK_S]); }
+    if (c.kind === 'hold') { const until = isFinite(c.until) ? c.until : window.DURATION; locks.push([c.at, until]);
+      if (SPEC.think && SPEC.think.element === c.element_id) think = Object.assign(think || {}, { at: c.at, until }); }
+  });
+  Object.values(reveals).forEach(r => {           // stroke timing inside a revealed element: outline, then hatch + fill
+    const own = strokes.filter(s => r.el.contains(s.el));
+    let outlineEnd = r.at;
+    own.filter(s => !s.fill && !s.hatch).forEach(s => { s.t0 = r.at; s.dur = Math.min(1.2, Math.max(0.25, s.len / 1100)); outlineEnd = Math.max(outlineEnd, s.t0 + s.dur); });
+    own.filter(s => s.hatch).forEach((s, i) => { s.t0 = outlineEnd + i * 0.05; s.dur = 0.2; });
+    own.filter(s => s.fill).forEach(s => { s.t0 = outlineEnd; s.dur = 0.25; });
+    r.texts = Array.from(r.el.querySelectorAll('text'));
+    if (!r.draw) own.forEach(s => { s.t0 = undefined; });
+  });
+  (SPEC.swaps || []).forEach(([out, by]) => { const a = document.getElementById(out); if (a && reveals[by]) swaps.push({ el: a, at: reveals[by].at }); });
+}
+let merged = [];
+function mergeLocks() { locks.sort((x, y) => x[0] - y[0]).forEach(([a, b]) => { const l = merged[merged.length - 1]; if (l && a <= l[1]) l[1] = Math.max(l[1], b); else merged.push([a, b]); }); }
+const effT = t => { let e = t; merged.forEach(([a, b]) => { if (t > a) e -= Math.min(t, b) - a; }); return e; };   // drift clock frozen in lock windows
+
+/* [11] RENDER - synchronous, pure function of t */
+function render(t) {
+  heads.forEach(h => {
+    h.el.style.opacity = !h.words.length || t >= h.end ? 0 : 1 - prog(t, h.end - 0.2, 0.2);
+    h.words.forEach(w => { w.el.style.opacity = prog(t, w.at, 0.18); w.el.style.transform = 'translateY(' + lerp(40, 0, prog(t, w.at, 0.35, 'backOut')).toFixed(2) + 'px) scale(' + lerp(0.8, 1, prog(t, w.at, 0.35, 'backOut')).toFixed(3) + ')'; });
+  });
+  const inThink = think && t >= think.start;
+  const k = Math.floor((inThink ? think.start : t) * BOIL_FPS + EPS);   // boil step, frozen in the think window
+  strokes.forEach(s => {
+    if (s.boil) s.el.setAttribute('d', pathD(s.base, (s.seed ^ Math.imul(k + 1, 0x85EBCA6B)) >>> 0, WOBBLE_AMP + BOIL_AMP * 0.5, s.closed));
+    if (s.t0 === undefined) { s.el.style.strokeDasharray = ''; s.el.style.opacity = ''; return; }
+    if (s.fill) { s.el.style.opacity = prog(t, s.t0, s.dur); return; }
+    const u = ease.p1InOut(clamp01((t - s.t0) / s.dur));
+    s.el.style.strokeDasharray = '1 1'; s.el.style.strokeDashoffset = (1 - u).toFixed(4); s.el.style.opacity = u > 0 ? '' : 0;
+  });
+  const sc = {};
+  Object.entries(reveals).forEach(([id, r]) => {
+    const o = r.draw ? (t >= r.at ? 1 : 0) : prog(t, r.at, 0.25);
+    r.el.style.opacity = o; sc[id] = r.draw ? 1 : lerp(0.6, 1, prog(t, r.at, 0.35, 'backOut'));
+    if (r.draw) r.texts.forEach(x => { x.style.opacity = prog(t, r.at, 0.25); });
+  });
+  pulses.forEach(p => { sc[p.id] = (sc[p.id] == null ? 1 : sc[p.id]) * pulse(t, p.at); });
+  Object.entries(sc).forEach(([id, s]) => { document.getElementById(id).style.transform = 'scale(' + s.toFixed(4) + ')'; });
+  swaps.forEach(s => { const r = reveals[s.el.id], o = r ? (r.draw ? (t >= r.at ? 1 : 0) : prog(t, r.at, 0.25)) : 1; s.el.style.opacity = o * (1 - prog(t, s.at, 0.25)); });   // replaced value fades as its successor pops
+  if (think && think.parts) {
+    think.host.style.opacity = prog(t, think.start, 0.5) * (t <= think.until + EPS ? 1 : 0);
+    think.parts.forEach(p => { p.el.style.opacity = 1; });
+  }
+  if (disc) disc.parts.forEach(p => { p.el.style.opacity = prog(t, p.at, 0.25); });
+  const dx = -DRIFT_PX * effT(t) / window.DURATION;
+  layers.forEach(l => l.el.setAttribute('transform', 'translate(' + (dx * l.par).toFixed(2) + ' 0)'));
+}
+
+/* [12] READY + SEEK */
+window.FPS = FPS;
+window.DURATION = 4.0;                                  // synchronous default; final value from the cue sheet in ready()
+window.SCENE_META = { contract: '1.0.0', videoCount: 0, notes: 'phy-ohm-ci-01 ' + SPEC.id + ' doodle-handdrawn' };
+window.ready = (async () => {
+  const s = await loadJson(window.__CUE_SHEET__, 'cues', 'cue-sheet-inline', 'CUES'); SHEET = s.data; window.__cueSource = s.source; checkSheet(SHEET);
+  const f = await loadJson(window.__FIXTURE__, 'fixture', 'fixture-inline', 'FIXTURE'); FX = deepFreeze(f.data); window.__fixtureSource = f.source;
+  window.DURATION = SHEET.duration;
+  window.FRAME_COUNT = Math.round(window.DURATION * FPS);
+  if (SHEET.fps !== FPS) report('W_FPS_MISMATCH', 'warning', 'cue sheet fps ' + SHEET.fps + ' != render fps ' + FPS);
+  await Promise.all(FONT_SPECS.map(f => document.fonts.load(f.weight + ' 40px "' + f.family + '"', f.text).catch(e => report('E_FONT_LOAD', 'error', f.family + ': ' + e.message))));
+  document.querySelectorAll('[data-fx]').forEach(el => { el.textContent = String(fx(el.dataset.fx)); });   // read-only, unformatted
+  buildZones(); buildStrokes(); buildBeats(); buildHeadlines();
+  if (SPEC.think) { think = buildWordText(SPEC.think); }
+  if (SPEC.disclosure) disc = buildWordText(SPEC.disclosure);
+  buildCues();
+  if (think) {
+    if (!think.until) { report('W_THINK_NO_HOLD', 'warning', 'no hold cue for ' + SPEC.think.element + '; think plate runs to DURATION'); think.at = think.last ? think.last.t1 : 0; think.until = window.DURATION; locks.push([think.at, think.until]); }
+    think.start = Math.max(think.at, think.last ? think.last.t1 + 0.1 : 0);   // silence begins after the last word
+  }
+  mergeLocks();
+  document.querySelectorAll('g.layer').forEach(g => layers.push({ el: g, par: +g.dataset.par || 0 }));
+  if (Q.get('safe') === '1') document.getElementById('stage').classList.add('safe');
+  addEventListener('keydown', e => { if (e.key === 's' || e.key === 'S') document.getElementById('stage').classList.toggle('safe'); });
+  await document.fonts.ready;
+})().catch(e => { if (!e.code) report('E_READY', 'error', e.message); throw e; });
+
+let chain = Promise.resolve();
+window.seek = async function seek(t) {
+  const prev = chain; let done; chain = new Promise(r => { done = r; });
+  try {
+    await prev; await window.ready;
+    if (typeof t !== 'number' || !isFinite(t)) throw fail('E_BAD_T', 'seek(t) needs a finite number of seconds, got ' + t);
+    const tc = Math.min(Math.max(t, 0), window.DURATION);
+    render(tc);
+    await document.fonts.ready;
+    return { t: tc, frame: Math.round(tc * FPS) };
+  } finally { done(); }
+};
+window.__hf = window.__hf || { get duration() { return window.DURATION; }, seek: t => window.seek(t) };
+if (Q.get('preview') === '1') window.ready.then(() => { const r = document.createElement('input'); r.type = 'range'; r.min = 0; r.max = window.DURATION; r.step = 1 / FPS; r.value = 0; r.style.cssText = 'position:fixed;right:8px;top:8px;width:360px'; r.oninput = () => window.seek(parseFloat(r.value)); document.body.appendChild(r); });
+if (Q.has('t')) window.ready.then(() => window.seek(num('t', 0)));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1314 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://examleaf.local/schemas/v2/voice_asset.json",
+  "title": "ExamLeaf Voice Asset v2",
+  "$comment": "Registry kind voice/ (Architecture §3.1 'VoiceIdentity (licence, path, locales, disclosure text, GL-voice status, revocation)'). One entry = one voice in one locale at one version. Compiles to the 05 VoiceIdentity contract (identity_id, version, brief, locale, rights_status, rights_record, reference_audio_sha256). Personal data (performer names, contracts, reference audio) never lives here: only pointers into the private, access-controlled store (07/07 §7). Never student recordings. Commercial-term lint (CE-L1/RD-49): CI rejects, case-insensitively, any match of (price|pricing|paid|is_free|free_|premium|entitle|subscri|sku|paywall|unlock|monetis|monetiz|revenue|discount|coupon|tier|destination_resource|cta_destination|funnel|purchase_|checkout_|product_id|offer_|trial_|utm_|campaign_|affiliate_|activation_code|storefront) applied to every object key at every depth (including REN fields keys), every required entry, pattern key and enum or const value (updated 15 Oct 2026, safety-13). Exempt: the editorial fields series_position, flagship and demo_kind. 15 Oct 2026 (stitch): rights.consent.platforms is a closed enum (safety-11; Q-RIGHTS.scope reads it).",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "persona_ref": {
+      "type": "string",
+      "pattern": "^persona/[a-z0-9][a-z0-9_-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?(#[a-z][a-z0-9_-]*)?$"
+    },
+    "locale_ref": {
+      "type": "string",
+      "pattern": "^locale/[a-z0-9][a-z0-9_-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+    },
+    "format_ref": {
+      "type": "string",
+      "pattern": "^format/[a-z0-9_]+$"
+    },
+    "level_ref": {
+      "type": "string",
+      "pattern": "^level/[a-z0-9_]+$"
+    },
+    "family_ref": {
+      "type": "string",
+      "pattern": "^family/[a-z0-9_]+$"
+    },
+    "safety_ref": {
+      "type": "string",
+      "pattern": "^safety/ac[0-2]$"
+    },
+    "reviewer_ref": {
+      "type": "string",
+      "pattern": "^reviewer/[a-z0-9][a-z0-9_.-]*$"
+    },
+    "lex_ref": {
+      "type": "string",
+      "pattern": "^lex/[a-z0-9][a-z0-9_.-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+    },
+    "private_ref": {
+      "type": "string",
+      "pattern": "^private://[A-Za-z0-9_./-]+$",
+      "description": "Pointer into the private, access-controlled voice store (private_voice_references/, gitignored). Never a public URL or a signed URL."
+    }
+  },
+  "properties": {
+    "voice_id": {
+      "type": "string",
+      "pattern": "^voice/[a-z0-9][a-z0-9_-]*$"
+    },
+    "version": {
+      "$ref": "#/definitions/semver"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "admitted",
+        "suspended",
+        "revoked",
+        "superseded"
+      ],
+      "description": "admitted = usable for production narration. Admission rules are in allOf."
+    },
+    "asset_kind": {
+      "type": "string",
+      "enum": [
+        "human_performer",
+        "sts_target_voice",
+        "tts_voice"
+      ]
+    },
+    "path_role": {
+      "type": "string",
+      "enum": [
+        "A_direct_release",
+        "A_performance_source",
+        "A_conversion_target",
+        "B_tts"
+      ],
+      "description": "A_direct_release: the performer's own recorded voice is released. A_performance_source: the performance is converted by speech-to-speech. A_conversion_target: the licensed brand voice that STS converts into. B_tts: directed text-to-speech."
+    },
+    "target_origin": {
+      "type": "string",
+      "enum": [
+        "designed_synthetic",
+        "performer_clone",
+        "provider_stock"
+      ],
+      "description": "Required for sts_target_voice and tts_voice (15 Oct 2026). designed_synthetic: a designed, non-real-person voice. performer_clone: cloned or modelled on a real performer (needs voice_clone and identity_reference consent, counsel review and provider verification). provider_stock: a provider library voice under licence."
+    },
+    "superseded_by": {
+      "type": "string",
+      "pattern": "^voice/[a-z0-9][a-z0-9_-]*@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+      "description": "Successor admitted through GR (15 Oct 2026). Required when status is superseded; later series members pin it (VOICE §1 rule 2)."
+    },
+    "personas": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/persona_ref"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "locale": {
+      "$ref": "#/definitions/locale_ref"
+    },
+    "performer": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "performer_ref": {
+          "type": "string",
+          "pattern": "^performer/[a-z0-9][a-z0-9_.-]*$"
+        },
+        "adult": {
+          "const": true
+        },
+        "is_student": {
+          "const": false
+        },
+        "credit_ref": {
+          "$ref": "#/definitions/private_ref"
+        },
+        "on_camera_release_ref": {
+          "$ref": "#/definitions/private_ref"
+        },
+        "native_speaker_of_locale": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "performer_ref",
+        "adult",
+        "is_student",
+        "credit_ref",
+        "native_speaker_of_locale"
+      ]
+    },
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "provider": {
+          "type": "string",
+          "minLength": 1
+        },
+        "model_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provider_voice_ref": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "REPLACE"
+          }
+        },
+        "api_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "live_contract_verified": {
+          "type": "boolean"
+        },
+        "admission_record_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "07/07 §4 admission record (pinned adapter, scoped worker key, approved outbound domain)."
+        },
+        "controls_permitted": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "lifecycle": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "deprecation_notice_date": {
+              "$ref": "#/definitions/date"
+            },
+            "shutdown_date": {
+              "$ref": "#/definitions/date"
+            },
+            "custom_voice_storage_expiry": {
+              "$ref": "#/definitions/date"
+            }
+          }
+        }
+      },
+      "required": [
+        "provider",
+        "model_id",
+        "provider_voice_ref",
+        "live_contract_verified",
+        "admission_record_ref"
+      ]
+    },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rights_status": {
+          "type": "string",
+          "enum": [
+            "audition-only",
+            "licensed-stock",
+            "consented-custom",
+            "unverified"
+          ],
+          "description": "05 VoiceIdentity enum, unchanged. Production compile requires licensed-stock or consented-custom."
+        },
+        "rights_record_ref": {
+          "$ref": "#/definitions/private_ref"
+        },
+        "consent": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "consent_record_ref": {
+              "$ref": "#/definitions/private_ref"
+            },
+            "uses": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "recording",
+                  "performance_reference",
+                  "identity_reference",
+                  "speech_to_speech_conversion",
+                  "voice_clone",
+                  "on_camera_insert"
+                ]
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "languages": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/locale_ref"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "territories": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "platforms": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "all",
+                  "youtube_long",
+                  "youtube_shorts",
+                  "instagram_reels",
+                  "in_app_player",
+                  "offline_download",
+                  "audio_only"
+                ]
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "term_start": {
+              "$ref": "#/definitions/date"
+            },
+            "term_end": {
+              "$ref": "#/definitions/date"
+            },
+            "named_processors": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            },
+            "promotional_use_allowed": {
+              "type": "boolean"
+            },
+            "compensation_recorded_in_contract": {
+              "const": true
+            },
+            "revocation_terms_ref": {
+              "$ref": "#/definitions/private_ref"
+            },
+            "revocation_effect": {
+              "type": "string",
+              "enum": [
+                "withdraw_published",
+                "future_only"
+              ]
+            },
+            "deletion_terms_ref": {
+              "$ref": "#/definitions/private_ref"
+            },
+            "models_permitted": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1,
+              "uniqueItems": true,
+              "description": "Exact provider model ids the performer consented to (05-NP §15 'model permissions'). The Resolver refuses a performer/target pair whose target provider.model_id is not listed (XF-5)."
+            },
+            "raw_audio_retention_until": {
+              "$ref": "#/definitions/date",
+              "description": "Last date raw takes, reference audio and golden-set recordings are kept in the private store (07/07 §7)."
+            },
+            "removal_sla_days": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Days within which removal is completed after a withdrawal (11 §7.4)."
+            },
+            "only_seen_content": {
+              "const": true,
+              "description": "The performer's voice is never used for content they have not seen (11 PLAYBOOK Step 3)."
+            }
+          },
+          "required": [
+            "consent_record_ref",
+            "uses",
+            "languages",
+            "territories",
+            "platforms",
+            "term_start",
+            "term_end",
+            "named_processors",
+            "compensation_recorded_in_contract",
+            "revocation_terms_ref",
+            "revocation_effect",
+            "deletion_terms_ref",
+            "raw_audio_retention_until",
+            "removal_sla_days",
+            "only_seen_content"
+          ],
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "uses": {
+                    "contains": {
+                      "enum": [
+                        "speech_to_speech_conversion",
+                        "voice_clone",
+                        "identity_reference"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "uses"
+                ]
+              },
+              "then": {
+                "required": [
+                  "models_permitted"
+                ]
+              }
+            }
+          ]
+        },
+        "counsel_review_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Counsel sign-off of the consent template (O-6)."
+        },
+        "provider_verification_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Provider identity/cloning verification record where the provider requires one."
+        }
+      },
+      "required": [
+        "rights_status",
+        "rights_record_ref"
+      ]
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "unverified",
+            "contract_verified",
+            "live_request_verified",
+            "golden_set_passed"
+          ]
+        },
+        "live_request_record_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "date": {
+          "$ref": "#/definitions/date"
+        }
+      },
+      "required": [
+        "status"
+      ]
+    },
+    "gl_voice": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "not_applicable",
+            "not_run",
+            "pending",
+            "passed",
+            "failed",
+            "lapsed"
+          ]
+        },
+        "record_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Ledger row of the blind native-speaker review against the human reference (Architecture §8)."
+        },
+        "reviewer_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/reviewer_ref"
+          },
+          "uniqueItems": true
+        },
+        "tested_model_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "families_covered": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/family_ref"
+          },
+          "uniqueItems": true
+        },
+        "date": {
+          "$ref": "#/definitions/date"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "passed"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "record_ref",
+              "reviewer_ids",
+              "tested_model_id",
+              "families_covered",
+              "date"
+            ],
+            "properties": {
+              "reviewer_ids": {
+                "minItems": 1
+              },
+              "families_covered": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "native_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "not_run",
+            "pending",
+            "passed",
+            "failed"
+          ]
+        },
+        "reviewer_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/reviewer_ref"
+          },
+          "uniqueItems": true
+        },
+        "record_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "status"
+      ]
+    },
+    "golden_set": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "golden_set_ref": {
+          "type": "string",
+          "pattern": "^gs/[a-z0-9][a-z0-9_.-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+        },
+        "golden_set_sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "accepted_audio_manifest_sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "last_run_date": {
+          "$ref": "#/definitions/date"
+        },
+        "result": {
+          "type": "string",
+          "enum": [
+            "not_run",
+            "pass",
+            "fail"
+          ]
+        },
+        "tested_model_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "provider.model_id the run used; must equal the current provider.model_id when admitted (XF-1)."
+        },
+        "tested_provider_voice_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "provider.provider_voice_ref the run used; must equal the current one when admitted (XF-1)."
+        },
+        "reviewer_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/reviewer_ref"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "golden_set_ref",
+        "golden_set_sha256",
+        "result"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "result": {
+                "enum": [
+                  "pass",
+                  "fail"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "tested_model_id",
+              "tested_provider_voice_ref",
+              "last_run_date"
+            ]
+          }
+        }
+      ]
+    },
+    "lexicon_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/lex_ref"
+      },
+      "uniqueItems": true
+    },
+    "allowed": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "formats": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/format_ref"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/level_ref"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "safety_classes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/safety_ref"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "families": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/family_ref"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "formats",
+        "levels",
+        "safety_classes",
+        "families"
+      ]
+    },
+    "disclosure": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "variant": {
+          "type": "string",
+          "enum": [
+            "path_a_converted",
+            "path_a_direct",
+            "path_b_tts"
+          ]
+        },
+        "text_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Per-locale disclosure text (Locale Profile disclosure_text_ref; RD-45)."
+        }
+      },
+      "required": [
+        "variant",
+        "text_ref"
+      ]
+    },
+    "expiry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "expires_on": {
+          "$ref": "#/definitions/date"
+        },
+        "renewal_due_by": {
+          "$ref": "#/definitions/date"
+        },
+        "renewal_owner": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "expires_on",
+        "renewal_due_by",
+        "renewal_owner"
+      ]
+    },
+    "voice_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "identity_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]*$"
+        },
+        "brief": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reference_audio_sha256": {
+          "$ref": "#/definitions/sha256"
+        }
+      },
+      "required": [
+        "identity_id",
+        "brief"
+      ]
+    },
+    "revocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reason": {
+          "type": "string",
+          "enum": [
+            "consent_withdrawn",
+            "licence_withdrawn",
+            "licence_expired",
+            "provider_shutdown",
+            "defect",
+            "safety_breach",
+            "scope_narrowed"
+          ]
+        },
+        "effective_date": {
+          "$ref": "#/definitions/date"
+        },
+        "scope_note": {
+          "type": "string",
+          "minLength": 1
+        },
+        "processor_deletion_confirmation_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/private_ref"
+          },
+          "uniqueItems": true
+        },
+        "replay_store_purged": {
+          "const": true,
+          "description": "CE-38 stored narration audio of the withdrawn artefacts purged; hashes stay in the ledger as records."
+        }
+      },
+      "required": [
+        "reason",
+        "effective_date"
+      ]
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "field": {
+            "type": "string",
+            "minLength": 1
+          },
+          "tag": {
+            "type": "string",
+            "enum": [
+              "Recommendation",
+              "Hypothesis",
+              "Inherited",
+              "Evidence"
+            ]
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "field",
+          "tag",
+          "source"
+        ]
+      }
+    }
+  },
+  "required": [
+    "voice_id",
+    "version",
+    "title",
+    "status",
+    "asset_kind",
+    "path_role",
+    "personas",
+    "locale",
+    "rights",
+    "verification",
+    "native_review",
+    "allowed",
+    "disclosure",
+    "expiry",
+    "voice_identity",
+    "owner"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "asset_kind": {
+            "const": "human_performer"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "performer"
+        ],
+        "properties": {
+          "path_role": {
+            "enum": [
+              "A_direct_release",
+              "A_performance_source"
+            ]
+          },
+          "rights": {
+            "required": [
+              "consent",
+              "counsel_review_ref"
+            ],
+            "properties": {
+              "rights_status": {
+                "enum": [
+                  "consented-custom",
+                  "audition-only",
+                  "unverified"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "asset_kind": {
+            "const": "tts_voice"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "provider",
+          "gl_voice",
+          "golden_set",
+          "target_origin"
+        ],
+        "properties": {
+          "path_role": {
+            "const": "B_tts"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "asset_kind": {
+            "const": "sts_target_voice"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "provider",
+          "golden_set",
+          "target_origin"
+        ],
+        "properties": {
+          "path_role": {
+            "const": "A_conversion_target"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "path_role": {
+            "const": "B_tts"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "allowed": {
+            "properties": {
+              "safety_classes": {
+                "items": {
+                  "not": {
+                    "const": "safety/ac0"
+                  }
+                }
+              }
+            }
+          },
+          "disclosure": {
+            "properties": {
+              "variant": {
+                "const": "path_b_tts"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "path_role": {
+            "const": "A_direct_release"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "disclosure": {
+            "properties": {
+              "variant": {
+                "const": "path_a_direct"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "path_role": {
+            "enum": [
+              "A_performance_source",
+              "A_conversion_target"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "disclosure": {
+            "properties": {
+              "variant": {
+                "const": "path_a_converted"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "path_role": {
+            "const": "A_performance_source"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "rights": {
+            "properties": {
+              "consent": {
+                "properties": {
+                  "uses": {
+                    "contains": {
+                      "const": "speech_to_speech_conversion"
+                    }
+                  },
+                  "named_processors": {
+                    "minItems": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "RD-42 / CE-L5: Assamese is human-voiced; no TTS or STS route is committed.",
+      "if": {
+        "properties": {
+          "locale": {
+            "pattern": "^locale/as-in(@.*)?$"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "performer"
+        ],
+        "properties": {
+          "asset_kind": {
+            "const": "human_performer"
+          },
+          "path_role": {
+            "const": "A_direct_release"
+          },
+          "performer": {
+            "properties": {
+              "native_speaker_of_locale": {
+                "const": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "admitted"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "rights": {
+            "properties": {
+              "rights_status": {
+                "enum": [
+                  "licensed-stock",
+                  "consented-custom"
+                ]
+              }
+            }
+          },
+          "native_review": {
+            "properties": {
+              "status": {
+                "const": "passed"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "admitted"
+          },
+          "asset_kind": {
+            "enum": [
+              "tts_voice",
+              "sts_target_voice"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "provider": {
+            "properties": {
+              "live_contract_verified": {
+                "const": true
+              }
+            }
+          },
+          "golden_set": {
+            "required": [
+              "accepted_audio_manifest_sha256",
+              "last_run_date",
+              "reviewer_ids"
+            ],
+            "properties": {
+              "result": {
+                "const": "pass"
+              },
+              "reviewer_ids": {
+                "minItems": 1
+              }
+            }
+          },
+          "verification": {
+            "properties": {
+              "status": {
+                "const": "golden_set_passed"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "admitted"
+          },
+          "asset_kind": {
+            "const": "tts_voice"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "gl_voice": {
+            "properties": {
+              "status": {
+                "const": "passed"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "revoked"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "revocation"
+        ]
+      }
+    },
+    {
+      "$comment": "voice-01 (15 Oct 2026): a voice cloned from a real performer needs voice_clone and identity_reference consent, a named processor, counsel review and provider verification (07/07 §7; 11 PLAYBOOK Step 4).",
+      "if": {
+        "properties": {
+          "target_origin": {
+            "const": "performer_clone"
+          }
+        },
+        "required": [
+          "target_origin"
+        ]
+      },
+      "then": {
+        "required": [
+          "performer"
+        ],
+        "properties": {
+          "rights": {
+            "required": [
+              "consent",
+              "counsel_review_ref",
+              "provider_verification_ref"
+            ],
+            "properties": {
+              "rights_status": {
+                "const": "consented-custom"
+              },
+              "consent": {
+                "properties": {
+                  "uses": {
+                    "allOf": [
+                      {
+                        "contains": {
+                          "const": "identity_reference"
+                        }
+                      },
+                      {
+                        "contains": {
+                          "const": "voice_clone"
+                        }
+                      }
+                    ]
+                  },
+                  "named_processors": {
+                    "minItems": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "safety-10 (15 Oct 2026): any consented-custom synthetic voice carries the structured consent, counsel review (O-6) and provider verification.",
+      "if": {
+        "properties": {
+          "asset_kind": {
+            "enum": [
+              "sts_target_voice",
+              "tts_voice"
+            ]
+          },
+          "rights": {
+            "properties": {
+              "rights_status": {
+                "const": "consented-custom"
+              }
+            },
+            "required": [
+              "rights_status"
+            ]
+          }
+        },
+        "required": [
+          "asset_kind",
+          "rights"
+        ]
+      },
+      "then": {
+        "properties": {
+          "rights": {
+            "required": [
+              "consent",
+              "counsel_review_ref",
+              "provider_verification_ref"
+            ],
+            "properties": {
+              "consent": {
+                "properties": {
+                  "uses": {
+                    "contains": {
+                      "enum": [
+                        "identity_reference",
+                        "voice_clone"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "superseded"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "required": [
+          "superseded_by"
+        ]
+      }
+    },
+    {
+      "$comment": "voice-08 (15 Oct 2026): withdrawn consent with withdraw_published needs processor deletion confirmations and a purged CE-38 replay store.",
+      "if": {
+        "required": [
+          "revocation",
+          "rights"
+        ],
+        "properties": {
+          "revocation": {
+            "properties": {
+              "reason": {
+                "const": "consent_withdrawn"
+              }
+            }
+          },
+          "rights": {
+            "required": [
+              "consent"
+            ],
+            "properties": {
+              "consent": {
+                "required": [
+                  "revocation_effect"
+                ],
+                "properties": {
+                  "revocation_effect": {
+                    "const": "withdraw_published"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "revocation": {
+            "required": [
+              "processor_deletion_confirmation_refs",
+              "replay_store_purged"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

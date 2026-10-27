@@ -1,0 +1,8 @@
+{"graph_id": "LG-diki-ohm-demo", "subject": "physics", "level": "l9_10",
+ "sources": [{"id": "SRC-ncert-sci-10-ch11", "kind": "textbook", "title": "NCERT Class 10 Science", "section": "Electricity: Ohm's law", "reliability_class": "official_curriculum"}],
+ "nodes": [
+  {"id": "CLM-ohm-proportional", "type": "claim", "statement": "For a resistor at constant temperature, current is proportional to voltage (V = I R).", "source_ids": ["SRC-ncert-sci-10-ch11"], "fixture_ids": ["FIX-diki-ohm-demo"]},
+  {"id": "MIS-always-doubles", "type": "misconception", "statement": "Doubling the voltage always doubles the current.", "why_wrong": "It needs constant resistance; a filament heats and its resistance rises."},
+  {"id": "ASM-predict-four-volts", "type": "assessment_item", "stem": "10 ohm, 2 V gives 0.2 A. At 4 V?", "answer": "0.4 A", "original": true},
+  {"id": "ASM-transfer-six-volts", "type": "assessment_item", "stem": "Same resistor at 6 V?", "answer": "0.6 A", "original": true},
+  {"id": "FIX-diki-ohm-demo", "type": "fixture", "compute": "fixtures/fixture.json (example; values in its _note)", "outputs": ["results.i1", "results.i2", "results.i3", "results.lamp_i2"]}]}

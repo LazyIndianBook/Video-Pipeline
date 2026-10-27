@@ -1,0 +1,169 @@
+{
+  "lesson_id": "water_coefficient_demo",
+  "academic_edition": "Demonstration only; board alignment not certified",
+  "source_claim_manifest": "examples/claims.json",
+  "voice": {
+    "identity_id": "examleaf-super-teacher",
+    "version": "audition-1",
+    "brief": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words.",
+    "locale": "en-IN",
+    "rights_status": "audition-only",
+    "rights_record": "Must replace with actual stock-voice licence or written informed performer consent."
+  },
+  "lexicon_version": "en-reviewed-example-1",
+  "segments": [
+    {
+      "segment_id": "question",
+      "objective_id": "count_atoms",
+      "claim_ids": [
+        "water-composition"
+      ],
+      "text_template": "Two water molecules. How many hydrogen atoms altogether? Count each complete molecule before you answer.",
+      "direction": {
+        "mode": "curious",
+        "target_wpm": 140,
+        "emphasis": [
+          "each complete molecule"
+        ]
+      },
+      "pause_after": {
+        "kind": "think",
+        "seconds": 6,
+        "prompt": "Count hydrogen atoms in two separate water molecules."
+      },
+      "expected_visuals": [
+        "two water molecules; label elements, not totals"
+      ],
+      "critical_phrases": [
+        "Two water molecules",
+        "hydrogen"
+      ],
+      "cues": [
+        {
+          "cue_id": "show_molecules",
+          "phrase": "Two water molecules",
+          "action": "show",
+          "element_id": "molecule-pair"
+        }
+      ]
+    },
+    {
+      "segment_id": "answer",
+      "objective_id": "count_atoms",
+      "claim_ids": [
+        "water-composition",
+        "coefficient-quantity"
+      ],
+      "text_template": "Four hydrogen atoms. Each water molecule contains two, and we have two complete copies. That is what the coefficient changes: how many molecules, not what a molecule is.",
+      "direction": {
+        "mode": "deliberate",
+        "target_wpm": 130,
+        "emphasis": [
+          "Four",
+          "not"
+        ]
+      },
+      "answers_after": "question",
+      "pause_after": {
+        "kind": "beat",
+        "seconds": 0.4
+      },
+      "expected_visuals": [
+        "highlight four hydrogen atoms, coefficient stays separate from subscript"
+      ],
+      "critical_phrases": [
+        "Four hydrogen atoms",
+        "not"
+      ],
+      "cues": [
+        {
+          "cue_id": "reveal_hydrogen",
+          "phrase": "Four hydrogen atoms",
+          "action": "reveal-answer",
+          "element_id": "hydrogen-count"
+        },
+        {
+          "cue_id": "highlight_coefficient",
+          "phrase": "coefficient",
+          "action": "highlight",
+          "element_id": "coefficient"
+        }
+      ]
+    },
+    {
+      "segment_id": "repair",
+      "objective_id": "preserve_identity",
+      "claim_ids": [
+        "subscript-identity"
+      ],
+      "text_template": "Changing {{water_formula}} into {{hydrogen_peroxide}} would be a very efficient way to answer a different question. Keep the given formulas fixed. Use coefficients to change the counts.",
+      "direction": {
+        "mode": "light",
+        "target_wpm": 142,
+        "notes": "Dry observation, not a laugh. Return to focused explanation after different question."
+      },
+      "pause_after": {
+        "kind": "beat",
+        "seconds": 0.3
+      },
+      "expected_visuals": [
+        "wrong proposed formula clearly labelled, then restore water"
+      ],
+      "critical_phrases": [
+        "fixed",
+        "coefficients"
+      ]
+    },
+    {
+      "segment_id": "retry",
+      "objective_id": "count_atoms",
+      "claim_ids": [
+        "water-composition"
+      ],
+      "text_template": "Your turn again: three water molecules. How many hydrogen atoms, and how many oxygen atoms? Pause here and write both counts.",
+      "direction": {
+        "mode": "reassuring",
+        "target_wpm": 140
+      },
+      "pause_after": {
+        "kind": "pause-video",
+        "seconds": 5,
+        "prompt": "Write hydrogen and oxygen atom totals for three water molecules."
+      },
+      "expected_visuals": [
+        "three water molecules with totals hidden"
+      ],
+      "critical_phrases": [
+        "three water molecules"
+      ]
+    },
+    {
+      "segment_id": "check",
+      "objective_id": "count_atoms",
+      "claim_ids": [
+        "water-composition"
+      ],
+      "text_template": "Six hydrogen atoms and three oxygen atoms. If those match, check the method too: the number of copies multiplies every atom count in the formula.",
+      "direction": {
+        "mode": "focused",
+        "target_wpm": 140
+      },
+      "answers_after": "retry",
+      "expected_visuals": [
+        "six hydrogen atoms; three oxygen atoms"
+      ],
+      "critical_phrases": [
+        "Six hydrogen",
+        "three oxygen"
+      ],
+      "cues": [
+        {
+          "cue_id": "reveal_retry",
+          "phrase": "Six hydrogen atoms",
+          "action": "reveal-answer",
+          "element_id": "retry-totals"
+        }
+      ]
+    }
+  ]
+}

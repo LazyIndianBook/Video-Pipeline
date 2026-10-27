@@ -1,0 +1,1417 @@
+[
+  {
+    "path": ".gitignore",
+    "bytes": 125,
+    "sha256": "27d051b9e3f6e2a4f4b9579c9238703ba758c860f6cd81f75f35e49adc0e225c"
+  },
+  {
+    "path": "AGENTS.md",
+    "bytes": 862,
+    "sha256": "bd98e638630e9a70ba5e713e0231cc2501f7ab27628c7d5ef040525e64540a86"
+  },
+  {
+    "path": "CLAUDE.md",
+    "bytes": 289,
+    "sha256": "80ee076025a6d7ae17ab9ff3ec140f73f835daca4b38e598cafc3364c4d57b0e"
+  },
+  {
+    "path": "ExamLeaf_Video_Engine_Cost_Model.xlsx",
+    "bytes": 31774,
+    "sha256": "f4a86a5f97b60692f4fd55aa7ae7efeca4dd7cda6add8c1acadefef279742025"
+  },
+  {
+    "path": "README.md",
+    "bytes": 5907,
+    "sha256": "71cea5d100d7ab187cf017851dce338bf66f89587db505ea4d6dfee7c98a2802"
+  },
+  {
+    "path": "configs/design_tokens.json",
+    "bytes": 417,
+    "sha256": "833a1c584b3dd599504bb6e4aa6db5c132d71e4c8587e7da3afa8484e1714205"
+  },
+  {
+    "path": "configs/providers.example.json",
+    "bytes": 856,
+    "sha256": "c309adfedd388ec597eb4cd7c394907522017ea18c8324335e8e0497fb41f6b2"
+  },
+  {
+    "path": "docs/Architecture.md",
+    "bytes": 6755,
+    "sha256": "87b8a02e61dbd63eab05d0c07f6ca1a791b5bd2e5f59a1040ceaea90249874b4"
+  },
+  {
+    "path": "docs/Four_Pilots.md",
+    "bytes": 4240,
+    "sha256": "e1e72bb7a83e20725eed412211b61fd84606b5541c439b76ea8b161a4df0507c"
+  },
+  {
+    "path": "docs/Higgsfield_Findings.md",
+    "bytes": 2827,
+    "sha256": "84c364090ec17bc0dc8b64c20c45df2b100afd86d8f46e2011e8736fefefc646"
+  },
+  {
+    "path": "docs/Implementation_Roadmap.md",
+    "bytes": 2227,
+    "sha256": "a210ac4d8cbd7691d4daba40810fabcfa1e836efabed5b2e5f36e4623c2d3b92"
+  },
+  {
+    "path": "docs/Production_Runbook.md",
+    "bytes": 5243,
+    "sha256": "269610d2655f612a1efb4e2dfa38f1347443e9afa5d4b916c6c3a092bdb8c935"
+  },
+  {
+    "path": "docs/Security_and_Installation.md",
+    "bytes": 2784,
+    "sha256": "d8a02d1d36f8db72bc9812b3f72014121ff92f1dc37da611f87176d1432eaef6"
+  },
+  {
+    "path": "docs/Super_Teacher_Contract.md",
+    "bytes": 2053,
+    "sha256": "1dd044ea7e06f59fe34da10d1f2a500694bf14236fce12ca1c5da1b349ff26c8"
+  },
+  {
+    "path": "examples/biology_genetics.json",
+    "bytes": 2659,
+    "sha256": "4fb5658f3c1077a48f50173f1b8bb472a43295aa13cd48583ba583208b18a160"
+  },
+  {
+    "path": "examples/biology_genetics_600s_plan.json",
+    "bytes": 3656,
+    "sha256": "5a868f395200c36fcc1f28f2334c8bd1a150aecd7decde2ef4f27919519f4429"
+  },
+  {
+    "path": "examples/chemistry_balance.json",
+    "bytes": 2691,
+    "sha256": "708a498d105f15b065f7141c3925a0d4b67d35a44a10db769c756b1883bcb3ba"
+  },
+  {
+    "path": "examples/chemistry_balance_600s_plan.json",
+    "bytes": 3641,
+    "sha256": "cf0233a23d1b27b210a3e58e6185dab8079d57d9d81b416da72fc210376d4dfa"
+  },
+  {
+    "path": "examples/mathematics_chain.json",
+    "bytes": 2335,
+    "sha256": "c102871a0701dd7010121f3623d1775d88372236c8ba605929f542d1283ba5f6"
+  },
+  {
+    "path": "examples/mathematics_chain_600s_plan.json",
+    "bytes": 3553,
+    "sha256": "0be812e39a2dd7dc6f782c1d3be4c9a569b79661f766224e7b177690ea8a75ab"
+  },
+  {
+    "path": "examples/physics_rc.json",
+    "bytes": 2588,
+    "sha256": "56b645f3e797231ecf30b95671696cd35d636b63ee66dacb5a3b6891f9489ce2"
+  },
+  {
+    "path": "examples/physics_rc_600s_plan.json",
+    "bytes": 3606,
+    "sha256": "bd589e70bcc84f15e0d3c838988d2339fb0a4cc60aa9e26e7a980946c1bd39e7"
+  },
+  {
+    "path": "outputs/benchmark.json",
+    "bytes": 22333,
+    "sha256": "ee5b1420bc6f51a1e66cc3e475111be626d6a4e5a8e904ab8f4c89cbb2a0f00d"
+  },
+  {
+    "path": "outputs/biology_genetics_16x9.ffmpeg.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "outputs/biology_genetics_16x9.manifest.json",
+    "bytes": 2663,
+    "sha256": "ac6a1d3765fd4887c3dcba4a6228177492160c9618c6ad56527b761e8f9d4918"
+  },
+  {
+    "path": "outputs/biology_genetics_16x9.mp4",
+    "bytes": 203333,
+    "sha256": "d9b2adc53478f73327b2d338c1812d95718c1f06a5f69076d0c45ff7baa2fafa"
+  },
+  {
+    "path": "outputs/biology_genetics_16x9.vtt",
+    "bytes": 496,
+    "sha256": "cf32bfd33a1e9e0cb23b4eb52db54fb8a9d07913beefbd30ba478aa36b2d44e9"
+  },
+  {
+    "path": "outputs/biology_genetics_16x9_answer.png",
+    "bytes": 54615,
+    "sha256": "6cf5bcb398f8f3e48fddd753e5203c8ac52c2ffab09814081954242eddfe46bd"
+  },
+  {
+    "path": "outputs/biology_genetics_16x9_answer.svg",
+    "bytes": 3640,
+    "sha256": "4556e46680624bb79461d9ad4c6ba0c002d4b65234ced835907a9faf9af9a98a"
+  },
+  {
+    "path": "outputs/biology_genetics_16x9_opening.png",
+    "bytes": 47774,
+    "sha256": "34bd34ac489f47ea338272f7bedf48c8281ffabe8336ac6e2254b0d930b807b2"
+  },
+  {
+    "path": "outputs/biology_genetics_16x9_opening.svg",
+    "bytes": 2981,
+    "sha256": "bb3425dd9e68b7c64725e19c7b699a0161f0161af161db9c726db2f4e1d0fece"
+  },
+  {
+    "path": "outputs/biology_genetics_16x9_question.png",
+    "bytes": 52004,
+    "sha256": "815c39a6d385e2957a0816111fa79ad231c5fe51dba694c01b52f3e2e2cc8f8e"
+  },
+  {
+    "path": "outputs/biology_genetics_16x9_question.svg",
+    "bytes": 3513,
+    "sha256": "a9639de07f0bc2295e585b8c06440685a74d7bc6ef8b6e4c5c810b81db14d567"
+  },
+  {
+    "path": "outputs/biology_genetics_16x9_recap.png",
+    "bytes": 56735,
+    "sha256": "e2a73b5e8188026d452a2502a0880a1a22cf5a3e34eb3412853ac88714f7e394"
+  },
+  {
+    "path": "outputs/biology_genetics_16x9_recap.svg",
+    "bytes": 3640,
+    "sha256": "a95de8943f60a12d8417aed942eb175264f2f8e212bd0220b97c21b1fee053cf"
+  },
+  {
+    "path": "outputs/biology_genetics_9x16.ffmpeg.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "outputs/biology_genetics_9x16.manifest.json",
+    "bytes": 2663,
+    "sha256": "f8476323815c5a5d387953c693ebe797dd8bdccd2a2df9c4062905310803a5e1"
+  },
+  {
+    "path": "outputs/biology_genetics_9x16.mp4",
+    "bytes": 202027,
+    "sha256": "9dc149431554388396ff511089b86e8d3487b806cae83998c6fded15359b272a"
+  },
+  {
+    "path": "outputs/biology_genetics_9x16.vtt",
+    "bytes": 496,
+    "sha256": "cf32bfd33a1e9e0cb23b4eb52db54fb8a9d07913beefbd30ba478aa36b2d44e9"
+  },
+  {
+    "path": "outputs/biology_genetics_9x16_answer.png",
+    "bytes": 61322,
+    "sha256": "4d40a089f2b20b236031d3a615326939ff31d8b2a30471cec3190402e8dc138a"
+  },
+  {
+    "path": "outputs/biology_genetics_9x16_answer.svg",
+    "bytes": 3742,
+    "sha256": "9f412fd4b5aec12d559ed3787bace116157de54234eb4636f23b978756811fe0"
+  },
+  {
+    "path": "outputs/biology_genetics_9x16_opening.png",
+    "bytes": 54840,
+    "sha256": "393f44a4e931f12372a88895f5b31e60f122863247d26a87d94f40b0c3ddd1a9"
+  },
+  {
+    "path": "outputs/biology_genetics_9x16_opening.svg",
+    "bytes": 3086,
+    "sha256": "41be925aa349064a1759d5e2e221e0be062fe6d9eb33087205d8139442d24d2e"
+  },
+  {
+    "path": "outputs/biology_genetics_9x16_question.png",
+    "bytes": 60287,
+    "sha256": "68b363c9655206c1c3de7e691afa12a66aa5aa65c3922afc056381fbe98ead3d"
+  },
+  {
+    "path": "outputs/biology_genetics_9x16_question.svg",
+    "bytes": 3615,
+    "sha256": "e2b922edd14f7bef8ed73a53d58c07421332467d63d8ad88bfdb98e00ec2b944"
+  },
+  {
+    "path": "outputs/biology_genetics_9x16_recap.png",
+    "bytes": 63124,
+    "sha256": "335f676b2e670340f46a80284a429bb5450aa80ee6c090378f0ed9de0917d6f8"
+  },
+  {
+    "path": "outputs/biology_genetics_9x16_recap.svg",
+    "bytes": 3741,
+    "sha256": "234ba684cd7591e8ea0ae11464a5f021c8419ddc03dadf6ee6dbe4391177ccae"
+  },
+  {
+    "path": "outputs/browser_smoke.json",
+    "bytes": 367,
+    "sha256": "b4794e86165178584a15c9d0f2389e9513bc13b7a5dcd3ce6da247ba0e384a69"
+  },
+  {
+    "path": "outputs/chemistry_balance_16x9.ffmpeg.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "outputs/chemistry_balance_16x9.manifest.json",
+    "bytes": 2491,
+    "sha256": "05c699c1cc8d77cb569cf3ad2d57ea0de12ea74093bd20b0f1f8aeb6a9ea29d1"
+  },
+  {
+    "path": "outputs/chemistry_balance_16x9.mp4",
+    "bytes": 212515,
+    "sha256": "befef0fd89bbaa5950e4a6a18f2a27d2d91efc16720ed4cb6ec722f421bdf21c"
+  },
+  {
+    "path": "outputs/chemistry_balance_16x9.vtt",
+    "bytes": 472,
+    "sha256": "116cd02d7683130aecba471c6477fd01fd5877e96e19c4b6092b9ca8f1bd0def"
+  },
+  {
+    "path": "outputs/chemistry_balance_16x9_answer.png",
+    "bytes": 57649,
+    "sha256": "af28b23414abfcd892e7391869b1f4e62c090820e7935af2afa966a340d12c03"
+  },
+  {
+    "path": "outputs/chemistry_balance_16x9_answer.svg",
+    "bytes": 6423,
+    "sha256": "229f2b627c347929d658eabfeea4912d0523f16bb128fdb963752e77e1455f6f"
+  },
+  {
+    "path": "outputs/chemistry_balance_16x9_opening.png",
+    "bytes": 53655,
+    "sha256": "3337fa6d54060aac65f607ef9f8495a20f353bcc935268f78f13ab0c10cb54a9"
+  },
+  {
+    "path": "outputs/chemistry_balance_16x9_opening.svg",
+    "bytes": 5144,
+    "sha256": "ad4814f30427e435a49add23083037a8c00df7a2417cba8eca5a276dd00aabfb"
+  },
+  {
+    "path": "outputs/chemistry_balance_16x9_question.png",
+    "bytes": 58770,
+    "sha256": "2a63c370576d4bb3429d91f3aabb8a8945722e13e35a879d4507d766563562b9"
+  },
+  {
+    "path": "outputs/chemistry_balance_16x9_question.svg",
+    "bytes": 5943,
+    "sha256": "f64a6389b87a09766bd492002e12743449bcedc5103be24a1eda19d973d088aa"
+  },
+  {
+    "path": "outputs/chemistry_balance_16x9_recap.png",
+    "bytes": 56752,
+    "sha256": "83c0872791b194ecaf60711858bc8f55246d0cee4fd247a5749269dd7f59d5ff"
+  },
+  {
+    "path": "outputs/chemistry_balance_16x9_recap.svg",
+    "bytes": 6421,
+    "sha256": "9789235ff2c38760a294581d76966f586c8068666258a7b75930a05f59bdac4c"
+  },
+  {
+    "path": "outputs/chemistry_balance_9x16.ffmpeg.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "outputs/chemistry_balance_9x16.manifest.json",
+    "bytes": 2492,
+    "sha256": "1d1c3a96b5a05248867f9a53149187a7dde30620f1b384569dfc114d25a83a75"
+  },
+  {
+    "path": "outputs/chemistry_balance_9x16.mp4",
+    "bytes": 212760,
+    "sha256": "252cd538ce945b7aa407d2d2cb189d1a6c13217dbb2a907bedbd7a6625b61573"
+  },
+  {
+    "path": "outputs/chemistry_balance_9x16.vtt",
+    "bytes": 472,
+    "sha256": "116cd02d7683130aecba471c6477fd01fd5877e96e19c4b6092b9ca8f1bd0def"
+  },
+  {
+    "path": "outputs/chemistry_balance_9x16_answer.png",
+    "bytes": 64152,
+    "sha256": "9d3c45b1fec052ed2ca0949e157204cea537379ac4bc3c2a9040f0b7ae41a205"
+  },
+  {
+    "path": "outputs/chemistry_balance_9x16_answer.svg",
+    "bytes": 6635,
+    "sha256": "8c5e28074c08e80c5739b1ebec1d41c880c23f3fc694bab8f995008d885aa43c"
+  },
+  {
+    "path": "outputs/chemistry_balance_9x16_opening.png",
+    "bytes": 60899,
+    "sha256": "d3df72fecfb02a8c3a60ab534978693fdaf8292ce6c7391fc9bb6f00ae3c45cd"
+  },
+  {
+    "path": "outputs/chemistry_balance_9x16_opening.svg",
+    "bytes": 5316,
+    "sha256": "25c15025f4cacba91e2ed9c717586896971c46bd5fe93bf56a1b72218c815456"
+  },
+  {
+    "path": "outputs/chemistry_balance_9x16_question.png",
+    "bytes": 66073,
+    "sha256": "6770a4987cb20328e79d224c313312b0939980e0faaba7f12d440a0baf353f22"
+  },
+  {
+    "path": "outputs/chemistry_balance_9x16_question.svg",
+    "bytes": 6155,
+    "sha256": "737accde78ab1dac328434e2f2fac7fec2937e76b59f10087ecef0032edbeb60"
+  },
+  {
+    "path": "outputs/chemistry_balance_9x16_recap.png",
+    "bytes": 63941,
+    "sha256": "4bce8830f6eca6a92d7dff77534072259357f4f2056abf6945c8914260ecd323"
+  },
+  {
+    "path": "outputs/chemistry_balance_9x16_recap.svg",
+    "bytes": 6632,
+    "sha256": "fc1ea391a043ab2f723123b679d8a168ca4b989f9e1105b474bba99eb0b6c541"
+  },
+  {
+    "path": "outputs/delivery_status.json",
+    "bytes": 642,
+    "sha256": "b653215d3659eff5e0b8827613d52de01c28e511b05c7f0346deeb70146bc0fe"
+  },
+  {
+    "path": "outputs/live_speech_probe.json",
+    "bytes": 735,
+    "sha256": "faa5d2d853e1b74a1eb745315b752887126ac99f7968fef1de82f041af4f8dd8"
+  },
+  {
+    "path": "outputs/mathematics_chain_16x9.ffmpeg.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "outputs/mathematics_chain_16x9.manifest.json",
+    "bytes": 2640,
+    "sha256": "65bf79a47f5d522915180071bd3b3f6e3d9d0748427cca3ae523fdf907ed2f93"
+  },
+  {
+    "path": "outputs/mathematics_chain_16x9.mp4",
+    "bytes": 225773,
+    "sha256": "60b91b9a12db77d0edab90f3485a21ab03eb8fb6ac6093adfac1bcf4a9e73855"
+  },
+  {
+    "path": "outputs/mathematics_chain_16x9.vtt",
+    "bytes": 423,
+    "sha256": "a9e3602739b157a4f8371e1e3573a055d262e23bca85d65b2230dd4ac211f75b"
+  },
+  {
+    "path": "outputs/mathematics_chain_16x9_answer.png",
+    "bytes": 62562,
+    "sha256": "78db4e080f3ade9183097591c7f638a6c610ffd774f7aa4f72a4be457ca45ad3"
+  },
+  {
+    "path": "outputs/mathematics_chain_16x9_answer.svg",
+    "bytes": 6808,
+    "sha256": "038abf0a36d7d6a722901c26cf9599f5a349165330663d4a9154e25041da576b"
+  },
+  {
+    "path": "outputs/mathematics_chain_16x9_opening.png",
+    "bytes": 57373,
+    "sha256": "b7b2a166ac2e52de125e0bc76a27ded1c47be908c8c31036ea67ab89507309b4"
+  },
+  {
+    "path": "outputs/mathematics_chain_16x9_opening.svg",
+    "bytes": 6565,
+    "sha256": "8fabacb6d8c67efb46a281ede93738025faff12ce1ca3b60df096039ce51f48b"
+  },
+  {
+    "path": "outputs/mathematics_chain_16x9_question.png",
+    "bytes": 61127,
+    "sha256": "4ecde4e95d1f0dfd5f85a6cc09a52abcf72b03e4fb1fb8747af0adae33bcf58f"
+  },
+  {
+    "path": "outputs/mathematics_chain_16x9_question.svg",
+    "bytes": 6677,
+    "sha256": "483255584e26009e535f444c60a0bb6b1d2c0e626df7194b3a637472b9e53586"
+  },
+  {
+    "path": "outputs/mathematics_chain_16x9_recap.png",
+    "bytes": 64069,
+    "sha256": "7223501922e9d4a9e56c83da9feaa04ce07cbc815b01549dae6cf9cddb3d43ef"
+  },
+  {
+    "path": "outputs/mathematics_chain_16x9_recap.svg",
+    "bytes": 6927,
+    "sha256": "d4035bf58435fb7dccde816a6b8e4f618eb44b9a3982a40b740dbc0f5475b775"
+  },
+  {
+    "path": "outputs/mathematics_chain_9x16.ffmpeg.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "outputs/mathematics_chain_9x16.manifest.json",
+    "bytes": 2640,
+    "sha256": "e93bde3a766a1c2c060548c763414e87559ca836ce9a87d0936a2a9adcb6740a"
+  },
+  {
+    "path": "outputs/mathematics_chain_9x16.mp4",
+    "bytes": 222870,
+    "sha256": "c2a9231c48dd95ff5109d078b2d277b90f76643bd42fdbc9ff59962e97c3a858"
+  },
+  {
+    "path": "outputs/mathematics_chain_9x16.vtt",
+    "bytes": 423,
+    "sha256": "a9e3602739b157a4f8371e1e3573a055d262e23bca85d65b2230dd4ac211f75b"
+  },
+  {
+    "path": "outputs/mathematics_chain_9x16_answer.png",
+    "bytes": 62810,
+    "sha256": "a9e52b3d1756cc19898e98e084a0259c365c6abf4344f0caf8d6df2e182bbeef"
+  },
+  {
+    "path": "outputs/mathematics_chain_9x16_answer.svg",
+    "bytes": 6788,
+    "sha256": "3adc544bcee73a40f40e4b714408d29519b88fcdaf6def6bf1cb3bf3a9a098ae"
+  },
+  {
+    "path": "outputs/mathematics_chain_9x16_opening.png",
+    "bytes": 59718,
+    "sha256": "46020e634b2943fc89869753d03eaa3b06ea91745b80eb65ada8504c746ee872"
+  },
+  {
+    "path": "outputs/mathematics_chain_9x16_opening.svg",
+    "bytes": 6670,
+    "sha256": "092224b8321304d330b19bbe3ef3ee9812aaa18bdea01dc0d50bc9a0da182068"
+  },
+  {
+    "path": "outputs/mathematics_chain_9x16_question.png",
+    "bytes": 64791,
+    "sha256": "d43c8a3931c8b88e64133b94badfbf6b305840a9bd9217f5a7c27a1d6099a362"
+  },
+  {
+    "path": "outputs/mathematics_chain_9x16_question.svg",
+    "bytes": 6780,
+    "sha256": "a9fb14213bc2bdb0417a56b7e5a172b48217c848175b843f2387474fe681ac8f"
+  },
+  {
+    "path": "outputs/mathematics_chain_9x16_recap.png",
+    "bytes": 67944,
+    "sha256": "541edccab84a1a790d1f0ed084ede6fede3f83aaeebb0e77fb0ec852ba1cb850"
+  },
+  {
+    "path": "outputs/mathematics_chain_9x16_recap.svg",
+    "bytes": 7067,
+    "sha256": "28037bd4da255ec5c5d8b2917b617b668626a84242ff9f0fed82e2e8898118d2"
+  },
+  {
+    "path": "outputs/physics_rc_16x9.ffmpeg.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "outputs/physics_rc_16x9.manifest.json",
+    "bytes": 2667,
+    "sha256": "6401036eecff2732718ddb75d99d1cd2e755191edcf7c95ddda66d12abb434cc"
+  },
+  {
+    "path": "outputs/physics_rc_16x9.mp4",
+    "bytes": 347653,
+    "sha256": "ff1a3bb4a676bc6060ab57ccc348375cc5018f573ac566be83264f15f2f6a5d4"
+  },
+  {
+    "path": "outputs/physics_rc_16x9.vtt",
+    "bytes": 477,
+    "sha256": "5cfc3a9ec910d5982fca40d5f5bfb915e5023077ea10fdd62434feaaa3741321"
+  },
+  {
+    "path": "outputs/physics_rc_16x9_answer.png",
+    "bytes": 61917,
+    "sha256": "0aa4c084267276767bb4fbfe3b7339e177812d3a1f8ecaea4bfadd90647a2757"
+  },
+  {
+    "path": "outputs/physics_rc_16x9_answer.svg",
+    "bytes": 4109,
+    "sha256": "46f93d4685f2563eba82cf4f72987e4933e93a84afbda94e6fe8733b84628262"
+  },
+  {
+    "path": "outputs/physics_rc_16x9_opening.png",
+    "bytes": 56258,
+    "sha256": "b2352ddb00c5f27783a11d4dc02f635626e29c9d398a2cbc078484f08dcee2be"
+  },
+  {
+    "path": "outputs/physics_rc_16x9_opening.svg",
+    "bytes": 3901,
+    "sha256": "81180323f46e2882934f68ad5b3f00fa3bca71187bb2bb2479817ef3356fc776"
+  },
+  {
+    "path": "outputs/physics_rc_16x9_question.png",
+    "bytes": 60626,
+    "sha256": "1b548394ba8244a3d29a0bdedf308cf50dfad9cd2894d3fbf800af8393d1cb84"
+  },
+  {
+    "path": "outputs/physics_rc_16x9_question.svg",
+    "bytes": 4115,
+    "sha256": "cde4bca5a148354cca16ec8b6bbf45cb6e8ba45ffdc3a648d96a280d91610351"
+  },
+  {
+    "path": "outputs/physics_rc_16x9_recap.png",
+    "bytes": 63100,
+    "sha256": "7751ad26fd473f7f6299e325b73e9f4adfc120296ceba5bac1cc6ea6968b3182"
+  },
+  {
+    "path": "outputs/physics_rc_16x9_recap.svg",
+    "bytes": 4905,
+    "sha256": "c1bea6bd771d4d2c0e0299615f3f0ef0c2f62a898bafdcc1932afdc1a8b8c710"
+  },
+  {
+    "path": "outputs/physics_rc_9x16.ffmpeg.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "outputs/physics_rc_9x16.manifest.json",
+    "bytes": 2667,
+    "sha256": "7e7b596604fd495d2e44031677644cea46630ea1c6bc4c0481d953f7fc4dda41"
+  },
+  {
+    "path": "outputs/physics_rc_9x16.mp4",
+    "bytes": 340225,
+    "sha256": "b1dd7d19b09bb7af15518dd94afd12345324102ed100d1004fb7288cb7c41c13"
+  },
+  {
+    "path": "outputs/physics_rc_9x16.vtt",
+    "bytes": 477,
+    "sha256": "5cfc3a9ec910d5982fca40d5f5bfb915e5023077ea10fdd62434feaaa3741321"
+  },
+  {
+    "path": "outputs/physics_rc_9x16_answer.png",
+    "bytes": 68664,
+    "sha256": "762efa1284ebb6a32385e7389c4cedb3ab871cee18bf135f9f88253fedc4f032"
+  },
+  {
+    "path": "outputs/physics_rc_9x16_answer.svg",
+    "bytes": 4214,
+    "sha256": "ae9fd2bf5527c6ea299bbf6526cc0e82b0343a83d965ddd22cae99aa972e233a"
+  },
+  {
+    "path": "outputs/physics_rc_9x16_opening.png",
+    "bytes": 63864,
+    "sha256": "c8e390a2895f35bc112f7c52b00c511bc5caa8af00ad7f7d4c92fb9d810a3005"
+  },
+  {
+    "path": "outputs/physics_rc_9x16_opening.svg",
+    "bytes": 4004,
+    "sha256": "80c9412a3953800fea44caeb230e69c113bf43b163fed10e580e6e9cd78ea10e"
+  },
+  {
+    "path": "outputs/physics_rc_9x16_question.png",
+    "bytes": 67703,
+    "sha256": "41b2fa2cbb18d41e208abad677c5dc9ebb2745d6a40aeab610f3354d7ca6cb50"
+  },
+  {
+    "path": "outputs/physics_rc_9x16_question.svg",
+    "bytes": 4220,
+    "sha256": "ce39824c56eead24da2a0e75f96fc3d05994190ad68cb985d325f420ec165273"
+  },
+  {
+    "path": "outputs/physics_rc_9x16_recap.png",
+    "bytes": 69818,
+    "sha256": "1f037c0609537d9009077a9068e9f1bd97c3cee1fdf258af716918c3e1504cc3"
+  },
+  {
+    "path": "outputs/physics_rc_9x16_recap.svg",
+    "bytes": 5016,
+    "sha256": "92f1a684d159cc0150987aee34dc1bf1a48683e784437118fc9765e3326665c4"
+  },
+  {
+    "path": "outputs/technical_previews_contact_sheet.jpg",
+    "bytes": 105919,
+    "sha256": "3704e44ad493988c630e385fac6d6827123b3f212ba1522bd32b9b5dfa2912d0"
+  },
+  {
+    "path": "outputs/tests.txt",
+    "bytes": 99,
+    "sha256": "519065ef81dde480a93844e432f8f1ef3a068c64f2112e98a2826561c9178178"
+  },
+  {
+    "path": "outputs/vertical_review.jpg",
+    "bytes": 63830,
+    "sha256": "c9e3d6ddda04c96bb4a0fee0fb295eead3de4d9ac6c3d4f8c64fa3d9691b62f9"
+  },
+  {
+    "path": "preview.html",
+    "bytes": 4730,
+    "sha256": "954abe714171164eee2d7ba4e4da668e3886e1c19e6e86713bd64a04e5933626"
+  },
+  {
+    "path": "pyproject.toml",
+    "bytes": 690,
+    "sha256": "2d9432d31e6654f8cf51080d2db96b9c3eae7e6b3a9c1a81f05c64d56eca4f2f"
+  },
+  {
+    "path": "requirements-observed.txt",
+    "bytes": 203,
+    "sha256": "65d9955ef7da52d101d741913b3eef6fd4e91078df3f367bc908ec166f76d617"
+  },
+  {
+    "path": "research/Public_Skills_Directory.md",
+    "bytes": 15701,
+    "sha256": "f54e49df913b2c2a96716e883f86744933912f0221bbce086bd19b0350a442ec"
+  },
+  {
+    "path": "research/cost_scenarios.json",
+    "bytes": 975,
+    "sha256": "469a7450212fdb99beea0a2a924f9bd9d91025086693dc6c2e0e5eba8ec4cb30"
+  },
+  {
+    "path": "research/custom_skills.csv",
+    "bytes": 18147,
+    "sha256": "225da385890a09f47a5e1d37e675eda19050941ef5519c4c3d0978185cb054af"
+  },
+  {
+    "path": "research/environment_observed.json",
+    "bytes": 443,
+    "sha256": "9edca3549f1500ec9097cf6b5db6a253045611040f8f6183227606a40ec1e265"
+  },
+  {
+    "path": "research/public_directory.csv",
+    "bytes": 11617,
+    "sha256": "74e6bcb1d019bf3b90d01ccc4e7c36c1239e20fc6f572762ab0e19f3905ee055"
+  },
+  {
+    "path": "research/sources.csv",
+    "bytes": 1818,
+    "sha256": "0009fedb1b14f05618ed05fcf344839950eb520755a21514c0ee3e6c85b9b7fa"
+  },
+  {
+    "path": "research/subject_libraries.csv",
+    "bytes": 3444,
+    "sha256": "f59cd3597f911189533b6e639bcfea1040c2c17311b53e90432a8b60a2003366"
+  },
+  {
+    "path": "schemas/AssetManifest.schema.json",
+    "bytes": 1794,
+    "sha256": "9115124c5a770c7bb2c223f2f62d99533c1bc5e344fbe4f90e4f7127093f2163"
+  },
+  {
+    "path": "schemas/LessonPlan.schema.json",
+    "bytes": 4274,
+    "sha256": "7a6b812e28116e41d935a419677d4d1d3cc849f36c3204837e9d5d72782cb4d2"
+  },
+  {
+    "path": "schemas/ProviderJob.schema.json",
+    "bytes": 1393,
+    "sha256": "a926f0fbaf6925d1781ec70cc72c62917948bb5a955b1ca443c565b377c35029"
+  },
+  {
+    "path": "schemas/ShortSpec.schema.json",
+    "bytes": 1657,
+    "sha256": "93cb5ff3c291e4ffba6d270db64c6781710f44be3bcc11a73ec7bf88f69b8b0e"
+  },
+  {
+    "path": "schemas/scene.schema.json",
+    "bytes": 5782,
+    "sha256": "a59bf4f05823177e87b89732a7cc6d50c21b5e625adb819a0e1b733068923514"
+  },
+  {
+    "path": "scripts/build_examples.py",
+    "bytes": 6604,
+    "sha256": "2d070013a38671268892feba8ebe8c4533702cce70647437e98dfe853db03bcb"
+  },
+  {
+    "path": "scripts/preview_smoke.py",
+    "bytes": 2588,
+    "sha256": "5d0127263c02f07b596e945238fcdbda1d501cf41b634e78a6eb1e3115b2c11e"
+  },
+  {
+    "path": "skills/README.md",
+    "bytes": 707,
+    "sha256": "52c680b5e813b0c08d06d2656e3afbf988a06f40f7704396f2d8ddbb472c6139"
+  },
+  {
+    "path": "skills/examleaf-alignment-localize/SKILL.md",
+    "bytes": 2050,
+    "sha256": "02772d0a84e7f53a649ca11b4048e6a6c8778750041a87cab0de4b787db37ad9"
+  },
+  {
+    "path": "skills/examleaf-alignment-localize/evals/cases.json",
+    "bytes": 504,
+    "sha256": "35f8be1dd529a39e8253be9ac3d08fd7b1b5f6163f07145853dd604df16265f4"
+  },
+  {
+    "path": "skills/examleaf-alignment-localize/references/contract.md",
+    "bytes": 709,
+    "sha256": "c9976b2554bc506987f59dea85d0c5d5e10df7a86cb3c820470cca3d96ee3834"
+  },
+  {
+    "path": "skills/examleaf-alignment-localize/templates/handoff.json",
+    "bytes": 221,
+    "sha256": "8ae489d98fe0c38bd2e2ca8b0ac9fc8b4be6a34f38c16c8efa7873646be84ebd"
+  },
+  {
+    "path": "skills/examleaf-analogy-humour/SKILL.md",
+    "bytes": 1961,
+    "sha256": "fd8b521817864f98f56b818ace2578303d7df4b727164dfb05d2be9f39187dbc"
+  },
+  {
+    "path": "skills/examleaf-analogy-humour/evals/cases.json",
+    "bytes": 509,
+    "sha256": "f48cae3f114d7fbca03677d1f9ff121c235a9b455104236f776ed281cdbfdddf"
+  },
+  {
+    "path": "skills/examleaf-analogy-humour/references/contract.md",
+    "bytes": 706,
+    "sha256": "f4e952583373f2eaa3c40fd0a2a5f0bbc74e396d0b78f17ba0f53d6dc42b84b8"
+  },
+  {
+    "path": "skills/examleaf-analogy-humour/templates/handoff.json",
+    "bytes": 217,
+    "sha256": "7c55f83c284360d15f3f26d6f4fb1aa8fc6997b4a470fdf63ad60b0dcab4712c"
+  },
+  {
+    "path": "skills/examleaf-asset-library/SKILL.md",
+    "bytes": 1934,
+    "sha256": "d113fc7666b8f640fd9f056b7700853caeaa4cffef1c23ba6540032ef9b08ee5"
+  },
+  {
+    "path": "skills/examleaf-asset-library/evals/cases.json",
+    "bytes": 483,
+    "sha256": "bab1a7dd65c0989b3fc4f4f658a2fb8b5f4141dd5f62ecd183f2b7dfc52e14ca"
+  },
+  {
+    "path": "skills/examleaf-asset-library/references/contract.md",
+    "bytes": 707,
+    "sha256": "b48b6b92d5990224de55352ad1633ff24fa5ea9066d484860b6b08b7bad43bea"
+  },
+  {
+    "path": "skills/examleaf-asset-library/templates/handoff.json",
+    "bytes": 216,
+    "sha256": "4faf1533ab111636a509fa0f9859f131d208ff247706bf2f93e4117e3813a78e"
+  },
+  {
+    "path": "skills/examleaf-audio-caption-qa/SKILL.md",
+    "bytes": 1966,
+    "sha256": "d4c8bbeeeb6afc017125b48993ffee24c15b953c3d2c14d55aae1fcd87278884"
+  },
+  {
+    "path": "skills/examleaf-audio-caption-qa/evals/cases.json",
+    "bytes": 487,
+    "sha256": "4ab1683bbc4c16c68dbc8f30b47bb4f7584b197d435240cbcb44c258e609abe9"
+  },
+  {
+    "path": "skills/examleaf-audio-caption-qa/references/contract.md",
+    "bytes": 683,
+    "sha256": "55df1577cff662cc3e1b62617b22e2c365adb6fae134a09e248743b4024156ad"
+  },
+  {
+    "path": "skills/examleaf-audio-caption-qa/templates/handoff.json",
+    "bytes": 219,
+    "sha256": "cab7069c43103f48dfd2d3a9839c45c764e6e8c1e3fbe3ec1af50be9bee6d161"
+  },
+  {
+    "path": "skills/examleaf-biology-scenes/SKILL.md",
+    "bytes": 1925,
+    "sha256": "22cf11d185b6d2ed7539afd425ed212fd3de3733c2b9ae8acca51c530e4190d3"
+  },
+  {
+    "path": "skills/examleaf-biology-scenes/evals/cases.json",
+    "bytes": 485,
+    "sha256": "7e1a5e6644acaaa37339e34d7e995c7b8e3a5534bd6cd14c39024efc28dccd3e"
+  },
+  {
+    "path": "skills/examleaf-biology-scenes/references/contract.md",
+    "bytes": 704,
+    "sha256": "f129186621348e732c6fc6b34f887a968b86b6c7e374724879e5b3a0c791cefe"
+  },
+  {
+    "path": "skills/examleaf-biology-scenes/templates/handoff.json",
+    "bytes": 217,
+    "sha256": "139070ee285d2f964ed704e23345ac097636ebe533a198f9547f295e7cd9dad4"
+  },
+  {
+    "path": "skills/examleaf-blender-scenes/SKILL.md",
+    "bytes": 1956,
+    "sha256": "1f505ade1177ac2ca01294ebe0e1d8654e8d47462c88f277deff03d7f679e70f"
+  },
+  {
+    "path": "skills/examleaf-blender-scenes/evals/cases.json",
+    "bytes": 504,
+    "sha256": "848942a16e7ba1c04c643d0741d7df91a30879644324b9f91bfcbd68bb3b44fe"
+  },
+  {
+    "path": "skills/examleaf-blender-scenes/references/contract.md",
+    "bytes": 712,
+    "sha256": "71188e61f3ca2436d7b18b6460493922ce36bd600638114cb19a7b69d3f684e9"
+  },
+  {
+    "path": "skills/examleaf-blender-scenes/templates/handoff.json",
+    "bytes": 217,
+    "sha256": "98c00732a1a84498bf213fe889dda394d7d4818bec82dc1c344d194adc3d3799"
+  },
+  {
+    "path": "skills/examleaf-claim-research/SKILL.md",
+    "bytes": 1976,
+    "sha256": "f0840daa5af862627f4f6260cc5c14d66b92b934cdbd1d67801e98c6c377ef93"
+  },
+  {
+    "path": "skills/examleaf-claim-research/evals/cases.json",
+    "bytes": 492,
+    "sha256": "28299336033b79a63ab0767b289ee51c7192948c0af8f487d301dd1ef8a3cc51"
+  },
+  {
+    "path": "skills/examleaf-claim-research/references/contract.md",
+    "bytes": 699,
+    "sha256": "378fe09a9ea2bdcf210088d260c78fc80562f238e63bd68ff6668b4c56187441"
+  },
+  {
+    "path": "skills/examleaf-claim-research/templates/handoff.json",
+    "bytes": 217,
+    "sha256": "b2fe13dac5c890ed9f21005e49ef0a139f07d919b8de08d6f734a95dc88c6072"
+  },
+  {
+    "path": "skills/examleaf-curriculum-map/SKILL.md",
+    "bytes": 2005,
+    "sha256": "748212f56b3ce55c57269677d38ef0e4240674a0d5bbec3278d7ee4d14a5da74"
+  },
+  {
+    "path": "skills/examleaf-curriculum-map/evals/cases.json",
+    "bytes": 486,
+    "sha256": "6dc0bd3d3f76764ae8e25e98baf7cd3b028ff89bf8218b4662cd099a5f575fb5"
+  },
+  {
+    "path": "skills/examleaf-curriculum-map/references/contract.md",
+    "bytes": 715,
+    "sha256": "242577355a3ae6833e616f28dcc7a75127ce2f652ff250a8c72d05c9a2fa8298"
+  },
+  {
+    "path": "skills/examleaf-curriculum-map/templates/handoff.json",
+    "bytes": 217,
+    "sha256": "ec75533ab699c755a65f03131bc73626346a57f91f0c19f709b326bdd61b68aa"
+  },
+  {
+    "path": "skills/examleaf-interaction-design/SKILL.md",
+    "bytes": 1950,
+    "sha256": "85282c1e999d91196f4e1373e2fb5d5c325138f3ba26f3ff7d818a1e16e76c4c"
+  },
+  {
+    "path": "skills/examleaf-interaction-design/evals/cases.json",
+    "bytes": 482,
+    "sha256": "2b0408b6c90a2932915f48c57bcec0f70c00076a1eced520fd9cac8d937fd772"
+  },
+  {
+    "path": "skills/examleaf-interaction-design/references/contract.md",
+    "bytes": 702,
+    "sha256": "5fb2e0d069a9cf468f8eb227249ded473e7762cc606f955385cae44a312a2d7a"
+  },
+  {
+    "path": "skills/examleaf-interaction-design/templates/handoff.json",
+    "bytes": 221,
+    "sha256": "7fb8c661124b21816bd3f500b62bcdcce4f876868f1678aabb6edfae6e385a0e"
+  },
+  {
+    "path": "skills/examleaf-learning-evaluation/SKILL.md",
+    "bytes": 1967,
+    "sha256": "4ce9fbd5e777a8df49354779b1a8e7c3aad0a7300b01972c3086a3559fb71034"
+  },
+  {
+    "path": "skills/examleaf-learning-evaluation/evals/cases.json",
+    "bytes": 489,
+    "sha256": "40408185e1c407fb5000e7bd5f4f4164ffb7e8756d6fcc51ec4c3a50c596a81c"
+  },
+  {
+    "path": "skills/examleaf-learning-evaluation/references/contract.md",
+    "bytes": 710,
+    "sha256": "26711da4920b83401b3288e1277d103f9d4dc6688a5deb0053cd6b72a4586078"
+  },
+  {
+    "path": "skills/examleaf-learning-evaluation/templates/handoff.json",
+    "bytes": 222,
+    "sha256": "760295281f4887041076f919197afc7d37fe6fc0bd6bd22e747f9a451db33656"
+  },
+  {
+    "path": "skills/examleaf-lesson-plan/SKILL.md",
+    "bytes": 1914,
+    "sha256": "9773a61589a840bdaf28fd7f359098e48ed69e3eee2258e0c3294b351e7040df"
+  },
+  {
+    "path": "skills/examleaf-lesson-plan/evals/cases.json",
+    "bytes": 474,
+    "sha256": "1ed8a68531f000bc8e2d6619022c0113df1035ebebabe341c61ca5cbc23980d8"
+  },
+  {
+    "path": "skills/examleaf-lesson-plan/references/contract.md",
+    "bytes": 696,
+    "sha256": "2ef8617c86d59870904895c870009373510496c0a31dd2ad2eb043ed801a1254"
+  },
+  {
+    "path": "skills/examleaf-lesson-plan/templates/handoff.json",
+    "bytes": 214,
+    "sha256": "818d2d2c0398dfee081bda5ff7493c66f6088a9deec4ddb4537e4d14c48a7117"
+  },
+  {
+    "path": "skills/examleaf-manim-scenes/SKILL.md",
+    "bytes": 1944,
+    "sha256": "73061745795f6ecce5fbf63a0c9f28390764f8448981bd86f8d6e3619c1d23e7"
+  },
+  {
+    "path": "skills/examleaf-manim-scenes/evals/cases.json",
+    "bytes": 493,
+    "sha256": "5633d50df3f3114c3290a8150aac6ab50010c3b67854b3b3ac746e4667991d1f"
+  },
+  {
+    "path": "skills/examleaf-manim-scenes/references/contract.md",
+    "bytes": 708,
+    "sha256": "056fa43b1360929864345dc09f89738e3a0726c7114bcacd21894ca0f1b6b1e0"
+  },
+  {
+    "path": "skills/examleaf-manim-scenes/templates/handoff.json",
+    "bytes": 215,
+    "sha256": "baa822ac7354380621d5c9fa0b615431822e9b331811d2dc570ae6d269fb98f8"
+  },
+  {
+    "path": "skills/examleaf-molecule-scenes/SKILL.md",
+    "bytes": 1931,
+    "sha256": "624476fc2434bf6980355803150cc6d23e74cff990b4a189e9161d3a13984970"
+  },
+  {
+    "path": "skills/examleaf-molecule-scenes/evals/cases.json",
+    "bytes": 465,
+    "sha256": "a6432f1254e3693a104a627799e3d8b14ef4d75c94f43ad5f963b4f3612defde"
+  },
+  {
+    "path": "skills/examleaf-molecule-scenes/references/contract.md",
+    "bytes": 690,
+    "sha256": "8a44e043254674b88f72bdbea5b3de5b5364c62aee5da2b4271434a99229d123"
+  },
+  {
+    "path": "skills/examleaf-molecule-scenes/templates/handoff.json",
+    "bytes": 218,
+    "sha256": "99cb0824a4e69d704c64c9ac4f9d88b1154078cee2d6d736f152c4aee5c2a6eb"
+  },
+  {
+    "path": "skills/examleaf-observability-cost/SKILL.md",
+    "bytes": 1933,
+    "sha256": "3568c1de0a850667742bd06a83237408fc33a686d369116c6e8d34623fc48337"
+  },
+  {
+    "path": "skills/examleaf-observability-cost/evals/cases.json",
+    "bytes": 459,
+    "sha256": "40e547d721bff23cbe27e6fade69ba2711e4a7bbe7d320d4299a8e7dbf6b3cdf"
+  },
+  {
+    "path": "skills/examleaf-observability-cost/references/contract.md",
+    "bytes": 705,
+    "sha256": "44f29c1c9406c6fdef90ec5f5d6e23501ba69b1738d2cf4f715e5569d6ab2422"
+  },
+  {
+    "path": "skills/examleaf-observability-cost/templates/handoff.json",
+    "bytes": 221,
+    "sha256": "9daf75daec48e80acea30fcc25bef8bc73c1bc554d08f95590dd1222ce47952e"
+  },
+  {
+    "path": "skills/examleaf-reel-repurpose/SKILL.md",
+    "bytes": 2001,
+    "sha256": "d2010b6b5bda3bf5a94bb6ba3b0381b1ef0967785d926b10cde82049c68565cc"
+  },
+  {
+    "path": "skills/examleaf-reel-repurpose/evals/cases.json",
+    "bytes": 486,
+    "sha256": "5772cd89bd8b60362a8042329fd677d2297e9c4d9f646ff2e9192511f3d751fa"
+  },
+  {
+    "path": "skills/examleaf-reel-repurpose/references/contract.md",
+    "bytes": 710,
+    "sha256": "5c407e2c10a743ff7a3a5d29de3d1948e241ca8b792863999a166bfe1f7c879f"
+  },
+  {
+    "path": "skills/examleaf-reel-repurpose/templates/handoff.json",
+    "bytes": 217,
+    "sha256": "861a8b0cc2b94a1e9dd8788d80e467456d621a7203fbe1d0971495c2ee5efe6f"
+  },
+  {
+    "path": "skills/examleaf-release-review/SKILL.md",
+    "bytes": 2044,
+    "sha256": "ef76bedf3d0b5c2556451ea42c37c6968d0c692bd89af89578634a1789b0051a"
+  },
+  {
+    "path": "skills/examleaf-release-review/evals/cases.json",
+    "bytes": 503,
+    "sha256": "7300657c5e9197a5d072f63cfa33ad60ca108c08affa24b2ad7e302d789bf985"
+  },
+  {
+    "path": "skills/examleaf-release-review/references/contract.md",
+    "bytes": 700,
+    "sha256": "89f3e65e46515f25616d025dff46aec8a1730902fb1b6264bc425861a7dcdfdc"
+  },
+  {
+    "path": "skills/examleaf-release-review/templates/handoff.json",
+    "bytes": 217,
+    "sha256": "0326c36c29764a8d0f5ffa6fe3711810a3d0aa8d6fd750c2f885128deb0b9063"
+  },
+  {
+    "path": "skills/examleaf-render-batch/SKILL.md",
+    "bytes": 2009,
+    "sha256": "ff206ac24e606d2ba9ad1d383725227eb5721a93bfd3e4d9624a6e19a095f890"
+  },
+  {
+    "path": "skills/examleaf-render-batch/evals/cases.json",
+    "bytes": 491,
+    "sha256": "6de455cf94ef36c707db8e6315013c20058f4e1bcfba70d67a990e5f4b07270f"
+  },
+  {
+    "path": "skills/examleaf-render-batch/references/contract.md",
+    "bytes": 701,
+    "sha256": "9ccd6e02cfffbd08be7175b5adcd22d6ed5c820316ae73d4d8ac5efe38d715a6"
+  },
+  {
+    "path": "skills/examleaf-render-batch/templates/handoff.json",
+    "bytes": 215,
+    "sha256": "81bce3beffe482f097bfe3b2a03751d12384d22bb066d9537062ff977ef26c9a"
+  },
+  {
+    "path": "skills/examleaf-science-biology/SKILL.md",
+    "bytes": 1978,
+    "sha256": "ba1028edccb5c761074cccdc38ae81c3bd5804111628c6e8f26d64c6c757481d"
+  },
+  {
+    "path": "skills/examleaf-science-biology/evals/cases.json",
+    "bytes": 484,
+    "sha256": "b4af6827dd3765920e8ab760548a5fc753b78da491a49431e645c14d6e787208"
+  },
+  {
+    "path": "skills/examleaf-science-biology/references/contract.md",
+    "bytes": 707,
+    "sha256": "55d07838e076b02c1e26fce8c3cd9a183516a2f0dffbae627b94e64b2a774e8b"
+  },
+  {
+    "path": "skills/examleaf-science-biology/templates/handoff.json",
+    "bytes": 218,
+    "sha256": "c1fbee194842e9786e19f620e2ad2a4adf24cbe1fe61517126b65e3edb9155d0"
+  },
+  {
+    "path": "skills/examleaf-science-chemistry/SKILL.md",
+    "bytes": 1965,
+    "sha256": "150491e46d9443f75f21db214bfb0518d633718503cc9b6bb9a6b766720c5571"
+  },
+  {
+    "path": "skills/examleaf-science-chemistry/evals/cases.json",
+    "bytes": 476,
+    "sha256": "c7ee4711eeb37eac8d1bde774f726ef9c5a409fe2afb823e1f1e99717af2a482"
+  },
+  {
+    "path": "skills/examleaf-science-chemistry/references/contract.md",
+    "bytes": 709,
+    "sha256": "40c042ea247eecdf1bc855e94a0446a51f56b068bc8ab8994c83b9588acf5319"
+  },
+  {
+    "path": "skills/examleaf-science-chemistry/templates/handoff.json",
+    "bytes": 220,
+    "sha256": "7fe255a77ed55ee6abad3c3738bd6377e4815dfd8c890bbdca43cbd17d324d3c"
+  },
+  {
+    "path": "skills/examleaf-science-math/SKILL.md",
+    "bytes": 1982,
+    "sha256": "34f3bebf757a15f81921f62163b336aea93137381ae3a3d65298a24d93276650"
+  },
+  {
+    "path": "skills/examleaf-science-math/evals/cases.json",
+    "bytes": 481,
+    "sha256": "877531a67269fa5e11bf66e86250d360adf27269e5128405549412f1ba4b91ba"
+  },
+  {
+    "path": "skills/examleaf-science-math/references/contract.md",
+    "bytes": 698,
+    "sha256": "11aba95c4432fe03f8eaf4b5cdcdf174be46335f28914427bce9e0dcabef1fe9"
+  },
+  {
+    "path": "skills/examleaf-science-math/templates/handoff.json",
+    "bytes": 215,
+    "sha256": "c5ebdeffe89546b81e9ea5689e07d4cd1ec539bdc7a5ea511adb355512088074"
+  },
+  {
+    "path": "skills/examleaf-science-physics/SKILL.md",
+    "bytes": 1951,
+    "sha256": "bdcd04306368fe3c1f49a109e3241a53a770b479b47651cdce8d770b767dc9ac"
+  },
+  {
+    "path": "skills/examleaf-science-physics/evals/cases.json",
+    "bytes": 491,
+    "sha256": "9c3f8966f3a505e816230adda92026b087c2e0abec090d52c13d5e0e64e9ac17"
+  },
+  {
+    "path": "skills/examleaf-science-physics/references/contract.md",
+    "bytes": 712,
+    "sha256": "95c193c3898557329df1f28b212e30d05edbc0e4fd5fbbc578f3908b02350535"
+  },
+  {
+    "path": "skills/examleaf-science-physics/templates/handoff.json",
+    "bytes": 218,
+    "sha256": "5c8d2fc68030dcefbd108c3a4e2eae9cce8fca02b0f04f9b99b1107ae04d50a4"
+  },
+  {
+    "path": "skills/examleaf-selective-generation/SKILL.md",
+    "bytes": 2053,
+    "sha256": "56b32872699cc7c7afebf8de8bdb9dd5df622a60c30409e9040bc1887b7167b5"
+  },
+  {
+    "path": "skills/examleaf-selective-generation/evals/cases.json",
+    "bytes": 522,
+    "sha256": "38001e91891818789859e070d771f1fc8e8636e8ebaaad5a4c739539c3e801bf"
+  },
+  {
+    "path": "skills/examleaf-selective-generation/references/contract.md",
+    "bytes": 724,
+    "sha256": "feba682778e17a79d54c72cd6f551fd80a067bb618081b69ab74116e5867bac2"
+  },
+  {
+    "path": "skills/examleaf-selective-generation/templates/handoff.json",
+    "bytes": 223,
+    "sha256": "c1fe47db3816dc216e956d5c65fe8e738374564534d49af463749eea21f79dfa"
+  },
+  {
+    "path": "skills/examleaf-skills-security/SKILL.md",
+    "bytes": 2028,
+    "sha256": "046471dfdb741da327a85186417d25a3583073df3a59ff718c2e0dd7ef627217"
+  },
+  {
+    "path": "skills/examleaf-skills-security/evals/cases.json",
+    "bytes": 514,
+    "sha256": "07dd3634a375f909fddea1860adefc12d46882ed188171b08c1ba988487cd95e"
+  },
+  {
+    "path": "skills/examleaf-skills-security/references/contract.md",
+    "bytes": 720,
+    "sha256": "7ea96001870cce86282857c66b0d0977836ac9f227f689b8948fafb82464cdc6"
+  },
+  {
+    "path": "skills/examleaf-skills-security/templates/handoff.json",
+    "bytes": 218,
+    "sha256": "721deb8ce605338d3823ef60a176e6399fdc8105cd93f020a7b2219b4794bb63"
+  },
+  {
+    "path": "skills/examleaf-source-ingest/SKILL.md",
+    "bytes": 2022,
+    "sha256": "7ca3a63636b68c658e1b7898fb134b45b85e3585fc50f4f2ad686c9d34cc33b8"
+  },
+  {
+    "path": "skills/examleaf-source-ingest/evals/cases.json",
+    "bytes": 471,
+    "sha256": "6e7e79fdd7c8de7641e0230a19f721c526ec6e8aaec83696fdd18ddbc6f2528b"
+  },
+  {
+    "path": "skills/examleaf-source-ingest/references/contract.md",
+    "bytes": 688,
+    "sha256": "96c4f46a496bd974d8e6079a39b3252ff07933203191946524c2065dd90ac22d"
+  },
+  {
+    "path": "skills/examleaf-source-ingest/templates/handoff.json",
+    "bytes": 216,
+    "sha256": "62d7d8058f7659cabc50b6db62f5406134e75470442ba4fd7db65adb982b3777"
+  },
+  {
+    "path": "skills/examleaf-storyboard-route/SKILL.md",
+    "bytes": 2025,
+    "sha256": "546170eb789b5c678347d36a5fe230ddd52bd5969ee292c812df302bb9af4355"
+  },
+  {
+    "path": "skills/examleaf-storyboard-route/evals/cases.json",
+    "bytes": 494,
+    "sha256": "154d683c7a9790ccf3797b2ea04fbd67d15f310e34662036c1b7d779931f481f"
+  },
+  {
+    "path": "skills/examleaf-storyboard-route/references/contract.md",
+    "bytes": 697,
+    "sha256": "911b01bbc1be434f34b7351855da6eb3fd7a266a813fb741e19b14bd73e5ecbc"
+  },
+  {
+    "path": "skills/examleaf-storyboard-route/templates/handoff.json",
+    "bytes": 219,
+    "sha256": "caaadbeafc2452c8c81c2beb4303822209c4edc13cecb6c7a4f379de56cfdec2"
+  },
+  {
+    "path": "skills/examleaf-super-teacher/SKILL.md",
+    "bytes": 2015,
+    "sha256": "78bf473f5abd66f7b38f90f71a443f28f3d02d3b3f55e3c61861876e4da47d7b"
+  },
+  {
+    "path": "skills/examleaf-super-teacher/evals/cases.json",
+    "bytes": 504,
+    "sha256": "27a3fcf5aa04a2322d4653d185caccd5a099bc3d807f594c25e34f5ec497c43c"
+  },
+  {
+    "path": "skills/examleaf-super-teacher/references/contract.md",
+    "bytes": 722,
+    "sha256": "50cd97aafae678fae049e9e2fe266c7aa017a31e07e08aaaf61a01de7190b56a"
+  },
+  {
+    "path": "skills/examleaf-super-teacher/templates/handoff.json",
+    "bytes": 216,
+    "sha256": "9ba4a843471bcc153da3af8a86e8c0a9519c53f8e3cc5f7753589871fc668eb8"
+  },
+  {
+    "path": "skills/examleaf-svg-scenes/SKILL.md",
+    "bytes": 1859,
+    "sha256": "3d69b923cb8fcc8d3588f45f9fa69bbd41c06617f5c2ff120564c2817042b49a"
+  },
+  {
+    "path": "skills/examleaf-svg-scenes/evals/cases.json",
+    "bytes": 459,
+    "sha256": "30954fd48745481b5a824e2c29ed00db8aa1487ad343a700f2b0d9adfb5aa465"
+  },
+  {
+    "path": "skills/examleaf-svg-scenes/references/contract.md",
+    "bytes": 681,
+    "sha256": "5f093d122c39703c3049478bb03e5104f34572ef51ee268a05fb7a63ce865f07"
+  },
+  {
+    "path": "skills/examleaf-svg-scenes/templates/handoff.json",
+    "bytes": 213,
+    "sha256": "8ba6a6862a0b0d72633966b0cda247b7441d23a0023fe33ba275f4414ec3d20d"
+  },
+  {
+    "path": "skills/examleaf-thumbnail-package/SKILL.md",
+    "bytes": 1991,
+    "sha256": "b09b1b829df4f113fdece1daeb232de3e36175042595b8569da10bd11ebf397e"
+  },
+  {
+    "path": "skills/examleaf-thumbnail-package/evals/cases.json",
+    "bytes": 507,
+    "sha256": "03f0d068fada670d3402cdd432e7d76330e1073cd6b73839bd15238cc767f531"
+  },
+  {
+    "path": "skills/examleaf-thumbnail-package/references/contract.md",
+    "bytes": 717,
+    "sha256": "1e53565d8e917d78b85561736a57be45b221630a96aecc7829ec3645bbe84cf2"
+  },
+  {
+    "path": "skills/examleaf-thumbnail-package/templates/handoff.json",
+    "bytes": 220,
+    "sha256": "20cb8b1f4a4adb5c4a18d32201a6373bf01f8791e2b8ca911bff27ef7b1795cf"
+  },
+  {
+    "path": "skills/examleaf-visual-qa/SKILL.md",
+    "bytes": 1957,
+    "sha256": "51980d95835b0593eb65f45779c9e67c01f1b36eb3680eb0ac6615eebf35a430"
+  },
+  {
+    "path": "skills/examleaf-visual-qa/evals/cases.json",
+    "bytes": 500,
+    "sha256": "43ebf57e23c9d2405829e0c01e05baf0de4300d1241043778d76f71f647a6229"
+  },
+  {
+    "path": "skills/examleaf-visual-qa/references/contract.md",
+    "bytes": 701,
+    "sha256": "4184ef4d888c65f14036d816463f544714b46588505b3e8176c76d368c7db1de"
+  },
+  {
+    "path": "skills/examleaf-visual-qa/templates/handoff.json",
+    "bytes": 212,
+    "sha256": "768c8bf1dccb501d4c1f1c6bec1dda52a964a0e4f701a375717930f3ccee807d"
+  },
+  {
+    "path": "skills/examleaf-voice-direction/SKILL.md",
+    "bytes": 2015,
+    "sha256": "7d22737a768221d8fd2fb152d66840db8658bd51518f4844597485efcfd95b67"
+  },
+  {
+    "path": "skills/examleaf-voice-direction/evals/cases.json",
+    "bytes": 502,
+    "sha256": "a0263a1a7d90cd39862cf49dc6574a17f19d2e77c3b2f09b64e428cbd5d85315"
+  },
+  {
+    "path": "skills/examleaf-voice-direction/references/contract.md",
+    "bytes": 718,
+    "sha256": "01877a7221140b41b1b3e8a500de93fd65d268749f2048cc6009e3d2866efe73"
+  },
+  {
+    "path": "skills/examleaf-voice-direction/templates/handoff.json",
+    "bytes": 218,
+    "sha256": "fa24ae6d7d16d0b14e315dd6c74438ef68fd6ae77b4e0367be35a72002bd7ca4"
+  },
+  {
+    "path": "skills/examleaf-voice-synthesis/SKILL.md",
+    "bytes": 2024,
+    "sha256": "388155c7528248e5d30e0f61651135ddd45f07a7557249385ec8090d66b36eff"
+  },
+  {
+    "path": "skills/examleaf-voice-synthesis/evals/cases.json",
+    "bytes": 505,
+    "sha256": "daf1b2197c517cbd80d4808db1492cce27c1d6c56421fcd62eacf687362f93a8"
+  },
+  {
+    "path": "skills/examleaf-voice-synthesis/references/contract.md",
+    "bytes": 712,
+    "sha256": "9c1e69505b43956b082e588da4f34294f88cb8c4281b7a2324eed2c13ab50f59"
+  },
+  {
+    "path": "skills/examleaf-voice-synthesis/templates/handoff.json",
+    "bytes": 218,
+    "sha256": "d4e285f747c9c2671d747f82920ee760673f61bb6f30a3725db79dfb3c53e9e9"
+  },
+  {
+    "path": "skills/examleaf-web-composition/SKILL.md",
+    "bytes": 1996,
+    "sha256": "3075402ee2d170d6c16866072593a643adc2f0b9024e2e00023e25a0b5a703f0"
+  },
+  {
+    "path": "skills/examleaf-web-composition/evals/cases.json",
+    "bytes": 504,
+    "sha256": "ae533864fd373b61e0867a9eae7d28dfa5c7cd704111789701430207ea1c4d5c"
+  },
+  {
+    "path": "skills/examleaf-web-composition/references/contract.md",
+    "bytes": 707,
+    "sha256": "e6c41c3208f5fbee5a2aa270c283b93a505136c5a4302d60370d716ec2bcd504"
+  },
+  {
+    "path": "skills/examleaf-web-composition/templates/handoff.json",
+    "bytes": 218,
+    "sha256": "c3122e30ec081e364213a6226e6cbb85f3d47e05b270436fb70f617c5c74e66a"
+  },
+  {
+    "path": "src/examleaf/__init__.py",
+    "bytes": 99,
+    "sha256": "83b66ec4114036f438b2062cda5bc485b67ebb0140279a4c57821f8ba44ecb04"
+  },
+  {
+    "path": "src/examleaf/audio.py",
+    "bytes": 2452,
+    "sha256": "2bdaa4920ad3182a11cbb63842b3c551ab0192621b4d936a91d7dc0561c801e1"
+  },
+  {
+    "path": "src/examleaf/budget.py",
+    "bytes": 1973,
+    "sha256": "94232346b359878df458bb1a5a22654a78baf6c3511f3ddb9cb8d4c089e9e80a"
+  },
+  {
+    "path": "src/examleaf/cli.py",
+    "bytes": 3803,
+    "sha256": "e6e91b82ba346ac2bd40f8928573ef2222f1d3f449cf8e44a7371199657a407f"
+  },
+  {
+    "path": "src/examleaf/contracts.py",
+    "bytes": 3781,
+    "sha256": "f0a1075f95022c434ee7ff1a209c637614a78b5d161c17dd92236601af9b4f35"
+  },
+  {
+    "path": "src/examleaf/interfaces.py",
+    "bytes": 3890,
+    "sha256": "1128a89d7f7d95dcde95dc060de9df9a800d20e26d34ed68422f3a7fe21572c7"
+  },
+  {
+    "path": "src/examleaf/pipeline.py",
+    "bytes": 7910,
+    "sha256": "8e920608130a0acbaf107a4e2a15c50fdb5c1048ac92aa09671d2a7969444e6b"
+  },
+  {
+    "path": "src/examleaf/science.py",
+    "bytes": 5666,
+    "sha256": "b7c5b938e4bdc5d4fac2523964caeff2f76fa8f8158cc0102f9e0a37c027dd5b"
+  },
+  {
+    "path": "src/examleaf/visuals.py",
+    "bytes": 11384,
+    "sha256": "3e516ebfcb044a1210becc8a097a341b0f3ffb60fadd1e20b2439adbe11bfc02"
+  },
+  {
+    "path": "tests/test_engine.py",
+    "bytes": 5355,
+    "sha256": "226bba903f45c8ba53d026a03edf848568b9ba7f27aa35ea7e83e8365c7631cc"
+  },
+  {
+    "path": "tests/test_interfaces.py",
+    "bytes": 977,
+    "sha256": "31b8843a0400db6967f7a893a3aa2cfbaaee5ae34d24b9f1aa91d60847eb4847"
+  },
+  {
+    "path": "tests/test_media_integration.py",
+    "bytes": 2738,
+    "sha256": "5188178a8f2f802b24c38683b5d00c0e95f8746fcc9dd368b5a3792d4a88cee8"
+  }
+]

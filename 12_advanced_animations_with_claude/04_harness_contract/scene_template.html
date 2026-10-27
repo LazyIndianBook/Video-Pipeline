@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>ExamLeaf scene template (seek contract 1.0.0)</title>
+<style>
+/* [1] TOKENS - mirrored from vertical_safe_zones.tokens.json. Keep in sync; tokens file wins.
+   Fonts: system stack only (no CDN, no binaries). Production pins licensed fonts with local @font-face
+   (url("fonts/...")) and lists them in FONT_SPECS below. */
+:root{--bg:#F7F9FC;--ink:#14213D;--sec:#526074;--blue:#185ABD;--teal:#087986;--amber:#9A5B00;
+  --font:"Noto Sans","Noto Sans Devanagari","Noto Sans Bengali","Kohinoor Devanagari","Kohinoor Bangla",system-ui,sans-serif;
+  --head:59px;--label:50px}
+html,body{margin:0;background:var(--bg)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-family:var(--font);color:var(--ink)}
+canvas,.zone,.box{position:absolute;left:0}
+canvas{top:0}
+/* [2] LAYOUT - boxes get top/height from the zones at init (section [9]); no hard-coded px here. */
+.box{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;box-sizing:border-box;line-height:1.4}
+#title{font-size:var(--head);font-weight:700;gap:0 22px}
+.w{display:inline-block;opacity:0}            /* one span per WORD: never per code point (Indic conjuncts) */
+#chip{font-size:var(--label);font-weight:600;color:var(--blue);opacity:0}
+#chip b{font-weight:600;color:var(--ink);margin:0 10px}
+/* [3] DEBUG OVERLAY - off by default, never in production frames. Toggle with ?safe=1 or the S key. */
+.zone{display:none;width:1080px;border:2px dashed #B42318;box-sizing:border-box;font:600 28px system-ui;color:#B42318;padding:6px 12px}
+.safe .zone{display:block}
+#scrub{position:fixed;right:8px;top:8px;width:360px}
+</style>
+</head>
+<body>
+<div id="stage">
+  <canvas id="cv" width="1080" height="1920"></canvas>
+  <div id="title" class="box" data-zone="0"></div>
+  <!-- Science glyphs (labels, values, units) come from the fixture via data-fx. Nothing typed here is science. -->
+  <div id="chip" class="box" data-zone="1"><span data-fx="display.r_label"></span><b data-fx="parameters.resistance_ohm"></b><span data-fx="display.r_unit"></span>
+    <span style="width:40px"></span><span data-fx="display.v_label"></span><b data-fx="parameters.source_v"></b><span data-fx="display.v_unit"></span></div>
+</div>
+
+<!-- [4] INLINE FALLBACKS - used only when no ?cues= / ?fixture= path is given (or the path fails; then a warning is logged). -->
+<script type="application/json" id="cue-sheet-inline">
+{"schema_version":"1.0","scene_id":"template-demo","fps":30,"duration":4.0,"language":"en-IN","alignment_source":"example",
+ "narration_audio_sha256":null,"script_sha256":null,
+ "words":[{"w":"Charging","t0":0.30,"t1":0.80},{"w":"takes","t0":0.85,"t1":1.15},{"w":"time","t0":1.20,"t1":1.60}],
+ "beats":[0.0,0.6,1.2,1.8,2.4,3.0,3.6],
+ "cues":[{"id":"title_hold","at":1.15,"kind":"hold","element_id":"title","until":4.0},
+         {"id":"chip_in","at":1.70,"kind":"reveal","element_id":"chip"},
+         {"id":"chip_pulse","at":2.60,"kind":"emphasis","element_id":"chip"}],
+ "sfx":[]}
+</script>
+<script type="application/json" id="fixture-inline">
+{"_note":"TEMPLATE DEMO DATA - not science content. Real scenes get a validated fixture.",
+ "display":{"r_label":"R =","r_unit":"Ω","v_label":"V =","v_unit":"V"},
+ "parameters":{"resistance_ohm":10000,"source_v":10}}
+</script>
+
+<script>
+(function () {
+'use strict';
+/* [5] CONFIG - everything variable arrives as a URL parameter; the page never reads the clock.
+   ?fps=30  ?cues=path.json  ?fixture=path.json  ?seed=N  ?safe=1  ?t=SECONDS (one seek, for screenshots)
+   ?preview=1 (adds a scrub slider; there is no play button on purpose)  ?strict=1 (no inline fallback) */
+const Q = new URLSearchParams(location.search);
+const num = (k, d) => { const v = parseFloat(Q.get(k)); return isFinite(v) ? v : d; };
+const FPS = num('fps', 30), SEED = num('seed', 20261014), EPS = 1e-6;
+const W = 1080, H = 1920;
+const LEAD = 0.05;                                    // reveal on, or 0.05 s before, its word [V4-MP]
+const HOLD_MIN = 1.2, HOLD_MIN_INDIC = 1.8;           // seconds [N60]; Indic multiplier is a [Hypothesis]
+const INSETS = { top: 250, bottom: 450, left: 60, right: 120 };   // PLACEHOLDER: measure per platform
+const SHARES = [0.22, 0.54, 0.24];                    // mirror of tokens zones.*.share (owner: vertical_safe_zones.tokens.json)
+const SIDE_MIN = 96;                                  // mirror of tokens zones.side_margin_min_px (15 Oct 2026, AD-42)
+const LEFT = Math.max(INSETS.left, SIDE_MIN), RIGHT = Math.max(INSETS.right, SIDE_MIN);
+const BOIL_FPS = 8;                                   // stop-motion jitter rate [V4-MP]
+const MAX_TITLE_WORDS = 6;                            // headlines are short: one idea per frame [V4-MP]
+const FONT_SPECS = [                                  // preloaded before the first seek (edge case 55)
+  { family: 'Noto Sans', weight: 700, text: 'Aa 0123' },
+  { family: 'Noto Sans Devanagari', weight: 700, text: 'प्रकाश क्ष ज्ञ' },
+  { family: 'Noto Sans Bengali', weight: 700, text: 'প্ৰকাশ ৰ ৱ' }];
+
+/* [6] ERROR CHANNEL - never swallow. Harness reads window.__errors after every seek. */
+window.__errors = [];
+const report = (code, severity, message, t) => window.__errors.push({ code, severity, message, t: t == null ? null : t });
+const fail = (code, message, t) => { report(code, 'error', message, t); const e = new Error(code + ': ' + message); e.code = code; return e; };
+
+/* [7] SEEDED RANDOMNESS. mulberry32 = stateful stream (use only while building precomputed data, in a fixed
+   order). rngAt = stateless: the same (seed, i) always gives the same value, in any seek order. Math.random is
+   forbidden [N61]; calling mulberry32 inside render(t) would make frames depend on seek order. */
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const rngAt = (seed, i) => mulberry32((seed ^ Math.imul(i + 1, 0x9E3779B1)) >>> 0)();
+
+/* [8] EASING + TIMELINE. A Timeline never advances; at(key, t) is a pure function of t. */
+const clamp01 = x => x < 0 ? 0 : x > 1 ? 1 : x, lerp = (a, b, u) => a + (b - a) * u;
+const ease = {
+  linear: u => u,
+  cubicOut: u => 1 - Math.pow(1 - u, 3),                                       // power3.out-like
+  expoOut: u => u >= 1 ? 1 : 1 - Math.pow(2, -10 * u),                         // expo.out-like (whips)
+  backOut: u => { const s = 1.70158, c = s + 1, v = u - 1; return 1 + c * v * v * v + s * v * v; } // easeOutBack, pops
+};
+class Timeline {
+  constructor() { this.tr = {}; }
+  add(key, t0, dur, from, to, e) { (this.tr[key] = this.tr[key] || []).push({ t0, dur, from, to, e: ease[e || 'cubicOut'] }); this.tr[key].sort((a, b) => a.t0 - b.t0); return this; }
+  at(key, t, dflt) {
+    const a = this.tr[key]; if (!a) return dflt;
+    let cur = null; for (const x of a) { if (t >= x.t0 - EPS) cur = x; else break; }
+    return cur ? lerp(cur.from, cur.to, cur.e(clamp01((t - cur.t0) / cur.dur))) : a[0].from;   // before first tween: its start value
+  }
+}
+// Finite damped pulse for 'emphasis' cues: n periods then stop (never infinite, edge case 18).
+const pulse = (t, at, n = 2, period = 0.5, amp = 0.08) => { const d = t - at; return d < 0 || d > n * period ? 1 : 1 + amp * Math.sin(2 * Math.PI * d / period) * (1 - d / (n * period)); };
+
+/* [9] LOADERS. Order: harness-injected window.__CUE_SHEET__, then ?cues= path, then inline.
+   fetch() of a relative path needs http(s) (file:// blocks it): serve the scene folder locally.
+   window.__cueSource tells QA which one won: production renders must see 'injected' or 'path'. */
+const deepFreeze = o => { Object.values(o).forEach(v => { if (v && typeof v === 'object') deepFreeze(v); }); return Object.freeze(o); };
+async function loadJson(inject, param, inlineId, what) {
+  if (inject) return { data: inject, source: 'injected' };
+  const path = Q.get(param);
+  if (path) {
+    try { const r = await fetch(path); if (!r.ok) throw new Error('HTTP ' + r.status); return { data: await r.json(), source: 'path' }; }
+    catch (e) {
+      if (Q.get('strict') === '1') throw fail('E_' + what + '_LOAD', 'cannot load ' + path + ': ' + e.message);
+      report('W_' + what + '_FALLBACK', 'warning', 'cannot load ' + path + ' (' + e.message + '); inline fallback used. Not valid for production.');
+      return { data: JSON.parse(document.getElementById(inlineId).textContent), source: 'inline-fallback' };
+    }
+  }
+  return { data: JSON.parse(document.getElementById(inlineId).textContent), source: 'inline' };
+}
+function checkSheet(s) {                                // light sanity only; run validate_cue_sheet.py before rendering
+  if (!s || !(s.duration > 0) || !isFinite(s.duration) || !Array.isArray(s.words) || !Array.isArray(s.cues)) throw fail('E_CUES_INVALID', 'cue sheet needs finite duration>0, words[], cues[]');
+  s.words.forEach((w, i) => { if (i && w.t0 < s.words[i - 1].t0) throw fail('E_CUES_INVALID', 'words[' + i + '] not monotonic'); });
+}
+
+/* [10] STATE built once in ready(); render(t) only reads it. */
+let SHEET, FX, tl = new Timeline(), wordEls = [], cueEls = [], pulses = [], dots = [], ZONES = [];
+const fx = path => { const v = path.split('.').reduce((o, k) => o == null ? o : o[k], FX); if (v === undefined) throw fail('E_FIXTURE_MISSING', 'fixture has no ' + path); return v; };
+
+function buildZones() {                                 // zones re-derive when the placeholder insets are replaced
+  const y0 = INSETS.top, band = H - INSETS.top - INSETS.bottom; let y = y0;
+  ZONES = SHARES.map(s => { const z = { y0: Math.round(y), y1: Math.round(y + s * band) }; y += s * band; return z; });
+  const names = ['top_title', 'middle_visual', 'bottom_caption'];
+  ZONES.forEach((z, i) => { const d = document.createElement('div'); d.className = 'zone'; d.style.top = z.y0 + 'px'; d.style.height = (z.y1 - z.y0) + 'px'; d.style.left = LEFT + 'px'; d.style.width = (W - LEFT - RIGHT) + 'px'; d.textContent = names[i] + '  PLACEHOLDER insets - measure per platform'; document.getElementById('stage').appendChild(d); });
+  document.querySelectorAll('.box').forEach(b => { const z = ZONES[+b.dataset.zone]; b.style.top = z.y0 + 'px'; b.style.height = (z.y1 - z.y0) + 'px'; b.style.left = LEFT + 'px'; b.style.width = (W - LEFT - RIGHT) + 'px'; });
+}
+
+function buildText() {                                  // words come from the approved narration via the cue sheet
+  const box = document.getElementById('title'); box.lang = SHEET.language;
+  const words = SHEET.words.slice(0, MAX_TITLE_WORDS);
+  if (SHEET.words.length > MAX_TITLE_WORDS) report('W_TITLE_TRUNCATED', 'warning', 'headline shows the first ' + MAX_TITLE_WORDS + ' of ' + SHEET.words.length + ' words; real scenes use a dedicated headline');
+  words.forEach((w, i) => {
+    const sp = document.createElement('span'); sp.className = 'w'; sp.textContent = w.w; if (w.lang) sp.lang = w.lang; box.appendChild(sp); wordEls.push(sp);
+    const at = Math.max(0, w.t0 - LEAD);                // reveal rule: on the word, or 0.05 s before
+    // Opacity only (16 Oct 2026, pilot gap L-01): CSS transform translate/scale on word spans made Chrome 155 pixels depend on seek history.
+    tl.add('w' + i + '.o', at, 0.18, 0, 1, 'cubicOut');
+  });
+  const last = words.length ? Math.max(0, words[words.length - 1].t0 - LEAD) : 0;
+  const indic = /^(hi|as|bn)/.test(SHEET.language), need = indic ? HOLD_MIN_INDIC : HOLD_MIN;
+  if (window.DURATION - last < need) report('W_HOLD_SHORT', 'warning', 'headline hold ' + (window.DURATION - last).toFixed(2) + ' s < ' + need + ' s [N60]');
+}
+
+function buildCues() {                                  // cues drive elements by element_id; times are never hard-coded here
+  SHEET.cues.forEach(c => {
+    const el = c.element_id && document.getElementById(c.element_id);
+    if (c.kind === 'hold') return;
+    if (!el) { report('W_CUE_NO_ELEMENT', 'warning', 'cue ' + c.id + ' targets missing element ' + c.element_id); return; }   // never ignore silently
+    if (c.kind === 'reveal') { tl.add(c.element_id + '.o', c.at, 0.25, 0, 1, 'cubicOut').add(c.element_id + '.s', c.at, 0.45, 0.6, 1, 'backOut'); if (!cueEls.some(e => e.id === c.element_id)) cueEls.push({ id: c.element_id, el }); }
+    if (c.kind === 'emphasis') pulses.push({ id: c.element_id, at: c.at });
+  });
+}
+
+function buildDots() {                                  // decorative only: never encodes science. Fixed draw order = deterministic.
+  const r = mulberry32(SEED);
+  for (let i = 0; i < 36; i++) dots.push({ x: r() * W, y: r() * H, vy: 20 + r() * 40, rad: 8 + r() * 14, ph: r() * 6.28, c: ['#185ABD', '#087986', '#9A5B00', '#6E44AA'][i % 4] });
+}
+
+/* [11] RENDER - synchronous, pure function of t (plus immutable state). Same t, same pixels, any order. */
+function render(t) {
+  wordEls.forEach((el, i) => { el.style.opacity = tl.at('w' + i + '.o', t, 0); });   // no transform: see buildText() (16 Oct 2026)
+  cueEls.forEach(({ id, el }) => {
+    const p = pulses.filter(x => x.id === id).reduce((a, x) => a * pulse(t, x.at), 1);
+    el.style.opacity = tl.at(id + '.o', t, 0); el.style.transform = 'scale(' + (tl.at(id + '.s', t, 0.6) * p) + ')';
+  });
+  const g = document.getElementById('cv').getContext('2d'), k = Math.floor(t * BOIL_FPS + EPS);   // boil step: stateless jitter
+  g.clearRect(0, 0, W, H); g.globalAlpha = 0.16;
+  dots.forEach((d, i) => { g.fillStyle = d.c; g.beginPath(); g.arc(((d.x + 14 * Math.sin(t * 1.3 + d.ph) + (rngAt(SEED, i * 997 + k) - 0.5) * 4) % W + W) % W, (d.y + d.vy * t) % H, d.rad, 0, 6.2832); g.fill(); });
+  g.globalAlpha = 1;
+}
+
+/* [12] READY + SEEK. seek(t) applies state for time t, then waits for fonts and images. It never waits on
+   requestAnimationFrame (that hangs in BeginFrame mode [N69]); the harness triggers the capture [N72]. */
+window.FPS = FPS;
+window.DURATION = 4.0;                                  // synchronous default for Level 0 harnesses; final value is set in ready()
+window.SCENE_META = { contract: '1.0.0', videoCount: 0, notes: 'template' };
+window.ready = (async () => {
+  const s = await loadJson(window.__CUE_SHEET__, 'cues', 'cue-sheet-inline', 'CUES'); SHEET = s.data; window.__cueSource = s.source; checkSheet(SHEET);
+  const f = await loadJson(window.__FIXTURE__, 'fixture', 'fixture-inline', 'FIXTURE'); FX = deepFreeze(f.data); window.__fixtureSource = f.source;
+  window.DURATION = SHEET.duration;                     // final DURATION = cue sheet duration
+  window.FRAME_COUNT = Math.round(window.DURATION * FPS);   // frame count = DURATION x fps [N72]
+  if (SHEET.fps !== FPS) report('W_FPS_MISMATCH', 'warning', 'cue sheet fps ' + SHEET.fps + ' != render fps ' + FPS + '; times stay in seconds');
+  await Promise.all(FONT_SPECS.map(f => document.fonts.load(f.weight + ' 40px "' + f.family + '"', f.text).catch(e => report('E_FONT_LOAD', 'error', f.family + ': ' + e.message))));
+  document.querySelectorAll('[data-fx]').forEach(el => { el.textContent = String(fx(el.dataset.fx)); });   // read-only, unformatted
+  buildZones(); buildText(); buildCues(); buildDots();
+  if (Q.get('safe') === '1') document.getElementById('stage').classList.add('safe');
+  addEventListener('keydown', e => { if (e.key === 's' || e.key === 'S') document.getElementById('stage').classList.toggle('safe'); });
+  await document.fonts.ready;
+})().catch(e => { if (!e.code) report('E_READY', 'error', e.message); throw e; });   // fail() already reported coded errors
+
+let chain = Promise.resolve();                          // serialise seeks so two calls can never interleave
+window.seek = async function seek(t) {
+  const prev = chain; let done; chain = new Promise(r => { done = r; });
+  try {
+    await prev; await window.ready;
+    if (typeof t !== 'number' || !isFinite(t)) throw fail('E_BAD_T', 'seek(t) needs a finite number of seconds, got ' + t);
+    const tc = Math.min(Math.max(t, 0), window.DURATION);
+    render(tc);
+    await document.fonts.ready;                         // resolves when no font is loading; no rAF
+    await Promise.all(Array.from(document.images).map(i => i.decode().catch(e => report('E_ASSET_LOAD', 'error', i.src + ': ' + e.message, tc))));
+    return { t: tc, frame: Math.round(tc * FPS) };
+  } finally { done(); }
+};
+
+/* [13] HYPERFRAMES ADAPTER. [N68] says compositions expose window.__hf with a duration and a seek (contested).
+   The exact shape is unverified: confirm against the pinned HyperFrames version before relying on this. */
+window.__hf = window.__hf || { get duration() { return window.DURATION; }, seek: t => window.seek(t) };
+
+/* [14] PREVIEW HELPERS (humans only). One-off seek for screenshots; an optional scrub slider. No play. */
+if (Q.get('preview') === '1') window.ready.then(() => { const r = document.createElement('input'); r.type = 'range'; r.id = 'scrub'; r.min = 0; r.max = window.DURATION; r.step = 1 / FPS; r.value = 0; r.oninput = () => window.seek(parseFloat(r.value)); document.body.appendChild(r); });
+if (Q.has('t')) window.ready.then(() => window.seek(num('t', 0)));
+})();
+</script>
+</body>
+</html>

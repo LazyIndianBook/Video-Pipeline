@@ -1,0 +1,231 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "bio-photosyn-ci-01-s04",
+ "fps": 30,
+ "duration": 12.0,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "d1f95c0aa2e81578b788ba3ab68691fb6b3fba330869335d92f623c7d73c3f7d",
+ "script_sha256": "fb56e0d2da7e69198ff182ee889c4beda47930cfe7a3435f4099ea3176e5093f",
+ "words": [
+  {
+   "w": "A",
+   "t0": 0.107,
+   "t1": 0.267
+  },
+  {
+   "w": "tempting",
+   "t0": 0.427,
+   "t1": 0.667
+  },
+  {
+   "w": "idea",
+   "t0": 0.747,
+   "t1": 1.867,
+   "occurrence": 1
+  },
+  {
+   "w": "plants",
+   "t0": 2.107,
+   "t1": 2.347
+  },
+  {
+   "w": "eat",
+   "t0": 2.427,
+   "t1": 2.587
+  },
+  {
+   "w": "soil",
+   "t0": 2.747,
+   "t1": 3.467,
+   "occurrence": 1
+  },
+  {
+   "w": "so",
+   "t0": 3.547,
+   "t1": 3.627
+  },
+  {
+   "w": "their",
+   "t0": 3.747,
+   "t1": 3.867
+  },
+  {
+   "w": "mass",
+   "t0": 4.067,
+   "t1": 4.267
+  },
+  {
+   "w": "comes",
+   "t0": 4.347,
+   "t1": 4.587
+  },
+  {
+   "w": "from",
+   "t0": 4.667,
+   "t1": 4.747,
+   "occurrence": 1
+  },
+  {
+   "w": "the",
+   "t0": 4.827,
+   "t1": 4.907,
+   "occurrence": 1
+  },
+  {
+   "w": "soil",
+   "t0": 4.987,
+   "t1": 5.867,
+   "occurrence": 2
+  },
+  {
+   "w": "That",
+   "t0": 5.947,
+   "t1": 6.107
+  },
+  {
+   "w": "idea",
+   "t0": 6.187,
+   "t1": 6.587,
+   "occurrence": 2
+  },
+  {
+   "w": "fails",
+   "t0": 6.827,
+   "t1": 7.467
+  },
+  {
+   "w": "Soil",
+   "t0": 7.547,
+   "t1": 7.867
+  },
+  {
+   "w": "supplies",
+   "t0": 7.947,
+   "t1": 8.427
+  },
+  {
+   "w": "water",
+   "t0": 8.667,
+   "t1": 9.307
+  },
+  {
+   "w": "The",
+   "t0": 9.387,
+   "t1": 9.467
+  },
+  {
+   "w": "carbon",
+   "t0": 9.627,
+   "t1": 9.787
+  },
+  {
+   "w": "in",
+   "t0": 9.867,
+   "t1": 9.947
+  },
+  {
+   "w": "the",
+   "t0": 10.027,
+   "t1": 10.107,
+   "occurrence": 2
+  },
+  {
+   "w": "wood",
+   "t0": 10.267,
+   "t1": 10.427
+  },
+  {
+   "w": "came",
+   "t0": 10.507,
+   "t1": 10.667
+  },
+  {
+   "w": "from",
+   "t0": 10.747,
+   "t1": 10.827,
+   "occurrence": 2
+  },
+  {
+   "w": "the",
+   "t0": 10.907,
+   "t1": 10.987,
+   "occurrence": 3
+  },
+  {
+   "w": "air",
+   "t0": 11.067,
+   "t1": 11.707
+  }
+ ],
+ "beats": [
+  0.027
+ ],
+ "cues": [
+  {
+   "id": "c28",
+   "at": 2.057,
+   "kind": "reveal",
+   "element_id": "sprout_art",
+   "word_index": 3
+  },
+  {
+   "id": "c21",
+   "at": 2.697,
+   "kind": "reveal",
+   "element_id": "soil_tag",
+   "word_index": 5
+  },
+  {
+   "id": "c29",
+   "at": 2.697,
+   "kind": "reveal",
+   "element_id": "mound_art",
+   "word_index": 5
+  },
+  {
+   "id": "c22",
+   "at": 8.617,
+   "kind": "reveal",
+   "element_id": "water_tag",
+   "word_index": 18
+  },
+  {
+   "id": "c30",
+   "at": 10.217,
+   "kind": "reveal",
+   "element_id": "wood_log",
+   "word_index": 23
+  },
+  {
+   "id": "c23",
+   "at": 11.017,
+   "kind": "emphasis",
+   "element_id": "air_tag",
+   "word_index": 27
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "bio-photosyn-ci-01",
+  "scene": "s04",
+  "beat_ids": [
+   "b06"
+  ],
+  "beats_text": [
+   {
+    "id": "b06",
+    "slot": "misconception.confront",
+    "text": "A tempting idea: plants eat soil, so their mass comes from the soil. That idea fails. Soil supplies water. The carbon in the wood came from the air.",
+    "headline": "The carbon came from the air",
+    "start": 0.107,
+    "end": 11.707,
+    "word_range": [
+     0,
+     28
+    ]
+   }
+  ],
+  "think_windows": []
+ }
+}

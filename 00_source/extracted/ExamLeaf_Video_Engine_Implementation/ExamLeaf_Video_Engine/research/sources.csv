@@ -1,0 +1,15 @@
+Source,URL,Scope,Checked
+Higgsfield blog,https://higgsfield.ai/blog/faceless-channel-one-prompt,Workflow claims; not verified income/outcome evidence,2026-10-13
+Anthropic pricing,https://platform.claude.com/docs/en/about-claude/pricing,Sonnet4.6/Opus4.6/Haiku4.5 quoted model rate inputs,2026-10-13
+ElevenLabs pricing,https://elevenlabs.io/pricing/api,Published $0.10/1K character baseline; conditions may change,2026-10-13
+Runway pricing,https://docs.dev.runwayml.com/guides/pricing/,Published credit rates; account/route differences explicit,2026-10-13
+Remotion licence,https://www.remotion.dev/docs/license/pricing,Conditional paid automation terms,2026-10-13
+Claude Skills,https://code.claude.com/docs/en/skills,Agent instruction packaging,2026-10-13
+Claude subagents,https://code.claude.com/docs/en/sub-agents,Development agent responsibilities,2026-10-13
+Codex Skills,https://developers.openai.com/codex/skills,Client Skill support; verify current discovery paths,2026-10-13
+Forced alignment,https://elevenlabs.io/docs/api-reference/forced-alignment/create,"Proposed external alignment API, not locally integrated",2026-10-13
+Retrieval meta-analysis,https://pubmed.ncbi.nlm.nih.gov/33683913/,"222 studies; retrieval evidence, not fixed interaction timing",2026-10-13
+Teacher humour study,https://www.sciencedirect.com/science/article/pii/S095947522500235X,2026 socio-emotional results; not proof of exam gain,2026-10-13
+Contrast,https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html,"Text contrast baseline, not complete accessibility certification",2026-10-13
+Kokoro weights,https://huggingface.co/hexgrad/Kokoro-82M,Apache-2.0 model card; language/voice audition still required,2026-10-13
+F5-TTS,https://github.com/SWivid/F5-TTS,Code and pretrained weight licences differ,2026-10-13

@@ -1,0 +1,2754 @@
+{
+ "physics": [
+  {
+   "id": "b01",
+   "slot": "hook.question_reveal",
+   "tag": "[curious]",
+   "mode": "curious",
+   "vt_start": 0.6,
+   "file_s": 10.0,
+   "head_s": 0.12,
+   "tail_s": 0.14,
+   "first_word": 0.16,
+   "last_word_end": 10.08,
+   "align_overrun": 0.08,
+   "n": 27,
+   "wpm_file": 162,
+   "wpm_speech": 163,
+   "wpm_artic": 175,
+   "gaps": [
+    [
+     "current",
+     0.36
+    ],
+    [
+     "it",
+     0.32
+    ]
+   ],
+   "rms_db": -23.4,
+   "f0_med": 151.4,
+   "f0_range_st": 13.9,
+   "last_word": "volts",
+   "last_word_slope_st": -4.2,
+   "words": [
+    [
+     "Does",
+     0.16,
+     -20.7
+    ],
+    [
+     "twice",
+     0.32,
+     -24.4
+    ],
+    [
+     "the",
+     0.08,
+     -22.3
+    ],
+    [
+     "voltage",
+     0.48,
+     -21.9
+    ],
+    [
+     "always",
+     0.32,
+     -21.9
+    ],
+    [
+     "mean",
+     0.16,
+     -19.9
+    ],
+    [
+     "twice",
+     0.32,
+     -23.9
+    ],
+    [
+     "the",
+     0.08,
+     -27.7
+    ],
+    [
+     "current",
+     0.6,
+     -31.0
+    ],
+    [
+     "Here",
+     0.16,
+     -15.7
+    ],
+    [
+     "is",
+     0.08,
+     -21.1
+    ],
+    [
+     "a",
+     0.04,
+     -18.9
+    ],
+    [
+     "resistor",
+     0.44,
+     -24.0
+    ],
+    [
+     "of",
+     0.08,
+     -21.3
+    ],
+    [
+     "ten",
+     0.16,
+     -24.2
+    ],
+    [
+     "ohms",
+     0.48,
+     -23.6
+    ],
+    [
+     "with",
+     0.16,
+     -22.8
+    ],
+    [
+     "two",
+     0.16,
+     -23.2
+    ],
+    [
+     "volts",
+     0.32,
+     -21.4
+    ],
+    [
+     "across",
+     0.24,
+     -28.7
+    ],
+    [
+     "it",
+     0.48,
+     -38.1
+    ],
+    [
+     "Now",
+     0.32,
+     -17.2
+    ],
+    [
+     "we",
+     0.08,
+     -21.5
+    ],
+    [
+     "make",
+     0.16,
+     -21.9
+    ],
+    [
+     "it",
+     0.04,
+     -20.2
+    ],
+    [
+     "four",
+     0.16,
+     -19.2
+    ],
+    [
+     "volts",
+     0.72,
+     -32.1
+    ]
+   ],
+   "unmatched": 0
+  },
+  {
+   "id": "b02",
+   "slot": "check.predict",
+   "tag": "[curious]",
+   "mode": "curious",
+   "vt_start": 11.2,
+   "file_s": 5.92,
+   "head_s": 0.18,
+   "tail_s": 0.16,
+   "first_word": 0.16,
+   "last_word_end": 6.0,
+   "align_overrun": 0.08,
+   "n": 14,
+   "wpm_file": 142,
+   "wpm_speech": 144,
+   "wpm_artic": 152,
+   "gaps": [
+    [
+     "whether",
+     0.32
+    ]
+   ],
+   "rms_db": -23.1,
+   "f0_med": 150.9,
+   "f0_range_st": 16.5,
+   "last_word": "safe",
+   "last_word_slope_st": null,
+   "words": [
+    [
+     "Pause",
+     0.48,
+     -21.1
+    ],
+    [
+     "and",
+     0.16,
+     -19.6
+    ],
+    [
+     "predict",
+     0.4,
+     -24.2
+    ],
+    [
+     "the",
+     0.08,
+     -25.5
+    ],
+    [
+     "current",
+     0.32,
+     -21.5
+    ],
+    [
+     "at",
+     0.08,
+     -29.5
+    ],
+    [
+     "four",
+     0.16,
+     -20.6
+    ],
+    [
+     "volts",
+     0.72,
+     -28.1
+    ],
+    [
+     "Then",
+     0.24,
+     -17.2
+    ],
+    [
+     "decide",
+     0.28,
+     -20.1
+    ],
+    [
+     "whether",
+     0.32,
+     -21.2
+    ],
+    [
+     "always",
+     0.32,
+     -29.9
+    ],
+    [
+     "is",
+     0.08,
+     -27.3
+    ],
+    [
+     "safe",
+     0.64,
+     -28.2
+    ]
+   ],
+   "unmatched": 0
+  },
+  {
+   "id": "b03",
+   "slot": "explain.ladder_step",
+   "tag": "[calm]",
+   "mode": "steady",
+   "vt_start": 22.42,
+   "file_s": 10.0,
+   "head_s": 0.08,
+   "tail_s": 0.34,
+   "first_word": 0.206,
+   "last_word_end": 10.0,
+   "align_overrun": 0.0,
+   "n": 25,
+   "wpm_file": 150,
+   "wpm_speech": 153,
+   "wpm_artic": 153,
+   "gaps": [],
+   "rms_db": -23.3,
+   "f0_med": 140.4,
+   "f0_range_st": 12.1,
+   "last_word": "current",
+   "last_word_slope_st": null,
+   "words": [
+    [
+     "At",
+     0.03,
+     -43.0
+    ],
+    [
+     "two",
+     0.16,
+     -19.5
+    ],
+    [
+     "volts",
+     0.56,
+     -30.8
+    ],
+    [
+     "the",
+     0.08,
+     -23.5
+    ],
+    [
+     "current",
+     0.32,
+     -18.0
+    ],
+    [
+     "is",
+     0.16,
+     -22.0
+    ],
+    [
+     "zero",
+     0.12,
+     -18.9
+    ],
+    [
+     "point",
+     0.24,
+     -24.7
+    ],
+    [
+     "two",
+     0.16,
+     -21.2
+    ],
+    [
+     "amperes",
+     1.12,
+     -27.5
+    ],
+    [
+     "At",
+     0.08,
+     -23.4
+    ],
+    [
+     "four",
+     0.08,
+     -17.8
+    ],
+    [
+     "volts",
+     0.48,
+     -29.4
+    ],
+    [
+     "it",
+     0.08,
+     -21.3
+    ],
+    [
+     "is",
+     0.08,
+     -23.8
+    ],
+    [
+     "zero",
+     0.16,
+     -17.7
+    ],
+    [
+     "point",
+     0.24,
+     -23.0
+    ],
+    [
+     "four",
+     0.16,
+     -19.0
+    ],
+    [
+     "amperes",
+     1.04,
+     -32.6
+    ],
+    [
+     "Twice",
+     0.28,
+     -19.5
+    ],
+    [
+     "the",
+     0.04,
+     -31.9
+    ],
+    [
+     "voltage",
+     0.72,
+     -21.6
+    ],
+    [
+     "twice",
+     0.24,
+     -26.0
+    ],
+    [
+     "the",
+     0.08,
+     -22.8
+    ],
+    [
+     "current",
+     0.6,
+     -33.9
+    ]
+   ],
+   "unmatched": 0
+  },
+  {
+   "id": "b04",
+   "slot": "explain.ladder_step",
+   "tag": "[thoughtful]",
+   "mode": "deliberate",
+   "vt_start": 32.92,
+   "file_s": 12.64,
+   "head_s": 0.12,
+   "tail_s": 0.16,
+   "first_word": 0.16,
+   "last_word_end": 12.72,
+   "align_overrun": 0.08,
+   "n": 27,
+   "wpm_file": 128,
+   "wpm_speech": 129,
+   "wpm_artic": 129,
+   "gaps": [],
+   "rms_db": -23.4,
+   "f0_med": 133.7,
+   "f0_range_st": 12.5,
+   "last_word": "resistance",
+   "last_word_slope_st": -8.0,
+   "words": [
+    [
+     "For",
+     0.08,
+     -22.5
+    ],
+    [
+     "this",
+     0.16,
+     -23.2
+    ],
+    [
+     "resistor",
+     0.56,
+     -24.3
+    ],
+    [
+     "at",
+     0.16,
+     -29.6
+    ],
+    [
+     "constant",
+     0.4,
+     -25.3
+    ],
+    [
+     "temperature",
+     0.88,
+     -28.5
+    ],
+    [
+     "voltage",
+     0.4,
+     -19.1
+    ],
+    [
+     "divided",
+     0.32,
+     -19.9
+    ],
+    [
+     "by",
+     0.08,
+     -24.1
+    ],
+    [
+     "current",
+     0.4,
+     -23.0
+    ],
+    [
+     "stays",
+     0.4,
+     -24.4
+    ],
+    [
+     "ten",
+     0.12,
+     -20.7
+    ],
+    [
+     "ohms",
+     0.24,
+     -23.2
+    ],
+    [
+     "at",
+     0.16,
+     -37.6
+    ],
+    [
+     "both",
+     0.12,
+     -25.3
+    ],
+    [
+     "points",
+     0.88,
+     -31.5
+    ],
+    [
+     "That",
+     0.12,
+     -28.5
+    ],
+    [
+     "constant",
+     0.48,
+     -23.4
+    ],
+    [
+     "is",
+     0.08,
+     -19.4
+    ],
+    [
+     "the",
+     0.04,
+     -16.8
+    ],
+    [
+     "resistance",
+     1.04,
+     -25.3
+    ],
+    [
+     "voltage",
+     0.48,
+     -19.0
+    ],
+    [
+     "equals",
+     0.32,
+     -28.2
+    ],
+    [
+     "current",
+     0.4,
+     -20.2
+    ],
+    [
+     "multiplied",
+     0.56,
+     -20.8
+    ],
+    [
+     "by",
+     0.08,
+     -18.3
+    ],
+    [
+     "resistance",
+     0.96,
+     -25.8
+    ]
+   ],
+   "unmatched": 0
+  },
+  {
+   "id": "b05",
+   "slot": "misconception.confront",
+   "tag": "[thoughtful]",
+   "mode": "deliberate",
+   "vt_start": 46.36,
+   "file_s": 10.24,
+   "head_s": 0.1,
+   "tail_s": 0.18,
+   "first_word": 0.08,
+   "last_word_end": 10.32,
+   "align_overrun": 0.08,
+   "n": 25,
+   "wpm_file": 146,
+   "wpm_speech": 146,
+   "wpm_artic": 151,
+   "gaps": [
+    [
+     "longer",
+     0.29
+    ]
+   ],
+   "rms_db": -22.7,
+   "f0_med": 130.8,
+   "f0_range_st": 12.0,
+   "last_word": "resistance",
+   "last_word_slope_st": -2.2,
+   "words": [
+    [
+     "But",
+     0.24,
+     -26.9
+    ],
+    [
+     "always",
+     0.56,
+     -24.1
+    ],
+    [
+     "is",
+     0.16,
+     -28.2
+    ],
+    [
+     "not",
+     0.16,
+     -24.4
+    ],
+    [
+     "safe",
+     0.72,
+     -30.0
+    ],
+    [
+     "A",
+     0.16,
+     -23.0
+    ],
+    [
+     "filament",
+     0.32,
+     -17.4
+    ],
+    [
+     "bulb",
+     0.24,
+     -25.2
+    ],
+    [
+     "gets",
+     0.12,
+     -32.1
+    ],
+    [
+     "hot",
+     0.56,
+     -24.0
+    ],
+    [
+     "so",
+     0.08,
+     -15.2
+    ],
+    [
+     "its",
+     0.08,
+     -28.4
+    ],
+    [
+     "resistance",
+     0.52,
+     -23.7
+    ],
+    [
+     "rises",
+     0.61,
+     -22.4
+    ],
+    [
+     "and",
+     0.05,
+     -16.1
+    ],
+    [
+     "the",
+     0.08,
+     -29.5
+    ],
+    [
+     "current",
+     0.2,
+     -22.7
+    ],
+    [
+     "no",
+     0.08,
+     -18.6
+    ],
+    [
+     "longer",
+     0.24,
+     -21.7
+    ],
+    [
+     "doubles",
+     0.64,
+     -38.5
+    ],
+    [
+     "The",
+     0.05,
+     -14.3
+    ],
+    [
+     "rule",
+     0.16,
+     -18.7
+    ],
+    [
+     "needs",
+     0.32,
+     -23.7
+    ],
+    [
+     "constant",
+     0.24,
+     -27.4
+    ],
+    [
+     "resistance",
+     0.96,
+     -28.1
+    ]
+   ],
+   "unmatched": 0
+  },
+  {
+   "id": "b06",
+   "slot": "recap.statement",
+   "tag": "[warm]",
+   "mode": "steady",
+   "vt_start": 57.4,
+   "file_s": 7.92,
+   "head_s": 0.06,
+   "tail_s": 0.28,
+   "first_word": 0.24,
+   "last_word_end": 7.76,
+   "align_overrun": -0.16,
+   "n": 18,
+   "wpm_file": 136,
+   "wpm_speech": 144,
+   "wpm_artic": 144,
+   "gaps": [],
+   "rms_db": -22.8,
+   "f0_med": 140.8,
+   "f0_range_st": 13.1,
+   "last_word": "ratio",
+   "last_word_slope_st": -11.6,
+   "words": [
+    [
+     "So",
+     0.48,
+     -21.8
+    ],
+    [
+     "for",
+     0.08,
+     -18.4
+    ],
+    [
+     "a",
+     0.04,
+     -13.6
+    ],
+    [
+     "conductor",
+     0.48,
+     -19.7
+    ],
+    [
+     "at",
+     0.08,
+     -31.5
+    ],
+    [
+     "constant",
+     0.4,
+     -23.2
+    ],
+    [
+     "temperature",
+     0.88,
+     -27.6
+    ],
+    [
+     "current",
+     0.4,
+     -18.9
+    ],
+    [
+     "is",
+     0.08,
+     -23.1
+    ],
+    [
+     "proportional",
+     0.64,
+     -22.9
+    ],
+    [
+     "to",
+     0.04,
+     -27.8
+    ],
+    [
+     "voltage",
+     0.72,
+     -23.5
+    ],
+    [
+     "and",
+     0.08,
+     -21.9
+    ],
+    [
+     "resistance",
+     0.6,
+     -22.3
+    ],
+    [
+     "is",
+     0.08,
+     -23.7
+    ],
+    [
+     "the",
+     0.08,
+     -21.9
+    ],
+    [
+     "constant",
+     0.4,
+     -24.3
+    ],
+    [
+     "ratio",
+     0.64,
+     -24.3
+    ]
+   ],
+   "unmatched": 0
+  },
+  {
+   "id": "b07",
+   "slot": "outro.disclosure",
+   "tag": "[calm]",
+   "mode": "steady",
+   "vt_start": 65.92,
+   "file_s": 4.0,
+   "head_s": 0.1,
+   "tail_s": 0.2,
+   "first_word": 0.08,
+   "last_word_end": 4.08,
+   "align_overrun": 0.08,
+   "n": 5,
+   "wpm_file": 75,
+   "wpm_speech": 75,
+   "wpm_artic": 75,
+   "gaps": [],
+   "rms_db": -21.7,
+   "f0_med": 126.3,
+   "f0_range_st": 12.7,
+   "last_word": "ExamLeaf",
+   "last_word_slope_st": -10.4,
+   "words": [
+    [
+     "AI-generated",
+     1.04,
+     -18.1
+    ],
+    [
+     "narration",
+     1.08,
+     -25.4
+    ],
+    [
+     "script",
+     0.4,
+     -21.4
+    ],
+    [
+     "by",
+     0.16,
+     -20.5
+    ],
+    [
+     "ExamLeaf",
+     0.84,
+     -26.0
+    ]
+   ],
+   "unmatched": 0
+  }
+ ],
+ "chemistry": [
+  {
+   "id": "b01",
+   "slot": "hook.question_reveal",
+   "tag": "[curious]",
+   "mode": "curious",
+   "vt_start": 0.6,
+   "file_s": 10.72,
+   "head_s": 0.1,
+   "tail_s": 0.22,
+   "first_word": 0.16,
+   "last_word_end": 10.8,
+   "align_overrun": 0.08,
+   "n": 27,
+   "wpm_file": 151,
+   "wpm_speech": 152,
+   "wpm_artic": 164,
+   "gaps": [
+    [
+     "O",
+     0.48
+    ],
+    [
+     "the",
+     0.28
+    ]
+   ],
+   "rms_db": -23.7,
+   "f0_med": 159.2,
+   "f0_range_st": 15.2,
+   "last_word": "vanish",
+   "last_word_slope_st": -1.2,
+   "words": [
+    [
+     "Hydrogen",
+     0.56,
+     -21.1
+    ],
+    [
+     "burns",
+     0.28,
+     -21.4
+    ],
+    [
+     "in",
+     0.16,
+     -20.9
+    ],
+    [
+     "oxygen",
+     0.48,
+     -27.0
+    ],
+    [
+     "to",
+     0.04,
+     -28.2
+    ],
+    [
+     "make",
+     0.16,
+     -24.6
+    ],
+    [
+     "water",
+     0.64,
+     -28.3
+    ],
+    [
+     "Write",
+     0.16,
+     -17.0
+    ],
+    [
+     "it",
+     0.04,
+     -19.9
+    ],
+    [
+     "down",
+     0.72,
+     -26.9
+    ],
+    [
+     "H",
+     0.16,
+     -26.8
+    ],
+    [
+     "two",
+     0.24,
+     -20.6
+    ],
+    [
+     "plus",
+     0.16,
+     -24.3
+    ],
+    [
+     "O",
+     0.16,
+     -17.4
+    ],
+    [
+     "two",
+     0.16,
+     -25.2
+    ],
+    [
+     "gives",
+     0.24,
+     -21.7
+    ],
+    [
+     "H",
+     0.24,
+     -25.2
+    ],
+    [
+     "two",
+     0.08,
+     -19.8
+    ],
+    [
+     "O",
+     0.32,
+     -22.6
+    ],
+    [
+     "Count",
+     0.16,
+     -17.2
+    ],
+    [
+     "the",
+     0.08,
+     -19.2
+    ],
+    [
+     "atoms",
+     0.52,
+     -35.0
+    ],
+    [
+     "Did",
+     0.08,
+     -22.0
+    ],
+    [
+     "an",
+     0.08,
+     -19.0
+    ],
+    [
+     "atom",
+     0.32,
+     -25.1
+    ],
+    [
+     "just",
+     0.16,
+     -25.2
+    ],
+    [
+     "vanish",
+     0.8,
+     -26.1
+    ]
+   ],
+   "unmatched": 0
+  },
+  {
+   "id": "b02",
+   "slot": "check.predict",
+   "tag": "[thoughtful]",
+   "mode": "thoughtful",
+   "vt_start": 11.92,
+   "file_s": 4.32,
+   "head_s": 0.12,
+   "tail_s": 0.2,
+   "first_word": 0.16,
+   "last_word_end": 4.4,
+   "align_overrun": 0.08,
+   "n": 11,
+   "wpm_file": 153,
+   "wpm_speech": 156,
+   "wpm_artic": 156,
+   "gaps": [],
+   "rms_db": -26.2,
+   "f0_med": 137.9,
+   "f0_range_st": 15.3,
+   "last_word": "short",
+   "last_word_slope_st": null,
+   "words": [
+    [
+     "Count",
+     0.24,
+     -23.9
+    ],
+    [
+     "the",
+     0.08,
+     -27.4
+    ],
+    [
+     "oxygen",
+     0.48,
+     -25.4
+    ],
+    [
+     "atoms",
+     0.32,
+     -24.7
+    ],
+    [
+     "on",
+     0.08,
+     -25.4
+    ],
+    [
+     "each",
+     0.24,
+     -25.6
+    ],
+    [
+     "side",
+     0.88,
+     -30.0
+    ],
+    [
+     "Which",
+     0.16,
+     -22.2
+    ],
+    [
+     "side",
+     0.16,
+     -22.1
+    ],
+    [
+     "is",
+     0.16,
+     -25.6
+    ],
+    [
+     "short",
+     0.52,
+     -36.6
+    ]
+   ],
+   "unmatched": 0
+  },
+  {
+   "id": "b03",
+   "slot": "explain.ladder_step",
+   "tag": "[calm]",
+   "mode": "calm",
+   "vt_start": 21.54,
+   "file_s": 14.8,
+   "head_s": 0.12,
+   "tail_s": 0.16,
+   "first_word": 0.16,
+   "last_word_end": 14.88,
+   "align_overrun": 0.08,
+   "n": 35,
+   "wpm_file": 142,
+   "wpm_speech": 143,
+   "wpm_artic": 149,
+   "gaps": [
+    [
+     "atoms",
+     0.32
+    ],
+    [
+     "one",
+     0.28
+    ]
+   ],
+   "rms_db": -23.0,
+   "f0_med": 138.1,
+   "f0_range_st": 10.7,
+   "last_word": "sides",
+   "last_word_slope_st": -6.1,
+   "words": [
+    [
+     "Left",
+     0.64,
+     -23.2
+    ],
+    [
+     "two",
+     0.24,
+     -19.5
+    ],
+    [
+     "oxygen",
+     0.4,
+     -27.6
+    ],
+    [
+     "atoms",
+     0.56,
+     -35.8
+    ],
+    [
+     "Right",
+     0.56,
+     -22.9
+    ],
+    [
+     "only",
+     0.24,
+     -16.8
+    ],
+    [
+     "one",
+     0.6,
+     -27.8
+    ],
+    [
+     "But",
+     0.16,
+     -20.7
+    ],
+    [
+     "atoms",
+     0.2,
+     -21.3
+    ],
+    [
+     "are",
+     0.16,
+     -17.6
+    ],
+    [
+     "never",
+     0.12,
+     -23.1
+    ],
+    [
+     "created",
+     0.48,
+     -21.7
+    ],
+    [
+     "or",
+     0.16,
+     -18.4
+    ],
+    [
+     "destroyed",
+     0.4,
+     -21.9
+    ],
+    [
+     "in",
+     0.04,
+     -28.0
+    ],
+    [
+     "a",
+     0.04,
+     -20.7
+    ],
+    [
+     "reaction",
+     0.96,
+     -26.1
+    ],
+    [
+     "That",
+     0.24,
+     -17.2
+    ],
+    [
+     "is",
+     0.08,
+     -24.1
+    ],
+    [
+     "the",
+     0.08,
+     -18.1
+    ],
+    [
+     "law",
+     0.16,
+     -18.5
+    ],
+    [
+     "of",
+     0.08,
+     -24.1
+    ],
+    [
+     "conservation",
+     0.64,
+     -23.8
+    ],
+    [
+     "of",
+     0.04,
+     -33.2
+    ],
+    [
+     "mass",
+     0.88,
+     -25.3
+    ],
+    [
+     "So",
+     0.12,
+     -24.8
+    ],
+    [
+     "each",
+     0.12,
+     -27.0
+    ],
+    [
+     "element",
+     0.4,
+     -20.4
+    ],
+    [
+     "needs",
+     0.16,
+     -18.9
+    ],
+    [
+     "the",
+     0.16,
+     -25.4
+    ],
+    [
+     "same",
+     0.16,
+     -22.2
+    ],
+    [
+     "count",
+     0.16,
+     -25.9
+    ],
+    [
+     "on",
+     0.16,
+     -20.3
+    ],
+    [
+     "both",
+     0.24,
+     -20.5
+    ],
+    [
+     "sides",
+     0.76,
+     -27.5
+    ]
+   ],
+   "unmatched": 0
+  },
+  {
+   "id": "b04",
+   "slot": "worked.step",
+   "tag": "[calm]",
+   "mode": "calm",
+   "vt_start": 36.74,
+   "file_s": 11.92,
+   "head_s": 0.06,
+   "tail_s": 0.16,
+   "first_word": 0.08,
+   "last_word_end": 12.0,
+   "align_overrun": 0.08,
+   "n": 29,
+   "wpm_file": 146,
+   "wpm_speech": 146,
+   "wpm_artic": 154,
+   "gaps": [
+    [
+     "water",
+     0.28
+    ],
+    [
+     "two",
+     0.32
+    ]
+   ],
+   "rms_db": -23.6,
+   "f0_med": 133.7,
+   "f0_range_st": 13.3,
+   "last_word": "Balanced",
+   "last_word_slope_st": -13.4,
+   "words": [
+    [
+     "Put",
+     0.08,
+     -19.1
+    ],
+    [
+     "a",
+     0.16,
+     -23.8
+    ],
+    [
+     "two",
+     0.2,
+     -23.5
+    ],
+    [
+     "in",
+     0.16,
+     -21.3
+    ],
+    [
+     "front",
+     0.12,
+     -24.8
+    ],
+    [
+     "of",
+     0.04,
+     -21.9
+    ],
+    [
+     "water",
+     0.68,
+     -27.7
+    ],
+    [
+     "Oxygen",
+     0.96,
+     -25.3
+    ],
+    [
+     "two",
+     0.32,
+     -25.7
+    ],
+    [
+     "and",
+     0.16,
+     -23.2
+    ],
+    [
+     "two",
+     0.48,
+     -29.1
+    ],
+    [
+     "Hydrogen",
+     0.56,
+     -18.9
+    ],
+    [
+     "is",
+     0.16,
+     -24.6
+    ],
+    [
+     "four",
+     0.24,
+     -18.9
+    ],
+    [
+     "on",
+     0.08,
+     -22.5
+    ],
+    [
+     "the",
+     0.04,
+     -23.7
+    ],
+    [
+     "right",
+     0.56,
+     -24.3
+    ],
+    [
+     "so",
+     0.16,
+     -18.2
+    ],
+    [
+     "put",
+     0.16,
+     -25.2
+    ],
+    [
+     "a",
+     0.08,
+     -48.6
+    ],
+    [
+     "two",
+     0.16,
+     -19.3
+    ],
+    [
+     "in",
+     0.08,
+     -21.7
+    ],
+    [
+     "front",
+     0.08,
+     -19.7
+    ],
+    [
+     "of",
+     0.08,
+     -28.5
+    ],
+    [
+     "hydrogen",
+     0.88,
+     -28.8
+    ],
+    [
+     "Four",
+     0.32,
+     -18.9
+    ],
+    [
+     "and",
+     0.16,
+     -23.2
+    ],
+    [
+     "four",
+     0.8,
+     -27.5
+    ],
+    [
+     "Balanced",
+     0.8,
+     -21.6
+    ]
+   ],
+   "unmatched": 0
+  },
+  {
+   "id": "b05",
+   "slot": "misconception.confront",
+   "tag": "[thoughtful]",
+   "mode": "thoughtful",
+   "vt_start": 49.26,
+   "file_s": 9.92,
+   "head_s": 0.14,
+   "tail_s": 0.2,
+   "first_word": 0.16,
+   "last_word_end": 10.0,
+   "align_overrun": 0.08,
+   "n": 23,
+   "wpm_file": 139,
+   "wpm_speech": 140,
+   "wpm_artic": 144,
+   "gaps": [
+    [
+     "subscripts",
+     0.28
+    ]
+   ],
+   "rms_db": -23.7,
+   "f0_med": 158.9,
+   "f0_range_st": 12.7,
+   "last_word": "inside",
+   "last_word_slope_st": null,
+   "words": [
+    [
+     "Why",
+     0.16,
+     -22.4
+    ],
+    [
+     "not",
+     0.08,
+     -25.2
+    ],
+    [
+     "write",
+     0.24,
+     -22.1
+    ],
+    [
+     "H",
+     0.24,
+     -23.8
+    ],
+    [
+     "two",
+     0.08,
+     -26.2
+    ],
+    [
+     "O",
+     0.16,
+     -20.1
+    ],
+    [
+     "two",
+     0.6,
+     -35.5
+    ],
+    [
+     "That",
+     0.16,
+     -17.2
+    ],
+    [
+     "is",
+     0.08,
+     -24.6
+    ],
+    [
+     "hydrogen",
+     0.48,
+     -20.5
+    ],
+    [
+     "peroxide",
+     0.88,
+     -24.6
+    ],
+    [
+     "a",
+     0.04,
+     -22.7
+    ],
+    [
+     "different",
+     0.32,
+     -21.9
+    ],
+    [
+     "substance",
+     0.92,
+     -35.2
+    ],
+    [
+     "Change",
+     0.16,
+     -19.3
+    ],
+    [
+     "the",
+     0.04,
+     -23.0
+    ],
+    [
+     "coefficients",
+     0.56,
+     -22.6
+    ],
+    [
+     "in",
+     0.16,
+     -25.1
+    ],
+    [
+     "front",
+     0.64,
+     -25.7
+    ],
+    [
+     "never",
+     0.24,
+     -17.4
+    ],
+    [
+     "the",
+     0.08,
+     -29.4
+    ],
+    [
+     "subscripts",
+     0.44,
+     -24.7
+    ],
+    [
+     "inside",
+     0.6,
+     -29.0
+    ]
+   ],
+   "unmatched": 0
+  },
+  {
+   "id": "b06",
+   "slot": "recap.statement",
+   "tag": "[warm]",
+   "mode": "warm",
+   "vt_start": 59.78,
+   "file_s": 6.72,
+   "head_s": 0.1,
+   "tail_s": 0.36,
+   "first_word": 0.44,
+   "last_word_end": 6.72,
+   "align_overrun": 0.0,
+   "n": 15,
+   "wpm_file": 134,
+   "wpm_speech": 143,
+   "wpm_artic": 143,
+   "gaps": [],
+   "rms_db": -22.7,
+   "f0_med": 132.8,
+   "f0_range_st": 11.4,
+   "last_word": "only",
+   "last_word_slope_st": -8.1,
+   "words": [
+    [
+     "Atoms",
+     0.12,
+     -23.9
+    ],
+    [
+     "are",
+     0.08,
+     -19.9
+    ],
+    [
+     "conserved",
+     0.8,
+     -26.2
+    ],
+    [
+     "so",
+     0.16,
+     -18.4
+    ],
+    [
+     "count",
+     0.16,
+     -22.0
+    ],
+    [
+     "every",
+     0.24,
+     -18.7
+    ],
+    [
+     "element",
+     0.4,
+     -21.0
+    ],
+    [
+     "on",
+     0.12,
+     -26.3
+    ],
+    [
+     "both",
+     0.12,
+     -20.3
+    ],
+    [
+     "sides",
+     0.64,
+     -25.6
+    ],
+    [
+     "and",
+     0.12,
+     -22.2
+    ],
+    [
+     "balance",
+     0.2,
+     -21.4
+    ],
+    [
+     "with",
+     0.08,
+     -24.7
+    ],
+    [
+     "coefficients",
+     0.72,
+     -23.3
+    ],
+    [
+     "only",
+     0.8,
+     -27.2
+    ]
+   ],
+   "unmatched": 0
+  },
+  {
+   "id": "b07",
+   "slot": "outro.disclosure",
+   "tag": null,
+   "mode": "calm",
+   "vt_start": 67.1,
+   "file_s": 4.0,
+   "head_s": 0.04,
+   "tail_s": 0.18,
+   "first_word": 0.0,
+   "last_word_end": 4.08,
+   "align_overrun": 0.08,
+   "n": 5,
+   "wpm_file": 75,
+   "wpm_speech": 74,
+   "wpm_artic": 74,
+   "gaps": [],
+   "rms_db": -22.1,
+   "f0_med": 133.0,
+   "f0_range_st": 14.5,
+   "last_word": "ExamLeaf",
+   "last_word_slope_st": -17.0,
+   "words": [
+    [
+     "AI-generated",
+     1.12,
+     -19.2
+    ],
+    [
+     "narration",
+     1.04,
+     -25.1
+    ],
+    [
+     "script",
+     0.4,
+     -21.4
+    ],
+    [
+     "by",
+     0.08,
+     -20.6
+    ],
+    [
+     "ExamLeaf",
+     1.04,
+     -25.1
+    ]
+   ],
+   "unmatched": 0
+  }
+ ],
+ "biology": [
+  {
+   "id": "b01",
+   "slot": "hook.question_reveal",
+   "tag": "[curious]",
+   "mode": "curious",
+   "vt_start": 0.6,
+   "file_s": 5.6,
+   "head_s": 0.1,
+   "tail_s": 0.14,
+   "first_word": 0.08,
+   "last_word_end": 5.68,
+   "align_overrun": 0.08,
+   "n": 19,
+   "wpm_file": 204,
+   "wpm_speech": 204,
+   "wpm_artic": 204,
+   "gaps": [],
+   "rms_db": -22.9,
+   "f0_med": 175.5,
+   "f0_range_st": 16.0,
+   "last_word": "from",
+   "last_word_slope_st": null,
+   "words": [
+    [
+     "A",
+     0.08,
+     -26.1
+    ],
+    [
+     "banyan",
+     0.4,
+     -22.2
+    ],
+    [
+     "tree",
+     0.24,
+     -27.4
+    ],
+    [
+     "can",
+     0.16,
+     -19.6
+    ],
+    [
+     "weigh",
+     0.12,
+     -17.2
+    ],
+    [
+     "more",
+     0.08,
+     -19.8
+    ],
+    [
+     "than",
+     0.08,
+     -21.6
+    ],
+    [
+     "a",
+     0.05,
+     -29.9
+    ],
+    [
+     "herd",
+     0.13,
+     -21.1
+    ],
+    [
+     "of",
+     0.12,
+     -40.0
+    ],
+    [
+     "elephants",
+     0.92,
+     -27.9
+    ],
+    [
+     "So",
+     0.32,
+     -21.5
+    ],
+    [
+     "where",
+     0.08,
+     -20.3
+    ],
+    [
+     "did",
+     0.08,
+     -21.1
+    ],
+    [
+     "all",
+     0.08,
+     -20.9
+    ],
+    [
+     "that",
+     0.12,
+     -25.0
+    ],
+    [
+     "wood",
+     0.12,
+     -23.6
+    ],
+    [
+     "come",
+     0.12,
+     -28.6
+    ],
+    [
+     "from",
+     0.4,
+     -33.9
+    ]
+   ],
+   "unmatched": 0
+  },
+  {
+   "id": "b02",
+   "slot": "check.predict",
+   "tag": "[curious]",
+   "mode": "curious",
+   "vt_start": 6.8,
+   "file_s": 6.96,
+   "head_s": 0.1,
+   "tail_s": 0.16,
+   "first_word": 0.16,
+   "last_word_end": 7.04,
+   "align_overrun": 0.08,
+   "n": 19,
+   "wpm_file": 164,
+   "wpm_speech": 166,
+   "wpm_artic": 180,
+   "gaps": [
+    [
+     "air",
+     0.28
+    ],
+    [
+     "and",
+     0.28
+    ]
+   ],
+   "rms_db": -24.4,
+   "f0_med": 164.4,
+   "f0_range_st": 13.5,
+   "last_word": "predict",
+   "last_word_slope_st": null,
+   "words": [
+    [
+     "Where",
+     0.16,
+     -20.0
+    ],
+    [
+     "did",
+     0.08,
+     -21.4
+    ],
+    [
+     "the",
+     0.08,
+     -27.6
+    ],
+    [
+     "carbon",
+     0.2,
+     -21.7
+    ],
+    [
+     "in",
+     0.04,
+     -18.5
+    ],
+    [
+     "that",
+     0.16,
+     -22.9
+    ],
+    [
+     "wood",
+     0.24,
+     -23.9
+    ],
+    [
+     "come",
+     0.12,
+     -29.2
+    ],
+    [
+     "from",
+     0.6,
+     -35.4
+    ],
+    [
+     "the",
+     0.08,
+     -27.4
+    ],
+    [
+     "soil",
+     0.64,
+     -25.8
+    ],
+    [
+     "the",
+     0.08,
+     -21.2
+    ],
+    [
+     "water",
+     0.44,
+     -27.9
+    ],
+    [
+     "or",
+     0.08,
+     -19.9
+    ],
+    [
+     "the",
+     0.04,
+     -20.1
+    ],
+    [
+     "air",
+     0.88,
+     -29.2
+    ],
+    [
+     "Pause",
+     0.28,
+     -26.4
+    ],
+    [
+     "and",
+     0.08,
+     -18.3
+    ],
+    [
+     "predict",
+     0.52,
+     -31.9
+    ]
+   ],
+   "unmatched": 0
+  },
+  {
+   "id": "b03",
+   "slot": "explain.ladder_step",
+   "tag": "[calm]",
+   "mode": "steady",
+   "vt_start": 18.76,
+   "file_s": 8.72,
+   "head_s": 0.1,
+   "tail_s": 0.16,
+   "first_word": 0.16,
+   "last_word_end": 8.8,
+   "align_overrun": 0.08,
+   "n": 23,
+   "wpm_file": 158,
+   "wpm_speech": 160,
+   "wpm_artic": 160,
+   "gaps": [],
+   "rms_db": -22.8,
+   "f0_med": 148.4,
+   "f0_range_st": 11.7,
+   "last_word": "roots",
+   "last_word_slope_st": -15.2,
+   "words": [
+    [
+     "Green",
+     0.24,
+     -15.8
+    ],
+    [
+     "plants",
+     0.4,
+     -26.4
+    ],
+    [
+     "make",
+     0.16,
+     -20.0
+    ],
+    [
+     "their",
+     0.16,
+     -20.5
+    ],
+    [
+     "own",
+     0.12,
+     -21.1
+    ],
+    [
+     "food",
+     0.88,
+     -34.8
+    ],
+    [
+     "Carbon",
+     0.32,
+     -18.3
+    ],
+    [
+     "dioxide",
+     0.6,
+     -22.0
+    ],
+    [
+     "enters",
+     0.32,
+     -22.2
+    ],
+    [
+     "from",
+     0.08,
+     -23.7
+    ],
+    [
+     "the",
+     0.16,
+     -23.9
+    ],
+    [
+     "air",
+     0.24,
+     -23.5
+    ],
+    [
+     "through",
+     0.12,
+     -21.2
+    ],
+    [
+     "stomata",
+     0.88,
+     -25.3
+    ],
+    [
+     "and",
+     0.08,
+     -26.9
+    ],
+    [
+     "water",
+     0.4,
+     -19.5
+    ],
+    [
+     "comes",
+     0.16,
+     -18.9
+    ],
+    [
+     "up",
+     0.16,
+     -22.7
+    ],
+    [
+     "from",
+     0.08,
+     -21.4
+    ],
+    [
+     "the",
+     0.08,
+     -27.0
+    ],
+    [
+     "soil",
+     0.32,
+     -22.6
+    ],
+    [
+     "through",
+     0.12,
+     -18.9
+    ],
+    [
+     "roots",
+     0.72,
+     -26.1
+    ]
+   ],
+   "unmatched": 0
+  },
+  {
+   "id": "b04",
+   "slot": "explain.ladder_step",
+   "tag": "[thoughtful]",
+   "mode": "deliberate",
+   "vt_start": 27.98,
+   "file_s": 11.04,
+   "head_s": 0.12,
+   "tail_s": 0.22,
+   "first_word": 0.24,
+   "last_word_end": 11.12,
+   "align_overrun": 0.08,
+   "n": 23,
+   "wpm_file": 125,
+   "wpm_speech": 127,
+   "wpm_artic": 127,
+   "gaps": [],
+   "rms_db": -23.4,
+   "f0_med": 134.1,
+   "f0_range_st": 13.3,
+   "last_word": "dioxide",
+   "last_word_slope_st": -9.0,
+   "words": [
+    [
+     "Sunlight",
+     0.72,
+     -23.0
+    ],
+    [
+     "absorbed",
+     0.48,
+     -23.1
+    ],
+    [
+     "by",
+     0.08,
+     -26.4
+    ],
+    [
+     "chlorophyll",
+     0.72,
+     -23.2
+    ],
+    [
+     "drives",
+     0.4,
+     -19.7
+    ],
+    [
+     "the",
+     0.08,
+     -31.1
+    ],
+    [
+     "change",
+     0.56,
+     -33.3
+    ],
+    [
+     "making",
+     0.16,
+     -21.1
+    ],
+    [
+     "glucose",
+     0.56,
+     -20.6
+    ],
+    [
+     "and",
+     0.08,
+     -21.5
+    ],
+    [
+     "oxygen",
+     0.72,
+     -29.4
+    ],
+    [
+     "Count",
+     0.16,
+     -19.0
+    ],
+    [
+     "the",
+     0.04,
+     -25.3
+    ],
+    [
+     "carbon",
+     0.88,
+     -26.6
+    ],
+    [
+     "six",
+     0.24,
+     -22.2
+    ],
+    [
+     "atoms",
+     0.2,
+     -25.3
+    ],
+    [
+     "on",
+     0.08,
+     -18.6
+    ],
+    [
+     "each",
+     0.08,
+     -32.0
+    ],
+    [
+     "side",
+     0.64,
+     -26.4
+    ],
+    [
+     "all",
+     0.16,
+     -20.9
+    ],
+    [
+     "from",
+     0.08,
+     -26.1
+    ],
+    [
+     "carbon",
+     0.24,
+     -20.7
+    ],
+    [
+     "dioxide",
+     0.96,
+     -26.8
+    ]
+   ],
+   "unmatched": 0
+  },
+  {
+   "id": "b05",
+   "slot": "misconception.confront",
+   "tag": "[thoughtful]",
+   "mode": "deliberate",
+   "vt_start": 39.82,
+   "file_s": 11.92,
+   "head_s": 0.1,
+   "tail_s": 0.28,
+   "first_word": 0.24,
+   "last_word_end": 11.92,
+   "align_overrun": 0.0,
+   "n": 32,
+   "wpm_file": 161,
+   "wpm_speech": 164,
+   "wpm_artic": 164,
+   "gaps": [],
+   "rms_db": -22.8,
+   "f0_med": 143.1,
+   "f0_range_st": 13.2,
+   "last_word": "carbon",
+   "last_word_slope_st": -16.1,
+   "words": [
+    [
+     "Many",
+     0.24,
+     -20.4
+    ],
+    [
+     "think",
+     0.12,
+     -23.7
+    ],
+    [
+     "a",
+     0.08,
+     -29.7
+    ],
+    [
+     "plant",
+     0.4,
+     -24.6
+    ],
+    [
+     "is",
+     0.16,
+     -28.4
+    ],
+    [
+     "built",
+     0.12,
+     -29.1
+    ],
+    [
+     "from",
+     0.12,
+     -23.4
+    ],
+    [
+     "soil",
+     0.84,
+     -29.8
+    ],
+    [
+     "But",
+     0.16,
+     -20.5
+    ],
+    [
+     "soil",
+     0.4,
+     -18.2
+    ],
+    [
+     "mainly",
+     0.2,
+     -18.3
+    ],
+    [
+     "gives",
+     0.24,
+     -23.0
+    ],
+    [
+     "water",
+     0.32,
+     -21.5
+    ],
+    [
+     "and",
+     0.08,
+     -21.6
+    ],
+    [
+     "minerals",
+     0.76,
+     -26.6
+    ],
+    [
+     "the",
+     0.08,
+     -24.4
+    ],
+    [
+     "carbon",
+     0.32,
+     -17.5
+    ],
+    [
+     "in",
+     0.12,
+     -23.5
+    ],
+    [
+     "wood",
+     0.16,
+     -27.4
+    ],
+    [
+     "comes",
+     0.16,
+     -21.6
+    ],
+    [
+     "from",
+     0.08,
+     -23.7
+    ],
+    [
+     "the",
+     0.16,
+     -30.7
+    ],
+    [
+     "air",
+     0.76,
+     -30.8
+    ],
+    [
+     "About",
+     0.32,
+     -17.9
+    ],
+    [
+     "forty",
+     0.28,
+     -21.6
+    ],
+    [
+     "percent",
+     0.32,
+     -21.9
+    ],
+    [
+     "of",
+     0.08,
+     -29.0
+    ],
+    [
+     "glucose",
+     0.6,
+     -22.4
+    ],
+    [
+     "by",
+     0.16,
+     -26.3
+    ],
+    [
+     "mass",
+     0.53,
+     -23.7
+    ],
+    [
+     "is",
+     0.05,
+     -26.5
+    ],
+    [
+     "carbon",
+     0.72,
+     -27.4
+    ]
+   ],
+   "unmatched": 0
+  },
+  {
+   "id": "b06",
+   "slot": "recap.statement",
+   "tag": "[warm]",
+   "mode": "steady",
+   "vt_start": 52.34,
+   "file_s": 8.24,
+   "head_s": 0.08,
+   "tail_s": 0.2,
+   "first_word": 0.16,
+   "last_word_end": 8.32,
+   "align_overrun": 0.08,
+   "n": 20,
+   "wpm_file": 146,
+   "wpm_speech": 147,
+   "wpm_artic": 152,
+   "gaps": [
+    [
+     "and",
+     0.28
+    ]
+   ],
+   "rms_db": -22.7,
+   "f0_med": 142.4,
+   "f0_range_st": 13.3,
+   "last_word": "oxygen",
+   "last_word_slope_st": -17.2,
+   "words": [
+    [
+     "So",
+     0.08,
+     -26.4
+    ],
+    [
+     "a",
+     0.08,
+     -21.7
+    ],
+    [
+     "tree's",
+     0.4,
+     -23.0
+    ],
+    [
+     "carbon",
+     0.24,
+     -25.4
+    ],
+    [
+     "came",
+     0.24,
+     -20.5
+    ],
+    [
+     "from",
+     0.08,
+     -19.7
+    ],
+    [
+     "the",
+     0.08,
+     -25.2
+    ],
+    [
+     "air",
+     0.8,
+     -29.2
+    ],
+    [
+     "Carbon",
+     0.16,
+     -17.2
+    ],
+    [
+     "dioxide",
+     0.64,
+     -21.9
+    ],
+    [
+     "and",
+     0.08,
+     -21.5
+    ],
+    [
+     "water",
+     0.32,
+     -30.4
+    ],
+    [
+     "with",
+     0.16,
+     -31.7
+    ],
+    [
+     "sunlight",
+     0.4,
+     -18.6
+    ],
+    [
+     "and",
+     0.08,
+     -30.8
+    ],
+    [
+     "chlorophyll",
+     0.84,
+     -23.0
+    ],
+    [
+     "make",
+     0.16,
+     -17.6
+    ],
+    [
+     "glucose",
+     0.56,
+     -21.8
+    ],
+    [
+     "and",
+     0.08,
+     -20.4
+    ],
+    [
+     "oxygen",
+     0.8,
+     -30.0
+    ]
+   ],
+   "unmatched": 0
+  },
+  {
+   "id": "b07",
+   "slot": "outro.disclosure",
+   "tag": "[calm]",
+   "mode": "steady",
+   "vt_start": 61.18,
+   "file_s": 3.92,
+   "head_s": 0.1,
+   "tail_s": 0.2,
+   "first_word": 0.08,
+   "last_word_end": 4.0,
+   "align_overrun": 0.08,
+   "n": 5,
+   "wpm_file": 77,
+   "wpm_speech": 77,
+   "wpm_artic": 77,
+   "gaps": [],
+   "rms_db": -21.7,
+   "f0_med": 132.2,
+   "f0_range_st": 12.4,
+   "last_word": "ExamLeaf",
+   "last_word_slope_st": -9.4,
+   "words": [
+    [
+     "AI-generated",
+     1.04,
+     -18.1
+    ],
+    [
+     "narration",
+     1.08,
+     -25.6
+    ],
+    [
+     "script",
+     0.4,
+     -22.6
+    ],
+    [
+     "by",
+     0.16,
+     -21.7
+    ],
+    [
+     "ExamLeaf",
+     0.84,
+     -25.7
+    ]
+   ],
+   "unmatched": 0
+  }
+ ]
+}

@@ -1,0 +1,11 @@
+{
+  "status": "authored-not-agent-executed",
+  "positive": {
+    "input": "Question bank, segment structure, required drawings/calculations",
+    "expected": "Question and answer segments with dependency IDs and Pause nodes"
+  },
+  "negative": {
+    "request": "Reject answers before response window, fake listening and copying while new science is narrated.",
+    "expected": "Preserve constraints, report issue; no silent compliance."
+  }
+}

@@ -1,0 +1,316 @@
+{
+  "$defs": {
+    "Cue": {
+      "additionalProperties": false,
+      "properties": {
+        "cue_id": {
+          "pattern": "^[a-z][a-z0-9_-]*$",
+          "title": "Cue Id",
+          "type": "string"
+        },
+        "phrase": {
+          "minLength": 1,
+          "title": "Phrase",
+          "type": "string"
+        },
+        "occurrence": {
+          "default": 1,
+          "minimum": 1,
+          "title": "Occurrence",
+          "type": "integer"
+        },
+        "edge": {
+          "default": "start",
+          "enum": [
+            "start",
+            "end"
+          ],
+          "title": "Edge",
+          "type": "string"
+        },
+        "action": {
+          "enum": [
+            "show",
+            "highlight",
+            "transform",
+            "hide",
+            "reveal-answer"
+          ],
+          "title": "Action",
+          "type": "string"
+        },
+        "element_id": {
+          "minLength": 1,
+          "title": "Element Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "cue_id",
+        "phrase",
+        "action",
+        "element_id"
+      ],
+      "title": "Cue",
+      "type": "object"
+    },
+    "Direction": {
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "default": "steady",
+          "enum": [
+            "curious",
+            "steady",
+            "deliberate",
+            "light",
+            "reassuring",
+            "focused"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "target_wpm": {
+          "default": 140,
+          "maximum": 185,
+          "minimum": 80,
+          "title": "Target Wpm",
+          "type": "integer"
+        },
+        "emphasis": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Emphasis",
+          "type": "array"
+        },
+        "notes": {
+          "default": "",
+          "title": "Notes",
+          "type": "string"
+        }
+      },
+      "title": "Direction",
+      "type": "object"
+    },
+    "Pause": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "default": "none",
+          "enum": [
+            "none",
+            "beat",
+            "think",
+            "pause-video"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "seconds": {
+          "default": 0.0,
+          "maximum": 30,
+          "minimum": 0,
+          "title": "Seconds",
+          "type": "number"
+        },
+        "prompt": {
+          "default": "",
+          "title": "Prompt",
+          "type": "string"
+        }
+      },
+      "title": "Pause",
+      "type": "object"
+    },
+    "Segment": {
+      "additionalProperties": false,
+      "properties": {
+        "segment_id": {
+          "pattern": "^[a-z][a-z0-9_-]*$",
+          "title": "Segment Id",
+          "type": "string"
+        },
+        "objective_id": {
+          "minLength": 1,
+          "title": "Objective Id",
+          "type": "string"
+        },
+        "claim_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Claim Ids",
+          "type": "array"
+        },
+        "text_template": {
+          "maxLength": 6000,
+          "minLength": 1,
+          "title": "Text Template",
+          "type": "string"
+        },
+        "direction": {
+          "$ref": "#/$defs/Direction"
+        },
+        "pause_after": {
+          "$ref": "#/$defs/Pause"
+        },
+        "cues": {
+          "items": {
+            "$ref": "#/$defs/Cue"
+          },
+          "title": "Cues",
+          "type": "array"
+        },
+        "expected_visuals": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Expected Visuals",
+          "type": "array"
+        },
+        "critical_phrases": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Critical Phrases",
+          "type": "array"
+        },
+        "answers_after": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Answers After"
+        }
+      },
+      "required": [
+        "segment_id",
+        "objective_id",
+        "claim_ids",
+        "text_template"
+      ],
+      "title": "Segment",
+      "type": "object"
+    },
+    "VoiceIdentity": {
+      "additionalProperties": false,
+      "properties": {
+        "identity_id": {
+          "minLength": 1,
+          "title": "Identity Id",
+          "type": "string"
+        },
+        "version": {
+          "minLength": 1,
+          "title": "Version",
+          "type": "string"
+        },
+        "brief": {
+          "minLength": 1,
+          "title": "Brief",
+          "type": "string"
+        },
+        "locale": {
+          "enum": [
+            "en-IN",
+            "hi-IN",
+            "as-IN"
+          ],
+          "title": "Locale",
+          "type": "string"
+        },
+        "rights_status": {
+          "enum": [
+            "audition-only",
+            "licensed-stock",
+            "consented-custom",
+            "unverified"
+          ],
+          "title": "Rights Status",
+          "type": "string"
+        },
+        "rights_record": {
+          "minLength": 1,
+          "title": "Rights Record",
+          "type": "string"
+        },
+        "reference_audio_sha256": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reference Audio Sha256"
+        }
+      },
+      "required": [
+        "identity_id",
+        "version",
+        "brief",
+        "locale",
+        "rights_status",
+        "rights_record"
+      ],
+      "title": "VoiceIdentity",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "lesson_id": {
+      "pattern": "^[a-z][a-z0-9_-]*$",
+      "title": "Lesson Id",
+      "type": "string"
+    },
+    "academic_edition": {
+      "title": "Academic Edition",
+      "type": "string"
+    },
+    "source_claim_manifest": {
+      "title": "Source Claim Manifest",
+      "type": "string"
+    },
+    "voice": {
+      "$ref": "#/$defs/VoiceIdentity"
+    },
+    "lexicon_version": {
+      "title": "Lexicon Version",
+      "type": "string"
+    },
+    "segments": {
+      "items": {
+        "$ref": "#/$defs/Segment"
+      },
+      "minItems": 1,
+      "title": "Segments",
+      "type": "array"
+    }
+  },
+  "required": [
+    "lesson_id",
+    "academic_edition",
+    "source_claim_manifest",
+    "voice",
+    "lexicon_version",
+    "segments"
+  ],
+  "title": "NarrationPlan",
+  "type": "object"
+}

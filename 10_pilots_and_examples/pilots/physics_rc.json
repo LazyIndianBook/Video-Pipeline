@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0",
+  "duration_s": 30,
+  "fps": 24,
+  "status": "technical_preview",
+  "id": "physics_rc",
+  "subject": "physics",
+  "kind": "rc_charge",
+  "title": "Charging takes time",
+  "objective": "Connect ideal RC charging to its graph and one-time-constant value.",
+  "class_context": "Class 12 circuit-model technical benchmark; board coverage is not yet approved.",
+  "parameters": {
+    "resistance_ohm": 10000,
+    "capacitance_f": 0.0001,
+    "source_v": 10
+  },
+  "assumptions": [
+    "Ideal linear resistor and capacitor; constant 10 V source.",
+    "Capacitor initially uncharged.",
+    "Model time is explicitly shown as t/(RC); not a footage timestamp."
+  ],
+  "sources": [
+    {
+      "id": "physics_rc_source",
+      "uri": "https://openstax.org/books/university-physics-volume-2/pages/10-6-rc-circuits",
+      "locator": "Section 10.6: RC circuits",
+      "rights_status": "open_reference",
+      "claim_scope": "Connect ideal RC charging to its graph and one-time-constant value.",
+      "retrieved_at": "2026-10-13"
+    }
+  ],
+  "claims": [
+    {
+      "id": "physics_rc_claim",
+      "statement": "Connect ideal RC charging to its graph and one-time-constant value.",
+      "source_ids": [
+        "physics_rc_source"
+      ],
+      "assumptions": [
+        "Ideal linear resistor and capacitor; constant 10 V source.",
+        "Capacitor initially uncharged.",
+        "Model time is explicitly shown as t/(RC); not a footage timestamp."
+      ],
+      "status": "draft"
+    }
+  ],
+  "cues": [
+    {
+      "start_s": 0,
+      "end_s": 6,
+      "text": "Voltage rises quickly, then approaches the supply more slowly.",
+      "role": "explain",
+      "voice": "steady",
+      "answer_visible": false
+    },
+    {
+      "start_s": 6,
+      "end_s": 11,
+      "text": "Keep R, C and the supply fixed. Watch the same model drive the graph.",
+      "role": "explain",
+      "voice": "steady",
+      "answer_visible": false
+    },
+    {
+      "start_s": 11,
+      "end_s": 16.5,
+      "text": "Predict: after one RC, is the capacitor fully charged?",
+      "role": "question",
+      "voice": "curious",
+      "answer_visible": false
+    },
+    {
+      "start_s": 16.5,
+      "end_s": 24,
+      "text": "No. After one RC, it reaches about 63.2% of the supply.",
+      "role": "feedback",
+      "voice": "steady",
+      "answer_visible": true
+    },
+    {
+      "start_s": 24,
+      "end_s": 30,
+      "text": "The curve approaches 10 V; it does not jump there instantly.",
+      "role": "recap",
+      "voice": "steady",
+      "answer_visible": true
+    }
+  ]
+}

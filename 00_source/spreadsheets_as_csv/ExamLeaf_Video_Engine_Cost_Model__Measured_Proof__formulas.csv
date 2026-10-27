@@ -1,0 +1,14 @@
+Fixture,Aspect,Duration seconds,Frames,Render wall seconds,Width,Height,Status
+biology_genetics,16:9,30,720,27.425,1280,720,Render passed; audio and expert release pending
+biology_genetics,9:16,30,720,27.951,720,1280,Render passed; audio and expert release pending
+chemistry_balance,16:9,30,720,28.67,1280,720,Render passed; audio and expert release pending
+chemistry_balance,9:16,30,720,29.375,720,1280,Render passed; audio and expert release pending
+mathematics_chain,16:9,30,720,27.372,1280,720,Render passed; audio and expert release pending
+mathematics_chain,9:16,30,720,27.576,720,1280,Render passed; audio and expert release pending
+physics_rc,16:9,30,720,27.338,1280,720,Render passed; audio and expert release pending
+physics_rc,9:16,30,720,28.102,720,1280,Render passed; audio and expert release pending
+,,,,,,,
+,,,,,,,
+"Eight silent 30s files; two render workers. Simple fixed models, not full curriculum pilots. Scientific checks are bounded; no teacher approval or student study. Current test log: 56 passed. Separate live speech audition is recorded outside these render metrics.",,,,,,,
+,,,,,,,
+,,,,,,,

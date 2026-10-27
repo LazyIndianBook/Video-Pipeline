@@ -1,0 +1,22 @@
+WEBVTT
+
+00:00:00.600 --> 00:00:09.320
+Here's a ten-ohm resistor with two volts across it. Now we make it four volts. Does twice the voltage always mean twice the current?
+
+00:00:09.920 --> 00:00:14.880
+Predict the current at four volts. Then decide whether 'always' is safe.
+
+00:00:20.480 --> 00:00:31.760
+At two volts, the current is zero point two amperes. At four volts, it is zero point four amperes. Twice the voltage, twice the current, at constant temperature.
+
+00:00:32.360 --> 00:00:43.480
+Voltage over current: two over zero point two is ten ohms. Four over zero point four is also ten ohms. That fixed ratio is the resistance.
+
+00:00:44.280 --> 00:00:55.000
+A tempting idea: Ohm's law is always true. But a filament bulb heats up, its resistance changes, and doubling the voltage does not double the current.
+
+00:00:55.800 --> 00:01:07.640
+For an ohmic conductor at constant temperature, current is proportional to voltage. Resistance is the constant of proportionality: voltage equals current multiplied by resistance.
+
+00:01:08.240 --> 00:01:12.240
+AI-generated narration; script by ExamLeaf.

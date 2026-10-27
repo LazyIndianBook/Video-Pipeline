@@ -1,0 +1,58 @@
+{
+ "cache_key": "e83f237fefb98a57",
+ "beat": "b06",
+ "chars": 48,
+ "request_id": "macos-say-Rishi-170",
+ "model_id": "macos-say",
+ "voice_id": "Rishi",
+ "unmatched_words": 0,
+ "words": [
+  {
+   "w": "Two",
+   "t0": 0.0,
+   "t1": 0.232
+  },
+  {
+   "w": "volts",
+   "t0": 0.253,
+   "t1": 0.601
+  },
+  {
+   "w": "over",
+   "t0": 0.631,
+   "t1": 0.922
+  },
+  {
+   "w": "ten",
+   "t0": 0.947,
+   "t1": 1.179
+  },
+  {
+   "w": "ohms",
+   "t0": 1.199,
+   "t1": 1.49
+  },
+  {
+   "w": "gives",
+   "t0": 1.515,
+   "t1": 1.863
+  },
+  {
+   "w": "point",
+   "t0": 1.894,
+   "t1": 2.242
+  },
+  {
+   "w": "two",
+   "t0": 2.272,
+   "t1": 2.505
+  },
+  {
+   "w": "amperes",
+   "t0": 2.525,
+   "t1": 2.99
+  }
+ ],
+ "provider_alignment": null,
+ "preview": true
+}

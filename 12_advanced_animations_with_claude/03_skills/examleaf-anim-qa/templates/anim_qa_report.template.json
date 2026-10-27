@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "skill": "examleaf-anim-qa",
+  "artifact_sha256": "<sha256 of the rendered MP4>",
+  "scene_id": "<scene_id>",
+  "inputs_sha256": {"cue_sheet": null, "tokens": null, "zones": null, "expected_text": null, "fixtures": []},
+  "status": "incomplete",
+  "checks": {
+    "determinism": {"required": true, "evidence": null, "result": null},
+    "safe_zone": {"required": true, "evidence": "qa/safe_zone_report.json", "result": null},
+    "holds": {"required": true, "evidence": "qa/safe_zone_report.json", "result": null},
+    "reveal_sync": {"required": true, "evidence": "qa/safe_zone_report.json", "result": null},
+    "flash": {"required": true, "evidence": "qa/flash_report.json", "result": null},
+    "text_fixture": {"required": true, "evidence": "qa/text_diff.json", "result": null},
+    "indic": {"required": true, "evidence": "qa/text_diff.json", "result": null},
+    "loudness": {"required": false, "evidence": null, "result": null, "note": "required for muxed lesson/Reel outputs"},
+    "raster_no_text": {"required": false, "evidence": null, "result": null, "note": "required when MCP raster assets exist"},
+    "phone_review": {"required": true, "reviewer": null, "device": null, "result": null},
+    "decoration_vs_science": {"required": true, "reviewer": null, "result": null}
+  },
+  "defects": [],
+  "defect_shape": {"severity": "critical|major|minor", "edge_case": "#NN", "element": "id|null", "time_s": "number|null", "message": "", "owner": "examleaf-...", "waiver": {"by": null, "reason": null, "at": null}},
+  "release_rule": "pass only if no critical, every major waived by a named human, nothing incomplete"
+}

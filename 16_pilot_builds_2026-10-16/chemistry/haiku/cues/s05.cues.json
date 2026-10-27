@@ -1,0 +1,237 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "chem-balance-ci-01-s05",
+ "fps": 30,
+ "duration": 18.333,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "c7cfe0ed91884df8b522fb9ebb8cd97ff92242f68684404117e64f2c4bfb3d9e",
+ "script_sha256": "67853079faf35e0a686e7a6c0661db3942d6aaa9b4e470f9e082d74f2b4f2713",
+ "words": [
+  {
+   "w": "Balance",
+   "t0": 0.16,
+   "t1": 0.56
+  },
+  {
+   "w": "by",
+   "t0": 0.64,
+   "t1": 0.72,
+   "occurrence": 1
+  },
+  {
+   "w": "changing",
+   "t0": 0.88,
+   "t1": 1.2
+  },
+  {
+   "w": "coefficients",
+   "t0": 1.28,
+   "t1": 2.4
+  },
+  {
+   "w": "never",
+   "t0": 2.56,
+   "t1": 2.8
+  },
+  {
+   "w": "subscripts",
+   "t0": 2.88,
+   "t1": 3.92
+  },
+  {
+   "w": "Two",
+   "t0": 4.24,
+   "t1": 4.4
+  },
+  {
+   "w": "hydrogen",
+   "t0": 4.48,
+   "t1": 4.96,
+   "occurrence": 1
+  },
+  {
+   "w": "molecules",
+   "t0": 5.04,
+   "t1": 5.6,
+   "occurrence": 1
+  },
+  {
+   "w": "and",
+   "t0": 5.68,
+   "t1": 5.84,
+   "occurrence": 1
+  },
+  {
+   "w": "one",
+   "t0": 5.92,
+   "t1": 6.08
+  },
+  {
+   "w": "oxygen",
+   "t0": 6.16,
+   "t1": 6.64,
+   "occurrence": 1
+  },
+  {
+   "w": "molecule",
+   "t0": 6.68,
+   "t1": 7.2
+  },
+  {
+   "w": "give",
+   "t0": 7.36,
+   "t1": 7.6
+  },
+  {
+   "w": "two",
+   "t0": 7.68,
+   "t1": 7.84,
+   "occurrence": 1
+  },
+  {
+   "w": "water",
+   "t0": 7.92,
+   "t1": 8.24
+  },
+  {
+   "w": "molecules",
+   "t0": 8.28,
+   "t1": 9.28,
+   "occurrence": 2
+  },
+  {
+   "w": "four",
+   "t0": 9.36,
+   "t1": 9.52
+  },
+  {
+   "w": "hydrogen",
+   "t0": 9.6,
+   "t1": 10.16,
+   "occurrence": 2
+  },
+  {
+   "w": "and",
+   "t0": 10.24,
+   "t1": 10.4,
+   "occurrence": 2
+  },
+  {
+   "w": "two",
+   "t0": 10.48,
+   "t1": 10.64,
+   "occurrence": 2
+  },
+  {
+   "w": "oxygen",
+   "t0": 10.72,
+   "t1": 11.2,
+   "occurrence": 2
+  },
+  {
+   "w": "on",
+   "t0": 11.28,
+   "t1": 11.36
+  },
+  {
+   "w": "each",
+   "t0": 11.44,
+   "t1": 11.6
+  },
+  {
+   "w": "side",
+   "t0": 11.68,
+   "t1": 12.32
+  },
+  {
+   "w": "AI-generated",
+   "t0": 12.72,
+   "t1": 13.76
+  },
+  {
+   "w": "narration",
+   "t0": 13.8,
+   "t1": 14.88
+  },
+  {
+   "w": "script",
+   "t0": 14.96,
+   "t1": 15.36
+  },
+  {
+   "w": "by",
+   "t0": 15.52,
+   "t1": 15.6,
+   "occurrence": 2
+  },
+  {
+   "w": "ExamLeaf",
+   "t0": 15.68,
+   "t1": 16.72
+  }
+ ],
+ "beats": [
+  0.0,
+  12.64
+ ],
+ "cues": [
+  {
+   "id": "c18",
+   "at": 0.11,
+   "kind": "reveal",
+   "element_id": "bal_eq",
+   "word_index": 0
+  },
+  {
+   "id": "c19",
+   "at": 9.31,
+   "kind": "reveal",
+   "element_id": "bal_tally",
+   "word_index": 17
+  },
+  {
+   "id": "c20",
+   "at": 12.67,
+   "kind": "reveal",
+   "element_id": "disclosure",
+   "word_index": 25
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "chem-balance-ci-01",
+  "scene": "s05",
+  "beat_ids": [
+   "b06",
+   "b07"
+  ],
+  "beats_text": [
+   {
+    "id": "b06",
+    "slot": "recap.statement",
+    "text": "Balance by changing coefficients, never subscripts. Two hydrogen molecules and one oxygen molecule give two water molecules: four hydrogen and two oxygen on each side.",
+    "headline": "changing coefficients, never subscripts",
+    "start": 0.16,
+    "end": 12.32,
+    "word_range": [
+     0,
+     25
+    ]
+   },
+   {
+    "id": "b07",
+    "slot": "outro.disclosure",
+    "text": "AI-generated narration; script by ExamLeaf.",
+    "headline": "",
+    "start": 12.72,
+    "end": 16.72,
+    "word_range": [
+     25,
+     30
+    ]
+   }
+  ],
+  "think_windows": []
+ }
+}

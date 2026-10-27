@@ -1,0 +1,103 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "content_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Content Sha256",
+      "type": "string"
+    },
+    "local_path": {
+      "title": "Local Path",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "svg",
+        "video",
+        "audio",
+        "mesh",
+        "data"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "origin": {
+      "enum": [
+        "deterministic",
+        "licensed",
+        "generated"
+      ],
+      "title": "Origin",
+      "type": "string"
+    },
+    "licence": {
+      "title": "Licence",
+      "type": "string"
+    },
+    "attribution": {
+      "default": "",
+      "title": "Attribution",
+      "type": "string"
+    },
+    "provider": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Provider"
+    },
+    "model": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Model"
+    },
+    "provider_job_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Provider Job Id"
+    },
+    "science_review_status": {
+      "default": "pending",
+      "enum": [
+        "pending",
+        "approved",
+        "not_applicable"
+      ],
+      "title": "Science Review Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "content_sha256",
+    "local_path",
+    "kind",
+    "origin",
+    "licence"
+  ],
+  "title": "AssetManifest",
+  "type": "object"
+}

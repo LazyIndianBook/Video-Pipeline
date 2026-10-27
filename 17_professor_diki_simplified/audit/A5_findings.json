@@ -1,0 +1,272 @@
+[
+ {
+  "id": "A5-01",
+  "video": "all",
+  "t": "physics 65.9-71.9 s; chemistry 67.1-73.2 s; biology 61.2-67.1 s",
+  "evidence": "narration/timeline.json b07 word 'ExamLeaf' t0-t1 = 69.16-70.00 (physics:817), 70.14-71.18 (chemistry:837), 64.34-65.18 (biology:817). Tesseract OCR of the 1-fps frames reads 'script by ExamLeaf' in physics t070-t072, chemistry t071-t073, biology t062-t067 (12 of 212 frames). qa/transcript.json:2 hears 'Script by Examleaf.' in all three. The same bytes sit in deliverables/*opus_reference.mp4.",
+  "problem": "The retired brand is spoken once and shown 2.8-5.9 s in every Opus video, against the founder rule that only 'Professor Diki Simplified' is audience-facing and ExamLeaf is publisher metadata. See also A1-28.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 outro text + tooling that enforces it",
+   "location": "16_pilot_builds_2026-10-16_pilot_builds_2026-10-16/PILOT_CONTRACT.md:62,79 (unchanged); tooling/pilotlib.py:13 DISCLOSURE (as found; now :23, v1 only); tooling/check_script.py:47-48 and :72-73 (as found; now :268-269 and :301-302, the v1 branch, which fails any other outro text); script.json b07 (physics:84, chemistry:88, biology:457)"
+  },
+  "effect": "Brand. The pipeline cannot emit a compliant video: check_script.py rejects a corrected script, so every future build inherits the string.",
+  "severity": "critical",
+  "fix": {
+   "what": "One brand source (17_professor_diki_simplified/brand/strings.json); retire the v1 branch that still requires the string (the three builds are v1); update PILOT_CONTRACT §3/§4; delete the spoken disclosure beat; the end card carries the brand line and the path's disclosure line; regenerate b07 audio, cues, VTT, scenes and MP4 from the corrected script (the 26 derived lines are outputs, never hand-edited).",
+   "where": "PILOT_CONTRACT.md §3/§4; tooling/pilotlib.py; tooling/check_script.py; the three script.json files",
+   "control": "Status at 18:52: v2 check_script already rejects ExamLeaf in beat text, on_screen and video_id/topic/title/outro, qa.py A12 runs brand_check.py, and tooling/test_v2.py has the negative case. Remaining: the v1 branch still requires the string, PILOT_CONTRACT.md:62,79 is unchanged, and the cue beats_text and fixture display strings are not scanned by check_script."
+  }
+ },
+ {
+  "id": "A5-02",
+  "video": "all (templates)",
+  "t": "n/a",
+  "evidence": "Authored literals outside the builds: 'ExamLeaf practice question' on screen at 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md:198,425, 15_content_engine_v2/FORMAT_REGISTRY.md:109, 15_content_engine_v2/subsystems/INTERACTION_and_ASSESSMENT_REGISTRY.md:159, 15_content_engine_v2/subsystems/VISUAL_STYLE_and_ANIMATION_REGISTRY.md:228 and spoken at 15_content_engine_v2/subsystems/VOICE_and_PERSONA_REGISTRY.md:416; 'ExamLeaf brand voice / ExamLeaf voice / ExamLeaf audio logo' at 11_human_feel_voice_audio_research/PLAYBOOK_human_crafted_vertical_video.md:52 and 11_human_feel_voice_audio_research/REPORT_human_crafted_feel_vertical_videos.md:19,74,185; sonic motif id music/motif-examleaf at 15_content_engine_v2/subsystems/MUSIC_and_SOUND_REGISTRY.md:25; 'EXAMLEAF' drawn top-left on every frame by 04_video_engine/implementation_v2/src/examleaf/visuals.py:78 (8 proof MP4s and 32 SVGs in outputs/); playbook brief C03 script 'ExamLeaf connects the explanation to the practice' (PDF p.27). Five more are commerce or product-demo copy to confirm: C02 (p.26), C13 (p.30) and the title 'How One ExamLeaf Question Links to Its Explanation' at 07_end_to_end_pipeline_instructions/05_SHORTS_and_REELS_PROCEDURE.md:92, 01_business_model/REEL_BACKLOG_36.md:164, 01_business_model/FULL_business_model_launch_financial_plan.md:369.",
+  "problem": "The brand is baked into video templates, voice naming and the sonic-logo id, so any new video that uses these slots shows or speaks ExamLeaf even after the contract is fixed.",
+  "root_cause": {
+   "layer": "registries, legacy renderer and playbook briefs",
+   "location": "the files and lines listed in evidence"
+  },
+  "effect": "Brand regression on every original-question video, every speech-to-speech voice credit, the sonic logo and any revived legacy render.",
+  "severity": "major",
+  "fix": {
+   "what": "Replace with 'Original practice question', 'the Professor Diki Simplified voice', music/diki-end-motif (PD-11) and the lockup text; delete the C03 sentence and keep its no-guarantee clause; keep ExamLeaf only in the five commerce items after the founder confirms their scope; record a ledger row.",
+   "where": "the listed files; 15_content_engine_v2/DECISIONS_CE.md (ledger row)",
+   "control": "brand_check.py repo mode over 15_content_engine_v2, 12_advanced_animations_with_claude, 16_pilot_builds_2026-10-16 and 17_professor_diki_simplified/skills, with an allowlist (examleaf-* skill ids, paths, schema titles, 'Published by ExamLeaf.')."
+  }
+ },
+ {
+  "id": "A5-03",
+  "video": "all",
+  "t": "n/a",
+  "evidence": "As found (18:18) qa.py checks A1-A10: A7 diffs the STT transcript against the script that contains the string, so 'Examleaf' scores as a match; there is no OCR, VTT, cue-sheet or sidecar scan. At 18:52 qa.py gained A12 (brand_check.py, DOM text at sampled times, captions.vtt, STT transcript). brand_check.py reads script text, narration/timeline.json words (narrate.py align_words() matches provider character timings to the script's surface words, so they are the sent text, not the audio), scene text nodes and fixtures. Tesseract read 'ExamLeaf' in 12 of 212 frames at 540x960, so a raster layer is feasible. MP4 containers carry only encoder tags.",
+  "problem": "As found, no gate would catch a brand error outside the script text (a TTS mispronouncing 'Diki', a stale caption file, a frame-level string, a sidecar title). After A12 the remaining blind spots are the spoken audio when A7 is skipped, the final pixels and the sidecar.",
+  "root_cause": {
+   "layer": "tooling/qa.py + brand_check scan scope (partly remediated at 18:52)",
+   "location": "16_pilot_builds_2026-10-16_pilot_builds_2026-10-16/tooling/qa.py A7 (lines 125-148); 17_professor_diki_simplified/brand/brand_check.py scan_scope"
+  },
+  "effect": "Brand and trust: a defect can reach an export with every automated check green.",
+  "severity": "major",
+  "fix": {
+   "what": "Close what is left: make A12 fail (not pass) when A7 is skipped on a release build; add a fuzzy (>=0.8) presence check of 'Professor Diki Simplified' on the STT outro; OCR of the muxed MP4 at 1 fps (absence of ExamLeaf, presence of the end-card brand); scan cues/*.json beats_text and the sidecar title, description and hashtags once the sidecar exists; add F10 (\\bDiki\\b outside the exact string).",
+   "where": "tooling/qa.py a12_brand; brand/brand_check.py; brand/strings.json forbidden[]",
+   "control": "Negative tests: ExamLeaf in beat text, in a VTT, in a frame (OCR) and in a sidecar title each fail; 'Published by ExamLeaf.' in the credits block passes."
+  }
+ },
+ {
+  "id": "A5-04",
+  "video": "all",
+  "t": "outro: physics 65.9-69.9 s; chemistry 67.1-71.1 s; biology 61.2-65.1 s",
+  "evidence": "b07 audio is 4.0 s at 75-77 wpm plus a 1.6 s tail (narrate.py TAIL_S as found at :14, now TAIL_S_V1 in pilotlib.py), and 43-50 TTS characters of the ~2,285 left this month; the text omits 'reviewed by'. 07_end_to_end_pipeline_instructions/06_QA_GATES_and_RELEASE.md §6.4 requires a description line, the YouTube synthetic toggle, the Meta label and C2PA, and PACKAGING §7 an end-card line; no document requires a spoken disclosure. The slot outro.disclosure exists only in PILOT_CONTRACT:62, tooling/pilotlib.py SLOTS (as found :11-12, now :21-22) and the Production Kit (SKILL.md:34); v2 uses close.next_step (SCRIPTING_REGISTRY §4, FORMAT_REGISTRY F8). At 18:52 check_script v2 rejects a spoken disclosure and requires the on-screen line.",
+  "problem": "The pilot turned a metadata and end-card duty into a 4 s spoken legal line in the slot where v2 puts the next-step pointer. It spends about 7% of the runtime and a quota slice, and one fixed string serves a pilot and a release alike (no reviewer clause, no release-class switch).",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 slot grammar vs SCRIPTING_REGISTRY §4/F5/F8",
+   "location": "PILOT_CONTRACT.md:62; tooling/pilotlib.py SLOTS; 12_advanced_animations_with_claude/08_production_kit/skills/examleaf-fill-concept-intro/SKILL.md:34"
+  },
+  "effect": "Runtime, ending quality and disclosure honesty (a pilot cannot be told from a release).",
+  "severity": "major",
+  "fix": {
+   "what": "Take disclosure off the spoken track: end-card line (Path B 'AI-generated narration'; Path A 'Performed by {name} · voice converted with AI'), description line with 'reviewed by {Reviewer}' only when approvals exist, platform toggle and Meta label, C2PA kept; add an end-card slot to the short format; select the string by release_class (pilot or release).",
+   "where": "PILOT_CONTRACT §3/§4; 15_content_engine_v2/FORMAT_REGISTRY.md F5/F8; 15_content_engine_v2/subsystems/VOICE_and_PERSONA_REGISTRY.md §3.9; 07_end_to_end_pipeline_instructions/06_QA_GATES_and_RELEASE.md §6.4; Production Kit skill and skeleton",
+   "control": "Already in v2 check_script: no spoken disclosure; on-screen line must match the path pattern. Remaining: Q-DISC.placement placements_required includes end_card_line; release_class selects the string; a release sidecar without 'reviewed by' fails; FORMAT_REGISTRY F5/F8 and PILOT_CONTRACT still describe the spoken slot."
+  }
+ },
+ {
+  "id": "A5-05",
+  "video": "all",
+  "t": "final 5 s of each video",
+  "evidence": "The last spoken words are the credit. Playbook §5.1: 'Short explanation -> exact free lesson -> small independent attempt'; brief C01 CTA 'Try the free lesson' (PDF p.26); 07_end_to_end_pipeline_instructions/05_SHORTS_and_REELS_PROCEDURE.md principle 2: 'one relevant CTA'. script.json has no field naming a lesson or next step; the v1 SLOTS end at outro.disclosure (pilotlib.py:11-12 as found); PILOT_CONTRACT:79 allows 'nothing else promotional'; FORMAT_REGISTRY F8 closes with next_artefact_pointer and F5 allows one learning next step. At 18:52 V2_SLOTS gained close.next_step and outro.brand, and 17_professor_diki_simplified/format/sample_v2_script.json closes with an open-loop question, a free-lesson line and the brand, but check_script enforces slot order only: no next_step_ref, no topic equality, no check that the open-loop question is answered in the lesson.",
+  "problem": "No video points to the exact free lesson, so the playbook funnel (Short -> lesson -> attempt -> preview) and C01's objective 'qualified lesson starts' cannot happen or be measured; the Short is a dead end.",
+  "root_cause": {
+   "layer": "PILOT_CONTRACT §3 slot grammar + script schema",
+   "location": "PILOT_CONTRACT.md:62,79; tooling/pilotlib.py:11-12; script.json schema (no next_step_ref)"
+  },
+  "effect": "Conversion: the Short's only job is unperformed.",
+  "severity": "critical",
+  "fix": {
+   "what": "Add slot close.next_step (close_kind next_artefact_pointer) with a required next_step_ref = the parent lesson id. Spoken: 'Try the free lesson on {topic}.' then 'Professor Diki Simplified.' End-card line 'Free lesson: {topic}'. The header lesson code equals the ref's code.",
+   "where": "PILOT_CONTRACT §3; tooling/pilotlib.py SLOTS; tooling/check_script.py; script.json schema; format/concept_short_60",
+   "control": "check_script: close.next_step present, next_step_ref resolves to an approved lesson artefact, the spoken and end-card topic strings equal that artefact's topic, and the open-loop question maps to an ASM or OBJ node of that lesson (SCRIPTING_REGISTRY §10)."
+  }
+ },
+ {
+  "id": "A5-06",
+  "video": "all",
+  "t": "n/a",
+  "evidence": "Playbook CTA text is 'Try the free lesson' (C01 script and caption). Pipeline: Q-COMM.copy bans /free (lesson|chapter|...)/ in titles and descriptions (PACKAGING:103, a Recommendation); SCRIPTING_REGISTRY:218 'The script never names a product or destination'; RD-49 (founder, 15 Oct 2026) 'the video pipeline should not care about what is free'; CE-68 retired destination_resource_id; PACKAGING:159 'nothing is added at upload'. PD-10 allows the line in shorts and 17_professor_diki_simplified/06_BRAND_and_AUDIO_IDENTITY.md §7 item 1 leaves the conflict open. brand/strings.json cta_options say 'linked below'; 07_end_to_end_pipeline_instructions/05_SHORTS_and_REELS_PROCEDURE.md SH8 notes the YouTube related-video link needs account access and Reels caption links are not verified anywhere in the repo.",
+  "problem": "The playbook's CTA cannot be authored or approved under the current rules, and the proposed spoken variants either promise a link location the platform may not offer or bake a price-class claim ('free') into the master.",
+  "root_cause": {
+   "layer": "business-layer intent vs pipeline rules",
+   "location": "PACKAGING_and_DISTRIBUTION_REGISTRY.md:103,139,159,237; SCRIPTING_REGISTRY.md:218; 07_end_to_end_pipeline_instructions/10_DECISIONS_and_CONFLICT_RESOLUTIONS.md RD-49; brand/strings.json cta_options"
+  },
+  "effect": "Blocks the playbook funnel or forces a per-video waiver; a 'linked below' line can be false on a channel.",
+  "severity": "major",
+  "fix": {
+   "what": "Adopt PD-10 with three guards: say the topic, not a location ('Try the free lesson on {topic}.'); emit 'free' only when the destination plays without sign-up (07_end_to_end_pipeline_instructions/06_QA_GATES_and_RELEASE.md:228) and bind the line to a COPY approval; a designation change withdraws the Short (CE-34). Amend SCRIPTING §9, Q-COMM and §4.6 for concept_short_60 only. Alternative: a platform end-screen element carries 'free'.",
+   "where": "SCRIPTING_REGISTRY §9; PACKAGING §4.1/§4.4/§4.6; brand/strings.json; 15_content_engine_v2/DECISIONS_CE.md row",
+   "control": "Q-COMM waiver keyed to the format; destination check (opens without login); negative test: 'linked below' in a Reels build fails."
+  }
+ },
+ {
+  "id": "A5-07",
+  "video": "physics",
+  "t": "0-71.9 s",
+  "evidence": "C01 (playbook p.26): hook 'Double the voltage. Does current always double?'; one circuit; constant conditions highlighted; finish with one question; CTA; 45-60 s; R = 2 ohm (1 A and 2 A). Opus: the question starts at 0.6 s inside a 10 s hook beat with an empty board for ~3 s; the circuit is drawn in s01, s02, s04 and absent in s03, s05; the first condition is spoken at 34.4 s ('constant temperature', b04), then 'constant resistance' at 55.4 s (b05); predict at 11-22 s, no closing question; no CTA; 71.9 s; R = 10 ohm (0.2 and 0.4 A); adds the resistance definition, V = I x R and the filament lamp.",
+  "problem": "The video keeps C01's hook and condition idea but drops the closing question and the CTA, states the condition late and under two names, and runs 12 s over.",
+  "root_cause": {
+   "layer": "pilot brief + contract",
+   "location": "16_pilot_builds_2026-10-16_pilot_builds_2026-10-16/physics/brief.md (own fixture and format, not C01); PILOT_CONTRACT §3"
+  },
+  "effect": "Intent drift: the first playbook test cell (C01) is not what was built, and nothing checks conformance to a brief.",
+  "severity": "major",
+  "fix": {
+   "what": "Make the playbook brief and the build agree: one fixture shared by the brief, the Short and the free lesson (C01 text says 2 ohm; the pilot and the lead's sample use 10 ohm, so edit one side once), the condition said within the first 8 s and named once, one closing transfer question, the CTA, 60 s. Keep the filament lamp only if it is the boundary of the one idea and fits.",
+   "where": "physics/brief.md; 17_professor_diki_simplified/demo/physics_v2 script; PILOT_CONTRACT §3",
+   "control": "brief_conformance check: a machine-readable row per C0x (hook text, fixture values, condition time, closing question, CTA, max length) diffed against script.json and the cue sheet."
+  }
+ },
+ {
+  "id": "A5-08",
+  "video": "all",
+  "t": "0-73.2 s",
+  "evidence": "Distinct claim nodes cited in script.json node_ids: physics 4 (CLM-ohm-proportional, CLM-resistance-constant, CLM-ohm-condition, CLM-filament), chemistry 5, biology 8 (autotroph, raw materials, light and chlorophyll, products, carbon balance, carbon from air, soil supplies, 40% carbon fraction). Durations 71.9 / 73.2 / 67.1 s against the 20-60 s ShortSpec cap (07_end_to_end_pipeline_instructions/10_DECISIONS_and_CONFLICT_RESOLUTIONS.md RD-19; FORMAT_REGISTRY F5). Playbook §4.1: 'Short videos teach one idea; long-form units preserve accuracy'.",
+  "problem": "Each video is a mini-lesson, not a one-idea entry point: the long-form job is half-done in 70 s, which costs clarity and leaves no reason to continue to the lesson.",
+  "root_cause": {
+   "layer": "format definition",
+   "location": "PILOT_CONTRACT §3 (6-8 beats, 1,000 characters, no idea budget); FORMAT_REGISTRY F8 vs F5"
+  },
+  "effect": "Comprehension load, overrun, weaker click-through.",
+  "severity": "major",
+  "fix": {
+   "what": "format/concept_short_60 gets an idea budget: one root claim, at most one condition, at most one misconception, one check; everything else belongs to the parent lesson.",
+   "where": "format/concept_short_60; tooling/check_script.py; lesson_graph short_root_node",
+   "control": "check_script fails when distinct claim ids > 2 (plus one misconception). Duration (60 +/- 1 s, A11) and 120-135 spoken words are already enforced by the 18:52 v2 path (cf. A3-01)."
+  }
+ },
+ {
+  "id": "A5-09",
+  "video": "biology",
+  "t": "00:00-00:06 and 00:40-00:52",
+  "evidence": "b01 'A banyan tree can weigh more than a herd of elephants.' cites HK-banyan-herd (type hook_colour, assertive false, source_ids []). b05 'Many think a plant is built from soil' asserts how common a belief is; MIS-plants-eat-soil has no source.",
+  "problem": "Two spoken assertions have no source node. The persona rule no_claims_outside_closure and SCRIPTING §3 ('a misconception is a tempting idea, never fact') require every assertive sentence to map to approved nodes; the playbook's trust rule bars invented claims.",
+  "root_cause": {
+   "layer": "script + lesson graph",
+   "location": "biology/opus/lesson_graph.json HK-banyan-herd; biology/opus/script.json b01, b05"
+  },
+  "effect": "Trust if a viewer or reviewer checks the comparison; academic review would block it.",
+  "severity": "minor",
+  "fix": {
+   "what": "Source the comparison in a node or turn it into a question ('How can one tree get so heavy?'); phrase the misconception as 'It is tempting to think a plant is built from soil.'",
+   "where": "biology script.json; SCRIPTING_REGISTRY §15 (new check)",
+   "control": "check_script: a hook_colour node may not contain a comparative or a number unless source_ids is non-empty."
+  }
+ },
+ {
+  "id": "A5-10",
+  "video": "all",
+  "t": "n/a",
+  "evidence": "Playbook pp.13-14: per title 12 free 10-minute lessons, 24 six-minute question explanations and one 90-minute paper (354 accepted minutes; 2,124 for six titles at Rs 120 = Rs 2,54,880). Shorts sit outside it: production Rs 500-1,600 each (Rs 11,700 for the ten primary briefs) inside a Rs 25,000 envelope that funds 'a small creative wave using existing approved assets'. 07_end_to_end_pipeline_instructions/05_SHORTS_and_REELS_PROCEDURE.md: a Short is a recomposed complete unit of an approved lesson. The pilots are standalone concept intros: new script, scenes and fixture, no parent lesson id.",
+  "problem": "The format's real job (entry to the exact lesson at near-zero marginal cost) is not encoded: nothing links a Short to its lesson, shares its fixture or reuses its scenes, so the CTA cannot be exact and numbers can differ between Short and lesson.",
+  "root_cause": {
+   "layer": "pilot scope",
+   "location": "PILOT_CONTRACT §1/§3 (no parent_lesson_id); script.json schema; lesson_graph.json"
+  },
+  "effect": "Cost not reusable; numbers or diagram may mismatch after the click.",
+  "severity": "major",
+  "fix": {
+   "what": "concept_short_60 takes parent_lesson_id, unit_root_node_ids and the lesson's fixture; scenes are the lesson's scenes re-seeked where they exist. Destination types: lesson (C01, C04), question explanation (C05, C06), paper unit (C15).",
+   "where": "format/concept_short_60 spec; script.json schema; 07_end_to_end_pipeline_instructions/05_SHORTS_and_REELS_PROCEDURE.md procedure",
+   "control": "Schema: parent_lesson_id required; QA: every number on screen equals the parent fixture value."
+  }
+ },
+ {
+  "id": "A5-11",
+  "video": "all",
+  "t": "n/a",
+  "evidence": "Playbook §4.2: 'test English and native-reviewed Assamese explanations first'; Appendix B: Hindi is 'a future adaptation test'; brief C18. Pipeline: CE-L5 launches en-IN, Hinglish and hi-IN; MATURITY_MODEL_and_ROADMAP.md:14,33 puts Assamese at level 5; 11_human_feel_voice_audio_research/PLAYBOOK_human_crafted_vertical_video.md:3 'Assamese comes later'. PILOT_CONTRACT:71: the render box has no Noto fonts; qa.py (A1-A10, and A11-A21 added at 18:52) has no glyph check; the tokens' bengali_assamese 1.8 s hold and smoke strings are unused.",
+  "problem": "Language priority is inverted between playbook and pipeline, and the Opus pipeline can neither render nor check Assamese, so C18 and the playbook's first language test cannot be built.",
+  "root_cause": {
+   "layer": "locale roadmap + tooling",
+   "location": "15_content_engine_v2/DECISIONS_CE.md CE-L5; 15_content_engine_v2/MATURITY_MODEL_and_ROADMAP.md:14,33; tooling/qa.py; PILOT_CONTRACT.md:71"
+  },
+  "effect": "Blocks C18 and Assam-organic distribution.",
+  "severity": "major",
+  "fix": {
+   "what": "Reorder the locale roadmap (en-IN, then as-IN with a human voice; Hindi later); vendor a Bengali-Assamese font stack; add a glyph-coverage check on the token smoke strings; apply the Indic hold multiplier in the cue builder; keep the brand string Latin in every locale.",
+   "where": "DECISIONS_CE.md; MATURITY_MODEL_and_ROADMAP.md; tooling/qa.py (A12 glyphs); preflight.sh fonts",
+   "control": "qa.py glyph check fails on tofu for the Assamese letters; brand_check accepts the Latin brand inside as-IN builds."
+  }
+ },
+ {
+  "id": "A5-12",
+  "video": "all",
+  "t": "n/a",
+  "evidence": "11_human_feel_voice_audio_research/PLAYBOOK_human_crafted_vertical_video.md §6.3 (lines 499, 504, 507) puts a short logo at the lesson cold open and a full logo plus bed at outro and CTA; MUSIC_and_SOUND_REGISTRY L4 (line 35) puts logo-core-short at the open of F1; the founder mandate and the external audit §21 ask for no opening jingle and one 0.4-0.8 s end motif. The Opus mixes are voice only (narrate.py has no music or logo code), so no sonic brand exists yet; the id music/motif-examleaf (MUSIC:25) names the old brand.",
+  "problem": "Documents still prescribe an opening logo and a 1.5-3 s outro logo, and name the old brand in the motif id; the new identity needs one short end motif, renamed.",
+  "root_cause": {
+   "layer": "MUSIC registry + playbook 11",
+   "location": "15_content_engine_v2/subsystems/MUSIC_and_SOUND_REGISTRY.md:25,35,53-57; 11_human_feel_voice_audio_research/PLAYBOOK_human_crafted_vertical_video.md:296,450,499-507"
+  },
+  "effect": "Audio identity and runtime.",
+  "severity": "minor",
+  "fix": {
+   "what": "Shorts and long lessons use the end motif only (L3/L4 rewritten); id music/diki-end-motif (PD-11); never over speech or a spoken number.",
+   "where": "MUSIC_and_SOUND_REGISTRY.md; 11_human_feel_voice_audio_research/PLAYBOOK_human_crafted_vertical_video.md §6.3",
+   "control": "Cue-sheet validator: motif <= 0.8 s, starts after the last word, no overlap with words[]."
+  }
+ },
+ {
+  "id": "A5-13",
+  "video": "all",
+  "t": "n/a",
+  "evidence": "Playbook §2.3 (p.6): 'one ExamLeaf Instagram account, one Facebook Page and one audience-coherent YouTube channel', one master brand. Founder rule 16 Oct: the audience-facing identity of educational videos is Professor Diki Simplified. The sidecar has no brand or publisher field (PACKAGING §6; 'publisher' there is a role), and the example credits blocks (PACKAGING:467,569) name no publisher.",
+  "problem": "The account plan still makes ExamLeaf the audience-facing channel; parents (the 'unfamiliar publisher' objection, playbook §1.1) would meet either no publisher link or the wrong brand.",
+  "root_cause": {
+   "layer": "business playbook vs pipeline",
+   "location": "ExamLeaf_Growth_Playbook §2.3; PACKAGING_and_DISTRIBUTION_REGISTRY.md §6 sidecar schema"
+  },
+  "effect": "Brand and trust; handles are hard to change after launch.",
+  "severity": "major",
+  "fix": {
+   "what": "Educational channel and accounts 'Professor Diki Simplified' (YouTube and Instagram); commerce accounts 'ExamLeaf' (Facebook Page, ads, Merchant, site, checkout); About page and description footer 'Published by ExamLeaf.'; add a sidecar publisher field; amend playbook §2.3; name reviewers on the About page.",
+   "where": "playbook §2.3 (business layer); packaging_profile.schema.json; brand/strings.json",
+   "control": "Sidecar publisher = 'ExamLeaf' and the credits block carries 'Published by ExamLeaf.'; title and description scans allow ExamLeaf only there."
+  }
+ },
+ {
+  "id": "A5-14",
+  "video": "all",
+  "t": "n/a",
+  "evidence": "12_advanced_animations_with_claude/07_benchmark_and_pilot_plan/PILOT_three_test_lessons.md:92 'End card (brand and call to action text)'; 12_advanced_animations_with_claude/06_prompts_and_templates/negative_tests.md:712 says the end card can say where to find the book; Production Kit skeleton:11 and PILOT_CONTRACT:79 forbid promotional text; 07_end_to_end_pipeline_instructions/05_SHORTS_and_REELS_PROCEDURE.md SH5 and 12_advanced_animations_with_claude/05_style_guides/doodle-handdrawn.md:168 specify a CTA card; PACKAGING:237 puts the disclosure line on the end card.",
+  "problem": "Five documents disagree on what an end card may contain, and one invites commerce onto an educational card.",
+  "root_cause": {
+   "layer": "templates",
+   "location": "the files and lines in evidence"
+  },
+  "effect": "Builders improvise; QA cannot test one rule.",
+  "severity": "minor",
+  "fix": {
+   "what": "One end-card spec: brand line, path disclosure line, 'Free lesson: {topic}'; forbid URL, QR, handle, price and book-finding text; rewrite the negative-test answer.",
+   "where": "17_professor_diki_simplified/design_system end card; negative_tests.md:712; PILOT_three_test_lessons.md R5; Production Kit skeleton",
+   "control": "Scene lint: outro text nodes are data-fx from display.ui.endcard_line1..3 (PD-13) and match brand/strings.json patterns."
+  }
+ },
+ {
+  "id": "A5-15",
+  "video": "all",
+  "t": "n/a",
+  "evidence": "ffmpeg metadata dump of the three MP4s and their deliverables copies: only major_brand and encoder tags; no title, artist or copyright. PACKAGING:243-245: CE-38 strips container metadata (-map_metadata -1) so masters are bit-identical. brand/strings.json publisher.rule lists 'MP4 artist/copyright tags' and brand_check scans the MP4 title tag.",
+  "problem": "The planned MP4 artist and copyright tags conflict with stripped masters; publisher metadata has no home that is both hashed and present.",
+  "root_cause": {
+   "layer": "brand spec vs packaging",
+   "location": "brand/strings.json publisher.rule; PACKAGING_and_DISTRIBUTION_REGISTRY.md §7 C2PA paragraph"
+  },
+  "effect": "Publisher metadata missing, or master hash drift.",
+  "severity": "minor",
+  "fix": {
+   "what": "Carry the publisher in the sidecar and the C2PA manifest (producer); if container tags are wanted, write them in the export step after the master hash is taken.",
+   "where": "strings.json publisher.rule; PACKAGING §7",
+   "control": "Export check: sidecar.publisher present and the master hash unchanged by tagging."
+  }
+ }
+]

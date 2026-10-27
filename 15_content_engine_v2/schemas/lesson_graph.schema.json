@@ -1,0 +1,2520 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://examleaf.local/schemas/v2/lesson_graph.json",
+  "title": "ExamLeaf Lesson Graph document v2",
+  "description": "Canonical, source-grounded store. Edges are typed id-reference fields on the owning node, so they are inside every node hash. Hash canon: RFC 8785 (JCS) after Unicode NFC normalisation of every string; measured quantities are decimal strings, JSON numbers are integers or multiples of 0.5 only.",
+  "$comment": "Commercial-term lint (CE-L1/RD-49; CE-26, CE-70; updated 15 Oct 2026): CI rejects, case-insensitively, any match of (price|pricing|paid|is_free|free_|premium|entitle|subscri|sku|paywall|unlock|monetis|monetiz|revenue|discount|coupon|tier|destination_resource|cta_destination|funnel|purchase_|checkout_|product_id|offer_|trial_|utm_|campaign_|affiliate_|activation_code|storefront) applied to every object key at every depth (including REN fields keys), every required entry, pattern key and enum or const value. Exempt: the editorial fields series_position, flagship and demo_kind, which carry no commercial meaning.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "graph_id": {
+      "type": "string",
+      "pattern": "^LG-[A-Za-z0-9_.-]+$"
+    },
+    "version": {
+      "$ref": "#/definitions/semver"
+    },
+    "hash_canon": {
+      "const": "JCS-RFC8785+NFC"
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "subject": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "framework_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "objective_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/id_OBJ"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "subject",
+        "framework_ids",
+        "objective_ids"
+      ]
+    },
+    "subtree_sha256": {
+      "$ref": "#/definitions/sha256"
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/definitions/node_OBJ"
+          },
+          {
+            "$ref": "#/definitions/node_CLM"
+          },
+          {
+            "$ref": "#/definitions/node_CON"
+          },
+          {
+            "$ref": "#/definitions/node_ANL"
+          },
+          {
+            "$ref": "#/definitions/node_MIS"
+          },
+          {
+            "$ref": "#/definitions/node_WRK"
+          },
+          {
+            "$ref": "#/definitions/node_ASM"
+          },
+          {
+            "$ref": "#/definitions/node_SIM"
+          },
+          {
+            "$ref": "#/definitions/node_ACT"
+          },
+          {
+            "$ref": "#/definitions/node_STY"
+          },
+          {
+            "$ref": "#/definitions/node_VOC"
+          },
+          {
+            "$ref": "#/definitions/node_TXT"
+          },
+          {
+            "$ref": "#/definitions/node_MED"
+          },
+          {
+            "$ref": "#/definitions/node_REN"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "graph_id",
+    "version",
+    "hash_canon",
+    "scope",
+    "nodes"
+  ],
+  "definitions": {
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "machine_checked",
+        "expert_approved",
+        "superseded",
+        "revoked"
+      ]
+    },
+    "level_ref": {
+      "type": "string",
+      "pattern": "^level/[a-z0-9][a-z0-9_.-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "author_kind": {
+          "type": "string",
+          "enum": [
+            "human",
+            "model",
+            "import"
+          ]
+        },
+        "author_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "model_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effort": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        "kit_version": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+        },
+        "prompt_template_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "import_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "author_kind",
+        "author_id",
+        "created_at"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "author_kind": {
+                "const": "model"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "model_id",
+              "effort",
+              "kit_version"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "author_kind": {
+                "const": "import"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "import_ref"
+            ]
+          }
+        }
+      ]
+    },
+    "source_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "pattern": "^SRC-[A-Za-z0-9_.-]+$"
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "span_sha256": {
+          "$ref": "#/definitions/sha256"
+        }
+      },
+      "required": [
+        "source_id",
+        "locator",
+        "span_sha256"
+      ]
+    },
+    "id_OBJ": {
+      "type": "string",
+      "pattern": "^OBJ-[A-Za-z0-9_.-]+$"
+    },
+    "id_CLM": {
+      "type": "string",
+      "pattern": "^CLM-[A-Za-z0-9_.-]+$"
+    },
+    "id_CON": {
+      "type": "string",
+      "pattern": "^CON-[A-Za-z0-9_.-]+$"
+    },
+    "id_ANL": {
+      "type": "string",
+      "pattern": "^ANL-[A-Za-z0-9_.-]+$"
+    },
+    "id_MIS": {
+      "type": "string",
+      "pattern": "^MIS-[A-Za-z0-9_.-]+$"
+    },
+    "id_WRK": {
+      "type": "string",
+      "pattern": "^WRK-[A-Za-z0-9_.-]+$"
+    },
+    "id_ASM": {
+      "type": "string",
+      "pattern": "^ASM-[A-Za-z0-9_.-]+$"
+    },
+    "id_SIM": {
+      "type": "string",
+      "pattern": "^SIM-[A-Za-z0-9_.-]+$"
+    },
+    "id_ACT": {
+      "type": "string",
+      "pattern": "^ACT-[A-Za-z0-9_.-]+$"
+    },
+    "id_STY": {
+      "type": "string",
+      "pattern": "^STY-[A-Za-z0-9_.-]+$"
+    },
+    "id_VOC": {
+      "type": "string",
+      "pattern": "^VOC-[A-Za-z0-9_.-]+$"
+    },
+    "id_TXT": {
+      "type": "string",
+      "pattern": "^TXT-[A-Za-z0-9_.-]+$"
+    },
+    "id_MED": {
+      "type": "string",
+      "pattern": "^MED-[A-Za-z0-9_.-]+$"
+    },
+    "id_REN": {
+      "type": "string",
+      "pattern": "^REN-[A-Za-z0-9_.-]+$"
+    },
+    "node_OBJ": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id_OBJ"
+        },
+        "node_type": {
+          "const": "OBJ"
+        },
+        "version": {
+          "$ref": "#/definitions/semver"
+        },
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "locale_invariant": {
+          "type": "boolean"
+        },
+        "sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "provenance": {
+          "$ref": "#/definitions/provenance"
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "competency_guid": {
+          "type": "string",
+          "minLength": 1
+        },
+        "framework_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "depth_band": {
+          "type": "string",
+          "enum": [
+            "core",
+            "extension"
+          ]
+        },
+        "dok_from_framework": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assessed": {
+          "type": "boolean"
+        },
+        "requires": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/id_OBJ"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "node_type",
+        "version",
+        "status",
+        "locale_invariant",
+        "provenance",
+        "statement",
+        "competency_guid",
+        "framework_id",
+        "depth_band",
+        "assessed"
+      ],
+      "description": "Objective node (flattened; additionalProperties:false per type)"
+    },
+    "node_CLM": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id_CLM"
+        },
+        "node_type": {
+          "const": "CLM"
+        },
+        "version": {
+          "$ref": "#/definitions/semver"
+        },
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "locale_invariant": {
+          "type": "boolean"
+        },
+        "sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "provenance": {
+          "$ref": "#/definitions/provenance"
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claim_type": {
+          "type": "string",
+          "enum": [
+            "definition",
+            "law_principle",
+            "quantitative",
+            "procedure_fact",
+            "historical_event",
+            "date_fact",
+            "attribution_quote",
+            "interpretation",
+            "normative_position",
+            "safety",
+            "exam_pattern",
+            "legal_rule",
+            "rate_or_threshold",
+            "current_affairs",
+            "biographical",
+            "linguistic_rule",
+            "technique",
+            "clinical"
+          ]
+        },
+        "objective_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/id_OBJ"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/source_ref"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "risk": {
+          "type": "string",
+          "enum": [
+            "routine",
+            "exceptional",
+            "sensitive"
+          ]
+        },
+        "contested_status": {
+          "type": "string",
+          "enum": [
+            "settled",
+            "attributed",
+            "contested",
+            "board_vs_scholarship"
+          ]
+        },
+        "attribution": {
+          "type": "string",
+          "minLength": 1
+        },
+        "board_position_decision": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "decided_by": {
+              "type": "string",
+              "minLength": 1
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "include_scholarly_position": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "decided_by",
+            "reason",
+            "include_scholarly_position"
+          ]
+        },
+        "fixture_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "requires": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/id_CLM"
+          },
+          "uniqueItems": true
+        },
+        "key": {
+          "type": "boolean"
+        },
+        "contrast_dimension": {
+          "type": "string",
+          "minLength": 1
+        },
+        "time_bound": {
+          "type": "boolean"
+        },
+        "as_of_date": {
+          "$ref": "#/definitions/date"
+        },
+        "review_by": {
+          "$ref": "#/definitions/date"
+        },
+        "jurisdiction": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "node_type",
+        "version",
+        "status",
+        "locale_invariant",
+        "provenance",
+        "statement",
+        "claim_type",
+        "objective_ids",
+        "source_refs",
+        "risk",
+        "contested_status",
+        "key",
+        "time_bound"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "risk": {
+                "enum": [
+                  "exceptional",
+                  "sensitive"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_refs": {
+                "minItems": 2
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "contested_status": {
+                "enum": [
+                  "attributed",
+                  "contested"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "attribution"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "contested_status": {
+                "const": "board_vs_scholarship"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "board_position_decision"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "claim_type": {
+                "enum": [
+                  "exam_pattern",
+                  "legal_rule",
+                  "rate_or_threshold",
+                  "current_affairs",
+                  "clinical"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "time_bound": {
+                "const": true
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "time_bound": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "as_of_date",
+              "review_by"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "claim_type": {
+                "const": "legal_rule"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "jurisdiction"
+            ]
+          }
+        }
+      ],
+      "description": "Claim node (flattened; additionalProperties:false per type)"
+    },
+    "node_CON": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id_CON"
+        },
+        "node_type": {
+          "const": "CON"
+        },
+        "version": {
+          "$ref": "#/definitions/semver"
+        },
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "locale_invariant": {
+          "type": "boolean"
+        },
+        "sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "provenance": {
+          "$ref": "#/definitions/provenance"
+        },
+        "rung": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "supports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/id_CLM"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "objective_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/id_OBJ"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "node_type",
+        "version",
+        "status",
+        "locale_invariant",
+        "provenance",
+        "rung",
+        "text",
+        "supports",
+        "objective_ids"
+      ],
+      "description": "Concept step node (flattened; additionalProperties:false per type)"
+    },
+    "node_ANL": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id_ANL"
+        },
+        "node_type": {
+          "const": "ANL"
+        },
+        "version": {
+          "$ref": "#/definitions/semver"
+        },
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "locale_invariant": {
+          "type": "boolean"
+        },
+        "sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "provenance": {
+          "$ref": "#/definitions/provenance"
+        },
+        "mapping": {
+          "type": "string",
+          "minLength": 1
+        },
+        "non_mapping": {
+          "type": "string",
+          "minLength": 1
+        },
+        "likely_misconception": {
+          "$ref": "#/definitions/id_MIS"
+        },
+        "formal_return": {
+          "type": "string",
+          "minLength": 1
+        },
+        "permitted_levels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/level_ref"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "supports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/id_CLM"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "adapted_from": {
+          "$ref": "#/definitions/id_ANL",
+          "description": "The source-locale ANL this culturally adapted node transcreates (CE-118, level-3+, 15 Oct 2026). A REN changes wording only; a changed mapping, beat, number or context is a new node reviewed at GA-Graph."
+        },
+        "locale_scope": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/locale_ref"
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Locales this adapted node serves (CE-118, level-3+, 15 Oct 2026)."
+        }
+      },
+      "required": [
+        "id",
+        "node_type",
+        "version",
+        "status",
+        "locale_invariant",
+        "provenance",
+        "mapping",
+        "non_mapping",
+        "formal_return",
+        "permitted_levels",
+        "supports"
+      ],
+      "description": "Analogy node (flattened; additionalProperties:false per type)",
+      "dependencies": {
+        "adapted_from": [
+          "locale_scope"
+        ]
+      }
+    },
+    "node_MIS": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id_MIS"
+        },
+        "node_type": {
+          "const": "MIS"
+        },
+        "version": {
+          "$ref": "#/definitions/semver"
+        },
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "locale_invariant": {
+          "type": "boolean"
+        },
+        "sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "provenance": {
+          "$ref": "#/definitions/provenance"
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "why_plausible": {
+          "type": "string",
+          "minLength": 1
+        },
+        "confronted_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/id_CLM"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "diagnostic_item": {
+          "$ref": "#/definitions/id_ASM"
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "objective_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/id_OBJ"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "node_type",
+        "version",
+        "status",
+        "locale_invariant",
+        "provenance",
+        "statement",
+        "why_plausible",
+        "confronted_by",
+        "priority",
+        "objective_ids"
+      ],
+      "description": "Misconception node (flattened; additionalProperties:false per type)"
+    },
+    "node_WRK": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id_WRK"
+        },
+        "node_type": {
+          "const": "WRK"
+        },
+        "version": {
+          "$ref": "#/definitions/semver"
+        },
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "locale_invariant": {
+          "type": "boolean"
+        },
+        "sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "provenance": {
+          "$ref": "#/definitions/provenance"
+        },
+        "problem": {
+          "type": "string",
+          "minLength": 1
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "n": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "claim_ids": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/id_CLM"
+                },
+                "uniqueItems": true
+              },
+              "fixture_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "common_error_mis_ids": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/id_MIS"
+                },
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "n",
+              "text"
+            ]
+          },
+          "minItems": 1
+        },
+        "answer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "objective_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/id_OBJ"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "twin_of": {
+          "$ref": "#/definitions/id_WRK"
+        },
+        "fixture_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "adapted_from": {
+          "$ref": "#/definitions/id_WRK",
+          "description": "The source-locale WRK this culturally adapted node transcreates (CE-118, level-3+, 15 Oct 2026). A REN changes wording only; a changed mapping, beat, number or context is a new node reviewed at GA-Graph."
+        },
+        "locale_scope": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/locale_ref"
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Locales this adapted node serves (CE-118, level-3+, 15 Oct 2026)."
+        },
+        "depicted_attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/depicted_attributes"
+          },
+          "minItems": 1,
+          "description": "One depicted_attributes tag object per person in the problem context (CE-121, level-3+, 15 Oct 2026; optional)."
+        }
+      },
+      "required": [
+        "id",
+        "node_type",
+        "version",
+        "status",
+        "locale_invariant",
+        "provenance",
+        "problem",
+        "steps",
+        "answer",
+        "objective_ids"
+      ],
+      "description": "Worked item node (flattened; additionalProperties:false per type)",
+      "dependencies": {
+        "adapted_from": [
+          "locale_scope"
+        ]
+      }
+    },
+    "node_ASM": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id_ASM"
+        },
+        "node_type": {
+          "const": "ASM"
+        },
+        "version": {
+          "$ref": "#/definitions/semver"
+        },
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "locale_invariant": {
+          "type": "boolean"
+        },
+        "sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "provenance": {
+          "$ref": "#/definitions/provenance"
+        },
+        "stem": {
+          "type": "string",
+          "minLength": 1
+        },
+        "item_kind": {
+          "type": "string",
+          "enum": [
+            "mcq",
+            "short",
+            "long",
+            "numeric",
+            "oral",
+            "practical",
+            "match",
+            "fill_blank",
+            "diagram_label",
+            "ordering"
+          ]
+        },
+        "expected_answer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "acceptable_variations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "hint": {
+          "type": "string",
+          "minLength": 1
+        },
+        "feedback": {
+          "type": "string",
+          "minLength": 1
+        },
+        "objective_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/id_OBJ"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "misconception_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/id_MIS"
+          },
+          "uniqueItems": true
+        },
+        "evaluative": {
+          "type": "boolean"
+        },
+        "original": {
+          "type": "boolean"
+        },
+        "exam_tags": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "source_id": {
+              "type": "string",
+              "pattern": "^SRC-[A-Za-z0-9_.-]+$"
+            },
+            "board_or_exam": {
+              "type": "string",
+              "minLength": 1
+            },
+            "year": {
+              "type": "integer",
+              "minimum": 1900,
+              "maximum": 2100
+            },
+            "paper_section": {
+              "type": "string",
+              "minLength": 1
+            },
+            "question_number": {
+              "type": "string",
+              "minLength": 1
+            },
+            "marks": {
+              "type": "number",
+              "minimum": 0,
+              "multipleOf": 0.5
+            },
+            "marks_source": {
+              "type": "string",
+              "enum": [
+                "source_paper",
+                "official_key"
+              ]
+            },
+            "marking_scheme": {
+              "type": "array",
+              "minItems": 1,
+              "description": "Step-wise marks from the official scheme only (15 Oct 2026, interaction-06); step marks sum to marks (Q-CLOSURE.marking_scheme).",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "step": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "marks": {
+                    "type": "number",
+                    "minimum": 0,
+                    "multipleOf": 0.5
+                  },
+                  "wrk_step_ref": {
+                    "type": "string",
+                    "pattern": "^WRK-[A-Za-z0-9_.-]+#[0-9]+$"
+                  },
+                  "key_span": {
+                    "$ref": "#/definitions/source_ref"
+                  }
+                },
+                "required": [
+                  "step",
+                  "marks",
+                  "key_span"
+                ]
+              }
+            }
+          },
+          "dependencies": {
+            "marks": [
+              "marks_source"
+            ],
+            "marking_scheme": [
+              "marks",
+              "marks_source"
+            ]
+          }
+        },
+        "answer_key_check": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "method": {
+              "type": "string",
+              "enum": [
+                "fixture",
+                "solver",
+                "official_scheme",
+                "reviewer_key"
+              ]
+            },
+            "ref": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "method",
+            "ref"
+          ]
+        },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "description": "MCQ options (15 Oct 2026, interaction-03): exactly one is_key (Q-CLOSURE.asm_key); expected_answer equals the key's option_id; past-paper distractors stay as printed.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "option_id": {
+                "type": "string",
+                "pattern": "^[A-H]$"
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "is_key": {
+                "type": "boolean"
+              },
+              "distractor_source": {
+                "type": "object",
+                "additionalProperties": false,
+                "minProperties": 1,
+                "properties": {
+                  "mis_id": {
+                    "$ref": "#/definitions/id_MIS"
+                  },
+                  "wrk_step_ref": {
+                    "type": "string",
+                    "pattern": "^WRK-[A-Za-z0-9_.-]+#[0-9]+$"
+                  },
+                  "fixture_ref": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            "required": [
+              "option_id",
+              "text",
+              "is_key"
+            ]
+          }
+        },
+        "rubric": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Marking rubric for short, long, oral and practical items (15 Oct 2026, interaction-05). Each criterion cites approved CLMs (or, for languages_literature, a TXT with edition); rubric_entailment checks them.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "criterion_id": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9_-]*$"
+              },
+              "criterion": {
+                "type": "string",
+                "minLength": 1
+              },
+              "marks": {
+                "type": "number",
+                "minimum": 0,
+                "multipleOf": 0.5
+              },
+              "clm_ids": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/id_CLM"
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              },
+              "txt_ids": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/id_TXT"
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "criterion_id",
+              "criterion"
+            ],
+            "anyOf": [
+              {
+                "required": [
+                  "clm_ids"
+                ]
+              },
+              {
+                "required": [
+                  "txt_ids"
+                ]
+              }
+            ]
+          }
+        },
+        "blank_keys": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "blank_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "accepted": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "blank_id",
+              "accepted"
+            ]
+          }
+        },
+        "pair_keys": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "left": {
+                "type": "string",
+                "minLength": 1
+              },
+              "right": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "left",
+              "right"
+            ]
+          }
+        },
+        "sequence": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "stem_form": {
+          "type": "string",
+          "enum": [
+            "verbatim",
+            "adapted"
+          ]
+        },
+        "depicted_attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/depicted_attributes"
+          },
+          "minItems": 1,
+          "description": "One depicted_attributes tag object per person named or shown in the stem (CE-121, level-3+, 15 Oct 2026; optional)."
+        }
+      },
+      "required": [
+        "id",
+        "node_type",
+        "version",
+        "status",
+        "locale_invariant",
+        "provenance",
+        "stem",
+        "item_kind",
+        "expected_answer",
+        "objective_ids",
+        "evaluative",
+        "original",
+        "answer_key_check"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "original": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "exam_tags": {
+                "not": {
+                  "anyOf": [
+                    {
+                      "required": [
+                        "marks"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "marks_source"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "else": {
+            "required": [
+              "exam_tags",
+              "stem_form"
+            ],
+            "properties": {
+              "exam_tags": {
+                "required": [
+                  "source_id",
+                  "board_or_exam",
+                  "year"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "item_kind": {
+                "const": "mcq"
+              }
+            },
+            "required": [
+              "item_kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "options"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "item_kind": {
+                "const": "mcq"
+              },
+              "original": {
+                "const": true
+              }
+            },
+            "required": [
+              "item_kind",
+              "original"
+            ]
+          },
+          "then": {
+            "properties": {
+              "options": {
+                "items": {
+                  "if": {
+                    "properties": {
+                      "is_key": {
+                        "const": false
+                      }
+                    }
+                  },
+                  "then": {
+                    "required": [
+                      "distractor_source"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "item_kind": {
+                "const": "numeric"
+              }
+            },
+            "required": [
+              "item_kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "expected_answer": {
+                "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)? \\S.*$"
+              },
+              "acceptable_variations": {
+                "items": {
+                  "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)? \\S.*$"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "item_kind": {
+                "enum": [
+                  "short",
+                  "long",
+                  "oral",
+                  "practical"
+                ]
+              }
+            },
+            "required": [
+              "item_kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "rubric"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "item_kind": {
+                "enum": [
+                  "fill_blank"
+                ]
+              }
+            },
+            "required": [
+              "item_kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "blank_keys"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "item_kind": {
+                "enum": [
+                  "match",
+                  "diagram_label"
+                ]
+              }
+            },
+            "required": [
+              "item_kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "pair_keys"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "item_kind": {
+                "enum": [
+                  "ordering"
+                ]
+              }
+            },
+            "required": [
+              "item_kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "sequence"
+            ]
+          }
+        }
+      ],
+      "description": "Assessment item node (flattened; additionalProperties:false per type)"
+    },
+    "node_SIM": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id_SIM"
+        },
+        "node_type": {
+          "const": "SIM"
+        },
+        "version": {
+          "$ref": "#/definitions/semver"
+        },
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "locale_invariant": {
+          "type": "boolean"
+        },
+        "sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "provenance": {
+          "$ref": "#/definitions/provenance"
+        },
+        "of": {
+          "$ref": "#/definitions/id_CLM"
+        },
+        "simplified_statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "what_is_lost": {
+          "type": "string",
+          "minLength": 1
+        },
+        "permitted_levels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/level_ref"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "node_type",
+        "version",
+        "status",
+        "locale_invariant",
+        "provenance",
+        "of",
+        "simplified_statement",
+        "what_is_lost",
+        "permitted_levels"
+      ],
+      "description": "Simplification node (flattened; additionalProperties:false per type)"
+    },
+    "node_ACT": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id_ACT"
+        },
+        "node_type": {
+          "const": "ACT"
+        },
+        "version": {
+          "$ref": "#/definitions/semver"
+        },
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "locale_invariant": {
+          "type": "boolean"
+        },
+        "sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "provenance": {
+          "$ref": "#/definitions/provenance"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "objective_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/id_OBJ"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "materials": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "household_safe": {
+          "type": "boolean"
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "safety_claim_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/id_CLM"
+          },
+          "uniqueItems": true
+        },
+        "observation_claim_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/id_CLM"
+          },
+          "uniqueItems": true
+        },
+        "grown_up_cue": {
+          "type": "boolean"
+        },
+        "demo_kind": {
+          "type": "string",
+          "enum": [
+            "real",
+            "virtual"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "node_type",
+        "version",
+        "status",
+        "locale_invariant",
+        "provenance",
+        "title",
+        "objective_ids",
+        "steps",
+        "household_safe",
+        "grown_up_cue",
+        "demo_kind"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "household_safe": {
+                "const": false
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "safety_claim_ids"
+            ],
+            "properties": {
+              "safety_claim_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ],
+      "description": "Activity node (flattened; additionalProperties:false per type)"
+    },
+    "node_STY": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id_STY"
+        },
+        "node_type": {
+          "const": "STY"
+        },
+        "version": {
+          "$ref": "#/definitions/semver"
+        },
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "locale_invariant": {
+          "type": "boolean"
+        },
+        "sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "provenance": {
+          "$ref": "#/definitions/provenance"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "objective_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/id_OBJ"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "beats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "n": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "carries": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^(CLM|SIM)-[A-Za-z0-9_.-]+$"
+                },
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "n",
+              "text"
+            ]
+          },
+          "minItems": 1
+        },
+        "song_chant": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "text": {
+              "type": "string",
+              "minLength": 1
+            },
+            "music_source": {
+              "type": "string",
+              "description": "15 Oct 2026: v1 releases admit only original_in_house, backed by an admitted song_backing entry in the music/ registry (owned or commissioned audio only; MUSIC_and_SOUND_REGISTRY policy 4, Q-RIGHTS, M6). licensed and public_domain are reserved enum values pending O-7 and are rejected at release.",
+              "enum": [
+                "original_in_house",
+                "licensed",
+                "public_domain"
+              ]
+            },
+            "license_ref": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "text",
+            "music_source"
+          ],
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "music_source": {
+                    "const": "licensed"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "license_ref"
+                ]
+              }
+            }
+          ]
+        },
+        "real_child_likeness": {
+          "const": false
+        },
+        "adapted_from": {
+          "$ref": "#/definitions/id_STY",
+          "description": "The source-locale STY this culturally adapted node transcreates (CE-118, level-3+, 15 Oct 2026). A REN changes wording only; a changed mapping, beat, number or context is a new node reviewed at GA-Graph."
+        },
+        "locale_scope": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/locale_ref"
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Locales this adapted node serves (CE-118, level-3+, 15 Oct 2026)."
+        },
+        "depicted_attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/depicted_attributes"
+          },
+          "minItems": 1,
+          "description": "One depicted_attributes tag object per story character (CE-121, level-3+, 15 Oct 2026; optional)."
+        }
+      },
+      "required": [
+        "id",
+        "node_type",
+        "version",
+        "status",
+        "locale_invariant",
+        "provenance",
+        "title",
+        "objective_ids",
+        "beats",
+        "real_child_likeness"
+      ],
+      "description": "Story node (flattened; additionalProperties:false per type)",
+      "dependencies": {
+        "adapted_from": [
+          "locale_scope"
+        ]
+      }
+    },
+    "node_VOC": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id_VOC"
+        },
+        "node_type": {
+          "const": "VOC"
+        },
+        "version": {
+          "$ref": "#/definitions/semver"
+        },
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "locale_invariant": {
+          "type": "boolean"
+        },
+        "sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "provenance": {
+          "$ref": "#/definitions/provenance"
+        },
+        "term": {
+          "type": "string",
+          "minLength": 1
+        },
+        "definition_claim_id": {
+          "$ref": "#/definitions/id_CLM"
+        },
+        "lexicon_key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "objective_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/id_OBJ"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "node_type",
+        "version",
+        "status",
+        "locale_invariant",
+        "provenance",
+        "term",
+        "definition_claim_id"
+      ],
+      "description": "Vocabulary node (flattened; additionalProperties:false per type)"
+    },
+    "node_TXT": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id_TXT"
+        },
+        "node_type": {
+          "const": "TXT"
+        },
+        "version": {
+          "$ref": "#/definitions/semver"
+        },
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "locale_invariant": {
+          "type": "boolean"
+        },
+        "sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "provenance": {
+          "$ref": "#/definitions/provenance"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "edition_source_id": {
+          "type": "string",
+          "pattern": "^SRC-[A-Za-z0-9_.-]+$"
+        },
+        "span_locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rights_status": {
+          "type": "string",
+          "enum": [
+            "public_domain",
+            "licensed",
+            "quotation_within_policy",
+            "in_house"
+          ]
+        },
+        "license_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "char_count": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "node_type",
+        "version",
+        "status",
+        "locale_invariant",
+        "provenance",
+        "text",
+        "edition_source_id",
+        "span_locator",
+        "rights_status",
+        "char_count"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "rights_status": {
+                "const": "licensed"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "license_ref"
+            ]
+          }
+        }
+      ],
+      "description": "Text passage node (flattened; additionalProperties:false per type)"
+    },
+    "node_MED": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id_MED"
+        },
+        "node_type": {
+          "const": "MED"
+        },
+        "version": {
+          "$ref": "#/definitions/semver"
+        },
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "locale_invariant": {
+          "type": "boolean"
+        },
+        "sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "provenance": {
+          "$ref": "#/definitions/provenance"
+        },
+        "asset_kind": {
+          "type": "string",
+          "enum": [
+            "image",
+            "diagram",
+            "map",
+            "video",
+            "audio",
+            "footage",
+            "music",
+            "font"
+          ]
+        },
+        "file_sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "rights_status": {
+          "type": "string",
+          "enum": [
+            "in_house",
+            "licensed",
+            "public_domain",
+            "generated"
+          ]
+        },
+        "license_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "generator": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "provider_job_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "model_id": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "provider_job_id"
+          ]
+        },
+        "depicts_real_child": {
+          "type": "boolean"
+        },
+        "guardian_release_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "map_boundary_review": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "reviewer_id": {
+              "type": "string",
+              "pattern": "^reviewer/[a-z0-9][a-z0-9_.-]*$"
+            },
+            "policy_source_id": {
+              "type": "string",
+              "pattern": "^SRC-[A-Za-z0-9_.-]+$"
+            },
+            "date": {
+              "$ref": "#/definitions/date"
+            }
+          },
+          "required": [
+            "reviewer_id",
+            "policy_source_id",
+            "date"
+          ]
+        },
+        "depicted_attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/depicted_attributes"
+          },
+          "minItems": 1,
+          "description": "One depicted_attributes tag object per generated or drawn person (CE-121, level-3+, 15 Oct 2026; optional)."
+        }
+      },
+      "required": [
+        "id",
+        "node_type",
+        "version",
+        "status",
+        "locale_invariant",
+        "provenance",
+        "asset_kind",
+        "file_sha256",
+        "rights_status",
+        "depicts_real_child"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "asset_kind": {
+                "const": "map"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "map_boundary_review"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "depicts_real_child": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "guardian_release_ref"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "rights_status": {
+                "const": "licensed"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "license_ref"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "rights_status": {
+                "const": "generated"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "generator"
+            ]
+          }
+        },
+        {
+          "$comment": "CE-121 (15 Oct 2026): tags only on generated or drawn people, never on real children or third-party footage.",
+          "if": {
+            "required": [
+              "depicted_attributes"
+            ]
+          },
+          "then": {
+            "properties": {
+              "rights_status": {
+                "enum": [
+                  "generated",
+                  "in_house"
+                ]
+              },
+              "depicts_real_child": {
+                "const": false
+              }
+            }
+          }
+        }
+      ],
+      "description": "Media asset node (flattened; additionalProperties:false per type)"
+    },
+    "node_REN": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id_REN"
+        },
+        "node_type": {
+          "const": "REN"
+        },
+        "version": {
+          "$ref": "#/definitions/semver"
+        },
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "locale_invariant": {
+          "const": false
+        },
+        "sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "provenance": {
+          "$ref": "#/definitions/provenance"
+        },
+        "rendering_of": {
+          "type": "string",
+          "pattern": "^(OBJ|CLM|CON|ANL|MIS|WRK|ASM|SIM|ACT|STY|VOC|TXT|MED)-[A-Za-z0-9_.-]+$"
+        },
+        "locale": {
+          "type": "string",
+          "pattern": "^locale/[a-z0-9][a-z0-9_-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+        },
+        "fields": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "source_node_sha256": {
+          "$ref": "#/definitions/sha256"
+        }
+      },
+      "required": [
+        "id",
+        "node_type",
+        "version",
+        "status",
+        "locale_invariant",
+        "provenance",
+        "rendering_of",
+        "locale",
+        "fields",
+        "source_node_sha256"
+      ],
+      "description": "Rendering node (flattened; additionalProperties:false per type)"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^SRC-[A-Za-z0-9_.-]+$"
+        },
+        "node_type": {
+          "const": "SRC"
+        },
+        "version": {
+          "$ref": "#/definitions/semver"
+        },
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "locale_invariant": {
+          "type": "boolean"
+        },
+        "sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "provenance": {
+          "$ref": "#/definitions/provenance"
+        },
+        "citation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reliability_class": {
+          "type": "string",
+          "enum": [
+            "official_curriculum",
+            "board_textbook",
+            "official_paper_or_key",
+            "official_statute_or_standard",
+            "official_statistics",
+            "peer_reviewed",
+            "scholarly_book",
+            "reference_work",
+            "practitioner_manual",
+            "news_of_record",
+            "self_published"
+          ]
+        },
+        "rights_status": {
+          "type": "string",
+          "enum": [
+            "public_domain",
+            "licensed",
+            "consulted_only",
+            "in_house"
+          ]
+        },
+        "copy_sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "access_date": {
+          "$ref": "#/definitions/date"
+        },
+        "edition": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "self_published": {
+          "type": "boolean"
+        },
+        "about_living_person": {
+          "type": "boolean"
+        },
+        "open_wiki": {
+          "const": false
+        },
+        "rights_basis": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Counsel-backed basis for rights_status (CE-112, level-1, 15 Oct 2026; O-23; P1-17). Required unless rights_status is consulted_only. Q-RIGHTS fails when it is missing or the cited rights/ policy has expired; quotation_within_policy limits live in that policy.",
+          "properties": {
+            "policy_ref": {
+              "type": "string",
+              "pattern": "^rights/[a-z0-9][a-z0-9_-]*@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+            },
+            "decided_by": {
+              "type": "string",
+              "pattern": "^reviewer/[a-z0-9][a-z0-9_.-]*$"
+            },
+            "decided_on": {
+              "$ref": "#/definitions/date"
+            }
+          },
+          "required": [
+            "policy_ref",
+            "decided_by",
+            "decided_on"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "node_type",
+        "version",
+        "status",
+        "provenance",
+        "citation",
+        "reliability_class",
+        "rights_status",
+        "copy_sha256",
+        "access_date",
+        "self_published",
+        "about_living_person",
+        "open_wiki"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "self_published": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "about_living_person": {
+                "const": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "rights_status": {
+                "not": {
+                  "const": "consulted_only"
+                }
+              }
+            },
+            "required": [
+              "rights_status"
+            ]
+          },
+          "then": {
+            "required": [
+              "rights_basis"
+            ]
+          }
+        }
+      ],
+      "description": "Source Registry record. Single writer: content/sources/SRC-*.json validated against this definition. Graph documents reference sources by id only and never embed them; subtree_sha256 includes the sha256 of every referenced SRC."
+    },
+    "locale_ref": {
+      "type": "string",
+      "pattern": "^locale/[a-z0-9][a-z0-9_-]*$"
+    },
+    "depicted_attributes": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "description": "Optional representation tags for one depicted person or character (CE-121, level-3+, 15 Oct 2026). Generated or drawn people only, never real children. Read by the quarterly corpus check Q-REPR (report-only; never blocks an artefact).",
+      "properties": {
+        "given_name_origin_region": {
+          "type": "string",
+          "minLength": 1
+        },
+        "gender_presented": {
+          "type": "string",
+          "minLength": 1
+        },
+        "setting": {
+          "enum": [
+            "rural",
+            "urban"
+          ]
+        },
+        "disability_presented": {
+          "type": "string",
+          "minLength": 1
+        },
+        "language": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

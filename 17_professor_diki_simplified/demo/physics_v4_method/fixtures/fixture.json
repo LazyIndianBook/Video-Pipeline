@@ -1,0 +1,140 @@
+{
+ "fixture_id": "FIX-ohm-pd-04",
+ "compute": "fixtures/compute.py",
+ "parameters": {
+  "resistance_ohm": 10,
+  "r2": 20,
+  "v1": 2,
+  "v2": 4,
+  "v3": 6
+ },
+ "results": {
+  "i1": 0.2,
+  "i2": 0.4,
+  "i3": 0.6,
+  "ratio_v": 2,
+  "ratio_i": 2,
+  "v_over_i_1": 10,
+  "v_over_i_2": 10,
+  "v_over_i_3": 10,
+  "j_per_c_1": 2,
+  "i_r2": 0.1,
+  "ratio_r": 2,
+  "graph": [
+   [
+    0,
+    0
+   ],
+   [
+    0.2,
+    2
+   ],
+   [
+    0.4,
+    4
+   ],
+   [
+    0.6,
+    6
+   ]
+  ],
+  "lamp": {
+   "current_doubles": false
+  }
+ },
+ "display": {
+  "r_label": "R =",
+  "r_unit": "Ω",
+  "v_label": "V =",
+  "v_unit": "V",
+  "i_label": "I =",
+  "i_unit": "A",
+  "ammeter_symbol": "A",
+  "condition": "same temperature",
+  "lamp_label": "filament lamp",
+  "r_symbol": "R",
+  "rises": "↑",
+  "sym": {
+   "V": "V",
+   "I": "I",
+   "R": "R"
+  },
+  "ops": {
+   "eq": "=",
+   "div": "÷",
+   "times": "×",
+   "over": "/",
+   "sep": "·"
+  },
+  "words": {
+   "current": "current",
+   "voltage": "voltage",
+   "resistance": "resistance"
+  },
+  "units": {
+   "ampere": "1 A = 1 C/s",
+   "volt": "1 V = 1 J/C",
+   "ohm": "1 Ω = 1 V/A"
+  },
+  "times": "×",
+  "decimals": {
+   "v": 0,
+   "i": 2
+  },
+  "ui": {
+   "unknown": "?",
+   "ellipsis": "…",
+   "endcard_line1": "Professor Diki Simplified",
+   "endcard_line2": "Free lesson: Ohm's law"
+  },
+  "card": {
+   "head": {
+    "v": "V",
+    "i": "I",
+    "ratio": "V ÷ I"
+   },
+   "head3": {
+    "v": "V",
+    "r": "R",
+    "i": "I"
+   },
+   "def": {
+    "voltage": {
+     "term": "Voltage",
+     "text": "potential difference: energy per unit charge. 1 V = 1 J/C"
+    },
+    "current": {
+     "term": "Current",
+     "text": "the charge flowing each second. 1 A = 1 C/s"
+    },
+    "resistance": {
+     "term": "Resistance",
+     "text": "how much it holds the flow back. 1 Ω = 1 V/A"
+    }
+   },
+   "ncert": {
+    "tag": "NCERT §12.3 Ohm's law",
+    "statement": "“The potential difference, V, across the ends of a given metallic wire in an electric circuit is directly proportional to the current flowing through it, provided its temperature remains the same.”",
+    "source": "NCERT Class 10 Science, Chapter 12 Electricity, §12.3",
+    "p1": "“The potential difference, V, across the ends of a given metallic wire in an electric circuit",
+    "p2": "is directly proportional to the current flowing through it, provided its temperature remains the same.”"
+   },
+   "graph": {
+    "title": "V–I graph (NCERT §12.3)",
+    "x": "I (A)",
+    "y": "V (V)",
+    "slope": "slope = V ÷ I",
+    "slope_r": "= R = 10 Ω"
+   },
+   "points": {
+    "p1": "V = I × R, I = V ÷ R, R = V ÷ I",
+    "p2": "2× V → 2× I, 2× R → ½ I",
+    "p3": "Same temperature only."
+   }
+  },
+  "flow": {
+   "px_per_a": 300,
+   "lamp_factor": 0.7
+  }
+ }
+}

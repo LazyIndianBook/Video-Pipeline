@@ -1,0 +1,619 @@
+{
+  "date": "2026-10-13",
+  "status": "offline-tested narration sidecar; live connector auditions separate",
+  "local_tests": "57 passed",
+  "neural_tts_local": false,
+  "human_voice_approval": false,
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 79,
+      "sha256": "98d494aad068938ea247fef12667e2ff6c50fbe7e09b8daa97f6a67dba515cbe"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 687,
+      "sha256": "10d81178de86e131328a8c44b047b4f49e43fe0493ac5aecb60cdf42cbb1ab86"
+    },
+    {
+      "path": "CLAUDE.md",
+      "bytes": 167,
+      "sha256": "fa266a8d422c80c0c8ac0ce70098860e3eabae8910433fa1ea77bbed2dcfba63"
+    },
+    {
+      "path": "ExamLeaf_Narration_Cost_Model.xlsx",
+      "bytes": 29574,
+      "sha256": "99382ec2473f60cc8b9f24b9e9da477366a81f56a45ee652cef7c59dfbfcdab9"
+    },
+    {
+      "path": "LICENSING_AND_SECURITY.md",
+      "bytes": 1282,
+      "sha256": "d6fe21d9e5c4deed0bf662d8f1638a444e94b1e97b00e773ccd38ec30d395b07"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3367,
+      "sha256": "61e9e9f5da088b59cf00d171b163bb764940f561e9056ed191fb754b12ab19a3"
+    },
+    {
+      "path": "configs/cartesia_snapshot.json",
+      "bytes": 165,
+      "sha256": "53b113a50ad01bdf71fe9fc5dac5b0174340ec06ca9de92f46cccfea2b79f963"
+    },
+    {
+      "path": "configs/eleven_v3.json",
+      "bytes": 102,
+      "sha256": "40e0ce1af599797d9b1397780735b4757d77ca0a9e23035530dc1ca1b6081175"
+    },
+    {
+      "path": "configs/eleven_v4.json",
+      "bytes": 102,
+      "sha256": "b60d650a65e0a36f233a07ebaa232aaa8f291cb2af95442c198db8e36d4cd9c3"
+    },
+    {
+      "path": "configs/existing_engine_skill_mapping.json",
+      "bytes": 767,
+      "sha256": "413dacefeaff3fe9d6576d9c4fdf2c89cb70f81e8789029e6371c36c7fec9bb1"
+    },
+    {
+      "path": "configs/gemini_38.json",
+      "bytes": 83,
+      "sha256": "c143f486357f65b5137dee866d6240e6e1fbe628c8323070f78610e94dcb6146"
+    },
+    {
+      "path": "configs/narration.schema.json",
+      "bytes": 6911,
+      "sha256": "03dfc7991201d94e0f8310366e7076cfdc405081afbdfd761a9c4dc8a499194e"
+    },
+    {
+      "path": "configs/openai_snapshot.json",
+      "bytes": 90,
+      "sha256": "8a99cc622673fdcae84a1910f2d1ea280304d1e5e6e7db0c0d745c7baff53800"
+    },
+    {
+      "path": "configs/pronunciation.json",
+      "bytes": 13346,
+      "sha256": "282e207de677c6c9f9da4c3577de363dbe2525539c800910ad41ee4f051b5057"
+    },
+    {
+      "path": "docs/Architecture.md",
+      "bytes": 4686,
+      "sha256": "4ed83d4a68404a7010cdb35d52cf876d97267dd191b9eeeae2c2b1ba2b8335aa"
+    },
+    {
+      "path": "docs/Audition_and_Evaluation.md",
+      "bytes": 2450,
+      "sha256": "8f08683c9f2e71f5a3965b48b6a32c73338b0b5e5ee48b3b54b7c937ead243f5"
+    },
+    {
+      "path": "docs/Costs_and_Methods.md",
+      "bytes": 3321,
+      "sha256": "58fde4dfe9abf836a3cc6a8005ddf1dfc5ec46760100800b78514282237427ab"
+    },
+    {
+      "path": "docs/Implementation_Roadmap.md",
+      "bytes": 2639,
+      "sha256": "92884874ac906d72111b008a50f4cd7c41c20220ea4a70ddfbb22921349a18e8"
+    },
+    {
+      "path": "docs/Provider_Lifecycle.md",
+      "bytes": 3464,
+      "sha256": "5c95fff7178bb9cb3b1166af6b85eb588885488484da9bb72009cd62d0d85800"
+    },
+    {
+      "path": "docs/Reusable_Prompts.md",
+      "bytes": 2253,
+      "sha256": "d9d35551e61c9a54202d0946bc5946da3f926b7ce2f7ab1475e02a431c069a6d"
+    },
+    {
+      "path": "docs/Voice_Identity_Guide.md",
+      "bytes": 5435,
+      "sha256": "7338d78ee4734c7af88d8162663fa69d95746a049539a8f0147b718c7b6b8ea5"
+    },
+    {
+      "path": "examples/Before_After.md",
+      "bytes": 2391,
+      "sha256": "de0354e64868dd71d83d2745062f650076ed63d8b958d5a91a6f663bafdf807e"
+    },
+    {
+      "path": "examples/claims.json",
+      "bytes": 836,
+      "sha256": "34460ed6b35dff230d9fb58e18e0419fc78b874c2a29cdb26720e55bb0d8b48e"
+    },
+    {
+      "path": "examples/teacher.json",
+      "bytes": 5095,
+      "sha256": "04d8965404cc8a1bff0f972cc298abf8c14d8b62d134cd71a8e7cd458fcbda83"
+    },
+    {
+      "path": "examples/textbook.json",
+      "bytes": 1371,
+      "sha256": "e11bc2ae24e2372b66d8fc8a56f650323fd0a47424555285d6ae978df7b64f0c"
+    },
+    {
+      "path": "outputs/cartesia_snapshot_requests.json",
+      "bytes": 9478,
+      "sha256": "477b36476a1b6b49ff50e4d6c02f231c77b6e91580b52458b8baf96d34720efb"
+    },
+    {
+      "path": "outputs/cost_summary.json",
+      "bytes": 1131,
+      "sha256": "5026f64f658242903b4133599532a8fbf82da8056b91b6f2512ac4012bfd667a"
+    },
+    {
+      "path": "outputs/eleven_v3_requests.json",
+      "bytes": 7597,
+      "sha256": "56be532fa9fd2eb67982be904f2a81800e9997abee80f83fa7392a86b805a9ba"
+    },
+    {
+      "path": "outputs/eleven_v4_requests.json",
+      "bytes": 8032,
+      "sha256": "c4c5387bf738343df811fe726d6bf93663195184854de5bf950f4c05897ad149"
+    },
+    {
+      "path": "outputs/environment.json",
+      "bytes": 252,
+      "sha256": "a951dde30727b9a6076cfd6c989f193f144ae4285b3d476a4abde93c36e4a0c4"
+    },
+    {
+      "path": "outputs/fixture_alignment.json",
+      "bytes": 12990,
+      "sha256": "7c8a3d031fd0fd41ae075dcbd9588bd77d0a10923a77ddb4553dbc5da5844241"
+    },
+    {
+      "path": "outputs/fixture_captions.vtt",
+      "bytes": 1444,
+      "sha256": "8ce9cd025fed69f1d9692c2044823e0d72097dbe833d92ab9135c778692697ff"
+    },
+    {
+      "path": "outputs/fixtures/answer_signal_NOT_SPEECH.wav",
+      "bytes": 261164,
+      "sha256": "4eb19b58985d969f1235f34d2323675fd94e5b719501fb1ce2e56fd797273e0d"
+    },
+    {
+      "path": "outputs/fixtures/check_signal_NOT_SPEECH.wav",
+      "bytes": 235244,
+      "sha256": "4a7269c4e875ace84e825a462a96d2ccf56871c22d0d6c5b70c4c7eca0807720"
+    },
+    {
+      "path": "outputs/fixtures/question_signal_NOT_SPEECH.wav",
+      "bytes": 148844,
+      "sha256": "ce9f525b08da44eaf8412c0c7f6c2202038d6962943eecaac82ebf081083a9a7"
+    },
+    {
+      "path": "outputs/fixtures/repair_signal_NOT_SPEECH.wav",
+      "bytes": 269804,
+      "sha256": "e8394b03fd0f07b8921598519ec314423e8a7f297572ba29d05d5448dd6b2c49"
+    },
+    {
+      "path": "outputs/fixtures/retry_signal_NOT_SPEECH.wav",
+      "bytes": 200684,
+      "sha256": "4df8ce4bc9a6642bb8d866bcb921408859230236f5d01a6a0d9f887865f48b43"
+    },
+    {
+      "path": "outputs/gemini_38_requests.json",
+      "bytes": 11675,
+      "sha256": "a084919f171a9eee8389ae421f9645d74ad8365a51f7305dbaac10f4d5cdcbc6"
+    },
+    {
+      "path": "outputs/master_fixture_NOT_SPEECH.wav",
+      "bytes": 5031462,
+      "sha256": "ce02038a9fe149974fc2cd270dc9702e695e6e0ed57cd1bdb9a2a7421da1f2e7"
+    },
+    {
+      "path": "outputs/mastering_qa.json",
+      "bytes": 711,
+      "sha256": "9d679549697a73c20ca485d80ebe34ba9f22b63cb9e798919c1769ac1599db3a"
+    },
+    {
+      "path": "outputs/openai_snapshot_requests.json",
+      "bytes": 9545,
+      "sha256": "0c227ba5571ccc9ef50e4fd260440eed26eecba2401b8523be06f6acdd0eaee2"
+    },
+    {
+      "path": "outputs/release_blockers.json",
+      "bytes": 435,
+      "sha256": "c92734f613e1cdab6a24b0eee70d22c3f831cbd4e68404aa289833c78dc2cfa2"
+    },
+    {
+      "path": "outputs/request_preview.json",
+      "bytes": 11675,
+      "sha256": "a084919f171a9eee8389ae421f9645d74ad8365a51f7305dbaac10f4d5cdcbc6"
+    },
+    {
+      "path": "outputs/signal_qa.json",
+      "bytes": 530,
+      "sha256": "818ada8b8576d250955b1d8b6b670401771058cadec3f84a6087d843311ae508"
+    },
+    {
+      "path": "outputs/tests.txt",
+      "bytes": 99,
+      "sha256": "500c1f89ccbd4635fcb6310896045b3026c6fb7c77425090eb5ffb3e6fe9f284"
+    },
+    {
+      "path": "outputs/timeline.json",
+      "bytes": 5600,
+      "sha256": "56f4b7d1f1557e77a01e275175f3e9b0792e656ca3a245e7fd412e954c400aa2"
+    },
+    {
+      "path": "outputs/timing_fixture_NOT_SPEECH.wav",
+      "bytes": 5031404,
+      "sha256": "d236d69531a88f74dae6fcf26cb87daa3fba3554b8f565650fe8713813693470"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 572,
+      "sha256": "180b76629d756572cfc1131c8d78a1909cb76bc0d6ef7087476e6437efa8b093"
+    },
+    {
+      "path": "research/Public_Narration_Directory.md",
+      "bytes": 12437,
+      "sha256": "578eeaeb7c374225813036cc930824fe1262857868ad08aa622f148a741b4ea4"
+    },
+    {
+      "path": "research/custom_skills.csv",
+      "bytes": 7866,
+      "sha256": "aacf8d3c11bb0aa81344ace8c84525e81890cfe914168b2ddbdc385b602973ab"
+    },
+    {
+      "path": "research/public_directory.csv",
+      "bytes": 8738,
+      "sha256": "1e6a47e7fa4759a578c225652f7df3f2be2b2a84935df7cb906059d897065f14"
+    },
+    {
+      "path": "scripts/build_docs.py",
+      "bytes": 41990,
+      "sha256": "09b47173ad71a442d46bd149552abd8330bfbdb1fef7ab109d262ef04efa5714"
+    },
+    {
+      "path": "scripts/build_examples.py",
+      "bytes": 13381,
+      "sha256": "e9e771bfdaa07f6bcb1882f1840a077d2f4c2c177dc33bf90281465fe4ec119b"
+    },
+    {
+      "path": "skills/examleaf-audio-production-engineer/SKILL.md",
+      "bytes": 1901,
+      "sha256": "bc00d46e954cc1dbf4d7f719622259d95aac085dc96b4d2b00d3db5deffdec09"
+    },
+    {
+      "path": "skills/examleaf-audio-production-engineer/evals/cases.json",
+      "bytes": 423,
+      "sha256": "21a3d51508069cc9024d02255ac0e3e58fcad6365aa9945e13a51954f8abcc55"
+    },
+    {
+      "path": "skills/examleaf-audio-production-engineer/references/README.md",
+      "bytes": 100,
+      "sha256": "0737956e7d5ae7e7109be4616fd446bba5684b0f35297e2fa0e6bf9aff862ff0"
+    },
+    {
+      "path": "skills/examleaf-audio-production-engineer/templates/handoff.json",
+      "bytes": 191,
+      "sha256": "2b790dfa9004521ba4f10aee3b18bf076108f4507e9ae0b6bc03d022d4214f7d"
+    },
+    {
+      "path": "skills/examleaf-cost-regeneration-optimizer/SKILL.md",
+      "bytes": 1921,
+      "sha256": "b3d1d15795bfb4208bacb9d4990825583f24eff3e832a99cade1e7d66ca2deb3"
+    },
+    {
+      "path": "skills/examleaf-cost-regeneration-optimizer/evals/cases.json",
+      "bytes": 411,
+      "sha256": "b0e271076de5f6b66b3de6559bc50df5bd1706fb9594c54fc77b5ec7c6d20ff1"
+    },
+    {
+      "path": "skills/examleaf-cost-regeneration-optimizer/references/README.md",
+      "bytes": 100,
+      "sha256": "0737956e7d5ae7e7109be4616fd446bba5684b0f35297e2fa0e6bf9aff862ff0"
+    },
+    {
+      "path": "skills/examleaf-cost-regeneration-optimizer/templates/handoff.json",
+      "bytes": 193,
+      "sha256": "96e5fa77403d2d2f66d22a06183985536de104d8b589578b0d96f11795b2cd73"
+    },
+    {
+      "path": "skills/examleaf-dialogue-naturalizer/SKILL.md",
+      "bytes": 1873,
+      "sha256": "eb6b1c2a4535832bf195058f1089d923ec29ad9ef9c027921ecd839c39ee269c"
+    },
+    {
+      "path": "skills/examleaf-dialogue-naturalizer/evals/cases.json",
+      "bytes": 382,
+      "sha256": "00eb4bc6cb6792b7d28bad5b5872664d8988ffc9e76af54d1d50b301616db1a9"
+    },
+    {
+      "path": "skills/examleaf-dialogue-naturalizer/references/README.md",
+      "bytes": 100,
+      "sha256": "0737956e7d5ae7e7109be4616fd446bba5684b0f35297e2fa0e6bf9aff862ff0"
+    },
+    {
+      "path": "skills/examleaf-dialogue-naturalizer/templates/handoff.json",
+      "bytes": 186,
+      "sha256": "ab197aa93167bdac367fb386dfffbb251e5464a425c26668dee33873cd0656d2"
+    },
+    {
+      "path": "skills/examleaf-educational-storytelling/SKILL.md",
+      "bytes": 1813,
+      "sha256": "9048ed5becacc57fbd12dc19c00e9274a9542b97a892dc4509dffa7074829c1c"
+    },
+    {
+      "path": "skills/examleaf-educational-storytelling/evals/cases.json",
+      "bytes": 386,
+      "sha256": "ed0bb21d8d5639102e07a392865acdc5d89ffc2eda5079b4679c5f78b0a5bb32"
+    },
+    {
+      "path": "skills/examleaf-educational-storytelling/references/README.md",
+      "bytes": 100,
+      "sha256": "0737956e7d5ae7e7109be4616fd446bba5684b0f35297e2fa0e6bf9aff862ff0"
+    },
+    {
+      "path": "skills/examleaf-educational-storytelling/templates/handoff.json",
+      "bytes": 190,
+      "sha256": "a4b39443e3087d1202e0e352f59a7248fb0218c0a51a50c47ed9cd77249a3bba"
+    },
+    {
+      "path": "skills/examleaf-humour-meme-director/SKILL.md",
+      "bytes": 1838,
+      "sha256": "a2a5378fd2f79f8eb05cf70e196a17138cc0c25549fe8ff124223728f0557329"
+    },
+    {
+      "path": "skills/examleaf-humour-meme-director/evals/cases.json",
+      "bytes": 426,
+      "sha256": "ca8e8d7dce55375d1b698358266363e9d6dd27fa39da9258b62e5afed243fd1e"
+    },
+    {
+      "path": "skills/examleaf-humour-meme-director/references/README.md",
+      "bytes": 100,
+      "sha256": "0737956e7d5ae7e7109be4616fd446bba5684b0f35297e2fa0e6bf9aff862ff0"
+    },
+    {
+      "path": "skills/examleaf-humour-meme-director/templates/handoff.json",
+      "bytes": 186,
+      "sha256": "7b4e52531dc99c4b7ba4c3895851f8a9f8d7d5038323403d249af2f9c41c8c9b"
+    },
+    {
+      "path": "skills/examleaf-interactive-teaching-director/SKILL.md",
+      "bytes": 1919,
+      "sha256": "daaf56eb98d73fb65ace4c8418617d4643c149bb5c923e667e4b9e3b88faf616"
+    },
+    {
+      "path": "skills/examleaf-interactive-teaching-director/evals/cases.json",
+      "bytes": 442,
+      "sha256": "a52a9734de6dbf0337a9c09f70f4fcd2ac54ca446b8f072f8cd9ba746bee75ab"
+    },
+    {
+      "path": "skills/examleaf-interactive-teaching-director/references/README.md",
+      "bytes": 100,
+      "sha256": "0737956e7d5ae7e7109be4616fd446bba5684b0f35297e2fa0e6bf9aff862ff0"
+    },
+    {
+      "path": "skills/examleaf-interactive-teaching-director/templates/handoff.json",
+      "bytes": 195,
+      "sha256": "c9eeb758e530a3cc734d280d725814c8f228cc9966b92ec2746774e81eda3163"
+    },
+    {
+      "path": "skills/examleaf-multilingual-director/SKILL.md",
+      "bytes": 1906,
+      "sha256": "c4f8e88847c6e8400c6b9f53f883598e0f327417e07c7c84fa54a7afce0f995a"
+    },
+    {
+      "path": "skills/examleaf-multilingual-director/evals/cases.json",
+      "bytes": 406,
+      "sha256": "2a54c1d2f164d981e680b3865da53bc4183492f410507529eb1cfb93db1c85d0"
+    },
+    {
+      "path": "skills/examleaf-multilingual-director/references/README.md",
+      "bytes": 100,
+      "sha256": "0737956e7d5ae7e7109be4616fd446bba5684b0f35297e2fa0e6bf9aff862ff0"
+    },
+    {
+      "path": "skills/examleaf-multilingual-director/templates/handoff.json",
+      "bytes": 187,
+      "sha256": "f1fad0e95ea6f1b863c7948bc2722fe405e579461c305a9bf00322cd9a30319d"
+    },
+    {
+      "path": "skills/examleaf-narration-quality-reviewer/SKILL.md",
+      "bytes": 1911,
+      "sha256": "8529f9461e19f8858b90821131ff1cbeada23b4a698dd19b42f80b79c0dd27e1"
+    },
+    {
+      "path": "skills/examleaf-narration-quality-reviewer/evals/cases.json",
+      "bytes": 420,
+      "sha256": "34a64f16db4b9c1ecf1c2b7fbe89081ed69dbe42dd8a697aaf07ee38f8238882"
+    },
+    {
+      "path": "skills/examleaf-narration-quality-reviewer/references/README.md",
+      "bytes": 100,
+      "sha256": "0737956e7d5ae7e7109be4616fd446bba5684b0f35297e2fa0e6bf9aff862ff0"
+    },
+    {
+      "path": "skills/examleaf-narration-quality-reviewer/templates/handoff.json",
+      "bytes": 192,
+      "sha256": "15dd80e56ebd97764753434dd02515cf63f8a395160d6ce042720d8a446a3d82"
+    },
+    {
+      "path": "skills/examleaf-pacing-controller/SKILL.md",
+      "bytes": 1809,
+      "sha256": "a2ab2f230f0d28750423116b34cf41c1f6501bd5419b50512196bf31a09abc50"
+    },
+    {
+      "path": "skills/examleaf-pacing-controller/evals/cases.json",
+      "bytes": 391,
+      "sha256": "9e2533584b43741cc8f0d2dc7736fe10dd3a35323e449751dc397a4dcdffb280"
+    },
+    {
+      "path": "skills/examleaf-pacing-controller/references/README.md",
+      "bytes": 100,
+      "sha256": "0737956e7d5ae7e7109be4616fd446bba5684b0f35297e2fa0e6bf9aff862ff0"
+    },
+    {
+      "path": "skills/examleaf-pacing-controller/templates/handoff.json",
+      "bytes": 183,
+      "sha256": "b5f5d1769c3a80fe4db7b3558340c8d1d713317a503b4eae7873434c39ac9fab"
+    },
+    {
+      "path": "skills/examleaf-speech-animation-synchronizer/SKILL.md",
+      "bytes": 1903,
+      "sha256": "ada78eebdc08043945c025e7d1504ab2628e49ff0cd79b50d98b188644211239"
+    },
+    {
+      "path": "skills/examleaf-speech-animation-synchronizer/evals/cases.json",
+      "bytes": 424,
+      "sha256": "d4a34a0ba5d006d397154cae34f6b9864041a70f1c66a2b5f85df3e81e188d71"
+    },
+    {
+      "path": "skills/examleaf-speech-animation-synchronizer/references/README.md",
+      "bytes": 100,
+      "sha256": "0737956e7d5ae7e7109be4616fd446bba5684b0f35297e2fa0e6bf9aff862ff0"
+    },
+    {
+      "path": "skills/examleaf-speech-animation-synchronizer/templates/handoff.json",
+      "bytes": 195,
+      "sha256": "bffb95880496d69409a3886cc0f52dcd665cef161d3249b3ef55cf3571cb7fb6"
+    },
+    {
+      "path": "skills/examleaf-stem-pronunciation/SKILL.md",
+      "bytes": 1875,
+      "sha256": "2cf11740d2573c154380b4bc3e69e935c5ad7120870d071ab67927968134029c"
+    },
+    {
+      "path": "skills/examleaf-stem-pronunciation/evals/cases.json",
+      "bytes": 436,
+      "sha256": "6b00609ac62f6b7d34b4a24a7d1901214007e6311e0880fd3ff0ad125f99b889"
+    },
+    {
+      "path": "skills/examleaf-stem-pronunciation/references/README.md",
+      "bytes": 100,
+      "sha256": "0737956e7d5ae7e7109be4616fd446bba5684b0f35297e2fa0e6bf9aff862ff0"
+    },
+    {
+      "path": "skills/examleaf-stem-pronunciation/templates/handoff.json",
+      "bytes": 184,
+      "sha256": "b23eb271e92181e9eeeea328171509e2ca72f273193b0dbdc6592f9808338dec"
+    },
+    {
+      "path": "skills/examleaf-student-psychology-director/SKILL.md",
+      "bytes": 1834,
+      "sha256": "5a9dc454151e3c1c607c0a6383cc4b7ad6b6a54d32f512593647a02873dff4ba"
+    },
+    {
+      "path": "skills/examleaf-student-psychology-director/evals/cases.json",
+      "bytes": 388,
+      "sha256": "3c94bca9db9bdc8be13693c217041ccf75db260df1973781d9a275632bf06ac9"
+    },
+    {
+      "path": "skills/examleaf-student-psychology-director/references/README.md",
+      "bytes": 100,
+      "sha256": "0737956e7d5ae7e7109be4616fd446bba5684b0f35297e2fa0e6bf9aff862ff0"
+    },
+    {
+      "path": "skills/examleaf-student-psychology-director/templates/handoff.json",
+      "bytes": 193,
+      "sha256": "4648a4c5c247f76c71caad9578539a4e07ee7906e50ad6049df3c0e93fd3f1be"
+    },
+    {
+      "path": "skills/examleaf-super-teacher-scriptwriter/SKILL.md",
+      "bytes": 1895,
+      "sha256": "2856fe993a094fe79f5962028d460fb9dad7953f469e6794dc66f04c8302195c"
+    },
+    {
+      "path": "skills/examleaf-super-teacher-scriptwriter/evals/cases.json",
+      "bytes": 413,
+      "sha256": "d1efdce94bb50d64e75a572360699245c7eb98f4217b8201f91fe45c922a3024"
+    },
+    {
+      "path": "skills/examleaf-super-teacher-scriptwriter/references/README.md",
+      "bytes": 100,
+      "sha256": "0737956e7d5ae7e7109be4616fd446bba5684b0f35297e2fa0e6bf9aff862ff0"
+    },
+    {
+      "path": "skills/examleaf-super-teacher-scriptwriter/templates/handoff.json",
+      "bytes": 192,
+      "sha256": "5574713399ee1fa6be56b0be13cac0c91ace85f952db2df3f535a06d5e8b91dc"
+    },
+    {
+      "path": "skills/examleaf-tts-provider-adapter/SKILL.md",
+      "bytes": 1857,
+      "sha256": "48d5da4cf12d653c281970d3703b0966ba7f61f169822f702850956e59c6526d"
+    },
+    {
+      "path": "skills/examleaf-tts-provider-adapter/evals/cases.json",
+      "bytes": 425,
+      "sha256": "3a910929fad1482c6e095497be6934242141a2d2ef3c32aa7c6191b5389e246a"
+    },
+    {
+      "path": "skills/examleaf-tts-provider-adapter/references/README.md",
+      "bytes": 100,
+      "sha256": "0737956e7d5ae7e7109be4616fd446bba5684b0f35297e2fa0e6bf9aff862ff0"
+    },
+    {
+      "path": "skills/examleaf-tts-provider-adapter/templates/handoff.json",
+      "bytes": 186,
+      "sha256": "3d91af1f0124b31b93f3f3a09bded37ac480b27e4f775adb57a0022c01abf939"
+    },
+    {
+      "path": "skills/examleaf-voice-acting-director/SKILL.md",
+      "bytes": 1854,
+      "sha256": "6adeefdea1fe1fe423ec2d9d0078603e146e9b9140282cc6e44fd1d4d36ef02b"
+    },
+    {
+      "path": "skills/examleaf-voice-acting-director/evals/cases.json",
+      "bytes": 415,
+      "sha256": "1119172d540e4bd99b0caf4705a0ce1855a0c5723e1d9408e0295458b659455e"
+    },
+    {
+      "path": "skills/examleaf-voice-acting-director/references/README.md",
+      "bytes": 100,
+      "sha256": "0737956e7d5ae7e7109be4616fd446bba5684b0f35297e2fa0e6bf9aff862ff0"
+    },
+    {
+      "path": "skills/examleaf-voice-acting-director/templates/handoff.json",
+      "bytes": 187,
+      "sha256": "639a45194a480a7e80241c5174b6a5cff734aee2f92b3903c48652bf6daa31ac"
+    },
+    {
+      "path": "src/examleaf_narration/__init__.py",
+      "bytes": 93,
+      "sha256": "e55c764c6535a2ed9313d724b71b7029ccec54c173e544d30643ac877b9696eb"
+    },
+    {
+      "path": "src/examleaf_narration/cache.py",
+      "bytes": 1367,
+      "sha256": "c3c2328d44694c6c04a13a96438b0e97fa81121461fc2c22862143acea440d54"
+    },
+    {
+      "path": "src/examleaf_narration/cli.py",
+      "bytes": 1764,
+      "sha256": "44bfebdb0bcefa233026384c0e3b128680838ac0fe5b3ee86089867fd440367e"
+    },
+    {
+      "path": "src/examleaf_narration/compiler.py",
+      "bytes": 6488,
+      "sha256": "1dc8665e6b45eb5b042f3dcd7752359cf45d478482f7e05ab6c6e6348e0885c9"
+    },
+    {
+      "path": "src/examleaf_narration/contracts.py",
+      "bytes": 4726,
+      "sha256": "8dc17ac3879290a4cea41ac9f00243b72fd416fbc04f44933b3abd233ffddf97"
+    },
+    {
+      "path": "src/examleaf_narration/pronunciation.py",
+      "bytes": 1713,
+      "sha256": "097e01df1b5141952ff17d4f6e4e0a2aca6d89ff9bffcd9f2d562855539a9790"
+    },
+    {
+      "path": "src/examleaf_narration/qa.py",
+      "bytes": 4656,
+      "sha256": "c236698c259e54660030a10affa2400d76185cab53a6e158f16e6ab16b5b6674"
+    },
+    {
+      "path": "src/examleaf_narration/timeline.py",
+      "bytes": 4868,
+      "sha256": "468190eaec1775341be9776576b39eb8603fa33b0ecde0ab44028e34b504a241"
+    },
+    {
+      "path": "tests/test_narration.py",
+      "bytes": 11499,
+      "sha256": "2cf7cb4af0091ccc20722d8205b096c1e05257f8626c824d34bf9f1ec6c9710b"
+    }
+  ]
+}

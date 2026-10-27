@@ -1,0 +1,21 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:06.000
+Voltage rises quickly, then approaches the supply more slowly.
+
+2
+00:00:06.000 --> 00:00:11.000
+Keep R, C and the supply fixed. Watch the same model drive the graph.
+
+3
+00:00:11.000 --> 00:00:16.500
+Predict: after one RC, is the capacitor fully charged?
+
+4
+00:00:16.500 --> 00:00:24.000
+No. After one RC, it reaches about 63.2% of the supply.
+
+5
+00:00:24.000 --> 00:00:30.000
+The curve approaches 10 V; it does not jump there instantly.

@@ -1,0 +1,99 @@
+{
+ "summary": {
+  "pass": 10,
+  "warn": 0,
+  "fail": 0,
+  "skipped": 0
+ },
+ "checks": [
+  {
+   "id": "A1",
+   "name": "seek-contract lint level 1",
+   "status": "pass",
+   "detail": "5 scenes ok"
+  },
+  {
+   "id": "A2",
+   "name": "cue sheets valid (production)",
+   "status": "pass",
+   "detail": "all valid"
+  },
+  {
+   "id": "A3",
+   "name": "on-screen science text equals fixture",
+   "status": "pass",
+   "detail": "every [data-fx] element matches"
+  },
+  {
+   "id": "A4",
+   "name": "safe zones (text inside zones, side margin)",
+   "status": "pass",
+   "detail": "no critical or major finding"
+  },
+  {
+   "id": "A5",
+   "name": "flash test (luminance deltas, 3 Hz rule)",
+   "status": "pass",
+   "detail": {
+    "frames": 2158,
+    "verdict": "pass",
+    "summary": {}
+   }
+  },
+  {
+   "id": "A6",
+   "name": "loudness −16 LUFS ±1, true peak ≤ −1 dBTP",
+   "status": "pass",
+   "detail": {
+    "integrated_lufs": -16.9,
+    "true_peak_dbtp": -1.5
+   }
+  },
+  {
+   "id": "A7",
+   "name": "transcript matches script (Scribe v2)",
+   "status": "pass",
+   "detail": {
+    "match_ratio": 1.0,
+    "diffs": []
+   }
+  },
+  {
+   "id": "A8",
+   "name": "pacing 130–155 wpm, total 55–80 s, think window ≥ 4 s present",
+   "status": "pass",
+   "detail": {
+    "wpm": 139,
+    "total_s": 71.93333333333334,
+    "spoken_s": 60.7,
+    "think_windows": [
+     [
+      "b02",
+      5.0
+     ]
+    ]
+   }
+  },
+  {
+   "id": "A9",
+   "name": "render: no scene errors, injected sources, re-render determinism",
+   "status": "pass",
+   "detail": {
+    "errors": 0,
+    "sources_injected": true,
+    "deterministic": true,
+    "warnings": 0
+   }
+  },
+  {
+   "id": "A10",
+   "name": "video length equals narration timeline (±1 frame)",
+   "status": "pass",
+   "detail": {
+    "video_s": 71.933,
+    "timeline_s": 71.93333333333334,
+    "first_scene_start": 0.0
+   }
+  }
+ ]
+}

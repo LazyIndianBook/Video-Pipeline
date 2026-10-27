@@ -1,0 +1,9 @@
+{
+  "python": "3.13.5",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "numpy": "2.3.5",
+  "soundfile": "0.13.1",
+  "status": "Offline signal tests; no speech model downloaded or executed locally.",
+  "pydantic": "2.13.5",
+  "scipy": "1.17.0"
+}

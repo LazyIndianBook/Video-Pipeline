@@ -1,0 +1,35 @@
+{
+  "lesson_id": "water_textbook_demo",
+  "academic_edition": "Demonstration only; board alignment not certified",
+  "source_claim_manifest": "examples/claims.json",
+  "voice": {
+    "identity_id": "examleaf-super-teacher",
+    "version": "audition-1",
+    "brief": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words.",
+    "locale": "en-IN",
+    "rights_status": "audition-only",
+    "rights_record": "Must replace with actual stock-voice licence or written informed performer consent."
+  },
+  "lexicon_version": "en-reviewed-example-1",
+  "segments": [
+    {
+      "segment_id": "textbook",
+      "objective_id": "count_atoms",
+      "claim_ids": [
+        "water-composition",
+        "coefficient-quantity"
+      ],
+      "text_template": "A balanced chemical equation contains equal numbers of atoms of each element on the reactant and product sides. Balancing is performed by changing coefficients, not the subscripts in the specified chemical formulas. Two water molecules contain four hydrogen atoms and two oxygen atoms. Verification requires counting each element on both sides.",
+      "direction": {
+        "mode": "steady",
+        "target_wpm": 140
+      },
+      "critical_phrases": [
+        "equal",
+        "not",
+        "four hydrogen",
+        "two oxygen"
+      ]
+    }
+  ]
+}

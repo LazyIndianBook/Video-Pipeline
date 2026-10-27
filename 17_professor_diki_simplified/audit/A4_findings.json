@@ -1,0 +1,254 @@
+[
+ {
+  "id": "A4-01",
+  "video": "all",
+  "t": "",
+  "evidence": "Muxed lengths 71.93 / 73.2 / 67.1 s (timeline.json); check_script estimated physics 68 s and printed OK; qa A8 pass.",
+  "problem": "Videos exceed the 60 s target by 7–13 s.",
+  "root_cause": {
+   "layer": "contract+validator",
+   "location": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §0/§3 ('60–70 s', target_duration_s 65); each brief.md 'Format'; tooling/check_script.py L82–84 (estimate omits LEAD_IN_S 0.6 / TAIL_S 1.6, never fails); tooling/qa.py A8 (55–80 s, warn only)"
+  },
+  "effect": "About 11 s of fixed overhead (lead-in, 5 s think, pauses, spoken disclosure, tail) ships by contract.",
+  "severity": "high",
+  "fix": {
+   "what": "Hard max 60.0 s muxed, plan 52–58 s; full estimate incl. lead-in, tail, pauses, think, outro; fail over 58 s.",
+   "where": "PILOT_CONTRACT §0/§3; check_script.py; qa.py new A11 duration_hard",
+   "control": "rung 2 schema (target_duration_s ≤ 58) + rung 3 validator (A11; regression: physics/opus must fail at 71.93 s)"
+  }
+ },
+ {
+  "id": "A4-02",
+  "video": "all",
+  "t": "",
+  "evidence": "think_window_s = 5 in all three scripts; measured silence 5.51 s (physics 17.0–22.5 s); check_script L49 rejects < 4 s; qa A8 requires ≥ 4 s.",
+  "problem": "The same 5 s silence follows every predict prompt, simple ones included; pauses carry no purpose label.",
+  "root_cause": {
+   "layer": "brief+contract+validator",
+   "location": "16_pilot_builds_2026-10-16/<subject>/brief.md ('5 s think window'); PILOT_CONTRACT.md §3 ('4–6'); tooling/check_script.py L49; tooling/qa.py A8; source 03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md L437 (long-form '4–8 seconds' carried into a Short)"
+  },
+  "effect": "Dead time, low tempo; the audit's 1.4 s annotated window cannot pass our validator.",
+  "severity": "high",
+  "fix": {
+   "what": "think_kind enum with bands (recall 1.2–2.0, predict_one_step 1.4–3.0, compute 3.0–5.0 s); pause_kind per pause; plate states what to produce when > 2 s.",
+   "where": "PILOT_CONTRACT §3; script schema; check_script.py; qa.py new A13 think_fit",
+   "control": "rung 2 schema + rung 3 validator (regression: 5 s with kind recall or predict_one_step fails)"
+  }
+ },
+ {
+  "id": "A4-03",
+  "video": "all",
+  "t": "",
+  "evidence": "b07 text 'AI-generated narration; script by ExamLeaf.' spoken (≈4 s) and shown in s05 of all three; qa A7 confirms it was spoken correctly.",
+  "problem": "Legacy ExamLeaf brand is spoken and visible; there is no Professor Diki Simplified identity.",
+  "root_cause": {
+   "layer": "tooling constant+contract+validator",
+   "location": "16_pilot_builds_2026-10-16/tooling/pilotlib.py L13 DISCLOSURE; tooling/check_script.py L47 (exact equality); PILOT_CONTRACT.md §3 (outro text) and §4 (outro scene shows it)"
+  },
+  "effect": "A brand violation is enforced by our own validator; the disclosure also costs about 6 s of runtime.",
+  "severity": "critical",
+  "fix": {
+   "what": "No spoken brand/disclosure beat; final 1.5 s end card from brand.end_card 'Professor Diki Simplified' + brand.ai_label; ban /examleaf/i in script, VTT, transcript, visible DOM. Founder/legal to confirm on-screen AI label satisfies SQ-12.",
+   "where": "pilotlib.py; check_script.py; PILOT_CONTRACT §3/§4; fixture brand.*; qa.py new A12 brand_hygiene",
+   "control": "rung 1 component (end card) + rung 3 validator (A12; regression: all three current scripts fail)"
+  }
+ },
+ {
+  "id": "A4-04",
+  "video": "all",
+  "t": "",
+  "evidence": "Physics recap board replaces the circuit at 57.4 s (s05 start); biology tree → choices → equation → pot → pie → tree; render/concat.txt joins five scene MP4s; Opus physics notes: 's05 opened on an empty board'.",
+  "problem": "Boards reset at scene boundaries; no persistent visual explanation.",
+  "root_cause": {
+   "layer": "contract+tooling+brief+exemplar",
+   "location": "16_pilot_builds_2026-10-16/<subject>/brief.md 'Scenes' lists; PILOT_CONTRACT.md §4 (one HTML per scene, scene time from 0); tooling/narrate.py L131–141 (tiling); tooling/render.py L72–74 (ffmpeg concat -c copy); 08_production_kit/skills/examleaf-fill-concept-intro/SKILL.md §3 (one archetype per scene)"
+  },
+  "effect": "Learner rebuilds context after every cut; representation switching weakens the explanation.",
+  "severity": "high",
+  "fix": {
+   "what": "Persistent stage: hero data-rep survives every boundary unless scenes[].reset_reason; ≤ 2 representation switches; meta.carry_in state injected; allow one long scene per video.",
+   "where": "scene_template.html; PILOT_CONTRACT §4; narrate.py; render.py; qa.py new A17 persistence (IoU ≥ 0.6)",
+   "control": "rung 1 template default + rung 3 validator (regression: physics/opus fails at the 57.4 s boundary)"
+  }
+ },
+ {
+  "id": "A4-05",
+  "video": "all",
+  "t": "",
+  "evidence": "Physics s01 reveals 2.23 → 9.67 s in an 11.2 s scene; longest no-change spans chemistry s03 8.96 s (25.6 s), s05 8.35 s (64.8 s), s02 6.5–7.6 s in all three.",
+  "problem": "Diagrams become useful late; long static stretches.",
+  "root_cause": {
+   "layer": "template default+rule",
+   "location": "12_advanced_animations_with_claude/04_harness_contract/scene_template.html (cued elements opacity 0, reveal at t0−0.05); validate_cue_sheet.py (warns > 0.10 s early); vertical_safe_zones.tokens.json hold_times_s (floor 1.2 s, no maximum); Kit SKILL.md §3 ('one reveal per part on the word that names it')"
+  },
+  "effect": "The diagram is complete only once the narration has named every part; attention drifts during static spans.",
+  "severity": "high",
+  "fix": {
+   "what": "Hero visible at t = 0, cues annotate; motion.max_static_s 3.0.",
+   "where": "scene_template.html; tokens; qa.py new A14 time_to_useful (≥ 80 % hero ink by 1.5 s hook / 0.5 s scene) and A15 max_static (≤ 3.0 s)",
+   "control": "rung 1 + rung 3 (regression: physics s01 fails A14, chemistry fails A15)"
+  }
+ },
+ {
+  "id": "A4-06",
+  "video": "all",
+  "t": "",
+  "evidence": "Template buildText reveals one span per spoken word; buildCues scale 0.6→1 backOut; physics s01 words translateY/scale backOut and headline fades out at beat end.",
+  "problem": "Headlines write slowly and vanish each beat; measured quantities pop with elastic overshoot.",
+  "root_cause": {
+   "layer": "template default",
+   "location": "12_advanced_animations_with_claude/04_harness_contract/scene_template.html buildText/buildCues; 16_pilot_builds_2026-10-16/physics/opus/scenes/s01.html render()"
+  },
+  "effect": "Slow reading start, per-beat title resets, playful motion on science values.",
+  "severity": "medium",
+  "fix": {
+   "what": "Headline whole on first word (200 ms fade), persists until replaced; reveals cubicOut opacity 180–300 ms; lint F15 bans backOut/scale/translate on [data-fx] and headline spans.",
+   "where": "scene_template.html; lint_seek_contract.js",
+   "control": "rung 1 template default + rung 3 lint"
+  }
+ },
+ {
+  "id": "A4-07",
+  "video": "all",
+  "t": "",
+  "evidence": "tokens: insets top 250 / bottom 450, shares 0.22/0.54/0.24 → middle_visual y 518–1177 (659 px, 34 % of frame); caption zone holds no captions (both judge panels).",
+  "problem": "Explanatory content is small.",
+  "root_cause": {
+   "layer": "tokens",
+   "location": "12_advanced_animations_with_claude/04_harness_contract/vertical_safe_zones.tokens.json zones; Kit R-023 min_fill 'proposed'"
+  },
+  "effect": "Diagrams and labels read small on phones; reserved area stays empty.",
+  "severity": "medium",
+  "fix": {
+   "what": "Tokens 2.0 shares 0.16/0.66/0.18 when no burned captions; zones.middle_visual.min_fill 0.7.",
+   "where": "tokens; scene_template.html mirror; qa.py new A18 hero_size (≥ 0.70)",
+   "control": "rung 1 token default + rung 3 validator"
+  }
+ },
+ {
+  "id": "A4-08",
+  "video": "all",
+  "t": "",
+  "evidence": "Briefs: doodle-handdrawn / editorial-vox / paper-collage-vertical; builders chose Chalkboard SE, Georgia, collage faces; style README §2 selects per scene job.",
+  "problem": "Visual identity varies per video.",
+  "root_cause": {
+   "layer": "brief+style system",
+   "location": "16_pilot_builds_2026-10-16/<subject>/brief.md 'Style'; 12_advanced_animations_with_claude/05_style_guides/README.md §2; PILOT_CONTRACT.md §4 'system stack' vs style fonts_ban; COMPARISON_and_GAPS.md L-09 (fonts not vendored)"
+  },
+  "effect": "No recognisable Professor Diki Simplified series look.",
+  "severity": "high",
+  "fix": {
+   "what": "One house identity professor-diki@1.0 (one headline face, one math face, paper #F5F2EA, ink #16263A, subject accent only); style enum single value; vendor fonts.",
+   "where": "script schema; style_tokens.json; qa.py new A19 identity",
+   "control": "rung 2 schema + rung 1 tokens + rung 3 validator (regression: chemistry/opus fails on face)"
+  }
+ },
+ {
+  "id": "A4-09",
+  "video": "all",
+  "t": "",
+  "evidence": "'That is the law of conservation of mass', 'Green plants make their own food'; pilot graph schema has no analogy type; SQ-10 needs ANL; 4 of 7 beats tagged calm/thoughtful; rubric D3 rewards 'register fits l9_10'.",
+  "problem": "Textbook register; no intuition-first analogy or story.",
+  "root_cause": {
+   "layer": "schema+contract+rubric (partly builder judgement)",
+   "location": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 (sentence may not assert beyond nodes), §5 (node types); briefs 'Teach:' lines; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md SQ-05/06/07 report-only, SQ-10; tooling/pilotlib.py ALLOWED_TAGS; tooling/JUDGE_RUBRIC.md D3"
+  },
+  "effect": "Correct but dull narration; weak learners are not given an intuition.",
+  "severity": "high",
+  "fix": {
+   "what": "Add ANL node type (maps, breaks_at, formal_return); slots concrete → explain.mechanism (cites SIM/ANL) before name.formal; implement SQ-06 stock-phrase list in check_script.",
+   "where": "lesson_graph schema; PILOT_CONTRACT §3/§5; check_script.py; JUDGE_RUBRIC.md",
+   "control": "rung 2 schema + rung 3 validator + rung 4 exemplar"
+  }
+ },
+ {
+  "id": "A4-10",
+  "video": "all",
+  "t": "",
+  "evidence": "Biology brief asks about 'the carbon in the wood', claims 'most dry mass is carbon', offers 'about forty percent'; fixture computes carbon in glucose; physics brief 'decide whether always is safe'.",
+  "problem": "Wood→carbon question mismatch, 40 % detour and stiff phrasing were seeded by the briefs.",
+  "root_cause": {
+   "layer": "brief authoring (no brief gate)",
+   "location": "16_pilot_builds_2026-10-16/biology/brief.md, physics/brief.md; biology/opus/build_notes.md §4 rule 4"
+  },
+  "effect": "Builders inherited an off-chain fact and a question that does not match its answer.",
+  "severity": "medium",
+  "fix": {
+   "what": "Brief gate: question_target named by hook, predict answer and confront answer; every spoken fixture value on_chain: true.",
+   "where": "examleaf-anim-brief / brief schema; new brief_check.py",
+   "control": "rung 2 schema + rung 3 validator (regression: biology brief fails)"
+  }
+ },
+ {
+  "id": "A4-11",
+  "video": "all",
+  "t": "",
+  "evidence": "pilotlib.SLOTS has no transfer slot; check.retrieval optional and unused in all three; F8 close next_artefact_pointer replaced by disclosure.",
+  "problem": "No transfer question and no learning check; C01's closing question missing.",
+  "root_cause": {
+   "layer": "contract+schema",
+   "location": "16_pilot_builds_2026-10-16/tooling/pilotlib.py SLOTS; PILOT_CONTRACT.md §3; 15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §4 F8"
+  },
+  "effect": "Videos explain but never verify that the learner can apply the idea.",
+  "severity": "high",
+  "fix": {
+   "what": "Required check.transfer with new fixture numbers, answer after its think window.",
+   "where": "pilotlib.py SLOTS; check_script.py; qa.py new A20 learning_sequence",
+   "control": "rung 2 schema + rung 3 validator"
+  }
+ },
+ {
+  "id": "A4-12",
+  "video": "all",
+  "t": "",
+  "evidence": "qa.py A1–A10 passed 10/10 on all three Opus builds; examleaf-anim-qa qa_rubric.md L55 excludes teaching quality and pacing; A4 samples only id+text elements; PK-D01…D19 have no implementation.",
+  "problem": "QA measures render success, not the learning sequence, persistence, size, empty/static time, brand or per-beat pacing.",
+  "root_cause": {
+   "layer": "validator coverage",
+   "location": "16_pilot_builds_2026-10-16/tooling/qa.py; 12_advanced_animations_with_claude/03_skills/examleaf-anim-qa/references/qa_rubric.md L55; 08_production_kit/RESTRICTIONS.md (15 'proposed' verifiers)"
+  },
+  "effect": "Defects pass every gate and recur.",
+  "severity": "critical",
+  "fix": {
+   "what": "Add A11–A21 (duration, brand, think fit, time to useful, max static, empty middle, persistence, hero size, identity, learning sequence, per-beat pacing); restrictions_lint.py fails any 'block' rule whose verifier is 'proposed'.",
+   "where": "tooling/qa.py; tooling/regress.py; 08_production_kit/restrictions_lint.py",
+   "control": "rung 3 validator + regression suite of frozen Opus negatives"
+  }
+ },
+ {
+  "id": "A4-13",
+  "video": "all",
+  "t": "",
+  "evidence": "JUDGE_RUBRIC: comparative A vs B with gap_for_weaker; judges saw contact sheets + 3 frames per scene, one subject each; Kit SKILL.md §9 'Golden (candidates)' = physics/opus, chemistry/opus; eval bars 'pedagogy ≥ 18, visual ≥ 14' anchored to Opus.",
+  "problem": "The review loop measured Haiku against Opus, never Opus against the target, and encoded Opus defects as the exemplar.",
+  "root_cause": {
+   "layer": "review loop+exemplar",
+   "location": "16_pilot_builds_2026-10-16/tooling/JUDGE_RUBRIC.md; 12_advanced_animations_with_claude/08_production_kit/skills/examleaf-fill-concept-intro/SKILL.md §9–§10"
+  },
+  "effect": "Slow pacing, resets and brand were scored 15–19/20 and propagated.",
+  "severity": "high",
+  "fix": {
+   "what": "Absolute scorecard (external weights, threshold 85, hard gates A11/A12/A20), full MP4 with audio, a cross-video panel; re-card Opus pilots as negatives.",
+   "where": "JUDGE_RUBRIC.md; Kit SKILL.md §9/§10",
+   "control": "rung 4 exemplar + rung 5 process, backed by rung 3 hard gates"
+  }
+ },
+ {
+  "id": "A4-14",
+  "video": "all",
+  "t": "",
+  "evidence": "Per-beat wpm 128–162 inside one video (measurements.json); qa A8 checks only the whole-video mean 125–160.",
+  "problem": "Pacing is not checked per beat or by purpose (dense vs recap).",
+  "root_cause": {
+   "layer": "validator coverage",
+   "location": "16_pilot_builds_2026-10-16/tooling/qa.py A8; SCRIPTING_REGISTRY.md §2 bands (ordinary/dense/recap) not applied in pilot"
+  },
+  "effect": "Uniform delivery; dense beats are not slowed and recaps are not quickened.",
+  "severity": "medium",
+  "fix": {
+   "what": "Each beat carries a pace band; check per-beat wpm against its band ±5 %.",
+   "where": "script schema; qa.py new A21 beat_pacing",
+   "control": "rung 2 schema + rung 3 validator"
+  }
+ }
+]

@@ -1,0 +1,13 @@
+# Brief: Biology concept intro (Class 10)
+
+- **video_id:** `bio-photosyn-ci-01`
+- **Topic:** Photosynthesis and where a plant's mass comes from. Hook: "A banyan tree can weigh more than fifty elephants. Where did all that material come from? Not mainly from the soil." Teach: green plants make their own food; the raw materials are carbon dioxide from the air (through stomata) and water from the soil (through roots); sunlight energy absorbed by chlorophyll drives the conversion; the products are glucose and oxygen; most of a plant's dry mass is carbon that arrived as carbon dioxide gas. Keep the overall equation: 6CO2 + 6H2O → C6H12O6 + 6O2 (in the presence of sunlight and chlorophyll).
+- **Fixture (compute in code):** count atoms on both sides of 6CO2 + 6H2O → C6H12O6 + 6O2: C 6/6, H 12/12, O 18/18 (corrected 16 Oct 2026: the brief first said 24; the Haiku builder's fixture assert caught it); assert balance. Also compute the mass fraction of carbon in glucose from integer atomic masses C=12, H=1, O=16: 72/180 = 0.4; the script may say "about forty percent of glucose by mass is carbon". Display labels for the equation pieces, "CO₂", "H₂O", "C₆H₁₂O₆", "O₂", the coefficients, and the words "sunlight", "chlorophyll".
+- **Level:** `l9_10` (NCERT Class 10 Science, chapter "Life Processes", section "Autotrophic nutrition"). Register: Super Teacher core variant. The "fifty elephants" comparison is a hook, not a claim: phrase it as "can weigh more than" with no number on screen, or drop it.
+- **Misconception to confront:** "Plants eat soil; their mass comes from the soil." Why wrong: soil supplies water and minerals; the carbon that builds sugar, cellulose and wood comes from carbon dioxide in the air.
+- **Format:** `concept_intro`, 60–70 s, one `check.predict` with a 5 s think window ("Where do you think the carbon in the wood came from: soil, water, or air?"), one `misconception.confront`, a `recap.statement`, the `outro.disclosure` beat.
+- **Style:** `paper-collage-vertical` (cut-paper leaf, sun, air with CO₂ cutouts, roots with water; layered paper shadows; boil at 8 fps is decorative only).
+- **Scenes:** 4–5 (hook tree; predict pause; the equation assembled from fixture pieces; the soil misconception; recap + disclosure).
+- **Voice:** Path B, ElevenLabs `eleven_v4`, premade voice George (`JBFqnCBsd6RMkjVDRZzb`), English. The lead narrates per beat.
+- **Character budget:** 1,000 characters of spoken text in total.
+- **Tooling python:** `/private/tmp/claude-501/-Users-chinmoybhuyan-Desktop-Personal-Book-Videos/e7dd322a-a174-4149-805e-5961efcb1de7/scratchpad/narr_venv/bin/python`

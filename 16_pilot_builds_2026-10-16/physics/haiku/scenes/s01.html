@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>Ohm's law hook circuit (phy-ohm-ci-01 s01)</title>
+<style>
+:root{--bg:#F7F9FC;--ink:#14213D;--sec:#526074;--blue:#185ABD;--teal:#087986;--amber:#9A5B00;--red:#B42318;
+  --font:"Noto Sans","Noto Sans Devanagari","Noto Sans Bengali","Kohinoor Devanagari","Kohinoor Bangla",system-ui,sans-serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#F7F9FC;--ink:#14213D}}
+@media (prefers-color-scheme: dark){:root[data-theme="dark"]{--bg:#F7F9FC;--ink:#14213D}}
+html,body{margin:0;background:var(--bg)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-family:var(--font);color:var(--ink)}
+svg#art{position:absolute;left:0;top:0}
+text{font-family:var(--font)}
+.box{position:absolute;left:0;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;box-sizing:border-box;line-height:1.4}
+#title{font-size:59px;font-weight:700;gap:0 22px}
+.w{display:inline-block;opacity:0}
+#plate{opacity:0}
+.pl{font-size:50px;font-weight:600;color:var(--blue);background:var(--bg);border:4px solid var(--ink);border-radius:28px;padding:12px 34px}
+#disclosure{font-size:50px;font-weight:600;color:var(--sec);text-align:center;opacity:0}
+.zone{display:none;position:absolute;border:2px dashed var(--red);box-sizing:border-box;font:600 28px system-ui;color:var(--red);padding:6px 12px}
+.safe .zone{display:block}
+</style>
+</head>
+<body>
+<!-- Ohm's law hook circuit (phy-ohm-ci-01 s01). Seek contract 1.0.0; structure follows 04_harness_contract/scene_template.html.
+     Every science glyph is data-fx bound to fixtures/fixture.json; headline and disclosure text come from meta.beats_text. -->
+<div id="stage">
+  <svg id="art" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs><filter id="grain" filterUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" stitchTiles="stitch" result="n"/><feComponentTransfer in="n" result="s"><feFuncA type="linear" slope="6" intercept="-4.2"/></feComponentTransfer><feColorMatrix in="s" type="matrix" values="0 0 0 0 0.08  0 0 0 0 0.13  0 0 0 0 0.24  0 0 0 1 0"/></filter><filter id="wob" filterUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920" color-interpolation-filters="sRGB"><feTurbulence id="boilNoise" type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="1" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="3" xChannelSelector="R" yChannelSelector="G"/></filter></defs><rect x="0" y="0" width="1080" height="1177" filter="url(#grain)" opacity="0.35"/>
+  <g transform="translate(0 40)"><path d="M190 598 H910 Q940 598 940 628 V1030 Q940 1060 910 1060 H190 Q160 1060 160 1030 V628 Q160 598 190 598 Z" fill="#CFDCF1" opacity="0.45"/><g id="wires" class="ink" filter="url(#wob)" fill="none" stroke="#14213D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M200 640 H470"/><path d="M610 640 H880"/><path d="M880 640 V774"/><path d="M880 866 V1000"/><path d="M880 1000 H200"/><path d="M200 822 V1000"/><path d="M200 640 V800"/></g><g id="cell" class="ink" filter="url(#wob)" fill="none" stroke="#14213D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M168 800 H232" stroke-width="9"/><path d="M186 822 H214" stroke-width="5"/></g><g id="resistor" class="ink" filter="url(#wob)" fill="none" stroke="#14213D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M470 640 L490 610 L510 670 L530 610 L550 670 L570 610 L590 670 L610 640"/></g><g id="ammeter" class="ink" filter="url(#wob)" fill="none" stroke="#14213D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M926 820 A46 46 0 1 1 834 820 A46 46 0 1 1 926 820"/></g><g id="qmark" class="ink" filter="url(#wob)" fill="none" stroke="#14213D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M868 800 Q868 782 881 782 Q896 782 896 798 Q896 810 881 818 L881 830" stroke-width="7"/><path d="M881 846 L882 846" stroke-width="9"/></g><g id="lbl_r" class="lbl"><text x="420" y="566" font-size="54" text-anchor="start"><tspan data-fx="display.r_label" fill="#185ABD" font-weight="600" dx="0"></tspan><tspan data-fx="parameters.resistance_ohm" fill="#14213D" font-weight="700" dx="14"></tspan><tspan data-fx="display.r_unit" fill="#14213D" font-weight="600" dx="8"></tspan></text></g><g id="lbl_v1" class="lbl"><text x="250" y="842" font-size="54" text-anchor="start"><tspan data-fx="display.v_label" fill="#185ABD" font-weight="600" dx="0"></tspan><tspan data-fx="parameters.v1" fill="#14213D" font-weight="700" dx="14"></tspan><tspan data-fx="display.v_unit" fill="#14213D" font-weight="600" dx="8"></tspan></text></g><g id="lbl_v2" class="lbl"><text x="250" y="922" font-size="54" text-anchor="start"><tspan data-fx="display.v_label" fill="#185ABD" font-weight="600" dx="0"></tspan><tspan data-fx="parameters.v2" fill="#14213D" font-weight="700" dx="14"></tspan><tspan data-fx="display.v_unit" fill="#14213D" font-weight="600" dx="8"></tspan></text></g><g id="lbl_i" class="lbl"><text x="752" y="842" font-size="54" text-anchor="start"><tspan data-fx="display.i_label" fill="#185ABD" font-weight="600" dx="0"></tspan></text></g></g>
+  </svg>
+  <div id="title" class="box" data-zone="0"></div>
+  <div id="plate" class="box" data-zone="2"><span class="pl" data-fx="display.ui.think_prompt"></span></div>
+  <div id="disclosure" class="box fade" data-zone="2"></div>
+</div>
+
+<!-- Inline fallbacks (used only when nothing is injected and no ?cues= / ?fixture= path is given). -->
+<script type="application/json" id="cue-sheet-inline">{"schema_version": "1.0", "scene_id": "phy-ohm-ci-01-s01", "fps": 30, "duration": 11.0, "language": "en-IN", "alignment_source": "synthetic_even_spacing", "narration_audio_sha256": null, "script_sha256": "63da8847cf4d03c5d3fd673d8f94ea746cf000bb4f54ba264b54c1a0ad88b41e", "words": [{"w": "Here's", "t0": 0.0, "t1": 0.357}, {"w": "a", "t0": 0.417, "t1": 0.773}, {"w": "ten-ohm", "t0": 0.833, "t1": 1.19}, {"w": "resistor", "t0": 1.25, "t1": 1.607}, {"w": "with", "t0": 1.667, "t1": 2.023}, {"w": "two", "t0": 2.083, "t1": 2.44}, {"w": "volts", "t0": 2.5, "t1": 2.857, "occurrence": 1}, {"w": "across", "t0": 2.917, "t1": 3.273}, {"w": "it", "t0": 3.333, "t1": 3.69, "occurrence": 1}, {"w": "Now", "t0": 3.75, "t1": 4.107}, {"w": "we", "t0": 4.167, "t1": 4.523}, {"w": "make", "t0": 4.583, "t1": 4.94}, {"w": "it", "t0": 5.0, "t1": 5.357, "occurrence": 2}, {"w": "four", "t0": 5.417, "t1": 5.773}, {"w": "volts", "t0": 5.833, "t1": 6.19, "occurrence": 2}, {"w": "Does", "t0": 6.25, "t1": 6.607}, {"w": "twice", "t0": 6.667, "t1": 7.023, "occurrence": 1}, {"w": "the", "t0": 7.083, "t1": 7.44, "occurrence": 1}, {"w": "voltage", "t0": 7.5, "t1": 7.857}, {"w": "always", "t0": 7.917, "t1": 8.273}, {"w": "mean", "t0": 8.333, "t1": 8.69}, {"w": "twice", "t0": 8.75, "t1": 9.107, "occurrence": 2}, {"w": "the", "t0": 9.167, "t1": 9.523, "occurrence": 2}, {"w": "current", "t0": 9.583, "t1": 9.94}], "beats": [0.0], "cues": [{"id": "c01", "at": 0.0, "kind": "reveal", "element_id": "wires", "word_index": 0}, {"id": "c02", "at": 1.2, "kind": "reveal", "element_id": "resistor", "word_index": 3}, {"id": "c03", "at": 1.2, "kind": "reveal", "element_id": "lbl_r", "word_index": 3}, {"id": "c04", "at": 2.033, "kind": "reveal", "element_id": "cell", "word_index": 5}, {"id": "c05", "at": 2.033, "kind": "reveal", "element_id": "lbl_v1", "word_index": 5}, {"id": "c06", "at": 5.367, "kind": "reveal", "element_id": "lbl_v2", "word_index": 13}, {"id": "c07", "at": 5.783, "kind": "emphasis", "element_id": "lbl_v2", "word_index": 14}, {"id": "c08", "at": 9.533, "kind": "reveal", "element_id": "ammeter", "word_index": 23}, {"id": "c09", "at": 9.533, "kind": "reveal", "element_id": "qmark", "word_index": 23}, {"id": "c10", "at": 9.533, "kind": "reveal", "element_id": "lbl_i", "word_index": 23}], "sfx": [], "meta": {"video_id": "phy-ohm-ci-01", "scene": "s01", "beat_ids": ["b01"], "beats_text": [{"id": "b01", "slot": "hook.question_reveal", "text": "Here's a ten-ohm resistor with two volts across it. Now we make it four volts. Does twice the voltage always mean twice the current?", "headline": "twice the voltage?", "start": 0.0, "end": 9.94, "word_range": [0, 24]}], "think_windows": []}}</script>
+<script type="application/json" id="fixture-inline">{"fixture_id": "FIX-ohm-readings", "display": {"r_label": "R =", "r_unit": "Ω", "v_label": "V =", "v_unit": "V", "i_label": "I =", "i_unit": "A", "ratio_label": "V / I =", "ui": {"think_prompt": "Pause. Predict."}}, "parameters": {"resistance_ohm": 10, "v1": 2, "v2": 4}, "results": {"i1_a": 0.2, "i2_a": 0.4, "ratio_i2_over_i1": 2, "v1_over_i1_ohm": 10, "v2_over_i2_ohm": 10}}</script>
+<script>
+(function () {
+'use strict';
+/* [5] CONFIG. Everything variable arrives as a URL parameter. The page never reads the clock.
+   ?fps=30 ?seed=N ?cues=path.json ?fixture=path.json ?strict=1 ?safe=1 (zone overlay) ?t=SECONDS (one seek) */
+const Q = new URLSearchParams(location.search);
+const num = (k, d) => { const v = parseFloat(Q.get(k)); return isFinite(v) ? v : d; };
+const FPS = num('fps', 30), SEED = num('seed', 20261016), EPS = 1e-6;
+const W = 1080, H = 1920;
+const LEAD = 0.05;                                     // a reveal lands on its word, or 0.05 s before it [V4-MP]
+const HOLD_MIN = 1.2;                                  // headline hold in seconds [N60]
+const BOIL_FPS = 10;                                    // doodle boil: 10 fps (style guide 2.1); the wobble filter sets the amplitude
+const INSETS = { top: 250, bottom: 450, left: 60, right: 120 };   // PLACEHOLDER insets (vertical_safe_zones.tokens.json)
+const SHARES = [0.22, 0.54, 0.24];                     // tokens zones.*.share
+const SIDE_MIN = 96;                                   // tokens zones.side_margin_min_px
+const LEFT = Math.max(INSETS.left, SIDE_MIN), RIGHT = Math.max(INSETS.right, SIDE_MIN);
+const FONT_SPECS = [                                   // preloaded before the first seek (edge case 55)
+  { family: 'Noto Sans', weight: 700, text: 'Aa 0123' },
+  { family: 'Noto Sans Devanagari', weight: 700, text: 'प्रकाश क्ष ज्ञ' }];
+
+/* [6] ERROR CHANNEL. Scenes report, never swallow. The harness reads window.__errors after every seek. */
+window.__errors = [];
+const report = (code, severity, message, t) => window.__errors.push({ code, severity, message, t: t == null ? null : t });
+const fail = (code, message, t) => { report(code, 'error', message, t); const e = new Error(code + ': ' + message); e.code = code; return e; };
+
+/* [7] SEEDED RANDOMNESS. rngAt is stateless: the same (seed, i) gives the same value in any seek order. Math.random is forbidden. */
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const rngAt = (seed, i) => mulberry32((seed ^ Math.imul(i + 1, 0x9E3779B1)) >>> 0)();
+
+/* [8] EASING AND PULSES. Pure functions of time. Draw-on uses power1.inOut, pops use back.out(1.7), pulses are finite. */
+const clamp01 = x => x < 0 ? 0 : x > 1 ? 1 : x;
+const easeOutBack = u => { const s = 1.70158, c = s + 1, v = u - 1; return 1 + c * v * v * v + s * v * v; };
+const easeInOut1 = u => u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2;
+const pulse = (t, at, n = 2, period = 0.5, amp = 0.08) => { const d = t - at; return d < 0 || d > n * period ? 1 : 1 + amp * Math.sin(2 * Math.PI * d / period) * (1 - d / (n * period)); };
+const normWord = s => s.normalize('NFC').toLowerCase().replace(/[^\p{L}\p{M}\p{N}'’]/gu, '');
+
+/* [9] LOADERS. Order: harness-injected window.__CUE_SHEET__, then ?cues= path, then the inline block. strict=1 refuses a failed path. */
+const deepFreeze = o => { Object.values(o).forEach(v => { if (v && typeof v === 'object') deepFreeze(v); }); return Object.freeze(o); };
+async function loadJson(inject, param, inlineId, what) {
+  if (inject) return { data: inject, source: 'injected' };
+  const path = Q.get(param);
+  let source = 'inline';
+  if (path) {
+    try { const r = await fetch(path); if (!r.ok) throw new Error('HTTP ' + r.status); return { data: await r.json(), source: 'path' }; }
+    catch (e) {
+      if (Q.get('strict') === '1') throw fail('E_' + what + '_LOAD', 'cannot load ' + path + ': ' + e.message);
+      report('W_' + what + '_FALLBACK', 'warning', 'cannot load ' + path + ' (' + e.message + '); inline fallback used. Not valid for production.');
+      source = 'inline-fallback';
+    }
+  }
+  const node = document.getElementById(inlineId);
+  if (!node) throw fail('E_' + what + '_LOAD', 'no injected, path or inline ' + what);
+  return { data: JSON.parse(node.textContent), source };
+}
+function checkSheet(s) {
+  if (!s || !(s.duration > 0) || !isFinite(s.duration) || !Array.isArray(s.words) || !Array.isArray(s.cues)) throw fail('E_CUES_INVALID', 'cue sheet needs finite duration>0, words[], cues[]');
+  s.words.forEach((w, i) => { if (i && w.t0 < s.words[i - 1].t0) throw fail('E_CUES_INVALID', 'words[' + i + '] not monotonic'); });
+}
+
+/* [10] STATE. Built once in ready(); render(t) only reads it. */
+let SHEET, FX, ZONES = [];
+const REV = {}, EMPH = {}, HOLD = {};                   // element id -> cue time, from the cue sheet only
+let INKS = [], LBLS = [], HEADS = [], FADES = [], PLATE = null, THINK = [];
+const fx = path => { const v = path.split('.').reduce((o, k) => o == null ? o : o[k], FX); if (v === undefined) throw fail('E_FIXTURE_MISSING', 'fixture has no ' + path); return v; };
+
+function buildZones() {                                 // zones derive from the tokens' shares and the placeholder insets
+  const y0 = INSETS.top, band = H - INSETS.top - INSETS.bottom; let y = y0;
+  ZONES = SHARES.map(s => { const z = { y0: Math.round(y), y1: Math.round(y + s * band) }; y += s * band; return z; });
+  document.querySelectorAll('.box').forEach(b => { const z = ZONES[+b.dataset.zone]; b.style.top = z.y0 + 'px'; b.style.height = (z.y1 - z.y0) + 'px'; b.style.left = LEFT + 'px'; b.style.width = (W - LEFT - RIGHT) + 'px'; });
+  if (Q.get('safe') === '1') {                          // debug overlay only, never in production frames
+    const names = ['top_title', 'middle_visual', 'bottom_caption'];
+    ZONES.forEach((z, i) => { const d = document.createElement('div'); d.className = 'zone'; d.style.top = z.y0 + 'px'; d.style.height = (z.y1 - z.y0) + 'px'; d.style.left = LEFT + 'px'; d.style.width = (W - LEFT - RIGHT) + 'px'; d.textContent = names[i] + ' (placeholder insets)'; document.getElementById('stage').appendChild(d); });
+    document.getElementById('stage').classList.add('safe');
+  }
+}
+
+function buildCues() {                                  // cues drive elements by element_id; times are never hard-coded here
+  SHEET.cues.forEach(c => {
+    if (!c.element_id || !document.getElementById(c.element_id)) { report('W_CUE_NO_ELEMENT', 'warning', 'cue ' + c.id + ' targets missing element ' + c.element_id); return; }   // never ignore silently
+    if ((c.kind === 'reveal' || c.kind === 'hold') && REV[c.element_id] == null) REV[c.element_id] = c.at;
+    if (c.kind === 'hold') HOLD[c.element_id] = { until: c.until == null ? window.DURATION : c.until };
+    if (c.kind === 'emphasis') (EMPH[c.element_id] = EMPH[c.element_id] || []).push(c.at);
+  });
+}
+
+function buildArt() {                                   // ink = hand-drawn strokes (draw-on + boil); lbl = science labels (pop); fade = HTML text
+  document.querySelectorAll('.ink').forEach((g, n) => {
+    const paths = Array.from(g.querySelectorAll('path')).map(p => {
+      const L = p.getTotalLength();
+      p.style.strokeDasharray = (L + 1).toFixed(2); p.style.strokeDashoffset = (L + 1).toFixed(2);   // dash = length+1: no gap at the end; hidden until drawn
+      return { el: p, L };
+    });
+    const b = g.getBBox();
+    INKS.push({ id: g.id, el: g, paths, at: REV[g.id] == null ? null : REV[g.id], n: n + 1, cx: b.x + b.width / 2, cy: b.y + b.height / 2 });
+  });
+  document.querySelectorAll('.lbl').forEach(g => {
+    const b = g.getBBox();
+    LBLS.push({ id: g.id, el: g, at: REV[g.id] == null ? null : REV[g.id], cx: b.x + b.width / 2, cy: b.y + b.height / 2 });
+  });
+  document.querySelectorAll('.fade').forEach(el => FADES.push({ id: el.id, el, at: REV[el.id] == null ? null : REV[el.id] }));
+}
+
+function buildHeadline(recs) {                          // headline words come from meta.beats_text; each word reveals on its own word time
+  const box = document.getElementById('title'); box.lang = SHEET.language || 'en';
+  const rec = recs.find(b => b.headline && b.headline.trim());
+  if (!rec) return;
+  let last = rec.word_range[0] - 1, lastAt = 0;
+  rec.headline.trim().split(/\s+/).forEach(tok => {
+    const sp = document.createElement('span'); sp.className = 'w'; sp.textContent = tok; box.appendChild(sp);
+    let k = -1;
+    for (let j = last + 1; j < rec.word_range[1]; j++) { if (normWord(SHEET.words[j].w) === normWord(tok)) { k = j; break; } }
+    if (k < 0) { report('E_CUES_INVALID', 'error', 'headline word "' + tok + '" is not spoken in beat ' + rec.id); return; }
+    last = k;
+    const at = Math.max(0, SHEET.words[k].t0 - LEAD);
+    HEADS.push({ el: sp, at }); lastAt = Math.max(lastAt, at);
+  });
+  if (window.DURATION - lastAt < HOLD_MIN) report('W_HOLD_SHORT', 'warning', 'headline hold ' + (window.DURATION - lastAt).toFixed(2) + ' s < ' + HOLD_MIN + ' s [N60]');
+}
+
+/* [11] RENDER. Synchronous, a pure function of t plus immutable state. Same t, same pixels, in any order. */
+function render(t) {
+  HEADS.forEach(h => { const d = t - h.at + EPS, e = easeOutBack(clamp01(d / 0.35)); h.el.style.opacity = clamp01(d / 0.18); h.el.style.transform = 'translateY(' + (40 * (1 - e)).toFixed(2) + 'px) scale(' + (0.8 + 0.2 * e).toFixed(4) + ')'; });
+  const k = Math.floor(t * BOIL_FPS + EPS);             // boil step: the wobble seed is a function of the step only (stateless)
+  const bn = document.getElementById('boilNoise');
+  if (bn) bn.setAttribute('seed', String(1 + (k % 64)));
+  INKS.forEach(g => {
+    const live = g.at != null && (!HOLD[g.id] || t < HOLD[g.id].until);
+    g.paths.forEach((p, i) => {
+      const at = live ? g.at + i * 0.06 : Infinity, dur = Math.min(1.2, Math.max(0.25, p.L / 1100));
+      p.el.style.strokeDashoffset = ((p.L + 1) * (1 - easeInOut1(clamp01((t - at + EPS) / dur)))).toFixed(3);
+    });
+    const p = (EMPH[g.id] || []).reduce((a, at) => a * pulse(t, at), 1);
+    g.el.setAttribute('transform', 'translate(' + g.cx.toFixed(2) + ' ' + g.cy.toFixed(2) + ') scale(' + p.toFixed(4) + ') translate(' + (-g.cx).toFixed(2) + ' ' + (-g.cy).toFixed(2) + ')');
+  });
+  LBLS.forEach(l => {
+    const live = l.at != null && t >= l.at - EPS && (!HOLD[l.id] || t < HOLD[l.id].until);
+    if (!live) { l.el.style.opacity = 0; return; }
+    const d = t - l.at + EPS, e = easeOutBack(clamp01(d / 0.35));
+    const p = (EMPH[l.id] || []).reduce((a, at) => a * pulse(t, at), 1);
+    l.el.style.opacity = clamp01(d / 0.2);
+    l.el.setAttribute('transform', 'translate(' + l.cx.toFixed(2) + ' ' + l.cy.toFixed(2) + ') scale(' + ((0.6 + 0.4 * e) * p).toFixed(4) + ') translate(' + (-l.cx).toFixed(2) + ' ' + (-l.cy).toFixed(2) + ')');
+  });
+  FADES.forEach(f => { f.el.style.opacity = f.at == null || t < f.at - EPS ? 0 : clamp01((t - f.at + EPS) / 0.3); });
+  const win = THINK.find(w => t >= w.start - EPS && t <= w.end + EPS);   // calm plate only inside the think window: no clock, no countdown
+  PLATE.style.opacity = win ? clamp01((t - win.start + EPS) / 0.4) : 0;
+}
+
+/* [12] READY AND SEEK. seek(t) applies the state for t, then waits for fonts. It never waits on requestAnimationFrame. */
+window.FPS = FPS;
+window.DURATION = 4.0;                                  // synchronous default; the cue sheet's duration is final in ready()
+window.SCENE_META = { contract: '1.0.0', videoCount: 0, notes: 'phy-ohm-ci-01 doodle-handdrawn scene' };
+window.ready = (async () => {
+  const s = await loadJson(window.__CUE_SHEET__, 'cues', 'cue-sheet-inline', 'CUES');
+  SHEET = s.data; window.__cueSource = s.source; checkSheet(SHEET);
+  const f = await loadJson(window.__FIXTURE__, 'fixture', 'fixture-inline', 'FIXTURE');
+  FX = deepFreeze(f.data); window.__fixtureSource = f.source;
+  window.DURATION = SHEET.duration;
+  window.FRAME_COUNT = Math.round(window.DURATION * FPS);
+  if (SHEET.fps !== FPS) report('W_FPS_MISMATCH', 'warning', 'cue sheet fps ' + SHEET.fps + ' != render fps ' + FPS + '; times stay in seconds');
+  await Promise.all(FONT_SPECS.map(sp => document.fonts.load(sp.weight + ' 40px "' + sp.family + '"', sp.text).catch(e => report('E_FONT_LOAD', 'error', sp.family + ': ' + e.message))));
+  document.querySelectorAll('[data-fx]').forEach(el => { el.textContent = String(fx(el.dataset.fx)); });   // read-only, unformatted
+  const recs = (SHEET.meta && SHEET.meta.beats_text) || [];
+  THINK = (SHEET.meta && SHEET.meta.think_windows) || [];
+  PLATE = document.getElementById('plate');
+  buildZones(); buildCues(); buildArt(); buildHeadline(recs);
+  const disc = recs.find(b => b.slot === 'outro.disclosure');   // verbatim approved text from the cue sheet
+  if (disc) document.getElementById('disclosure').textContent = disc.text;
+  await document.fonts.ready;
+})().catch(e => { if (!e.code) report('E_READY', 'error', e.message); throw e; });
+
+let chain = Promise.resolve();                          // serialise seeks so two calls can never interleave
+window.seek = async function seek(t) {
+  const prev = chain; let done; chain = new Promise(r => { done = r; });
+  try {
+    await prev; await window.ready;
+    if (typeof t !== 'number' || !isFinite(t)) throw fail('E_BAD_T', 'seek(t) needs a finite number of seconds, got ' + t);
+    const tc = Math.min(Math.max(t, 0), window.DURATION);
+    render(tc);
+    await document.fonts.ready;                         // resolves when no font is loading; no rAF
+    return { t: tc, frame: Math.round(tc * FPS) };
+  } finally { done(); }
+};
+
+/* [13] HYPERFRAMES ADAPTER (shape unverified; never overwrite a harness-defined one). */
+window.__hf = window.__hf || { get duration() { return window.DURATION; }, seek: t => window.seek(t) };
+if (Q.has('t')) window.ready.then(() => window.seek(num('t', 0)));
+})();
+
+</script>
+</body>
+</html>

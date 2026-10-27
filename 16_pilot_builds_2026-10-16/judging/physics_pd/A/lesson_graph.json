@@ -1,0 +1,23 @@
+{
+ "graph_id": "phy-ohm-pd-02",
+ "subject": "physics",
+ "level": "l9_10",
+ "scope": "PD-14: one claim (Ohm's law, I proportional to V, V = I × R) plus its condition (constant temperature); the filament is the bounded qualitative exception",
+ "sources": [
+  {"id": "SRC-ncert-10-electricity-ohm", "kind": "textbook", "title": "NCERT Class 10 Science", "section": "Chapter 'Electricity', section 'Electric Current and Circuit' (ammeter in series) and section 'Ohm's Law' (V ∝ I at constant temperature; V/I = R; V = IR)", "reliability_class": "official_curriculum"},
+  {"id": "SRC-ncert-10-electricity-heating", "kind": "textbook", "title": "NCERT Class 10 Science", "section": "Chapter 'Electricity', section 'Heating Effect of Electric Current' (the electric bulb filament gets very hot)", "reliability_class": "official_curriculum"}
+ ],
+ "nodes": [
+  {"id": "OBJ-ohm-condition", "type": "objective", "statement": "Find the current through a fixed resistor at a new voltage with V = I × R, and state that it holds at constant temperature."},
+  {"id": "CLM-ohm-proportional", "type": "claim", "statement": "For a conductor at constant temperature, the current through it is directly proportional to the potential difference across it.", "assumptions": ["constant temperature"], "source_ids": ["SRC-ncert-10-electricity-ohm"], "fixture_ids": ["FIX-ohm-pd-02"]},
+  {"id": "CLM-resistance-constant", "type": "claim", "statement": "The ratio V/I is constant for such a conductor; this constant is its resistance R, so V = I × R.", "assumptions": ["constant temperature"], "source_ids": ["SRC-ncert-10-electricity-ohm"], "fixture_ids": ["FIX-ohm-pd-02"]},
+  {"id": "CLM-filament", "type": "claim", "statement": "A bulb filament gets hot when current flows; its resistance rises as it heats, so doubling the voltage gives less than double the current.", "source_ids": ["SRC-ncert-10-electricity-heating", "SRC-ncert-10-electricity-ohm"], "fixture_ids": ["FIX-ohm-pd-02"], "fixture_fields": ["results.lamp.current_doubles"], "reliability_note": "NCERT states the constant-temperature condition (Ohm's Law) and describes the hot filament (Heating Effect); it does not state in one sentence that filament resistance rises with temperature. That is standard physics at this level but needs subject review. The claim stays qualitative: no lamp current number exists anywhere in this build (PD-16).", "review": "required"},
+  {"id": "MIS-always-doubles", "type": "misconception", "statement": "Doubling the voltage always doubles the current.", "why_wrong": "Only while the resistance stays constant; a filament heats, its resistance rises, so the current rises by less than double."},
+  {"id": "SIM-push-flow", "type": "simplification", "statement": "Voltage is described as the push that drives current, resistance as what holds it back, current as the flow the meter counts.", "what_is_lost": "Voltage is energy per unit charge; 'push' does not say how much energy each charge carries. Nothing is used up: the same current flows all round the loop.", "source_ids": ["SRC-ncert-10-electricity-ohm"], "review": "required (new node)"},
+  {"id": "SIM-constant-temperature", "type": "simplification", "statement": "The resistor is treated as staying at exactly the same temperature at two, four and six volts.", "what_is_lost": "A real resistor warms slightly with current; the change is negligible here but not zero."},
+  {"id": "WRK-ohm-two-points", "type": "worked_item", "prompt": "A ten-ohm resistor has two volts across it, then four volts. Find the current each time and compare.", "steps": ["2 V ÷ 10 Ω = 0.20 A.", "4 V ÷ 10 Ω = 0.40 A.", "Twice the voltage, twice the current (ratio 2).", "V ÷ I = 10 Ω at both points: the resistance."], "fixture_ids": ["FIX-ohm-pd-02"]},
+  {"id": "ASM-predict-four-volts", "type": "assessment_item", "stem": "A ten-ohm resistor carries 0.20 A at two volts. At four volts, same resistor: more current, less, or the same?", "answer": "More: 0.40 A (twice).", "task_kind": "choose", "original": true},
+  {"id": "ASM-transfer-six-volts", "type": "assessment_item", "stem": "Same ten-ohm resistor at six volts. What does the meter read?", "answer": "0.60 A (6 V ÷ 10 Ω).", "task_kind": "calc", "original": true, "review": "required (new node)"},
+  {"id": "FIX-ohm-pd-02", "type": "fixture", "compute": "fixtures/compute.py", "outputs": ["parameters.resistance_ohm", "parameters.v1", "parameters.v2", "parameters.v3", "results.i1", "results.i2", "results.i3", "results.ratio_v", "results.ratio_i", "results.v_over_i_1", "results.v_over_i_2", "results.v_over_i_3", "results.lamp.current_doubles"]}
+ ]
+}

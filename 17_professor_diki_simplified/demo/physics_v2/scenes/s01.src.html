@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>phy-ohm-pd-02 s01: one board, hook to end card (Professor Diki Simplified)</title>
+<!-- HOW TO USE: copy this file to <video>/s01.src.html (ONE scene per short: every beat lives in this file), fix the
+     relative paths below, replace the SCENE BLOCK and the two inline fallbacks, then build a self-contained copy with
+     tools/build_scene.py (inlines these files, runs the brand + structural gates and the seek lint).
+     Read order for builders: 05_DESIGN_SYSTEM.md, tokens.json, this file, diki_scene.css, diki_runtime.js, the component.
+     The stage below is fixed chrome: the world (#world) is generated from tokens.world for the scene's subject, the
+     opening ident (#ident) shows the brand from frame 0 and is gone by 2.5 s, the title lane holds the headline chips,
+     the think plate and the end-card wordmark; the result and card lanes sit on taped paper sheets. -->
+<link rel="stylesheet" href="../../../design_system/tokens.css">
+<link rel="stylesheet" href="../../../design_system/diki_scene.css">
+<style>/* two prompts share the one think plate; the scene shows the one of the current window */
+#think-plate{display:grid;place-items:center}#think-plate>span{grid-area:1/1;white-space:nowrap}</style>
+</head>
+<body>
+<div id="stage">
+  <svg id="world" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+  <svg id="underlay" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+  <div id="lane-title" class="lane">
+    <div id="think-plate"><span id="tp_predict" data-fx="display.ui.think_prompt"></span><span id="tp_transfer" data-fx="display.ui.transfer_prompt"></span></div>
+    <div id="wordmark" data-fx="display.ui.endcard_line1"></div>
+  </div>
+  <div id="lane-diagram" class="lane"></div>
+  <div id="lane-result" class="lane"><div id="result-main"></div><div id="endline-wrap"><span id="endline" data-fx="display.ui.endcard_line2"></span></div></div>
+  <div id="lane-card" class="lane"></div>
+  <div id="lane-caption" class="lane"></div>
+  <svg id="overlay" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+  <div id="ident" aria-label="Professor Diki Simplified">Professor Diki Simplified</div>
+</div>
+
+<!-- [2] INLINE FALLBACKS (preview only; production injects __CUE_SHEET__ and __FIXTURE__). build_scene.py
+     replaces both blocks. This base demo: one tiny lesson so the base renders and lints on its own. -->
+<script type="application/json" id="cue-sheet-inline">
+{}
+</script>
+<script type="application/json" id="fixture-inline">
+{}
+</script>
+
+<!-- [3] DESIGN SYSTEM (classic scripts, relative paths: they work from file:// and are inlined by build_scene.py) -->
+<script src="../../../design_system/tokens.js"></script>
+<script src="../../../design_system/diki_runtime.js"></script>
+<script src="../../../design_system/components/badge.js"></script>
+<script src="../../../design_system/components/equation.js"></script>
+<script src="../../../design_system/components/card.js"></script>
+<script src="../../../design_system/components/physics_circuit.js"></script>
+
+<!-- [4] SCENE BLOCK - the only part a builder writes. build(D, FX) runs once in ready(): mount ONE persistent
+     hero in the diagram lane, register it (D.hero + D.PreserveObject), then wire verbs to cue/beat/think refs.
+     Never hard-code seconds; never write CSS animation; never tear the hero down (it changes, it does not leave). -->
+<script>
+/* SCENE BLOCK: Ohm's law on one persistent sticker circuit, frame 0 to the end card (phy-ohm-pd-02, design system v2).
+   Cue ids (script.json): b01 c01-02 | b02 c03-06 | b03 c07-09 | b04 c10 four, c11, c12 | b05 c13 four, c14 Twice,
+   c15 push, c16 flow | b06 c17-19 | b07 c20 over, c21 ten, c22 ohms, c23 Ohm's, c24 equals, c25 resistance |
+   b08 c26 Always, c27 constant | b09 c28 bulb, c29 heats, c30 rises, c31 current, c32 double |
+   b10 c33 turn, c34 resistor, c35 six, c36 read | b11 c37 six, c38 rule | b12 cut (tease) | b13 c40 free | b14 c41 Professor
+   The runtime owns the opening ident, the headline chips (script on_screen.headline), the think plate and the end card. */
+window.DIKI_SCENE = {
+  subject: 'physics',
+  captions: false,
+  card: true,                                             // 'carded' layout: board + result sheet + ONE card sheet (PD-18)
+  build(D) {
+    const $ = id => document.getElementById(id);
+
+    // 1. the hero: one sticker circuit, complete at frame 0 (10 ohm, 2 V, meter 0.20 A), preserved to the end card
+    const board = D.lane('diagram');
+    const C = D.Components.physicsCircuit.mount(board.el, null, {});
+    D.hero(C.hero); D.PreserveObject(C.hero, { name: 'circuit' });
+
+    // "R ↑" chip beside the lamp label: the cause of the exception, resistance colour, fixture glyphs
+    const rUp = D.chip(null, { role: 'resistance', kind: 'lbl', id: 'r_up', rot: 2 });
+    D.text(D.div('', rUp, 'span'), 'display.r_symbol'); rUp.appendChild(document.createTextNode(' ')); D.text(D.div('', rUp, 'span'), 'display.rises');
+    const ll = C.el.lamp_label.getBoundingClientRect(), lb = board.el.getBoundingClientRect();
+    D.place(rUp, board.el, ll.right - lb.left + 26, ll.top - lb.top + ll.height / 2, 'start');
+    D.Pop(rUp, 'cue:c30', { until: 'cue:c34' });
+
+    // 1b. b02-b03 carry meaning in motion (QA A15: no still board before the first number):
+    //     "pushes" (c03) links the V chip to the battery; "resistance holds back" (c04) links the R chip to the resistor;
+    //     "flows" (c05) traces conventional current round the loop (+ terminal -> ammeter -> resistor -> back to -) in the
+    //     current colour over 0.8 s, then holds with an arrowhead until "four" (c10), before the prediction window.
+    D.MapSymbol(C.el.v_label, C.el.cell, 'cue:c03', { until: 'cue:c05', side: 'left', color: 'voltage' });
+    D.MapSymbol(C.el.r_label, C.el.resistor, 'cue:c04', { until: 'cue:c06', side: 'right', color: 'resistance' });
+    const wd = C.hero.querySelector('path').getAttribute('d').match(/-?\d+(\.\d+)?/g).map(Number);
+    const [xL, yT, yB, xR] = [wd[2], wd[1], wd[5], wd[10]], xPlus = wd[8], xMinus = wd[6];
+    const rb = C.el.resistor.getBBox(), ab = C.el.ammeter.getBBox(), yA = ab.y + ab.height / 2, gA = ab.height / 2 + 4;
+    // the trace runs ON the wire (two-tone, over the ink line) and breaks where a sticker sits, so no part is covered
+    const loopD = `M${xPlus},${yB} L${xR},${yB} L${xR},${yA + gA} M${xR},${yA - gA} L${xR},${yT} L${rb.x + rb.width + 4},${yT} ` +
+                  `M${rb.x - 4},${yT} L${xL},${yT} L${xL},${yB} L${xMinus - 30},${yB}`;
+    const flow = D.svg('g', { id: 'flow_trace', opacity: 0 }, C.svg);   // above the wire, below the HTML label chips
+    const fUnder = D.svg('path', { d: loopD, fill: 'none', stroke: D.T.sticker.outline_color, 'stroke-width': 20, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, flow);
+    const fOver = D.svg('path', { d: loopD, fill: 'none', stroke: D.color('current'), 'stroke-width': 11, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, flow);
+    D.TracePath(fUnder, 'cue:c05'); D.TracePath(fOver, 'cue:c05');
+    D.Reveal(flow, 'cue:c05', { until: 'cue:c10' });
+    // arrowhead at the end of the trace: conventional current enters the cell's - terminal from the left
+    const head = D.svg('path', { id: 'flow_head', d: `M${xMinus - 2},${yB} L${xMinus - 38},${yB - 22} L${xMinus - 38},${yB + 22} Z`, fill: D.color('current'),
+      stroke: D.T.sticker.outline_color, 'stroke-width': 4, 'stroke-linejoin': 'round', opacity: 0 }, flow);
+    D.Pop(head, 'cue:c05+0.8', { until: 'cue:c10' });
+    //     b03: one clear halo per given, on its word (larger pad than the auto emphasis so it reads on the wood)
+    D.Emphasize(C.el.v_label, 'cue:c07', { pad: 24, dur: 0.35 });
+    D.Emphasize(C.el.r_label, 'cue:c08', { pad: 24, dur: 0.35 });
+    D.Emphasize(C.el.i_readout, 'cue:c09', { pad: 24, dur: 0.35 });
+
+    // 2. circuit states (one owner: the StateTable drives circuit.set)
+    D.StateTable(C, {
+      initial: 'base',
+      states: {
+        base:  { v: 'fx:parameters.v1', i: 'fx:results.i1', load: 0, heat: 0, badge: 0, badgeDim: 0 },
+        four:  { v: 'fx:parameters.v2', i: null },          // the answer slot shows "?"
+        four_i:{ i: 'fx:results.i2' },
+        cond:  { badge: 1 },
+        lamp:  { load: 1, i: null },                        // no lamp current exists in the fixture (PD-16)
+        hot:   { heat: 1, badgeDim: 1 },                    // hot filament: the condition no longer holds
+        back:  { load: 0, heat: 0, badgeDim: 0 },
+        six:   { v: 'fx:parameters.v3' },
+        six_i: { i: 'fx:results.i3' }
+      },
+      steps: [
+        { at: 'cue:c10', state: 'four',   verb: 'ChangeValue' },
+        { at: 'cue:c13', state: 'four_i', verb: 'ChangeValue' },
+        { at: 'cue:c27', state: 'cond',   verb: 'Badge' },
+        { at: 'cue:c28', state: 'lamp',   verb: 'SwapPart' },
+        { at: 'cue:c29', state: 'hot',    verb: 'SwapPart' },
+        { at: 'cue:c34', state: 'back',   verb: 'SwapPart' },
+        { at: 'cue:c35', state: 'six',    verb: 'ChangeValue' },
+        { at: 'cue:c37', state: 'six_i',  verb: 'ChangeValue' }
+      ]
+    });
+    D.Emphasize(C.el.badge, 'cue:c27+0.24');
+
+    // 3. result sheet: 2 V | 4 V side by side, the x2 marks, V / I = 10 at both points, V = I x R, the struck x2 for
+    //    the lamp, then the transfer's worked line and its tick (the runtime swaps in the free-lesson chip at the end card)
+    const sym = (s, role) => ({ parts: [{ fx: 'display.sym.' + s }], role, italic: true });
+    const op = o => ({ parts: [{ fx: 'display.ops.' + o }], role: 'ink' });
+    const q = (fx, unit, role, dec) => ({ parts: [{ fx, dec }, { fx: unit }], role });
+    const DI = 'display.decimals.i';
+    const E = D.Components.equation.mount($('result-main'), null, {
+      terms: {
+        V: sym('V', 'voltage'), eqV: op('eq'), v1: q('parameters.v1', 'display.v_unit', 'voltage'),
+        V2: sym('V', 'voltage'), eqV2: op('eq'), v2: q('parameters.v2', 'display.v_unit', 'voltage'),
+        I: sym('I', 'current'), eqI: op('eq'), i1: q('results.i1', 'display.i_unit', 'current', DI),
+        I2: sym('I', 'current'), eqI2: op('eq'), i2: q('results.i2', 'display.i_unit', 'current', DI),
+        iq: { parts: [{ fx: 'display.ui.unknown' }], role: 'current' },
+        mv: { parts: [{ fx: 'display.times' }, { fx: 'results.ratio_v' }], role: 'voltage' },
+        mi: { parts: [{ fx: 'display.times' }, { fx: 'results.ratio_i' }], role: 'current' },
+        d1: op('div'), d2: op('div'), e1: op('eq'), e2: op('eq'),
+        r1: q('results.v_over_i_1', 'display.r_unit', 'resistance'), r2: q('results.v_over_i_2', 'display.r_unit', 'resistance'),
+        x: op('times'), R: sym('R', 'resistance'),
+        v3: q('parameters.v3', 'display.v_unit', 'voltage'), dC: op('div'), rC: q('parameters.resistance_ohm', 'display.r_unit', 'resistance'),
+        eC: op('eq'), i3: q('results.i3', 'display.i_unit', 'current', DI),
+        tick: { parts: [{ fx: 'display.ui.check' }], role: 'current' }
+      },
+      states: {
+        A:     { layout: 'grid', rows: [{ l: ['V', 'eqV', 'v1'] }, { l: ['I', 'eqI', 'i1'] }] },
+        ABq:   { layout: 'grid', rows: [{ l: ['V', 'eqV', 'v1'], r: ['V2', 'eqV2', 'v2'] }, { l: ['I', 'eqI', 'i1'], r: ['I2', 'eqI2', 'iq'] }] },
+        AB:    { layout: 'grid', rows: [{ l: ['V', 'eqV', 'v1'], r: ['V2', 'eqV2', 'v2'] }, { l: ['I', 'eqI', 'i1'], r: ['I2', 'eqI2', 'i2'] }] },
+        ABm1:  { layout: 'grid', rows: [{ l: ['V', 'eqV', 'v1'], m: ['mv'], r: ['V2', 'eqV2', 'v2'] }, { l: ['I', 'eqI', 'i1'], r: ['I2', 'eqI2', 'i2'] }] },
+        ABm2:  { layout: 'grid', rows: [{ l: ['V', 'eqV', 'v1'], m: ['mv'], r: ['V2', 'eqV2', 'v2'] }, { l: ['I', 'eqI', 'i1'], m: ['mi'], r: ['I2', 'eqI2', 'i2'] }] },
+        ratio: { layout: 'grid', rows: [{ l: ['v1', 'd1', 'i1'], m: ['e1'], r: ['r1'] }, { l: ['v2', 'd2', 'i2'], m: ['e2'], r: ['r2'] }] },
+        named: { layout: 'line', terms: ['V', 'eqV', 'I', 'x', 'R'] },
+        lampx: { layout: 'grid', rows: [{ l: ['V'], m: ['mv'] }, { l: ['I'], m: ['mi'] }], roles: { mi: 'mismatch' } },
+        calc:  { layout: 'line', terms: ['v3', 'dC', 'rC', 'eC', 'i3'] },
+        conf:  { layout: 'line', terms: ['v3', 'dC', 'rC', 'eC', 'i3', 'tick'] },
+        blank: { layout: 'line', terms: [] }              // the sheet yields to the three option chips during the prediction
+      }
+    });
+    E.drive([
+      D.CompareStates('ABq', 'cue:c10'),
+      D.EquationTransform('blank', 'cue:c42'),
+      D.CompareStates('AB', 'cue:c13'),
+      D.CompareStates('ABm1', 'cue:c15'),
+      D.CompareStates('ABm2', 'cue:c16'),
+      D.EquationTransform('ratio', 'cue:c20'),
+      D.EquationTransform('named', 'cue:c24'),
+      D.RevealMismatch('lampx', 'cue:c31'),
+      D.EquationTransform('named', 'cue:c34'),
+      D.EquationTransform('calc', 'cue:c37'),
+      D.EquationTransform('conf', 'cue:c38')
+    ], { initial: 'A' });
+    D.StrikeThrough(E.el('mi'), 'cue:c32', { until: 'cue:c34' });       // the x2 that does not hold for a hot filament
+    D.Emphasize(E.el('tick'), 'cue:c38+0.7');                            // confirmation, after the transform lands
+
+    // 3b. the prediction as a visible three-way choice (A6: commit before reveal). Three option chips land on their
+    //     words "More" (c42), "less" (c43), "same" (c12) on the result sheet, after the 2 V | 4 V grid steps aside; they
+    //     hold, still, through the think window. On "More" of the reveal the "more" chip gets a tick and a halo, the
+    //     other two fade; on "four" (c13) the chips give the sheet back to the grid with 0.40 A.
+    const optRow = D.div('', $('lane-result')); optRow.id = 'pd-options';
+    optRow.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:40px;z-index:2';
+    const mk = (key, at, rot) => { const w = D.div('', optRow, 'span'); w.style.position = 'relative';
+      const c = D.chip(w, { fx: 'display.ui.options.' + key, role: 'label', kind: 'lbl', id: 'opt_' + key, rot }); c.style.fontSize = '60px'; return { w, c }; };
+    const oM = mk('more', 0, -2), oL = mk('less', 0, 1.5), oS = mk('same', 0, -1);
+    const tick = D.chip(oM.w, { fx: 'display.ui.check', role: 'current', kind: 'lbl', id: 'opt_tick', rot: 6 });
+    tick.style.cssText += ';position:absolute;right:-62px;top:-30px';
+    const tR = 'beat:b05.start';
+    D.Pop(oM.c, 'cue:c42', { until: 'cue:c13' });
+    D.Pop(oL.c, 'cue:c43', { until: tR });
+    D.Pop(oS.c, 'cue:c12', { until: tR });
+    D.Pop(tick, tR, { until: 'cue:c13' });
+    D.Emphasize(oM.c, tR + '+0.26', { pad: 16, dur: 0.35 });
+
+    // 4. symbol <-> object, and the answer slot during the two think windows
+    D.MapSymbol(E.el('R'), C.el.resistor, 'cue:c25', { until: 'cue:c27', side: 'left' });
+    D.PauseForPrediction([C.el.i_readout], 'b04');
+    D.PauseForPrediction([C.el.i_readout], 'b10');
+
+    // 5. the think plate carries the prompt of its own window (two fixture strings, stacked)
+    const W10 = D.when('think:b10.start');
+    D.track(t => { const tr = t >= W10 - D.EPS ? 1 : 0; $('tp_predict').style.opacity = String(1 - tr); $('tp_transfer').style.opacity = String(tr); });
+
+    // 6. structure (PD-18), one card at a time, never empty:
+    //    table V | I | V ÷ I up from frame 0 with trial 1; each later cell lands on its word; the V ÷ I cells only at
+    //    "over" (c20) where the ratio is first computed (row 3 at "rule", c38); the definition replaces it while the law
+    //    is named and bounded (c23 -> c33); the table returns for the transfer; the three points close the lesson
+    //    (c40, on "free") and stay on the end card as the answer sheet.
+    const lane = D.lane('card').el;
+    const cell = (fx, role, at, dec) => ({ fx, role, at, dec });
+    const Tb = D.Components.card.mount(lane, null, { id: 'card_table', kind: 'table', table: {
+      head: ['display.card.head.v', 'display.card.head.i', 'display.card.head.ratio'],
+      rows: [
+        { cells: [cell('parameters.v1', 'voltage'), cell('results.i1', 'current', null, DI), cell('results.v_over_i_1', 'resistance', 'cue:c20')] },
+        { cells: [cell('parameters.v2', 'voltage', 'cue:c10'), cell('results.i2', 'current', 'cue:c13', DI), cell('results.v_over_i_2', 'resistance', 'cue:c20')] },
+        { cells: [cell('parameters.v3', 'voltage', 'cue:c35'), cell('results.i3', 'current', 'cue:c37', DI), cell('results.v_over_i_3', 'resistance', 'cue:c38')] }
+      ] } });
+    D.Emphasize(Tb.el.querySelector('[data-fx="results.i1"]'), 'cue:c09', { pad: 18 });   // the table's I cell with the meter
+    // b07 "ten" (c21): a clear halo on the R chip; "ohms" (c22): halos on the two V ÷ I cells that just landed (QA A15)
+    D.Emphasize(C.el.r_label, 'cue:c21', { pad: 24, dur: 0.35 });
+    ['results.v_over_i_1', 'results.v_over_i_2'].forEach(f => D.Emphasize(Tb.el.querySelector('[data-fx="' + f + '"]'), 'cue:c22', { pad: 16, dur: 0.35 }));
+    D.Card(Tb.el, null, { windows: [[0, 'cue:c23'], ['cue:c33', 'cue:c40']] });
+    const Df = D.Components.card.mount(lane, null, { id: 'card_def', kind: 'definition', definition: { term: 'display.card.def.term', text: 'display.card.def.text' } });
+    D.Card(Df.el, 'cue:c23', { until: 'cue:c33' });
+    const Pt = D.Components.card.mount(lane, null, { id: 'card_points', kind: 'points', points: [
+      { fx: 'display.card.points.p1', at: 'cue:c40' }, { fx: 'display.card.points.p2', at: 'cue:c40+0.5' }, { fx: 'display.card.points.p3', at: 'cue:c40+1.0' }] });
+    D.Card(Pt.el, 'cue:c40');
+  }
+};
+</script>
+
+<!-- [5] CONTRACT BLOCK - keep as is (seek contract 1.0.0: DURATION, async seek, ready, __errors, injected
+     __CUE_SHEET__/__FIXTURE__ > ?cues=/?fixture= > inline, seeded PRNG only, fonts preloaded, offline). -->
+<script>
+(function () {
+'use strict';
+const Q = new URLSearchParams(location.search);
+const num = (k, d) => { const v = parseFloat(Q.get(k)); return isFinite(v) ? v : d; };
+const FPS = num('fps', 30), SEED = num('seed', 20261016);
+
+window.__errors = [];
+const report = (code, severity, message, t) => window.__errors.push({ code, severity, message, t: t == null ? null : t });
+const fail = (code, message, t) => { report(code, 'error', message, t); const e = new Error(code + ': ' + message); e.code = code; return e; };
+
+/* seeded randomness only (F04). rngAt is stateless: same (seed, i) -> same value in any seek order. */
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const rngAt = (seed, i) => mulberry32((seed ^ Math.imul(i + 1, 0x9E3779B1)) >>> 0)();
+
+const deepFreeze = o => { Object.values(o).forEach(v => { if (v && typeof v === 'object') deepFreeze(v); }); return Object.freeze(o); };
+async function loadJson(inject, param, inlineId, what) {
+  if (inject) return { data: inject, source: 'injected' };
+  const path = Q.get(param);
+  if (path) {
+    try { const r = await fetch(path); if (!r.ok) throw new Error('HTTP ' + r.status); return { data: await r.json(), source: 'path' }; }
+    catch (e) {
+      if (Q.get('strict') === '1') throw fail('E_' + what + '_LOAD', 'cannot load ' + path + ': ' + e.message);
+      report('W_' + what + '_FALLBACK', 'warning', 'cannot load ' + path + ' (' + e.message + '); inline fallback used. Not valid for production.');
+      return { data: JSON.parse(document.getElementById(inlineId).textContent), source: 'inline-fallback' };
+    }
+  }
+  return { data: JSON.parse(document.getElementById(inlineId).textContent), source: 'inline' };
+}
+function checkSheet(s) {
+  if (!s || !(s.duration > 0) || !isFinite(s.duration) || !Array.isArray(s.words) || !Array.isArray(s.cues)) throw fail('E_CUES_INVALID', 'cue sheet needs finite duration>0, words[], cues[]');
+  s.words.forEach((w, i) => { if (i && w.t0 < s.words[i - 1].t0) throw fail('E_CUES_INVALID', 'words[' + i + '] not monotonic'); });
+}
+
+window.FPS = FPS;
+window.DURATION = 7.2;                                  // synchronous default; final value comes from the cue sheet in ready()
+window.SCENE_META = { contract: '1.0.0', videoCount: 0, designSystem: 'professor-diki-simplified 2.0.0', notes: 'paper collage; one scene per short; board persists' };
+window.ready = (async () => {
+  const D = window.Diki, T = window.DIKI_TOKENS;
+  if (!D || !T) throw fail('E_READY', 'design system scripts (tokens.js, diki_runtime.js) not loaded');
+  const s = await loadJson(window.__CUE_SHEET__, 'cues', 'cue-sheet-inline', 'CUES'); const SHEET = s.data; window.__cueSource = s.source; checkSheet(SHEET);
+  const f = await loadJson(window.__FIXTURE__, 'fixture', 'fixture-inline', 'FIXTURE'); const FX = deepFreeze(f.data); window.__fixtureSource = f.source;
+  window.DURATION = SHEET.duration;
+  window.FRAME_COUNT = Math.round(window.DURATION * FPS);
+  if (SHEET.fps !== FPS) report('W_FPS_MISMATCH', 'warning', 'cue sheet fps ' + SHEET.fps + ' != render fps ' + FPS + '; times stay in seconds');
+  await Promise.all(T.font.preload.map(p => document.fonts.load(p.weight + ' 40px "' + p.family + '"', p.text).catch(e => report('E_FONT_LOAD', 'error', p.family + ': ' + e.message))));
+  const SC = window.DIKI_SCENE || {}, stage = document.getElementById('stage');
+  const captions = !!SC.captions || Q.get('captions') === '1';
+  const layout = captions ? 'captioned' : (SC.card || Q.get('card') === '1') ? 'carded' : 'default';
+  if (captions && SC.card) report('W_LAYOUT', 'warning', 'captions and a card cannot share a frame; captioned layout used');
+  D.init({ sheet: SHEET, fx: FX, report, fail, stage, captions, layout, subject: SC.subject });
+  D.rngAt = i => rngAt(SEED, i);                        // the only randomness a scene may use
+  D.bindFx(stage);
+  D.buildChrome();
+  if (typeof SC.build === 'function') SC.build(D, FX);
+  if (captions) { const cap = D.Components.caption.mount(document.getElementById('lane-caption'), FX, { sheet: SHEET }); D.track(t => cap.set({ t })); }
+  // cues: every element_id must exist (W_CUE_NO_ELEMENT); 'emphasis' cues get Emphasize automatically,
+  // every other kind is wired by the scene through D.when('cue:<id>').
+  SHEET.cues.forEach(c => {
+    const el = c.element_id && document.getElementById(c.element_id);
+    if (!el) { if (c.kind !== 'hold') report('W_CUE_NO_ELEMENT', 'warning', 'cue ' + c.id + ' targets missing element ' + c.element_id); return; }
+    if (c.kind === 'emphasis') D.Emphasize(el, c.at);
+  });
+  D.finalize();
+  if (Q.get('safe') === '1') stage.classList.add('safe');
+  await document.fonts.ready;
+})().catch(e => { if (!e.code) report('E_READY', 'error', e.message); throw e; });
+
+let chain = Promise.resolve();                          // serialise seeks
+window.seek = async function seek(t) {
+  const prev = chain; let done; chain = new Promise(r => { done = r; });
+  try {
+    await prev; await window.ready;
+    if (typeof t !== 'number' || !isFinite(t)) throw fail('E_BAD_T', 'seek(t) needs a finite number of seconds, got ' + t);
+    const tc = Math.min(Math.max(t, 0), window.DURATION);
+    window.Diki.render(tc);
+    await document.fonts.ready;                         // no rAF: the harness triggers the capture
+    await Promise.all(Array.from(document.images).map(i => i.decode().catch(e => report('E_ASSET_LOAD', 'error', i.src + ': ' + e.message, tc))));
+    return { t: tc, frame: Math.round(tc * FPS) };
+  } finally { done(); }
+};
+window.__hf = window.__hf || { get duration() { return window.DURATION; }, seek: t => window.seek(t) };   // shape unverified [N68]
+
+if (Q.get('preview') === '1') window.ready.then(() => { const r = document.createElement('input'); r.type = 'range'; r.id = 'scrub'; r.min = 0; r.max = window.DURATION; r.step = 1 / FPS; r.value = 0; r.oninput = () => window.seek(parseFloat(r.value)); document.body.appendChild(r); });
+if (Q.has('t')) window.ready.then(() => window.seek(num('t', 0)));
+})();
+</script>
+</body>
+</html>

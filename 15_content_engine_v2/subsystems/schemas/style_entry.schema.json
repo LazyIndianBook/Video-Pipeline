@@ -1,0 +1,1601 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://examleaf.local/schemas/v2/style_entry.json",
+  "title": "ExamLeaf Style Entry v2",
+  "description": "Registry kind style/ (Architecture §3.1). A style says how an artefact looks and moves, never what it asserts. Every selectable entry extends style/base@1.0.0 and binds the 02 and 12 token files by pointer and SHA-256; the token-file hashes enter the closure only through the style pin inside epp_hash (resolver-03; corrected 15 Oct 2026). Precedence (R8, corrected 15 Oct 2026, Architecture §3.4 R8 (a)-(c)): a limit takes the most restrictive value across safety class, a11y profile, level, overlay, format, locale and style; every other scalar follows safety class > a11y profile > level > overlay > format > locale > style > persona; a style may only tighten limits. See subsystems/VISUAL_STYLE_and_ANIMATION_REGISTRY.md.",
+  "$comment": "Commercial-term lint (CE-L1/RD-49): CI rejects, case-insensitively, any match of (price|pricing|paid|is_free|free_|premium|entitle|subscri|sku|paywall|unlock|monetis|monetiz|revenue|discount|coupon|tier|destination_resource|cta_destination|funnel|purchase_|checkout_|product_id|offer_|trial_|utm_|campaign_|affiliate_|activation_code|storefront) applied to every object key at every depth (including REN fields keys), every required entry, pattern key and enum or const value (updated 15 Oct 2026, safety-13). The word 'tier' is not used in field names (CE-26); collage asset tiers A/B/C are expressed as asset_sources_allowed. Exempt: the editorial fields series_position, flagship and demo_kind. 15 Oct 2026 (stitch): level_ref is a pattern (Q-SCHEMA checks the id is pinned); tagged numbers are multiples of 0.5; limit fields carry \"x-kind\": \"limit\" (R8). Optional rule (sceptic-13): sonic.sfx must be a subset of the style's MUSIC §5 row after the level filter (checked by the spec linter, not by this schema).",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "style_id": {
+      "type": "string",
+      "pattern": "^style/[a-z0-9][a-z0-9_-]*$"
+    },
+    "style_ref_versioned": {
+      "type": "string",
+      "pattern": "^style/[a-z0-9][a-z0-9_-]*@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "safety_ref": {
+      "type": "string",
+      "enum": [
+        "safety/ac0",
+        "safety/ac1",
+        "safety/ac2"
+      ]
+    },
+    "level_ref": {
+      "type": "string",
+      "pattern": "^level/[a-z0-9_]+$"
+    },
+    "format_ref": {
+      "type": "string",
+      "pattern": "^format/[a-z0-9_]+$"
+    },
+    "slot_type": {
+      "type": "string",
+      "enum": [
+        "hook.realworld",
+        "hook.question_reveal",
+        "hook.surprise",
+        "explain.ladder_step",
+        "explain.definition",
+        "explain.analogy",
+        "explain.derivation_step",
+        "worked.step",
+        "worked.faded_twin",
+        "check.interpolated",
+        "check.predict",
+        "check.retrieval",
+        "misconception.elicit",
+        "misconception.confront",
+        "misconception.retest",
+        "recap.retrieval",
+        "recap.statement",
+        "marking.scheme",
+        "exam.pattern",
+        "exam.time_plan",
+        "compare.dimension",
+        "activity.setup",
+        "activity.do",
+        "activity.observe",
+        "activity.safety_cue",
+        "story.beat",
+        "story.song_chant",
+        "card.front",
+        "card.back",
+        "qa.doubt_statement",
+        "qa.answer",
+        "source.show",
+        "source.read",
+        "source.interpret",
+        "perspective.position",
+        "map.node",
+        "map.link",
+        "viva.prompt",
+        "viva.model_answer",
+        "teach.move",
+        "bridge.return_link",
+        "chapter.title",
+        "close.next_step"
+      ]
+    },
+    "motion_verb": {
+      "type": "string",
+      "enum": [
+        "appear",
+        "fade",
+        "draw_on",
+        "mask_wipe",
+        "highlight",
+        "highlighter",
+        "underline",
+        "pop",
+        "slide",
+        "sheet_slide",
+        "cross_dissolve",
+        "hard_cut",
+        "card_flip",
+        "equation_transform",
+        "wiggle",
+        "idle",
+        "boil",
+        "parallax_drift",
+        "push_in",
+        "pan",
+        "shake",
+        "whip",
+        "somber_drop",
+        "paper_burst",
+        "count_up",
+        "orbit",
+        "zoom",
+        "build_up",
+        "word_swap",
+        "tracking_settle",
+        "fixture_rotate",
+        "fixture_simulate"
+      ],
+      "$comment": "15 Oct 2026: fixture_rotate (rotation whose start angle and sweep are fixture fields) and fixture_simulate (closed-form or fixed-step replay from t = 0) are science-layer verbs; they are not in the allOf science-layer ban, and fixture_rotate is forbidden at safety/ac0."
+    },
+    "route_tag": {
+      "type": "string",
+      "enum": [
+        "data-bound",
+        "illustrative",
+        "narrative",
+        "typographic",
+        "spatial-hero",
+        "hook",
+        "recap",
+        "comparison",
+        "scale-story",
+        "insert",
+        "lattice",
+        "organelle-schematic",
+        "concept-island",
+        "label",
+        "next-step",
+        "slide",
+        "sheet",
+        "map",
+        "timeline",
+        "text-passage",
+        "equation",
+        "story",
+        "activity",
+        "card"
+      ]
+    },
+    "ms_range": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "tagged_number": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "multipleOf": 0.5
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tag": {
+          "type": "string",
+          "enum": [
+            "Recommendation",
+            "Hypothesis",
+            "Inherited",
+            "Evidence"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pilot_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "value",
+        "tag"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "tag": {
+                "const": "Hypothesis"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "owner",
+              "pilot_ref"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "tag": {
+                "const": "Hypothesis"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "token_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "type": "string",
+          "enum": [
+            "base_palette_typography",
+            "style_common",
+            "style_block",
+            "safe_zones_9x16",
+            "safe_zones_16x9",
+            "music_policy",
+            "holds",
+            "fonts_registry"
+          ]
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "json_pointer": {
+          "type": "string",
+          "pattern": "^(/[^/]*)*$"
+        },
+        "sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "file_version": {
+          "$ref": "#/definitions/semver"
+        }
+      },
+      "required": [
+        "role",
+        "path",
+        "json_pointer",
+        "sha256"
+      ]
+    },
+    "class_limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Per-safety-class override. May only tighten the inherited limit; the resolver takes the most restrictive value.",
+      "properties": {
+        "flash_policy": {
+          "type": "string",
+          "enum": [
+            "ac0_zero_flash",
+            "wcag_2_3_1"
+          ],
+          "x-kind": "limit"
+        },
+        "verbs_forbidden": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/motion_verb"
+          },
+          "uniqueItems": true,
+          "x-kind": "limit"
+        },
+        "boil_fps_max": {
+          "$ref": "#/definitions/tagged_number",
+          "x-kind": "limit"
+        },
+        "idle_rotation_deg_max": {
+          "$ref": "#/definitions/tagged_number",
+          "x-kind": "limit"
+        },
+        "pop_overshoot_max": {
+          "type": "number",
+          "minimum": 0,
+          "x-kind": "limit"
+        },
+        "hold_extra_multiplier": {
+          "description": "Optional style tightening, >= 1.0, applied on top of the Level Profile value on_screen.hold_level_multiplier (m_level). Renamed from hold_level_multiplier 15 Oct 2026: m_level is owned by the Level Profile, not the style.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/tagged_number"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "minimum": 1.0
+                }
+              }
+            }
+          ],
+          "x-kind": "limit"
+        },
+        "dark_surfaces": {
+          "type": "string",
+          "enum": [
+            "forbidden",
+            "mood_only_pending_ad17"
+          ]
+        }
+      },
+      "required": [
+        "flash_policy",
+        "verbs_forbidden"
+      ]
+    },
+    "evidence_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "claim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tag": {
+          "type": "string",
+          "enum": [
+            "Recommendation",
+            "Hypothesis",
+            "Inherited",
+            "Evidence"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pilot_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "claim",
+        "tag"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "tag": {
+                "const": "Hypothesis"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "owner",
+              "pilot_ref"
+            ]
+          }
+        }
+      ]
+    },
+    "x_kind_note": {
+      "$comment": "15 Oct 2026 (Architecture §3.4 R8): a property carrying \"x-kind\": \"limit\" is a limit; R8(a) takes the most restrictive value across safety class, a11y profile, level, overlay, format, locale and style. Annotation only; validators ignore it."
+    }
+  },
+  "properties": {
+    "style_id": {
+      "$ref": "#/definitions/style_id"
+    },
+    "version": {
+      "$ref": "#/definitions/semver"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "released",
+        "deprecated",
+        "revoked"
+      ]
+    },
+    "legacy_style_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Key in 12_advanced_animations_with_claude/05_style_guides/style_tokens.json#/styles, or the 12 brief style id (base-science)."
+    },
+    "extends": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/style_ref_versioned"
+      },
+      "uniqueItems": true
+    },
+    "layer": {
+      "type": "string",
+      "enum": [
+        "root",
+        "science",
+        "expressive",
+        "hybrid"
+      ]
+    },
+    "selectable": {
+      "type": "boolean"
+    },
+    "route_tags_allowed": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/route_tag"
+      },
+      "uniqueItems": true
+    },
+    "route_tags_forbidden": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/route_tag"
+      },
+      "uniqueItems": true
+    },
+    "safety_classes_allowed": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/safety_ref"
+      },
+      "uniqueItems": true
+    },
+    "levels_allowed": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/level_ref"
+      },
+      "uniqueItems": true
+    },
+    "formats_allowed": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/format_ref"
+      },
+      "uniqueItems": true
+    },
+    "aspects_supported": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "aspect": {
+            "type": "string",
+            "enum": [
+              "9x16",
+              "16x9"
+            ]
+          },
+          "resolution": {
+            "type": "string",
+            "enum": [
+              "1080x1920",
+              "1920x1080"
+            ]
+          },
+          "formats_limited_to": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/format_ref"
+            },
+            "uniqueItems": true
+          },
+          "safe_zone_tokens": {
+            "$ref": "#/definitions/token_ref"
+          },
+          "token_status": {
+            "type": "string",
+            "enum": [
+              "approved",
+              "placeholder_insets",
+              "missing"
+            ],
+            "description": "placeholder_insets: zone shares approved, platform insets not measured (12/04 measured:false). missing: no token set (16:9 until O-19)."
+          }
+        },
+        "required": [
+          "aspect",
+          "resolution",
+          "token_status"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "aspect": {
+                  "const": "16x9"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "resolution": {
+                  "const": "1920x1080"
+                }
+              },
+              "required": [
+                "formats_limited_to"
+              ]
+            },
+            "else": {
+              "properties": {
+                "resolution": {
+                  "const": "1080x1920"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "token_status": {
+                  "enum": [
+                    "approved",
+                    "placeholder_insets"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "safe_zone_tokens"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "token_bindings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/token_ref"
+      },
+      "minItems": 1
+    },
+    "palette": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "artwork_palette": {
+          "type": "string",
+          "enum": [
+            "base_light",
+            "base_light_tints",
+            "storybook_13"
+          ]
+        },
+        "science_text_on": {
+          "type": "string",
+          "enum": [
+            "base_tokens",
+            "base_tokens_tag"
+          ]
+        },
+        "dark_surfaces": {
+          "type": "string",
+          "enum": [
+            "forbidden",
+            "mood_only_pending_ad17"
+          ]
+        },
+        "colour_alone_never_differentiates": {
+          "const": true
+        },
+        "max_accents": {
+          "type": "integer",
+          "minimum": 0,
+          "x-kind": "limit"
+        },
+        "one_highlight_at_a_time": {
+          "const": true
+        },
+        "display_only_pairs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Foreground/background pairs below 4.5:1 that may never carry essential text.",
+          "x-kind": "limit"
+        }
+      },
+      "required": [
+        "artwork_palette",
+        "science_text_on",
+        "dark_surfaces",
+        "colour_alone_never_differentiates",
+        "one_highlight_at_a_time"
+      ]
+    },
+    "typography": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "science_fonts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "display_fonts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "indic_fonts": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "devanagari": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "bengali_assamese": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "display_ban_ref": {
+          "$ref": "#/definitions/token_ref"
+        },
+        "max_title_words": {
+          "type": "integer",
+          "minimum": 1,
+          "x-kind": "limit"
+        },
+        "max_words_on_screen": {
+          "type": "integer",
+          "minimum": 1,
+          "x-kind": "limit"
+        },
+        "indic_animation_unit": {
+          "type": "string",
+          "enum": [
+            "word",
+            "word_or_grapheme_cluster_after_test_card"
+          ]
+        },
+        "per_codepoint_animation": {
+          "const": "forbidden"
+        },
+        "fonts_vendored_hashed_licensed": {
+          "const": true
+        }
+      },
+      "required": [
+        "science_fonts",
+        "indic_animation_unit",
+        "per_codepoint_animation",
+        "fonts_vendored_hashed_licensed"
+      ]
+    },
+    "motion": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "vocabulary": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/motion_verb"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "element_transition_ms": {
+          "$ref": "#/definitions/ms_range"
+        },
+        "highlight_ms": {
+          "$ref": "#/definitions/ms_range"
+        },
+        "scene_transition_ms": {
+          "$ref": "#/definitions/ms_range"
+        },
+        "boil_fps_allowed": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 30
+          },
+          "uniqueItems": true,
+          "x-kind": "limit"
+        },
+        "camera_off_during": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "hold",
+              "think",
+              "label_reveal",
+              "measurement",
+              "data_bound_reveal"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "repeats": {
+          "const": "finite_only"
+        },
+        "by_safety_class": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "safety/ac0": {
+              "$ref": "#/definitions/class_limits"
+            },
+            "safety/ac1": {
+              "$ref": "#/definitions/class_limits"
+            },
+            "safety/ac2": {
+              "$ref": "#/definitions/class_limits"
+            }
+          }
+        },
+        "reduced_motion": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "verbs_disabled": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/motion_verb"
+              },
+              "uniqueItems": true,
+              "$comment": "15 Oct 2026: the style/base reduced-motion set (VISUAL_STYLE registry section 2.2) must always be disabled.",
+              "allOf": [
+                {
+                  "contains": {
+                    "const": "boil"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "idle"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "wiggle"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "parallax_drift"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "push_in"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "pan"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "zoom"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "orbit"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "shake"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "whip"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "paper_burst"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "somber_drop"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "count_up"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "sheet_slide"
+                  }
+                }
+              ]
+            },
+            "reveal_replacement": {
+              "type": "string",
+              "enum": [
+                "fade_150_300_ms",
+                "cross_dissolve_150_300_ms",
+                "none_needed"
+              ]
+            },
+            "variant_rendered": {
+              "const": true
+            }
+          },
+          "required": [
+            "verbs_disabled",
+            "reveal_replacement",
+            "variant_rendered"
+          ]
+        }
+      },
+      "required": [
+        "vocabulary",
+        "element_transition_ms",
+        "highlight_ms",
+        "repeats",
+        "by_safety_class",
+        "reduced_motion"
+      ]
+    },
+    "holds": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tokens": {
+          "$ref": "#/definitions/token_ref"
+        },
+        "formula": {
+          "const": "m_script * m_level * max(headline_min_s, per_word_floor_s * word_count)"
+        },
+        "script_multipliers": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "latn": {
+              "$ref": "#/definitions/tagged_number",
+              "x-kind": "limit"
+            },
+            "deva": {
+              "$ref": "#/definitions/tagged_number",
+              "x-kind": "limit"
+            },
+            "beng": {
+              "$ref": "#/definitions/tagged_number",
+              "x-kind": "limit"
+            },
+            "hinglish_latn": {
+              "$ref": "#/definitions/tagged_number",
+              "x-kind": "limit"
+            }
+          },
+          "required": [
+            "latn",
+            "deva",
+            "beng"
+          ]
+        },
+        "question_visible_through_think_window": {
+          "const": true
+        }
+      },
+      "required": [
+        "tokens",
+        "formula",
+        "script_multipliers",
+        "question_visible_through_think_window"
+      ]
+    },
+    "flash": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "full_frame_flash": {
+          "const": "forbidden"
+        },
+        "policy_by_class": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "safety/ac0": {
+              "const": "ac0_zero_flash"
+            },
+            "safety/ac1": {
+              "const": "wcag_2_3_1"
+            },
+            "safety/ac2": {
+              "const": "wcag_2_3_1"
+            }
+          },
+          "x-kind": "limit"
+        }
+      },
+      "required": [
+        "full_frame_flash",
+        "policy_by_class"
+      ]
+    },
+    "slot_types_implemented": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/slot_type"
+      },
+      "uniqueItems": true
+    },
+    "science_layer": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "data_bound_scenes_resolve_to": {
+          "$ref": "#/definitions/style_id"
+        },
+        "data_attribute": {
+          "const": "data-fx"
+        },
+        "data_path_kinds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "fixture",
+              "node"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "decorative_motion_on_science": {
+          "const": "forbidden"
+        },
+        "text_in_generated_rasters": {
+          "const": "forbidden"
+        }
+      },
+      "required": [
+        "data_bound_scenes_resolve_to",
+        "data_attribute",
+        "decorative_motion_on_science",
+        "text_in_generated_rasters"
+      ]
+    },
+    "asset_sources_allowed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "code_only",
+          "owned_or_licensed",
+          "generated_gated"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "cost": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cost_class": {
+          "type": "string",
+          "enum": [
+            "zero_credit_code",
+            "zero_credit_render_box",
+            "zero_credit_studio_minutes",
+            "gated_generation_estimate_at_h_sb"
+          ]
+        },
+        "credits_default": {
+          "const": 0
+        },
+        "estimate_gate": {
+          "const": "H_SB"
+        },
+        "ledger_rows": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "cost",
+              "capacity",
+              "provenance",
+              "licence"
+            ]
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "cost_class",
+        "credits_default",
+        "estimate_gate"
+      ]
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "style_guide",
+              "token_file",
+              "prompt_template",
+              "master_prompt",
+              "reference_clip",
+              "stills",
+              "hero_sheet",
+              "storyboard_grid",
+              "fixture",
+              "format_spec",
+              "doc"
+            ]
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "$ref": "#/definitions/sha256"
+          }
+        },
+        "required": [
+          "kind",
+          "path"
+        ]
+      }
+    },
+    "sonic": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sonic_logo_ref": {
+          "type": "string",
+          "pattern": "^music/[a-z0-9][a-z0-9_-]*@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "description": "Pin to an admitted music/ entry of kind sonic_logo (MUSIC_and_SOUND_REGISTRY section 2)."
+        },
+        "child_variant_required": {
+          "type": "boolean"
+        },
+        "music_policy": {
+          "$ref": "#/definitions/token_ref"
+        },
+        "music_sources": {
+          "type": "array",
+          "description": "Owned audio only (MUSIC_and_SOUND_REGISTRY policy 4; changed 15 Oct 2026, CE-66): commissioned from a contracted composer, or composed in house by code. Licensed stock, library songs and trend audio are not admissible.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "commissioned",
+              "code_composed"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "sfx": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "music_policy",
+        "music_sources"
+      ]
+    },
+    "determinism": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "contract_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "contract_version": {
+          "$ref": "#/definitions/semver"
+        },
+        "canvas_from_epp_resolution": {
+          "const": true
+        },
+        "extra_rules": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "render_box_pinned": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "contract_path",
+        "contract_version",
+        "canvas_from_epp_resolution"
+      ]
+    },
+    "qa": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "a_suite": {
+          "const": "A1-A17 all"
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "patternProperties": {
+            "^(A([1-9]|1[0-7])[ab]?|Q-[A-Z0-9]+(\\.[a-z0-9_]+)?)$": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      },
+      "required": [
+        "a_suite"
+      ]
+    },
+    "forbidden": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "edge_cases": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(#[0-9]{1,2}|NEW-[0-9]{1,2})$"
+      },
+      "uniqueItems": true
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/evidence_item"
+      }
+    },
+    "changelog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "$ref": "#/definitions/semver"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "semver_class": {
+            "type": "string",
+            "enum": [
+              "patch",
+              "minor",
+              "major"
+            ]
+          },
+          "change_class": {
+            "type": "string",
+            "enum": [
+              "Presentational",
+              "Safety",
+              "Structural",
+              "Render toolchain",
+              "Revocation"
+            ]
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "version",
+          "date",
+          "semver_class",
+          "change_class",
+          "summary"
+        ]
+      }
+    }
+  },
+  "required": [
+    "style_id",
+    "version",
+    "title",
+    "purpose",
+    "status",
+    "extends",
+    "layer",
+    "selectable",
+    "safety_classes_allowed",
+    "levels_allowed",
+    "formats_allowed",
+    "aspects_supported",
+    "token_bindings",
+    "palette",
+    "typography",
+    "motion",
+    "holds",
+    "flash",
+    "slot_types_implemented",
+    "science_layer",
+    "asset_sources_allowed",
+    "cost",
+    "references",
+    "determinism",
+    "qa",
+    "edge_cases",
+    "evidence"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "style_id": {
+            "const": "style/base"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "extends": {
+            "maxItems": 0
+          },
+          "layer": {
+            "const": "root"
+          },
+          "selectable": {
+            "const": false
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "extends": {
+            "minItems": 1,
+            "contains": {
+              "type": "string",
+              "pattern": "^style/base@"
+            }
+          },
+          "layer": {
+            "enum": [
+              "science",
+              "expressive",
+              "hybrid"
+            ]
+          },
+          "selectable": {
+            "const": true
+          },
+          "safety_classes_allowed": {
+            "minItems": 1
+          },
+          "levels_allowed": {
+            "minItems": 1
+          },
+          "formats_allowed": {
+            "minItems": 1
+          },
+          "slot_types_implemented": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "safety_classes_allowed": {
+            "contains": {
+              "const": "safety/ac0"
+            }
+          }
+        },
+        "required": [
+          "safety_classes_allowed"
+        ]
+      },
+      "then": {
+        "properties": {
+          "motion": {
+            "properties": {
+              "by_safety_class": {
+                "required": [
+                  "safety/ac0"
+                ],
+                "properties": {
+                  "safety/ac0": {
+                    "properties": {
+                      "flash_policy": {
+                        "const": "ac0_zero_flash"
+                      },
+                      "verbs_forbidden": {
+                        "allOf": [
+                          {
+                            "contains": {
+                              "const": "shake"
+                            }
+                          },
+                          {
+                            "contains": {
+                              "const": "whip"
+                            }
+                          },
+                          {
+                            "contains": {
+                              "const": "push_in"
+                            }
+                          },
+                          {
+                            "contains": {
+                              "const": "count_up"
+                            }
+                          },
+                          {
+                            "contains": {
+                              "const": "paper_burst"
+                            }
+                          },
+                          {
+                            "contains": {
+                              "const": "parallax_drift"
+                            }
+                          },
+                          {
+                            "contains": {
+                              "const": "orbit"
+                            }
+                          },
+                          {
+                            "contains": {
+                              "const": "boil"
+                            }
+                          },
+                          {
+                            "contains": {
+                              "const": "fixture_rotate"
+                            }
+                          }
+                        ],
+                        "$comment": "15 Oct 2026: registry section 2.2 ac0 column. Remove the boil item only by a Safety-class minor schema version after O-2 signs boil for ac0."
+                      },
+                      "pop_overshoot_max": {
+                        "maximum": 1.4
+                      },
+                      "idle_rotation_deg_max": {
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "number",
+                              "null"
+                            ],
+                            "maximum": 1.5
+                          }
+                        }
+                      },
+                      "boil_fps_max": {
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "number",
+                              "null"
+                            ],
+                            "maximum": 8
+                          }
+                        }
+                      },
+                      "dark_surfaces": {
+                        "const": "forbidden"
+                      }
+                    },
+                    "required": [
+                      "dark_surfaces",
+                      "pop_overshoot_max",
+                      "idle_rotation_deg_max"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "flash": {
+            "properties": {
+              "policy_by_class": {
+                "required": [
+                  "safety/ac0"
+                ]
+              }
+            }
+          },
+          "asset_sources_allowed": {
+            "not": {
+              "contains": {
+                "const": "generated_gated"
+              }
+            }
+          },
+          "levels_allowed": {
+            "contains": {
+              "enum": [
+                "level/l1_2",
+                "level/l3_5"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "released"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "aspects_supported": {
+            "items": {
+              "if": {
+                "properties": {
+                  "aspect": {
+                    "const": "16x9"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "token_status": {
+                    "const": "approved"
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "token_status": {
+                    "enum": [
+                      "approved",
+                      "placeholder_insets"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "aspects_supported": {
+            "contains": {
+              "properties": {
+                "aspect": {
+                  "const": "16x9"
+                }
+              },
+              "required": [
+                "aspect"
+              ]
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "levels_allowed": {
+            "contains": {
+              "enum": [
+                "level/ug",
+                "level/pg",
+                "level/adult_prof"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "layer": {
+            "const": "science"
+          }
+        },
+        "required": [
+          "layer"
+        ]
+      },
+      "then": {
+        "properties": {
+          "motion": {
+            "properties": {
+              "vocabulary": {
+                "not": {
+                  "contains": {
+                    "enum": [
+                      "boil",
+                      "idle",
+                      "shake",
+                      "whip",
+                      "push_in",
+                      "pan",
+                      "parallax_drift",
+                      "orbit",
+                      "paper_burst",
+                      "wiggle"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

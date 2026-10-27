@@ -1,0 +1,979 @@
+{
+ "schema_version": "script/v2",
+ "script_version": 2,
+ "video_id": "phy-ohm-pd-03",
+ "subject": "physics",
+ "topic": "What is Ohm's law, and when does it hold? (a story that teaches, PD-25)",
+ "level": "l9_10",
+ "locale": "en-IN",
+ "language": "en",
+ "format": "explainer_60",
+ "target_duration_s": 60,
+ "duration_tolerance_s": 1,
+ "tail_s": 0.9,
+ "style": "professor-diki",
+ "voice": {
+  "path": "B",
+  "provider": "elevenlabs",
+  "model_id": "eleven_v4",
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "persona": "persona/super-teacher#core",
+  "rate_scale": 0.95,
+  "note": "stock English voice (PD-05); calibrated PD-22"
+ },
+ "cta_line": "Try the free lesson on Ohm's law.",
+ "outro": {
+  "beat": "b12",
+  "spoken": "Professor Diki Simplified.",
+  "end_card": {
+   "brand_line": "Professor Diki Simplified",
+   "free_lesson_line": "Free lesson: Ohm's law",
+   "min_on_screen_s": 1.5
+  },
+  "motif": "music/diki-end-motif",
+  "motif_starts": "after_last_word",
+  "tail_s": 0.9
+ },
+ "board_at_start": [
+  "ident",
+  "lane-title",
+  "circuit",
+  "cell",
+  "resistor",
+  "ammeter",
+  "v_label",
+  "r_label",
+  "i_readout",
+  "eq_v1",
+  "eq_i1",
+  "card_table"
+ ],
+ "artefacts": {
+  "scroll_test": "Every student has watched a torch go dim as its cells run down; the short opens on that and shows, on a live meter, the one rule that explains it, so the learner stays to see why.",
+  "surprise": "Halve the push and the flow halves too: the dim torch is Ohm's law at work; and the same bulb, once hot, bends the rule.",
+  "outcome": "After 60 s the learner can state Ohm's law with its condition, read V = I × R symbol by symbol, and has seen it give 0.60 A at 6 V for a 10 Ω resistor.",
+  "prerequisite_bridge": "Voltage pushes, resistance holds back, current is the flow the meter counts (SIM-push-flow).",
+  "fact_sheet": [
+   {
+    "fact": "I is proportional to V at constant temperature",
+    "node": "CLM-ohm-proportional"
+   },
+   {
+    "fact": "V ÷ I is the resistance; V = I × R",
+    "node": "CLM-resistance-constant"
+   },
+   {
+    "fact": "10 Ω: 2 V → 0.20 A, 4 V → 0.40 A, 6 V → 0.60 A; V ÷ I = 10 Ω at all three",
+    "node": "FIX-ohm-pd-03"
+   },
+   {
+    "fact": "a hot filament's resistance rises, so its current gives less than double (qualitative flag only)",
+    "node": "CLM-filament"
+   }
+  ],
+  "causal_chain": [
+   "The cell pushes; the resistor holds the flow back; the meter counts it.",
+   "Change only the push; keep the resistor the same.",
+   "The flow changes by the same factor.",
+   "So V = I × R, while the temperature stays constant."
+  ],
+  "hooks": [
+   {
+    "kind": "everyday_scene",
+    "text": "Old cells, dim torch. What is Ohm's law? The rule behind that.",
+    "scroll": 4,
+    "honest": true,
+    "chosen": true,
+    "why_chosen": "PD-25 story opening on a scene the learner knows (push and flow), then the PD-24 question 'What is Ohm's law?'; board complete at frame 0"
+   },
+   {
+    "kind": "definition_question",
+    "text": "What is Ohm's law? It tells you how much current flows.",
+    "scroll": 3,
+    "honest": true,
+    "why_rejected": "a definition opener, not a story (PD-25)"
+   },
+   {
+    "kind": "visible_puzzle",
+    "text": "Double the voltage. Current always doubles?",
+    "scroll": 4,
+    "honest": true,
+    "why_rejected": "question-answer format retired for shorts (PD-24)"
+   },
+   {
+    "kind": "pattern_interrupt",
+    "text": "Your room's bulb breaks Ohm's law. Here's why.",
+    "scroll": 4,
+    "honest": true,
+    "why_rejected": "opens on the exception before the rule exists"
+   },
+   {
+    "kind": "stakes",
+    "text": "Every circuit question in Class 10 starts here.",
+    "scroll": 3,
+    "honest": false,
+    "why_rejected": "unsourced exam claim"
+   }
+  ],
+  "hook_choice_rule": "PD-25: open on a recognisable push-and-flow scene, then name the law as the thing that explains it (PD-24 question), honest, picture complete at frame 0",
+  "retention_plan": "re-hooks every <= 12 s: question 0.3, picture ~5, turn ~16, formula ~20, twist question ~29, exception ~32, pay-off ~37, moral ~44",
+  "adjective_test": "Only 'exactly' (double) kept: it is the measured fact the board shows.",
+  "repair_log": [
+   {
+    "original": "What is Ohm's law? It tells you how much current flows. / Current is proportional to voltage, at constant temperature.",
+    "replacement": "Old cells, dim torch. What is Ohm's law? The rule behind that. / The flow keeps pace with the push, at constant temperature.",
+    "reason": "PD-25: story, not lecture; the formal wording stays on the definition card",
+    "science_check": "run-down cells give less voltage, so less current (CTX-torch-cells, review); proportionality at constant temperature (CLM-ohm-proportional)"
+   }
+  ],
+  "metaphor": "one sustained metaphor: voltage PUSHES, current FLOWS, resistance HOLDS BACK (the 'hold-back'); never mixed"
+ },
+ "terms": [
+  {
+   "term": "Ohm's law",
+   "shown_by": "lane-title",
+   "meaning_beat": "b02"
+  },
+  {
+   "term": "voltage",
+   "shown_by": "v_label",
+   "meaning_beat": "b02"
+  },
+  {
+   "term": "resistance",
+   "shown_by": "r_label",
+   "meaning_beat": "b02"
+  },
+  {
+   "term": "current",
+   "shown_by": "i_readout",
+   "meaning_beat": "b02"
+  },
+  {
+   "term": "constant temperature",
+   "shown_by": "cond_badge",
+   "meaning_beat": "b03"
+  },
+  {
+   "term": "ohms",
+   "shown_by": "r_label",
+   "meaning_beat": "b04"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "file": "scenes/s01.html",
+   "beats": [
+    "b01",
+    "b02",
+    "b03",
+    "b04",
+    "b05",
+    "b06",
+    "b07",
+    "b08",
+    "b09",
+    "b10",
+    "b11",
+    "b12"
+   ],
+   "title": "One board: what Ohm's law is and when it holds"
+  }
+ ],
+ "beats": [
+  {
+   "id": "b01",
+   "scene": "s01",
+   "slot": "hook.question_reveal",
+   "mode": "curious",
+   "tag": "[curious]",
+   "energy": "high",
+   "visual_op": [
+    "PreserveObject",
+    "Emphasize"
+   ],
+   "text": "What is Ohm's law? Why tired cells dim your torch.",
+   "node_ids": [
+    "CTX-torch-cells",
+    "OBJ-ohm-condition"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.25
+    }
+   ],
+   "emphasis_words": [
+    "dim"
+   ],
+   "on_screen": {
+    "headline": "What is Ohm's law?",
+    "fx_refs": [
+     "display.v_label",
+     "parameters.v1",
+     "display.v_unit",
+     "display.r_label",
+     "parameters.resistance_ohm",
+     "display.r_unit",
+     "display.i_label",
+     "results.i1",
+     "display.i_unit",
+     "display.ammeter_symbol",
+     "display.card.head.v",
+     "display.card.head.i",
+     "display.card.head.ratio"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c01",
+     "kind": "emphasis",
+     "element_id": "cell",
+     "anchor_word": "cells",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c02",
+     "kind": "emphasis",
+     "element_id": "ammeter",
+     "anchor_word": "dim",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "question"
+   }
+  },
+  {
+   "id": "b02",
+   "scene": "s01",
+   "slot": "explain.definition",
+   "mode": "steady",
+   "energy": "mid",
+   "visual_op": [
+    "MapSymbol",
+    "TracePath"
+   ],
+   "text": "Voltage pushes, resistance holds back, current flows.",
+   "node_ids": [
+    "SIM-push-flow",
+    "SIM-flow-speed"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.25
+    }
+   ],
+   "emphasis_words": [
+    "pushes"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.v_label",
+     "display.r_label",
+     "display.i_label",
+     "display.card.def.term",
+     "display.card.def.text"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c03",
+     "kind": "reveal",
+     "element_id": "cell",
+     "anchor_word": "pushes",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c04",
+     "kind": "reveal",
+     "element_id": "resistor",
+     "anchor_word": "holds",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c05",
+     "kind": "reveal",
+     "element_id": "flow_dash",
+     "anchor_word": "flows",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "insight_beat": true,
+   "rehook": {
+    "kind": "picture"
+   },
+   "card": {
+    "verb": "Card",
+    "what": "definition card (formal wording) from the beat's first word to the mechanism"
+   },
+   "target_wpm": 118.3,
+   "target_wpm_source": "measured 97 wpm (v2 b02, identical text)"
+  },
+  {
+   "id": "b03",
+   "scene": "s01",
+   "slot": "explain.definition",
+   "mode": "steady",
+   "energy": "mid",
+   "visual_op": [
+    "Badge",
+    "Emphasize"
+   ],
+   "text": "The flow keeps pace with the push, at constant temperature.",
+   "node_ids": [
+    "CLM-ohm-proportional",
+    "SIM-constant-temperature"
+   ],
+   "pauses": [
+    {
+     "purpose": "inspect",
+     "after_s": 1.0
+    }
+   ],
+   "emphasis_words": [
+    "pace"
+   ],
+   "on_screen": {
+    "headline": "The flow keeps pace",
+    "fx_refs": [
+     "display.condition"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c06",
+     "kind": "emphasis",
+     "element_id": "i_readout",
+     "anchor_word": "pace",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c07",
+     "kind": "reveal",
+     "element_id": "cond_badge",
+     "anchor_word": "constant",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  },
+  {
+   "id": "b04",
+   "scene": "s01",
+   "slot": "explain.mechanism",
+   "mode": "steady",
+   "energy": "mid",
+   "visual_op": [
+    "Emphasize",
+    "Reveal"
+   ],
+   "text": "Two volts, ten ohms: the meter reads point two.",
+   "node_ids": [
+    "WRK-ohm-two-points"
+   ],
+   "pauses": [
+    {
+     "purpose": "land",
+     "after_s": 0.6
+    }
+   ],
+   "emphasis_words": [
+    "point two"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "parameters.v1",
+     "display.v_unit",
+     "parameters.resistance_ohm",
+     "display.r_unit",
+     "results.i1",
+     "display.i_unit"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c08",
+     "kind": "emphasis",
+     "element_id": "v_label",
+     "anchor_word": "Two",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c09",
+     "kind": "emphasis",
+     "element_id": "r_label",
+     "anchor_word": "ten",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c10",
+     "kind": "emphasis",
+     "element_id": "i_readout",
+     "anchor_word": "reads",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "card": {
+    "verb": "Card",
+    "what": "table row 1: V on 'Two', I on 'reads'"
+   },
+   "target_wpm": 143.9,
+   "target_wpm_source": "measured 118 wpm (v2 b03 'Two volts, ten ohms: point two amperes.')"
+  },
+  {
+   "id": "b05",
+   "scene": "s01",
+   "slot": "explain.mechanism",
+   "mode": "steady",
+   "energy": "peak",
+   "visual_op": [
+    "ChangeValue",
+    "CompareStates"
+   ],
+   "text": "Double the push: four volts. The meter climbs to point four.",
+   "node_ids": [
+    "WRK-ohm-two-points",
+    "CLM-ohm-proportional"
+   ],
+   "pauses": [
+    {
+     "purpose": "land",
+     "after_s": 0.6
+    }
+   ],
+   "emphasis_words": [
+    "Double"
+   ],
+   "on_screen": {
+    "headline": "Double the push",
+    "fx_refs": [
+     "parameters.v2",
+     "results.i2",
+     "display.times",
+     "results.ratio_v",
+     "results.ratio_i"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c11",
+     "kind": "reveal",
+     "element_id": "v_label",
+     "anchor_word": "four",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c12",
+     "kind": "reveal",
+     "element_id": "i_readout",
+     "anchor_word": "climbs",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c13",
+     "kind": "reveal",
+     "element_id": "eq_mv",
+     "anchor_word": "point",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c14",
+     "kind": "reveal",
+     "element_id": "eq_mi",
+     "anchor_word": "four",
+     "occurrence": 2,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "turn"
+   },
+   "payoff_beat": true,
+   "card": {
+    "verb": "Card",
+    "what": "table row 2: V on 'four', I on 'climbs'"
+   }
+  },
+  {
+   "id": "b06",
+   "scene": "s01",
+   "slot": "explain.formal",
+   "mode": "deliberate",
+   "tag": "[calm]",
+   "energy": "low",
+   "visual_op": [
+    "EquationTransform",
+    "MapSymbol"
+   ],
+   "text": "Voltage equals current times resistance; the hold-back stays ten ohms.",
+   "node_ids": [
+    "CLM-resistance-constant"
+   ],
+   "pauses": [
+    {
+     "purpose": "inspect",
+     "after_s": 1.0
+    }
+   ],
+   "emphasis_words": [
+    "stays"
+   ],
+   "on_screen": {
+    "headline": "Voltage equals current times resistance",
+    "fx_refs": [
+     "display.sym.V",
+     "display.ops.eq",
+     "display.sym.I",
+     "display.ops.times",
+     "display.sym.R",
+     "results.v_over_i_1",
+     "results.v_over_i_2",
+     "display.r_unit"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c15",
+     "kind": "reveal",
+     "element_id": "eq_x",
+     "anchor_word": "equals",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c16",
+     "kind": "reveal",
+     "element_id": "eq_R",
+     "anchor_word": "resistance",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c17",
+     "kind": "emphasis",
+     "element_id": "resistor",
+     "anchor_word": "hold-back",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c18",
+     "kind": "reveal",
+     "element_id": "r_label",
+     "anchor_word": "ten",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "formula"
+   },
+   "card": {
+    "verb": "Card",
+    "what": "V ÷ I cells rows 1-2 on 'ten'"
+   }
+  },
+  {
+   "id": "b07",
+   "scene": "s01",
+   "slot": "explain.condition",
+   "mode": "curious",
+   "energy": "high",
+   "visual_op": [
+    "Emphasize",
+    "SwapPart"
+   ],
+   "text": "So does it always double? Watch a bulb.",
+   "node_ids": [
+    "MIS-always-doubles",
+    "CLM-ohm-proportional"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.25
+    }
+   ],
+   "emphasis_words": [
+    "always"
+   ],
+   "on_screen": {
+    "headline": "Does it always double?",
+    "fx_refs": [
+     "display.condition",
+     "display.lamp_label"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c19",
+     "kind": "emphasis",
+     "element_id": "cond_badge",
+     "anchor_word": "always",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c20",
+     "kind": "reveal",
+     "element_id": "lamp",
+     "anchor_word": "bulb",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "question"
+   }
+  },
+  {
+   "id": "b08",
+   "scene": "s01",
+   "slot": "explain.condition",
+   "mode": "alert",
+   "energy": "mid",
+   "visual_op": [
+    "SwapPart",
+    "RevealMismatch",
+    "StrikeThrough"
+   ],
+   "text": "Its filament heats, resistance rises: the flow falls short. So the rule needs a steady temperature.",
+   "node_ids": [
+    "CLM-filament",
+    "CLM-ohm-proportional"
+   ],
+   "pauses": [
+    {
+     "purpose": "land",
+     "after_s": 0.6
+    }
+   ],
+   "emphasis_words": [
+    "rises"
+   ],
+   "on_screen": {
+    "headline": "Resistance rises",
+    "fx_refs": [
+     "display.r_symbol",
+     "display.rises",
+     "results.lamp.current_doubles",
+     "display.times",
+     "results.ratio_i"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c21",
+     "kind": "reveal",
+     "element_id": "heat",
+     "anchor_word": "heats",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c22",
+     "kind": "reveal",
+     "element_id": "r_up",
+     "anchor_word": "rises",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c23",
+     "kind": "reveal",
+     "element_id": "eq_mi",
+     "anchor_word": "flow",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c24",
+     "kind": "reveal",
+     "element_id": "eq_mi",
+     "anchor_word": "short",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "exception"
+   },
+   "evidence": "CLM-filament",
+   "evidence_shown_as": "lamp in the resistor's slot, heat rays, 'R ↑', the condition chip struck, the dashes slowing, I = ?, and the I-row × 2 struck; qualitative only (results.lamp.current_doubles = false, PD-16)",
+   "target_wpm": 145.1,
+   "target_wpm_source": "measured 119 wpm (v2 b09 'A hot bulb? Resistance rises, current won't double.')"
+  },
+  {
+   "id": "b08b",
+   "scene": "s01",
+   "slot": "explain.condition",
+   "tag": "[calm]",
+   "energy": "mid",
+   "text": "Keep it cool, and the rule holds.",
+   "node_ids": [
+    "CLM-ohm-proportional",
+    "SIM-constant-temperature"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.25
+    }
+   ],
+   "emphasis_words": [
+    "cool"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.condition"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c24b",
+     "kind": "emphasis",
+     "element_id": "cond_badge",
+     "anchor_word": "cool",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "visual_op": "Emphasize"
+  },
+  {
+   "id": "b09",
+   "scene": "s01",
+   "slot": "worked.step",
+   "mode": "steady",
+   "energy": "high",
+   "visual_op": [
+    "SwapPart",
+    "ChangeValue",
+    "EquationTransform"
+   ],
+   "text": "Back to the resistor: six volts, the meter lands on point six, right on the rule.",
+   "node_ids": [
+    "WRK-ohm-six-volts",
+    "CLM-ohm-proportional"
+   ],
+   "pauses": [
+    {
+     "purpose": "land",
+     "after_s": 0.6
+    }
+   ],
+   "emphasis_words": [
+    "six"
+   ],
+   "on_screen": {
+    "headline": "Back to the resistor",
+    "fx_refs": [
+     "parameters.v3",
+     "display.v_unit",
+     "results.i3",
+     "display.i_unit",
+     "parameters.resistance_ohm",
+     "results.v_over_i_3"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c25",
+     "kind": "reveal",
+     "element_id": "resistor",
+     "anchor_word": "resistor",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c26",
+     "kind": "reveal",
+     "element_id": "v_label",
+     "anchor_word": "six",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c27",
+     "kind": "reveal",
+     "element_id": "i_readout",
+     "anchor_word": "lands",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c28",
+     "kind": "reveal",
+     "element_id": "eq_i3",
+     "anchor_word": "six",
+     "occurrence": 2,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "worked"
+   },
+   "card": {
+    "verb": "Card",
+    "what": "table row 3: V on 'six', I on 'lands', V ÷ I on the second 'six'"
+   }
+  },
+  {
+   "id": "b10",
+   "scene": "s01",
+   "slot": "recap.statement",
+   "mode": "steady",
+   "energy": "high",
+   "visual_op": [
+    "Badge",
+    "CompareStates"
+   ],
+   "text": "Twice the push, twice the flow.",
+   "node_ids": [
+    "CLM-ohm-proportional"
+   ],
+   "pauses": [
+    {
+     "purpose": "land",
+     "after_s": 0.6
+    }
+   ],
+   "emphasis_words": [
+    "Twice"
+   ],
+   "on_screen": {
+    "headline": "Twice the push, twice the flow",
+    "fx_refs": [
+     "display.card.points.p1",
+     "display.card.points.p2",
+     "display.card.points.p3"
+    ],
+    "claim_line": "Twice the push, twice the flow."
+   },
+   "cues": [
+    {
+     "id": "c29",
+     "kind": "reveal",
+     "element_id": "card_points",
+     "anchor_word": "Twice",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c30",
+     "kind": "emphasis",
+     "element_id": "i_readout",
+     "anchor_word": "flow",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "moral"
+   },
+   "card": {
+    "verb": "Card",
+    "what": "points card on 'Twice' (p2 +0.5 s, p3 +1.0 s), stays on the end card"
+   }
+  },
+  {
+   "id": "b11",
+   "scene": "s01",
+   "slot": "close.next_step",
+   "mode": "reassuring",
+   "tag": "[calm]",
+   "energy": "mid",
+   "visual_op": "Badge",
+   "text": "Try the free lesson on Ohm's law.",
+   "node_ids": [
+    "OBJ-ohm-condition"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.25
+    }
+   ],
+   "emphasis_words": [],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.ui.endcard_line2"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c31",
+     "kind": "reveal",
+     "element_id": "endline",
+     "anchor_word": "free",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  },
+  {
+   "id": "b12",
+   "scene": "s01",
+   "slot": "outro.brand",
+   "mode": "steady",
+   "energy": "mid",
+   "visual_op": [
+    "Badge",
+    "EndMotif"
+   ],
+   "text": "Professor Diki Simplified.",
+   "node_ids": [],
+   "pauses": [],
+   "emphasis_words": [],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.ui.endcard_line1",
+     "display.ui.endcard_line2"
+    ],
+    "free_lesson": "Free lesson: Ohm's law"
+   },
+   "cues": [
+    {
+     "id": "c32",
+     "kind": "reveal",
+     "element_id": "wordmark",
+     "anchor_word": "Professor",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "target_wpm": 106.1,
+   "target_wpm_source": "measured 87 wpm (v2 b14, identical text)"
+  }
+ ],
+ "requires": {
+  "lesson_graph_nodes_new": [
+   "CTX-torch-cells",
+   "WRK-ohm-six-volts",
+   "SIM-flow-speed"
+  ],
+  "review": "Academic review of CTX-torch-cells (the opening scene), SIM-push-flow, SIM-flow-speed, CLM-filament (reliability note) and WRK-ohm-six-volts before release.",
+  "lamp_measurement": "No lamp current anywhere (PD-16); the slowed dashes in the hot filament are a qualitative picture (display.flow.lamp_factor), never a value."
+ },
+ "_note": "Exemplar explainer (PD-24/PD-25): the narrated 17 Oct 2026 physics explainer, told as a story; 120 words for George on eleven_v4 at rate_scale 0.95, 13 beats, measured 59.0 s at tempo 0.97."
+}

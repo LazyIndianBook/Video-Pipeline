@@ -1,0 +1,11 @@
+{
+  "skill_name": "examleaf-analogy-auditor",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Use traffic to explain current and claim electrons travel from a switch to a lamp almost instantly.",
+      "expected_output": "Separates charge flow from signal propagation and rejects the false transport implication.",
+      "files": []
+    }
+  ]
+}

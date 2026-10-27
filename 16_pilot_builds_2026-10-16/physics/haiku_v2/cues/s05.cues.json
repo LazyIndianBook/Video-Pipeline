@@ -1,0 +1,299 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "phy-ohm-ci-01-s05",
+ "fps": 30,
+ "duration": 18.733,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "2092fee6592bacc4b215ff3a4842d3a065b5ee13cd547456e5c294558af35d15",
+ "script_sha256": "99b14455feefd67b584fa937db6c4bf87e9620b75e03b23d8ec9ff34e06e574d",
+ "words": [
+  {
+   "w": "At",
+   "t0": 0.107,
+   "t1": 0.267
+  },
+  {
+   "w": "constant",
+   "t0": 0.347,
+   "t1": 0.747
+  },
+  {
+   "w": "temperature",
+   "t0": 0.827,
+   "t1": 1.627
+  },
+  {
+   "w": "an",
+   "t0": 1.747,
+   "t1": 1.867
+  },
+  {
+   "w": "ohmic",
+   "t0": 1.947,
+   "t1": 2.187
+  },
+  {
+   "w": "conductor's",
+   "t0": 2.267,
+   "t1": 2.827
+  },
+  {
+   "w": "current",
+   "t0": 3.027,
+   "t1": 3.227,
+   "occurrence": 1
+  },
+  {
+   "w": "is",
+   "t0": 3.307,
+   "t1": 3.387
+  },
+  {
+   "w": "proportional",
+   "t0": 3.467,
+   "t1": 4.107
+  },
+  {
+   "w": "to",
+   "t0": 4.147,
+   "t1": 4.187
+  },
+  {
+   "w": "voltage",
+   "t0": 4.267,
+   "t1": 5.227
+  },
+  {
+   "w": "Voltage",
+   "t0": 5.307,
+   "t1": 5.787
+  },
+  {
+   "w": "equals",
+   "t0": 5.867,
+   "t1": 6.187
+  },
+  {
+   "w": "current",
+   "t0": 6.267,
+   "t1": 6.747,
+   "occurrence": 2
+  },
+  {
+   "w": "multiplied",
+   "t0": 6.827,
+   "t1": 7.387
+  },
+  {
+   "w": "by",
+   "t0": 7.427,
+   "t1": 7.467,
+   "occurrence": 1
+  },
+  {
+   "w": "resistance",
+   "t0": 7.547,
+   "t1": 8.747,
+   "occurrence": 1
+  },
+  {
+   "w": "A",
+   "t0": 8.827,
+   "t1": 8.907
+  },
+  {
+   "w": "filament",
+   "t0": 8.987,
+   "t1": 9.307
+  },
+  {
+   "w": "lamp",
+   "t0": 9.507,
+   "t1": 9.707
+  },
+  {
+   "w": "breaks",
+   "t0": 9.827,
+   "t1": 10.027
+  },
+  {
+   "w": "the",
+   "t0": 10.107,
+   "t1": 10.187
+  },
+  {
+   "w": "rule",
+   "t0": 10.347,
+   "t1": 10.907
+  },
+  {
+   "w": "its",
+   "t0": 11.027,
+   "t1": 11.147
+  },
+  {
+   "w": "resistance",
+   "t0": 11.267,
+   "t1": 11.787,
+   "occurrence": 2
+  },
+  {
+   "w": "rises",
+   "t0": 11.867,
+   "t1": 12.667
+  },
+  {
+   "w": "AI-generated",
+   "t0": 13.187,
+   "t1": 14.307
+  },
+  {
+   "w": "narration",
+   "t0": 14.387,
+   "t1": 15.427
+  },
+  {
+   "w": "script",
+   "t0": 15.507,
+   "t1": 15.907
+  },
+  {
+   "w": "by",
+   "t0": 15.987,
+   "t1": 16.147,
+   "occurrence": 2
+  },
+  {
+   "w": "ExamLeaf",
+   "t0": 16.227,
+   "t1": 17.187
+  }
+ ],
+ "beats": [
+  0.027,
+  13.187
+ ],
+ "cues": [
+  {
+   "id": "c53",
+   "at": 0.297,
+   "kind": "reveal",
+   "element_id": "cond_row",
+   "word_index": 1
+  },
+  {
+   "id": "c54",
+   "at": 0.777,
+   "kind": "reveal",
+   "element_id": "tick1",
+   "word_index": 2
+  },
+  {
+   "id": "c55",
+   "at": 3.417,
+   "kind": "reveal",
+   "element_id": "rel_row",
+   "word_index": 8
+  },
+  {
+   "id": "c56",
+   "at": 4.217,
+   "kind": "reveal",
+   "element_id": "tick2",
+   "word_index": 10
+  },
+  {
+   "id": "c57",
+   "at": 5.817,
+   "kind": "reveal",
+   "element_id": "eq_row",
+   "word_index": 12
+  },
+  {
+   "id": "c58",
+   "at": 7.497,
+   "kind": "reveal",
+   "element_id": "tick3",
+   "word_index": 16
+  },
+  {
+   "id": "c59",
+   "at": 9.457,
+   "kind": "reveal",
+   "element_id": "lamp_row",
+   "word_index": 19
+  },
+  {
+   "id": "c61",
+   "at": 9.777,
+   "kind": "reveal",
+   "element_id": "strike_row",
+   "word_index": 20
+  },
+  {
+   "id": "c62",
+   "at": 10.297,
+   "kind": "reveal",
+   "element_id": "tick5",
+   "word_index": 22
+  },
+  {
+   "id": "c60",
+   "at": 11.817,
+   "kind": "reveal",
+   "element_id": "chg_row",
+   "word_index": 25
+  },
+  {
+   "id": "c64",
+   "at": 11.817,
+   "kind": "reveal",
+   "element_id": "tick4",
+   "word_index": 25
+  },
+  {
+   "id": "c63",
+   "at": 13.137,
+   "kind": "reveal",
+   "element_id": "disclosure",
+   "word_index": 26
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "phy-ohm-ci-01",
+  "scene": "s05",
+  "beat_ids": [
+   "b06",
+   "b07"
+  ],
+  "beats_text": [
+   {
+    "id": "b06",
+    "slot": "recap.statement",
+    "text": "At constant temperature, an ohmic conductor's current is proportional to voltage. Voltage equals current multiplied by resistance. A filament lamp breaks the rule: its resistance rises.",
+    "headline": "constant temperature",
+    "start": 0.107,
+    "end": 12.667,
+    "word_range": [
+     0,
+     26
+    ]
+   },
+   {
+    "id": "b07",
+    "slot": "outro.disclosure",
+    "text": "AI-generated narration; script by ExamLeaf.",
+    "headline": "",
+    "start": 13.187,
+    "end": 17.187,
+    "word_range": [
+     26,
+     31
+    ]
+   }
+  ],
+  "think_windows": []
+ }
+}

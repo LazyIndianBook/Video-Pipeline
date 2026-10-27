@@ -1,0 +1,25 @@
+PER FINISHED 10-MINUTE VIDEO | USD,,,
+,,,
+,,,
+Cost category,AI-heavy,Hybrid,Mostly self-hosted
+LLM reasoning / independent review,1.7160000000000002,1.7160000000000002,1.5150000000000001
+Narration generation,0.96,0.96,0.05
+Generated video clips,108,4,0
+Generated stills,0.2,0.2,0
+Encoding/rendering,0.3,0.5,0.5
+Alignment/audio allowance,0.1,0.1,0.05
+Working storage,0.2,0.2,0.2
+Machine subtotal,111.476,7.676,2.3150000000000004
+Academic review,25,15,20
+Production QA,7.5,5,5
+Repairs / editing,15,6.666666666666666,10
+Human subtotal,47.5,26.666666666666664,35
+TOTAL VARIABLE COST,158.976,34.342666666666666,37.315
+Monthly fixed allowance,250,300,900
+One-time setup,5000,10000,16000
+Human minutes/video,150,85,110
+,,,
+,,,
+Quality is not assumed equal. AI-heavy scenes can fail scientific requirements regardless of spend. Self-hosted labour and GPU time are unmeasured scenarios. Zero generated clips is the default unless their instructional value is approved.,,,
+,,,
+,,,

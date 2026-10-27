@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>Scene s05 recap and disclosure (bio-photosyn-ci-01)</title>
+<style>
+/* [1] TOKENS. Colour tokens from vertical_safe_zones.tokens.json (palette_light) and the 13-colour storybook palette
+   (style guide section 3.1). Font: system stack only (no network, no vendored fonts in this pilot). */
+:root{--bg:#F7F9FC;--ink:#14213D;--sec:#526074;--blue:#185ABD;--teal:#087986;--amber:#9A5B00;--red:#B42318;
+  --cream:#f3ecdf;--paper:#fbf7ee;--kraft:#b98f5e;--olive:#7c8a3c;--sage:#9dbb8e;--ink2:#2b2622;--pencil:#3a332c;
+  --font:"Noto Sans","Helvetica Neue",Arial,system-ui,sans-serif;--head:64px;--label:54px;--eq:66px}
+html,body{margin:0;background:var(--cream)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--cream);font-family:var(--font);color:var(--ink2)}
+#art{position:absolute;left:0;top:0;width:1080px;height:1920px}
+/* [2] LAYOUT. Zones: top_title y 250-518, middle_visual y 518-1177, bottom_caption y 1177-1470; x 96-960. */
+#headline{position:absolute;left:96px;top:250px;width:864px;height:268px}
+.hl{position:absolute;left:0;top:0;width:864px;height:268px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  font-size:var(--head);font-weight:700;line-height:1.25;color:var(--ink2);text-align:center;opacity:0}
+.w{display:inline-block;opacity:0;white-space:pre}
+/* Cards: fill #F7F9FC so the ink text keeps its token contrast (15.15:1). */
+.card{position:absolute;background:#F7F9FC;color:#14213D;font-weight:700;line-height:1.4;padding:12px 26px;border-radius:14px;
+  white-space:nowrap;opacity:0;box-shadow:0 9px 7px rgba(74,48,22,.30),0 2px 1.5px rgba(0,0,0,.20)}
+#glucose_formula{left:96px;top:700px;font-size:var(--eq)}
+#oxygen_formula{left:560px;top:700px;font-size:var(--eq)}
+#percent_block{left:96px;top:880px;width:864px;box-sizing:border-box;text-align:center;font-size:110px;padding:18px 26px}
+#carbon_tag{left:50%;top:1098px;transform:translateX(-50%);font-size:var(--label);font-weight:600}
+/* Disclosure (outro): approved text from meta.beats_text, verbatim. Bottom caption zone; ink on #F7F9FC. */
+#disclosure{position:absolute;left:96px;top:1262px;width:864px;box-sizing:border-box;text-align:center;font-size:var(--label);
+  font-weight:600;line-height:1.4;color:#14213D;background:#F7F9FC;padding:14px 26px;border-radius:12px;opacity:0;
+  box-shadow:0 9px 7px rgba(74,48,22,.30),0 2px 1.5px rgba(0,0,0,.20)}
+</style>
+</head>
+<body>
+<div id="stage">
+  <svg id="art" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="vig" cx="50%" cy="45%" r="75%">
+        <stop offset="60%" stop-color="#4a3016" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#4a3016" stop-opacity="0.12"/>
+      </radialGradient>
+      <!-- Cut-paper filter (procedural-2d primitives 7): white die-cut border 6-12 px, two-layer warm shadow. Static, seek-safe. -->
+      <filter id="cut" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+        <feMorphology in="SourceAlpha" operator="dilate" radius="7" result="grow"/>
+        <feFlood flood-color="#fbf7ee" result="paper"/>
+        <feComposite in="paper" in2="grow" operator="in" result="border"/>
+        <feMerge result="cutout"><feMergeNode in="border"/><feMergeNode in="SourceGraphic"/></feMerge>
+        <feOffset in="cutout" dx="0" dy="9" result="o1"/>
+        <feGaussianBlur in="o1" stdDeviation="3.5" result="b1"/>
+        <feFlood flood-color="#4a3016" flood-opacity="0.3" result="c1"/>
+        <feComposite in="c1" in2="b1" operator="in" result="sh1"/>
+        <feOffset in="cutout" dx="0" dy="2" result="o2"/>
+        <feGaussianBlur in="o2" stdDeviation="0.75" result="b2"/>
+        <feFlood flood-color="#000000" flood-opacity="0.2" result="c2"/>
+        <feComposite in="c2" in2="b2" operator="in" result="sh2"/>
+        <feMerge><feMergeNode in="sh1"/><feMergeNode in="sh2"/><feMergeNode in="cutout"/></feMerge>
+      </filter>
+    </defs>
+
+    <!-- z0 background paper -->
+    <rect x="0" y="0" width="1080" height="1920" fill="#f3ecdf"/>
+    <rect x="0" y="0" width="1080" height="1920" fill="url(#vig)"/>
+
+    <!-- torn kraft ground strip (decorative; hidden at the outro beat) -->
+    <g filter="url(#cut)" data-until-beat="b08">
+      <path d="M-20 1200 Q270 1172 540 1196 T1100 1184 L1100 1260 L-20 1260 Z" fill="#b98f5e"/>
+    </g>
+
+    <!-- leaf (cut paper): revealed on the word "plants"; hidden at the outro beat -->
+    <g transform="translate(650 120)">
+    <g id="leaf_recap" filter="url(#cut)" data-until-beat="b08">
+      <path d="M110 600 C100 480 190 420 300 430 C320 540 250 612 110 600 Z" fill="#7c8a3c"/>
+      <path d="M120 590 Q190 530 290 460" stroke="#9dbb8e" stroke-width="7" fill="none" stroke-linecap="round"/>
+    </g>
+    </g>
+
+    <!-- decorative sparkles (boil at 8 fps; no data) -->
+    <g class="boil" id="sp1" data-until-beat="b08"><path d="M1000 400 L1000 440 M980 420 L1020 420" stroke="#3a332c" stroke-width="4" stroke-linecap="round"/></g>
+    <g class="boil" id="sp2" data-until-beat="b08"><path d="M40 900 L40 940 M20 920 L60 920" stroke="#3a332c" stroke-width="4" stroke-linecap="round"/></g>
+  </svg>
+
+  <!-- Recap cards (fixture-bound). Revealed on their words; all hidden at the outro beat. -->
+  <div class="card" id="glucose_formula" data-until-beat="b08"><span data-fx="display.glucose"></span></div>
+  <div class="card" id="oxygen_formula" data-until-beat="b08"><span data-fx="display.o2"></span></div>
+  <div class="card" id="percent_block" data-until-beat="b08"><span data-fx="results.carbon_mass_percent_glucose"></span><span data-fx="display.percent_sign"></span></div>
+  <div class="card" id="carbon_tag" data-until-beat="b08"><span data-fx="display.carbon_word"></span></div>
+
+  <!-- Outro: the disclosure line, verbatim from meta.beats_text (beat b08). Nothing else is on screen in the outro. -->
+  <div id="disclosure" data-from-beat="b08" data-text-beat="b08"></div>
+
+  <div id="headline"></div>
+</div>
+
+<script>
+(function () {
+'use strict';
+/* [3] CONFIG. Everything variable arrives as a URL parameter or the injected cue sheet and fixture; the page never reads the clock. */
+const Q = new URLSearchParams(location.search);
+const num = (k, d) => { const v = parseFloat(Q.get(k)); return isFinite(v) ? v : d; };
+const FPS = num('fps', 30), SEED = num('seed', 20261016), EPS = 1e-6, LEAD = 0.05, BOIL_FPS = 8, HOLD_MIN = 1.2;
+const SCENE = 's05';
+
+/* [4] ERROR CHANNEL. Never swallow. The harness reads window.__errors after every seek. */
+window.__errors = [];
+const report = (code, severity, message, t) => window.__errors.push({ code, severity, message, t: t == null ? null : t });
+const fail = (code, message, t) => { report(code, 'error', message, t); const e = new Error(code + ': ' + message); e.code = code; return e; };
+
+/* [5] SEEDED RANDOMNESS. Stateless: rngAt(seed, i) gives the same value in any seek order. Math.random is forbidden. */
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const rngAt = (seed, i) => mulberry32((seed ^ Math.imul(i + 1, 0x9E3779B1)) >>> 0)();
+function hashStr(s) { let h = 0x811c9dc5; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193); } return h >>> 0; }
+
+/* [6] EASING. Pure functions of a progress value in [0, 1]. */
+const clamp01 = x => x < 0 ? 0 : x > 1 ? 1 : x;
+const cubicOut = u => 1 - Math.pow(1 - u, 3);
+const backOut = (u, s = 2.5) => { const v = u - 1; return 1 + (s + 1) * v * v * v + s * v * v; };
+// Finite damped pulse for emphasis cues: n periods, then rest.
+const pulse = (t, at, n = 2, period = 0.5, amp = 0.08) => { const d = t - at; return d < 0 || d > n * period ? 1 : 1 + amp * Math.sin(2 * Math.PI * d / period) * (1 - d / (n * period)); };
+const normW = s => String(s).normalize('NFC').toLowerCase().replace(/[^\p{L}\p{M}\p{N}'’]/gu, '');
+const deepFreeze = o => { Object.values(o).forEach(v => { if (v && typeof v === 'object') deepFreeze(v); }); return Object.freeze(o); };
+
+/* [7] LOADERS. Order: harness-injected window.__CUE_SHEET__ / window.__FIXTURE__, then ?cues= / ?fixture= paths.
+   No inline fallback: a missing sheet or fixture is an error, never a silent default. */
+async function loadJson(inject, param, what) {
+  if (inject) return { data: inject, source: 'injected' };
+  const p = Q.get(param);
+  if (p) {
+    try { const r = await fetch(p); if (!r.ok) throw new Error('HTTP ' + r.status); return { data: await r.json(), source: 'path' }; }
+    catch (e) { if (Q.get('strict') === '1') throw fail('E_' + what + '_LOAD', 'cannot load ' + p + ': ' + e.message); report('W_' + what + '_FALLBACK', 'warning', 'cannot load ' + p + ' (' + e.message + ')'); }
+  }
+  throw fail('E_' + what + '_LOAD', 'no injected or path source for ' + what);
+}
+
+/* [8] STATE, built once in window.ready; render(t) only reads it. */
+let SHEET = null, FX = null, CUE_EL = [];
+const fx = path => { const v = path.split('.').reduce((o, k) => o == null ? o : o[k], FX); if (v === undefined) throw fail('E_FIXTURE_MISSING', 'fixture has no ' + path); return v; };
+// Scene-local start time of a beat, from the cue sheet (never hard-coded).
+const beatRec = id => (SHEET.meta.beats_text || []).find(b => b.id === id) || null;
+
+// Headline: verbatim text from meta.beats_text, one span per WORD (never per code point), each revealed on its word's t0.
+function buildHeadlines() {
+  const box = document.getElementById('headline');
+  const beats = SHEET.meta.beats_text;
+  beats.forEach((rec, i) => {
+    if (!rec.headline) return;
+    const to = beats[i + 1] ? beats[i + 1].start : SHEET.duration;
+    const wrap = document.createElement('div'); wrap.className = 'hl'; wrap.lang = SHEET.language;
+    wrap.dataset.from = rec.start; wrap.dataset.to = to;
+    let cur = rec.word_range[0], lastAt = rec.start;
+    rec.headline.split(/\s+/).filter(Boolean).forEach(tok => {
+      const n = normW(tok); let idx = -1;
+      for (let k = cur; k < rec.word_range[1]; k++) { if (normW(SHEET.words[k].w) === n) { idx = k; break; } }
+      if (idx < 0) { report('W_HEADLINE_UNMATCHED', 'warning', 'headline word "' + tok + '" not spoken in ' + rec.id); idx = Math.max(rec.word_range[0], cur - 1); }
+      else cur = idx + 1;
+      const sp = document.createElement('span'); sp.className = 'w'; sp.textContent = tok + ' ';
+      sp.dataset.at = String(Math.max(0, SHEET.words[idx].t0 - LEAD)); lastAt = Math.max(lastAt, SHEET.words[idx].t0);
+      wrap.appendChild(sp);
+    });
+    if (to - lastAt < HOLD_MIN) report('W_HOLD_SHORT', 'warning', 'headline hold ' + (to - lastAt).toFixed(2) + ' s < ' + HOLD_MIN + ' s in ' + rec.id);
+    box.appendChild(wrap);
+  });
+}
+
+// Cue elements: a reveal or emphasis cue makes its element appear at cue.at (reveal lands on the word, 0.05 s before it).
+// data-pulse-only="1": the element sits inside a revealed container; the emphasis cue only pulses it (no own fade-in).
+function buildCues() {
+  const map = new Map();
+  SHEET.cues.forEach(c => {
+    const el = c.element_id && document.getElementById(c.element_id);
+    if (!el) { report('W_CUE_NO_ELEMENT', 'warning', 'cue ' + c.id + ' targets missing element ' + c.element_id); return; }
+    if (!map.has(c.element_id)) {
+      const bb = (el instanceof SVGGraphicsElement) ? el.getBBox() : { x: 0, y: 0, width: 0, height: 0 };
+      map.set(c.element_id, { el, appear: Infinity, pulses: [], cx: bb.x + bb.width / 2, cy: bb.y + bb.height / 2, pulseOnly: el.dataset.pulseOnly === '1' });
+    }
+    const r = map.get(c.element_id);
+    if (c.kind === 'reveal' || c.kind === 'emphasis') r.appear = Math.min(r.appear, c.at);
+    if (c.kind === 'emphasis') r.pulses.push(c.at);
+  });
+  CUE_EL = [...map.values()];
+  CUE_EL.forEach(r => { if (!isFinite(r.appear)) r.appear = 0; });
+}
+
+/* [9] RENDER. Synchronous, pure function of t (plus immutable state). Same t, same pixels, any order. */
+function place(el, op, s, dx, dy, cx, cy) {
+  if (el instanceof SVGElement) {
+    el.setAttribute('opacity', String(op));
+    el.setAttribute('transform', 'translate(' + dx + ' ' + dy + ') translate(' + cx + ' ' + cy + ') scale(' + s + ') translate(' + (-cx) + ' ' + (-cy) + ')');
+  } else {
+    el.style.opacity = String(op);
+    el.style.transform = 'translate(' + dx + 'px, ' + dy + 'px) scale(' + s + ')' + (el.id === 'carbon_tag' ? ' translateX(-50%)' : '');
+  }
+}
+// Boil step: 8 fps, frozen during a think window (no motion while the learner predicts). Decoration only.
+function boilStep(t) {
+  for (const w of (SHEET.meta.think_windows || [])) if (t >= w.start - EPS && t < w.end - EPS) return Math.floor(w.start * BOIL_FPS + EPS);
+  return Math.floor(t * BOIL_FPS + EPS);
+}
+function boilXY(id, k) { return [(rngAt(SEED, (hashStr(id) + k * 7919) >>> 0) - 0.5) * 3, (rngAt(SEED + 1, (hashStr(id) + k * 104729) >>> 0) - 0.5) * 3]; }
+
+function render(t) {
+  document.querySelectorAll('.hl').forEach(wrap => {
+    const from = +wrap.dataset.from, to = +wrap.dataset.to;
+    wrap.style.opacity = (t >= from - EPS && t < to - EPS) ? '1' : '0';
+    wrap.querySelectorAll('.w').forEach(sp => {
+      const d = t - (+sp.dataset.at);
+      const u = d < -EPS ? 0 : clamp01((d + EPS) / 0.18);
+      const y = d < -EPS ? 40 : 40 * (1 - backOut(clamp01((d + EPS) / 0.35)));
+      sp.style.opacity = String(cubicOut(u)); sp.style.transform = 'translateY(' + y + 'px)';
+    });
+  });
+  // Hand-off to the outro: elements tagged data-until-beat vanish at that beat's start (a hard cut, no exit animation).
+  document.querySelectorAll('[data-until-beat]').forEach(el => {
+    const b = beatRec(el.dataset.untilBeat);
+    el.style.visibility = (b && t >= b.start - EPS) ? 'hidden' : '';
+  });
+  // Elements tagged data-from-beat fade in at that beat's start (the outro disclosure).
+  document.querySelectorAll('[data-from-beat]').forEach(el => {
+    const b = beatRec(el.dataset.fromBeat);
+    el.style.opacity = (b && t >= b.start - EPS) ? String(cubicOut(clamp01((t - b.start) / 0.3))) : '0';
+  });
+  const tp = document.getElementById('think');
+  if (tp) {
+    const w = (SHEET.meta.think_windows || [])[0];
+    const on = !!w && t >= w.start - EPS && t < w.end - EPS;
+    tp.style.opacity = on ? String(cubicOut(clamp01((t - w.start) / 0.3))) : '0';
+  }
+  CUE_EL.forEach(r => {
+    const d = t - r.appear;
+    let op = d < -EPS ? 0 : cubicOut(clamp01((d + EPS) / 0.25));
+    let s = d < -EPS ? 0.6 : 0.6 + 0.4 * backOut(clamp01((d + EPS) / 0.45));
+    if (r.pulseOnly) { op = 1; s = 1; }
+    r.pulses.forEach(p => { s *= pulse(t, p); });
+    place(r.el, op, s, 0, 0, r.cx, r.cy);
+  });
+  const k = boilStep(t);
+  document.querySelectorAll('.boil').forEach(el => { const xy = boilXY(el.id, k); place(el, 1, 1, xy[0], xy[1], 0, 0); });
+}
+
+/* [10] READY + SEEK. seek(t) applies state for time t, then waits for fonts. It never waits on requestAnimationFrame. */
+window.FPS = FPS;
+window.DURATION = 4.0;   // synchronous default; the final value comes from the cue sheet inside ready()
+window.SCENE_META = { contract: '1.0.0', videoCount: 0, notes: 'paper-collage-vertical pilot ' + SCENE };
+window.ready = (async () => {
+  const s = await loadJson(window.__CUE_SHEET__, 'cues', 'CUES'); SHEET = s.data; window.__cueSource = s.source;
+  if (!(SHEET.duration > 0) || !isFinite(SHEET.duration) || !Array.isArray(SHEET.words) || !Array.isArray(SHEET.cues)) throw fail('E_CUES_INVALID', 'cue sheet needs finite duration>0, words[], cues[]');
+  const f = await loadJson(window.__FIXTURE__, 'fixture', 'FIXTURE'); FX = deepFreeze(f.data); window.__fixtureSource = f.source;
+  window.DURATION = SHEET.duration;
+  window.FRAME_COUNT = Math.round(window.DURATION * FPS);
+  if (SHEET.fps !== FPS) report('W_FPS_MISMATCH', 'warning', 'cue sheet fps ' + SHEET.fps + ' != render fps ' + FPS);
+  await Promise.all([document.fonts.load('700 64px "Noto Sans"', 'glucose and oxygen'), document.fonts.load('700 110px "Noto Sans"', '40%'), document.fonts.load('600 54px "Noto Sans"', 'carbon')]);
+  document.querySelectorAll('[data-fx]').forEach(el => { el.textContent = String(fx(el.dataset.fx)); });
+  // Verbatim approved text for the outro disclosure, copied from the cue sheet (never retyped here).
+  document.querySelectorAll('[data-text-beat]').forEach(el => { const b = beatRec(el.dataset.textBeat); if (!b) throw fail('E_CUES_INVALID', 'no beat ' + el.dataset.textBeat); el.textContent = b.text; });
+  buildHeadlines(); buildCues();
+  await document.fonts.ready;
+})().catch(e => { if (!e.code) report('E_READY', 'error', e.message); throw e; });
+
+let chain = Promise.resolve();   // serialise seeks so two calls can never interleave
+window.seek = async function seek(t) {
+  const prev = chain; let done; chain = new Promise(r => { done = r; });
+  try {
+    await prev; await window.ready;
+    if (typeof t !== 'number' || !isFinite(t)) throw fail('E_BAD_T', 'seek(t) needs a finite number of seconds, got ' + t);
+    const tc = Math.min(Math.max(t, 0), window.DURATION);
+    render(tc);
+    await document.fonts.ready;
+    return { t: tc, frame: Math.round(tc * FPS) };
+  } finally { done(); }
+};
+
+/* [11] HYPERFRAMES ADAPTER (shape unverified; see contract section 13). */
+window.__hf = window.__hf || { get duration() { return window.DURATION; }, seek: t => window.seek(t) };
+})();
+</script>
+</body>
+</html>

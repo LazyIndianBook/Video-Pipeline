@@ -1,0 +1,26 @@
+EXAMLEAF | UNIT ECONOMICS,,
+"Established reusable templates; not a cost guarantee for bespoke diagrams or 3D. No promotional prices, free tiers, batch discounts or caching savings assumed.",,
+,,
+Cost component,USD / video,Basis / scope
+Haiku extraction / routing,0.0055,Haiku 5.5; prompts remain within short-context tier.
+Sonnet scripting / component adaptation,0.49,Sonnet 5.5; total tokens across bounded calls.
+Independent OpenAI review,0.22,gpt-6.1-sol; short-context rates.
+Opus escalation reserve,0.08,"Opus 5.5 amortized reserve, not required on every scene."
+Base LLM subtotal,0.7955,Before regeneration allowance.
+LLM cost with regeneration,1.0341500000000001,Includes a 30% retry/rewrite reserve.
+Narration with regeneration,0.768,ElevenLabs Multilingual v2 standard character price.
+Rendering with retries,0.35546688,Fargate US East rate example. 45 minutes is an unmeasured planning assumption.
+ASR validation,0.03,Validation transcription only; alignment accuracy must still be checked.
+Working-asset storage,0.03,2 GB retained for one month; archive growth is recurring.
+API / request reserve,0.15,"Planning reserve, not a quoted service bundle."
+VARIABLE MACHINE COST,2.3676168799999995,"Excludes humans, fixed overhead and initial engine development."
+Academic review,15,"Review approved claims, script, derivations and the entire final lesson."
+Production QA,3,"Mobile, audio, captions, continuity and export review."
+HUMAN REVIEW COST,18,One reviewer-hour in the base scenario.
+TOTAL VARIABLE COST,20.36761688,Established engine and component library.
+Fixed monthly overhead,200,Infrastructure allowance + maintenance + optional developer subscriptions.
+One-time implementation budget,8000,Illustrative 320-hour setup. A mature platform may cost substantially more.
+,,
+,,
+,,
+,,

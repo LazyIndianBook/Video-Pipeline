@@ -1,0 +1,887 @@
+{
+ "video_id": "phy-ohm-pd-02",
+ "voice": {
+  "path": "B",
+  "provider": "elevenlabs",
+  "model_id": "eleven_v4",
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "persona": "persona/super-teacher#core",
+  "note": "stock English voice (PD-05)",
+  "rate_scale": 0.82
+ },
+ "fps": 30,
+ "lead_in_s": 0.3,
+ "script_v2": true,
+ "room_tone_dbfs": -66.0,
+ "tempo": 0.98,
+ "beats": [
+  {
+   "id": "b01",
+   "scene": "s01",
+   "slot": "hook.question_reveal",
+   "start": 0.27,
+   "end": 3.415,
+   "audio_s": 3.592,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 50,
+   "request_id": "lTN9ddzkg816LFc333Me",
+   "sha256": "d8f2e6e25903f2686bea4be2d68c352867537c31176296b0463abb69cd905c6e",
+   "words": [
+    {
+     "w": "Voltage",
+     "t0": 0.3,
+     "t1": 0.708
+    },
+    {
+     "w": "doubles",
+     "t0": 0.871,
+     "t1": 1.688
+    },
+    {
+     "w": "Current",
+     "t0": 1.933,
+     "t1": 2.341
+    },
+    {
+     "w": "always",
+     "t0": 2.504,
+     "t1": 2.831
+    },
+    {
+     "w": "doubles",
+     "t0": 2.912,
+     "t1": 3.335
+    }
+   ],
+   "energy": "high"
+  },
+  {
+   "id": "b02",
+   "scene": "s01",
+   "slot": "explain.givens",
+   "start": 3.535,
+   "end": 7.945,
+   "audio_s": 4.571,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 53,
+   "request_id": "KjZnPKvzRyu3tGcTBFzi",
+   "sha256": "dcdeb7e75d53c2a0d8fac4bbfc9fea42cbcca6f3413a6099f2c1e47caa8f61bf",
+   "words": [
+    {
+     "w": "Voltage",
+     "t0": 3.535,
+     "t1": 4.025
+    },
+    {
+     "w": "pushes",
+     "t0": 4.107,
+     "t1": 5.004
+    },
+    {
+     "w": "resistance",
+     "t0": 5.127,
+     "t1": 5.658
+    },
+    {
+     "w": "holds",
+     "t0": 5.821,
+     "t1": 5.984
+    },
+    {
+     "w": "back",
+     "t0": 6.066,
+     "t1": 6.719
+    },
+    {
+     "w": "current",
+     "t0": 6.8,
+     "t1": 7.209
+    },
+    {
+     "w": "flows",
+     "t0": 7.29,
+     "t1": 7.865
+    }
+   ],
+   "energy": "mid"
+  },
+  {
+   "id": "b03",
+   "scene": "s01",
+   "slot": "explain.givens",
+   "start": 8.035,
+   "end": 11.705,
+   "audio_s": 3.837,
+   "pause_after_s": 0.5,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "land",
+    "seconds": 0.5
+   },
+   "chars": 39,
+   "request_id": "AzHNjFfnR2nG9TGjlTzO",
+   "sha256": "2f82697c36f6d2a465a8a5161f595831718ae6b9228142b70c329127f5fe9c34",
+   "words": [
+    {
+     "w": "Two",
+     "t0": 8.065,
+     "t1": 8.25
+    },
+    {
+     "w": "volts",
+     "t0": 8.332,
+     "t1": 8.985
+    },
+    {
+     "w": "ten",
+     "t0": 9.107,
+     "t1": 9.23
+    },
+    {
+     "w": "ohms",
+     "t0": 9.393,
+     "t1": 10.291
+    },
+    {
+     "w": "point",
+     "t0": 10.454,
+     "t1": 10.617
+    },
+    {
+     "w": "two",
+     "t0": 10.699,
+     "t1": 10.781
+    },
+    {
+     "w": "amperes",
+     "t0": 10.944,
+     "t1": 11.625
+    }
+   ],
+   "energy": "mid"
+  },
+  {
+   "id": "b04",
+   "scene": "s01",
+   "slot": "check.predict",
+   "start": 12.095,
+   "end": 17.472,
+   "audio_s": 5.633,
+   "pause_after_s": 0.0,
+   "think_window_s": 1.8,
+   "pause": {
+    "purpose": "think_choice",
+    "seconds": 1.8
+   },
+   "chars": 73,
+   "request_id": "IZHxzxtqI5AP6l7fRSa5",
+   "sha256": "ce112574dd5e8a0794f1c32a286b1bd4f2893ebcdbbea8aea8004e3f105d56e4",
+   "words": [
+    {
+     "w": "Now",
+     "t0": 12.125,
+     "t1": 12.37
+    },
+    {
+     "w": "four",
+     "t0": 12.615,
+     "t1": 12.86
+    },
+    {
+     "w": "volts",
+     "t0": 12.941,
+     "t1": 13.594
+    },
+    {
+     "w": "same",
+     "t0": 13.758,
+     "t1": 13.921
+    },
+    {
+     "w": "resistor",
+     "t0": 14.003,
+     "t1": 14.819
+    },
+    {
+     "w": "More",
+     "t0": 15.064,
+     "t1": 15.309
+    },
+    {
+     "w": "current",
+     "t0": 15.554,
+     "t1": 15.962
+    },
+    {
+     "w": "less",
+     "t0": 16.125,
+     "t1": 16.615
+    },
+    {
+     "w": "or",
+     "t0": 16.697,
+     "t1": 16.778
+    },
+    {
+     "w": "the",
+     "t0": 16.86,
+     "t1": 16.941
+    },
+    {
+     "w": "same",
+     "t0": 17.023,
+     "t1": 17.392
+    }
+   ],
+   "energy": "high"
+  },
+  {
+   "id": "b05",
+   "scene": "s01",
+   "slot": "reveal.answer",
+   "start": 19.192,
+   "end": 23.452,
+   "audio_s": 4.408,
+   "pause_after_s": 0.5,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "land",
+    "seconds": 0.5
+   },
+   "chars": 49,
+   "request_id": "zsLpZWqfbKFU9phvuif7",
+   "sha256": "600f127001b00c575475d7235914d44313fa0007f3d15c6805a45babb4f930ce",
+   "words": [
+    {
+     "w": "More",
+     "t0": 19.192,
+     "t1": 19.927
+    },
+    {
+     "w": "point",
+     "t0": 20.09,
+     "t1": 20.253
+    },
+    {
+     "w": "four",
+     "t0": 20.335,
+     "t1": 21.151
+    },
+    {
+     "w": "Twice",
+     "t0": 21.233,
+     "t1": 21.559
+    },
+    {
+     "w": "the",
+     "t0": 21.6,
+     "t1": 21.641
+    },
+    {
+     "w": "push",
+     "t0": 21.722,
+     "t1": 22.376
+    },
+    {
+     "w": "twice",
+     "t0": 22.457,
+     "t1": 22.784
+    },
+    {
+     "w": "the",
+     "t0": 22.824,
+     "t1": 22.865
+    },
+    {
+     "w": "flow",
+     "t0": 22.947,
+     "t1": 23.372
+    }
+   ],
+   "energy": "peak"
+  },
+  {
+   "id": "b06",
+   "scene": "s01",
+   "slot": "explain.mechanism",
+   "start": 23.872,
+   "end": 26.412,
+   "audio_s": 2.694,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 30,
+   "request_id": "j4VU82StRtRUokgDA9cB",
+   "sha256": "d55f980e3ee7c73a05c28a6c1a095a11ab4c1d9edbbded0816631b540131f734",
+   "words": [
+    {
+     "w": "Why",
+     "t0": 23.872,
+     "t1": 24.566
+    },
+    {
+     "w": "Only",
+     "t0": 24.77,
+     "t1": 25.096
+    },
+    {
+     "w": "the",
+     "t0": 25.137,
+     "t1": 25.178
+    },
+    {
+     "w": "voltage",
+     "t0": 25.341,
+     "t1": 25.749
+    },
+    {
+     "w": "changed",
+     "t0": 25.831,
+     "t1": 26.332
+    }
+   ],
+   "energy": "mid"
+  },
+  {
+   "id": "b07",
+   "scene": "s01",
+   "slot": "explain.formal",
+   "start": 26.502,
+   "end": 33.428,
+   "audio_s": 7.51,
+   "pause_after_s": 0.8,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "inspect",
+    "seconds": 0.8
+   },
+   "chars": 95,
+   "request_id": "JtqnUq5oTDPMoXjYub8q",
+   "sha256": "0f3364a41633bdcbf5c63a26d7e715bd76ee62c554366b6ac45b77fc4da0657a",
+   "words": [
+    {
+     "w": "Voltage",
+     "t0": 26.532,
+     "t1": 26.63
+    },
+    {
+     "w": "over",
+     "t0": 26.711,
+     "t1": 26.875
+    },
+    {
+     "w": "current",
+     "t0": 27.038,
+     "t1": 27.446
+    },
+    {
+     "w": "stays",
+     "t0": 27.528,
+     "t1": 27.854
+    },
+    {
+     "w": "ten",
+     "t0": 27.936,
+     "t1": 28.099
+    },
+    {
+     "w": "ohms",
+     "t0": 28.262,
+     "t1": 29.079
+    },
+    {
+     "w": "Ohm's",
+     "t0": 29.405,
+     "t1": 29.732
+    },
+    {
+     "w": "law",
+     "t0": 29.813,
+     "t1": 30.548
+    },
+    {
+     "w": "voltage",
+     "t0": 30.711,
+     "t1": 31.201
+    },
+    {
+     "w": "equals",
+     "t0": 31.283,
+     "t1": 31.609
+    },
+    {
+     "w": "current",
+     "t0": 31.773,
+     "t1": 32.099
+    },
+    {
+     "w": "times",
+     "t0": 32.262,
+     "t1": 32.507
+    },
+    {
+     "w": "resistance",
+     "t0": 32.589,
+     "t1": 33.348
+    }
+   ],
+   "energy": "low"
+  },
+  {
+   "id": "b08",
+   "scene": "s01",
+   "slot": "exam.language",
+   "start": 34.148,
+   "end": 37.058,
+   "audio_s": 3.02,
+   "pause_after_s": 0.25,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.25
+   },
+   "chars": 37,
+   "request_id": "1v4qwIlDgAnJL7yWqWwf",
+   "sha256": "f0c296076afd91135192e374c9a95a7e1480494303a77e1f67d6e071b931dde2",
+   "words": [
+    {
+     "w": "Always",
+     "t0": 34.148,
+     "t1": 35.006
+    },
+    {
+     "w": "Only",
+     "t0": 35.291,
+     "t1": 35.618
+    },
+    {
+     "w": "at",
+     "t0": 35.699,
+     "t1": 35.781
+    },
+    {
+     "w": "constant",
+     "t0": 35.863,
+     "t1": 36.271
+    },
+    {
+     "w": "temperature",
+     "t0": 36.352,
+     "t1": 36.978
+    }
+   ],
+   "energy": "mid"
+  },
+  {
+   "id": "b09",
+   "scene": "s01",
+   "slot": "misconception.confront",
+   "start": 37.198,
+   "end": 41.338,
+   "audio_s": 4.327,
+   "pause_after_s": 0.5,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "land",
+    "seconds": 0.5
+   },
+   "chars": 51,
+   "request_id": "RMO3Fym4RCiyvhwK0a0t",
+   "sha256": "1e11938b668ff285616473344613efd3e395f575e87aebab853f0b2fdf0ef764",
+   "words": [
+    {
+     "w": "A",
+     "t0": 37.228,
+     "t1": 37.332
+    },
+    {
+     "w": "hot",
+     "t0": 37.454,
+     "t1": 37.577
+    },
+    {
+     "w": "bulb",
+     "t0": 37.658,
+     "t1": 38.27
+    },
+    {
+     "w": "Resistance",
+     "t0": 38.474,
+     "t1": 39.046
+    },
+    {
+     "w": "rises",
+     "t0": 39.128,
+     "t1": 39.944
+    },
+    {
+     "w": "current",
+     "t0": 40.026,
+     "t1": 40.434
+    },
+    {
+     "w": "won't",
+     "t0": 40.515,
+     "t1": 40.842
+    },
+    {
+     "w": "double",
+     "t0": 41.046,
+     "t1": 41.258
+    }
+   ],
+   "energy": "high"
+  },
+  {
+   "id": "b10",
+   "scene": "s01",
+   "slot": "check.transfer",
+   "start": 41.728,
+   "end": 46.505,
+   "audio_s": 5.061,
+   "pause_after_s": 0.0,
+   "think_window_s": 2.7,
+   "pause": {
+    "purpose": "think_calc",
+    "seconds": 2.7
+   },
+   "chars": 72,
+   "request_id": "4v2z163DgpOZByoIiOFc",
+   "sha256": "436d922f6eb6a2049ae688f48e85cab590b41de9c9eb210060ad793dc8304319",
+   "words": [
+    {
+     "w": "Your",
+     "t0": 41.758,
+     "t1": 41.922
+    },
+    {
+     "w": "turn",
+     "t0": 42.003,
+     "t1": 42.575
+    },
+    {
+     "w": "same",
+     "t0": 42.82,
+     "t1": 43.064
+    },
+    {
+     "w": "resistor",
+     "t0": 43.187,
+     "t1": 43.84
+    },
+    {
+     "w": "six",
+     "t0": 44.044,
+     "t1": 44.289
+    },
+    {
+     "w": "volts",
+     "t0": 44.411,
+     "t1": 45.024
+    },
+    {
+     "w": "What",
+     "t0": 45.269,
+     "t1": 45.432
+    },
+    {
+     "w": "does",
+     "t0": 45.513,
+     "t1": 45.595
+    },
+    {
+     "w": "the",
+     "t0": 45.677,
+     "t1": 45.718
+    },
+    {
+     "w": "meter",
+     "t0": 45.758,
+     "t1": 46.085
+    },
+    {
+     "w": "read",
+     "t0": 46.167,
+     "t1": 46.425
+    }
+   ],
+   "energy": "high"
+  },
+  {
+   "id": "b11",
+   "scene": "s01",
+   "slot": "feedback.transfer",
+   "start": 49.095,
+   "end": 53.182,
+   "audio_s": 4.327,
+   "pause_after_s": 0.5,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "land",
+    "seconds": 0.5
+   },
+   "chars": 61,
+   "request_id": "Z6i1t6W0KMqT147Ssy1U",
+   "sha256": "1cf57bf5302c33db1bb7f4253258c5336b5f397df852246c93e0e96ec5bb85c2",
+   "words": [
+    {
+     "w": "Point",
+     "t0": 49.125,
+     "t1": 49.37
+    },
+    {
+     "w": "six",
+     "t0": 49.533,
+     "t1": 49.778
+    },
+    {
+     "w": "amperes",
+     "t0": 49.86,
+     "t1": 50.717
+    },
+    {
+     "w": "If",
+     "t0": 50.921,
+     "t1": 51.084
+    },
+    {
+     "w": "you",
+     "t0": 51.125,
+     "t1": 51.166
+    },
+    {
+     "w": "got",
+     "t0": 51.248,
+     "t1": 51.411
+    },
+    {
+     "w": "that",
+     "t0": 51.574,
+     "t1": 51.982
+    },
+    {
+     "w": "the",
+     "t0": 52.064,
+     "t1": 52.146
+    },
+    {
+     "w": "rule",
+     "t0": 52.268,
+     "t1": 52.39
+    },
+    {
+     "w": "is",
+     "t0": 52.472,
+     "t1": 52.554
+    },
+    {
+     "w": "yours",
+     "t0": 52.635,
+     "t1": 53.102
+    }
+   ],
+   "energy": "peak"
+  },
+  {
+   "id": "b13",
+   "scene": "s01",
+   "slot": "close.next_step",
+   "start": 53.572,
+   "end": 56.099,
+   "audio_s": 2.939,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 40,
+   "request_id": "o5foUslO87n65GV2QYF3",
+   "sha256": "5c1ac312b6604ee043881fa328bc2b5042599c25c3643dedf217eb3315297d9a",
+   "words": [
+    {
+     "w": "Try",
+     "t0": 53.602,
+     "t1": 53.847
+    },
+    {
+     "w": "the",
+     "t0": 53.888,
+     "t1": 53.928
+    },
+    {
+     "w": "free",
+     "t0": 54.092,
+     "t1": 54.255
+    },
+    {
+     "w": "lesson",
+     "t0": 54.337,
+     "t1": 54.826
+    },
+    {
+     "w": "on",
+     "t0": 54.908,
+     "t1": 55.071
+    },
+    {
+     "w": "Ohm's",
+     "t0": 55.153,
+     "t1": 55.561
+    },
+    {
+     "w": "law",
+     "t0": 55.643,
+     "t1": 56.019
+    }
+   ],
+   "energy": "mid"
+  },
+  {
+   "id": "b14",
+   "scene": "s01",
+   "slot": "outro.brand",
+   "start": 56.189,
+   "end": 58.359,
+   "audio_s": 2.367,
+   "pause_after_s": 0.0,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "unlabelled",
+    "seconds": 0.0
+   },
+   "chars": 26,
+   "request_id": "MN2703w4rX1GZRSGQ1K8",
+   "sha256": "f22f0b75e0a31b7a30273619fca1e323544dd7a3ab88c191630e93eee9460ea0",
+   "words": [
+    {
+     "w": "Professor",
+     "t0": 56.219,
+     "t1": 56.638
+    },
+    {
+     "w": "Diki",
+     "t0": 56.802,
+     "t1": 57.21
+    },
+    {
+     "w": "Simplified",
+     "t0": 57.536,
+     "t1": 58.279
+    }
+   ],
+   "energy": "mid"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "start": 0.0,
+   "end": 59.2,
+   "duration": 59.2
+  }
+ ],
+ "pauses": [
+  {
+   "beat": "b01",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 3.335,
+   "end": 3.535
+  },
+  {
+   "beat": "b02",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 7.865,
+   "end": 8.065
+  },
+  {
+   "beat": "b03",
+   "purpose": "land",
+   "seconds": 0.5,
+   "start": 11.625,
+   "end": 12.125
+  },
+  {
+   "beat": "b04",
+   "purpose": "think_choice",
+   "seconds": 1.8,
+   "start": 17.392,
+   "end": 19.192
+  },
+  {
+   "beat": "b05",
+   "purpose": "land",
+   "seconds": 0.5,
+   "start": 23.372,
+   "end": 23.872
+  },
+  {
+   "beat": "b06",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 26.332,
+   "end": 26.532
+  },
+  {
+   "beat": "b07",
+   "purpose": "inspect",
+   "seconds": 0.8,
+   "start": 33.348,
+   "end": 34.148
+  },
+  {
+   "beat": "b08",
+   "purpose": "join",
+   "seconds": 0.25,
+   "start": 36.978,
+   "end": 37.228
+  },
+  {
+   "beat": "b09",
+   "purpose": "land",
+   "seconds": 0.5,
+   "start": 41.258,
+   "end": 41.758
+  },
+  {
+   "beat": "b10",
+   "purpose": "think_calc",
+   "seconds": 2.7,
+   "start": 46.425,
+   "end": 49.125
+  },
+  {
+   "beat": "b11",
+   "purpose": "land",
+   "seconds": 0.5,
+   "start": 53.102,
+   "end": 53.602
+  },
+  {
+   "beat": "b13",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 56.019,
+   "end": 56.219
+  }
+ ],
+ "total_duration_s": 59.2,
+ "chars_total": 676,
+ "narration_audio_sha256": "8bd7bff8bac3a0ef1144205d03258e83b0b2ee91a27acddce732fb2fab91eedf",
+ "script_sha256": "6592b5e5bf7582dae08831bc61b047fb7c19f787a3ed66d2951c80f407c7af9a"
+}

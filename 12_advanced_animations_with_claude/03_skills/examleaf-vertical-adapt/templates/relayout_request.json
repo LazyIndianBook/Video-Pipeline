@@ -1,0 +1,19 @@
+{
+  "scene_id": "phy-10-03-s01",
+  "style": "paper-collage-vertical",
+  "platform": "all",
+  "tokens": "12_advanced_animations_with_claude/04_harness_contract/vertical_safe_zones.tokens.json",
+  "source_layout": {"aspect": "16:9", "w": 1920, "h": 1080, "pattern": "character_bottom_left_title", "source": "[V4-MP] section 7"},
+  "groups": [
+    {"group": "ransom_title", "kind": "title"},
+    {"group": "hero_kid", "kind": "character"},
+    {"group": "refraction_glass", "kind": "visual", "w": 1920, "h": 1080, "data_bound": true},
+    {"group": "label_tags", "kind": "tag"},
+    {"group": "paper_bg", "kind": "decor"}
+  ],
+  "provisional_insets": null,
+  "commands": [
+    "python3 scripts/layout_zones.py --tokens <tokens> --platform all --out jobs/phy-10-03-s01/zones.json",
+    "python3 scripts/layout_zones.py --fit 1920x1080 --zones jobs/phy-10-03-s01/zones.json"
+  ]
+}

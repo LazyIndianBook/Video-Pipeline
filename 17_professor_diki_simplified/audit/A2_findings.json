@@ -1,0 +1,344 @@
+[
+ {
+  "id": "A2-01",
+  "video": "all",
+  "t": "physics 22.4, 46.3, 57.4; chemistry 21.5, 49.2, 59.8; biology 6.8, 18.7, 39.8, 52.3",
+  "evidence": "frames/physics/t022.jpg->t023.jpg (circuit replaced by two empty cards), t046->t047 (cards replaced by an empty loop), t056->t057 (empty board); chemistry/t021->t023 (molecules replaced by a ledger), t049->t050 (blank + divider); biology tree t006 -> polaroids t012 -> seedling t020 -> empty sky t040 -> pot+pie t047 -> small tree t056",
+  "problem": "The explanatory object does not persist. At every scene cut the diagram the voice is reasoning about is removed and a different representation is built from empty. Physics shows the circuit, then cards, then the circuit again, then a checklist. Chemistry drops the molecules for a separate atom ledger. Biology switches representation five times.",
+  "root_cause": {
+   "layer": "render/template",
+   "location": "16_pilot_builds_2026-10-16/<subject>/opus/render/concat.txt (hard-cut concat of independently built s0N.mp4); each scenes/s0N.html owns its own L3 markup; physics build_notes.md §4 rule 4 ('carry the previous scene's end state') is prose only, with no state hand-off in 04_harness_contract/contract.md and no persistence check in qa/report.md A1-A10"
+  },
+  "effect": "The learner has to rebuild the mental model at each cut and reconcile two encodings (molecules vs ledger, circuit vs cards). This is the external audit's main verdict and it is confirmed here.",
+  "severity": "critical",
+  "fix": {
+   "what": "One persistent board per video: scenes become beats in a single scene document (or receive the previous scene's final DOM/state via a carry manifest); elements leave only when the storyboard names a reason. Change the storyboard schema to a board timeline with add/change/remove events instead of per-scene 'On screen' lists.",
+   "where": "04_harness_contract/scene_template.html + contract.md (new carry/board section); PILOT_CONTRACT storyboard schema; examleaf-anim-qa",
+   "control": "QA gate persistence_check: at every beat boundary the hero element's bbox IoU with the previous frame ≥ 0.8 unless the cue sheet has an explicit 'replace' event with a reason; fail otherwise"
+  }
+ },
+ {
+  "id": "A2-02",
+  "video": "all",
+  "t": "physics 57-60; chemistry 49-50; biology 7-9, 40-41",
+  "evidence": "frames/physics/t057.jpg (empty board), t059-t060 (bare zigzag only); chemistry/t050.jpg (blank page with a divider); biology/t008.jpg (empty kraft band), t040-t041 (empty sky)",
+  "problem": "The screen goes blank or almost blank after a reset, for 1-3.5 s, while narration continues ('So, for a conductor...', 'Why not write H two O two?', 'Many think a plant is built from soil').",
+  "root_cause": {
+   "layer": "storyboard/scene_code",
+   "location": "Every element of the new scene is a reveal target cued to a later word: physics s05 conductor_icon<-So, cond_chip<-temperature; chemistry s04 frame_a<-write; biology s04 soil_pot<-soil (storyboard.md cue columns). The runtime renders reveal targets at opacity 0 until their cue (s01.html render(), reveals map)"
+  },
+  "effect": "Dead air on screen right where the misconception or recap starts; attention drops at the most important beats; it reads as a glitch.",
+  "severity": "major",
+  "fix": {
+   "what": "Frame-0 rule for every beat: the carried board is visible at t0 of the beat; only the new element waits for its word.",
+   "where": "contract.md §cue rules; scene_template.html",
+   "control": "QA empty_middle_seconds = 0: per 1-fps frame, ink coverage of the middle zone ≥ 8% (or ≥ 70% of the beat's final coverage); hard fail"
+  }
+ },
+ {
+  "id": "A2-03",
+  "video": "physics",
+  "t": "46.3-49.8",
+  "evidence": "frames/physics/t047.jpg, t048.jpg, t049.jpg",
+  "problem": "The s04 loop is redrawn with a gap where the resistor was, so for about 3.5 s the screen shows an open circuit while the voice says 'But always is not safe'. The bulb only appears on 'filament'.",
+  "root_cause": {
+   "layer": "scene_code/storyboard",
+   "location": "16_pilot_builds_2026-10-16/physics/opus/scenes/s04.html (#circuit drawn from empty; #bulb reveal cued to 'filament'); storyboard.md row s04 'bulb <- filament'"
+  },
+  "effect": "It shows physically wrong information (no current can flow), and it wastes the opening of the exception beat.",
+  "severity": "major",
+  "fix": {
+   "what": "Swap the component in place on the persistent board (SwapPart verb: resistor fades to bulb in 300 ms on 'filament') and never redraw unchanged structure.",
+   "where": "scene_template motion verbs; storyboard schema",
+   "control": "QA structural check: a circuit fixture must be a closed loop in every frame where it is visible (all nodes connected)"
+  }
+ },
+ {
+  "id": "A2-04",
+  "video": "all",
+  "t": "0-3 s",
+  "evidence": "frames/physics/t001.jpg (empty board + pencil), t002 ('twice the'); chemistry/t001.jpg (halftone only), t002 (one H2), headline absent until t011; biology/t001.jpg (empty sky and ground), headline tiles at t006",
+  "problem": "The hook frame is empty. Neither the question nor the object is on screen in the first 1-3 s. The chemistry question text only appears at 10-11 s.",
+  "root_cause": {
+   "layer": "contract/template",
+   "location": "Kit card rule 1 (physics build_notes.md §4) and tokens motion.reveal_rule: on-screen words are revealed only at their spoken t0, one word at a time (s01.html buildHeadlines). The circuit is cued to 'current' (cue c03 at 3.28 s) and then drawn over ≈1.2 s. No rule requires content in frame 0"
+  },
+  "effect": "Shorts are decided in the first second. An empty board loses swipers and wastes the hook line.",
+  "severity": "major",
+  "fix": {
+   "what": "Hook component: frame 0 shows the complete question object (the circuit with the 2 V/4 V change, the unbalanced equation, the tree with '?') and the full question in the title lane. Speech then animates only emphasis.",
+   "where": "scene_template hook archetype; contract.md §3 hook beat",
+   "control": "QA first_frame_check: frame 0 middle-zone coverage ≥ 60% of the hook's final coverage and title lane non-empty"
+  }
+ },
+ {
+  "id": "A2-05",
+  "video": "all",
+  "t": "physics 3-11, 22-31; chemistry 3-9",
+  "evidence": "frames/physics/t005-t011 (loop, then resistor, R, V=2 V, V=4 V stroke by stroke); t023 (empty cards) to t031 (rows written word by word); chemistry/t002-t009 (molecules, then formulas, appear one by one)",
+  "problem": "Staged builds delay usefulness. The physics circuit is useful only at about 8 s and the ratio cards only at about 31 s. Each stroke draws on and each value waits for its word.",
+  "root_cause": {
+   "layer": "scene_code",
+   "location": "16_pilot_builds_2026-10-16/physics/opus/scenes/s01.html runtime: stroke draw duration s.dur = Math.min(1.2, Math.max(0.25, s.len/1100)) for every stroke of a 'draw' element; every value is a separate reveal cue"
+  },
+  "effect": "Slow, 'writing on a board' feel (the founder's 'slow, boring'); the eye waits instead of reasoning.",
+  "severity": "major",
+  "fix": {
+   "what": "Reveal budget: structure appears whole in ≤ 300 ms (Place). Animate only the quantity that changes (ChangeValue 180-300 ms). Use draw-on only when the drawing is the mechanism (TracePath).",
+   "where": "tokens motion.* (add reveal_budget_ms); scene_template draw defaults; doodle-handdrawn.md §2",
+   "control": "Lint: draw-on duration > 0.4 s needs a 'mechanism' tag; QA time_to_useful ≤ 1.5 s after the beat starts"
+  }
+ },
+ {
+  "id": "A2-06",
+  "video": "all",
+  "t": "physics 23-32, 41, 48; chemistry 10, 27, 61; biology 20, 42",
+  "evidence": "frames/physics/t025-t031 ('the current' with a hole where 'twice' lands at t032), t041 ('That constant'), t048 ('always is'); chemistry/t011 ('Did an atom'), t028 ('never'); biology/t020 ('plants'), t042 ('carbon')",
+  "problem": "Headlines build word by word in speaking order. Physics s03 reads 'the current' for 9 s because 'twice' is the second spoken 'twice'. The titles act as a karaoke copy of the narration, not as a claim.",
+  "root_cause": {
+   "layer": "scene_code/contract",
+   "location": "16_pilot_builds_2026-10-16/physics/opus/scenes/s03.html data-words=\"twice:2 the:1 current:1\"; s01.html buildHeadlines() reveals each word at x.t0 - LEAD; kit rule 1 'on-screen text is only ... words looked up in the cue sheet'"
+  },
+  "effect": "Fragments are meaningless while they persist, they compete with the diagram, and they duplicate the audio.",
+  "severity": "major",
+  "fix": {
+   "what": "The headline is a pre-composed claim of ≤ 5 words, shown whole at its cue. Word matching is used only to time it. Show at most one claim per beat.",
+   "where": "contract.md text rules; scene_template headline component",
+   "control": "Lint: headline text must be a contiguous phrase that is complete at first display; QA OCR on frames: no headline frame shows a partial phrase for > 0.5 s"
+  }
+ },
+ {
+  "id": "A2-07",
+  "video": "all",
+  "t": "throughout",
+  "evidence": "frames/physics/t030.jpg (board ≈ 904×574 px of 1080×1920 = 25%; circuit ink ≈ 17%; everything below y≈1200 empty in 60 of 72 frames); chemistry/t042.jpg (ledger ≈ 930×450 = 20%; lower 45% empty t023-t049); biology/t033.jpg (art ≈ 29%, the rest decorative bleed)",
+  "problem": "Explanation uses only 17-29% of the frame. The bottom third is empty or decorative in every video.",
+  "root_cause": {
+   "layer": "tokens",
+   "location": "12_advanced_animations_with_claude/04_harness_contract/vertical_safe_zones.tokens.json platform_insets_px.generic_conservative (top 250, bottom 450; measured:false) and zones shares 0.22/0.54/0.24 -> middle zone y 518-1177 (659 px, 27% of the frame area); the caption zone is reserved for a VTT that was never burnt in (physics build_notes.md §6 'No captions drawn')"
+  },
+  "effect": "Small diagrams, small labels and an amateur look on a phone. The audit's 'small explanatory content' is confirmed.",
+  "severity": "major",
+  "fix": {
+   "what": "Measure the insets (procedure in the tokens). Set the diagram area to ≥ 45% of the frame area (about y 380-1340). Use the caption lane only when captions are burnt in, and give it back to the diagram otherwise.",
+   "where": "vertical_safe_zones.tokens.json zones + platform_insets_px; scene_template buildZones()",
+   "control": "QA content_area: the middle-zone content bbox ≥ 40% of the frame area in ≥ 80% of seconds"
+  }
+ },
+ {
+  "id": "A2-08",
+  "video": "biology, chemistry",
+  "t": "biology 33-66; chemistry 23-49",
+  "evidence": "frames/biology/t038.jpg, t060.jpg (C₆H₁₂O₆ subscripts ≈ 20 px tall at 1080, ≈ 7 px on a 360 px phone); chemistry/t042.jpg (ledger atoms ≈ 36 px circles, thin hollow H)",
+  "problem": "Science glyphs are below legibility: the glucose subscripts are Unicode subscript code points, and the chemistry ledger atoms are tiny.",
+  "root_cause": {
+   "layer": "fixture/tokens",
+   "location": "16_pilot_builds_2026-10-16/biology/opus fixture display.glucose = \"C₆H₁₂O₆\" (Unicode subscripts) set at --eq:72px in scenes/s03.html; the tokens typography_px_at_1080.minimums_px cover only label/equation/heading, with no subscript or glyph floor; QA A4 checks zones, not glyph size"
+  },
+  "effect": "A learner cannot read the formula that carries the carbon count, and the 6=6 claim cannot be checked by eye.",
+  "severity": "major",
+  "fix": {
+   "what": "Typeset formulas with one math component (KaTeX or <sub> at ≥ 0.65 em, ≥ 40 px rendered). Add the token minimums_px.subscript = 40 and minimums_px.atom_glyph = 56.",
+   "where": "tokens typography_px_at_1080.minimums_px; shared formula component",
+   "control": "QA glyph_size: render bounding boxes of every data-fx glyph incl. sub/superscripts; fail below the minimum"
+  }
+ },
+ {
+  "id": "A2-09",
+  "video": "all",
+  "t": "physics 11, 28-45, 53; chemistry 27-49; biology 6-66",
+  "evidence": "frames/physics/t028.jpg (V, I, R all ink; blue only for ×2/underline/ticks), t053 (amber for both condition and 'R ↑'); chemistry/t042.jpg (teal = oxygen atoms, '=', coefficients, tick, panel tint); biology/t024.jpg, t051.jpg (tile colours vary per word; red on 'air' and 'food')",
+  "problem": "Colour carries no semantics. Voltage, current and resistance have no colours. One hue carries several roles (chemistry teal has five). Red, the error token, marks the correct answer 'air'. Across videos, teal means oxygen in one and decoration in another.",
+  "root_cause": {
+   "layer": "style_guide",
+   "location": "12_advanced_animations_with_claude/05_style_guides/doodle-handdrawn.md §1 item 3 ('Subject accents decorate; they never encode a quantity'); editorial-vox.md §4 ('one accent per scene'); paper-collage-vertical.md §5.1 tile styles chosen by seeded PRNG; vertical_safe_zones.tokens.json palette_light has hue names and no roles"
+  },
+  "effect": "This misses the cheapest tool for tracking what changed, and colour noise competes with meaning.",
+  "severity": "major",
+  "fix": {
+   "what": "Semantic colour roles in the tokens: quantity.voltage, quantity.current, quantity.resistance, state.changed, state.condition, state.mismatch, element.H/O/C, each a fixed hue across all subjects. Ink stays the default. A hue carries one role per video.",
+   "where": "vertical_safe_zones.tokens.json (new colour_roles); every style guide",
+   "control": "Lint colour_roles: every coloured element declares data-role; one role per hue per video; red only for state.mismatch/error"
+  }
+ },
+ {
+  "id": "A2-10",
+  "video": "all",
+  "t": "whole videos",
+  "evidence": "frames/physics/t030.jpg (notebook board, pencil, shelf, Chalkboard-style handwriting); chemistry/t031.jpg (halftone band, bold serif + sans); biology/t024.jpg (storybook collage, ransom tiles, washi tape)",
+  "problem": "The three videos look like three channels: three backgrounds, three headline systems, three layout grammars and three motion characters. Building them in three styles on purpose was a mistake for a single brand ('Professor Diki Simplified').",
+  "root_cause": {
+   "layer": "brief/style_guide",
+   "location": "16_pilot_builds_2026-10-16/{physics,chemistry,biology}/brief.md line 9 assigns a different style per subject; 05_style_guides/README.md tie-breaker (2) 'One illustrative style per lesson' and no brand layer above the styles"
+  },
+  "effect": "No recognisable series identity, lower trust, and the founder's 'visually inconsistent'. Per-video design work is also multiplied.",
+  "severity": "critical",
+  "fix": {
+   "what": "One brand system: a single board look, type family, colour roles and motion verbs for all subjects. A style guide becomes at most an illustration skin for analogy inserts, never the teaching board.",
+   "where": "05_style_guides (new brand_system.md + tokens); PILOT_CONTRACT brief schema (drop per-subject 'style')",
+   "control": "QA brand_consistency: background, title lane, fonts and board frame match the brand template hash across videos"
+  }
+ },
+ {
+  "id": "A2-11",
+  "video": "all",
+  "t": "throughout",
+  "evidence": "frames/physics/t030.jpg (shelf of books, pencil, hatch marks, boiling board outline); chemistry/t001.jpg (halftone band); biology/t012.jpg, t024.jpg (torn strips, sparkles, washi tape, polaroids, kraft board, ransom tiles)",
+  "problem": "Decoration carries no meaning: the shelf, pencil, hatch shadows, boiling outlines, paper grain, halftone, washi tape, sparkles, torn strips and ransom tiles. Also, the physics circuit (a labelled structure) is statically wobbled, against Rule 0.",
+  "root_cause": {
+   "layer": "style_guide/scene_code",
+   "location": "doodle-handdrawn.md §3 depth rules ('at least four layers', 'Flat is a known failure') force props; physics/opus/scenes/s01.html pathD(base, seed, WOBBLE_AMP=1.6) is applied to every data-pts stroke including #circuit, contrary to 05_style_guides/README.md Rule 0 ('never wobbled')"
+  },
+  "effect": "It costs frame area and attention and gives a template look. The wobbled circuit reads as sketchy rather than precise.",
+  "severity": "minor",
+  "fix": {
+   "what": "Drop the props and boil from teaching beats. Depth comes from one board surface and one shadow. Labelled structures are drawn clean.",
+   "where": "doodle-handdrawn.md §3; scene_template stroke builder",
+   "control": "Lint: elements without data-role in the middle zone ≤ 2; no wobble/boil on any element inside a data-bound group"
+  }
+ },
+ {
+  "id": "A2-12",
+  "video": "all",
+  "t": "physics 10-11, 53-57; chemistry 21-23; biology 46-52",
+  "evidence": "frames/physics/t010->t011 (V = 2 V replaced in place by V = 4 V), t055 ('×2' struck out, ammeter blank, no current value); chemistry/t021->t023 (molecules re-encoded as small circles); biology/t051.jpg (40% pie, a mass-fraction detour)",
+  "problem": "Some visual changes have no causal role, and the key causal change is missing. Physics destroys the 2 V state that must be compared and rebuilds it later as cards. Physics strikes '×2' at the lamp without showing a current. Chemistry does not keep atom identity across the transformation. Biology shows a pie instead of the air → leaf → glucose → wood path.",
+  "root_cause": {
+   "layer": "storyboard/fixture",
+   "location": "16_pilot_builds_2026-10-16/physics/opus/scenes/s01.html scene-spec swaps [[v1_chip, v2_chip]]; physics fixture FIX-ohm-two-points has no lamp values; chemistry s03 builds a new tally instead of moving s01 molecules; biology storyboard s04 pie"
+  },
+  "effect": "The 'what changed and why' is left to the voice, and the exception is asserted rather than shown.",
+  "severity": "major",
+  "fix": {
+   "what": "CompareStates verb: before and after side by side on the same board. Add a lamp fixture (e.g. 2 V → 0.20 A, 4 V → 0.32 A) so the ammeter shows the non-doubling. Use a carbon tracer that keeps the same atoms from CO₂ into glucose and wood.",
+   "where": "storyboard schema (each change names cause and changed quantity); fixtures",
+   "control": "Lint: every reveal/change cue carries 'changes' (quantity) and 'because' (beat id); QA: a misconception beat must change at least one fixture value on screen"
+  }
+ },
+ {
+  "id": "A2-13",
+  "video": "physics, biology",
+  "t": "physics 57.4-71.9; biology 52.3-67.1",
+  "evidence": "frames/physics/t061-t072 (tick + 'constant temperature' + boxed V = I × R + bare zigzag); biology/t056-t067 (small tree + equation tags); compare chemistry/t063 (balanced equation, molecule copies, H 4 = 4, O 2 = 2)",
+  "problem": "The physics and biology recaps are not real summaries. The physics recap drops the 2→4 V, 0.2→0.4 A result and the lamp boundary. The biology recap shrinks the tree and repeats the equation without the carbon path. Chemistry's recap is a good summary.",
+  "root_cause": {
+   "layer": "template",
+   "location": "Kit card §3 recap archetype 'ticks, disclosure.lines' (physics build_notes.md); recap scenes built from scratch rather than as the board's final state"
+  },
+  "effect": "There is no consolidation image to remember, and the recap is the frame most likely to be screenshotted.",
+  "severity": "major",
+  "fix": {
+   "what": "The recap is the persistent board in its final state, with the changed quantity highlighted, plus one result line in the result area.",
+   "where": "scene_template recap archetype; storyboard schema",
+   "control": "QA recap_coverage: the recap frame contains ≥ 70% of the data-role elements introduced in the explanation beats"
+  }
+ },
+ {
+  "id": "A2-14",
+  "video": "all",
+  "t": "physics 17-22; chemistry 16-21; biology 14-18",
+  "evidence": "frames/physics/t019.jpg (static circuit, I = ?, 'Pause. Predict.'); chemistry/t018.jpg (halos on O atoms, brackets); biology/t016.jpg (three polaroids; the question is about carbon)",
+  "problem": "Think-window frames are uneven. Chemistry scaffolds the count well. Physics gives no visual for the second ask ('whether always is safe'). Biology asks about carbon but shows no carbon. All three use the same static plate for 5 s.",
+  "root_cause": {
+   "layer": "contract/template",
+   "location": "16_pilot_builds_2026-10-16/*/opus/script.json think_window_s 5 (fixed); scene-spec think {element: think_plate, words [pause, predict]}"
+  },
+  "effect": "Weaker retrieval for low-foundation learners; the same plate three times looks templated.",
+  "severity": "minor",
+  "fix": {
+   "what": "The think frame shows exactly the givens plus an answer slot (I = ? A) and nothing else. Its length follows difficulty (timing owned by A1).",
+   "where": "scene_template think component",
+   "control": "Lint: the think beat must highlight every fixture field the answer needs (data-given)"
+  }
+ },
+ {
+  "id": "A2-15",
+  "video": "all",
+  "t": "last 2-4 s",
+  "evidence": "frames/physics/t070-t072; chemistry/t072-t073; biology/t064-t067 (static frame, 'AI-generated narration / script by ExamLeaf', 2.2 s silence)",
+  "problem": "Every video ends on a static disclosure with the ExamLeaf name. There is no Professor Diki Simplified mark, no closing question and no pointer to the free lesson.",
+  "root_cause": {
+   "layer": "contract",
+   "location": "04_harness_contract/contract.md §3 disclosure text 'AI-generated narration; script by ExamLeaf.'; s05 disclosure lines in each scenes/s05.html"
+  },
+  "effect": "A brand violation under the founder's rule, and a weak last impression.",
+  "severity": "major",
+  "fix": {
+   "what": "End card component (≤ 1.5 s): the Professor Diki Simplified mark plus a one-line transfer question. The disclosure wording drops ExamLeaf and sits as a small fixed badge or in the description, as policy allows.",
+   "where": "contract.md §3; scene_template outro",
+   "control": "QA OCR + transcript: 'ExamLeaf' absent from frames and audio; the final 2 s contain the brand mark"
+  }
+ },
+ {
+  "id": "A2-16",
+  "video": "all",
+  "t": "physics 41-46, 62-72; biology 6-67",
+  "evidence": "frames/physics/t042.jpg ('resistance' widow), t064 ('voltage' widow), Chalkboard-style headline over Noto Sans labels; biology/t024.jpg (5 tiles, 4 fonts in one headline)",
+  "problem": "Typography: the handwriting fallback face looks like a comic font, headlines wrap with widows, and biology headlines exceed the 3-word ransom cap and mix four faces.",
+  "root_cause": {
+   "layer": "style_guide/template",
+   "location": "05_style_guides/README.md §12 (display fonts not vendored; system fallback Chalkboard SE); paper-collage-vertical.md §5.1 3-word cap not linted; no line-balance in the headline CSS (.hl .row flex-wrap)"
+  },
+  "effect": "It looks cheap and inconsistent across videos.",
+  "severity": "major",
+  "fix": {
+   "what": "One vendored sans family (e.g. Inter or Noto Sans, 600/800) plus KaTeX math. Use text-wrap: balance and a 5-word headline cap.",
+   "where": "tokens font_policy; scene_template CSS",
+   "control": "Lint: fonts resolve to vendored files (SHA match); headline ≤ 5 words; no single-word last line"
+  }
+ },
+ {
+  "id": "A2-17",
+  "video": "all",
+  "t": "every scene boundary",
+  "evidence": "frames/biology/t006->t008 and t018->t020 (background strips change layout); chemistry/t049->t050 (cut to blank); physics headline fades 0.2 s before each cut",
+  "problem": "Transitions are hard cuts between independently rendered scenes. The backgrounds jump, and no transition expresses a relation.",
+  "root_cause": {
+   "layer": "render",
+   "location": "render/concat.txt (ffmpeg concat of s0N.mp4); paper-collage sheet transitions specified but not used"
+  },
+  "effect": "Cuts feel like slides changing rather than one continuous explanation.",
+  "severity": "minor",
+  "fix": {
+   "what": "No cuts inside a video. Continuity comes from the persistent board, with an occasional camera reframe (zoom to a part) as the only transition verb.",
+   "where": "render pipeline; scene_template",
+   "control": "QA: frame-to-frame background difference at beat boundaries below threshold"
+  }
+ },
+ {
+  "id": "A2-18",
+  "video": "physics",
+  "t": "36-46, 50-56",
+  "evidence": "frames/physics/t036.jpg ('constant temperature' chip straddles the board edge and the shelf), t044 (V = I × R box on the board's bottom edge), t051 ('filament lamp' label inside the loop)",
+  "problem": "Elements crowd or touch outlines.",
+  "root_cause": {
+   "layer": "scene_code/qa",
+   "location": "16_pilot_builds_2026-10-16/physics/opus/scenes/s03.html #cond_chip placed at the board top edge; qa A4 checks zones, not overlaps; build_notes.md §5 'Nothing touching an outline?' is a manual question"
+  },
+  "effect": "Perceived sloppiness; the condition chip reads as a sticker, not a property of the circuit.",
+  "severity": "minor",
+  "fix": {
+   "what": "Attach the condition to the object (a chip anchored to the resistor), with layout from the board grid.",
+   "where": "scene_template layout grid",
+   "control": "QA overlap detector: data-role element bbox vs any outline stroke ≥ 16 px clearance"
+  }
+ },
+ {
+  "id": "A2-19",
+  "video": "chemistry",
+  "t": "36.7-49.2",
+  "evidence": "frames/chemistry/t038-t049 (headline 'never created or destroyed' while the equation is balanced; only a ≈ 50 px tick at t049)",
+  "problem": "The headline goes stale during the worked step, and the 'Balanced' result has no result area.",
+  "root_cause": {
+   "layer": "style_guide",
+   "location": "editorial-vox.md §5 mix rule 'One headline per scene'; storyboard s03 merges b03 and b04"
+  },
+  "effect": "The aha moment (balanced) is understated.",
+  "severity": "minor",
+  "fix": {
+   "what": "A result area under the board shows each step's state (e.g. 'O: 2 = 2', then 'Balanced').",
+   "where": "scene_template result area",
+   "control": "Lint: each worked.step beat writes to the result area"
+  }
+ }
+]

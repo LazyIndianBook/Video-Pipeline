@@ -1,0 +1,194 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "chem-balance-ci-01-s04",
+ "fps": 30,
+ "duration": 10.533,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "0cafc6b9ba41366a8dfece5586b143e0977d7d86ec7d9d82dc73997d043d7c17",
+ "script_sha256": "ea9184430445e015c20a75b78ce2023f89a08ec192d884746da5cc4b9516ebed",
+ "words": [
+  {
+   "w": "Why",
+   "t0": 0.187,
+   "t1": 0.347
+  },
+  {
+   "w": "not",
+   "t0": 0.427,
+   "t1": 0.507
+  },
+  {
+   "w": "write",
+   "t0": 0.587,
+   "t1": 0.827
+  },
+  {
+   "w": "H",
+   "t0": 1.067,
+   "t1": 1.307
+  },
+  {
+   "w": "two",
+   "t0": 1.387,
+   "t1": 1.467,
+   "occurrence": 1
+  },
+  {
+   "w": "O",
+   "t0": 1.707,
+   "t1": 1.867
+  },
+  {
+   "w": "two",
+   "t0": 1.987,
+   "t1": 2.587,
+   "occurrence": 2
+  },
+  {
+   "w": "That",
+   "t0": 2.667,
+   "t1": 2.827
+  },
+  {
+   "w": "is",
+   "t0": 2.907,
+   "t1": 2.987
+  },
+  {
+   "w": "hydrogen",
+   "t0": 3.067,
+   "t1": 3.547
+  },
+  {
+   "w": "peroxide",
+   "t0": 3.627,
+   "t1": 4.507
+  },
+  {
+   "w": "a",
+   "t0": 4.547,
+   "t1": 4.587
+  },
+  {
+   "w": "different",
+   "t0": 4.667,
+   "t1": 4.987
+  },
+  {
+   "w": "substance",
+   "t0": 5.107,
+   "t1": 6.027
+  },
+  {
+   "w": "Change",
+   "t0": 6.187,
+   "t1": 6.347
+  },
+  {
+   "w": "the",
+   "t0": 6.387,
+   "t1": 6.427,
+   "occurrence": 1
+  },
+  {
+   "w": "coefficients",
+   "t0": 6.507,
+   "t1": 7.067
+  },
+  {
+   "w": "in",
+   "t0": 7.147,
+   "t1": 7.307
+  },
+  {
+   "w": "front",
+   "t0": 7.387,
+   "t1": 8.027
+  },
+  {
+   "w": "never",
+   "t0": 8.187,
+   "t1": 8.427
+  },
+  {
+   "w": "the",
+   "t0": 8.507,
+   "t1": 8.587,
+   "occurrence": 2
+  },
+  {
+   "w": "subscripts",
+   "t0": 8.707,
+   "t1": 9.147
+  },
+  {
+   "w": "inside",
+   "t0": 9.427,
+   "t1": 10.027
+  }
+ ],
+ "beats": [
+  0.027
+ ],
+ "cues": [
+  {
+   "id": "c24",
+   "at": 0.537,
+   "kind": "reveal",
+   "element_id": "frame_a",
+   "word_index": 2
+  },
+  {
+   "id": "c25",
+   "at": 1.937,
+   "kind": "reveal",
+   "element_id": "hl_sub",
+   "word_index": 6
+  },
+  {
+   "id": "c26",
+   "at": 3.577,
+   "kind": "reveal",
+   "element_id": "name_a",
+   "word_index": 10
+  },
+  {
+   "id": "c27",
+   "at": 6.457,
+   "kind": "reveal",
+   "element_id": "frame_b",
+   "word_index": 16
+  },
+  {
+   "id": "c28",
+   "at": 8.657,
+   "kind": "emphasis",
+   "element_id": "hl_sub",
+   "word_index": 21
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "chem-balance-ci-01",
+  "scene": "s04",
+  "beat_ids": [
+   "b05"
+  ],
+  "beats_text": [
+   {
+    "id": "b05",
+    "slot": "misconception.confront",
+    "text": "Why not write H two O two? That is hydrogen peroxide, a different substance. Change the coefficients in front, never the subscripts inside.",
+    "headline": "a different substance",
+    "start": 0.187,
+    "end": 10.027,
+    "word_range": [
+     0,
+     23
+    ]
+   }
+  ],
+  "think_windows": []
+ }
+}

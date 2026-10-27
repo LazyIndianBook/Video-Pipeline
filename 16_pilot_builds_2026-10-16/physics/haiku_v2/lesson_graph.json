@@ -1,0 +1,114 @@
+{
+  "graph_id": "LG-phy-ohm-ci-01",
+  "subject": "physics",
+  "level": "l9_10",
+  "sources": [
+    {
+      "id": "SRC-ncert-science-10-electricity",
+      "kind": "textbook",
+      "title": "NCERT Class 10 Science",
+      "section": "Chapter 'Electricity', section 'Ohm's law' (named only; no page quotes)",
+      "reliability_class": "official_curriculum"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "OBJ-ohm-1",
+      "type": "objective",
+      "statement": "State Ohm's law for an ohmic conductor and name the condition under which it holds."
+    },
+    {
+      "id": "CLM-ohm-proportional",
+      "type": "claim",
+      "statement": "For an ohmic conductor at constant temperature, current is proportional to the potential difference across it.",
+      "source_ids": [
+        "SRC-ncert-science-10-electricity"
+      ],
+      "fixture_ids": [
+        "FIX-ohm-readings"
+      ],
+      "assumptions": [
+        "constant temperature"
+      ]
+    },
+    {
+      "id": "CLM-ohm-resistance",
+      "type": "claim",
+      "statement": "Resistance is the constant of proportionality: voltage equals current multiplied by resistance.",
+      "source_ids": [
+        "SRC-ncert-science-10-electricity"
+      ],
+      "fixture_ids": [
+        "FIX-ohm-readings"
+      ]
+    },
+    {
+      "id": "CLM-ohm-condition",
+      "type": "claim",
+      "statement": "The proportionality holds only while resistance stays constant, which needs constant temperature and other fixed conditions.",
+      "source_ids": [
+        "SRC-ncert-science-10-electricity"
+      ],
+      "fixture_ids": []
+    },
+    {
+      "id": "CLM-ohm-filament",
+      "type": "claim",
+      "statement": "A filament lamp heats up in use, its resistance rises as it heats, and it does not obey the proportionality.",
+      "source_ids": [
+        "SRC-ncert-science-10-electricity"
+      ],
+      "fixture_ids": [
+        "FIX-ohm-readings"
+      ]
+    },
+    {
+      "id": "MIS-ohm-universal",
+      "type": "misconception",
+      "statement": "Ohm's law is universal, so doubling the voltage always doubles the current.",
+      "why_wrong": "Many components change resistance with temperature (for example a filament lamp), so the proportionality holds only while resistance stays constant."
+    },
+    {
+      "id": "SIM-ohm-constant-r",
+      "type": "simplification",
+      "statement": "Treat the resistance of the resistor as fixed while the voltage changes, at constant temperature.",
+      "what_is_lost": "Resistance changes with temperature in devices such as a filament bulb, so the proportionality fails there."
+    },
+    {
+      "id": "WRK-ohm-ratio",
+      "type": "worked_item",
+      "prompt": "A 10 ohm resistor is connected to 2 V, then to 4 V. Find the current each time and compare.",
+      "steps": [
+        "I1 = V1 / R = 2 V / 10 ohm = 0.2 A",
+        "I2 = V2 / R = 4 V / 10 ohm = 0.4 A",
+        "V1 / I1 = 10 ohm and V2 / I2 = 10 ohm, so the ratio is constant",
+        "I2 / I1 = 2: twice the voltage gives twice the current"
+      ],
+      "fixture_ids": [
+        "FIX-ohm-readings"
+      ]
+    },
+    {
+      "id": "ASM-ohm-double-always",
+      "type": "assessment_item",
+      "stem": "Does twice the voltage always mean twice the current?",
+      "answer": "Only while resistance stays constant. A filament bulb is the counter-example.",
+      "original": true
+    },
+    {
+      "id": "ASM-ohm-predict-4v",
+      "type": "assessment_item",
+      "stem": "A 10 ohm resistor has 4 V across it. What is the current?",
+      "answer": "0.4 A",
+      "original": true
+    },
+    {
+      "id": "FIX-ohm-readings",
+      "type": "fixture",
+      "compute": "fixtures/compute.py",
+      "outputs": [
+        "fixtures/fixture.json"
+      ]
+    }
+  ]
+}

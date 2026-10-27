@@ -1,0 +1,645 @@
+{
+ "subjects": {
+  "biology": [
+   {
+    "lens": "pedagogy",
+    "winner_label": "A",
+    "winner_tier": "opus",
+    "reason": "A connects the atom count to the answer ('all from carbon dioxide'), then confronts the soil misconception with quantitative evidence and the full 'water and minerals' correction, while B balances the equation without drawing the inference and refutes the misconception by assertion.",
+    "scores": {
+     "opus": {
+      "dims": {
+       "D1": 5,
+       "D2": 5,
+       "D3": 4,
+       "D7": 5
+      },
+      "total": 19
+     },
+     "haiku": {
+      "dims": {
+       "D1": 4,
+       "D2": 3,
+       "D3": 4,
+       "D7": 3
+      },
+      "total": 14
+     }
+    },
+    "gaps": [
+     {
+      "rule": "misconception.confront must carry its evidence inside the beat (a fixture value or the worked count), not a bare 'that idea fails', and must state the full why_wrong from the graph node (water and minerals)",
+      "where": "02 pedagogy rules, misconception.confront slot; SCRIPTING_REGISTRY §15 misconception example"
+     },
+     {
+      "rule": "a worked.step that balances an equation ends by stating the inference it licenses for the objective (e.g. only CO2 carries carbon, so glucose's carbon came from air)",
+      "where": "SCRIPTING_REGISTRY §15 worked.step template"
+     },
+     {
+      "rule": "recap.statement restates the one idea already taught; no first appearance of a new number; percentages name their basis ('by mass')",
+      "where": "02 pedagogy rules, recap.statement; SCRIPTING_REGISTRY §15 number phrasing"
+     },
+     {
+      "rule": "hook.question_reveal opens on the surprise/scale image and the question, not a teaching statement ('Green plants make their own food')",
+      "where": "02 pedagogy rules, hook.question_reveal example"
+     }
+    ],
+    "blocking": {
+     "opus": [],
+     "haiku": [
+      "b06 'Soil supplies water.' omits minerals, contradicting MIS-plants-eat-soil.why_wrong and implying soil gives only water",
+      "b07 'About forty percent of glucose is carbon' lacks 'by mass' (by atom count it is 25%); on screen s05 shows a bare '40%' and 'carbon' with no basis"
+     ]
+    },
+    "empty_seconds": {}
+   },
+   {
+    "lens": "visual",
+    "winner_label": "A",
+    "winner_tier": "opus",
+    "reason": "A is recognisably the paper-collage style, builds the equation word by word with sync just as accurate as B's, and leaves about half as many empty middle-zone seconds; B is a generic flat layout with plain-text headlines and a 5 s blank outro.",
+    "scores": {
+     "opus": {
+      "dims": {
+       "D4": 4,
+       "D5": 4,
+       "D6": 5,
+       "D7": 4
+      },
+      "total": 17
+     },
+     "haiku": {
+      "dims": {
+       "D4": 2,
+       "D5": 3,
+       "D6": 4,
+       "D7": 3
+      },
+      "total": 12
+     }
+    },
+    "gaps": [
+     {
+      "rule": "Headlines must be ransom-note tiles (one tile per letter or word, 1-3 words, landing on words[].t0 - 0.05), never plain sans text",
+      "where": "05_style_guides/paper-collage-vertical.md §5.1 and Digest item 5: add a worked HTML example and a QA check that fails a headline without ransom tiles"
+     },
+     {
+      "rule": "Every illustrative scene needs at least three textured layers (wash or kraft background, torn-paper strips, die-cut cutouts with washi-taped tags); a plain cream fill fails",
+      "where": "paper-collage-vertical.md §2.2, §7.3 and the §17 QA checklist (add a 'style recognisable' item)"
+     },
+     {
+      "rule": "No empty middle zone longer than 1 s: the scene opens with its anchor prop already in place, and the outro keeps the recap visual under the disclosure",
+      "where": "paper-collage-vertical.md §8.5 and §9 (scene openings and the outro), plus an empty-zone check in examleaf-anim-qa"
+     }
+    ],
+    "blocking": {
+     "opus": [
+      "s04 opens with about 2.2 s of empty sky (39.8 to about 42.0 s) before the pot appears; s02 has about 1.4 s of empty kraft board before the log"
+     ],
+     "haiku": [
+      "Not recognisable as paper-collage-vertical (plain sans headlines, no ransom tiles, no torn or textured layers)",
+      "About 5.4 s of empty middle zone in the outro and about 2.1 s at the s04 opening (42.3 to 44.4 s)",
+      "s04 headline wraps with a single orphaned 'air' line"
+     ]
+    },
+    "empty_seconds": {
+     "opus": 6,
+     "haiku": 11
+    }
+   }
+  ],
+  "chemistry": [
+   {
+    "lens": "pedagogy",
+    "winner_label": "B",
+    "winner_tier": "opus",
+    "reason": "B teaches the procedure as a recount after each coefficient, with coefficients visibly different from subscripts. A announces the coefficients, leaves a balanced equation over an unbalanced tally, and typesets subscripts so they look almost like coefficients, which is the very distinction the lesson is about.",
+    "scores": {
+     "haiku": {
+      "dims": {
+       "D1": 3,
+       "D2": 3,
+       "D3": 4,
+       "D7": 3
+      },
+      "total": 13
+     },
+     "opus": {
+      "dims": {
+       "D1": 5,
+       "D2": 4,
+       "D3": 5,
+       "D7": 5
+      },
+      "total": 19
+     }
+    },
+    "gaps": [
+     {
+      "rule": "A worked.step that balances an equation must change one coefficient at a time, say the element that moves, and recount on screen after each change. The fixture must compute and expose every intermediate state (e.g. results.step1) so the tally updates on the coefficient's anchor word.",
+      "where": "02 pedagogy rules, worked.step slot; fixture authoring guide, 'intermediate states' section"
+     },
+     {
+      "rule": "Any on-screen count or tally must reflect the equation currently shown. When a coefficient appears, the matching tally and headline update in the same beat; a balanced equation may never sit above an unbalanced tally.",
+      "where": "Storyboard/scene authoring guide, state-consistency rule; QA A3 (fixture-equals-screen) extended to check the state"
+     },
+     {
+      "rule": "Chemical formulas must render subscripts as real lowered subscripts (fixture 'parts' with a 'sub' field, rendered as <sub> or an offset span), never as Unicode ₂ in a font that draws it on the baseline. Coefficients must be full-size and in the accent colour.",
+      "where": "editorial-vox style guide, typography: chemical formulas; brief template 'display strings' line"
+     },
+     {
+      "rule": "misconception.confront should both show why the trap looks right (e.g. the counts match for H2O2) and show the evidence that it is wrong (a different molecule or name), side by side with the correct fix.",
+      "where": "02 pedagogy rules, misconception.confront slot, with a worked example"
+     }
+    ],
+    "blocking": {
+     "haiku": [
+      "Subscripts render as baseline digits throughout, so coefficient and subscript are visually indistinguishable in 2H2O (s03-s05)",
+      "End of s03 (~40.9-42.9 s): the balanced equation shows over the stale unbalanced tally with 'Oxygen is short on the right'; no recount until s05"
+     ],
+     "opus": []
+    },
+    "empty_seconds": {}
+   },
+   {
+    "lens": "visual",
+    "winner_label": "B",
+    "winner_tier": "opus",
+    "reason": "B is recognisably editorial-vox, renders true subscripts, and its tally visibly re-derives at each coefficient. A has baseline 'subscripts', a balanced equation shown above an unbalanced tally, and about 8 s with an empty middle zone.",
+    "scores": {
+     "haiku": {
+      "dims": {
+       "D4": 2,
+       "D5": 3,
+       "D6": 5,
+       "D7": 2
+      },
+      "total": 12
+     },
+     "opus": {
+      "dims": {
+       "D4": 4,
+       "D5": 4,
+       "D6": 3,
+       "D7": 4
+      },
+      "total": 15
+     }
+    },
+    "gaps": [
+     {
+      "rule": "Chemical formulas use real subscript markup (<sub>, or verified U+2080-2089 glyphs) with digits at 60-70% size and lowered at least 0.25 em. Old-style or proportional figures are banned in formulas. The QA glyph test renders H₂O, 2H₂O and H₂O₂ at 1080 width and fails if a subscript bottom sits on the baseline.",
+      "where": "12_advanced_animations_with_claude/05_style_guides/editorial-vox.md §5 Typography (Glyph tests bullet) and §14 QA checklist"
+     },
+     {
+      "rule": "Every element that encodes state (tally counts, circles, the =/≠ relation, the highlight) is a pure function of the current equation state. When a coefficient appears, the tally re-derives from results.<state> on the same cue, and a 'short' highlight is removed once its row balances.",
+      "where": "editorial-vox.md §7 Number callouts and scale integrity (new item 8) and §8 Motion vocabulary, Sync bullet"
+     },
+     {
+      "rule": "Minimum look per scene: grain background, halftone band behind the title, tinted panel card with a flat 8/8 hard shadow, and at least three depth layers. Support text in Noto Sans or Inter, never a system fallback. A scene on plain paper only fails the style check.",
+      "where": "editorial-vox.md §3 Materials and surfaces and §14 QA checklist"
+     },
+     {
+      "rule": "The middle visual zone is never empty for more than 0.5 s. Each scene opens with its visual on the first anchor word, the outro keeps the recap visual under the disclosure, and a scene headline persists across its beats until the next headline replaces it.",
+      "where": "editorial-vox.md §6 Layout in 1080x1920 and §8 Holds bullet; mirror in 04_harness_contract/vertical_safe_zones.tokens.json hold_times_s"
+     }
+    ],
+    "blocking": {
+     "haiku": [
+      "Subscripts render as baseline digits in every formula, s01-s05 (H2O, H2O2, 2H2O).",
+      "The end of s03 (about 40.9-42.9 s) shows the balanced 2H2 + O2 -> 2H2O over an unbalanced tally (O 1, 'short' highlight).",
+      "The video track leads the audio by about 0.6 s at every cue (video 72.73 s vs timeline 73.33 s; e.g. tally_right at 32.13 s vs 'Right' at 32.76 s).",
+      "No narration captions in bottom_caption (shared with B; the storyboard defers them to the lead)."
+     ],
+     "opus": [
+      "QA A9: re-render is not deterministic (deterministic false).",
+      "The video track leads the audio by about 0.6 s at every cue (video 72.60 s vs timeline 73.20 s; e.g. coef_H2O at 36.70 s vs 'two' at 37.34 s).",
+      "No narration captions in bottom_caption (shared with A; the storyboard defers them to the lead)."
+     ]
+    },
+    "empty_seconds": {
+     "haiku": 8,
+     "opus": 1
+    }
+   }
+  ],
+  "physics": [
+   {
+    "lens": "pedagogy",
+    "winner_label": "B",
+    "winner_tier": "opus",
+    "reason": "Both builds are numerically correct and both have a real predict pause, but only B confronts the 'always' misconception with visible evidence in the same circuit and shows the constant-temperature condition on screen as it is spoken.",
+    "scores": {
+     "haiku": {
+      "dims": {
+       "D1": 4,
+       "D2": 3,
+       "D3": 4,
+       "D7": 3
+      },
+      "total": 14
+     },
+     "opus": {
+      "dims": {
+       "D1": 5,
+       "D2": 5,
+       "D3": 5,
+       "D7": 4
+      },
+      "total": 19
+     }
+    },
+    "gaps": [
+     {
+      "rule": "A misconception.confront beat must show the counter-example in the same setup as the worked example (here the lamp swapped into the same circuit) with at least one fixture-bound change glyph (for example 'R ↑', a struck '×2') revealed on the causal words. A bare icon with only a headline does not count as evidence.",
+      "where": "15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §3 (Slot sources, misconception.confront row) and 12_advanced_animations_with_claude/02_documentation/05_STORYBOARD_GATE_and_MCP_budgets.md (storyboard gate checklist)"
+     },
+     {
+      "rule": "When the brief names a condition (for example constant temperature), the condition must be a fixture display string that appears on screen on the word where it is first spoken, and again in the recap visual. Speaking it is not enough.",
+      "where": "15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §15 (Script QA checks), as a new check: condition glyph present"
+     },
+     {
+      "rule": "In concept_intro, the confront beat's first sentence answers the predict prompt's open half verbatim ('always is not safe'), and the hook puts the question in the first 3 s, before the setup.",
+      "where": "15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §4 (Script grammar per format, concept_intro) and §9 (hook scripting)"
+     },
+     {
+      "rule": "No scene may hold an empty hero container for more than 1.5 s while science is being spoken. The first cue of each beat must land within 1 s of its first content word.",
+      "where": "12_advanced_animations_with_claude/02_documentation/05_STORYBOARD_GATE_and_MCP_budgets.md (cue timing rules)"
+     }
+    ],
+    "blocking": {
+     "haiku": [
+      "s04 (44.3-55.8 s): the misconception is asserted, not confronted. There is no circuit, no R-change glyph and no current comparison, and an empty circle sits on screen for about 4.6 s during 'Ohm's law is always true'.",
+      "The constant-temperature condition, the one rule the brief asks the learner to remember, is never on screen. In s05, an empty card holds for about 5.8 s while the recap rule is spoken (s05_t000-t004)."
+     ],
+     "opus": []
+    },
+    "empty_seconds": {}
+   },
+   {
+    "lens": "visual",
+    "winner_label": "B",
+    "winner_tier": "opus",
+    "reason": "B looks like the named doodle style with depth, and its middle zone explains every beat (×2 arrows, condition chip, R-up, V = I × R); A leaves about 11 s of empty middle zone, including the core recap sentence, and its visuals are generic and static.",
+    "scores": {
+     "haiku": {
+      "dims": {
+       "D4": 2,
+       "D5": 2,
+       "D6": 4,
+       "D7": 2
+      },
+      "total": 10
+     },
+     "opus": {
+      "dims": {
+       "D4": 4,
+       "D5": 3,
+       "D6": 4,
+       "D7": 4
+      },
+      "total": 15
+     }
+    },
+    "gaps": [
+     {
+      "rule": "The middle visual zone must never sit empty or decoration-only for more than 0.5 s inside a beat. If the first cue word comes more than 1 s after the beat starts, carry the previous panel over or reveal a lead element on the beat's first word. QA samples the middle zone at 2 fps and fails a run of more than 0.5 s with no explanatory ink.",
+      "where": "05_style_guides/doodle-handdrawn.md §7 (Sync) plus §14 QA checklist; examleaf-anim-qa as a new check A10"
+     },
+     {
+      "rule": "Ship a doodle scene skeleton with L1 shelf, L2 tinted board with hatch shadow and L4 cropped pencil already built, and require the hook headline in Kalam or Caveat at 96-140 px (QA fails a headline whose font-family is Inter or another sans).",
+      "where": "05_style_guides/doodle-handdrawn.md §3 (Depth rules: worked template) and §5 (Fonts), with 04_harness_contract/scene_template.html"
+     },
+     {
+      "rule": "Every relationship or equation the narration states must appear on screen on its word, and a misconception scene must show the evidence (the changed quantity with an arrow chip, and the struck shortcut) instead of an isolated prop.",
+      "where": "05_style_guides/doodle-handdrawn.md §9 (Reel structure table: 'Doodle's job' column) and §11 Do/Don't"
+     },
+     {
+      "rule": "The muxed MP4 must contain the timeline's pre-roll, so video duration equals timeline total_duration_s within 1 frame and no reveal starts before its word minus reveal_lead_s. QA extracts frames at cue-0.2 s and fails if the element is already visible.",
+      "where": "04_harness_contract/contract.md (seek/mux section) and examleaf-anim-qa check A9"
+     }
+    ],
+    "blocking": {
+     "haiku": [
+      "The video track runs about 0.6 s ahead of the narration: the mp4 is 73.27 s against a 73.87 s timeline, and every sampled reveal is visible before its word.",
+      "The middle zone is empty for about 11 s (mp4 43.5-48.3 s in s04 and 55.0-60.9 s in the s05 recap).",
+      "The recap never shows V = I × R although it is spoken, and the s05 card is static from 61 to 73 s.",
+      "The filament scene shows no evidence: no circuit, no R-up and no current comparison."
+     ],
+     "opus": [
+      "The video track runs about 0.6 s ahead of the narration: the mp4 is 71.33 s against a 71.93 s timeline, and every sampled reveal is visible before its word."
+     ]
+    },
+    "empty_seconds": {
+     "haiku": 11,
+     "opus": 5
+    }
+   }
+  ],
+  "physics_pd": [
+   {
+    "lens": "craft",
+    "winner_label": "A",
+    "winner_tier": "diki_v2",
+    "reason": "A keeps one colour-coded circuit from a complete frame 0 to the end card, lands its reveals on their words, asks an answerable prediction and gets a solved transfer inside 59.1 s, and passes every hard gate. B opens on an empty board, wipes it three times, holds 5.5 s of silence on a frozen predict, has no transfer, runs 71.9 s and speaks and shows 'AI-generated narration; script by ExamLeaf', failing seven gates.",
+    "scores": {
+     "diki_v2": {
+      "dims": {
+       "D1": 4,
+       "D2": 4,
+       "D3": 4,
+       "D4": 4,
+       "D5": 4,
+       "D6": 3,
+       "D7": 4,
+       "D8": 4
+      },
+      "total": 31
+     },
+     "opus": {
+      "dims": {
+       "D1": 3,
+       "D2": 2,
+       "D3": 2,
+       "D4": 2,
+       "D5": 2,
+       "D6": 1,
+       "D7": 2,
+       "D8": 1
+      },
+      "total": 15
+     }
+    },
+    "gaps": [
+     "Keep one persistent circuit from frame 0 to the end: put the 2 V / 4 V cards and the V/I row beside it and swap the lamp into the resistor's slot instead of redrawing in scenes s03–s05.",
+     "Make frame 0 complete (circuit, R = 10 Ω, V = 2 V, I = 0.2 A, question chip) and finish the hook question by 3 s; b01 is 27 words and the question ends near 4.0 s.",
+     "Show the baseline current before the predict, ask a choose-type 'more, less or same?' with the options on screen, drop 'decide whether always is safe', and cut the 5 s silent hold to about 2 s with a ring on I = ?.",
+     "Add a transfer (e.g. 6 V across the same 10 Ω) with a think window, the worked answer on the board and spoken feedback.",
+     "Delete the spoken and on-screen 'AI-generated narration; script by ExamLeaf' line; close on the brand end card and the free-lesson line.",
+     "Colour by meaning (V blue, I teal, R/Ω amber, a red strike on a labelled 'I × 2'), use the empty lower 40 % of the frame for a structured card tied to the circuit, and drop the decorative pencil and books.",
+     "Rewrite in short contrastive sentences with one quotable line, add energy marks and purpose-labelled pauses[], and trim to 60 ± 1 s with silence under 15 %."
+    ],
+    "blocking": {
+     "diki_v2": [
+      "transcript-vs-script check A7 did not run (STT HTTP 429): the spoken text is unverified until it is re-run",
+      "academic review still required for SIM-push-flow, CLM-filament and ASM-transfer-six-volts (script.json requires.review)"
+     ],
+     "opus": [
+      "'AI-generated narration; script by ExamLeaf' spoken and shown (b07, 66.0–69.9 s)",
+      "runtime 71.93 s",
+      "board wiped three times; empty board at 0–4 s and 57.4–59.5 s",
+      "no transfer, feedback, end card or CTA (qa A12, A18)",
+      "5.5 s silent predict hold; silence 17.5 % of runtime",
+      "prediction asked before its givens (no baseline current; 'is always safe' unanswerable from the board)"
+     ]
+    },
+    "empty_seconds": {
+     "diki_v2": 0.6,
+     "opus": 13.8
+    }
+   },
+   {
+    "lens": "pull",
+    "winner_label": "A",
+    "winner_tier": "diki_v2",
+    "reason": "A is the build a scrolling Class 10 student stays with. The whole board and the question are on screen at frame 0, a usable idea is in by 7.3 s, and no stretch runs longer than 12.1 s without a turn. The payoff is named twice ('Twice the push, twice the flow', then Ohm's law at 29.4 s), the hook's 'always' pays off with the hot bulb, the learner gets a transfer they can solve (6 V gives 0.60 A), and there is a line worth sharing. B opens on a blank board and gives nothing usable until 31.8 s. It stalls on a 5.5 s silent hold and three teardowns, never names Ohm's law, has no transfer, runs 71.9 s and ends on 'AI-generated narration; script by ExamLeaf.' It fails seven hard gates.",
+    "scores": {
+     "diki_v2": {
+      "dims": {
+       "D8": 4,
+       "D1": 5,
+       "D2": 4,
+       "D3": 4,
+       "D4": 5,
+       "D5": 4,
+       "D6": 3,
+       "D7": 4
+      },
+      "total": 33
+     },
+     "opus": {
+      "dims": {
+       "D8": 1,
+       "D1": 4,
+       "D2": 2,
+       "D3": 2,
+       "D4": 2,
+       "D5": 2,
+       "D6": 1,
+       "D7": 2
+      },
+      "total": 16
+     }
+    },
+    "gaps": [
+     "Complete frame 0: show the circuit with R = 10 Ω, V = 2 V and a live 0.20 A meter reading, put the question on screen, and finish speaking it by 3 s. Show 'Here is a resistor of ten ohms with two volts across it' in the picture instead of narrating it.",
+     "Make the prediction answerable from the board: show the 2 V current first, make it a quick choice (more / less / same) with a short think plate instead of a 5 s silent 'Pause. Predict.' hold, and either drop 'decide whether always is safe' or put its givens on the board.",
+     "Keep one persistent board: grow a V | I | V ÷ I table under the circuit and swap the bulb into the resistor's slot, instead of tearing down to empty cards, a bare loop and a lone squiggle.",
+     "Name the payoff on its word ('Ohm's law' with a definition card) and give it a short contrastive line a student would repeat.",
+     "Add a transfer on the same board (same resistor, 6 V, what does the meter read?) with a think window and a confirmation.",
+     "Remove the spoken and on-screen 'AI-generated narration; script by ExamLeaf' (PD-20, F01). Close on a recap card, a next step and the brand end card.",
+     "Cut to 60 ± 1 s with short contrastive sentences (b01 and b04 are 27 words each), keep silence under 15 %, and land a turn every 8-12 s (today the gaps are 23.8 s and 25.5 s)."
+    ],
+    "blocking": {
+     "diki_v2": [],
+     "opus": [
+      "spoken and on-screen 'AI-generated narration; script by ExamLeaf.' (b07, 66.0-69.2 s; s05_t014)",
+      "no transfer question",
+      "board torn down three times inside the lesson (22.4 s, 46.3 s, 57.4 s); five scenes instead of one",
+      "silence is 17.5 % of runtime",
+      "runtime 71.93 s, outside 60 ± 1 s",
+      "prediction asked without its givens: no 2 V current is shown, and nothing on the board supports 'always is safe'",
+      "no brand end card: the opening ident, end-card brand line, free-lesson line and spoken outro are all missing (qa A12)"
+     ]
+    },
+    "empty_seconds": {
+     "diki_v2": 0.6,
+     "opus": 13.6
+    }
+   },
+   {
+    "lens": "teaching",
+    "winner_label": "A",
+    "winner_tier": "diki_v2",
+    "reason": "A teaches one idea on one board that never leaves the screen: a complete frame 0 with a live 0.20 A reading, a prediction answerable from those givens, a V | I | V ÷ I table that turns the doubling into V = I × R with the condition on the same card, the filament as a same-slot exception, and a solved 6 V transfer, all fixture-true in 59.1 s with no gate failures. B fails seven hard gates (spoken and on-screen 'ExamLeaf' plus an AI-disclosure line, no transfer, 71.9 s, 17.5 % silence, three teardowns, an unanswerable prediction) and holds its first usable idea until 22.6 s.",
+    "scores": {
+     "diki_v2": {
+      "dims": {
+       "D1": 5,
+       "D2": 4,
+       "D3": 4,
+       "D4": 5,
+       "D5": 4,
+       "D6": 3,
+       "D7": 5,
+       "D8": 4
+      },
+      "total": 34
+     },
+     "opus": {
+      "dims": {
+       "D1": 4,
+       "D2": 2,
+       "D3": 2,
+       "D4": 2,
+       "D5": 2,
+       "D6": 1,
+       "D7": 2,
+       "D8": 1
+      },
+      "total": 16
+     }
+    },
+    "gaps": [
+     "Delete b07: no 'AI-generated narration' and no 'ExamLeaf', spoken or on screen; close on the brand end card and a free-lesson line instead.",
+     "Keep one persistent circuit from frame 0 to the end card: put the V, I and V/I values beside the meter (or in a table under it) instead of replacing the circuit with cards, and swap the lamp into the resistor's slot instead of redrawing the loop.",
+     "Make the prediction answerable: show the meter at 0.2 A for 2 V before switching to 4 V, ask more / less / same, cut the hold from 5.5 s to about 2 s and reveal 0.4 A on the meter straight after; drop 'decide whether always is safe' or ask it only once the bulb is on the board.",
+     "Add a transfer (same resistor at a new voltage, I = ?) with a short think window and feedback on the board.",
+     "Land a usable idea before 10 s (the 2 V, 10 Ω, 0.2 A reading at frame 0) and give an intuition before the terms; turn textbook sentences ('current multiplied by resistance', 'resistance is the constant ratio') into short spoken lines.",
+     "Trim to 60 ± 1 s and keep silence at or below 15 %: remove the 2.2 s dead tail and the empty-board openings of scenes 1 and 5, and put a turn every 8-12 s (B runs 31.8 s, 14.6-46.4 s, without one).",
+     "Tie the struck '×2' in the filament beat to the current (I × 2) so a phone viewer can read what failed to double."
+    ],
+    "blocking": {
+     "diki_v2": [
+      "Before sign-off, not a lesson defect: qa A7 did not run (STT HTTP 429), so the spoken text is unverified against the script.",
+      "Before sign-off, not a lesson defect: script.requires.review asks for academic review of SIM-push-flow, CLM-filament and ASM-transfer-six-volts.",
+      "Minor machine-check fails to clear: A13 (0.63 s unscripted gap at 28.8 s), A15 (3.5 s with no visible change from 22.5 s), A19 (CTA b13 at 182 wpm)."
+     ],
+     "opus": [
+      "Spoken and on-screen 'ExamLeaf' and AI-disclosure line (b07, 66.0-71.9 s).",
+      "No transfer question.",
+      "Runtime 71.93 s; silence 17.5 %.",
+      "Board torn down three times (22.4, 46.3, 57.4 s); empty frame 0 and an empty board until 3.7 s.",
+      "Prediction asked without its givens; 5.5 s silent hold; answer 14 s later.",
+      "No brand end card (qa A12 lists missing end-card items); 11 of 21 machine checks fail."
+     ]
+    },
+    "empty_seconds": {
+     "diki_v2": 0.0,
+     "opus": 8.4
+    }
+   }
+  ],
+  "physics_v2": [
+   {
+    "lens": "pedagogy",
+    "winner_label": "A",
+    "winner_tier": "opus",
+    "reason": "A asks the hook question within 3 s and confronts the filament with clearer evidence in the same circuit (heat, R ↑, struck ×2, labelled ammeter). Its recap is one idea, and its graph is more honest; B's stronger spoken arithmetic does not make up for its delayed hook, orphan 'I =' label and confusing recap ticks.",
+    "scores": {
+     "opus": {
+      "dims": {
+       "D1": 5,
+       "D2": 4,
+       "D3": 4,
+       "D7": 4
+      },
+      "total": 17
+     },
+     "haiku_v2": {
+      "dims": {
+       "D1": 4,
+       "D2": 3,
+       "D3": 4,
+       "D7": 3
+      },
+      "total": 14
+     }
+    },
+    "gaps": [
+     {
+      "rule": "Hook question must be the first spoken sentence and land within 0–3 s; the setup comes after it",
+      "where": "02 pedagogy rules, hook.question_reveal slot; SCRIPTING_REGISTRY §15 hook template"
+     },
+     {
+      "rule": "No orphan label glyphs: every 'I =' / 'V =' on screen must carry a fixture value or an explicit '?', and an ammeter carries its 'A' symbol",
+      "where": "storyboard template state table + style guide doodle-handdrawn circuit kit"
+     },
+     {
+      "rule": "Recap checklist ticks only rules that hold; the exception row uses a distinct 'fails here' mark (cross or amber), never the same tick as the law",
+      "where": "style guide recap.statement template"
+     },
+     {
+      "rule": "A claim's fixture_ids are allowed only if the fixture holds values for that claim; a heating-effect claim cites its own NCERT section and carries a reliability_note",
+      "where": "lesson_graph schema guide, claim node rules"
+     },
+     {
+      "rule": "Define or avoid new terms in the recap (e.g. 'ohmic'): the recap may only use words already taught",
+      "where": "SCRIPTING_REGISTRY §15 register l9_10"
+     }
+    ],
+    "blocking": {
+     "opus": [],
+     "haiku_v2": [
+      "s03–s04: a blank ammeter circle with an orphan 'I =' label that is never filled, while the cards show I = 0.2 A / 0.4 A. It reads as an unfinished equation.",
+      "s05 recap: the same approval tick is placed beside 'filament lamp R ↑' and beside the struck '×2'. A learner can read this as the lamp obeying the rule."
+     ]
+    },
+    "empty_seconds": {}
+   },
+   {
+    "lens": "visual",
+    "winner_label": "A",
+    "winner_tier": "opus",
+    "reason": "Both builds sync and pass QA equally, but A uses the doodle-handdrawn depth and wobble rules, fills the visual zone and keeps labels large and clear, while B looks like a generic flat diagram with a squashed circuit and a dangling 'I =' label.",
+    "scores": {
+     "opus": {
+      "dims": {
+       "D4": 4,
+       "D5": 4,
+       "D6": 5,
+       "D7": 4
+      },
+      "total": 17
+     },
+     "haiku_v2": {
+      "dims": {
+       "D4": 2,
+       "D5": 4,
+       "D6": 5,
+       "D7": 3
+      },
+      "total": 14
+     }
+    },
+    "gaps": [
+     {
+      "rule": "Add a QA check that wobble on non-fixture strokes (board, wires, frame) is 0.8-2.5 px, and fail a scene whose strokes are all straight",
+      "where": "05_style_guides/doodle-handdrawn.md §14 QA checklist (tie to §2.1 Wobble)"
+     },
+     {
+      "rule": "The hero or fixture panel must fill at least 70% of the middle_visual zone height; do not put a short strip at the top of the zone",
+      "where": "05_style_guides/doodle-handdrawn.md §6 Layout, plus a min_fill key under zones.middle_visual in 04_harness_contract/vertical_safe_zones.tokens.json"
+     },
+     {
+      "rule": "L4 must be a recognisable cropped object (pencil, desk edge, hand), with a worked example; a bare line does not count",
+      "where": "05_style_guides/doodle-handdrawn.md §3 depth rule 1, L4 row"
+     },
+     {
+      "rule": "A query label carries an explicit '?' (for example 'I = ?') and is removed or filled when the value is revealed; no dangling 'I ='",
+      "where": "05_style_guides/doodle-handdrawn.md §10 Mixed scenes"
+     },
+     {
+      "rule": "The hook headline must be visible within 0-3 s even when the hook question comes late in the sentence",
+      "where": "05_style_guides/doodle-handdrawn.md §9 Reel structure table, 0-3 s row"
+     }
+    ],
+    "blocking": {
+     "opus": [
+      "Middle visual zone is an empty board for 0-3.5 s of the hook; the circuit only starts on 'current' at 3.72 s, so a scrolling viewer sees nothing explanatory at first"
+     ],
+     "haiku_v2": [
+      "Does not read as doodle-handdrawn: no wobble, flat rounded-rect board, L4 is a stray line at the left edge",
+      "'I =' label next to a blank ammeter left unfilled through s02-s04",
+      "Circuit squashed to about 40% of the visual zone height, leaving the lower visual zone empty in s01, s02 and s04",
+      "Title zone empty for the first 6.3 s of the hook"
+     ]
+    },
+    "empty_seconds": {
+     "opus": 8.0,
+     "haiku_v2": 4.5
+    }
+   }
+  ]
+ }
+}

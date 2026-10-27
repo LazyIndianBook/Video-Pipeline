@@ -1,0 +1,11 @@
+{
+  "status": "authored-not-agent-executed",
+  "positive": {
+    "input": "Approved explanation and cultural context",
+    "expected": "Up to a few removable lines; no mandatory quota"
+  },
+  "negative": {
+    "request": "Reject mocking marks, intelligence, caste, gender, accent, economic status or copyrighted reaction clips without rights.",
+    "expected": "Preserve constraints, report issue; no silent compliance."
+  }
+}

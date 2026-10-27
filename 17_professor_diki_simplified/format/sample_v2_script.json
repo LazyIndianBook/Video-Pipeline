@@ -1,0 +1,760 @@
+{
+ "schema_version": "script/v2",
+ "_note": "SAMPLE for format/concept_short_60 (16 Oct 2026): exercises every v2 field for check_script.py and narrate.py --dry-run. Physics brief C01. Not reviewed, no scene built, not for release.",
+ "video_id": "phy-ohm-cs60-sample",
+ "subject": "physics",
+ "topic": "Ohm's law: double the voltage, double the current?",
+ "level": "l9_10",
+ "locale": "en-IN",
+ "language": "en",
+ "format": "concept_short_60",
+ "target_duration_s": 60,
+ "duration_tolerance_s": 1.0,
+ "cta_line": "Try the free lesson on Ohm's law.",
+ "style": "professor-diki",
+ "voice": {
+  "path": "B",
+  "provider": "elevenlabs",
+  "model_id": "eleven_v4",
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "persona": "persona/super-teacher#core"
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "file": "scenes/s01.html",
+   "beats": [
+    "b01",
+    "b02",
+    "b03",
+    "b04",
+    "b05",
+    "b06",
+    "b07",
+    "b08",
+    "b09",
+    "b10",
+    "b11",
+    "b12",
+    "b13",
+    "b14"
+   ],
+   "title": "One circuit, one board"
+  }
+ ],
+ "beats": [
+  {
+   "id": "b01",
+   "scene": "s01",
+   "slot": "hook.question_reveal",
+   "mode": "curious",
+   "tag": "[curious]",
+   "energy": 4,
+   "visual_op": [
+    "PreserveObject",
+    "Emphasize"
+   ],
+   "text": "Double the voltage: double the current?",
+   "node_ids": [
+    "MIS-always-doubles"
+   ],
+   "pauses": [
+    {
+     "purpose": "join"
+    }
+   ],
+   "emphasis_words": [
+    "Double"
+   ],
+   "on_screen": {
+    "headline": "double?",
+    "fx_refs": [
+     "display.v_label",
+     "parameters.v1",
+     "display.v_unit",
+     "display.r_label",
+     "parameters.resistance_ohm",
+     "display.r_unit",
+     "display.ammeter_symbol"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c01",
+     "kind": "emphasis",
+     "element_id": "cell",
+     "anchor_word": "voltage",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c02",
+     "kind": "emphasis",
+     "element_id": "ammeter",
+     "anchor_word": "current",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  },
+  {
+   "id": "b02",
+   "scene": "s01",
+   "slot": "explain.givens",
+   "mode": "steady",
+   "energy": 3,
+   "visual_op": "ChangeValue",
+   "text": "Two volts, ten ohms: the meter reads zero point two amps.",
+   "node_ids": [
+    "WRK-ohm-two-points",
+    "SIM-constant-temperature"
+   ],
+   "pauses": [
+    {
+     "purpose": "join"
+    }
+   ],
+   "emphasis_words": [
+    "zero point two"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "parameters.v1",
+     "parameters.resistance_ohm",
+     "results.i1",
+     "display.i_unit"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c03",
+     "kind": "emphasis",
+     "element_id": "v1_chip",
+     "anchor_word": "Two",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c04",
+     "kind": "emphasis",
+     "element_id": "r_chip",
+     "anchor_word": "ten",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c05",
+     "kind": "reveal",
+     "element_id": "i1_readout",
+     "anchor_word": "zero",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  },
+  {
+   "id": "b03",
+   "scene": "s01",
+   "slot": "explain.givens",
+   "mode": "steady",
+   "insight_beat": true,
+   "energy": 3,
+   "visual_op": "MapSymbol",
+   "text": "Current is volts divided by ohms.",
+   "node_ids": [
+    "CLM-resistance-constant"
+   ],
+   "pauses": [
+    {
+     "purpose": "land",
+     "after_s": 0.5
+    }
+   ],
+   "emphasis_words": [
+    "divided"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.tool"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c06",
+     "kind": "reveal",
+     "element_id": "tool_line",
+     "anchor_word": "divided",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  },
+  {
+   "id": "b04",
+   "scene": "s01",
+   "slot": "check.predict",
+   "mode": "curious",
+   "tag": "[curious]",
+   "energy": 4,
+   "visual_op": [
+    "ChangeValue",
+    "PauseForPrediction"
+   ],
+   "text": "Now four volts: what does the meter read?",
+   "node_ids": [
+    "ASM-predict-four-volts"
+   ],
+   "pauses": [
+    {
+     "purpose": "think_calc",
+     "after_s": 2.7,
+     "prompt": "Your prediction?"
+    }
+   ],
+   "emphasis_words": [
+    "four"
+   ],
+   "check": {
+    "task_kind": "calc",
+    "asks": "results.i2",
+    "answerable_from": [
+     "parameters.v2",
+     "parameters.resistance_ohm",
+     "display.tool"
+    ]
+   },
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "parameters.v2",
+     "display.v_unit",
+     "display.ui.think_prompt"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c07",
+     "kind": "reveal",
+     "element_id": "v2_chip",
+     "anchor_word": "four",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c08",
+     "kind": "hold",
+     "element_id": "think_plate",
+     "anchor_word": "read",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  },
+  {
+   "id": "b05",
+   "scene": "s01",
+   "slot": "reveal.answer",
+   "mode": "steady",
+   "energy": 5,
+   "visual_op": [
+    "ChangeValue",
+    "CompareStates"
+   ],
+   "text": "Zero point four, exactly double. If you said that, you're right.",
+   "node_ids": [
+    "WRK-ohm-two-points"
+   ],
+   "pauses": [
+    {
+     "purpose": "land",
+     "after_s": 0.5
+    }
+   ],
+   "emphasis_words": [
+    "double"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "results.i2",
+     "display.i_unit",
+     "display.ratio_x2"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c09",
+     "kind": "reveal",
+     "element_id": "i2_readout",
+     "anchor_word": "Zero",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c10",
+     "kind": "reveal",
+     "element_id": "ratio_x2",
+     "anchor_word": "double",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c11",
+     "kind": "reveal",
+     "element_id": "tick_predict",
+     "anchor_word": "right",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  },
+  {
+   "id": "b06",
+   "scene": "s01",
+   "slot": "explain.mechanism",
+   "mode": "steady",
+   "energy": 3,
+   "visual_op": [
+    "TracePath",
+    "CompareStates"
+   ],
+   "text": "Why double? Same resistor, twice the push, twice the flow.",
+   "node_ids": [
+    "CLM-resistance-constant",
+    "WRK-ohm-two-points"
+   ],
+   "pauses": [
+    {
+     "purpose": "join"
+    }
+   ],
+   "emphasis_words": [
+    "still"
+   ],
+   "on_screen": {
+    "headline": "",
+    "claim_line": "Same resistor, twice the push, twice the flow",
+    "fx_refs": [
+     "display.ratio_x2"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c12",
+     "kind": "emphasis",
+     "element_id": "resistor",
+     "anchor_word": "resistor",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c13",
+     "kind": "reveal",
+     "element_id": "flow_x2",
+     "anchor_word": "flow",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  },
+  {
+   "id": "b07",
+   "scene": "s01",
+   "slot": "explain.formal",
+   "mode": "deliberate",
+   "tag": "[calm]",
+   "energy": 2,
+   "visual_op": [
+    "MapSymbol",
+    "EquationTransform"
+   ],
+   "text": "Four by zero point four is still ten, the resistance: voltage equals current times resistance.",
+   "node_ids": [
+    "CLM-resistance-constant"
+   ],
+   "pauses": [
+    {
+     "purpose": "inspect",
+     "after_s": 0.8
+    }
+   ],
+   "emphasis_words": [
+    "resistance"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.vi_label",
+     "results.v_over_i_1",
+     "results.v_over_i_2",
+     "display.r_unit",
+     "display.equation"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c14",
+     "kind": "reveal",
+     "element_id": "vi_row",
+     "anchor_word": "four",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c15",
+     "kind": "emphasis",
+     "element_id": "vi_row",
+     "anchor_word": "ten",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c16",
+     "kind": "reveal",
+     "element_id": "r_name",
+     "anchor_word": "resistance",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c17",
+     "kind": "reveal",
+     "element_id": "equation",
+     "anchor_word": "equals",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  },
+  {
+   "id": "b08",
+   "scene": "s01",
+   "slot": "misconception.confront",
+   "mode": "alert",
+   "energy": 4,
+   "visual_op": [
+    "SwapPart",
+    "RevealMismatch"
+   ],
+   "text": "But a bulb? It heats up, so its resistance rises.",
+   "node_ids": [
+    "CLM-filament",
+    "MIS-always-doubles"
+   ],
+   "pauses": [
+    {
+     "purpose": "join"
+    }
+   ],
+   "emphasis_words": [
+    "rises"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.lamp_label",
+     "display.r_symbol",
+     "display.rises"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c18",
+     "kind": "reveal",
+     "element_id": "bulb",
+     "anchor_word": "bulb",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c19",
+     "kind": "reveal",
+     "element_id": "heat",
+     "anchor_word": "heats",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c20",
+     "kind": "reveal",
+     "element_id": "r_rise",
+     "anchor_word": "rises",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "evidence": "CLM-filament"
+  },
+  {
+   "id": "b09",
+   "scene": "s01",
+   "slot": "misconception.confront",
+   "mode": "deliberate",
+   "energy": 3,
+   "visual_op": "Badge",
+   "text": "So the rule needs constant temperature.",
+   "node_ids": [
+    "CLM-ohm-condition",
+    "SIM-constant-temperature"
+   ],
+   "pauses": [
+    {
+     "purpose": "join"
+    }
+   ],
+   "emphasis_words": [
+    "constant"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.condition"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c21",
+     "kind": "reveal",
+     "element_id": "cond_badge",
+     "anchor_word": "temperature",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "evidence": "CLM-ohm-condition"
+  },
+  {
+   "id": "b10",
+   "scene": "s01",
+   "slot": "check.transfer",
+   "mode": "curious",
+   "tag": "[curious]",
+   "energy": 4,
+   "visual_op": [
+    "SwapPart",
+    "ChangeValue",
+    "PauseForPrediction"
+   ],
+   "text": "Your turn: six volts, same resistor, what does the meter read?",
+   "node_ids": [
+    "ASM-transfer-six-volts"
+   ],
+   "pauses": [
+    {
+     "purpose": "think_calc",
+     "after_s": 2.7,
+     "prompt": "Your turn"
+    }
+   ],
+   "emphasis_words": [
+    "six"
+   ],
+   "check": {
+    "task_kind": "calc",
+    "asks": "results.i3",
+    "answerable_from": [
+     "parameters.v3",
+     "parameters.resistance_ohm",
+     "display.equation"
+    ]
+   },
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "parameters.v3",
+     "display.v_unit",
+     "display.ui.transfer_prompt"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c22",
+     "kind": "reveal",
+     "element_id": "v3_chip",
+     "anchor_word": "six",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c23",
+     "kind": "reveal",
+     "element_id": "resistor_back",
+     "anchor_word": "resistor",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c24",
+     "kind": "hold",
+     "element_id": "think_plate",
+     "anchor_word": "read",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  },
+  {
+   "id": "b11",
+   "scene": "s01",
+   "slot": "feedback.transfer",
+   "mode": "reassuring",
+   "tag": "[warm]",
+   "energy": 5,
+   "visual_op": [
+    "ChangeValue",
+    "Badge"
+   ],
+   "text": "Zero point six: if you got that, you can use this rule.",
+   "node_ids": [
+    "ASM-transfer-six-volts"
+   ],
+   "pauses": [
+    {
+     "purpose": "land",
+     "after_s": 0.5
+    }
+   ],
+   "emphasis_words": [
+    "six"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "results.i3",
+     "display.i_unit"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c25",
+     "kind": "reveal",
+     "element_id": "i3_readout",
+     "anchor_word": "six",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c26",
+     "kind": "reveal",
+     "element_id": "tick_transfer",
+     "anchor_word": "use",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  },
+  {
+   "id": "b12",
+   "scene": "s01",
+   "slot": "close.next_step",
+   "mode": "curious",
+   "energy": 3,
+   "visual_op": "CompareStates",
+   "text": "Why does a bulb's graph curve?",
+   "node_ids": [
+    "CLM-filament"
+   ],
+   "pauses": [
+    {
+     "purpose": "join"
+    }
+   ],
+   "emphasis_words": [
+    "curve"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.lamp_label"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c27",
+     "kind": "reveal",
+     "element_id": "curve_teaser",
+     "anchor_word": "curve",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  },
+  {
+   "id": "b13",
+   "scene": "s01",
+   "slot": "close.next_step",
+   "mode": "steady",
+   "tag": "[warm]",
+   "energy": 3,
+   "visual_op": "Badge",
+   "text": "Try the free lesson on Ohm's law.",
+   "node_ids": [
+    "OBJ-ohm-condition"
+   ],
+   "pauses": [
+    {
+     "purpose": "join"
+    }
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.ui.free_lesson"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c28",
+     "kind": "reveal",
+     "element_id": "free_lesson_line",
+     "anchor_word": "lesson",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  },
+  {
+   "id": "b14",
+   "scene": "s01",
+   "slot": "outro.brand",
+   "mode": "steady",
+   "tag": "[warm]",
+   "energy": 3,
+   "visual_op": "EndMotif",
+   "text": "Professor Diki Simplified.",
+   "node_ids": [],
+   "pauses": [],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.ui.brand",
+     "display.ui.free_lesson"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c29",
+     "kind": "reveal",
+     "element_id": "end_card",
+     "anchor_word": "Professor",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  }
+ ],
+ "outro": {
+  "beat": "b14",
+  "spoken": "Professor Diki Simplified.",
+  "end_card": {
+   "brand_line": "Professor Diki Simplified",
+   "free_lesson_line": "Free lesson: Ohm's law",
+   "min_on_screen_s": 1.5
+  },
+  "motif": "music/diki-end-motif",
+  "motif_starts": "after_last_word",
+  "tail_s": 0.8
+ }
+}

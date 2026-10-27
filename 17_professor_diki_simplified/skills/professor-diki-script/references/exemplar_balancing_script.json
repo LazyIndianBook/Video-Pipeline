@@ -1,0 +1,956 @@
+{
+ "script_version": 2,
+ "video_id": "chem-balance-pd-01",
+ "subject": "chemistry",
+ "topic": "Balancing equations: where did the oxygen atom go?",
+ "level": "l9_10",
+ "locale": "en-IN",
+ "language": "en",
+ "format": "concept_short_60",
+ "target_duration_s": 60,
+ "duration_tolerance_s": 1,
+ "tail_s": 0.8,
+ "style": "professor-diki",
+ "voice": {
+  "path": "B",
+  "provider": "elevenlabs",
+  "model_id": "eleven_v4",
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "persona": "persona/super-teacher#core"
+ },
+ "cta_line": "Try the free lesson on balancing chemical equations.",
+ "board_at_start": [
+  "header_lockup",
+  "rocket_flame",
+  "eq_row",
+  "mol_H2",
+  "mol_O2",
+  "mol_H2O",
+  "atom_balls"
+ ],
+ "artefacts": {
+  "scroll_test": "The equation printed in every textbook for rocket fuel loses an atom, and the obvious fix turns water into a different chemical.",
+  "surprise": "Writing H₂O₂ 'balances' the oxygen and silently swaps water for hydrogen peroxide.",
+  "outcome": "The learner balances a two-element equation by adding whole molecules (coefficients), never by changing a subscript, and makes the decisive step on Mg + O₂ → MgO.",
+  "prerequisite_bridge": "H₂ is two hydrogen atoms joined; the small 2 belongs to the atom before it (CLM-subscript-meaning).",
+  "fact_sheet": [
+   {
+    "fact": "H₂ + O₂ → H₂O; left O 2, right O 1",
+    "node": "CLM-unbalanced-count"
+   },
+   {
+    "fact": "atoms are conserved in a reaction",
+    "node": "CLM-conservation"
+   },
+   {
+    "fact": "only coefficients change; H₂O₂ is hydrogen peroxide",
+    "node": "CLM-subscript-identity"
+   },
+   {
+    "fact": "hydrogen burns with oxygen in rocket engines",
+    "node": "CLM-rocket-hydrogen"
+   },
+   {
+    "fact": "2Mg + O₂ → 2MgO",
+    "node": "ASM-transfer-mgo"
+   }
+  ],
+  "causal_chain": [
+   "Atoms only rearrange; none appear or vanish.",
+   "So both sides must show the same atoms.",
+   "A new subscript makes a new substance, so add whole molecules instead.",
+   "The number of whole molecules is the coefficient."
+  ],
+  "hooks": [
+   {
+    "kind": "pattern_interrupt",
+    "text": "An oxygen atom just vanished. Watch.",
+    "scroll": 4,
+    "honest": true
+   },
+   {
+    "kind": "bold_claim",
+    "text": "Rockets burn this. What's impossible here?",
+    "scroll": 5,
+    "honest": true,
+    "chosen": true
+   },
+   {
+    "kind": "challenge",
+    "text": "Count the atoms. One is missing. Find it in three seconds.",
+    "scroll": 4,
+    "honest": true,
+    "why_rejected": "gives away the predict (A1-12)"
+   },
+   {
+    "kind": "visible_puzzle",
+    "text": "Two oxygens go in. How many come out?",
+    "scroll": 3,
+    "honest": true,
+    "why_rejected": "is the predict itself"
+   },
+   {
+    "kind": "stakes",
+    "text": "Get this wrong and you lose the mark.",
+    "scroll": 3,
+    "honest": false,
+    "why_rejected": "fear framing (SQ-09)"
+   }
+  ],
+  "hook_choice_rule": "highest scroll score that passes the honesty test, shows the whole picture at frame 0, asks by 3 s, and does not answer the predict",
+  "retention_plan": "the beats carrying `rehook` (printed with planned times by check_pd_script.py)"
+ },
+ "terms": [
+  {
+   "term": "equation",
+   "shown_by": "eq_row",
+   "meaning_beat": "b01"
+  },
+  {
+   "term": "atoms",
+   "shown_by": "atom_balls",
+   "meaning_beat": "b04"
+  },
+  {
+   "term": "conserved",
+   "shown_by": "lbl_conserved",
+   "meaning_beat": "b04"
+  },
+  {
+   "term": "molecule",
+   "shown_by": "bracket_molecule",
+   "meaning_beat": "b02"
+  },
+  {
+   "term": "coefficients",
+   "shown_by": "lbl_coeff",
+   "meaning_beat": "b07"
+  },
+  {
+   "term": "subscripts",
+   "shown_by": "lbl_subscript",
+   "meaning_beat": "b02"
+  },
+  {
+   "term": "hydrogen peroxide",
+   "shown_by": "lbl_peroxide",
+   "meaning_beat": "b08"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "file": "scenes/s01.html",
+   "beats": [
+    "b01",
+    "b02",
+    "b03",
+    "b04",
+    "b05",
+    "b06",
+    "b07",
+    "b08",
+    "b09",
+    "b10",
+    "b11",
+    "b12",
+    "b13"
+   ],
+   "title": "One persistent board"
+  }
+ ],
+ "beats": [
+  {
+   "id": "b01",
+   "scene": "s01",
+   "slot": "hook.question_reveal",
+   "mode": "curious",
+   "tag": "[curious]",
+   "energy": "high",
+   "visual_op": "PreserveObject",
+   "text": "Rockets burn this. What's impossible here?",
+   "node_ids": [
+    "CLM-rocket-hydrogen"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.2
+    }
+   ],
+   "emphasis_words": [
+    "impossible"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.species.H2",
+     "display.species.O2",
+     "display.species.H2O",
+     "display.ops.plus",
+     "display.ops.arrow"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c01",
+     "kind": "emphasis",
+     "element_id": "rocket_flame",
+     "anchor_word": "Rockets",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c02",
+     "kind": "emphasis",
+     "element_id": "eq_row",
+     "anchor_word": "impossible",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "question"
+   }
+  },
+  {
+   "id": "b02",
+   "scene": "s01",
+   "slot": "explain.givens",
+   "mode": "steady",
+   "energy": "mid",
+   "visual_op": "MapSymbol",
+   "text": "H two: two hydrogens stuck together. O two: two oxygens.",
+   "node_ids": [
+    "CLM-subscript-meaning"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.2
+    }
+   ],
+   "emphasis_words": [
+    "stuck together"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.species.H2",
+     "display.species.O2"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c03",
+     "kind": "emphasis",
+     "element_id": "sub_H2",
+     "anchor_word": "H",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c04",
+     "kind": "reveal",
+     "element_id": "link_H2",
+     "anchor_word": "stuck",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c05",
+     "kind": "emphasis",
+     "element_id": "sub_O2",
+     "anchor_word": "O",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "insight_beat": true
+  },
+  {
+   "id": "b03",
+   "scene": "s01",
+   "slot": "check.predict",
+   "mode": "curious",
+   "tag": "[curious]",
+   "energy": "high",
+   "visual_op": "PauseForPrediction",
+   "text": "Two oxygens on the left. How many on the right?",
+   "node_ids": [
+    "ASM-predict-oxygen-count"
+   ],
+   "pauses": [
+    {
+     "purpose": "think_recall",
+     "after_s": 1.5
+    }
+   ],
+   "emphasis_words": [
+    "right"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "results.unbalanced.left.O",
+     "display.counts.unbalanced.left"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c06",
+     "kind": "reveal",
+     "element_id": "count_left_O",
+     "anchor_word": "left",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c07",
+     "kind": "hold",
+     "element_id": "think_ring",
+     "anchor_word": "right",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "task"
+   },
+   "check": {
+    "task_kind": "count",
+    "asks": "results.unbalanced.right.O",
+    "answerable_from": [
+     "display.species.H2O",
+     "results.unbalanced.left.O"
+    ],
+    "likely_wrong": "two (reading the left's O₂ as on both sides): the dashed ghost atom in b04 repairs it"
+   }
+  },
+  {
+   "id": "b04",
+   "scene": "s01",
+   "slot": "reveal.answer",
+   "mode": "steady",
+   "energy": "peak",
+   "visual_op": "RevealMismatch",
+   "text": "Just one. Real atoms never vanish. Bad equations do.",
+   "node_ids": [
+    "ASM-predict-oxygen-count",
+    "CLM-conservation"
+   ],
+   "pauses": [
+    {
+     "purpose": "land",
+     "after_s": 0.6
+    }
+   ],
+   "emphasis_words": [
+    "never"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "results.unbalanced.right.O",
+     "display.counts.unbalanced.right",
+     "display.ops.neq"
+    ],
+    "claim_line": "Real atoms never vanish. Bad equations do."
+   },
+   "cues": [
+    {
+     "id": "c08",
+     "kind": "reveal",
+     "element_id": "count_right_O",
+     "anchor_word": "one",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c09",
+     "kind": "reveal",
+     "element_id": "ghost_O",
+     "anchor_word": "vanish",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c10",
+     "kind": "emphasis",
+     "element_id": "eq_row",
+     "anchor_word": "equations",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "turn"
+   },
+   "payoff_beat": true
+  },
+  {
+   "id": "b05",
+   "scene": "s01",
+   "slot": "explain.mechanism",
+   "mode": "steady",
+   "energy": "mid",
+   "visual_op": "ChangeValue",
+   "text": "Mass is conserved, so fix the equation: add a whole water molecule.",
+   "node_ids": [
+    "CLM-conservation",
+    "WRK-balance-water"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.2
+    }
+   ],
+   "emphasis_words": [
+    "whole"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.conserved_label",
+     "display.coefficients.step1"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c11",
+     "kind": "reveal",
+     "element_id": "lbl_conserved",
+     "anchor_word": "conserved",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c12",
+     "kind": "reveal",
+     "element_id": "mol_H2O_copy",
+     "anchor_word": "whole",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c13",
+     "kind": "reveal",
+     "element_id": "bracket_molecule",
+     "anchor_word": "molecule",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "turn"
+   }
+  },
+  {
+   "id": "b06",
+   "scene": "s01",
+   "slot": "worked.step",
+   "mode": "steady",
+   "energy": "high",
+   "visual_op": "ChangeValue",
+   "text": "Two oxygens now, but four hydrogens. Same fix? Another hydrogen molecule. Four and four.",
+   "node_ids": [
+    "WRK-balance-water",
+    "CLM-coefficients-only"
+   ],
+   "pauses": [
+    {
+     "purpose": "land",
+     "after_s": 0.5
+    }
+   ],
+   "emphasis_words": [
+    "Same fix"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.counts.step1",
+     "results.step1",
+     "display.coefficients.balanced",
+     "display.counts.balanced",
+     "results.balanced"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c14",
+     "kind": "reveal",
+     "element_id": "counts_step1",
+     "anchor_word": "oxygens",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c15",
+     "kind": "emphasis",
+     "element_id": "count_right_H",
+     "anchor_word": "four",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c16",
+     "kind": "reveal",
+     "element_id": "mol_H2_copy",
+     "anchor_word": "Another",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c17",
+     "kind": "reveal",
+     "element_id": "tick_balanced",
+     "anchor_word": "four",
+     "occurrence": 3,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "question"
+   }
+  },
+  {
+   "id": "b07",
+   "scene": "s01",
+   "slot": "explain.formal",
+   "mode": "deliberate",
+   "tag": "[calm]",
+   "energy": "low",
+   "visual_op": "MapSymbol",
+   "text": "Exam rule: change these front numbers, the coefficients, never subscripts.",
+   "node_ids": [
+    "CLM-coefficients-only"
+   ],
+   "pauses": [
+    {
+     "purpose": "inspect",
+     "after_s": 0.8
+    }
+   ],
+   "emphasis_words": [
+    "never"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.coefficients.balanced",
+     "display.term_labels"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c18",
+     "kind": "reveal",
+     "element_id": "lbl_coeff",
+     "anchor_word": "coefficients",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c19",
+     "kind": "reveal",
+     "element_id": "lbl_subscript",
+     "anchor_word": "subscripts",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  },
+  {
+   "id": "b08",
+   "scene": "s01",
+   "slot": "misconception.confront",
+   "mode": "light",
+   "energy": "mid",
+   "visual_op": "StrikeThrough",
+   "text": "Why? H two O two is hydrogen peroxide. Neat trick, wrong chemical.",
+   "node_ids": [
+    "MIS-change-subscript",
+    "CLM-subscript-identity"
+   ],
+   "pauses": [
+    {
+     "purpose": "land",
+     "after_s": 0.5
+    }
+   ],
+   "emphasis_words": [
+    "wrong"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.species.H2O2",
+     "display.species.H2O"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c20",
+     "kind": "reveal",
+     "element_id": "ghost_H2O2",
+     "anchor_word": "Why",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c21",
+     "kind": "reveal",
+     "element_id": "lbl_peroxide",
+     "anchor_word": "peroxide",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c22",
+     "kind": "reveal",
+     "element_id": "strike_H2O2",
+     "anchor_word": "wrong",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "reversal"
+   },
+   "evidence": "CLM-subscript-identity",
+   "evidence_shown_as": "the H₂O₂ ghost carries the fixture name 'hydrogen peroxide' (display.species.H2O2) beside water",
+   "humour": {
+    "pattern": "tempting shortcut exposed",
+    "concept_survives": "a new subscript makes a new substance"
+   }
+  },
+  {
+   "id": "b09",
+   "scene": "s01",
+   "slot": "check.transfer",
+   "mode": "curious",
+   "tag": "[curious]",
+   "energy": "high",
+   "visual_op": "ChangeValue",
+   "text": "Your turn: magnesium burns to magnesium oxide. What goes in front of it?",
+   "node_ids": [
+    "ASM-transfer-mgo"
+   ],
+   "pauses": [
+    {
+     "purpose": "think_calc",
+     "after_s": 3.0
+    }
+   ],
+   "emphasis_words": [
+    "Magnesium"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "mgo.display.species",
+     "mgo.results.unbalanced.left.O",
+     "mgo.results.unbalanced.right.O"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c23",
+     "kind": "reveal",
+     "element_id": "eq_row_mgo",
+     "anchor_word": "Magnesium",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c24",
+     "kind": "reveal",
+     "element_id": "counts_mgo",
+     "anchor_word": "oxide",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c25",
+     "kind": "hold",
+     "element_id": "think_ring",
+     "anchor_word": "front",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "task"
+   },
+   "check": {
+    "task_kind": "calc",
+    "asks": "mgo.results.balanced.coefficients.MgO",
+    "changed_parameter": "species",
+    "answerable_from": [
+     "mgo.display.species",
+     "mgo.results.unbalanced.left.O",
+     "mgo.results.unbalanced.right.O"
+    ]
+   }
+  },
+  {
+   "id": "b10",
+   "scene": "s01",
+   "slot": "feedback.transfer",
+   "mode": "reassuring",
+   "tag": "[warm]",
+   "energy": "peak",
+   "visual_op": "Badge",
+   "text": "Two. Then two magnesium. If you said two, you fixed oxygen yourself.",
+   "node_ids": [
+    "ASM-transfer-mgo"
+   ],
+   "pauses": [
+    {
+     "purpose": "land",
+     "after_s": 0.5
+    }
+   ],
+   "emphasis_words": [
+    "yourself"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "mgo.results.balanced.coefficients.MgO",
+     "mgo.results.balanced.coefficients.Mg",
+     "mgo.display.counts.balanced"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c26",
+     "kind": "reveal",
+     "element_id": "coeff_mgo",
+     "anchor_word": "Two",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c27",
+     "kind": "reveal",
+     "element_id": "coeff_mg",
+     "anchor_word": "magnesium",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c28",
+     "kind": "reveal",
+     "element_id": "badge_check",
+     "anchor_word": "fixed",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  },
+  {
+   "id": "b11",
+   "scene": "s01",
+   "slot": "close.next_step",
+   "mode": "curious",
+   "tag": "[curious]",
+   "energy": "mid",
+   "visual_op": "Badge",
+   "text": "Next one: three elements. Follow for it.",
+   "node_ids": [
+    "OBJ-balance-simple"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.2
+    }
+   ],
+   "emphasis_words": [
+    "three"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.ui.next_tease"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c29",
+     "kind": "reveal",
+     "element_id": "tease_card",
+     "anchor_word": "three",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "next_loop"
+   }
+  },
+  {
+   "id": "b12",
+   "scene": "s01",
+   "slot": "close.next_step",
+   "mode": "reassuring",
+   "tag": "[warm]",
+   "energy": "mid",
+   "visual_op": "Badge",
+   "text": "Try the free lesson on balancing chemical equations.",
+   "node_ids": [
+    "OBJ-balance-simple"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.2
+    }
+   ],
+   "emphasis_words": [],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.ui.free_lesson"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c30",
+     "kind": "reveal",
+     "element_id": "endcard",
+     "anchor_word": "free",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  },
+  {
+   "id": "b13",
+   "scene": "s01",
+   "slot": "outro.brand",
+   "mode": "steady",
+   "energy": "mid",
+   "visual_op": "Badge",
+   "text": "Professor Diki Simplified.",
+   "node_ids": [],
+   "pauses": [],
+   "emphasis_words": [],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [],
+    "brand": "Professor Diki Simplified",
+    "free_lesson": "Free lesson: Balancing chemical equations"
+   },
+   "cues": [
+    {
+     "id": "c31",
+     "kind": "emphasis",
+     "element_id": "wordmark",
+     "anchor_word": "Professor",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  }
+ ],
+ "requires": {
+  "fixture": "16_pilot_builds_2026-10-16/chemistry/opus/fixtures/fixture.json (FIX-chem-balance-water) plus FIX-chem-balance-mgo under the 'mgo.' prefix",
+  "fixture_fields": {
+   "FIX-chem-balance-water": {
+    "display.conserved_label": "mass conserved",
+    "display.term_labels": {
+     "coefficient": "coefficient",
+     "subscript": "subscript"
+    },
+    "display.ui.free_lesson": "Free lesson: Balancing chemical equations",
+    "display.ui.next_tease": "Next: three elements",
+    "display.ui.disclosure": "AI-generated narration"
+   },
+   "FIX-chem-balance-mgo": {
+    "results.unbalanced": {
+     "left": {
+      "Mg": 1,
+      "O": 2
+     },
+     "right": {
+      "Mg": 1,
+      "O": 1
+     }
+    },
+    "results.balanced": {
+     "left": {
+      "Mg": 2,
+      "O": 2
+     },
+     "right": {
+      "Mg": 2,
+      "O": 2
+     },
+     "coefficients": {
+      "Mg": 2,
+      "O2": 1,
+      "MgO": 2
+     }
+    },
+    "display.species": {
+     "Mg": "Mg",
+     "O2": "O₂",
+     "MgO": "MgO"
+    },
+    "compute_rule": "the water fixture's atom-count code; balanced is computed, not typed"
+   }
+  },
+  "lesson_graph_nodes": [
+   {
+    "id": "CLM-subscript-meaning",
+    "type": "claim",
+    "statement": "A subscript gives the number of atoms of the element before it in one molecule: H₂ is two hydrogen atoms joined, O₂ two oxygen atoms.",
+    "source_ids": [
+     "SRC-ncert-sci10-ch1"
+    ]
+   },
+   {
+    "id": "CLM-rocket-hydrogen",
+    "type": "claim",
+    "statement": "Liquid hydrogen burns with liquid oxygen in rocket engines (e.g. ISRO's CE-20 cryogenic stage).",
+    "source_ids": [
+     "SRC-to-add-isro-ce20"
+    ],
+    "status": "needs a sourced reference before release; otherwise swap the hook for the pattern-interrupt option"
+   },
+   {
+    "id": "SRC-h2o2-name",
+    "kind": "textbook",
+    "title": "to be confirmed by the academic reviewer",
+    "section": "an official text naming H₂O₂ hydrogen peroxide, a compound distinct from water (candidate: NCERT Class 11 Chemistry, unit 'Hydrogen', section 'Hydrogen peroxide', pre-2023 edition)",
+    "reliability_class": "official_curriculum",
+    "status": "verify before release"
+   },
+   {
+    "id": "CLM-subscript-identity",
+    "update": "add source_ids SRC-h2o2-name (the peroxide line in b08 rests on it)"
+   },
+   {
+    "id": "ASM-predict-oxygen-count",
+    "type": "assessment_item",
+    "stem": "H₂ + O₂ → H₂O has two oxygen atoms on the left. How many on the right?",
+    "answer": "One"
+   },
+   {
+    "id": "ASM-transfer-mgo",
+    "type": "assessment_item",
+    "stem": "Mg + O₂ → MgO. What coefficient goes in front of MgO?",
+    "answer": "2, then 2 in front of Mg: 2Mg + O₂ → 2MgO",
+    "source_ids": [
+     "SRC-ncert-sci10-ch1"
+    ]
+   }
+  ],
+  "next_short": "'Balancing with three elements' must exist in the release plan before this close ships (honesty test).",
+  "review": "Academic review of CLM-subscript-meaning, CLM-rocket-hydrogen, the Mg fixture and both ASMs before release."
+ }
+}

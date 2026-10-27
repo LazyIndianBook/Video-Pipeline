@@ -1,0 +1,622 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://examleaf.local/schemas/v2/approval_record.json",
+  "title": "ExamLeaf Approval Record v2",
+  "description": "One human (or RELEASE-CHECK) approval, written only by the approval service (Architecture §3.7). `bound` carries the per-gate bound hashes (QA_PROFILES §4.1); closure_hash is sha256(JCS(NFC(M))) over the closure-manifest keys that exist at the gate's stage. Added 15 Oct 2026.",
+  "$comment": "Commercial-term lint (CE-L1/RD-49; CE-26, CE-70; updated 15 Oct 2026): CI rejects, case-insensitively, any match of (price|pricing|paid|is_free|free_|premium|entitle|subscri|sku|paywall|unlock|monetis|monetiz|revenue|discount|coupon|tier|destination_resource|cta_destination|funnel|purchase_|checkout_|product_id|offer_|trial_|utm_|campaign_|affiliate_|activation_code|storefront) applied to every object key at every depth (including REN fields keys), every required entry, pattern key and enum or const value. Exempt: the editorial fields series_position, flagship and demo_kind, which carry no commercial meaning.",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "gate": {
+      "type": "string",
+      "enum": [
+        "H_CG",
+        "GV_CLAIMS",
+        "GA_GRAPH",
+        "GA_DELTA",
+        "H_SB",
+        "VOICE",
+        "A_SUITE",
+        "GF",
+        "GS",
+        "COPY",
+        "DISCLOSURE",
+        "G_COUNSEL",
+        "GL_GLOSSARY",
+        "GL_VOICE",
+        "RELEASE_CHECK"
+      ]
+    },
+    "signing_key": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "One reviewer signing key (Architecture §3.2; CE-113, level-1, 15 Oct 2026). RELEASE-CHECK uses the key whose window contains the approval timestamp.",
+      "properties": {
+        "ssh_ed25519_pub": {
+          "type": "string",
+          "pattern": "^ssh-ed25519 [A-Za-z0-9+/]+={0,2}( .*)?$"
+        },
+        "valid_from": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "valid_to": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "ssh_ed25519_pub",
+        "valid_from"
+      ]
+    },
+    "reviewer_entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Reviewer registry entry reviewer/<id>@x.y.z (Architecture §3.2). Added 15 Oct 2026 (CE-113, level-1): no reviewer schema existed, so the entry shape lives here; validate registry files against approval_record.json#/definitions/reviewer_entry. Agent and service identities never hold an entry with a reviewer role. A revoked or expired key follows the scoped Revocation class.",
+      "properties": {
+        "reviewer_id": {
+          "type": "string",
+          "pattern": "^reviewer/[a-z0-9][a-z0-9_.-]*$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/properties/role"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "qualifications": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "type": "string",
+                "minLength": 1
+              },
+              "detail": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verified_by": {
+                "type": "string",
+                "pattern": "^reviewer/[a-z0-9][a-z0-9_.-]*$"
+              },
+              "verified_on": {
+                "type": "string",
+                "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+              },
+              "expires_on": {
+                "type": "string",
+                "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+              }
+            },
+            "required": [
+              "kind",
+              "detail",
+              "verified_by",
+              "verified_on"
+            ]
+          }
+        },
+        "families": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^family/[a-z0-9_]+$"
+          },
+          "uniqueItems": true
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^level/[a-z0-9_]+$"
+          },
+          "uniqueItems": true
+        },
+        "locales": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^locale/[a-z0-9][a-z0-9_-]*$"
+          },
+          "uniqueItems": true
+        },
+        "conflicts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "delegate_for": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^reviewer/[a-z0-9][a-z0-9_.-]*$"
+          },
+          "uniqueItems": true
+        },
+        "status": {
+          "enum": [
+            "active",
+            "suspended",
+            "revoked"
+          ]
+        },
+        "signing_keys": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/signing_key"
+          },
+          "minItems": 1,
+          "description": "SSH ed25519 public keys with validity windows (CE-113, level-1, 15 Oct 2026). Required: an entry without a key cannot sign, and an unsigned approval counts as absent."
+        }
+      },
+      "required": [
+        "reviewer_id",
+        "version",
+        "roles",
+        "qualifications",
+        "status",
+        "signing_keys"
+      ]
+    }
+  },
+  "properties": {
+    "approval_id": {
+      "type": "string",
+      "pattern": "^APR-[A-Za-z0-9_.-]+$"
+    },
+    "gate": {
+      "$ref": "#/definitions/gate"
+    },
+    "artefact_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "artefact_sha256": {
+      "$ref": "#/definitions/sha256"
+    },
+    "epp_hash": {
+      "$ref": "#/definitions/sha256"
+    },
+    "graph_subtree_sha256": {
+      "$ref": "#/definitions/sha256"
+    },
+    "closure_hash": {
+      "$ref": "#/definitions/sha256"
+    },
+    "bound": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "propertyNames": {
+        "enum": [
+          "artefact_sha256",
+          "epp_hash",
+          "graph_subtree_sha256",
+          "closure_hash",
+          "format_plan_sha256",
+          "script_content_sha256",
+          "interaction_spec_content_sha256",
+          "storyboard_sha256",
+          "voice_version",
+          "narration_audio_sha256",
+          "framework_version",
+          "claim_sha256",
+          "export_record_sha256",
+          "copy_sha256",
+          "disclosure_text_sha256"
+        ]
+      },
+      "patternProperties": {
+        "^(voice_version|framework_version)$": {
+          "type": "string",
+          "minLength": 1
+        },
+        "^(artefact_sha256|epp_hash|graph_subtree_sha256|closure_hash|format_plan_sha256|script_content_sha256|interaction_spec_content_sha256|storyboard_sha256|narration_audio_sha256|claim_sha256|export_record_sha256|copy_sha256|disclosure_text_sha256)$": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/sha256"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/sha256"
+              },
+              "minItems": 1
+            }
+          ]
+        }
+      },
+      "description": "Per-gate bound hashes (Architecture §3.7; QA_PROFILES §4.1). 15 Oct 2026: GA_DELTA binds the content hashes script_content_sha256 (one per locale) and interaction_spec_content_sha256, never a whole-record hash (resolver-07); DISCLOSURE (S12) binds the delivered file artefact_sha256, the voice pin (voice_version) and disclosure_text_sha256; COPY binds copy_sha256."
+    },
+    "reviewer_id": {
+      "type": "string",
+      "pattern": "^reviewer/[a-z0-9][a-z0-9_.-]*$"
+    },
+    "reviewer_pin": {
+      "type": "string",
+      "pattern": "^reviewer/[a-z0-9][a-z0-9_.-]*@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "academic_subject",
+        "academic_lead",
+        "family_qualified",
+        "child_development",
+        "native_language_editor",
+        "safety",
+        "sensitivity",
+        "practitioner",
+        "counsel",
+        "founder_cost",
+        "production_qa",
+        "publisher",
+        "voice_panel"
+      ]
+    },
+    "decision": {
+      "enum": [
+        "approve",
+        "reject"
+      ]
+    },
+    "full_video_watched": {
+      "type": "boolean",
+      "description": "Production QA watched the whole delivered file on a phone (07/06 §6.1). Required true for role production_qa on GF/GS (15 Oct 2026, qa-01)."
+    },
+    "notes": {
+      "type": "string"
+    },
+    "waivers": {
+      "type": "array",
+      "description": "Major-finding waivers (QA_PROFILES_REGISTRY §1.1; 15 Oct 2026, qa-09). Each lapses on any byte or catalogue change; never carried by auto re-affirmation; critical findings are never waivable.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "check_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "finding_sha256": {
+            "$ref": "#/definitions/sha256"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reviewer_id": {
+            "type": "string",
+            "pattern": "^reviewer/[a-z0-9][a-z0-9_.-]*$"
+          },
+          "role": {
+            "type": "string",
+            "minLength": 1
+          },
+          "artefact_sha256": {
+            "$ref": "#/definitions/sha256"
+          },
+          "catalogue_pin": {
+            "type": "string",
+            "pattern": "^qa/catalogue@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+          }
+        },
+        "required": [
+          "check_id",
+          "finding_sha256",
+          "reason",
+          "reviewer_id",
+          "role",
+          "artefact_sha256",
+          "catalogue_pin"
+        ]
+      }
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "state": {
+      "enum": [
+        "valid",
+        "stale",
+        "reaffirmed",
+        "revoked"
+      ]
+    },
+    "reqa_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "enum": [
+              "stale",
+              "reaffirmed",
+              "revoked"
+            ]
+          },
+          "closure_hash": {
+            "$ref": "#/definitions/sha256"
+          },
+          "check_results_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "state",
+          "closure_hash",
+          "check_results_ref",
+          "timestamp"
+        ]
+      }
+    },
+    "signature": {
+      "type": "string",
+      "pattern": "^-----BEGIN SSH SIGNATURE-----\\n[A-Za-z0-9+/=\\n]+\\n-----END SSH SIGNATURE-----\\n?$",
+      "description": "SSH signature (ssh-keygen -Y sign, namespace examleaf-approval) over JCS(record minus signature), canon JCS-RFC8785+NFC, made with the reviewer's key from reviewer_entry.signing_keys valid at timestamp. The signed bytes take state and reqa_records as at signing (valid and []), so later re-QA writes by the approval service do not break the signature. RELEASE-CHECK verifies with ssh-keygen -Y verify -n examleaf-approval; an unsigned or mis-signed row counts as absent. Required for every human gate: H_CG, GV_CLAIMS, GA_GRAPH, GA_DELTA, H_SB, VOICE, GF, GS, COPY, DISCLOSURE, G_COUNSEL, GL_GLOSSARY and GL_VOICE; the machine gates A_SUITE and RELEASE_CHECK are unsigned (CE-113, level-1, 15 Oct 2026; extended to all human gates by lead ruling CE-123 the same day; P1-16)."
+    }
+  },
+  "required": [
+    "approval_id",
+    "gate",
+    "reviewer_id",
+    "reviewer_pin",
+    "role",
+    "decision",
+    "timestamp",
+    "state",
+    "bound",
+    "reqa_records"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "gate": {
+            "enum": [
+              "GF",
+              "GS"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "artefact_sha256"
+        ],
+        "properties": {
+          "bound": {
+            "required": [
+              "artefact_sha256"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "gate": {
+            "enum": [
+              "GA_DELTA",
+              "H_SB",
+              "VOICE",
+              "A_SUITE",
+              "GF",
+              "GS",
+              "DISCLOSURE",
+              "RELEASE_CHECK",
+              "COPY"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "epp_hash",
+          "closure_hash",
+          "graph_subtree_sha256"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "gate": {
+            "const": "GA_GRAPH"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "graph_subtree_sha256"
+        ],
+        "properties": {
+          "bound": {
+            "required": [
+              "graph_subtree_sha256"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "gate": {
+            "const": "GA_DELTA"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "bound": {
+            "required": [
+              "script_content_sha256",
+              "interaction_spec_content_sha256"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "gate": {
+            "const": "H_SB"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "bound": {
+            "required": [
+              "storyboard_sha256"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "gate": {
+            "const": "VOICE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "bound": {
+            "required": [
+              "voice_version",
+              "narration_audio_sha256"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "gate": {
+            "const": "DISCLOSURE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "bound": {
+            "required": [
+              "artefact_sha256",
+              "voice_version",
+              "disclosure_text_sha256"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "gate": {
+            "const": "COPY"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "bound": {
+            "required": [
+              "copy_sha256"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "gate": {
+            "enum": [
+              "GF",
+              "GS"
+            ]
+          },
+          "role": {
+            "const": "production_qa"
+          }
+        },
+        "required": [
+          "gate",
+          "role"
+        ]
+      },
+      "then": {
+        "required": [
+          "full_video_watched"
+        ],
+        "properties": {
+          "full_video_watched": {
+            "const": true
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "gate": {
+            "enum": [
+              "H_CG",
+              "GV_CLAIMS",
+              "GA_GRAPH",
+              "GA_DELTA",
+              "H_SB",
+              "VOICE",
+              "GF",
+              "GS",
+              "COPY",
+              "DISCLOSURE",
+              "G_COUNSEL",
+              "GL_GLOSSARY",
+              "GL_VOICE"
+            ]
+          }
+        },
+        "required": [
+          "gate"
+        ]
+      },
+      "then": {
+        "required": [
+          "signature"
+        ]
+      }
+    }
+  ]
+}

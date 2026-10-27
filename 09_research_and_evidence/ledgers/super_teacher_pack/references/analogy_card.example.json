@@ -1,0 +1,17 @@
+{
+  "id": "CHEM-COEFF-SANDWICH-01",
+  "target_relation": "A coefficient scales the number of copies of a specified molecular formula.",
+  "familiar_relation": "Ordering more copies of an unchanged sandwich recipe scales each ingredient count.",
+  "mapping": {
+    "number_of_sandwiches": "coefficient",
+    "ingredients_per_sandwich": "atoms per molecular copy"
+  },
+  "non_mapping": [
+    "Molecules are not sandwiches.",
+    "A recipe order is not a reaction mechanism.",
+    "The analogy does not establish reaction conditions or feasibility."
+  ],
+  "formal_return": "Coefficient changes copies; subscript changes molecular composition.",
+  "student_check": "Explain 2H2O without referring to sandwiches.",
+  "status": "DRAFT_HUMAN_REVIEW_REQUIRED"
+}

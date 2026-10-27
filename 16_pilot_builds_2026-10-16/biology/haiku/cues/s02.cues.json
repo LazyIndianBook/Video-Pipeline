@@ -1,0 +1,158 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "bio-photosyn-ci-01-s02",
+ "fps": 30,
+ "duration": 11.267,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "d1f95c0aa2e81578b788ba3ab68691fb6b3fba330869335d92f623c7d73c3f7d",
+ "script_sha256": "fb56e0d2da7e69198ff182ee889c4beda47930cfe7a3435f4099ea3176e5093f",
+ "words": [
+  {
+   "w": "Where",
+   "t0": 0.187,
+   "t1": 0.347
+  },
+  {
+   "w": "do",
+   "t0": 0.387,
+   "t1": 0.427
+  },
+  {
+   "w": "you",
+   "t0": 0.507,
+   "t1": 0.587
+  },
+  {
+   "w": "think",
+   "t0": 0.667,
+   "t1": 0.827
+  },
+  {
+   "w": "the",
+   "t0": 0.907,
+   "t1": 0.987,
+   "occurrence": 1
+  },
+  {
+   "w": "carbon",
+   "t0": 1.067,
+   "t1": 1.387
+  },
+  {
+   "w": "in",
+   "t0": 1.427,
+   "t1": 1.467
+  },
+  {
+   "w": "the",
+   "t0": 1.547,
+   "t1": 1.627,
+   "occurrence": 2
+  },
+  {
+   "w": "wood",
+   "t0": 1.707,
+   "t1": 1.947
+  },
+  {
+   "w": "came",
+   "t0": 2.027,
+   "t1": 2.267
+  },
+  {
+   "w": "from",
+   "t0": 2.347,
+   "t1": 2.987
+  },
+  {
+   "w": "soil",
+   "t0": 3.147,
+   "t1": 3.787
+  },
+  {
+   "w": "water",
+   "t0": 3.867,
+   "t1": 4.507
+  },
+  {
+   "w": "or",
+   "t0": 4.587,
+   "t1": 4.747
+  },
+  {
+   "w": "air",
+   "t0": 4.827,
+   "t1": 5.307
+  }
+ ],
+ "beats": [
+  0.027
+ ],
+ "cues": [
+  {
+   "id": "c04",
+   "at": 1.657,
+   "kind": "reveal",
+   "element_id": "wood_log",
+   "word_index": 8
+  },
+  {
+   "id": "c05",
+   "at": 3.097,
+   "kind": "reveal",
+   "element_id": "opt_soil",
+   "word_index": 11
+  },
+  {
+   "id": "c06",
+   "at": 3.817,
+   "kind": "reveal",
+   "element_id": "opt_water",
+   "word_index": 12
+  },
+  {
+   "id": "c07",
+   "at": 4.777,
+   "kind": "reveal",
+   "element_id": "opt_air",
+   "word_index": 14
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "bio-photosyn-ci-01",
+  "scene": "s02",
+  "beat_ids": [
+   "b02"
+  ],
+  "beats_text": [
+   {
+    "id": "b02",
+    "slot": "check.predict",
+    "text": "Where do you think the carbon in the wood came from: soil, water, or air?",
+    "headline": "The carbon in the wood?",
+    "start": 0.187,
+    "end": 5.307,
+    "word_range": [
+     0,
+     15
+    ],
+    "think_window": {
+     "beat": "b02",
+     "seconds": 5.0,
+     "start": 6.107,
+     "end": 11.107
+    }
+   }
+  ],
+  "think_windows": [
+   {
+    "beat": "b02",
+    "seconds": 5.0,
+    "start": 6.107,
+    "end": 11.107
+   }
+  ]
+ }
+}

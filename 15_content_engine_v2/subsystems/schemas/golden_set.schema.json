@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://examleaf.local/schemas/v2/subsystems/golden_set.json",
+  "title": "ExamLeaf Golden Set (gs/) v1",
+  "description": "Registry kind gs/ (CE-63): the locale-and-family passage set a voice is tested on (GL-voice, golden-set runs). Not an EPP pin; it reaches artefacts only through the voice entry's golden_set record (resolver-08). Passage text and reference audio live in the private store; only hashes are here. See subsystems/VOICE_and_PERSONA_REGISTRY.md §3.6 (added 15 Oct 2026, voice-12).",
+  "$comment": "Commercial-term lint (CE-L1/RD-49; CE-26, CE-70; 15 Oct 2026): CI rejects, case-insensitively, any match of (price|pricing|paid|is_free|free_|premium|entitle|subscri|sku|paywall|unlock|monetis|monetiz|revenue|discount|coupon|tier|destination_resource|cta_destination|funnel|purchase_|checkout_|product_id|offer_|trial_|utm_|campaign_|affiliate_|activation_code|storefront) applied to every object key at every depth, every required entry, pattern key and enum or const value. Exempt: series_position, flagship and demo_kind.",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "family_ref": {
+      "type": "string",
+      "pattern": "^family/[a-z0-9_]+$"
+    },
+    "locale_ref": {
+      "type": "string",
+      "pattern": "^locale/[a-z0-9][a-z0-9_-]*$"
+    },
+    "reviewer_ref": {
+      "type": "string",
+      "pattern": "^reviewer/[a-z0-9][a-z0-9_.-]*$"
+    }
+  },
+  "properties": {
+    "gs_id": {
+      "type": "string",
+      "pattern": "^gs/[a-z0-9][a-z0-9_.-]*$",
+      "description": "gs/<locale>-<family>, for example gs/hi-in-stem_fixture."
+    },
+    "version": {
+      "$ref": "#/definitions/semver"
+    },
+    "locale": {
+      "$ref": "#/definitions/locale_ref"
+    },
+    "family": {
+      "$ref": "#/definitions/family_ref"
+    },
+    "passages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "sha256": {
+            "$ref": "#/definitions/sha256"
+          },
+          "features": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "negation",
+                "decimal",
+                "exponent",
+                "condition",
+                "code_switch",
+                "question",
+                "correction",
+                "joke",
+                "quiet_calculation"
+              ]
+            }
+          }
+        },
+        "required": [
+          "sha256",
+          "features"
+        ]
+      }
+    },
+    "human_reference_audio_sha256": {
+      "$ref": "#/definitions/sha256"
+    },
+    "owner": {
+      "$ref": "#/definitions/reviewer_ref"
+    }
+  },
+  "required": [
+    "gs_id",
+    "version",
+    "locale",
+    "family",
+    "passages",
+    "human_reference_audio_sha256",
+    "owner"
+  ]
+}

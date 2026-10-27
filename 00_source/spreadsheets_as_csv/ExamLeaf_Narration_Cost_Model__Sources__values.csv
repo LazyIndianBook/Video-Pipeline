@@ -1,0 +1,60 @@
+Source and assumption ledger,,,
+URLs support capability or tariff facts only. Research-read does not mean successfully executed or scientifically benchmarked.,,,
+,,,
+,,,
+Topic,Source URL,As of,Use
+Eleven pricing,https://elevenlabs.io/pricing/api,2026-10-13,Reference character and speech-to-speech usage rates
+Eleven v4,https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4,2026-10-13,"Capabilities, differences, expression; no copied v2 settings"
+Eleven languages,https://elevenlabs.io/docs/help-center/other/what-languages-do-you-support,2026-10-13,Model-specific Assamese/Hindi coverage; not native QA
+Cartesia pricing,https://cartesia.ai/pricing,2026-10-13,"Plans, allowances; large usage still needs quote"
+Gemini pricing,https://ai.google.dev/gemini-api/docs/pricing,2026-10-13,Current and scheduled tariff; token conversion
+Gemini TTS,https://ai.google.dev/gemini-api/docs/speech-generation,2026-10-13,Current3.8 schema and output formats
+OpenAI lifecycle,https://developers.openai.com/api/docs/deprecations,2026-10-13,New-production block for deprecated old TTS
+OpenAI replacement,https://developers.openai.com/api/docs/models/gpt-realtime-2.1-mini,2026-10-13,Replacement pricing; no drop-in guarantee
+WhisperX,https://github.com/m-bain/whisperX,2026-10-13,Word alignment boundary and language resource needs
+MFA,https://montreal-forced-aligner.readthedocs.io/en/latest/,2026-10-13,Dictionary/acoustic-model alignment pipeline
+FFmpeg,https://ffmpeg.org/ffmpeg-filters.html#loudnorm,2026-10-13,Two-pass loudness and true-peak processing
+Local tests,outputs/tests.txt,2026-10-13,"57 tests; signal fixtures, not a speech-quality benchmark"
+Live auditions,docs/Audition_and_Evaluation.md,2026-10-13,Two Runway outputs;18 workspace credits; no local listening score
+Budget assumptions,Inputs + Methods,2026-10-13,"Workload, GPU speed/rate, personnel rates, time, fixed/setup spend are editable estimates"
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,

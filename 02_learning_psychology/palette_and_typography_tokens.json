@@ -1,0 +1,415 @@
+{
+  "_meta": {
+    "title": "ExamLeaf learning-psychology design tokens (derived from ChatGPT message 04)",
+    "derived_from": "00_source/chatgpt_transcript/messages/04_ASSISTANT_learning_psychology_blueprint.md (blueprint sections 4, 5, 6, 7, 9, 12)",
+    "status": "Proposed design specifications, not neuroscientific optima. Timing/pacing/interaction values are production hypotheses (source: 'starting ranges', 'proposed defaults', 'design hypothesis'). Validate with students on real phones.",
+    "units": "px for type sizes on a 1920x1080 master; ms for animation timing; seconds for pauses; wpm for narration",
+    "this_file_is": "A convenience extraction. The canonical design tokens remain the planning-pack file named in canonical_design_tokens_path.",
+    "organiser_computed_fields": "Any field whose key contains 'organiser' or whose note says 'organiser' was computed by the organiser and is NOT stated in the source."
+  },
+  "canonical_design_tokens_path": "00_source/extracted/ExamLeaf_Video_Engine_Planning_Pack/ExamLeaf_Video_Engine/design_tokens.json",
+  "other_token_files": {
+    "implementation_pack_config (different schema, offline proof only)": "00_source/extracted/ExamLeaf_Video_Engine_Implementation/ExamLeaf_Video_Engine/configs/design_tokens.json",
+    "path_base": "relative to the project ROOT (ExamLeaf_Video_EdTech_Pipeline/)"
+  },
+  "palette": {
+    "light": {
+      "background_against_which_contrast_was_calculated": "#F7F9FC",
+      "contrast_method": "relative luminance (WCAG); each colour against the background only, not every pair of accents",
+      "colors": {
+        "background": {
+          "hex": "#F7F9FC",
+          "contrast_on_background": null,
+          "role_in_source": "Background"
+        },
+        "ink": {
+          "hex": "#14213D",
+          "contrast_on_background": 15.15,
+          "role_in_source": "Main text and equations"
+        },
+        "secondary": {
+          "hex": "#526074",
+          "contrast_on_background": 6.06,
+          "role_in_source": "Supporting text"
+        },
+        "blue": {
+          "hex": "#185ABD",
+          "contrast_on_background": 6.15,
+          "role_in_source": "Primary explanatory blue"
+        },
+        "teal": {
+          "hex": "#087986",
+          "contrast_on_background": 4.87,
+          "role_in_source": "Teal relationship/highlight"
+        },
+        "amber": {
+          "hex": "#9A5B00",
+          "contrast_on_background": 5.14,
+          "role_in_source": "Amber condition or caution"
+        },
+        "purple": {
+          "hex": "#6E44AA",
+          "contrast_on_background": 6.48,
+          "role_in_source": "Purple secondary relationship"
+        },
+        "red": {
+          "hex": "#B42318",
+          "contrast_on_background": 6.23,
+          "role_in_source": "Red error marker"
+        }
+      },
+      "organiser_recomputed_contrast_3dp": {
+        "ink": 15.145,
+        "secondary": 6.063,
+        "blue": 6.153,
+        "teal": 4.869,
+        "amber": 5.144,
+        "purple": 6.485,
+        "red": 6.233
+      }
+    },
+    "dark": {
+      "background": "#101826",
+      "ink": "#EAF0F6",
+      "contrast_ink_on_background_source": "approximately 15.49:1",
+      "organiser_recomputed_contrast": 15.494,
+      "accent_colours": "Not specified in the source. Canonical design_tokens.json: 'Other accents require separate contrast validation before dark-mode use.'",
+      "organiser_light_accents_on_dark_background_contrast": {
+        "secondary": 2.782,
+        "blue": 2.741,
+        "teal": 3.464,
+        "amber": 3.278,
+        "purple": 2.6,
+        "red": 2.705,
+        "note": "organiser-computed; all below 4.5:1, so light-theme accents cannot be reused unchanged as dark-theme text"
+      },
+      "claim_boundary": "Do not claim dark mode universally reduces fatigue; offer and test a dark variant where appropriate."
+    },
+    "wcag_thresholds": {
+      "normal_text_min_contrast": 4.5,
+      "essential_non_text_graphics_min_contrast": 3.0,
+      "note": "Starting requirements, not a substitute for testing actual video frames."
+    },
+    "color_use_rules": [
+      "Keep identity stable: a quantity does not change colour because the scene changed.",
+      "Limit emphasis: one dominant highlight at a time.",
+      "Do not rely on colour alone: distinguish graph lines with labels, line patterns or shapes.",
+      "Respect scientific conventions: a red oxygen atom is not an error indicator.",
+      "Check adjacent colours: two colours that each contrast with the background may be hard to tell apart.",
+      "Use a pale highlight area with dark text rather than a large block of saturated colour behind a long explanation."
+    ]
+  },
+  "typography": {
+    "master_canvas_px": [
+      1920,
+      1080
+    ],
+    "phone_readability": {
+      "formula": "displayed_px = source_px * (display_width_px / source_width_px)",
+      "display_width_px": 360,
+      "source_width_px": 1920,
+      "scale_factor": 0.1875,
+      "source_examples": {
+        "64": "approximately 12 px high",
+        "88": "approximately 16.5 px"
+      },
+      "organiser_derived_examples_px": {
+        "72": 13.5,
+        "84": 15.75,
+        "96": 18.0,
+        "104": 19.5,
+        "112": 21.0,
+        "128": 24.0,
+        "144": 27.0
+      }
+    },
+    "starting_specification_source_msg04": {
+      "essential_english_labels_px": [
+        88,
+        96
+      ],
+      "main_equations_px": [
+        112,
+        144
+      ],
+      "main_equations_note": "with separately checked indices",
+      "headings_px": [
+        104,
+        128
+      ],
+      "typeface": "A clear family such as Inter or an appropriate Noto Sans script family",
+      "weight": "Medium or semibold for essential labels; avoid very thin strokes",
+      "layout": "Split, enlarge, or zoom before shrinking essential information",
+      "label": "pilot targets, not accessibility rules mandating a particular font size"
+    },
+    "glyphs_to_test": [
+      "I/l/1",
+      "O/0",
+      "minus signs",
+      "decimal points",
+      "subscripts",
+      "superscripts",
+      "Greek letters"
+    ],
+    "captions": "Accurate selectable captions, an accessible transcript and a protected caption area; avoid full-paragraph narration + animated diagram + equation + moving karaoke captions at once."
+  },
+  "animation": {
+    "label": "production hypotheses (untested starting values)",
+    "motion_budget_percent_of_runtime": [
+      25,
+      35
+    ],
+    "motion_budget_note": "Untested starting budget for first ordinary 2D revision pilots; count substantial changes in the explanatory model, not caption updates or a moving cursor; do not require animation just to meet the percentage.",
+    "layout_may_remain_stable_seconds": "20-60 or longer",
+    "change_types": [
+      "layout (new representation or task)",
+      "semantic (arrow appears, variable changes, step added)",
+      "decorative (no new meaning - avoid)"
+    ],
+    "timing_defaults": {
+      "simple_transition_ms": [
+        150,
+        300
+      ],
+      "highlight_appearing_ms": [
+        300,
+        600
+      ],
+      "simple_equation_transformation_ms": [
+        800,
+        1500
+      ],
+      "hold_after_important_transformation_ms": [
+        2000,
+        4000
+      ],
+      "hold_after_important_transformation_note": "longer when necessary",
+      "completed_diagram_inspection": "Determined by its labels and required task, not a fixed limit"
+    },
+    "physical_simulation_rule": "Never change a physical simulation's behaviour merely to satisfy an animation timing rule."
+  },
+  "interaction": {
+    "label": "design hypothesis",
+    "substantial_pauses_per_10_min": [
+      2,
+      3
+    ],
+    "brief_predictions_or_recall_prompts_per_10_min": [
+      3,
+      4
+    ],
+    "invitation_to_think_every_seconds": [
+      75,
+      120
+    ],
+    "simple_prediction_window_seconds": [
+      5,
+      8
+    ],
+    "learner_controlled_pause_for": [
+      "writing",
+      "drawing",
+      "multi-step calculation",
+      "explanation",
+      "independent solve"
+    ],
+    "player_control": "Learner-controlled 'Continue to explanation' action; no automatic answer reveal after a stressful countdown.",
+    "video_label": "10-minute revision video, with optional practice pauses",
+    "organiser_ohms_law_blueprint_actual_gaps_seconds": [
+      75,
+      95,
+      92,
+      96,
+      87,
+      75
+    ]
+  },
+  "narration": {
+    "label": "starting points for English-language pilots; validate other languages separately",
+    "pacing_wpm": {
+      "ordinary_explanation": [
+        130,
+        155
+      ],
+      "familiar_recap_or_straightforward_transition": [
+        145,
+        165
+      ],
+      "new_symbolic_relationship_or_dense_terminology": [
+        90,
+        120
+      ],
+      "independent_practice": "Silence or minimal instructions",
+      "final_recap": "Clear and compact, not rushed"
+    },
+    "narration_word_budget_10_min": [
+      1050,
+      1250
+    ],
+    "pause_seconds": {
+      "between_ordinary_phrases": [
+        0.3,
+        0.6
+      ],
+      "after_key_causal_statement_or_before_contrast": [
+        0.8,
+        1.5
+      ],
+      "inspect_completed_transformation_or_diagram": [
+        2,
+        4
+      ],
+      "simple_mental_prediction": [
+        5,
+        8
+      ],
+      "writing_drawing_multistep_calculation_explanation": "learner-controlled"
+    },
+    "background_music_in_core_explanation": false,
+    "playback_speed_note": "Accelerated-playback evidence (small costs at 1.5x and 2x, poorer above 2x) used lecture material at ~157 and ~166 wpm; not generalisable to unfamiliar equations, second-language narration or dense Biology."
+  },
+  "spacing_schedule_hypothesis": [
+    {
+      "occasion": "End of lesson",
+      "practice": "One unprompted explanation or application"
+    },
+    {
+      "occasion": "Next day",
+      "practice": "Brief recall before reopening notes"
+    },
+    {
+      "occasion": "About three days later",
+      "practice": "A changed numerical or diagram question"
+    },
+    {
+      "occasion": "About one week later",
+      "practice": "Mixed practice requiring method selection"
+    },
+    {
+      "occasion": "Later, according to exam timing",
+      "practice": "Another delayed check and targeted repair"
+    }
+  ],
+  "evaluation_parameters": {
+    "primary_outcome": "Performance on a delayed, unprompted assessment containing unfamiliar but curriculum-aligned applications",
+    "initial_delay_days": 7,
+    "illustrative_sample_size": {
+      "alpha_two_sided": 0.05,
+      "power": 0.8,
+      "d_0.30_per_group_approx": 175,
+      "d_0.20_per_group_approx": 400,
+      "note": "approximate planning calculations, not a power analysis; before attrition"
+    }
+  },
+  "differences_noted": [
+    {
+      "field": "typography.essential_labels_px",
+      "message_04": [
+        88,
+        96
+      ],
+      "planning_pack_design_tokens": [
+        64,
+        72
+      ],
+      "implementation_config": null,
+      "note": "CONFLICT. Planning-pack range is smaller. By the source's own formula 64 px -> 12 px and 72 px -> 13.5 px on a 360 px-wide phone, versus 16.5-18 px for 88-96 px. Resolve in 04_video_engine before production."
+    },
+    {
+      "field": "typography.equation_px",
+      "message_04": [
+        112,
+        144
+      ],
+      "planning_pack_design_tokens": [
+        84,
+        112
+      ],
+      "implementation_config": null,
+      "note": "CONFLICT. Planning-pack range is smaller (84 px -> 15.75 px on phone)."
+    },
+    {
+      "field": "typography.heading_px",
+      "message_04": [
+        104,
+        128
+      ],
+      "planning_pack_design_tokens": [
+        72,
+        88
+      ],
+      "implementation_config": null,
+      "note": "CONFLICT. Planning-pack range is smaller."
+    },
+    {
+      "field": "timing.equation_hold",
+      "message_04": "2-4 seconds (2000-4000 ms), longer when necessary",
+      "planning_pack_design_tokens": "equation_hold_ms [1000, 3000]",
+      "implementation_config": null,
+      "note": "CONFLICT. Different lower and upper bounds; the token is named 'equation_hold' whereas the source says 'Hold after an important transformation'."
+    },
+    {
+      "field": "palette.light HEX (background, ink/main text, secondary/supporting, blue, teal, amber, red/error, purple)",
+      "message_04": "identical",
+      "planning_pack_design_tokens": "identical",
+      "implementation_config": "identical HEX values",
+      "note": "NO DIFFERENCE in values. Naming differs: message 04 'Main text and equations' = pack 'ink'; 'Supporting text' = pack 'secondary' = implementation 'muted'; 'Red error marker' = pack 'red' = implementation 'error'."
+    },
+    {
+      "field": "palette.light extra colours",
+      "message_04": "not specified",
+      "planning_pack_design_tokens": "not specified",
+      "implementation_config": "line #D9E1EC, card #FFFFFF",
+      "note": "Implementation config adds two neutral colours with no contrast ratios stated anywhere in the source."
+    },
+    {
+      "field": "palette.light contrast ratios",
+      "message_04": "ink 15.15, secondary 6.06, blue 6.15, teal 4.87, amber 5.14, purple 6.48, red 6.23",
+      "planning_pack_design_tokens": "light_contrast_on_background ink 15.145, secondary 6.063, blue 6.153, teal 4.869, amber 5.144, red 6.233, purple 6.485",
+      "implementation_config": "not stored",
+      "note": "NO DIFFERENCE (message 04 values are the pack values rounded to 2 dp). Organiser re-computation reproduces the pack values."
+    },
+    {
+      "field": "palette.dark",
+      "message_04": "background #101826, main text #EAF0F6, contrast ~15.49:1; says offer and test a dark variant",
+      "planning_pack_design_tokens": "background #101826, ink #EAF0F6; note: other accents require separate contrast validation before dark-mode use",
+      "implementation_config": "no dark theme",
+      "note": "Values agree. The pack does not store the 15.49 ratio; the pack's explicit accent warning is not in message 04."
+    },
+    {
+      "field": "timing.transition / highlight / equation_transform",
+      "message_04": "150-300 ms / 300-600 ms / 0.8-1.5 s",
+      "planning_pack_design_tokens": "[150,300] / [300,600] / [800,1500]",
+      "implementation_config": null,
+      "note": "NO DIFFERENCE."
+    },
+    {
+      "field": "tokens present only in planning pack",
+      "message_04": "not specified",
+      "planning_pack_design_tokens": "canvas 1920x1080 @30 fps, safe_margin_px 96, caption_reserve_bottom_px 190; type.sans Inter, locale_fallback Noto Sans, math KaTeX; audio target_lufs -16, max_true_peak_dbtp -1, core_background_music false",
+      "implementation_config": null,
+      "note": "Additions, not conflicts. Message 04 recommends Inter or Noto Sans, a 'protected caption area' and no core background music; fps, margins, KaTeX and loudness targets are pack-only."
+    },
+    {
+      "field": "typography.font",
+      "message_04": "Inter or an appropriate Noto Sans script family",
+      "planning_pack_design_tokens": "Inter / Noto Sans fallback / KaTeX",
+      "implementation_config": "DejaVu Sans (comment: system font for offline proof only; production brand fonts must be licensed and pinned)",
+      "note": "Implementation config is an offline proof stand-in, not a design decision."
+    },
+    {
+      "field": "status wording",
+      "message_04": "'design specifications, not neuroscientific optima'",
+      "planning_pack_design_tokens": "'proposed design standard; validate with students on real phones'",
+      "implementation_config": null,
+      "note": "Consistent."
+    },
+    {
+      "field": "values only in message 04 (not in any tokens file)",
+      "message_04": "narration pacing wpm; pause lengths; interaction frequency; 25-35% motion budget; spacing schedule; WCAG thresholds",
+      "planning_pack_design_tokens": "absent",
+      "implementation_config": "absent",
+      "note": "Carried only in this JSON and in INSTRUCTIONS_production_rules.md; 04_video_engine / 05_narration_system may need to import them."
+    }
+  ]
+}

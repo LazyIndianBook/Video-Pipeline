@@ -1,0 +1,11 @@
+__pycache__/
+.pytest_cache/
+.venv/
+.env
+.env.*
+!.env.example
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+node_modules/
+outputs/*.tmp*

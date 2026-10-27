@@ -1,0 +1,134 @@
+{
+ "graph_id": "phy-ohm-cs60-sample",
+ "subject": "physics",
+ "level": "l9_10",
+ "sources": [
+  {
+   "id": "SRC-ncert-10-electricity-ohm",
+   "kind": "textbook",
+   "title": "NCERT Class 10 Science",
+   "section": "Chapter 'Electricity', section 'Ohm's Law'",
+   "reliability_class": "official_curriculum"
+  },
+  {
+   "id": "SRC-ncert-10-electricity-heating",
+   "kind": "textbook",
+   "title": "NCERT Class 10 Science",
+   "section": "Chapter 'Electricity', section 'Heating Effect of Electric Current' (electric bulb filament)",
+   "reliability_class": "official_curriculum"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "OBJ-ohm-condition",
+   "type": "objective",
+   "statement": "State that current is proportional to potential difference for a conductor at constant temperature, and name constant resistance as the condition."
+  },
+  {
+   "id": "CLM-ohm-proportional",
+   "type": "claim",
+   "statement": "For a conductor at constant temperature, the current through it is directly proportional to the potential difference across it.",
+   "assumptions": [
+    "constant temperature"
+   ],
+   "source_ids": [
+    "SRC-ncert-10-electricity-ohm"
+   ],
+   "fixture_ids": [
+    "FIX-ohm-two-points"
+   ]
+  },
+  {
+   "id": "CLM-resistance-constant",
+   "type": "claim",
+   "statement": "The ratio of potential difference to current is constant for such a conductor; this constant is its resistance, so voltage equals current multiplied by resistance.",
+   "assumptions": [
+    "constant temperature"
+   ],
+   "source_ids": [
+    "SRC-ncert-10-electricity-ohm"
+   ],
+   "fixture_ids": [
+    "FIX-ohm-two-points"
+   ]
+  },
+  {
+   "id": "CLM-ohm-condition",
+   "type": "claim",
+   "statement": "The proportionality holds only while the resistance stays constant.",
+   "source_ids": [
+    "SRC-ncert-10-electricity-ohm"
+   ]
+  },
+  {
+   "id": "CLM-filament",
+   "type": "claim",
+   "statement": "A bulb filament gets hot when current flows; its resistance rises as it heats, so doubling the voltage does not double the current.",
+   "source_ids": [
+    "SRC-ncert-10-electricity-heating",
+    "SRC-ncert-10-electricity-ohm"
+   ],
+   "reliability_note": "NCERT states the constant-temperature condition and describes the hot filament; the rise of filament resistance with temperature is standard physics at this level, flag for subject review."
+  },
+  {
+   "id": "MIS-always-doubles",
+   "type": "misconception",
+   "statement": "Ohm's law is universal: doubling the voltage always doubles the current.",
+   "why_wrong": "Resistance of many components changes with temperature (filament lamp), so the proportionality holds only while resistance stays constant."
+  },
+  {
+   "id": "SIM-constant-temperature",
+   "type": "simplification",
+   "statement": "The resistor is treated as staying at exactly the same temperature at two volts and at four volts.",
+   "what_is_lost": "A real resistor warms slightly with current; the change is negligible here but not zero."
+  },
+  {
+   "id": "WRK-ohm-two-points",
+   "type": "worked_item",
+   "prompt": "A ten-ohm resistor has two volts across it, then four volts. Find the current each time and compare.",
+   "steps": [
+    "At two volts: current = 2 / 10 = 0.2 amperes.",
+    "At four volts: current = 4 / 10 = 0.4 amperes.",
+    "Twice the voltage gives twice the current (ratio 2).",
+    "Voltage divided by current is ten ohms at both points: the resistance."
+   ],
+   "fixture_ids": [
+    "FIX-ohm-cs60-sample"
+   ]
+  },
+  {
+   "id": "ASM-predict-four-volts",
+   "type": "assessment_item",
+   "stem": "A ten-ohm resistor reads 0.2 A at two volts. What does the meter read at four volts?",
+   "answer": "0.4 A (four volts divided by ten ohms), for this resistor at constant temperature.",
+   "original": true
+  },
+  {
+   "id": "FIX-ohm-cs60-sample",
+   "type": "fixture",
+   "compute": "fixtures/compute.py",
+   "outputs": [
+    "parameters.resistance_ohm",
+    "parameters.v1",
+    "parameters.v2",
+    "results.i1",
+    "results.i2",
+    "results.ratio_v",
+    "results.ratio_i",
+    "results.v_over_i_1",
+    "results.v_over_i_2"
+   ]
+  },
+  {
+   "id": "ASM-transfer-six-volts",
+   "type": "assessment_item",
+   "stem": "Same ten-ohm resistor, six volts. What does the meter read?",
+   "answer": "0.6 A (six volts divided by ten ohms).",
+   "original": true,
+   "fixture_ids": [
+    "FIX-ohm-cs60-sample"
+   ]
+  }
+ ],
+ "_note": "SAMPLE for format/concept_short_60 and check_script v2 (16 Oct 2026). Nodes copied from 16_pilot_builds_2026-10-16/physics/opus/lesson_graph.json; ASM-predict-four-volts restated as one task; ASM-transfer-six-volts added. Not reviewed; not for release."
+}

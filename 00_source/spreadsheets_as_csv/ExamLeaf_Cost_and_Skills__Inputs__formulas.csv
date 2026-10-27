@@ -1,0 +1,55 @@
+EXAMLEAF | MODEL INPUTS,,,
+"Verified 13 October 2026. Blue values are editable. USD, before taxes. Sources and estimate status are explicit.",,,
+,,,
+Assumption / rate,Value,Units / qualification,Source
+Video duration,10,minutes,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Narration characters,8000,characters/video,ExamLeaf planning assumption; not a benchmark or supplier quote.
+TTS regeneration allowance,0.2,fraction,ExamLeaf planning assumption; not a benchmark or supplier quote.
+TTS standard price,0.08,"USD/1,000 characters",https://elevenlabs.io/pricing/api
+Haiku input budget,30000,tokens/video,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Haiku output budget,5000,tokens/video,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Haiku input price,0.1,USD/million tokens,https://platform.claude.com/docs/en/about-claude/pricing
+Haiku output price,0.5,USD/million tokens,https://platform.claude.com/docs/en/about-claude/pricing
+Sonnet input budget,120000,tokens/video,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Sonnet output budget,25000,tokens/video,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Sonnet input price,2,USD/million tokens,https://platform.claude.com/docs/en/about-claude/pricing
+Sonnet output price,10,USD/million tokens,https://platform.claude.com/docs/en/about-claude/pricing
+Sol input budget,60000,tokens/video,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Sol output budget,10000,tokens/video,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Sol input price,2,USD/million tokens,https://developers.openai.com/api/docs/pricing
+Sol output price,10,USD/million tokens,https://developers.openai.com/api/docs/pricing
+Opus escalation input allowance,10000,amortized tokens/video,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Opus escalation output allowance,2000,amortized tokens/video,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Opus input price,4,USD/million tokens,https://platform.claude.com/docs/en/about-claude/pricing
+Opus output price,20,USD/million tokens,https://platform.claude.com/docs/en/about-claude/pricing
+LLM regeneration allowance,0.3,fraction,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Worker vCPU,8,vCPU,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Worker RAM,16,GB,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Render wall time,45,worker minutes/video,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Render retry allowance,0.2,fraction,ExamLeaf planning assumption; not a benchmark or supplier quote.
+CPU price,1.1244e-05,USD/vCPU-second; US East example,https://aws.amazon.com/fargate/pricing/
+RAM price,1.235e-06,USD/GB-second; US East example,https://aws.amazon.com/fargate/pricing/
+ASR validation price,0.003,USD/minute,https://developers.openai.com/api/docs/pricing
+Retained working assets,2,GB/video,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Storage price,0.015,USD/GB-month,https://developers.cloudflare.com/r2/pricing/
+Storage duration,1,months,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Miscellaneous API / request reserve,0.15,USD/video,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Academic review time,45,minutes/video,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Academic reviewer rate,20,USD/hour,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Production QA time,15,minutes/video,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Production QA rate,12,USD/hour,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Fixed infrastructure / tools,100,USD/month; allowance,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Maintenance engineering time,4,hours/month; mature-system allowance,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Maintenance rate,25,USD/hour,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Production accounting period,1,months for compared volume,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Setup engineering time,240,hours,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Setup engineering rate,25,USD/hour,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Setup academic template time,60,hours,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Setup academic template rate,25,USD/hour,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Setup design / voice time,20,hours,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Setup design / voice rate,25,USD/hour,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Optional Remotion paid-license switch,0,0 = HyperFrames baseline; 1 = paid Remotion,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Remotion automation minimum,100,"USD/month, when license applies",https://www.remotion.dev/docs/license/pricing
+Remotion per billable render,0.01,"USD/render, when license applies",https://www.remotion.dev/docs/license/pricing
+Billable Remotion renders per video,20,assumption; confirm billing definition,ExamLeaf planning assumption; not a benchmark or supplier quote.
+Optional developer subscriptions,0,USD/month; enter actual incremental seats,ExamLeaf planning assumption; not a benchmark or supplier quote.

@@ -1,0 +1,127 @@
+{
+  "status": "offline-request-compilation-not-live-integration",
+  "lesson_id": "water_coefficient_demo",
+  "requests": [
+    {
+      "segment_id": "question",
+      "method": "POST",
+      "url": "https://api.openai.com/v1/audio/speech",
+      "headers_template": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer ENV:OPENAI_API_KEY"
+      },
+      "body": {
+        "model": "gpt-4o-mini-tts-2025-12-15",
+        "voice": "marin",
+        "input": "Two water molecules. How many hydrogen atoms altogether? Count each complete molecule before you answer.",
+        "instructions": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Invite a genuine prediction, curious without theatrical suspense. Aim for approximately 140 spoken words per minute; do not add words. Emphasize: each complete molecule",
+        "response_format": "wav"
+      },
+      "canonical_spoken": "Two water molecules. How many hydrogen atoms altogether? Count each complete molecule before you answer.",
+      "caption_text": "Two water molecules. How many hydrogen atoms altogether? Count each complete molecule before you answer.",
+      "audio_cache_key": "98fddfc5351f5b1575d78ae322450df002c629dd4156dd17556077dc55d6ddf5",
+      "editorial_style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Invite a genuine prediction, curious without theatrical suspense. Aim for approximately 140 spoken words per minute; do not add words. Emphasize: each complete molecule",
+      "warnings": [
+        "Compiled offline; live behavior and pronunciation require separate approval.",
+        "LEGACY MIGRATION FIXTURE ONLY: deprecated 2026-10-01; shutdown 2027-01-06; replacement gpt-realtime-2.1-mini requires a separately tested adapter."
+      ]
+    },
+    {
+      "segment_id": "answer",
+      "method": "POST",
+      "url": "https://api.openai.com/v1/audio/speech",
+      "headers_template": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer ENV:OPENAI_API_KEY"
+      },
+      "body": {
+        "model": "gpt-4o-mini-tts-2025-12-15",
+        "voice": "marin",
+        "input": "Four hydrogen atoms. Each water molecule contains two, and we have two complete copies. That is what the coefficient changes: how many molecules, not what a molecule is.",
+        "instructions": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Measure phrases carefully; distinguish scientific terms and conditions. Aim for approximately 130 spoken words per minute; do not add words. Emphasize: Four; not",
+        "response_format": "wav"
+      },
+      "canonical_spoken": "Four hydrogen atoms. Each water molecule contains two, and we have two complete copies. That is what the coefficient changes: how many molecules, not what a molecule is.",
+      "caption_text": "Four hydrogen atoms. Each water molecule contains two, and we have two complete copies. That is what the coefficient changes: how many molecules, not what a molecule is.",
+      "audio_cache_key": "bd4c14defa203bb2f2743a1f7899fa19e652943440174b9a5bc9dab581791fac",
+      "editorial_style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Measure phrases carefully; distinguish scientific terms and conditions. Aim for approximately 130 spoken words per minute; do not add words. Emphasize: Four; not",
+      "warnings": [
+        "Compiled offline; live behavior and pronunciation require separate approval.",
+        "LEGACY MIGRATION FIXTURE ONLY: deprecated 2026-10-01; shutdown 2027-01-06; replacement gpt-realtime-2.1-mini requires a separately tested adapter."
+      ]
+    },
+    {
+      "segment_id": "repair",
+      "method": "POST",
+      "url": "https://api.openai.com/v1/audio/speech",
+      "headers_template": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer ENV:OPENAI_API_KEY"
+      },
+      "body": {
+        "model": "gpt-4o-mini-tts-2025-12-15",
+        "voice": "marin",
+        "input": "Changing H two O into hydrogen peroxide would be a very efficient way to answer a different question. Keep the given formulas fixed. Use coefficients to change the counts.",
+        "instructions": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. A small amused smile in the delivery, without added laughter. Aim for approximately 142 spoken words per minute; do not add words.  Dry observation, not a laugh. Return to focused explanation after different question.",
+        "response_format": "wav"
+      },
+      "canonical_spoken": "Changing H two O into hydrogen peroxide would be a very efficient way to answer a different question. Keep the given formulas fixed. Use coefficients to change the counts.",
+      "caption_text": "Changing H two O into hydrogen peroxide would be a very efficient way to answer a different question. Keep the given formulas fixed. Use coefficients to change the counts.",
+      "audio_cache_key": "720a74e7c743daef436855e230880157720a732923369758a36c0fcaceabe06f",
+      "editorial_style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. A small amused smile in the delivery, without added laughter. Aim for approximately 142 spoken words per minute; do not add words.  Dry observation, not a laugh. Return to focused explanation after different question.",
+      "warnings": [
+        "Compiled offline; live behavior and pronunciation require separate approval.",
+        "LEGACY MIGRATION FIXTURE ONLY: deprecated 2026-10-01; shutdown 2027-01-06; replacement gpt-realtime-2.1-mini requires a separately tested adapter."
+      ]
+    },
+    {
+      "segment_id": "retry",
+      "method": "POST",
+      "url": "https://api.openai.com/v1/audio/speech",
+      "headers_template": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer ENV:OPENAI_API_KEY"
+      },
+      "body": {
+        "model": "gpt-4o-mini-tts-2025-12-15",
+        "voice": "marin",
+        "input": "Your turn again: three water molecules. How many hydrogen atoms, and how many oxygen atoms? Pause here and write both counts.",
+        "instructions": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Warm and matter-of-fact; make correction specific and repairable. Aim for approximately 140 spoken words per minute; do not add words.",
+        "response_format": "wav"
+      },
+      "canonical_spoken": "Your turn again: three water molecules. How many hydrogen atoms, and how many oxygen atoms? Pause here and write both counts.",
+      "caption_text": "Your turn again: three water molecules. How many hydrogen atoms, and how many oxygen atoms? Pause here and write both counts.",
+      "audio_cache_key": "f50fb8bd7d223d13b1ae6babac2fccb9b2eab78de78184a43e8024d56ff73226",
+      "editorial_style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Warm and matter-of-fact; make correction specific and repairable. Aim for approximately 140 spoken words per minute; do not add words.",
+      "warnings": [
+        "Compiled offline; live behavior and pronunciation require separate approval.",
+        "LEGACY MIGRATION FIXTURE ONLY: deprecated 2026-10-01; shutdown 2027-01-06; replacement gpt-realtime-2.1-mini requires a separately tested adapter."
+      ]
+    },
+    {
+      "segment_id": "check",
+      "method": "POST",
+      "url": "https://api.openai.com/v1/audio/speech",
+      "headers_template": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer ENV:OPENAI_API_KEY"
+      },
+      "body": {
+        "model": "gpt-4o-mini-tts-2025-12-15",
+        "voice": "marin",
+        "input": "Six hydrogen atoms and three oxygen atoms. If those match, check the method too: the number of copies multiplies every atom count in the formula.",
+        "instructions": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Precise and credible, not promotional. Aim for approximately 140 spoken words per minute; do not add words.",
+        "response_format": "wav"
+      },
+      "canonical_spoken": "Six hydrogen atoms and three oxygen atoms. If those match, check the method too: the number of copies multiplies every atom count in the formula.",
+      "caption_text": "Six hydrogen atoms and three oxygen atoms. If those match, check the method too: the number of copies multiplies every atom count in the formula.",
+      "audio_cache_key": "45ccf1ea365563d69551b270c60ad22cc9a75768f25837bf0b55318001452ca7",
+      "editorial_style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Precise and credible, not promotional. Aim for approximately 140 spoken words per minute; do not add words.",
+      "warnings": [
+        "Compiled offline; live behavior and pronunciation require separate approval.",
+        "LEGACY MIGRATION FIXTURE ONLY: deprecated 2026-10-01; shutdown 2027-01-06; replacement gpt-realtime-2.1-mini requires a separately tested adapter."
+      ]
+    }
+  ],
+  "network_operations": 0
+}

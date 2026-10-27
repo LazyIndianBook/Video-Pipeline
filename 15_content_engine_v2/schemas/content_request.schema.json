@@ -1,0 +1,228 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://examleaf.local/schemas/v2/content_request.json",
+  "title": "ExamLeaf Content Request v2",
+  "description": "What to make. The subject family is never supplied: the Resolver derives it from the single subject_profile whose subjects[] lists this subject (Resolver rule R3); no match or more than one match is a compile error.",
+  "$comment": "Commercial-term lint (CE-L1/RD-49; CE-26, CE-70; updated 15 Oct 2026): CI rejects, case-insensitively, any match of (price|pricing|paid|is_free|free_|premium|entitle|subscri|sku|paywall|unlock|monetis|monetiz|revenue|discount|coupon|tier|destination_resource|cta_destination|funnel|purchase_|checkout_|product_id|offer_|trial_|utm_|campaign_|affiliate_|activation_code|storefront) applied to every object key at every depth (including REN fields keys), every required entry, pattern key and enum or const value. Exempt: the editorial fields series_position, flagship and demo_kind, which carry no commercial meaning.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "pattern": "^CR-[A-Za-z0-9_.-]+$"
+    },
+    "competency_guids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "objective_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^OBJ-[A-Za-z0-9_.-]+$"
+      },
+      "uniqueItems": true
+    },
+    "format": {
+      "type": "string",
+      "pattern": "^format/[a-z0-9_]+(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+    },
+    "variant": {
+      "type": "string",
+      "pattern": "^[a-z]+\\.[a-z0-9_]+$",
+      "description": "Format variant (for example short.misconception). Required when the format declares format_variants; a compile error otherwise (Architecture §3.4 R4). Added 15 Oct 2026."
+    },
+    "root_node_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(CLM|MIS|WRK|ASM|ACT|STY|TXT)-[A-Za-z0-9_.-]+$"
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "Root graph node(s) for formats whose select.root is a single node or a claim pair (Architecture §3.4 R4). Added 15 Oct 2026."
+    },
+    "level": {
+      "type": "string",
+      "pattern": "^level/[a-z0-9_]+(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+    },
+    "taught_level": {
+      "type": "string",
+      "pattern": "^level/(l1_2|l3_5|l6_8|l9_10|l11_12|ug|pg|adult_prof|voc)(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$",
+      "description": "For level/educator only: the level whose objectives, SIM and ANL nodes the teacher is taught to teach (FORMAT_REGISTRY F26). Added 15 Oct 2026."
+    },
+    "subject": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "locale": {
+      "type": "string",
+      "pattern": "^locale/[a-z0-9][a-z0-9_-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+    },
+    "exam_overlay": {
+      "type": "string",
+      "pattern": "^overlay/[a-z0-9_]+(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+    },
+    "style": {
+      "type": "string",
+      "pattern": "^style/[a-z0-9][a-z0-9_-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+    },
+    "packaging_profiles": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^packaging/[a-z0-9][a-z0-9_-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "Packaging profiles to pin (Architecture §3.4 R14); when absent the format's default profiles apply. Added 15 Oct 2026."
+    },
+    "series": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "series_id": {
+          "type": "string",
+          "pattern": "^SER-[A-Za-z0-9_.-]+$"
+        },
+        "series_position": {
+          "type": "string",
+          "enum": [
+            "first",
+            "subsequent",
+            "standalone"
+          ]
+        }
+      },
+      "required": [
+        "series_position"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "series_position": {
+                "enum": [
+                  "first",
+                  "subsequent"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "series_id"
+            ]
+          }
+        }
+      ]
+    },
+    "flagship": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "boolean"
+        },
+        "set_by": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "value": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "set_by",
+              "reason"
+            ]
+          }
+        }
+      ]
+    },
+    "demo_kind": {
+      "type": "string",
+      "enum": [
+        "real",
+        "virtual",
+        "none"
+      ]
+    },
+    "render_target": {
+      "type": "string",
+      "enum": [
+        "video",
+        "audio_only",
+        "print"
+      ],
+      "default": "video",
+      "description": "print added 15 Oct 2026 (CE-119, level-3+): PDF/UA plus HTML from the same Format Plan via the pinned Chrome print path; allowed only for the print configurations (FORMAT_REGISTRY F-W, F-TN, F-GN, Revision Sheet print) with packaging/print-pdf."
+    },
+    "requested_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "request_id",
+    "competency_guids",
+    "format",
+    "level",
+    "subject",
+    "locale",
+    "series",
+    "flagship",
+    "demo_kind",
+    "requested_by",
+    "created_at"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "level": {
+            "pattern": "^level/educator"
+          }
+        },
+        "required": [
+          "level"
+        ]
+      },
+      "then": {
+        "required": [
+          "taught_level"
+        ]
+      },
+      "else": {
+        "not": {
+          "required": [
+            "taught_level"
+          ]
+        }
+      }
+    }
+  ]
+}

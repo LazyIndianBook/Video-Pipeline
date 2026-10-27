@@ -1,0 +1,152 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "phy-ohm-ci-01-s02",
+ "fps": 30,
+ "duration": 11.2,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "6060db7d871bad188a93033007d9124e697aa921f729bae55e9bdf67bba20305",
+ "script_sha256": "cf2a4a3da3233d15b72dfb09f353504544608bf99699191cbcb9b920baf104e7",
+ "words": [
+  {
+   "w": "Pause",
+   "t0": 0.16,
+   "t1": 0.64
+  },
+  {
+   "w": "and",
+   "t0": 0.72,
+   "t1": 0.88
+  },
+  {
+   "w": "predict",
+   "t0": 0.96,
+   "t1": 1.36
+  },
+  {
+   "w": "the",
+   "t0": 1.44,
+   "t1": 1.52
+  },
+  {
+   "w": "current",
+   "t0": 1.6,
+   "t1": 1.92
+  },
+  {
+   "w": "at",
+   "t0": 2.0,
+   "t1": 2.08
+  },
+  {
+   "w": "four",
+   "t0": 2.24,
+   "t1": 2.4
+  },
+  {
+   "w": "volts",
+   "t0": 2.48,
+   "t1": 3.2
+  },
+  {
+   "w": "Then",
+   "t0": 3.44,
+   "t1": 3.68
+  },
+  {
+   "w": "decide",
+   "t0": 3.8,
+   "t1": 4.08
+  },
+  {
+   "w": "whether",
+   "t0": 4.16,
+   "t1": 4.48
+  },
+  {
+   "w": "always",
+   "t0": 4.8,
+   "t1": 5.12
+  },
+  {
+   "w": "is",
+   "t0": 5.2,
+   "t1": 5.28
+  },
+  {
+   "w": "safe",
+   "t0": 5.36,
+   "t1": 6.0
+  }
+ ],
+ "beats": [
+  0.0
+ ],
+ "cues": [
+  {
+   "id": "c08",
+   "at": 1.55,
+   "kind": "reveal",
+   "element_id": "i_query",
+   "word_index": 4
+  },
+  {
+   "id": "c09",
+   "at": 2.19,
+   "kind": "emphasis",
+   "element_id": "v2_chip",
+   "word_index": 6
+  },
+  {
+   "id": "c10",
+   "at": 4.75,
+   "kind": "emphasis",
+   "element_id": "ammeter",
+   "word_index": 11
+  },
+  {
+   "id": "c11",
+   "at": 5.31,
+   "kind": "hold",
+   "element_id": "think_plate",
+   "word_index": 13,
+   "until": 11.2
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "phy-ohm-ci-01",
+  "scene": "s02",
+  "beat_ids": [
+   "b02"
+  ],
+  "beats_text": [
+   {
+    "id": "b02",
+    "slot": "check.predict",
+    "text": "Pause and predict the current at four volts. Then decide whether always is safe.",
+    "headline": "predict the current",
+    "start": 0.16,
+    "end": 6.0,
+    "word_range": [
+     0,
+     14
+    ],
+    "think_window": {
+     "beat": "b02",
+     "seconds": 5.0,
+     "start": 6.3,
+     "end": 11.3
+    }
+   }
+  ],
+  "think_windows": [
+   {
+    "beat": "b02",
+    "seconds": 5.0,
+    "start": 6.3,
+    "end": 11.3
+   }
+  ]
+ }
+}

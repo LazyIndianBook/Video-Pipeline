@@ -1,0 +1,92 @@
+name,pack,status_v2,stage_v2,output_owned,registry_validated,slot_types_owned,slot_types_extended,maintainer,activation_trigger,exec_mode
+examleaf-lesson-architect,ST,extend,S4,lens: review notes on graph-author output,,,,,L2 (rules in owner checklists at L0-L1),M (lens)
+examleaf-conversational-script,ST,retire,,none in engine; rules folded into examleaf-super-teacher-scriptwriter,,,,,none in engine (standalone ST kit only),
+examleaf-analogy-auditor,ST,extend,S4,lens: ANL review card (graph-author owns ANL),,,explain.analogy,,L2 (rules in owner checklists at L0-L1),M (lens)
+examleaf-concept-humour,ST,retire,,none in engine; rules folded into examleaf-humour-meme-director,,,,,none in engine (standalone ST kit only),
+examleaf-interaction-designer,ST,retire,,none in engine; schema adopted by examleaf-interactive-teaching-director,,,,,none in engine (standalone ST kit only),
+examleaf-confidence-editor,ST,extend,S7,lens: feedback findings (feeds persona-lint rule backlog),,,check.*;misconception.*,,L0,M (lens)
+examleaf-voice-director,ST,retire,,none in engine; rules folded into examleaf-tts-provider-adapter and examleaf-stem-pronunciation,,,,,none in engine (standalone ST kit only),
+examleaf-language-editor,ST,retire,,none in engine; rules folded into examleaf-multilingual-director,,,,,none in engine (standalone ST kit only),
+examleaf-science-reviewer,ST,extend,S7,independent re-solve report (Q-FIX.answer_key evidence),,,worked.step;worked.faded_twin;explain.derivation_step,,L0,M
+examleaf-script-evaluator,ST,extend,S7;post-release,repetition ledger; script pre-review,,,,,L0,M
+examleaf-source-ingest,VE,extend,S1,SRC records via the Source Registry (single SRC writer; also writes v1-import SRC drafts),,,,,L0,D
+examleaf-curriculum-map,VE,extend,S2,scope GUID selection (H-CG),,,,,L0,M+D
+examleaf-claim-research,VE,extend,S3;S4,CLM drafts (claim-ledger promotes); independent answer-key solve recorded in ASM.answer_key_check,,,,,L0,M
+examleaf-lesson-plan,VE,retire,,none in engine from L2; superseded by examleaf-graph-author (S4) and examleaf-format-compiler (S5),,,,,L0-L1 only; retired at L2,
+examleaf-super-teacher,VE,extend,S6,stage handoff per Format Plan (persona from EPP),,,all script beats (entry),,L0,M
+examleaf-analogy-humour,VE,extend,S4;S6,stage entry (ANL at S4; humour at S6); extenders author,,,explain.analogy,,L0,M
+examleaf-interaction-design,VE,extend,S4;S6,ASM item drafts (submitted to graph-author); Cue[] with answer_protection,,,check.*;card.*;viva.*;recap.retrieval,,L0,M+D
+examleaf-science-math,VE,extend,S3;S7;S11,ScienceReport + fixtures,family/,,explain.derivation_step;worked.step;worked.faded_twin,,L0,D
+examleaf-science-physics,VE,extend,S3;S7;S11,ScienceReport + fixtures,family/,,explain.ladder_step;worked.step;misconception.confront,,L0,D
+examleaf-science-chemistry,VE,extend,S3;S7;S11,ScienceReport + fixtures,family/,,worked.step;explain.ladder_step,,L0,D
+examleaf-science-biology,VE,extend,S3;S7;S11,ScienceReport + fixtures,family/,,explain.ladder_step;misconception.confront,,L0,D
+examleaf-storyboard-route,VE,extend,S8,SceneSpec routing per slot instance,,,all (routing),,L0,M+D
+examleaf-svg-scenes,VE,extend,S10,fixture-visual scene media,slot/,explain.ladder_step;explain.derivation_step;worked.step;worked.faded_twin;misconception.confront;compare.dimension;map.node;map.link,,,L0,D
+examleaf-manim-scenes,VE,dormant,S10,alternate adapter for svg-scenes slot types when active,,,explain.derivation_step;worked.step;worked.faded_twin,,l11_12+ cell with approved Manim template (L5 after O-19),D
+examleaf-web-composition,VE,extend,S10,composed artefact at EPP resolution,,,,,L0,M+D
+examleaf-blender-scenes,VE,dormant,S10,spatial inserts (opt-in P2),,,,,approved spatial need (on approval),M+D
+examleaf-molecule-scenes,VE,dormant,S10,structure scenes (alternate renderer),,,explain.ladder_step;worked.step,,chemistry lesson in an active stem_fixture cell (L3 / M3),D
+examleaf-biology-scenes,VE,dormant,S10,process scenes (alternate renderer),,,explain.ladder_step;misconception.confront,,biology lesson in an active cell (L3 / M3),D
+examleaf-voice-direction,VE,extend,S9,spoken segments (locale/ consumer),,,,,L0,M
+examleaf-voice-synthesis,VE,extend,S9,audio by hash + job manifest; AD sentences voiced,voice/;gs/,,,,L0,M+D
+examleaf-alignment-localize,VE,extend,S9;S10,localised SceneSpec + string tables,,,,,L0,M+D
+examleaf-render-batch,VE,extend,S10,MP4/VTT/manifest; reduced-motion variant,harness/,,,,L0,D
+examleaf-visual-qa,VE,extend,S11,"frame defects (A12b, A13)",,,,,L0,M+D
+examleaf-audio-caption-qa,VE,extend,S11,media QA + corrected VTT,,,,,L0,M+D
+examleaf-release-review,VE,extend,S12,release evidence pack (never approves),,,,,L0,D
+examleaf-reel-repurpose,VE,retire,,none in engine from L2; absorbed into examleaf-format-compiler + format/short,,,,,L0-L1 only; retired at L2,
+examleaf-thumbnail-package,VE,extend,S14,title/cover/description,,,,,L0,M
+examleaf-observability-cost,VE,extend,all,"ledger (cost, capacity, provenance, licence)",,,,,L0,D
+examleaf-skills-security,VE,reuse,admission,skill admission record,,,,,L0,M+D
+examleaf-learning-evaluation,VE,extend,post-release,pilot plan/results; signal_proposal ledger rows from aggregate learning_signal records (CE-117; each proposal goes to graph-author at S4 and GA-Graph),,,misconception.retest;check.predict,,L0 (pilots); signal_proposal intake interface L2 and operation L3+ (CE-117),M+D
+examleaf-asset-library,VE,extend,S4;S10,AssetManifest + MED file hashes,,,hook.realworld;hook.surprise;activity.*,,L0,D
+examleaf-selective-generation,VE,reuse,S10,generation decision + generated asset (optional),,,,,L0,M+D
+examleaf-super-teacher-scriptwriter,NA,extend,S6,slot narration (only script author; never K-rung slots after their arm passes); ad_sentences[],,,hook.*;explain.*;worked.*;misconception.*;recap.statement;marking.scheme;exam.*;compare.dimension;activity.*;story.*;qa.*;source.*;perspective.position;map.*;teach.move;chapter.title;bridge.return_link;close.next_step,,L0,M
+examleaf-dialogue-naturalizer,NA,extend,S6,minimal wording diff (never on K-rung slots),,,all script beats (edit),,L0,M
+examleaf-educational-storytelling,NA,extend,S4,ANL/STY drafts submitted to graph-author,,,explain.analogy;story.beat,,L0,M
+examleaf-humour-meme-director,NA,extend,S6,removable humour lines,,,hook.*;explain.analogy,,L0,M
+examleaf-student-psychology-director,NA,extend,S6,feedback and progress text,,,check.*;misconception.elicit;misconception.retest,,L0,M
+examleaf-interactive-teaching-director,NA,extend,S4;S6,"ASM item drafts (submitted to graph-author); Q/A segments, Pause nodes, hidden answers (Format Plan ASM only)",,,check.*;card.*;viva.*;recap.retrieval;hook.question_reveal;worked.step,,L0,M
+examleaf-voice-acting-director,NA,extend,S9,direction records,,,activity.*;story.*,,L0,M
+examleaf-pacing-controller,NA,extend,S9,measured durations + hold schedule,,,,,L0,D
+examleaf-stem-pronunciation,NA,extend,S9,per-locale spoken/display/caption mappings,locale/;lex/,,,,L0,M+D
+examleaf-multilingual-director,NA,extend,S6;S9,REN drafts submitted to graph-author (approved at GA-delta per locale); locale lexicon and back-check,locale/,,source.read,,L0; at scale (hi-IN and Hinglish REN) L4,M
+examleaf-tts-provider-adapter,NA,extend,S9,provider payloads,,,,,L0,D
+examleaf-speech-animation-synchronizer,NA,extend,S9;S10,sample-index timeline + captions; ad.vtt; transcript (txt and json),,,source.read,,L0,D
+examleaf-audio-production-engineer,NA,extend,S9;S10,voice master + programme mix (ducking; final loudness); audio_described.m4a,,,,,L0,D
+examleaf-narration-quality-reviewer,NA,extend,S11,narration issues (Q-NARR evidence),,,,,L0,M+D
+examleaf-cost-regeneration-optimizer,NA,reuse,S9,narration usage ledger,,,,,L0,D
+examleaf-anim-brief,AN,extend,S10,brief.md,,,all visual slots (brief),,L0,D
+examleaf-anim-qa,AN,extend,S11,"anim_qa_report (A4-A7, A14, A15; V2, V4, V5)",,,,,L0,D
+examleaf-anim-storyboard-gate,AN,extend,S8,grid + estimate (H-SB evidence),,,,,L0,D
+examleaf-audio-analysis,AN,reuse,S10,beat grid (if a bed exists),,,,,L0,D
+examleaf-audio-compose,AN,extend,S10,stems + SFX,music/,,story.song_chant,,L0; child variant L5 after O-1 to O-4 and O-7 and G-COUNSEL,D
+examleaf-cue-sheet,AN,extend,S10,cue_sheet.json,,,,,L0,D
+examleaf-effort-governor,AN,extend,all,run config (reads CAPABILITY_LEDGER),model/;kit/,,,,L0,D
+examleaf-kinetic-typography,AN,extend,S10,text-card scene media,slot/,hook.*;explain.definition;check.*;misconception.elicit;misconception.retest;recap.*;card.*;marking.scheme;exam.*;activity.*;qa.*;source.*;perspective.position;viva.*;teach.move;chapter.title;bridge.return_link;close.next_step,,,L0,D
+examleaf-mcp-orchestrator,AN,dormant,S8;S10,credit sub-ledger,,,,,founder-approved MCP provider (AD-34),D
+examleaf-motion-harness,AN,reuse,S10;S11,contract lint + determinism evidence (A1; A3; V1; V3),harness/,,,,L0,D
+examleaf-procedural-2d,AN,extend,S10,illustrative scene media,slot/,explain.analogy;story.beat;story.song_chant,hook.realworld;hook.surprise;explain.ladder_step;misconception.confront,,L0; ac0 styles L5 after O-1 to O-4 and O-7 and G-COUNSEL,D
+examleaf-reference-analyzer,AN,reuse,S10,reference measurements,,,,,L0,D
+examleaf-style-guides,AN,extend,S8;GR,style/ entries,style/,,,,L0; 16:9 tokens L5 after O-19,D
+examleaf-threejs-scenes,AN,dormant,S10,3D inserts (alternate renderer),,,explain.ladder_step,,l11_12+ cell with 3D slot need (L5 after O-19),D
+examleaf-vertical-adapt,AN,extend,S10,zone rectangles (both aspects),,,,,L0; 16:9 L5 after O-19,D
+examleaf-cg-import,new,new,S2,content/curriculum/<framework_id>.json,,,,founder-engineer + academic owner (H-CG),L2 (M1),D
+examleaf-graph-author,new,new,S4;S6,content/graphs/LG-<id>.json (only graph writer; S6 REN writes only),,,,academic owner (GA-Graph),L2 (M1),M (strong offline) + D
+examleaf-claim-ledger,new,new,S3,ledger state,family/;overlay/,,,founder-engineer,L2 (M1); humanities validators L4,D
+examleaf-citation-flag,new,new,S3;S7,citation flags (add-only),,,,founder-engineer,L2 (M1),M (cheap)
+examleaf-span-verify,new,new,S3;S7,span report,,,,founder-engineer,L2 (M1),D
+examleaf-profile-resolver,new,new,S5;GR,EPP + QA Profile,qa/,,,founder-engineer,L1 (registry validation),D
+examleaf-format-compiler,new,new,S5,Format Plan + compiled v1 contracts,format/,,all (layout),founder-engineer,L2 (M1),D
+examleaf-closure-check,new,new,S7,qa/Q-CLOSURE.json,,,all,founder-engineer,L2 (M1),D (flagger input M)
+examleaf-level-lint,new,new,S7,qa/Q-LEVEL.json,level/,,all,academic lead,L2 report-only; blocking per level after its pilot (L4),D
+examleaf-persona-lint,new,new,S7,qa/Q-PERSONA.json,persona/,,all,academic lead,L2 report-only; blocking per level after its pilot (L4),D (+ M triage)
+examleaf-safety-lint,new,new,S7;S11,qa/Q-SAFE.json,safety/,,all,child-development reviewer (ac0 rules) + counsel (G-COUNSEL),L2 (ac1 rules); ac0 rules L5 after O-1 to O-4 and O-7 and G-COUNSEL,D
+examleaf-flash-analyser,new,new,S11,qa/flash_report.json (Q-FLASH verdict),safety/,,,production QA (ac0 parameters signed by the child-development reviewer),L2 (WCAG floor); ac0 L5,D
+examleaf-a11y-check,new,new,S11,qa/Q-A11Y.json,a11y/,,,production QA,L2 (CVD report-only),D
+examleaf-impact-analyser,new,new,GR,impact report + re-QA queue,,,,founder-engineer,L1,D
+examleaf-v1-import,new,new,migration,import drafts + legacy pin manifest + legacy-approval wrap manifest (source-ingest writes SRC; graph-author writes nodes; approval service writes approvals),,,,founder-engineer,L1,D
+examleaf-packaging-export,new,new,S14,Distribution Package (content/packages/PKG-<id>.json) + sidecar + captions + transcript + AD track + C2PA sidecar manifest; export QA report,packaging/,,,founder-engineer + publisher,L2 (M1),D
+examleaf-kit-verify,new,new,S10;S11;GR,"V0, V6, V7 verdicts; golden-frame store; Kit regression report; CAPABILITY_LEDGER evidence rows",,,all visual slots (verify),founder-engineer,L2 (Kit regression; V0; V7); V6 with the Kit fill (L3),D + M (V6)
+examleaf-curriculum-ingest,new,new,S1,candidate framework items with source spans and UUIDv5 GUIDs (CE-111); submitted to cg-import; nothing enters content/curriculum/ until H-CG,framework/,,,academic owner (H-CG) + founder-engineer,L2 when a syllabus PDF is ingested (M1 may hand-author through cg-import),M (candidate extraction) + D (schema; span hash; GUID mint)
+examleaf-print-render,new,new,S10,print artefact: PDF/UA + HTML twin + separate answer key from the Format Plan via the pinned Chrome print path (CE-119),harness/;packaging/,,all (print layout),founder-engineer,L3+ when a request sets render_target: print (CE-119),D

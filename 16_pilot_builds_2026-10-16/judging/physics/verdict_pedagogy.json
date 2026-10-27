@@ -1,0 +1,36 @@
+{
+  "subject": "physics",
+  "lens": "pedagogy",
+  "scores": {
+    "A": {"D1": 4, "D2": 3, "D3": 4, "D7": 3},
+    "B": {"D1": 5, "D2": 5, "D3": 5, "D7": 4}
+  },
+  "evidence": {
+    "A": [
+      "Every spoken number matches fixture FIX-ohm-readings (10 ohm, 2 V, 4 V, 0.2 A, 0.4 A, V/I = 10 at both points) and b04 says the division aloud ('two over zero point two is ten ohms', 34.4-36.7 s), which is good worked-step craft.",
+      "The predict beat is a real question: b02 ends at 14.88 s, s03 starts at 20.47 s (about 5.6 s of silence), and frames s02_t006-t010 show only 'I = ?' with 'Pause. Predict.'; 0.4 A first appears in s03 at about 26.9 s.",
+      "The misconception is named ('A tempting idea: Ohm's law is always true', b05) but not confronted with evidence. s04_t000-t004 show an empty circle for about 4.6 s, then a bare bulb with no circuit, no R-up and no current comparison. 'Constant temperature' is spoken in b03/b06 but never appears on screen, and s05_t000-t004 show an empty card while the recap rule is spoken."
+    ],
+    "B": [
+      "The hook asks the question in the first 3.7 s ('Does twice the voltage always mean twice the current?' at 0.76-3.72 s) without giving the answer away. The think window runs about 5.3 s (b02 ends 17.12 s, s03 starts 22.4 s) with 'I = ?' only, and the answer is revealed on the word 'zero' at 24.5 s.",
+      "The misconception is confronted with evidence and closes the predict loop: b05 opens 'But always is not safe'. s04 puts the filament lamp in the same circuit (cell plus ammeter), with an amber 'R ↑' chip on 'rises' and '×2' struck through on 'doubles' (s04_00331). Each glyph comes from the fixture display fields, and CLM-filament cites the NCERT 'Heating Effect' section with an honest reliability note.",
+      "The condition is spoken and shown together. An amber 'constant temperature' chip appears on 'temperature' (34.8 s, s03_t014), V/I = 10 Ω appears in both cards, then a boxed V = I × R. The recap checklist (s05) repeats the condition and the equation as one idea in 18 words. Pace is 139 wpm and the transcript match is 1.0."
+    ]
+  },
+  "winner": "B",
+  "reason": "Both builds are numerically correct and both have a real predict pause, but only B confronts the 'always' misconception with visible evidence in the same circuit and shows the constant-temperature condition on screen as it is spoken.",
+  "gap_for_weaker": [
+    {"rule": "A misconception.confront beat must show the counter-example in the same setup as the worked example (here the lamp swapped into the same circuit) with at least one fixture-bound change glyph (for example 'R ↑', a struck '×2') revealed on the causal words. A bare icon with only a headline does not count as evidence.", "where": "15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §3 (Slot sources, misconception.confront row) and 12_advanced_animations_with_claude/02_documentation/05_STORYBOARD_GATE_and_MCP_budgets.md (storyboard gate checklist)"},
+    {"rule": "When the brief names a condition (for example constant temperature), the condition must be a fixture display string that appears on screen on the word where it is first spoken, and again in the recap visual. Speaking it is not enough.", "where": "15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §15 (Script QA checks), as a new check: condition glyph present"},
+    {"rule": "In concept_intro, the confront beat's first sentence answers the predict prompt's open half verbatim ('always is not safe'), and the hook puts the question in the first 3 s, before the setup.", "where": "15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §4 (Script grammar per format, concept_intro) and §9 (hook scripting)"},
+    {"rule": "No scene may hold an empty hero container for more than 1.5 s while science is being spoken. The first cue of each beat must land within 1 s of its first content word.", "where": "12_advanced_animations_with_claude/02_documentation/05_STORYBOARD_GATE_and_MCP_budgets.md (cue timing rules)"}
+  ],
+  "blocking_defects": {
+    "A": [
+      "s04 (44.3-55.8 s): the misconception is asserted, not confronted. There is no circuit, no R-change glyph and no current comparison, and an empty circle sits on screen for about 4.6 s during 'Ohm's law is always true'.",
+      "The constant-temperature condition, the one rule the brief asks the learner to remember, is never on screen. In s05, an empty card holds for about 5.8 s while the recap rule is spoken (s05_t000-t004)."
+    ],
+    "B": []
+  },
+  "notes": "I checked the science by hand: 2/10 = 0.2 A, 4/10 = 0.4 A, V/I = 10 Ω at both points, the filament's resistance rises when hot, and both builds say the current then fails to double. Neither build has a factual error. A says 'ohmic conductor' without explaining it, and its filament line says 'resistance changes' rather than 'rises'. B's recap says 'conductor', which is closer to the NCERT 'metallic wire at constant temperature'. Minor issues in B: the struck '×2' is small, and V = I × R appears on the word 'proportional' rather than on 'ratio'. A's spoken arithmetic in b04 is a strength that B could borrow. Neither build gives a filament number, which is correct because the fixture computes none."
+}

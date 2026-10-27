@@ -1,0 +1,1376 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://examleaf.local/schemas/v2/music_entry.json",
+  "title": "ExamLeaf Music and Sound Entry v2",
+  "$comment": "Proposed registry kind music/ (sonic logos, stings, beds, SFX one-shots, ambiences, song backings). Referenced by style/ entries (sonic logo) and by STY.song_chant. v1 admits owned audio only: code-composed in house or commissioned from a contracted composer; no third-party samples. Music is never placed under teaching. Commercial-term lint (CE-L1/RD-49): CI rejects, case-insensitively, any match of (price|pricing|paid|is_free|free_|premium|entitle|subscri|sku|paywall|unlock|monetis|monetiz|revenue|discount|coupon|tier|destination_resource|cta_destination|funnel|purchase_|checkout_|product_id|offer_|trial_|utm_|campaign_|affiliate_|activation_code|storefront) applied to every object key at every depth (including REN fields keys), every required entry, pattern key and enum or const value (updated 15 Oct 2026, safety-13). Exempt: the editorial fields series_position, flagship and demo_kind. 15 Oct 2026 (stitch): bpm and end_card_swell_db_max are multiples of 0.5; bed level, ducking, cue gain, swell and file peak carry \"x-kind\": \"limit\"; commission.platforms is a closed enum (safety-11), with all_current_and_future in place of all because music-11 requires it.",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "music_ref": {
+      "type": "string",
+      "pattern": "^music/[a-z0-9][a-z0-9_-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+    },
+    "format_ref": {
+      "type": "string",
+      "pattern": "^format/[a-z0-9_]+$"
+    },
+    "level_ref": {
+      "type": "string",
+      "pattern": "^level/[a-z0-9_]+$"
+    },
+    "safety_ref": {
+      "type": "string",
+      "pattern": "^safety/ac[0-2]$"
+    },
+    "style_ref": {
+      "type": "string",
+      "pattern": "^style/[a-z0-9][a-z0-9_-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+    },
+    "reviewer_ref": {
+      "type": "string",
+      "pattern": "^reviewer/[a-z0-9][a-z0-9_.-]*$"
+    },
+    "private_ref": {
+      "type": "string",
+      "pattern": "^private://[A-Za-z0-9_./-]+$"
+    },
+    "segment_role": {
+      "type": "string",
+      "enum": [
+        "cold_open",
+        "hook",
+        "chapter_transition",
+        "outro",
+        "end_card",
+        "reel_hook",
+        "reel_cta",
+        "reel_end",
+        "wordless_visual",
+        "story_interlude",
+        "song_chant",
+        "cue_sfx",
+        "prototype",
+        "core_explanation",
+        "worked_example",
+        "derivation",
+        "think_window",
+        "pause_video",
+        "spoken_recap",
+        "safety_cue",
+        "equation_reading",
+        "inspection"
+      ]
+    },
+    "tagged_range": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "max": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tag": {
+          "type": "string",
+          "enum": [
+            "Recommendation",
+            "Hypothesis",
+            "Inherited",
+            "Evidence"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pilot_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "min",
+        "max",
+        "tag"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "tag": {
+                "const": "Hypothesis"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "owner",
+              "pilot_ref"
+            ]
+          }
+        }
+      ]
+    },
+    "file": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "type": "string",
+          "enum": [
+            "stem",
+            "mix",
+            "one_shot",
+            "loudness_matched",
+            "stems_package"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "sample_rate": {
+          "const": 48000
+        },
+        "bit_depth": {
+          "type": "integer",
+          "enum": [
+            16,
+            24
+          ]
+        },
+        "channels": {
+          "type": "integer",
+          "enum": [
+            1,
+            2
+          ]
+        },
+        "duration_s": {
+          "type": "string",
+          "pattern": "^[0-9]+(\\.[0-9]+)? s$",
+          "description": "Decimal string with unit (CE-32)."
+        },
+        "peak_dbfs": {
+          "type": "string",
+          "pattern": "^-[0-9]+(\\.[0-9]+)? dBFS$",
+          "x-kind": "limit"
+        }
+      },
+      "required": [
+        "role",
+        "name",
+        "path",
+        "sha256",
+        "sample_rate",
+        "bit_depth",
+        "channels",
+        "duration_s",
+        "peak_dbfs"
+      ]
+    },
+    "x_kind_note": {
+      "$comment": "15 Oct 2026 (Architecture §3.4 R8): a property carrying \"x-kind\": \"limit\" is a limit; R8(a) takes the most restrictive value across safety class, a11y profile, level, overlay, format, locale and style. Annotation only; validators ignore it."
+    }
+  },
+  "properties": {
+    "music_id": {
+      "type": "string",
+      "pattern": "^music/[a-z0-9][a-z0-9_-]*$"
+    },
+    "version": {
+      "$ref": "#/definitions/semver"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "admitted",
+        "suspended",
+        "revoked",
+        "superseded"
+      ]
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "sonic_logo",
+        "sting",
+        "bed",
+        "sfx",
+        "ambience",
+        "song_backing"
+      ]
+    },
+    "variant": {
+      "type": "string",
+      "enum": [
+        "core_full",
+        "core_short",
+        "core_extended",
+        "junior",
+        "lecture",
+        "correct_answer",
+        "transition",
+        "loop_30s",
+        "loop_60s",
+        "mood_neutral",
+        "mood_somber",
+        "mood_endcard",
+        "one_shot"
+      ]
+    },
+    "motif_ref": {
+      "$ref": "#/definitions/music_ref"
+    },
+    "origin": {
+      "type": "string",
+      "enum": [
+        "code_composed",
+        "commissioned"
+      ]
+    },
+    "composed_by_human": {
+      "type": "boolean"
+    },
+    "contains_samples": {
+      "const": false
+    },
+    "release_eligible": {
+      "type": "boolean"
+    },
+    "generator": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "skill": {
+          "const": "examleaf-audio-compose"
+        },
+        "script_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "script_sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "generator_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "request_sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "determinism_verified": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "skill",
+        "script_path",
+        "script_sha256",
+        "generator_version",
+        "seed",
+        "request_sha256",
+        "determinism_verified"
+      ]
+    },
+    "commission": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "composer_ref": {
+          "type": "string",
+          "pattern": "^composer/[a-z0-9][a-z0-9_.-]*$"
+        },
+        "contract_ref": {
+          "$ref": "#/definitions/private_ref"
+        },
+        "licence_type": {
+          "type": "string",
+          "enum": [
+            "copyright_assignment",
+            "full_buyout",
+            "exclusive_perpetual_licence"
+          ]
+        },
+        "territory": {
+          "const": "worldwide"
+        },
+        "term": {
+          "type": "string",
+          "minLength": 1
+        },
+        "platforms": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "all_current_and_future",
+              "youtube_long",
+              "youtube_shorts",
+              "instagram_reels",
+              "in_app_player",
+              "offline_download",
+              "audio_only"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "contains": {
+            "const": "all_current_and_future"
+          }
+        },
+        "promotional_use_allowed": {
+          "const": true
+        },
+        "stems_location_ref": {
+          "$ref": "#/definitions/private_ref"
+        },
+        "counsel_review_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "contract_date": {
+          "$ref": "#/definitions/date"
+        },
+        "contract_sha256": {
+          "$ref": "#/definitions/sha256",
+          "description": "SHA-256 of the signed agreement held in the private store."
+        },
+        "originality_warranty": {
+          "const": true,
+          "description": "Composer warrants no samples or pre-existing third-party material."
+        }
+      },
+      "required": [
+        "composer_ref",
+        "contract_ref",
+        "licence_type",
+        "territory",
+        "term",
+        "platforms",
+        "promotional_use_allowed",
+        "stems_location_ref",
+        "counsel_review_ref",
+        "contract_date",
+        "contract_sha256",
+        "originality_warranty"
+      ]
+    },
+    "licence_ledger_ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Row of type licence in the CE-49 ledger."
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/file"
+      },
+      "minItems": 1
+    },
+    "musical": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "bpm": {
+          "type": "number",
+          "minimum": 60,
+          "maximum": 180,
+          "multipleOf": 0.5
+        },
+        "beats_per_bar": {
+          "const": 4
+        },
+        "bars": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 512
+        },
+        "mood": {
+          "type": "string",
+          "enum": [
+            "neutral",
+            "somber",
+            "endcard",
+            "curious",
+            "calm"
+          ]
+        }
+      }
+    },
+    "placement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "allowed_segment_roles": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "cold_open",
+              "hook",
+              "chapter_transition",
+              "outro",
+              "end_card",
+              "reel_hook",
+              "reel_cta",
+              "reel_end",
+              "wordless_visual",
+              "story_interlude",
+              "song_chant",
+              "cue_sfx",
+              "prototype"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Never a teaching role (15 Oct 2026, music-02)."
+        },
+        "forbidden_segment_roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/segment_role"
+          },
+          "uniqueItems": true
+        },
+        "storyboard_named_only": {
+          "type": "boolean",
+          "description": "SFX: fires only where the approved storyboard names it."
+        }
+      },
+      "required": [
+        "allowed_segment_roles",
+        "forbidden_segment_roles"
+      ]
+    },
+    "mix": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "under_speech_db": {
+          "$ref": "#/definitions/tagged_range",
+          "x-kind": "limit"
+        },
+        "cue_gain_db": {
+          "$ref": "#/definitions/tagged_range",
+          "x-kind": "limit"
+        },
+        "duck_reduction_db": {
+          "$ref": "#/definitions/tagged_range",
+          "x-kind": "limit"
+        },
+        "rise_between_phrases_allowed": {
+          "type": "boolean"
+        },
+        "end_card_swell_db_max": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 6,
+          "multipleOf": 0.5,
+          "x-kind": "limit"
+        }
+      }
+    },
+    "allowed": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "formats": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/format_ref"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/level_ref"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "safety_classes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/safety_ref"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "styles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/style_ref"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "formats",
+        "levels",
+        "safety_classes",
+        "styles"
+      ]
+    },
+    "startle": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "startle_class": {
+          "type": "string",
+          "enum": [
+            "none",
+            "low",
+            "dramatic"
+          ]
+        },
+        "ac0_safe": {
+          "type": "boolean"
+        },
+        "flash_pairing_forbidden": {
+          "const": true
+        },
+        "justification_required": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "startle_class",
+        "ac0_safe",
+        "flash_pairing_forbidden"
+      ]
+    },
+    "science_binding": {
+      "type": "string",
+      "enum": [
+        "none",
+        "decorative",
+        "data_bound"
+      ],
+      "description": "data_bound SFX (for example electric_hum on a closing circuit) must match the fixture state and are signed off by science review."
+    },
+    "qa": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "human_listen": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "ok",
+            "chiptune",
+            "too_busy",
+            "masks_speech",
+            "wrong_mood",
+            "startling"
+          ]
+        },
+        "listener_id": {
+          "$ref": "#/definitions/reviewer_ref"
+        },
+        "child_development_signoff_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "phone_speaker_checked": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "human_listen"
+      ]
+    },
+    "expiry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "expires_on": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+        },
+        "renewal_owner": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "expires_on"
+      ]
+    },
+    "revocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reason": {
+          "type": "string",
+          "enum": [
+            "licence_withdrawn",
+            "licence_expired",
+            "defect",
+            "safety_breach",
+            "counsel_advice"
+          ]
+        },
+        "effective_date": {
+          "$ref": "#/definitions/date"
+        }
+      },
+      "required": [
+        "reason",
+        "effective_date"
+      ]
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "field": {
+            "type": "string",
+            "minLength": 1
+          },
+          "tag": {
+            "type": "string",
+            "enum": [
+              "Recommendation",
+              "Hypothesis",
+              "Inherited",
+              "Evidence"
+            ]
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "field",
+          "tag",
+          "source"
+        ]
+      }
+    }
+  },
+  "required": [
+    "music_id",
+    "version",
+    "title",
+    "status",
+    "kind",
+    "variant",
+    "origin",
+    "composed_by_human",
+    "contains_samples",
+    "release_eligible",
+    "licence_ledger_ref",
+    "files",
+    "placement",
+    "allowed",
+    "startle",
+    "science_binding",
+    "qa",
+    "expiry",
+    "owner"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "origin": {
+            "const": "code_composed"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "generator"
+        ],
+        "properties": {
+          "composed_by_human": {
+            "const": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "origin": {
+            "const": "commissioned"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "commission"
+        ],
+        "properties": {
+          "composed_by_human": {
+            "const": true
+          }
+        }
+      }
+    },
+    {
+      "$comment": "The sonic logo is owned and commissioned from a contracted composer (11 PLAYBOOK §7.1 item 7; 12 AD-15 addendum).",
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "sonic_logo"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "motif_ref"
+        ],
+        "properties": {
+          "origin": {
+            "const": "commissioned"
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Code-composed beds and ambiences: Reel hooks/CTA and prototypes only (12 AD-15 addendum; ambience added 15 Oct 2026).",
+      "if": {
+        "properties": {
+          "origin": {
+            "const": "code_composed"
+          },
+          "kind": {
+            "enum": [
+              "bed",
+              "ambience"
+            ]
+          }
+        },
+        "required": [
+          "origin",
+          "kind"
+        ]
+      },
+      "then": {
+        "properties": {
+          "placement": {
+            "properties": {
+              "allowed_segment_roles": {
+                "items": {
+                  "enum": [
+                    "reel_hook",
+                    "reel_cta",
+                    "prototype"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "placement": {
+            "properties": {
+              "allowed_segment_roles": {
+                "items": {
+                  "const": "prototype"
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "release_eligible": {
+            "const": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "enum": [
+              "sfx",
+              "sting"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "mix"
+        ],
+        "properties": {
+          "placement": {
+            "required": [
+              "storyboard_named_only"
+            ]
+          },
+          "mix": {
+            "required": [
+              "cue_gain_db"
+            ]
+          }
+        }
+      },
+      "else": {
+        "required": [
+          "mix"
+        ],
+        "properties": {
+          "mix": {
+            "required": [
+              "under_speech_db"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$comment": "AC0: no startling sounds; gentler dynamics; child-development sign-off.",
+      "if": {
+        "properties": {
+          "allowed": {
+            "properties": {
+              "safety_classes": {
+                "contains": {
+                  "const": "safety/ac0"
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "startle": {
+            "properties": {
+              "startle_class": {
+                "const": "none"
+              },
+              "ac0_safe": {
+                "const": true
+              }
+            }
+          },
+          "mix": {
+            "properties": {
+              "rise_between_phrases_allowed": {
+                "const": false
+              },
+              "end_card_swell_db_max": {
+                "maximum": 3
+              }
+            }
+          },
+          "qa": {
+            "required": [
+              "child_development_signoff_ref"
+            ]
+          },
+          "placement": {
+            "properties": {
+              "allowed_segment_roles": {
+                "not": {
+                  "contains": {
+                    "enum": [
+                      "reel_hook",
+                      "reel_cta"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "startle": {
+            "properties": {
+              "startle_class": {
+                "const": "dramatic"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "startle": {
+            "properties": {
+              "justification_required": {
+                "const": true
+              },
+              "ac0_safe": {
+                "const": false
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "admitted"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "qa": {
+            "properties": {
+              "human_listen": {
+                "const": "ok"
+              },
+              "phone_speaker_checked": {
+                "const": true
+              }
+            },
+            "required": [
+              "human_listen",
+              "phone_speaker_checked"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "revoked"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "revocation"
+        ]
+      }
+    },
+    {
+      "$comment": "Song backings play only under a song_chant (15 Oct 2026). Whether one may be code-composed stays with O-7.",
+      "if": {
+        "required": [
+          "kind"
+        ],
+        "properties": {
+          "kind": {
+            "const": "song_backing"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "placement": {
+            "properties": {
+              "allowed_segment_roles": {
+                "items": {
+                  "enum": [
+                    "song_chant",
+                    "prototype"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "An admitted code-composed entry has passed the determinism re-render (15 Oct 2026).",
+      "if": {
+        "required": [
+          "status",
+          "origin"
+        ],
+        "properties": {
+          "status": {
+            "const": "admitted"
+          },
+          "origin": {
+            "const": "code_composed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "generator": {
+            "properties": {
+              "determinism_verified": {
+                "const": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Music (beds, logos, ambiences, song backings) forbids all nine teaching roles (MUSIC §1 policy 1, revised 15 Oct 2026).",
+      "if": {
+        "required": [
+          "kind"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "bed",
+              "sonic_logo",
+              "ambience",
+              "song_backing"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "placement": {
+            "properties": {
+              "forbidden_segment_roles": {
+                "allOf": [
+                  {
+                    "contains": {
+                      "const": "core_explanation"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "worked_example"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "derivation"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "think_window"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "pause_video"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "spoken_recap"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "safety_cue"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "equation_reading"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "inspection"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "SFX and stings forbid the five protected windows and are placed as cue_sfx (MUSIC §5; ST sfx_global; 15 Oct 2026).",
+      "if": {
+        "required": [
+          "kind"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "sfx",
+              "sting"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "placement": {
+            "properties": {
+              "forbidden_segment_roles": {
+                "allOf": [
+                  {
+                    "contains": {
+                      "const": "think_window"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "pause_video"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "equation_reading"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "inspection"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "safety_cue"
+                    }
+                  }
+                ]
+              },
+              "allowed_segment_roles": {
+                "contains": {
+                  "const": "cue_sfx"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Core and lecture logo variants are AC1/AC2 only (MUSIC §2.1 L1-L5, 15 Oct 2026).",
+      "if": {
+        "required": [
+          "variant"
+        ],
+        "properties": {
+          "variant": {
+            "enum": [
+              "core_full",
+              "core_short",
+              "core_extended",
+              "lecture"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "allowed": {
+            "properties": {
+              "safety_classes": {
+                "items": {
+                  "enum": [
+                    "safety/ac1",
+                    "safety/ac2"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "The junior logo is AC0 only (15 Oct 2026).",
+      "if": {
+        "required": [
+          "kind",
+          "variant"
+        ],
+        "properties": {
+          "kind": {
+            "const": "sonic_logo"
+          },
+          "variant": {
+            "const": "junior"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "allowed": {
+            "properties": {
+              "safety_classes": {
+                "const": [
+                  "safety/ac0"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "AC0 music must state its dynamics explicitly so the AC0 constraints cannot be skipped by omission (15 Oct 2026).",
+      "if": {
+        "allOf": [
+          {
+            "required": [
+              "allowed"
+            ],
+            "properties": {
+              "allowed": {
+                "properties": {
+                  "safety_classes": {
+                    "contains": {
+                      "const": "safety/ac0"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "required": [
+              "kind"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "bed",
+                  "ambience",
+                  "song_backing",
+                  "sonic_logo"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "then": {
+        "required": [
+          "mix"
+        ],
+        "properties": {
+          "mix": {
+            "required": [
+              "rise_between_phrases_allowed",
+              "end_card_swell_db_max"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$comment": "AC0 beds and ambiences sit at least 20 dB under speech (MUSIC §6; 15 Oct 2026).",
+      "if": {
+        "allOf": [
+          {
+            "required": [
+              "allowed"
+            ],
+            "properties": {
+              "allowed": {
+                "properties": {
+                  "safety_classes": {
+                    "contains": {
+                      "const": "safety/ac0"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "required": [
+              "kind"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "bed",
+                  "ambience"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "then": {
+        "properties": {
+          "mix": {
+            "properties": {
+              "under_speech_db": {
+                "properties": {
+                  "min": {
+                    "type": "number",
+                    "minimum": 20
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

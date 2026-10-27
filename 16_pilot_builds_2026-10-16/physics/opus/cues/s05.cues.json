@@ -1,0 +1,215 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "phy-ohm-ci-01-s05",
+ "fps": 30,
+ "duration": 14.533,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "6060db7d871bad188a93033007d9124e697aa921f729bae55e9bdf67bba20305",
+ "script_sha256": "cf2a4a3da3233d15b72dfb09f353504544608bf99699191cbcb9b920baf104e7",
+ "words": [
+  {
+   "w": "So",
+   "t0": 0.24,
+   "t1": 0.72
+  },
+  {
+   "w": "for",
+   "t0": 0.8,
+   "t1": 0.88
+  },
+  {
+   "w": "a",
+   "t0": 0.92,
+   "t1": 0.96
+  },
+  {
+   "w": "conductor",
+   "t0": 1.04,
+   "t1": 1.52
+  },
+  {
+   "w": "at",
+   "t0": 1.6,
+   "t1": 1.68
+  },
+  {
+   "w": "constant",
+   "t0": 1.76,
+   "t1": 2.16,
+   "occurrence": 1
+  },
+  {
+   "w": "temperature",
+   "t0": 2.24,
+   "t1": 3.12
+  },
+  {
+   "w": "current",
+   "t0": 3.2,
+   "t1": 3.6
+  },
+  {
+   "w": "is",
+   "t0": 3.68,
+   "t1": 3.76,
+   "occurrence": 1
+  },
+  {
+   "w": "proportional",
+   "t0": 3.84,
+   "t1": 4.48
+  },
+  {
+   "w": "to",
+   "t0": 4.52,
+   "t1": 4.56
+  },
+  {
+   "w": "voltage",
+   "t0": 4.64,
+   "t1": 5.36
+  },
+  {
+   "w": "and",
+   "t0": 5.44,
+   "t1": 5.52
+  },
+  {
+   "w": "resistance",
+   "t0": 5.64,
+   "t1": 6.24
+  },
+  {
+   "w": "is",
+   "t0": 6.32,
+   "t1": 6.4,
+   "occurrence": 2
+  },
+  {
+   "w": "the",
+   "t0": 6.48,
+   "t1": 6.56
+  },
+  {
+   "w": "constant",
+   "t0": 6.64,
+   "t1": 7.04,
+   "occurrence": 2
+  },
+  {
+   "w": "ratio",
+   "t0": 7.12,
+   "t1": 7.76
+  },
+  {
+   "w": "AI-generated",
+   "t0": 8.6,
+   "t1": 9.64
+  },
+  {
+   "w": "narration",
+   "t0": 9.68,
+   "t1": 10.76
+  },
+  {
+   "w": "script",
+   "t0": 10.84,
+   "t1": 11.24
+  },
+  {
+   "w": "by",
+   "t0": 11.4,
+   "t1": 11.56
+  },
+  {
+   "w": "ExamLeaf",
+   "t0": 11.76,
+   "t1": 12.6
+  }
+ ],
+ "beats": [
+  0.0,
+  8.52
+ ],
+ "cues": [
+  {
+   "id": "c33",
+   "at": 0.19,
+   "kind": "reveal",
+   "element_id": "conductor_icon",
+   "word_index": 0
+  },
+  {
+   "id": "c28",
+   "at": 2.19,
+   "kind": "reveal",
+   "element_id": "cond_chip",
+   "word_index": 6
+  },
+  {
+   "id": "c29",
+   "at": 2.19,
+   "kind": "reveal",
+   "element_id": "tick1",
+   "word_index": 6
+  },
+  {
+   "id": "c30",
+   "at": 3.79,
+   "kind": "reveal",
+   "element_id": "equation",
+   "word_index": 9
+  },
+  {
+   "id": "c31",
+   "at": 7.07,
+   "kind": "reveal",
+   "element_id": "tick2",
+   "word_index": 17
+  },
+  {
+   "id": "c32",
+   "at": 8.55,
+   "kind": "reveal",
+   "element_id": "disclosure",
+   "word_index": 18
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "phy-ohm-ci-01",
+  "scene": "s05",
+  "beat_ids": [
+   "b06",
+   "b07"
+  ],
+  "beats_text": [
+   {
+    "id": "b06",
+    "slot": "recap.statement",
+    "text": "So, for a conductor at constant temperature, current is proportional to voltage, and resistance is the constant ratio.",
+    "headline": "proportional to voltage",
+    "start": 0.24,
+    "end": 7.76,
+    "word_range": [
+     0,
+     18
+    ]
+   },
+   {
+    "id": "b07",
+    "slot": "outro.disclosure",
+    "text": "AI-generated narration; script by ExamLeaf.",
+    "headline": "",
+    "start": 8.6,
+    "end": 12.6,
+    "word_range": [
+     18,
+     23
+    ]
+   }
+  ],
+  "think_windows": []
+ }
+}

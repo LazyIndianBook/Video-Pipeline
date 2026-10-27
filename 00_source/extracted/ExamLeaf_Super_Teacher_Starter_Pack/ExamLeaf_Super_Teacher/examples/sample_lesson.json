@@ -1,0 +1,304 @@
+{
+  "schema_version": "1.0",
+  "title": "Balancing Chemical Equations: Change the Count, Not the Substance",
+  "language": "en-IN",
+  "target_runtime_s": 600,
+  "status": "UNRENDERED_DRAFT",
+  "academic_review": "PENDING_HUMAN_REVIEW",
+  "timing_status": "PLANNED_NOT_AUDIO_MEASURED",
+  "audience": "Class 10 foundations/revision; Class 12 prerequisite repair, not a complete Class 12 chapter",
+  "scope": "Simple neutral molecular equations with supplied correct formulas; excludes ionic equations, redox half-reactions, mechanism and practical reaction procedures",
+  "sources": [
+    "https://openstax.org/books/chemistry-2e/pages/4-1-writing-and-balancing-chemical-equations"
+  ],
+  "beats": [
+    {
+      "id": "B01",
+      "start_s": 0,
+      "end_s": 30,
+      "hold_s": 5,
+      "tone": "curious",
+      "title": "The tempting shortcut",
+      "spoken_text": "Look at this equation. Hydrogen plus oxygen gives water. The oxygen count does not match. So, can we fix it by changing water from H two O to H two O two?\nHold that answer.\nThat would balance the count here. It would also change the product. Very efficient way to solve a different question. Let's fix the original one.",
+      "visual_direction": "Show H2 + O2 → H2O. In a separate panel explicitly labelled PROPOSED WRONG FIX, show H2O2. Ask, hold for 5 seconds, then identify changed product. Do not animate an unlabelled change of substance.",
+      "interaction": {
+        "type": "prediction",
+        "prompt": "Can changing H2O to H2O2 balance the original water equation?",
+        "expected_answer": "No. It changes the specified product."
+      },
+      "sync_note": "Pause occurs after “Hold that answer.”; original equation remains visible.",
+      "word_count": 60,
+      "estimated_active_wpm": 144.0
+    },
+    {
+      "id": "B02",
+      "start_s": 30,
+      "end_s": 65,
+      "hold_s": 2,
+      "tone": "steady",
+      "title": "Read the symbols before balancing",
+      "spoken_text": "First, let's make the symbols readable. H stands for hydrogen. O stands for oxygen. In these molecules, the small number tells us how many atoms of that element are present.\nH two means two hydrogen atoms in one molecule. O two means two oxygen atoms. Water, H two O, contains two hydrogen atoms and one oxygen atom. No small number beside the O means one.\nThose small numbers are called subscripts.",
+      "visual_direction": "Show labelled molecular models beside H2, O2 and H2O. Use letters as well as colour. Keep subscripts large enough to read.",
+      "interaction": {
+        "type": "none",
+        "prompt": "",
+        "expected_answer": ""
+      },
+      "sync_note": "Hold each molecule while naming its atom counts.",
+      "word_count": 71,
+      "estimated_active_wpm": 129.1
+    },
+    {
+      "id": "B03",
+      "start_s": 65,
+      "end_s": 100,
+      "hold_s": 2,
+      "tone": "steady",
+      "title": "What balancing preserves",
+      "spoken_text": "The arrow separates the starting substances, called reactants, from the products formed.\nIn an ordinary chemical reaction, atoms are rearranged. We don't make extra hydrogen atoms appear, or quietly turn oxygen atoms into hydrogen.\nSo the equation needs the same number of atoms of each element on both sides. Not the same number of molecules. The same number of each kind of atom.\nThat's the job. We need careful counting, not a new set of substances.",
+      "visual_direction": "Build an atom ledger: H left/right, O left/right. State ordinary chemical reaction; show molecule count separately from atom count. Label diagrams as bookkeeping, not a reaction mechanism.",
+      "interaction": {
+        "type": "none",
+        "prompt": "",
+        "expected_answer": ""
+      },
+      "sync_note": "Emphasize “each element”; do not imply conservation of molecule count.",
+      "word_count": 76,
+      "estimated_active_wpm": 138.2
+    },
+    {
+      "id": "B04",
+      "start_s": 100,
+      "end_s": 145,
+      "hold_s": 6,
+      "tone": "curious",
+      "title": "Coefficient versus subscript",
+      "spoken_text": "There is a number we can change: the number in front of a formula. That's its coefficient.\nWatch two H two O. It means two water molecules, not one strange new molecule. Each copy still has two hydrogen atoms and one oxygen atom.\nTogether, how many hydrogen atoms? And how many oxygen atoms?\nFour hydrogen; two oxygen. The coefficient multiplies the whole formula.\nNow compare H two O two. That's one molecule of hydrogen peroxide. Changing a subscript changes the composition. We are balancing water's equation, so water must stay water.",
+      "visual_direction": "Show 2(H2O) as two intact copies. Ask and hold 6 seconds before atom-count reveal. Show H2O2 in a separate comparison panel, not as permitted editing.",
+      "interaction": {
+        "type": "prediction",
+        "prompt": "How many H and O atoms are represented by 2H2O?",
+        "expected_answer": "H=4; O=2."
+      },
+      "sync_note": "Pause after the two counting questions. Answer panel hidden during pause.",
+      "word_count": 91,
+      "estimated_active_wpm": 140.0
+    },
+    {
+      "id": "B05",
+      "start_s": 145,
+      "end_s": 180,
+      "hold_s": 2,
+      "tone": "light",
+      "title": "A short canteen analogy",
+      "spoken_text": "Think of a canteen recipe card: one sandwich uses two bread slices and one portion of filling. Ordering three sandwiches multiplies every item. It doesn't rewrite what one sandwich contains.\nThat is the useful comparison: the coefficient changes how many copies; the subscripts describe each molecule.\nThe comparison stops there. Molecules aren't sandwiches, and real reactions need suitable conditions. This little story helps us read the numbers; it isn't a model of how a reaction happens.",
+      "visual_direction": "Use one recipe card, then three copies. Immediately return to formula. Display mapping: copies ↔ coefficient; contents of each molecular copy ↔ subscripts. Display explicit analogy limit.",
+      "interaction": {
+        "type": "none",
+        "prompt": "",
+        "expected_answer": ""
+      },
+      "sync_note": "No canteen crowd scene or unrelated sound effect.",
+      "word_count": 76,
+      "estimated_active_wpm": 138.2
+    },
+    {
+      "id": "B06",
+      "start_s": 180,
+      "end_s": 220,
+      "hold_s": 2,
+      "tone": "steady",
+      "title": "Worked example: match oxygen",
+      "spoken_text": "Back to hydrogen plus oxygen giving water. Keep the formulas fixed and count.\nOn the left: two hydrogen atoms and two oxygen atoms. On the right: two hydrogen atoms, but only one oxygen atom.\nLet's match oxygen first by putting a two in front of water. We now have two water molecules, so two oxygen atoms on the right.\nBut don't stop at the first matching row. That coefficient changed the hydrogen count as well. Recount it.",
+      "visual_direction": "Show H2 + O2 → 2H2O, explicitly marked NOT YET BALANCED. Ledger becomes H 2/4, O 2/2. Reveal O row before H row; keep formula labels unchanged.",
+      "interaction": {
+        "type": "none",
+        "prompt": "",
+        "expected_answer": ""
+      },
+      "sync_note": "Hold the partly balanced equation; no success sound or checkmark for the whole equation.",
+      "word_count": 77,
+      "estimated_active_wpm": 121.6
+    },
+    {
+      "id": "B07",
+      "start_s": 220,
+      "end_s": 260,
+      "hold_s": 6,
+      "tone": "curious",
+      "title": "Repair the changed hydrogen count",
+      "spoken_text": "Two water molecules contain four hydrogen atoms. Our left side has only two.\nEach hydrogen molecule supplies a pair. How many hydrogen molecules give four hydrogen atoms?\nTwo. Put a two in front of H two.\nNow count both elements: four hydrogen atoms on each side, and two oxygen atoms on each side.\nThat's why the coefficients are two, one, two. The middle one is normally not written. Nothing was invented, and none of the formulas needed changing.",
+      "visual_direction": "Ask on H2 + O2 → 2H2O. Hold 6 seconds before revealing 2H2 + O2 → 2H2O. Count all atoms using the same ledger.",
+      "interaction": {
+        "type": "prediction",
+        "prompt": "How many H2 molecules supply four H atoms?",
+        "expected_answer": "Two H2 molecules."
+      },
+      "sync_note": "Do not show coefficient 2 on H2 until the answer begins.",
+      "word_count": 78,
+      "estimated_active_wpm": 137.6
+    },
+    {
+      "id": "B08",
+      "start_s": 260,
+      "end_s": 295,
+      "hold_s": 2,
+      "tone": "steady",
+      "title": "Preserve the important distinction",
+      "spoken_text": "Notice something slightly surprising. We started with three molecules in this written ratio: two hydrogen molecules and one oxygen molecule. We finish with two water molecules.\nThree molecules became two, but the atom counts still match. Balancing preserves the number of each type of atom, not the number of molecules.\nFor your notes, keep one short rule: change coefficients, keep the specified formulas fixed, and check every element. We will use it again without the pictures.",
+      "visual_direction": "Before/after count summary: molecules 3→2; H atoms 4→4; O atoms 2→2. Stable final molecular models. Not a simultaneous collision mechanism.",
+      "interaction": {
+        "type": "none",
+        "prompt": "",
+        "expected_answer": ""
+      },
+      "sync_note": "Hold the molecule-count contrast; avoid a joke here.",
+      "word_count": 76,
+      "estimated_active_wpm": 138.2
+    },
+    {
+      "id": "B09",
+      "start_s": 295,
+      "end_s": 335,
+      "hold_s": 7,
+      "tone": "inviting",
+      "title": "Guided completion",
+      "spoken_text": "Try a shorter repair. Carbon monoxide plus oxygen gives carbon dioxide. The formulas are C O, O two, and C O two.\nI've put a two before carbon dioxide. That gives two carbon atoms on the right. What coefficient must go before carbon monoxide?\nWork that out, then check oxygen as well. Pause the video if you'd like to write both counting rows.\nDon't change the small two inside carbon dioxide. We're choosing how many molecules take part.",
+      "visual_direction": "Show __CO + __O2 → 2CO2. Answer remains hidden through a 7-second hold. After the hold continue to the next beat. This is symbolic balancing, not a practical demonstration.",
+      "interaction": {
+        "type": "guided_pause",
+        "prompt": "Complete __CO + __O2 → 2CO2; check C and O.",
+        "expected_answer": "2CO + O2 → 2CO2."
+      },
+      "sync_note": "No new instruction over the writing hold; no countdown.",
+      "word_count": 78,
+      "estimated_active_wpm": 141.8
+    },
+    {
+      "id": "B10",
+      "start_s": 335,
+      "end_s": 375,
+      "hold_s": 2,
+      "tone": "reassuring",
+      "title": "Check rather than congratulate blindly",
+      "spoken_text": "Two carbon monoxide molecules give two carbon atoms and two oxygen atoms. One oxygen molecule supplies another two oxygen atoms.\nSo the left has two carbon atoms and four oxygen atoms. The right has the same counts. Two C O plus O two gives two C O two.\nIf that matches your work, your counting method is working on a new equation.\nIf you changed a subscript, restore the original formula first. Then use coefficients to adjust the totals.",
+      "visual_direction": "Reveal 2CO + O2 → 2CO2 and ledger C 2/2, O 4/4. Keep both feedback routes conditional and visually simple.",
+      "interaction": {
+        "type": "feedback",
+        "prompt": "",
+        "expected_answer": ""
+      },
+      "sync_note": "Praise the verified method conditionally, not an unseen learner response.",
+      "word_count": 79,
+      "estimated_active_wpm": 124.7
+    },
+    {
+      "id": "B11",
+      "start_s": 375,
+      "end_s": 425,
+      "hold_s": 10,
+      "tone": "inviting",
+      "title": "Independent attempt",
+      "spoken_text": "Now take away the counting table. Nitrogen and hydrogen form ammonia. The given formulas are N two, H two, and N H three.\nBalance the equation using the smallest whole-number coefficients. Start by counting nitrogen, then hydrogen. Write a final count for both elements.\nPause here and give yourself the time you need. This isn't a speed test. Resume when you have a candidate answer, even if you still want to check one part.\nGet a candidate answer on the page before you look at the solution.",
+      "visual_direction": "Show N2 + H2 → NH3 with coefficient blanks, no solved molecular models. Reserve 10 seconds of hold; invite a longer external pause. Reveal begins only in following beat.",
+      "interaction": {
+        "type": "independent_pause",
+        "prompt": "Balance N2 + H2 → NH3 with smallest whole-number coefficients.",
+        "expected_answer": "N2 + 3H2 → 2NH3."
+      },
+      "sync_note": "No answer visible in caption, thumbnail overlay or background.",
+      "word_count": 87,
+      "estimated_active_wpm": 130.5
+    },
+    {
+      "id": "B12",
+      "start_s": 425,
+      "end_s": 465,
+      "hold_s": 2,
+      "tone": "steady",
+      "title": "Explain the independent solution",
+      "spoken_text": "One nitrogen molecule contains two nitrogen atoms, so we need two ammonia molecules on the right. Those two ammonia molecules contain six hydrogen atoms.\nHydrogen arrives in pairs in H two. Three pairs give six.\nThat gives one, three, two: N two plus three H two gives two N H three.\nCheck nitrogen: two on each side. Check hydrogen: six on each side.\nIf you wrote six before H two, you counted hydrogen atoms correctly but forgot that each molecule contains two.",
+      "visual_direction": "Reveal nitrogen match, then hydrogen match. Finish N2 + 3H2 → 2NH3. Conditional correction shows 6 H atoms ≠ 6 H2 molecules.",
+      "interaction": {
+        "type": "feedback",
+        "prompt": "",
+        "expected_answer": ""
+      },
+      "sync_note": "Keep the correct solution persistent while describing the alternative error.",
+      "word_count": 82,
+      "estimated_active_wpm": 129.5
+    },
+    {
+      "id": "B13",
+      "start_s": 465,
+      "end_s": 500,
+      "hold_s": 5,
+      "tone": "light",
+      "title": "Balanced versus simplest",
+      "spoken_text": "One final trap. Two N two plus six H two gives four N H three. Is that balanced?\nYes. But the coefficients all share a factor of two. Divide all three coefficients by two to get the simplest whole-number ratio: one, three, two.\nThe bigger version isn't chemically unbalanced. It just isn't the requested simplest answer. Bigger numbers do not earn bonus marks for looking busy.\nCheck the ratio as well as the atom totals.",
+      "visual_direction": "Show 2N2 + 6H2 → 4NH3. Hold 5 seconds before “Yes”. Label BALANCED, NOT SIMPLEST, then reduce all coefficients together. Humour ends before next task.",
+      "interaction": {
+        "type": "prediction",
+        "prompt": "Is 2N2 + 6H2 → 4NH3 balanced, and is it simplest?",
+        "expected_answer": "Balanced yes; simplest no. Reduce all coefficients by two."
+      },
+      "sync_note": "No red WRONG stamp on a balanced equation.",
+      "word_count": 75,
+      "estimated_active_wpm": 150.0
+    },
+    {
+      "id": "B14",
+      "start_s": 500,
+      "end_s": 535,
+      "hold_s": 7,
+      "tone": "inviting",
+      "title": "Retrieve and draw",
+      "spoken_text": "Close the worked examples. Write one sentence explaining why we change coefficients rather than the given subscripts. Then sketch what two H two O represents. Circles and letters are enough; the diagram does not need to win an art competition.\nPause while you write.\nWhen you return, check two things: did you draw two separate water molecules, and does your sentence explain that changing a subscript changes the composition of the substance?",
+      "visual_direction": "Hide solved examples. Show recall prompt only; hold 7 seconds after “Pause while you write.” Then reveal two water copies and short check. No decorative art contest imagery.",
+      "interaction": {
+        "type": "retrieval_pause",
+        "prompt": "Explain coefficient/subscript distinction; sketch 2H2O.",
+        "expected_answer": "Two water molecules; coefficient scales copies, subscript changes molecular composition."
+      },
+      "sync_note": "No new content while learner writes or draws.",
+      "word_count": 72,
+      "estimated_active_wpm": 154.3
+    },
+    {
+      "id": "B15",
+      "start_s": 535,
+      "end_s": 570,
+      "hold_s": 2,
+      "tone": "steady",
+      "title": "Turn the idea into an exam answer",
+      "spoken_text": "Now put the idea into an exam-ready sentence: a balanced chemical equation has equal numbers of atoms of each element on its reactant and product sides.\nUnderneath, write your balanced equation and check its smallest whole-number coefficients. Include state symbols and conditions when the question requires them; this lesson has left those out to focus on balancing.\nRemember: a balanced equation checks the atom bookkeeping. By itself, it does not establish the conditions, speed, or steps of a real reaction.",
+      "visual_direction": "Show concise definition, one checked equation and a separate note about state symbols/conditions. Do not label authored wording an official marking scheme.",
+      "interaction": {
+        "type": "none",
+        "prompt": "",
+        "expected_answer": ""
+      },
+      "sync_note": "Slow on the scientific limitation rather than accelerating to finish.",
+      "word_count": 80,
+      "estimated_active_wpm": 145.5
+    },
+    {
+      "id": "B16",
+      "start_s": 570,
+      "end_s": 600,
+      "hold_s": 1,
+      "tone": "reassuring",
+      "title": "Evidence-based confidence and next practice",
+      "spoken_text": "Look back at the first shortcut. You can now explain why changing water's formula answered the wrong question.\nCheck your own work: can you count the atoms, choose coefficients, and verify the result without the animation? Any unfinished part tells you exactly what to practise next.\nTomorrow, balance a fresh equation before reopening your notes. You don't need to remember my sandwich. You need the counting method.",
+      "visual_direction": "Close the original H2O2 misconception. Show three self-checks: count, choose, verify. End with one delayed-practice instruction, no autoplay pressure.",
+      "interaction": {
+        "type": "none",
+        "prompt": "",
+        "expected_answer": ""
+      },
+      "sync_note": "Warm but matter-of-fact; no claim that every student mastered the skill.",
+      "word_count": 67,
+      "estimated_active_wpm": 138.6
+    }
+  ]
+}

@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>chem-balance-ci-01 s04 subscript trap</title>
+<style>
+/* [1] TOKENS: editorial-vox on the ExamLeaf light palette (light only, RD-27). Zones mirror vertical_safe_zones.tokens.json:
+   top_title y 250..518, middle_visual y 518..1177, bottom_caption y 1177..1470, x 96..960 (side margin 96). */
+:root{--bg:#F7F9FC;--ink:#14213D;--sec:#526074;--blue:#185ABD;--teal:#087986;--purple:#6E44AA;
+  --hl-teal:#B4D5DB;--serif:"Noto Serif","Times New Roman",Georgia,serif;--sans:"Noto Sans",sans-serif}
+html,body{margin:0;background:var(--bg)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--bg);color:var(--ink);font-family:var(--sans)}
+#stage>*{position:absolute;left:0;top:0}
+#art{width:1080px;height:1920px}
+#title{left:96px;top:250px;width:864px;height:268px}
+.hg{position:absolute;left:0;top:0;width:864px;height:268px;display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;align-content:center;line-height:1.15}
+.w{display:inline-block;opacity:0;margin:0 10px;white-space:pre}
+.w.claim{font-family:var(--serif);font-size:96px;font-weight:700}
+.w.conn{font-family:var(--sans);font-size:62px;font-weight:600}
+#caption{left:96px;top:1177px;width:864px;height:293px}
+.cap{position:absolute;left:0;top:0;width:864px;height:293px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:50px;line-height:1.4;font-weight:600;color:var(--ink);opacity:0}
+.eq,.op{font-family:var(--serif);font-size:81px;font-weight:400;fill:var(--ink)}
+.lbl{font-family:var(--sans);font-size:50px;font-weight:600;fill:var(--ink)}
+.note{font-family:var(--sans);font-size:50px;font-weight:600;fill:var(--sec)}
+.sym{font-family:var(--sans);font-size:56px;font-weight:700}
+.num{font-family:var(--sans);font-size:56px;font-weight:600;fill:var(--ink);font-variant-numeric:tabular-nums}
+.hl{mix-blend-mode:multiply;fill:var(--hl-teal)}
+
+</style>
+</head>
+<body>
+<div id="stage">
+  <svg id="art" xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+  <div id="title"></div>
+  <div id="caption"></div>
+</div>
+<script>
+(function () {
+'use strict';
+/* [2] CONFIG. Variable inputs arrive as URL parameters or the injected cue sheet and fixture. The page never reads the clock. */
+const Q = new URLSearchParams(location.search);
+const num = (k, d) => { const v = parseFloat(Q.get(k)); return isFinite(v) ? v : d; };
+const FPS = num('fps', 30), EPS = 1e-6, LEAD = 0.05;
+const REDUCED = Q.get('reduced') === '1';           // reduced-motion variant: no pops, highlights appear by fade
+const NS = 'http://www.w3.org/2000/svg';
+const BLUE = '#185ABD', PURPLE = '#6E44AA';         // H and O atoms: colour plus the row letter (never colour alone)
+const FONT_SPECS = [{ spec: '700 40px "Noto Serif"', text: 'Aa 0123 H₂O →' }, { spec: '600 40px "Noto Sans"', text: 'Aa 0123' }];
+const WRONG_BASE = 600, RIGHT_BASE = 1000, TALLY_CY = 800;
+const CLAIM = ['change', 'subscript'];
+
+/* [3] ERROR CHANNEL. Report, never swallow. The harness reads window.__errors after every seek. */
+window.__errors = [];
+const report = (code, severity, message, t) => window.__errors.push({ code, severity, message, t: t == null ? null : t });
+const fail = (code, message, t) => { report(code, 'error', message, t); const e = new Error(code + ': ' + message); e.code = code; return e; };
+
+/* [4] PURE TIME FUNCTIONS. Every visible value is f(t), with t from the cue sheet. Nothing is integrated across seeks. */
+const clamp01 = x => (x < 0 ? 0 : x > 1 ? 1 : x);
+const easeOut = u => 1 - Math.pow(1 - clamp01(u), 3);
+const easeBack = u => { const s = 1.70158, c = s + 1, v = clamp01(u) - 1; return 1 + c * v * v * v + s * v * v; };
+const prog = (t, at, dur) => (t < at - EPS ? 0 : dur <= 0 ? 1 : clamp01((t - at) / dur));
+const normKey = s => String(s).toLowerCase().replace(/[^a-z0-9]/g, '');
+
+/* [5] LOADERS. Injected window.__CUE_SHEET__ and window.__FIXTURE__ first, then ?cues= and ?fixture= paths. No inline demo data. */
+async function loadJson(inject, param, what) {
+  if (inject) return { data: inject, source: 'injected' };
+  const path = Q.get(param);
+  if (!path) throw fail('E_' + what + '_LOAD', 'no injected ' + what + ' and no ?' + param + '= path');
+  let r;
+  try { r = await fetch(path); } catch (e) { throw fail('E_' + what + '_LOAD', 'cannot fetch ' + path + ': ' + e.message); }
+  if (!r.ok) throw fail('E_' + what + '_LOAD', 'HTTP ' + r.status + ' for ' + path);
+  return { data: await r.json(), source: 'path' };
+}
+const deepFreeze = o => { Object.values(o).forEach(v => { if (v && typeof v === 'object') deepFreeze(v); }); return Object.freeze(o); };
+function checkSheet(s) {
+  if (!s || !(s.duration > 0) || !isFinite(s.duration) || !Array.isArray(s.words) || !Array.isArray(s.cues)) throw fail('E_CUES_INVALID', 'cue sheet needs finite duration>0, words[] and cues[]');
+  s.words.forEach((w, i) => { if (i && w.t0 < s.words[i - 1].t0) throw fail('E_CUES_INVALID', 'words[' + i + '] not monotonic'); });
+  if (!s.meta || !Array.isArray(s.meta.beats_text)) throw fail('E_CUES_INVALID', 'meta.beats_text missing');
+}
+
+/* [6] STATE, built once in ready(). render(t) only reads it. */
+let SHEET = null, FX = null, OUTRO_AT = null, RECAP_OUT = null, THINK = null, PLATE = null, DISC = null, DISC_AT = 0, RECAP = null;
+let eqNodes = [], wrongNodes = [], rightNodes = [];
+const CUE = {}, LAYER = {}, REVEALS = [], HLS = [], POPS = [], HEADWORDS = [], HEADGROUPS = [], HLR = [];
+const fx = path => { const v = path.split('.').reduce((o, k) => (o == null ? o : o[k]), FX); if (v === undefined || v === null) throw fail('E_FIXTURE_MISSING', 'fixture has no ' + path); return v; };
+const fxNum = path => Number(fx(path));
+window.FPS = FPS;
+window.DURATION = 4.0;                              // synchronous default; the cue sheet duration replaces it in ready()
+window.SCENE_META = { contract: '1.0.0', videoCount: 0, notes: 'chem-balance-ci-01 s04 subscript trap (editorial-vox)' };
+
+const svgRoot = document.getElementById('art');
+const svgEl = (tag, attrs, parent) => { const n = document.createElementNS(NS, tag); for (const k in (attrs || {})) n.setAttribute(k, String(attrs[k])); if (parent) parent.appendChild(n); return n; };
+const grp = (id, parent) => LAYER[id] || (LAYER[id] = svgEl('g', { id: id }, parent || svgRoot));
+const cueAt = id => { const c = CUE[id]; if (!c) { report('E_CUES_INVALID', 'error', 'no cue targets element ' + id); return 0; } return c.at; };
+function indexCues() { SHEET.cues.forEach(c => { if (!CUE[c.element_id]) CUE[c.element_id] = c; }); }
+
+/* [7] HEADLINE. Verbatim text from meta.beats_text; each word appears on the t0 of its spoken word, minus the 0.05 s lead. */
+function alignTokens(toks, range) {
+  const W = SHEET.words, keys = toks.map(normKey), s = range[0], e = range[1];
+  for (let p = s; p + keys.length <= e; p++) {
+    if (keys.every((k, j) => normKey(W[p + j].w) === k)) return keys.map((_, j) => W[p + j].t0);
+  }
+  let pos = s;
+  return keys.map(k => {
+    for (let j = pos; j < e; j++) if (normKey(W[j].w) === k) { pos = j + 1; return W[j].t0; }
+    report('E_CUES_INVALID', 'error', 'headline word "' + k + '" is not spoken in its beat');
+    return W[s] ? W[s].t0 : 0;
+  });
+}
+function buildHeadlines() {
+  const title = document.getElementById('title');
+  SHEET.meta.beats_text.filter(r => r.headline).forEach(r => {
+    const g = document.createElement('div'); g.className = 'hg'; title.appendChild(g);
+    const toks = r.headline.split(/\s+/).filter(Boolean), times = alignTokens(toks, r.word_range);
+    toks.forEach((tok, k) => {
+      const sp = document.createElement('span');
+      sp.className = 'w ' + (CLAIM.includes(normKey(tok)) ? 'claim' : 'conn');
+      sp.textContent = tok; g.appendChild(sp);
+      HEADWORDS.push({ el: sp, at: Math.max(0, times[k] - LEAD) });
+    });
+    HEADGROUPS.push({ el: g, start: r.start, end: 0, lastAt: Math.max.apply(null, times.map(x => Math.max(0, x - LEAD))) });
+  });
+  HEADGROUPS.forEach((h, i) => {
+    h.end = i + 1 < HEADGROUPS.length ? HEADGROUPS[i + 1].start : (RECAP_OUT != null ? RECAP_OUT : window.DURATION);
+    if (h.end - h.lastAt < 1.2) report('W_HOLD_SHORT', 'warning', 'headline hold ' + (h.end - h.lastAt).toFixed(2) + ' s < 1.2 s [N60]');
+  });
+}
+
+/* [8] FIXTURE BINDING, ROW PLACEMENT, TALLIES. Every science glyph has data-fx; counts of circles come from the fixture. */
+function bindFixture() { document.querySelectorAll('[data-fx]').forEach(n => { n.textContent = String(fx(n.getAttribute('data-fx'))); }); }
+function makeRow(items, base, parent) {
+  return items.map(it => {
+    const g = grp(it.grp, parent);
+    const n = svgEl('text', { x: 0, y: base, class: it.cls, 'text-anchor': 'start', 'data-fx': it.fx }, g);
+    n.__gap = it.gap == null ? 22 : it.gap;
+    return n;
+  });
+}
+function placeRow(nodes, cx) {
+  const widths = nodes.map(n => n.getComputedTextLength());
+  const total = widths.reduce((a, w, i) => a + w + (i < nodes.length - 1 ? nodes[i].__gap : 0), 0);
+  let x = cx - total / 2; const x0 = x; let x1 = x;
+  nodes.forEach((n, i) => { n.setAttribute('x', x.toFixed(2)); n.__x = x; n.__w = widths[i]; x1 = x + widths[i]; x += widths[i] + (i < nodes.length - 1 ? n.__gap : 0); });
+  return { x0: x0, x1: x1 };
+}
+function hlSet(rect, id, x, y, w, h) {
+  rect.setAttribute('x', x.toFixed(2)); rect.setAttribute('y', y.toFixed(2)); rect.setAttribute('height', h.toFixed(2)); rect.setAttribute('width', '0');
+  HLS.push({ el: rect, at: cueAt(id), full: w });
+}
+function tally(id, parent, x0, y0, sideFx, prefix, rows) {
+  const g = grp(id, parent), at0 = cueAt(id);
+  svgEl('text', { x: x0, y: y0, class: 'lbl', 'data-fx': sideFx }, g);
+  rows.forEach((row, r) => {
+    const cy = y0 + 96 + r * 110, n = fxNum(prefix + '.' + row.k);
+    svgEl('text', { x: x0, y: cy + 20, class: 'sym', fill: row.color, 'data-fx': 'display.sym_' + row.k.toLowerCase() }, g);
+    svgEl('text', { x: x0 + 64, y: cy + 20, class: 'num', 'data-fx': prefix + '.' + row.k }, g);
+    for (let k = 0; k < n; k++) {
+      const cx = x0 + 166 + k * 72, gc = svgEl('g', {}, g);
+      svgEl('circle', { cx: cx + 8, cy: cy + 8, r: 30, fill: '#14213D', 'fill-opacity': 0.18 }, gc);
+      svgEl('circle', { cx: cx, cy: cy, r: 30, fill: row.color, stroke: '#FFFFFF', 'stroke-width': 6 }, gc);
+      POPS.push({ el: gc, at: at0 + 0.08 * (r * 4 + k), cx: cx, cy: cy });
+    }
+  });
+  return g;
+}
+function checkCueElements() {
+  SHEET.cues.forEach(c => { if (!document.getElementById(c.element_id)) report('W_CUE_NO_ELEMENT', 'warning', 'cue ' + c.id + ' targets missing element ' + c.element_id); });
+}
+
+/* [9] SCENE: build, layout and schedule for this scene only. Every time comes from the cue sheet via cueAt(). */
+function build() {
+  const hl = grp('hl'), main = grp('main');
+  HLR.push(svgEl('rect', { class: 'hl' }, grp('hl_coef', hl)));
+  HLR.push(svgEl('rect', { class: 'hl' }, grp('hl_coef', hl)));
+  wrongNodes = makeRow([
+    { fx: 'display.formula_h2', cls: 'eq', grp: 'wrong_row' },
+    { fx: 'display.plus', cls: 'op', grp: 'wrong_row' },
+    { fx: 'display.formula_o2', cls: 'eq', grp: 'wrong_row' },
+    { fx: 'display.arrow', cls: 'op', grp: 'wrong_row' },
+    { fx: 'display.formula_h2o2', cls: 'eq', grp: 'wrong_row' }
+  ], WRONG_BASE, main);
+  svgEl('text', { x: 528, y: WRONG_BASE + 74, class: 'note', 'text-anchor': 'middle', 'data-fx': 'display.name_h2o2' }, grp('wrong_row'));
+  svgEl('text', { x: 528, y: WRONG_BASE + 128, class: 'note', 'text-anchor': 'middle', 'data-fx': 'display.note_different' }, grp('wrong_note', main));
+  const wt = grp('wrong_tally', main), at0 = cueAt('wrong_tally');
+  [{ cx: 358, p: 'results.misconception.left' }, { cx: 698, p: 'results.misconception.right' }].forEach(sd => {
+    const nH = fxNum(sd.p + '.H'), nO = fxNum(sd.p + '.O'), n = nH + nO;
+    for (let i = 0; i < n; i++) {
+      const x = sd.cx - (n - 1) * 30 + i * 60, gc = svgEl('g', {}, wt);
+      svgEl('circle', { cx: x + 6, cy: TALLY_CY + 6, r: 26, fill: '#14213D', 'fill-opacity': 0.18 }, gc);
+      svgEl('circle', { cx: x, cy: TALLY_CY, r: 26, fill: i < nH ? BLUE : PURPLE, stroke: '#FFFFFF', 'stroke-width': 5 }, gc);
+      POPS.push({ el: gc, at: at0 + 0.06 * i, cx: x, cy: TALLY_CY });
+    }
+    svgEl('text', { x: sd.cx - 96, y: TALLY_CY + 92, class: 'sym', fill: BLUE, 'data-fx': 'display.sym_h' }, wt);
+    svgEl('text', { x: sd.cx - 40, y: TALLY_CY + 92, class: 'num', 'data-fx': sd.p + '.H' }, wt);
+    svgEl('text', { x: sd.cx + 6, y: TALLY_CY + 92, class: 'sym', fill: PURPLE, 'data-fx': 'display.sym_o' }, wt);
+    svgEl('text', { x: sd.cx + 62, y: TALLY_CY + 92, class: 'num', 'data-fx': sd.p + '.O' }, wt);
+  });
+  svgEl('text', { x: 528, y: TALLY_CY + 14, class: 'op', 'text-anchor': 'middle', 'data-fx': 'display.equals' }, wt);
+  rightNodes = makeRow([
+    { fx: 'parameters.coef_h2', cls: 'eq', grp: 'right_row', gap: 6 },
+    { fx: 'display.formula_h2', cls: 'eq', grp: 'right_row' },
+    { fx: 'display.plus', cls: 'op', grp: 'right_row' },
+    { fx: 'display.formula_o2', cls: 'eq', grp: 'right_row' },
+    { fx: 'display.arrow', cls: 'op', grp: 'right_row' },
+    { fx: 'parameters.coef_h2o', cls: 'eq', grp: 'right_row', gap: 6 },
+    { fx: 'display.formula_h2o', cls: 'eq', grp: 'right_row' }
+  ], RIGHT_BASE, main);
+  svgEl('text', { x: 528, y: RIGHT_BASE + 72, class: 'note', 'text-anchor': 'middle', 'data-fx': 'display.name_h2o' }, grp('right_row'));
+}
+function layout() {
+  placeRow(wrongNodes, 528);
+  placeRow(rightNodes, 528);
+  hlSet(HLR[0], 'hl_coef', rightNodes[0].__x - 6, RIGHT_BASE - 70, rightNodes[0].__w + 12, 96);
+  hlSet(HLR[1], 'hl_coef', rightNodes[5].__x - 6, RIGHT_BASE - 70, rightNodes[5].__w + 12, 96);
+}
+function schedule() {
+  ['wrong_row', 'wrong_note', 'wrong_tally', 'right_row'].forEach(id => REVEALS.push({ el: grp(id), at: cueAt(id), dur: 0.25 }));
+}
+
+/* [10] RENDER. Synchronous, a pure function of t: the same t gives the same pixels, in any seek order. */
+function render(t) {
+  REVEALS.forEach(r => r.el.setAttribute('opacity', easeOut(prog(t, r.at, r.dur)).toFixed(4)));
+  HLS.forEach(h => {
+    const u = easeOut(prog(t, h.at, 0.42));
+    if (REDUCED) { h.el.setAttribute('width', h.full.toFixed(2)); h.el.setAttribute('opacity', u.toFixed(4)); }
+    else h.el.setAttribute('width', (h.full * u).toFixed(2));
+  });
+  POPS.forEach(p => {
+    const s = REDUCED ? 1 : 0.85 + 0.15 * easeBack(prog(t, p.at, 0.3));
+    p.el.setAttribute('opacity', easeOut(prog(t, p.at, 0.12)).toFixed(4));
+    p.el.setAttribute('transform', 'translate(' + p.cx + ' ' + p.cy + ') scale(' + s.toFixed(4) + ') translate(' + (-p.cx) + ' ' + (-p.cy) + ')');
+  });
+  HEADWORDS.forEach(w => { w.el.style.opacity = easeOut(prog(t, w.at, 0.18)).toFixed(4); });   // fade only: a transform on HTML text made seek order change the raster
+  HEADGROUPS.forEach(h => { h.el.style.opacity = (1 - easeOut(prog(t, h.end, 0.3))).toFixed(4); });
+  if (RECAP) RECAP.setAttribute('opacity', (1 - easeOut(prog(t, RECAP_OUT, 0.4))).toFixed(4));
+  if (PLATE) PLATE.style.opacity = Math.min(easeOut(prog(t, THINK.start, 0.3)), 1 - easeOut(prog(t, THINK.end - 0.3, 0.3))).toFixed(4);
+  if (DISC) DISC.style.opacity = easeOut(prog(t, DISC_AT, 0.3)).toFixed(4);
+}
+
+/* [11] READY and SEEK. seek(t) applies the state for t and waits for fonts. It never waits on requestAnimationFrame. */
+window.ready = (async () => {
+  const s = await loadJson(window.__CUE_SHEET__, 'cues', 'CUES');
+  SHEET = s.data; window.__cueSource = s.source; checkSheet(SHEET);
+  const f = await loadJson(window.__FIXTURE__, 'fixture', 'FIXTURE');
+  FX = deepFreeze(f.data); window.__fixtureSource = f.source;
+  window.DURATION = SHEET.duration;
+  window.FRAME_COUNT = Math.round(window.DURATION * FPS);
+  if (SHEET.fps !== FPS) report('W_FPS_MISMATCH', 'warning', 'cue sheet fps ' + SHEET.fps + ' != render fps ' + FPS + '; times stay in seconds');
+  await Promise.all(FONT_SPECS.map(x => document.fonts.load(x.spec, x.text).catch(e => report('E_FONT_LOAD', 'error', x.spec + ': ' + e.message))));
+  const outro = SHEET.meta.beats_text.find(r => r.slot === 'outro.disclosure');
+  OUTRO_AT = outro ? outro.start : null;
+  const recapRec = SHEET.meta.beats_text.find(r => r.slot === 'recap.statement');
+  RECAP_OUT = recapRec ? recapRec.end + 0.5 : OUTRO_AT;   // equations stay until narration ends + 0.5 s
+  indexCues(); build(); buildHeadlines(); bindFixture();
+  const dEl = document.getElementById('disclosure');
+  if (dEl && outro) { dEl.textContent = outro.text; DISC = dEl; DISC_AT = cueAt('disclosure'); }
+  const tw = (SHEET.meta.think_windows || [])[0];
+  if (tw) { THINK = { start: tw.start, end: tw.end }; PLATE = document.getElementById('plate'); if (!PLATE) report('E_CUES_INVALID', 'error', 'think window without a plate'); }
+  layout(); schedule(); checkCueElements();
+  if (Q.get('safe') === '1') [[250, 518], [518, 1177], [1177, 1470]].forEach(z => { const d = document.createElement('div'); d.style.cssText = 'position:absolute;left:96px;width:864px;top:' + z[0] + 'px;height:' + (z[1] - z[0]) + 'px;border:2px dashed #B42318;box-sizing:border-box;pointer-events:none'; document.getElementById('stage').appendChild(d); });
+  RECAP = LAYER['recap'] || null;
+  await document.fonts.ready;
+})().catch(e => { if (!e.code) report('E_READY', 'error', e.message); throw e; });
+
+let chain = Promise.resolve();                      // serialise seeks so two calls never interleave
+window.seek = async function seek(t) {
+  const prev = chain; let done; chain = new Promise(r => { done = r; });
+  try {
+    await prev; await window.ready;
+    if (typeof t !== 'number' || !isFinite(t)) throw fail('E_BAD_T', 'seek(t) needs a finite number of seconds, got ' + t);
+    const tc = Math.min(Math.max(t, 0), window.DURATION);
+    render(tc);
+    await document.fonts.ready;
+    return { t: tc, frame: Math.round(tc * FPS) };
+  } finally { done(); }
+};
+})();
+</script>
+</body>
+</html>

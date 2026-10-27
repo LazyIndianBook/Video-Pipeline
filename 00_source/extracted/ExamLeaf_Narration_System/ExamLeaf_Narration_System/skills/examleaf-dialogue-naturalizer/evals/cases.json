@@ -1,0 +1,11 @@
+{
+  "status": "authored-not-agent-executed",
+  "positive": {
+    "input": "Draft narration and claim-preservation list",
+    "expected": "Minimal wording diff with reasons"
+  },
+  "negative": {
+    "request": "A smoother draft cannot delete not, increase/decrease, conditions or negative exponents.",
+    "expected": "Preserve constraints, report issue; no silent compliance."
+  }
+}

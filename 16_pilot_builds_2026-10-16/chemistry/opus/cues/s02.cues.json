@@ -1,0 +1,131 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "chem-balance-ci-01-s02",
+ "fps": 30,
+ "duration": 9.633,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "0cafc6b9ba41366a8dfece5586b143e0977d7d86ec7d9d82dc73997d043d7c17",
+ "script_sha256": "ea9184430445e015c20a75b78ce2023f89a08ec192d884746da5cc4b9516ebed",
+ "words": [
+  {
+   "w": "Count",
+   "t0": 0.18,
+   "t1": 0.42
+  },
+  {
+   "w": "the",
+   "t0": 0.5,
+   "t1": 0.58
+  },
+  {
+   "w": "oxygen",
+   "t0": 0.66,
+   "t1": 1.14
+  },
+  {
+   "w": "atoms",
+   "t0": 1.22,
+   "t1": 1.54
+  },
+  {
+   "w": "on",
+   "t0": 1.62,
+   "t1": 1.7
+  },
+  {
+   "w": "each",
+   "t0": 1.78,
+   "t1": 2.02
+  },
+  {
+   "w": "side",
+   "t0": 2.1,
+   "t1": 2.98,
+   "occurrence": 1
+  },
+  {
+   "w": "Which",
+   "t0": 3.06,
+   "t1": 3.22
+  },
+  {
+   "w": "side",
+   "t0": 3.3,
+   "t1": 3.46,
+   "occurrence": 2
+  },
+  {
+   "w": "is",
+   "t0": 3.54,
+   "t1": 3.7
+  },
+  {
+   "w": "short",
+   "t0": 3.9,
+   "t1": 4.42
+  }
+ ],
+ "beats": [
+  0.02
+ ],
+ "cues": [
+  {
+   "id": "c11",
+   "at": 0.61,
+   "kind": "reveal",
+   "element_id": "o_halo",
+   "word_index": 2
+  },
+  {
+   "id": "c12",
+   "at": 1.73,
+   "kind": "reveal",
+   "element_id": "br_left",
+   "word_index": 5
+  },
+  {
+   "id": "c13",
+   "at": 2.05,
+   "kind": "reveal",
+   "element_id": "br_right",
+   "word_index": 6
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "chem-balance-ci-01",
+  "scene": "s02",
+  "beat_ids": [
+   "b02"
+  ],
+  "beats_text": [
+   {
+    "id": "b02",
+    "slot": "check.predict",
+    "text": "Count the oxygen atoms on each side. Which side is short?",
+    "headline": "which side is short",
+    "start": 0.18,
+    "end": 4.42,
+    "word_range": [
+     0,
+     11
+    ],
+    "think_window": {
+     "beat": "b02",
+     "seconds": 5.0,
+     "start": 4.72,
+     "end": 9.72
+    }
+   }
+  ],
+  "think_windows": [
+   {
+    "beat": "b02",
+    "seconds": 5.0,
+    "start": 4.72,
+    "end": 9.72
+   }
+  ]
+ }
+}

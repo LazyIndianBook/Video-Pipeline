@@ -1,0 +1,28 @@
+{
+  "before": {
+    "input_i": "-25.52",
+    "input_tp": "-19.17",
+    "input_lra": "5.00",
+    "input_thresh": "-35.55",
+    "output_i": "-15.89",
+    "output_tp": "-7.56",
+    "output_lra": "4.60",
+    "output_thresh": "-25.92",
+    "normalization_type": "dynamic",
+    "target_offset": "-0.11"
+  },
+  "after": {
+    "input_i": "-15.99",
+    "input_tp": "-9.65",
+    "input_lra": "5.00",
+    "input_thresh": "-26.02",
+    "output_i": "-15.88",
+    "output_tp": "-7.56",
+    "output_lra": "4.70",
+    "output_thresh": "-25.91",
+    "normalization_type": "dynamic",
+    "target_offset": "-0.12"
+  },
+  "target": "-16 LUFS and <= -1 dBTP; ExamLeaf engineering target, not platform law",
+  "within_target": true
+}

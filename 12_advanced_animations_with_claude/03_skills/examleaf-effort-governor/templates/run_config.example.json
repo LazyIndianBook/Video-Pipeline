@@ -1,0 +1,23 @@
+{
+  "run_id": "9f2c4e1a7b3d5c80",
+  "job_id": "L-phy10-03",
+  "scene_id": "phy-10-03-s01",
+  "task": "scene_code_2d",
+  "policy_row": "Scene code: 2D motion, kinetic type, collage",
+  "model_alias": "opus",
+  "model_id": "<pinned full Opus 5.5 ID>",
+  "effort": "high",
+  "effort_effective_expected": "high",
+  "ultracode": false,
+  "env": {"CLAUDE_CODE_EFFORT_LEVEL": "high"},
+  "cli_args": ["--effort", "high"],
+  "thinking": "always on for 5.5/Fable models; budget includes it [N26]",
+  "caps": {"authoring_loops": 3, "repair_attempts": 2, "round": 1, "per_run_tokens": 60000, "per_lesson_tokens": 400000, "alert_fraction": 0.8},
+  "cache_plan": {
+    "stable_prefix_order": ["harness contract", "style guide", "brand tokens", "fixtures (read-only)"],
+    "rule": "one main session per scene batch; keep the prefix byte-identical; no sub-agent fan-out ([V1] caches per agent)"
+  },
+  "workspace_rule": "one isolated job folder; do not read sibling folders (#9)",
+  "warnings": [],
+  "_note": "Cap values here are illustrative only."
+}

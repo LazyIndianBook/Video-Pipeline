@@ -1,0 +1,11 @@
+{
+  "status": "authored-not-agent-executed",
+  "positive": {
+    "input": "Accepted raw audio plus mixing and protected-silence manifest",
+    "expected": "Archival WAV, deliverable audio, pre/post measurements"
+  },
+  "negative": {
+    "request": "Reject unnecessary denoise/reverb/music and silenceremove applied across thinking windows.",
+    "expected": "Preserve constraints, report issue; no silent compliance."
+  }
+}

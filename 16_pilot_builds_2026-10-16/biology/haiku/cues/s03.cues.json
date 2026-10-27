@@ -1,0 +1,417 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "bio-photosyn-ci-01-s03",
+ "fps": 30,
+ "duration": 22.533,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "d1f95c0aa2e81578b788ba3ab68691fb6b3fba330869335d92f623c7d73c3f7d",
+ "script_sha256": "fb56e0d2da7e69198ff182ee889c4beda47930cfe7a3435f4099ea3176e5093f",
+ "words": [
+  {
+   "w": "Plants",
+   "t0": 0.08,
+   "t1": 0.48
+  },
+  {
+   "w": "take",
+   "t0": 0.56,
+   "t1": 0.72
+  },
+  {
+   "w": "in",
+   "t0": 0.8,
+   "t1": 0.96,
+   "occurrence": 1
+  },
+  {
+   "w": "carbon",
+   "t0": 1.12,
+   "t1": 1.28,
+   "occurrence": 1
+  },
+  {
+   "w": "dioxide",
+   "t0": 1.36,
+   "t1": 1.92
+  },
+  {
+   "w": "from",
+   "t0": 2.0,
+   "t1": 2.16,
+   "occurrence": 1
+  },
+  {
+   "w": "the",
+   "t0": 2.24,
+   "t1": 2.32,
+   "occurrence": 1
+  },
+  {
+   "w": "air",
+   "t0": 2.4,
+   "t1": 2.72
+  },
+  {
+   "w": "through",
+   "t0": 2.84,
+   "t1": 2.96,
+   "occurrence": 1
+  },
+  {
+   "w": "the",
+   "t0": 3.0,
+   "t1": 3.04,
+   "occurrence": 2
+  },
+  {
+   "w": "stomata",
+   "t0": 3.12,
+   "t1": 4.24
+  },
+  {
+   "w": "Water",
+   "t0": 4.32,
+   "t1": 4.72
+  },
+  {
+   "w": "comes",
+   "t0": 4.84,
+   "t1": 4.96
+  },
+  {
+   "w": "in",
+   "t0": 5.04,
+   "t1": 5.2,
+   "occurrence": 2
+  },
+  {
+   "w": "from",
+   "t0": 5.24,
+   "t1": 5.28,
+   "occurrence": 2
+  },
+  {
+   "w": "the",
+   "t0": 5.36,
+   "t1": 5.44,
+   "occurrence": 3
+  },
+  {
+   "w": "soil",
+   "t0": 5.52,
+   "t1": 6.0
+  },
+  {
+   "w": "through",
+   "t0": 6.08,
+   "t1": 6.16,
+   "occurrence": 2
+  },
+  {
+   "w": "the",
+   "t0": 6.24,
+   "t1": 6.28,
+   "occurrence": 4
+  },
+  {
+   "w": "roots",
+   "t0": 6.32,
+   "t1": 7.04
+  },
+  {
+   "w": "Sunlight",
+   "t0": 7.6,
+   "t1": 8.32
+  },
+  {
+   "w": "absorbed",
+   "t0": 8.4,
+   "t1": 8.88
+  },
+  {
+   "w": "by",
+   "t0": 8.96,
+   "t1": 9.04
+  },
+  {
+   "w": "chlorophyll",
+   "t0": 9.12,
+   "t1": 9.92
+  },
+  {
+   "w": "drives",
+   "t0": 10.0,
+   "t1": 10.32
+  },
+  {
+   "w": "the",
+   "t0": 10.4,
+   "t1": 10.44,
+   "occurrence": 5
+  },
+  {
+   "w": "reaction",
+   "t0": 10.48,
+   "t1": 11.44
+  },
+  {
+   "w": "The",
+   "t0": 11.52,
+   "t1": 11.6,
+   "occurrence": 1
+  },
+  {
+   "w": "products",
+   "t0": 11.84,
+   "t1": 12.08
+  },
+  {
+   "w": "are",
+   "t0": 12.16,
+   "t1": 12.24
+  },
+  {
+   "w": "glucose",
+   "t0": 12.32,
+   "t1": 12.96
+  },
+  {
+   "w": "and",
+   "t0": 13.04,
+   "t1": 13.12
+  },
+  {
+   "w": "oxygen",
+   "t0": 13.2,
+   "t1": 14.0,
+   "occurrence": 1
+  },
+  {
+   "w": "Count",
+   "t0": 14.4,
+   "t1": 14.64
+  },
+  {
+   "w": "the",
+   "t0": 14.72,
+   "t1": 14.8,
+   "occurrence": 6
+  },
+  {
+   "w": "atoms",
+   "t0": 14.88,
+   "t1": 15.2
+  },
+  {
+   "w": "on",
+   "t0": 15.28,
+   "t1": 15.36
+  },
+  {
+   "w": "each",
+   "t0": 15.44,
+   "t1": 15.6
+  },
+  {
+   "w": "side",
+   "t0": 15.76,
+   "t1": 16.4
+  },
+  {
+   "w": "Six",
+   "t0": 16.64,
+   "t1": 16.88
+  },
+  {
+   "w": "carbon",
+   "t0": 16.96,
+   "t1": 17.68,
+   "occurrence": 2
+  },
+  {
+   "w": "twelve",
+   "t0": 17.76,
+   "t1": 18.0
+  },
+  {
+   "w": "hydrogen",
+   "t0": 18.08,
+   "t1": 18.96
+  },
+  {
+   "w": "eighteen",
+   "t0": 19.08,
+   "t1": 19.44
+  },
+  {
+   "w": "oxygen",
+   "t0": 19.52,
+   "t1": 20.4,
+   "occurrence": 2
+  },
+  {
+   "w": "The",
+   "t0": 20.44,
+   "t1": 20.48,
+   "occurrence": 2
+  },
+  {
+   "w": "equation",
+   "t0": 20.56,
+   "t1": 21.12
+  },
+  {
+   "w": "balances",
+   "t0": 21.44,
+   "t1": 22.16
+  }
+ ],
+ "beats": [
+  0.0,
+  7.36,
+  14.32
+ ],
+ "cues": [
+  {
+   "id": "c08",
+   "at": 0.03,
+   "kind": "reveal",
+   "element_id": "leaf_art",
+   "word_index": 0
+  },
+  {
+   "id": "c09",
+   "at": 1.07,
+   "kind": "reveal",
+   "element_id": "lbl_co2",
+   "word_index": 3
+  },
+  {
+   "id": "c10",
+   "at": 4.27,
+   "kind": "reveal",
+   "element_id": "lbl_h2o",
+   "word_index": 11
+  },
+  {
+   "id": "c11",
+   "at": 6.27,
+   "kind": "reveal",
+   "element_id": "root_art",
+   "word_index": 19
+  },
+  {
+   "id": "c12",
+   "at": 7.55,
+   "kind": "reveal",
+   "element_id": "lbl_sun",
+   "word_index": 20
+  },
+  {
+   "id": "c13",
+   "at": 9.07,
+   "kind": "reveal",
+   "element_id": "lbl_chl",
+   "word_index": 23
+  },
+  {
+   "id": "c14",
+   "at": 10.43,
+   "kind": "reveal",
+   "element_id": "equation",
+   "word_index": 26
+  },
+  {
+   "id": "c15",
+   "at": 12.27,
+   "kind": "emphasis",
+   "element_id": "eq_glucose",
+   "word_index": 30
+  },
+  {
+   "id": "c16",
+   "at": 13.15,
+   "kind": "emphasis",
+   "element_id": "eq_o2",
+   "word_index": 32
+  },
+  {
+   "id": "c17",
+   "at": 14.35,
+   "kind": "reveal",
+   "element_id": "count_table",
+   "word_index": 33
+  },
+  {
+   "id": "c18",
+   "at": 16.91,
+   "kind": "emphasis",
+   "element_id": "row_C",
+   "word_index": 40
+  },
+  {
+   "id": "c19",
+   "at": 18.03,
+   "kind": "emphasis",
+   "element_id": "row_H",
+   "word_index": 42
+  },
+  {
+   "id": "c20",
+   "at": 19.47,
+   "kind": "emphasis",
+   "element_id": "row_O",
+   "word_index": 44
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "bio-photosyn-ci-01",
+  "scene": "s03",
+  "beat_ids": [
+   "b03",
+   "b04",
+   "b05"
+  ],
+  "beats_text": [
+   {
+    "id": "b03",
+    "slot": "explain.ladder_step",
+    "text": "Plants take in carbon dioxide from the air through the stomata. Water comes in from the soil through the roots.",
+    "headline": "Carbon dioxide, water",
+    "start": 0.08,
+    "end": 7.04,
+    "word_range": [
+     0,
+     20
+    ]
+   },
+   {
+    "id": "b04",
+    "slot": "explain.ladder_step",
+    "text": "Sunlight, absorbed by chlorophyll, drives the reaction. The products are glucose and oxygen.",
+    "headline": "Sunlight drives the reaction",
+    "start": 7.6,
+    "end": 14.0,
+    "word_range": [
+     20,
+     33
+    ]
+   },
+   {
+    "id": "b05",
+    "slot": "worked.step",
+    "text": "Count the atoms on each side. Six carbon, twelve hydrogen, eighteen oxygen. The equation balances.",
+    "headline": "each side balances",
+    "start": 14.4,
+    "end": 22.16,
+    "word_range": [
+     33,
+     48
+    ]
+   }
+  ],
+  "think_windows": []
+ }
+}

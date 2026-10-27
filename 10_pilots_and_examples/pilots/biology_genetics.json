@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "duration_s": 30,
+  "fps": 24,
+  "status": "technical_preview",
+  "id": "biology_genetics",
+  "subject": "biology",
+  "kind": "mendel_cross",
+  "title": "A ratio is not a promise.",
+  "objective": "Distinguish genotype probabilities from guaranteed small-sample counts.",
+  "class_context": "Class 12 inheritance technical benchmark.",
+  "parameters": {
+    "parent1": "Aa",
+    "parent2": "Aa"
+  },
+  "assumptions": [
+    "One Mendelian locus with two alleles and equal gamete probabilities.",
+    "Random gamete union; complete dominance for phenotype mapping.",
+    "Probabilities are not guaranteed counts in four offspring."
+  ],
+  "sources": [
+    {
+      "id": "biology_genetics_source",
+      "uri": "https://openstax.org/books/biology-2e/pages/12-2-characteristics-and-traits",
+      "locator": "Section 12.2: characteristics and traits",
+      "rights_status": "open_reference",
+      "claim_scope": "Distinguish genotype probabilities from guaranteed small-sample counts.",
+      "retrieved_at": "2026-10-13"
+    }
+  ],
+  "claims": [
+    {
+      "id": "biology_genetics_claim",
+      "statement": "Distinguish genotype probabilities from guaranteed small-sample counts.",
+      "source_ids": [
+        "biology_genetics_source"
+      ],
+      "assumptions": [
+        "One Mendelian locus with two alleles and equal gamete probabilities.",
+        "Random gamete union; complete dominance for phenotype mapping.",
+        "Probabilities are not guaranteed counts in four offspring."
+      ],
+      "status": "draft"
+    }
+  ],
+  "cues": [
+    {
+      "start_s": 0,
+      "end_s": 6,
+      "text": "Each parent can contribute A or a with equal probability.",
+      "role": "explain",
+      "voice": "steady",
+      "answer_visible": false
+    },
+    {
+      "start_s": 6,
+      "end_s": 11,
+      "text": "Combine one allele from each parent; keep genotype and trait distinct.",
+      "role": "explain",
+      "voice": "steady",
+      "answer_visible": false
+    },
+    {
+      "start_s": 11,
+      "end_s": 16.5,
+      "text": "Under complete dominance, what fraction shows the dominant trait?",
+      "role": "question",
+      "voice": "curious",
+      "answer_visible": false
+    },
+    {
+      "start_s": 16.5,
+      "end_s": 24,
+      "text": "Three quarters: AA and Aa show the dominant trait in this model.",
+      "role": "feedback",
+      "voice": "steady",
+      "answer_visible": true
+    },
+    {
+      "start_s": 24,
+      "end_s": 30,
+      "text": "A 3:1 expectation does not guarantee three out of exactly four.",
+      "role": "recap",
+      "voice": "steady",
+      "answer_visible": true
+    }
+  ]
+}

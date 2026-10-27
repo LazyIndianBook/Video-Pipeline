@@ -1,0 +1,76 @@
+{
+  "status": "proposed design standard; validate with students on real phones",
+  "canvas": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "safe_margin_px": 96,
+    "caption_reserve_bottom_px": 190
+  },
+  "light": {
+    "background": "#F7F9FC",
+    "ink": "#14213D",
+    "secondary": "#526074",
+    "blue": "#185ABD",
+    "teal": "#087986",
+    "amber": "#9A5B00",
+    "red": "#B42318",
+    "purple": "#6E44AA"
+  },
+  "dark": {
+    "background": "#101826",
+    "ink": "#EAF0F6",
+    "note": "Other accents require separate contrast validation before dark-mode use."
+  },
+  "type": {
+    "sans": "Inter",
+    "locale_fallback": "Appropriate Noto Sans script family",
+    "math": "KaTeX fonts",
+    "essential_label_px": [
+      64,
+      72
+    ],
+    "equation_px": [
+      84,
+      112
+    ],
+    "heading_px": [
+      72,
+      88
+    ]
+  },
+  "timing": {
+    "transition_ms": [
+      150,
+      300
+    ],
+    "highlight_ms": [
+      300,
+      600
+    ],
+    "equation_transform_ms": [
+      800,
+      1500
+    ],
+    "equation_hold_ms": [
+      1000,
+      3000
+    ],
+    "note": "Starting design ranges, not empirically universal learning optima. Physical motion uses model time, not easing."
+  },
+  "audio": {
+    "target_lufs": -16,
+    "max_true_peak_dbtp": -1,
+    "core_background_music": false,
+    "note": "Internal mastering target, not an asserted platform requirement."
+  },
+  "light_contrast_on_background": {
+    "ink": 15.145,
+    "secondary": 6.063,
+    "blue": 6.153,
+    "teal": 4.869,
+    "amber": 5.144,
+    "red": 6.233,
+    "purple": 6.485
+  }
+}

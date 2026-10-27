@@ -1,0 +1,67 @@
+{
+ "cache_key": "e0684ca31d5a42d5",
+ "beat": "b06",
+ "chars": 48,
+ "request_id": "voxcpm2-4bit-ref-876b843068d2-seed20261016",
+ "model_id": "voxcpm2-4bit",
+ "voice_id": "ref-876b843068d2",
+ "take": 1,
+ "seed": 20261016,
+ "generation_s": 8.9,
+ "unmatched_words": 0,
+ "words": [
+  {
+   "w": "Two",
+   "t0": 0.0,
+   "t1": 0.18
+  },
+  {
+   "w": "volts",
+   "t0": 0.18,
+   "t1": 0.44
+  },
+  {
+   "w": "over",
+   "t0": 0.44,
+   "t1": 0.72
+  },
+  {
+   "w": "ten",
+   "t0": 0.72,
+   "t1": 0.98
+  },
+  {
+   "w": "ohms",
+   "t0": 0.98,
+   "t1": 1.34
+  },
+  {
+   "w": "gives",
+   "t0": 1.34,
+   "t1": 1.5
+  },
+  {
+   "w": "point",
+   "t0": 1.5,
+   "t1": 1.78
+  },
+  {
+   "w": "two",
+   "t0": 1.78,
+   "t1": 2.08
+  },
+  {
+   "w": "amperes",
+   "t0": 2.08,
+   "t1": 2.56
+  }
+ ],
+ "provider_alignment": null,
+ "alignment_source": "forced_alignment",
+ "stt": {
+  "model": "models/whisper-small.en-asr-fp16",
+  "heard": "Two volts over 10 ohms gives 0 .2 amperes.",
+  "match_ratio": 1.0,
+  "diffs": []
+ }
+}

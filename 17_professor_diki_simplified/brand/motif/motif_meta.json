@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "asset_version": "1.0.0",
+  "brand": "Professor Diki Simplified",
+  "generator": "17_professor_diki_simplified/brand/motif/make_motif.py",
+  "generator_sha256": "ba1d6c7cd9121767e85bafea5d25933a395695eb479b718c606762f16a15e617",
+  "seed": 2026,
+  "sample_rate": 48000,
+  "bit_depth": 16,
+  "channels": 1,
+  "target_peak_dbfs": -6.0,
+  "contains_samples": false,
+  "composed_by_human": false,
+  "licence": "Generated in-house by deterministic code; owned; no third-party samples. Never describe as human-composed.",
+  "motif": {
+    "notes": [
+      {
+        "note": "E5",
+        "midi": 76,
+        "hz": 659.26,
+        "onset_s": 0.0
+      },
+      {
+        "note": "G5",
+        "midi": 79,
+        "hz": 783.99,
+        "onset_s": 0.1085
+      },
+      {
+        "note": "C5",
+        "midi": 72,
+        "hz": 523.25,
+        "onset_s": 0.2388
+      }
+    ],
+    "intervals": [
+      "minor third up (E5->G5): the lift of a spoken question",
+      "perfect fifth down (G5->C5): falls onto the tonic, a settled answer"
+    ],
+    "rhythm": "short-short-long; onsets 0, 110, 240 ms; C5 rings into a small room; 80 ms release",
+    "why": "All three notes belong to one C major triad, so the figure is consonant and calm. The rising minor third imitates question intonation, the drop of a fifth to the tonic imitates a declarative answer: 'question -> answer' in 0.7 s. Fundamentals 523-784 Hz sit in the band phone speakers reproduce; no sub-bass, no percussion hit.",
+    "length_s": 0.7
+  },
+  "items": [
+    {
+      "file": "diki_end_motif_v1.wav",
+      "kind": "end_motif",
+      "duration_s": 0.7,
+      "peak_dbfs": -6.0,
+      "sha256": "a0881daca98e71c7a610727945a16684eec46c0206212b86b09152774b191041",
+      "placement_rule": "Once per video, on the end card, after the spoken outro ends; never under speech.",
+      "measured": {
+        "tool": "ffmpeg astats + ebur128=peak=true",
+        "sample_peak_dbfs": -6.000213,
+        "true_peak_dbtp": -6.0,
+        "integrated_lufs": -17.2,
+        "samples": 33600,
+        "duration_s": 0.7
+      }
+    },
+    {
+      "file": "confirm_tick_v1.wav",
+      "kind": "confirm_tick",
+      "duration_s": 0.1,
+      "peak_dbfs": -6.0,
+      "sha256": "21cf4ffa57a45885a4fa495e170ea4a3d775d5f16e1c2bac11218873c5504463",
+      "placement_rule": "On a correct reveal (answer shown after the learner's attempt); never over a spoken number.",
+      "measured": {
+        "tool": "ffmpeg astats + ebur128=peak=true",
+        "sample_peak_dbfs": -6.000213,
+        "true_peak_dbtp": -6.0,
+        "integrated_lufs": null,
+        "samples": 4800,
+        "duration_s": 0.1
+      }
+    },
+    {
+      "file": "mismatch_v1.wav",
+      "kind": "mismatch",
+      "duration_s": 0.14,
+      "peak_dbfs": -6.0,
+      "sha256": "67627095c39f83c39e36ae60564eb5151525863efd8215a5dd459e6a64693ade",
+      "placement_rule": "On a RevealMismatch event (two quantities shown not equal); never over a spoken number.",
+      "measured": {
+        "tool": "ffmpeg astats + ebur128=peak=true",
+        "sample_peak_dbfs": -6.000213,
+        "true_peak_dbtp": -6.0,
+        "integrated_lufs": null,
+        "samples": 6720,
+        "duration_s": 0.14
+      }
+    }
+  ]
+}

@@ -1,0 +1,242 @@
+{
+  "status": "offline-request-compilation-not-live-integration",
+  "lesson_id": "water_coefficient_demo",
+  "requests": [
+    {
+      "segment_id": "question",
+      "method": "POST",
+      "url": "https://generativelanguage.googleapis.com/v1beta/interactions",
+      "headers_template": {
+        "Content-Type": "application/json",
+        "x-goog-api-key": "ENV:GEMINI_API_KEY"
+      },
+      "body": {
+        "model": "gemini-3.8-flash-tts",
+        "input": [
+          {
+            "type": "user_input",
+            "content": [
+              {
+                "type": "text",
+                "text": "Two water molecules. How many hydrogen atoms altogether? Count each complete molecule before you answer.",
+                "annotations": [
+                  {
+                    "type": "speech_metadata",
+                    "style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Invite a genuine prediction, curious without theatrical suspense. Aim for approximately 140 spoken words per minute; do not add words. Emphasize: each complete molecule"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "response_format": {
+          "type": "audio"
+        },
+        "generation_config": {
+          "speech_config": [
+            {
+              "voice": "Kore"
+            }
+          ]
+        }
+      },
+      "canonical_spoken": "Two water molecules. How many hydrogen atoms altogether? Count each complete molecule before you answer.",
+      "caption_text": "Two water molecules. How many hydrogen atoms altogether? Count each complete molecule before you answer.",
+      "audio_cache_key": "01155fe135e69d28ed409f4de95c14f2abd752d1f030dc34a443732451480344",
+      "editorial_style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Invite a genuine prediction, curious without theatrical suspense. Aim for approximately 140 spoken words per minute; do not add words. Emphasize: each complete molecule",
+      "warnings": [
+        "Compiled offline; live behavior and pronunciation require separate approval.",
+        "Unary 3.8 output is WAV: do not prepend another header. Streaming differs."
+      ]
+    },
+    {
+      "segment_id": "answer",
+      "method": "POST",
+      "url": "https://generativelanguage.googleapis.com/v1beta/interactions",
+      "headers_template": {
+        "Content-Type": "application/json",
+        "x-goog-api-key": "ENV:GEMINI_API_KEY"
+      },
+      "body": {
+        "model": "gemini-3.8-flash-tts",
+        "input": [
+          {
+            "type": "user_input",
+            "content": [
+              {
+                "type": "text",
+                "text": "Four hydrogen atoms. Each water molecule contains two, and we have two complete copies. That is what the coefficient changes: how many molecules, not what a molecule is.",
+                "annotations": [
+                  {
+                    "type": "speech_metadata",
+                    "style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Measure phrases carefully; distinguish scientific terms and conditions. Aim for approximately 130 spoken words per minute; do not add words. Emphasize: Four; not"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "response_format": {
+          "type": "audio"
+        },
+        "generation_config": {
+          "speech_config": [
+            {
+              "voice": "Kore"
+            }
+          ]
+        }
+      },
+      "canonical_spoken": "Four hydrogen atoms. Each water molecule contains two, and we have two complete copies. That is what the coefficient changes: how many molecules, not what a molecule is.",
+      "caption_text": "Four hydrogen atoms. Each water molecule contains two, and we have two complete copies. That is what the coefficient changes: how many molecules, not what a molecule is.",
+      "audio_cache_key": "531a4161c28a4edff85a551e7aa2de4a006b3f6b1454cfd4e68fda8990608bf2",
+      "editorial_style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Measure phrases carefully; distinguish scientific terms and conditions. Aim for approximately 130 spoken words per minute; do not add words. Emphasize: Four; not",
+      "warnings": [
+        "Compiled offline; live behavior and pronunciation require separate approval.",
+        "Unary 3.8 output is WAV: do not prepend another header. Streaming differs."
+      ]
+    },
+    {
+      "segment_id": "repair",
+      "method": "POST",
+      "url": "https://generativelanguage.googleapis.com/v1beta/interactions",
+      "headers_template": {
+        "Content-Type": "application/json",
+        "x-goog-api-key": "ENV:GEMINI_API_KEY"
+      },
+      "body": {
+        "model": "gemini-3.8-flash-tts",
+        "input": [
+          {
+            "type": "user_input",
+            "content": [
+              {
+                "type": "text",
+                "text": "Changing H two O into hydrogen peroxide would be a very efficient way to answer a different question. Keep the given formulas fixed. Use coefficients to change the counts.",
+                "annotations": [
+                  {
+                    "type": "speech_metadata",
+                    "style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. A small amused smile in the delivery, without added laughter. Aim for approximately 142 spoken words per minute; do not add words.  Dry observation, not a laugh. Return to focused explanation after different question."
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "response_format": {
+          "type": "audio"
+        },
+        "generation_config": {
+          "speech_config": [
+            {
+              "voice": "Kore"
+            }
+          ]
+        }
+      },
+      "canonical_spoken": "Changing H two O into hydrogen peroxide would be a very efficient way to answer a different question. Keep the given formulas fixed. Use coefficients to change the counts.",
+      "caption_text": "Changing H two O into hydrogen peroxide would be a very efficient way to answer a different question. Keep the given formulas fixed. Use coefficients to change the counts.",
+      "audio_cache_key": "6516a7f07377fc513913a686b92c5ff1f52a53cbd7b62d395888ff2b800e79b2",
+      "editorial_style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. A small amused smile in the delivery, without added laughter. Aim for approximately 142 spoken words per minute; do not add words.  Dry observation, not a laugh. Return to focused explanation after different question.",
+      "warnings": [
+        "Compiled offline; live behavior and pronunciation require separate approval.",
+        "Unary 3.8 output is WAV: do not prepend another header. Streaming differs."
+      ]
+    },
+    {
+      "segment_id": "retry",
+      "method": "POST",
+      "url": "https://generativelanguage.googleapis.com/v1beta/interactions",
+      "headers_template": {
+        "Content-Type": "application/json",
+        "x-goog-api-key": "ENV:GEMINI_API_KEY"
+      },
+      "body": {
+        "model": "gemini-3.8-flash-tts",
+        "input": [
+          {
+            "type": "user_input",
+            "content": [
+              {
+                "type": "text",
+                "text": "Your turn again: three water molecules. How many hydrogen atoms, and how many oxygen atoms? Pause here and write both counts.",
+                "annotations": [
+                  {
+                    "type": "speech_metadata",
+                    "style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Warm and matter-of-fact; make correction specific and repairable. Aim for approximately 140 spoken words per minute; do not add words."
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "response_format": {
+          "type": "audio"
+        },
+        "generation_config": {
+          "speech_config": [
+            {
+              "voice": "Kore"
+            }
+          ]
+        }
+      },
+      "canonical_spoken": "Your turn again: three water molecules. How many hydrogen atoms, and how many oxygen atoms? Pause here and write both counts.",
+      "caption_text": "Your turn again: three water molecules. How many hydrogen atoms, and how many oxygen atoms? Pause here and write both counts.",
+      "audio_cache_key": "bc70f3b8a5a4bbb2324f720266100b852ff5a68e6b7803c350dc0a082d9f6938",
+      "editorial_style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Warm and matter-of-fact; make correction specific and repairable. Aim for approximately 140 spoken words per minute; do not add words.",
+      "warnings": [
+        "Compiled offline; live behavior and pronunciation require separate approval.",
+        "Unary 3.8 output is WAV: do not prepend another header. Streaming differs."
+      ]
+    },
+    {
+      "segment_id": "check",
+      "method": "POST",
+      "url": "https://generativelanguage.googleapis.com/v1beta/interactions",
+      "headers_template": {
+        "Content-Type": "application/json",
+        "x-goog-api-key": "ENV:GEMINI_API_KEY"
+      },
+      "body": {
+        "model": "gemini-3.8-flash-tts",
+        "input": [
+          {
+            "type": "user_input",
+            "content": [
+              {
+                "type": "text",
+                "text": "Six hydrogen atoms and three oxygen atoms. If those match, check the method too: the number of copies multiplies every atom count in the formula.",
+                "annotations": [
+                  {
+                    "type": "speech_metadata",
+                    "style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Precise and credible, not promotional. Aim for approximately 140 spoken words per minute; do not add words."
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "response_format": {
+          "type": "audio"
+        },
+        "generation_config": {
+          "speech_config": [
+            {
+              "voice": "Kore"
+            }
+          ]
+        }
+      },
+      "canonical_spoken": "Six hydrogen atoms and three oxygen atoms. If those match, check the method too: the number of copies multiplies every atom count in the formula.",
+      "caption_text": "Six hydrogen atoms and three oxygen atoms. If those match, check the method too: the number of copies multiplies every atom count in the formula.",
+      "audio_cache_key": "df096743d82eaa908b75ebe6cdc6439cd0876af9d9c38525939cd6f60fac828c",
+      "editorial_style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Precise and credible, not promotional. Aim for approximately 140 spoken words per minute; do not add words.",
+      "warnings": [
+        "Compiled offline; live behavior and pronunciation require separate approval.",
+        "Unary 3.8 output is WAV: do not prepend another header. Streaming differs."
+      ]
+    }
+  ],
+  "network_operations": 0
+}

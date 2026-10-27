@@ -1,0 +1,120 @@
+{
+  "video_id": "phy-ohm-ci-01",
+  "subject": "physics",
+  "topic": "Ohm's law: does twice the voltage mean twice the current?",
+  "level": "l9_10",
+  "locale": "en-IN",
+  "language": "en",
+  "format": "concept_intro",
+  "target_duration_s": 65,
+  "style": "doodle-handdrawn",
+  "voice": {"path": "B", "provider": "elevenlabs", "model_id": "eleven_v4", "voice_id": "JBFqnCBsd6RMkjVDRZzb", "persona": "persona/super-teacher#core"},
+  "scenes": [
+    {"id": "s01", "file": "scenes/s01.html", "beats": ["b01"], "title": "Hook"},
+    {"id": "s02", "file": "scenes/s02.html", "beats": ["b02"], "title": "Predict pause"},
+    {"id": "s03", "file": "scenes/s03.html", "beats": ["b03", "b04"], "title": "Ratio reveal"},
+    {"id": "s04", "file": "scenes/s04.html", "beats": ["b05"], "title": "Filament exception"},
+    {"id": "s05", "file": "scenes/s05.html", "beats": ["b06", "b07"], "title": "Recap and disclosure"}
+  ],
+  "beats": [
+    {
+      "id": "b01", "scene": "s01", "slot": "hook.question_reveal", "mode": "curious", "tag": "[curious]",
+      "text": "Here's a ten-ohm resistor with two volts across it. Now we make it four volts. Does twice the voltage always mean twice the current?",
+      "node_ids": ["ASM-ohm-double-always", "FIX-ohm-readings"],
+      "pause_after_s": 0.6, "think_window_s": 0,
+      "on_screen": {"headline": "twice the voltage?", "fx_refs": ["parameters.resistance_ohm", "parameters.v1", "parameters.v2"]},
+      "cues": [
+        {"id": "c01", "kind": "reveal", "element_id": "wires", "anchor_word": "Here's", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c02", "kind": "reveal", "element_id": "resistor", "anchor_word": "resistor", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c03", "kind": "reveal", "element_id": "lbl_r", "anchor_word": "resistor", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c04", "kind": "reveal", "element_id": "cell", "anchor_word": "two", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c05", "kind": "reveal", "element_id": "lbl_v1", "anchor_word": "two", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c06", "kind": "reveal", "element_id": "lbl_v2", "anchor_word": "four", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c07", "kind": "emphasis", "element_id": "lbl_v2", "anchor_word": "volts", "occurrence": 2, "lead_s": 0.05},
+        {"id": "c08", "kind": "reveal", "element_id": "ammeter", "anchor_word": "current", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c09", "kind": "reveal", "element_id": "qmark", "anchor_word": "current", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c10", "kind": "reveal", "element_id": "lbl_i", "anchor_word": "current", "occurrence": 1, "lead_s": 0.05}
+      ]
+    },
+    {
+      "id": "b02", "scene": "s02", "slot": "check.predict", "mode": "curious", "tag": "[curious]",
+      "text": "Predict the current at four volts. Then decide whether 'always' is safe.",
+      "node_ids": ["ASM-ohm-predict-4v", "WRK-ohm-ratio", "FIX-ohm-readings"],
+      "pause_after_s": 0.6, "think_window_s": 5,
+      "on_screen": {"headline": "predict the current", "fx_refs": ["parameters.v2", "parameters.resistance_ohm", "display.ui.think_prompt"]},
+      "cues": [
+        {"id": "c01", "kind": "reveal", "element_id": "wires", "anchor_word": "Predict", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c02", "kind": "reveal", "element_id": "resistor", "anchor_word": "Predict", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c03", "kind": "reveal", "element_id": "lbl_r", "anchor_word": "Predict", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c04", "kind": "reveal", "element_id": "ammeter", "anchor_word": "current", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c05", "kind": "reveal", "element_id": "qmark", "anchor_word": "current", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c06", "kind": "reveal", "element_id": "lbl_i", "anchor_word": "current", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c07", "kind": "reveal", "element_id": "cell", "anchor_word": "four", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c08", "kind": "reveal", "element_id": "lbl_v2", "anchor_word": "four", "occurrence": 1, "lead_s": 0.05}
+      ]
+    },
+    {
+      "id": "b03", "scene": "s03", "slot": "explain.ladder_step", "mode": "steady", "tag": "[thoughtful]",
+      "text": "At two volts, the current is zero point two amperes. At four volts, it is zero point four amperes. Twice the voltage, twice the current, at constant temperature.",
+      "node_ids": ["CLM-ohm-proportional", "CLM-ohm-condition", "SIM-ohm-constant-r", "FIX-ohm-readings"],
+      "pause_after_s": 0.6, "think_window_s": 0,
+      "on_screen": {"headline": "twice the current", "fx_refs": ["results.i1_a", "results.i2_a", "results.ratio_i2_over_i1"]},
+      "cues": [
+        {"id": "c01", "kind": "reveal", "element_id": "card1", "anchor_word": "two", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c02", "kind": "reveal", "element_id": "lbl_v1s", "anchor_word": "two", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c03", "kind": "reveal", "element_id": "i1_val", "anchor_word": "amperes", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c04", "kind": "reveal", "element_id": "card2", "anchor_word": "four", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c05", "kind": "reveal", "element_id": "lbl_v2s", "anchor_word": "four", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c06", "kind": "reveal", "element_id": "i2_val", "anchor_word": "amperes", "occurrence": 2, "lead_s": 0.05},
+        {"id": "c07", "kind": "emphasis", "element_id": "i2_val", "anchor_word": "Twice", "occurrence": 1, "lead_s": 0.05}
+      ]
+    },
+    {
+      "id": "b04", "scene": "s03", "slot": "worked.step", "mode": "steady", "tag": "[calm]",
+      "text": "Voltage over current: two over zero point two is ten ohms. Four over zero point four is also ten ohms. That fixed ratio is the resistance.",
+      "node_ids": ["WRK-ohm-ratio", "CLM-ohm-resistance", "FIX-ohm-readings"],
+      "pause_after_s": 0.8, "think_window_s": 0,
+      "on_screen": {"headline": "", "fx_refs": ["results.v1_over_i1_ohm", "results.v2_over_i2_ohm"]},
+      "cues": [
+        {"id": "c08", "kind": "reveal", "element_id": "ratio_1", "anchor_word": "ten", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c09", "kind": "reveal", "element_id": "ratio_2", "anchor_word": "ten", "occurrence": 2, "lead_s": 0.05},
+        {"id": "c10", "kind": "emphasis", "element_id": "ratio_1", "anchor_word": "fixed", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c11", "kind": "emphasis", "element_id": "ratio_2", "anchor_word": "fixed", "occurrence": 1, "lead_s": 0.05}
+      ]
+    },
+    {
+      "id": "b05", "scene": "s04", "slot": "misconception.confront", "mode": "deliberate", "tag": "[thoughtful]",
+      "text": "A tempting idea: Ohm's law is always true. But a filament bulb heats up, its resistance changes, and doubling the voltage does not double the current.",
+      "node_ids": ["MIS-ohm-universal", "CLM-ohm-filament", "CLM-ohm-condition"],
+      "pause_after_s": 0.8, "think_window_s": 0,
+      "on_screen": {"headline": "resistance changes", "fx_refs": []},
+      "cues": [
+        {"id": "c01", "kind": "reveal", "element_id": "filament", "anchor_word": "filament", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c02", "kind": "reveal", "element_id": "bulb", "anchor_word": "bulb", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c03", "kind": "reveal", "element_id": "heat", "anchor_word": "heats", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c04", "kind": "emphasis", "element_id": "bulb", "anchor_word": "changes", "occurrence": 1, "lead_s": 0.05}
+      ]
+    },
+    {
+      "id": "b06", "scene": "s05", "slot": "recap.statement", "mode": "steady", "tag": "[warm]",
+      "text": "For an ohmic conductor at constant temperature, current is proportional to voltage. Resistance is the constant of proportionality: voltage equals current multiplied by resistance.",
+      "node_ids": ["CLM-ohm-proportional", "CLM-ohm-resistance", "CLM-ohm-condition"],
+      "pause_after_s": 0.6, "think_window_s": 0,
+      "on_screen": {"headline": "constant of proportionality", "fx_refs": ["results.v1_over_i1_ohm", "display.ratio_label", "display.r_unit"]},
+      "cues": [
+        {"id": "c01", "kind": "reveal", "element_id": "card_r", "anchor_word": "Resistance", "occurrence": 1, "lead_s": 0.05},
+        {"id": "c02", "kind": "reveal", "element_id": "ratio_card", "anchor_word": "Resistance", "occurrence": 1, "lead_s": 0.05}
+      ]
+    },
+    {
+      "id": "b07", "scene": "s05", "slot": "outro.disclosure", "mode": "steady",
+      "text": "AI-generated narration; script by ExamLeaf.",
+      "node_ids": [],
+      "pause_after_s": 0, "think_window_s": 0,
+      "on_screen": {"headline": "", "fx_refs": []},
+      "cues": [
+        {"id": "c03", "kind": "reveal", "element_id": "disclosure", "anchor_word": "AI-generated", "occurrence": 1, "lead_s": 0.05}
+      ]
+    }
+  ]
+}

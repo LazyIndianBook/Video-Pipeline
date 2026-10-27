@@ -1,0 +1,11 @@
+{
+  "skill_name": "examleaf-script-evaluator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "A script is entertaining but has no unprompted problem and reuses the previous ten openings.",
+      "expected_output": "Flags missing independent performance, repeated structure and unvalidated enjoyment; requests targeted repair.",
+      "files": []
+    }
+  ]
+}

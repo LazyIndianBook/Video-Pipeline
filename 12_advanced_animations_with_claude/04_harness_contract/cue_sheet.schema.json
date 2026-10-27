@@ -1,0 +1,114 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://examleaf.invalid/schemas/cue_sheet.schema.json",
+  "title": "ExamLeaf scene cue sheet",
+  "description": "One canonical cue sheet per scene (research report section 5.5). All times are in seconds from scene start. Scene code reads cues[].at and never hard-codes times. If narration is regenerated: re-align, rebuild this file, re-render; scene code does not change. Structural rules are enforced by validate_cue_sheet.py, which reads this file; semantic rules (monotonic times, non-overlapping words, cues within duration) are enforced by that script because JSON Schema draft-07 cannot express them.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "scene_id", "fps", "duration", "language", "words", "cues", "narration_audio_sha256", "script_sha256"],
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "description": "Cue sheet format version. Independent of the contract version; see contract.md section 14."
+    },
+    "scene_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]{2,63}$",
+      "description": "Stable scene identifier, for example phy-10-03-s04."
+    },
+    "fps": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 120,
+      "description": "Intended render fps. Times are in seconds and are authoritative; if the renderer uses a different fps the renderer's fps wins and a warning is logged."
+    },
+    "duration": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 3600,
+      "description": "Scene duration in seconds. Becomes window.DURATION. Frame count = round(duration * fps). Derived from the narration, not the other way round."
+    },
+    "language": {
+      "type": "string",
+      "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$",
+      "description": "Primary narration language, BCP-47 style (hi-IN, as-IN, en-IN). Code-switched words carry their own lang."
+    },
+    "alignment_source": {
+      "type": "string",
+      "enum": ["forced_alignment", "tts_provider", "manual", "synthetic_even_spacing", "example"],
+      "description": "How word times were produced. synthetic_even_spacing and example are NOT valid for production (validate_cue_sheet.py --production rejects them)."
+    },
+    "narration_audio_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "SHA-256 of the narration audio file these times were aligned to. null only while no narration exists (validator --production rejects null)."
+    },
+    "script_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "SHA-256 of the approved script text. The animation agent never edits approved text; a changed hash means re-approval and re-alignment."
+    },
+    "words": {
+      "type": "array",
+      "description": "Word timings in spoken order. t0 is when the word starts, t1 when it ends. Words must not overlap.",
+      "items": { "$ref": "#/definitions/word" }
+    },
+    "beats": {
+      "type": "array",
+      "description": "Beat times in seconds (librosa units='time', never frames). Strictly increasing. Empty is allowed: silent or beatless audio gives an empty list [N41]; fall back to the narration grid.",
+      "items": { "type": "number", "minimum": 0 }
+    },
+    "cues": {
+      "type": "array",
+      "description": "Animation cues. Sorted by at (non-decreasing).",
+      "items": { "$ref": "#/definitions/cue" }
+    },
+    "sfx": {
+      "type": "array",
+      "description": "Sound-effect placements.",
+      "items": { "$ref": "#/definitions/sfx" }
+    },
+    "meta": {
+      "type": "object",
+      "description": "Free-form provenance (tool names, notes). Not restricted by this schema. Optional documented fields (16 Oct 2026, pilot gaps L-03/L-05), which scene code MAY read: meta.beats_text[] = {id, slot, text (verbatim script text, punctuation intact; words[] strips punctuation), headline, start, end, word_range} per script beat, times in scene-local seconds; meta.think_windows[] = {beat, seconds, start, end} for each predict pause, so a scene knows when its Pause/Predict plate shows. Scene boundaries sit on the frame grid: the builder snaps each scene start to a whole frame and scene-local time (words[].t0, cues[].at, these fields) starts at the snapped scene start."
+    }
+  },
+  "definitions": {
+    "word": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["w", "t0", "t1"],
+      "properties": {
+        "w": { "type": "string", "minLength": 1, "description": "The word as spoken and shown, in its own script (Devanagari, Bengali-Assamese or Latin)." },
+        "t0": { "type": "number", "minimum": 0 },
+        "t1": { "type": "number", "minimum": 0 },
+        "occurrence": { "type": "integer", "minimum": 1, "description": "1-based index of this surface form among identical words in the scene. Lets a cue refer to 'the second occurrence'." },
+        "lang": { "type": "string", "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$", "description": "Language of this word when it differs from the sheet language (code-switching)." }
+      }
+    },
+    "cue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "at", "kind"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$" },
+        "at": { "type": "number", "minimum": 0, "description": "Cue time in seconds. For a reveal keyed to a word: at <= word.t0 and at >= word.t0 - 0.05 (the 'on or 0.05 s before' rule)." },
+        "kind": { "type": "string", "enum": ["reveal", "emphasis", "transition", "hold", "marker"] },
+        "element_id": { "type": "string", "minLength": 1, "description": "DOM or scene element this cue drives." },
+        "occurrence": { "type": "integer", "minimum": 1, "description": "1-based index when the same id fires more than once (repeat emphasis). Omit for a single firing." },
+        "word_index": { "type": "integer", "minimum": 0, "description": "Index into words[] that this cue is keyed to. Enables the reveal-lead check." },
+        "until": { "type": "number", "minimum": 0, "description": "End time for kind=hold (for example narration end + 0.5 s for an equation)." }
+      }
+    },
+    "sfx": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["file", "at", "gain_db"],
+      "properties": {
+        "file": { "type": "string", "pattern": "^[A-Za-z0-9_][A-Za-z0-9_./-]*\\.(wav|flac)$", "description": "Relative path to a 48 kHz WAV or FLAC one-shot. No absolute paths, no '..' segments (validator rejects)." },
+        "at": { "type": "number", "minimum": 0 },
+        "gain_db": { "type": "number", "minimum": -60, "maximum": 0, "description": "Attenuation relative to the library master level. Positive gain is not allowed (clipping)." }
+      }
+    }
+  }
+}

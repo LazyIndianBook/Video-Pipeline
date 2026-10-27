@@ -1,0 +1,486 @@
+{
+  "version": "en-reviewed-example-1",
+  "review_scope": "Original explicit text mappings checked during this build; no external teacher or acoustic approval.",
+  "entries": {
+    "water_formula": {
+      "display": "H₂O",
+      "meaning": "Water formula; prefer water in explanatory prose.",
+      "locales": {
+        "en-IN": {
+          "spoken": "H two O",
+          "caption": "H two O",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "two_waters": {
+      "display": "2H₂O",
+      "meaning": "Coefficient multiplies the whole formula.",
+      "locales": {
+        "en-IN": {
+          "spoken": "two water molecules",
+          "caption": "two water molecules",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "hydrogen_peroxide": {
+      "display": "H₂O₂",
+      "meaning": "Do not replace water with this to balance an equation.",
+      "locales": {
+        "en-IN": {
+          "spoken": "hydrogen peroxide",
+          "caption": "hydrogen peroxide",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "hydrogen_molecule": {
+      "display": "H₂",
+      "meaning": "Diatomic identity.",
+      "locales": {
+        "en-IN": {
+          "spoken": "a hydrogen molecule",
+          "caption": "a hydrogen molecule",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "oxygen_molecule": {
+      "display": "O₂",
+      "meaning": "Diatomic identity.",
+      "locales": {
+        "en-IN": {
+          "spoken": "an oxygen molecule",
+          "caption": "an oxygen molecule",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "sodium_ion": {
+      "display": "Na⁺",
+      "meaning": "Not neutral sodium.",
+      "locales": {
+        "en-IN": {
+          "spoken": "sodium ion with one positive charge",
+          "caption": "sodium ion with one positive charge",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "sulfate_ion": {
+      "display": "SO₄²⁻",
+      "meaning": "Ion charge is not a stoichiometric coefficient.",
+      "locales": {
+        "en-IN": {
+          "spoken": "sulfate ion with two negative charges",
+          "caption": "sulfate ion with two negative charges",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "iron_three": {
+      "display": "Fe³⁺",
+      "meaning": "Formal oxidation state reading; explain positive three charge.",
+      "locales": {
+        "en-IN": {
+          "spoken": "iron three ion",
+          "caption": "iron three ion",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "moles_per_litre": {
+      "display": "mol L⁻¹",
+      "meaning": "Not moles per kilogram.",
+      "locales": {
+        "en-IN": {
+          "spoken": "moles per litre",
+          "caption": "moles per litre",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "moles_per_kilogram": {
+      "display": "mol kg⁻¹",
+      "meaning": "Specify solvent when describing molality.",
+      "locales": {
+        "en-IN": {
+          "spoken": "moles per kilogram",
+          "caption": "moles per kilogram",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "three_point_two": {
+      "display": "3.2",
+      "meaning": "Decimal point required.",
+      "locales": {
+        "en-IN": {
+          "spoken": "three point two",
+          "caption": "three point two",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "negative_power": {
+      "display": "10⁻³",
+      "meaning": "Do not read as ten minus three.",
+      "locales": {
+        "en-IN": {
+          "spoken": "ten to the power of negative three",
+          "caption": "ten to the power of negative three",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "microfarad": {
+      "display": "µF",
+      "meaning": "µ prefix; context is capacitance, not coefficient of friction.",
+      "locales": {
+        "en-IN": {
+          "spoken": "microfarad",
+          "caption": "microfarad",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "milliampere": {
+      "display": "mA",
+      "meaning": "Not megaampere.",
+      "locales": {
+        "en-IN": {
+          "spoken": "milliampere",
+          "caption": "milliampere",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "megaampere": {
+      "display": "MA",
+      "meaning": "Not milliampere.",
+      "locales": {
+        "en-IN": {
+          "spoken": "megaampere",
+          "caption": "megaampere",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "speed_unit": {
+      "display": "m s⁻¹",
+      "meaning": "Speed, not acceleration.",
+      "locales": {
+        "en-IN": {
+          "spoken": "metres per second",
+          "caption": "metres per second",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "acceleration_unit": {
+      "display": "m s⁻²",
+      "meaning": "Squared denominator.",
+      "locales": {
+        "en-IN": {
+          "spoken": "metres per second squared",
+          "caption": "metres per second squared",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "ohm_law": {
+      "display": "V = IR",
+      "meaning": "Application conditions required.",
+      "locales": {
+        "en-IN": {
+          "spoken": "voltage equals current multiplied by resistance",
+          "caption": "voltage equals current multiplied by resistance",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "epsilon_zero": {
+      "display": "ε₀",
+      "meaning": "Context: vacuum permittivity.",
+      "locales": {
+        "en-IN": {
+          "spoken": "epsilon nought",
+          "caption": "epsilon nought",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "mu_zero": {
+      "display": "µ₀",
+      "meaning": "Context: vacuum permeability.",
+      "locales": {
+        "en-IN": {
+          "spoken": "mu nought",
+          "caption": "mu nought",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "tau": {
+      "display": "τ",
+      "meaning": "Time constant context, not a generic reading for all symbols.",
+      "locales": {
+        "en-IN": {
+          "spoken": "tau",
+          "caption": "tau",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "delta_phi": {
+      "display": "ΔΦ",
+      "meaning": "Conceptual expansion, not just Greek letter names.",
+      "locales": {
+        "en-IN": {
+          "spoken": "change in magnetic flux",
+          "caption": "change in magnetic flux",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "gradient": {
+      "display": "dy/dx",
+      "meaning": "Do not silently call it a fraction in every context.",
+      "locales": {
+        "en-IN": {
+          "spoken": "the derivative of y with respect to x",
+          "caption": "the derivative of y with respect to x",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "inverse_sine": {
+      "display": "sin⁻¹x",
+      "meaning": "Chosen inverse-function meaning; never guess from syntax alone.",
+      "locales": {
+        "en-IN": {
+          "spoken": "the inverse sine of x",
+          "caption": "the inverse sine of x",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "reciprocal_sine": {
+      "display": "1/sin x",
+      "meaning": "Not inverse sine.",
+      "locales": {
+        "en-IN": {
+          "spoken": "one divided by sine of x",
+          "caption": "one divided by sine of x",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "log_ten": {
+      "display": "log₁₀x",
+      "meaning": "Base explicit.",
+      "locales": {
+        "en-IN": {
+          "spoken": "logarithm of x to base ten",
+          "caption": "logarithm of x to base ten",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "natural_log": {
+      "display": "ln x",
+      "meaning": "Base e.",
+      "locales": {
+        "en-IN": {
+          "spoken": "natural logarithm of x",
+          "caption": "natural logarithm of x",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "square_root_real": {
+      "display": "√(x²) = |x|",
+      "meaning": "Real x; nonnegative principal square root.",
+      "locales": {
+        "en-IN": {
+          "spoken": "the square root of x squared equals the absolute value of x",
+          "caption": "the square root of x squared equals the absolute value of x",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "integral": {
+      "display": "∫₀¹ f(x) dx",
+      "meaning": "Bounds are ordered.",
+      "locales": {
+        "en-IN": {
+          "spoken": "the integral from zero to one of f of x, with respect to x",
+          "caption": "the integral from zero to one of f of x, with respect to x",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "degrees": {
+      "display": "30°",
+      "meaning": "Not radians.",
+      "locales": {
+        "en-IN": {
+          "spoken": "thirty degrees",
+          "caption": "thirty degrees",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "radians": {
+      "display": "π/6 rad",
+      "meaning": "Angle unit explicit.",
+      "locales": {
+        "en-IN": {
+          "spoken": "pi over six radians",
+          "caption": "pi over six radians",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "five_prime": {
+      "display": "5′",
+      "meaning": "DNA/RNA end label, not five feet.",
+      "locales": {
+        "en-IN": {
+          "spoken": "five prime",
+          "caption": "five prime",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "three_prime": {
+      "display": "3′",
+      "meaning": "DNA/RNA direction label.",
+      "locales": {
+        "en-IN": {
+          "spoken": "three prime",
+          "caption": "three prime",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "dna": {
+      "display": "DNA",
+      "meaning": "Letters separated.",
+      "locales": {
+        "en-IN": {
+          "spoken": "D N A",
+          "caption": "D N A",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "rna": {
+      "display": "RNA",
+      "meaning": "Letters separated.",
+      "locales": {
+        "en-IN": {
+          "spoken": "R N A",
+          "caption": "R N A",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "atp": {
+      "display": "ATP",
+      "meaning": "Letters separated.",
+      "locales": {
+        "en-IN": {
+          "spoken": "A T P",
+          "caption": "A T P",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "heterozygous": {
+      "display": "Aa",
+      "meaning": "Explain genotype, do not pronounce aa ambiguously.",
+      "locales": {
+        "en-IN": {
+          "spoken": "one uppercase A allele and one lowercase a allele",
+          "caption": "one uppercase A allele and one lowercase a allele",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "diploid": {
+      "display": "2n",
+      "meaning": "Use ploidy in context; not DNA mass.",
+      "locales": {
+        "en-IN": {
+          "spoken": "diploid, two n",
+          "caption": "diploid, two n",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "mitosis": {
+      "display": "mitosis",
+      "meaning": "Native voice pronunciation audition required.",
+      "locales": {
+        "en-IN": {
+          "spoken": "mitosis",
+          "caption": "mitosis",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    },
+    "meiosis": {
+      "display": "meiosis",
+      "meaning": "Must stay audibly distinct from mitosis.",
+      "locales": {
+        "en-IN": {
+          "spoken": "meiosis",
+          "caption": "meiosis",
+          "editorially_checked": true,
+          "acoustic_approved": false
+        }
+      }
+    }
+  }
+}

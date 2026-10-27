@@ -1,0 +1,28 @@
+{
+ "cache_key": "3f6015a9cd83e347",
+ "beat": "b13",
+ "chars": 26,
+ "request_id": "macos-say-Rishi-170",
+ "model_id": "macos-say",
+ "voice_id": "Rishi",
+ "unmatched_words": 0,
+ "words": [
+  {
+   "w": "Professor",
+   "t0": 0.01,
+   "t1": 0.583
+  },
+  {
+   "w": "Diki",
+   "t0": 0.633,
+   "t1": 0.92
+  },
+  {
+   "w": "Simplified",
+   "t0": 0.945,
+   "t1": 1.575
+  }
+ ],
+ "provider_alignment": null,
+ "preview": true
+}

@@ -1,0 +1,6 @@
+{
+  "provider": "cartesia",
+  "model": "sonic-3.5-2026-05-04",
+  "voice_id": "REPLACE_WITH_APPROVED_VOICE_ID",
+  "api_version": "REPLACE_WITH_REVIEWED_API_VERSION"
+}

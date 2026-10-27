@@ -1,0 +1,145 @@
+{
+ "video_id": "bio-photosyn-ci-01",
+ "fps": 30,
+ "viewport": [
+  1080,
+  1920
+ ],
+ "seed": 20261016,
+ "scenes": [
+  {
+   "id": "s01",
+   "file": "scenes/s01.html",
+   "scene_sha256": "89371b09d742b155901d65709ad793918d2327f1ee34304d3dcee8574f97d81a",
+   "cue_sheet_sha256": "9fad1a33a1ac9222bbb86ed8a280186df1bf11614854661c9cf7668e65443714",
+   "cue_source": "injected",
+   "fixture_source": "injected",
+   "duration": 6.8,
+   "frames": 204,
+   "errors": [],
+   "warnings": [
+    {
+     "code": "W_HOLD_SHORT",
+     "severity": "warning",
+     "message": "headline 0 hold 0.97 s < 1.2 s [N60]",
+     "t": null
+    }
+   ],
+   "encode_exit": 0,
+   "capture_s": 92.6,
+   "frame_hashes_sample": {
+    "0": "a4f3c91797e6a5a49de6fd4feb3686515d027a1a185ba4b4199cdb8d7c413579",
+    "102": "1ca4f71561d73bf5ac1a161876802504381b73731a5a97f43287cda0ba48974d",
+    "203": "796576fa0d1f8d0a541962abe22bdba1ce6a48e977710d10a43d555bb553bd32"
+   },
+   "frames_sha256": "f7b40d8295eee748cd630c715d619b6290ff62f083e8d26a13673eba789efaf2",
+   "deterministic_rerender": true,
+   "deterministic_mismatched_frames": 0,
+   "deterministic_sampled_frames": 204
+  },
+  {
+   "id": "s02",
+   "file": "scenes/s02.html",
+   "scene_sha256": "71a787d9a25f6024df2d3ededa41d7ea77a109808a091b36e6a269442527a44b",
+   "cue_sheet_sha256": "2ac33ded0ccd92722f84a91f2917ecbb99c482111db971c992d9f4684f2f36f9",
+   "cue_source": "injected",
+   "fixture_source": "injected",
+   "duration": 11.933,
+   "frames": 358,
+   "errors": [],
+   "warnings": [],
+   "encode_exit": 0,
+   "capture_s": 158.7,
+   "frame_hashes_sample": {
+    "0": "8f875025054627e76c00d11ea28500039611f0d1c19d35b7d077980d9519fdee",
+    "179": "bfa32f0c4f7b8231931639e7d26ec219c0a54071ead1697dde9f0aab958dc544",
+    "357": "aa58a33d22590164749b47c2364a29fbee394e7a17727563b1a27b30f114a55a"
+   },
+   "frames_sha256": "f5e4a8e5bc8df178706c606ead9aac55f81e2b21ede1b8462c5358564d9c5641",
+   "deterministic_rerender": true,
+   "deterministic_mismatched_frames": 0,
+   "deterministic_sampled_frames": 358
+  },
+  {
+   "id": "s03",
+   "file": "scenes/s03.html",
+   "scene_sha256": "d0582634480ef729e8ca2a37ba6b040b3a6ff8f85aa1f486b3d7164396176aa7",
+   "cue_sheet_sha256": "c34de56dfcf2e7f551e5c2e5fd746b85763601868127fb93d2a85863638a9975",
+   "cue_source": "injected",
+   "fixture_source": "injected",
+   "duration": 21.067,
+   "frames": 632,
+   "errors": [],
+   "warnings": [],
+   "encode_exit": 0,
+   "capture_s": 236.4,
+   "frame_hashes_sample": {
+    "0": "01dfc97fee62fa1ce425ffadaa73771867e6236ee9edd00981816e5812c46d75",
+    "316": "f199dcbdeeed84354dcce5eb7e7777c673259e7713e00baa1ce2a58f1d9baeb5",
+    "631": "1046cdbd73649c31300d53832213b8c0493e1fcc95273bbf0d6453200f3ad850"
+   },
+   "frames_sha256": "f223f0811bf82bae936734388b453255105ec55481cc7b42852e3ce91292bdf6",
+   "deterministic_rerender": true,
+   "deterministic_mismatched_frames": 0,
+   "deterministic_sampled_frames": 632
+  },
+  {
+   "id": "s04",
+   "file": "scenes/s04.html",
+   "scene_sha256": "07427a52b38e7e1a483edf28f47adf2b7b41a829a3602c60826ba060feb48022",
+   "cue_sheet_sha256": "fe3d3e2c985b9f7566d3776fa3f30ec4fa9e0a6f63d92977db727d76a941af55",
+   "cue_source": "injected",
+   "fixture_source": "injected",
+   "duration": 12.533,
+   "frames": 376,
+   "errors": [],
+   "warnings": [],
+   "encode_exit": 0,
+   "capture_s": 166.0,
+   "frame_hashes_sample": {
+    "0": "7a1338f4af9155007909c61ae69888f2ab6fa156bbd905af22db2d89959e0004",
+    "188": "6e627b2133692954f7f56e65cecc94a9992e0b1a708042a293ed962e096d3f06",
+    "375": "af0270ae11788193e1a75fc54e5c29c9086fd8818c343e4fb439bfbc68ed0ea5"
+   },
+   "frames_sha256": "ad792b96f8ae82856de77268773d1663c73f5a5c5af1ed2473db7ebee0ab21d0",
+   "deterministic_rerender": true,
+   "deterministic_mismatched_frames": 0,
+   "deterministic_sampled_frames": 376
+  },
+  {
+   "id": "s05",
+   "file": "scenes/s05.html",
+   "scene_sha256": "d28c2be9e2364efa91af77304aa197d6e8f10c7edbe771ed79b9af7d6010f080",
+   "cue_sheet_sha256": "1f4e304aeb98879d6ad92fec643377ea000bab942f3b605a4473c7a3c83dfff9",
+   "cue_source": "injected",
+   "fixture_source": "injected",
+   "duration": 14.767,
+   "frames": 443,
+   "errors": [],
+   "warnings": [],
+   "encode_exit": 0,
+   "capture_s": 182.8,
+   "frame_hashes_sample": {
+    "0": "55b9c1bcba4571770c04c8b01c4748d856caabc9b0a4f99275eb6a051f153f09",
+    "221": "ad041454181fbbecb16e0af8b2288023735ccfd55c9a37bd68cef1c13089ae42",
+    "442": "060b897e70c735233fe04896d5127ee1bb3c74165c4da105354672026dc0febc"
+   },
+   "frames_sha256": "30adb848f6f12892ac6b4794a8c18f578481dec10f4ae2031139be462ccc362e",
+   "deterministic_rerender": true,
+   "deterministic_mismatched_frames": 0,
+   "deterministic_sampled_frames": 443
+  }
+ ],
+ "script_sha256": "9b85d46aa953f120980194a38416d0bd72c8636a87788d5784b8b9f8e4e9ca08",
+ "narration_audio_sha256": "1f60e4911a1ba326a0a12bded3577026ebba934c995640207d891a9ca41149fe",
+ "started": "2026-10-16T14:47:44",
+ "browser": "155.0.8059.82",
+ "capture_started": "2026-10-16T14:17:01",
+ "output": {
+  "file": "bio-photosyn-ci-01.mp4",
+  "sha256": "242b39e25b59893ecd9eedf71d1ddf52a2eb104ea5322249b99032410e515351",
+  "bytes": 10110864
+ },
+ "total_errors": 0,
+ "finished": "2026-10-16T14:50:52"
+}

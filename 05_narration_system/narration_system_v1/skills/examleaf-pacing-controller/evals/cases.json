@@ -1,0 +1,11 @@
+{
+  "status": "authored-not-agent-executed",
+  "positive": {
+    "input": "Segment text, concepts, actual audio durations and tasks",
+    "expected": "Duration report; boundary changes; external hold schedule"
+  },
+  "negative": {
+    "request": "Reject automatic speeding of equations to force ten minutes.",
+    "expected": "Preserve constraints, report issue; no silent compliance."
+  }
+}

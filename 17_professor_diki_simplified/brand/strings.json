@@ -1,0 +1,133 @@
+{
+ "schema_version": "1.0",
+ "asset_version": "1.1.0",
+ "date": "2026-10-16",
+ "brand_name": "Professor Diki Simplified",
+ "publisher": {
+  "name": "ExamLeaf",
+  "rule": "Publisher metadata only (channel owner, copyright, sidecar `publisher`, C2PA producer, MP4 artist/copyright tags). Never on screen, never spoken, never in a video title or filename."
+ },
+ "header_lockup": {
+  "text": "Professor Diki Simplified",
+  "display": "Professor Diki Simplified",
+  "lesson_code_slot": "{{LESSON_CODE}}",
+  "lesson_code_pattern": "^[A-Z]{3}-[A-Z0-9]{2,8}-[0-9]{2}$",
+  "asset": "opening_ident.svg",
+  "persistent": false,
+  "rule": "PD-21: opening ident only. The brand sticker 'Professor Diki Simplified' is on screen from frame 0 with the complete board and gone by 2.5 s; the end card carries the wordmark; no brand mark sits in the lesson frames. The lesson code is metadata only (no on-screen header).",
+  "opening_window_s": [
+   0.0,
+   2.5
+  ],
+  "legacy_asset": "header_lockup.svg (retired by PD-21)"
+ },
+ "end_card": {
+  "asset": "endcard.svg",
+  "brand_line": "Professor Diki Simplified",
+  "disclosure_line": {
+   "B": "AI-generated narration",
+   "A": "Performed by {{PERFORMER}}; voice converted with AI",
+   "A_direct": "Narrated by {{PERFORMER}}"
+  },
+  "disclosure_line_pattern": {
+   "B": "AI-generated narration",
+   "A": "Performed by [^;·{}]+ ?[;·] voice converted with AI",
+   "A_direct": "Narrated by [^;{}]+"
+  },
+  "free_lesson_line": "Free lesson: {{TOPIC}}",
+  "free_lesson_line_pattern": "Free lesson: [^{}]+",
+  "required_in_outro_scene": [
+   "brand_line",
+   "free_lesson_line"
+  ],
+  "note": "The end card carries the brand line and the free-lesson line (PD-20). The full RD-45 disclosure sentence goes in the description and the export field ai_voice_disclosure. Never use Path A wording on Path B audio.",
+  "disclosure_placement": "PD-20: the AI-content declaration lives in the platform's AI-content label at upload and in the description/sidecar `ai_voice_disclosure` (RD-45 template). It is never on screen and never spoken. `disclosure_line` below is kept for the description template and for Path A credits only."
+ },
+ "spoken": {
+  "outro_line": "Professor Diki Simplified.",
+  "outro_rule": "The last spoken line of every educational video, exactly this text, after the final question or CTA. No other brand words are spoken anywhere.",
+  "cta_options": [
+   "Try the free lesson on <topic>.",
+   "Try the free lesson available.",
+   "The worked example is in the free lesson below."
+  ],
+  "cta_rule": "At most one CTA line, after the transfer question has been answered and before the outro line; never a purchase prompt, never an engagement prompt (subscribe, like, share). ac0: no CTA."
+ },
+ "description_template": {
+  "first_line": "{{WHAT_YOU_GET}}",
+  "first_line_rule": "One truthful sentence naming exactly what the video teaches (PACKAGING §4.1); computed numbers only.",
+  "disclosure_sentence": {
+   "B": "AI-generated narration; script by {{SCRIPT_AUTHOR}}; reviewed by {{REVIEWER}}.",
+   "A": "Performed by {{PERFORMER}}; voice converted with AI tools; reviewed by {{REVIEWER}}.",
+   "A_direct": "Narrated by {{PERFORMER}}; no AI voice processing; reviewed by {{REVIEWER}}."
+  },
+  "disclosure_rule": "Exact 07/06 §6.4 templates. SCRIPT_AUTHOR is a named person or 'the Professor Diki Simplified team', never 'ExamLeaf'.",
+  "free_lesson_line": "Free lesson: {{LESSON_TITLE}} {{LESSON_LINK}}",
+  "publisher_line": "Published by ExamLeaf.",
+  "publisher_line_rule": "Optional last line; the only place ExamLeaf may appear in audience-readable copy.",
+  "hashtags": "At most 3, from the approved string table (class, board/exam label, subject or topic). No claim, trend, engagement or brand hashtags."
+ },
+ "forbidden": [
+  {
+   "id": "F01",
+   "pattern": "exam[\\s_.\\-]*leaf",
+   "label": "ExamLeaf",
+   "reason": "Founder rule (16 Oct 2026): the audience-facing identity is only Professor Diki Simplified; ExamLeaf stays in publisher metadata."
+  },
+  {
+   "id": "F02",
+   "pattern": "\\bguarantee(s|d)?\\b",
+   "label": "guarantee",
+   "reason": "Playbook trust rule: no exam or outcome guarantees (07/05 SH6 'Never' list)."
+  },
+  {
+   "id": "F03",
+   "pattern": "\\bfull[\\s-]+marks\\b",
+   "label": "full marks",
+   "reason": "A marks promise; the playbook forbids exam promises and score claims."
+  },
+  {
+   "id": "F04",
+   "pattern": "\\b100\\s?(%|per\\s?cent|percent)",
+   "label": "100%",
+   "reason": "Fabricated certainty or success percentage; the playbook forbids invented statistics. A science value of 100 % must be phrased another way (e.g. 'all of it') or approved by the academic reviewer as a release waiver."
+  },
+  {
+   "id": "F05",
+   "pattern": "always\\s+comes?\\s+in\\s+(the\\s+)?exams?",
+   "label": "always comes in the exam",
+   "reason": "Implies knowledge of future papers; an exam promise (C03 guard: no claim that one exact question will appear)."
+  },
+  {
+   "id": "F06",
+   "pattern": "\\bmind[\\s-]*blown\\b",
+   "label": "mind blown",
+   "reason": "Stock AI hype phrase named by the external audit; the voice direction bans it."
+  },
+  {
+   "id": "F07",
+   "pattern": "\\blet(\\s+us|['’]s)\\s+embark\\b",
+   "label": "let us embark",
+   "reason": "Stock AI phrase named by the external audit; generic and slow."
+  },
+  {
+   "id": "F08",
+   "pattern": "\\bit(['’]s|\\s+is)\\s+that\\s+simple\\b",
+   "label": "it's that simple",
+   "reason": "Stock AI phrase named by the external audit; it also tells a struggling learner they should already find it easy."
+  },
+  {
+   "id": "F09",
+   "pattern": "\\bsuper[\\s-]*teacher\\b",
+   "label": "super teacher (as a public name)",
+   "reason": "Super Teacher is the internal persona and style name; it is never a public name, title or on-screen label. Persona ids in config files are not scanned."
+  }
+ ],
+ "scan_scope": "brand_check.py scans: spoken text (script.json beats[].text and narration/timeline.json words), on-screen text (scene text nodes outside <script>, <style>, <title>, plus the fixture values bound by data-fx), fixture string values, script.json title/topic/video_id, render/*.mp4 filenames and their MP4 title tag.",
+ "decisions": {
+  "PD-14": "Spoken close is exactly two sentences: 'Try the free lesson on <topic>.' then 'Professor Diki Simplified.' A light, claim-free 'next one' tease before them is allowed; sales lines to students are not.",
+  "PD-12": "Separator in end-card lines is '·'; '100%' is forbidden in claim text only (fixture science values exempt).",
+  "PD-20": "No 'AI-generated' line on screen or spoken; declaration at upload (platform label + description).",
+  "PD-21": "Brand at the start (opening ident ≤ 2.5 s) and on the end card only; the persistent header lockup is retired."
+ }
+}

@@ -1,0 +1,47 @@
+<!--CSS-->
+svg text{font-family:var(--font);font-weight:700}
+.band{mix-blend-mode:multiply}
+<!--BODY-->
+<!--JS-->
+/* s03 tally: atom circles and numerals per element and side, from results.<state>; states switch on the coefficient reveal cues.
+   unbalanced -> step1 (coef in front of H2O) -> balanced (coef in front of H2). Nothing here is typed: every count is a fixture field. */
+const STATES = ['unbalanced', 'step1', 'balanced'], ELS = ['H', 'O'], ROWY = { H: 790, O: 960 };
+const CX = { left: 206, right: 652 }, NUMX = { left: 480, right: 912 }, RELX = 590, STEP = { H: 44, O: 60 }, CR = { H: 19, O: 26 };
+let T_STEP1 = Infinity, T_BAL = Infinity, coefW = {};
+const stateIdx = t => t >= T_BAL - EPS ? 2 : t >= T_STEP1 - EPS ? 1 : 0;
+const since = i => [-Infinity, T_STEP1, T_BAL][i];
+const circles = [], nums = [], rels = [];
+function build(under, over) {
+  buildHeadline({ beat: 0, words: [['never', 1], ['created', 1, true], ['or', 1], ['destroyed', 1, true]] });
+  const c = card($('stage'), 72, 548, 936, 132);
+  equation(c, 30, 'balanced', 'balanced', {}, 76);
+  ELS.forEach(e => svgEl('rect', { id: 'row_' + e, class: 'band cue', 'data-emph': 'swipe', x: LEFT - 16, y: ROWY[e] - 72, width: W - LEFT - RIGHT + 32, height: 144, rx: 22, fill: HLC }, under));
+  const G = { left: svgEl('g', { id: 'tally_left', class: 'cue', 'data-reveal': '1' }, over), right: svgEl('g', { id: 'tally_right', class: 'cue', 'data-reveal': '1' }, over), rel: svgEl('g', { id: 'rel', class: 'cue', 'data-reveal': '1' }, over) };
+  ELS.forEach(e => {
+    const y = ROWY[e];
+    svgEl('text', { x: LEFT + 12, y: y + 22, 'font-size': 64, fill: INK, 'data-fx': 'display.elements.' + e + '.symbol' }, G.left);
+    ['left', 'right'].forEach(side => {
+      const max = Math.max(...STATES.map(s => fx('results.' + s + '.' + side + '.' + e)));
+      for (let j = 0; j < max; j++) circles.push({ side, e, j, el: svgEl('circle', { class: 'cue', cx: CX[side] + CR[e] + j * STEP[e], cy: y, r: CR[e], fill: FILL[e], stroke: INK, 'stroke-width': 3 }, G[side]) });
+      STATES.forEach((s, i) => nums.push({ i, el: svgEl('text', { x: NUMX[side], y: y + 26, 'font-size': 76, 'text-anchor': 'middle', fill: INK, 'data-fx': 'display.counts.' + s + '.' + side + '.' + e }, G[side]) }));
+    });
+    STATES.forEach((s, i) => { const ok = fx('results.' + s + '.match.' + e); rels.push({ i, el: svgEl('text', { x: RELX, y: y + 24, 'font-size': 76, 'text-anchor': 'middle', fill: ok ? TEAL : AMBER, 'data-fx': 'display.ops.' + (ok ? 'eq' : 'neq') }, G.rel) }); });
+  });
+  svgEl('path', { id: 'tick', class: 'cue', 'data-reveal': '1', d: 'M508,1100 L532,1124 L580,1072', fill: 'none', stroke: TEAL, 'stroke-width': 12, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, over);
+}
+function afterLayout() {
+  ['coef_H2O', 'coef_H2'].forEach(id => { coefW[id] = $(id).getBoundingClientRect().width; tl.add('cw.' + id, id in reveals ? reveals[id] : 0, 0.35, 0, 1, 'cubicOut'); });
+  if (!('coef_H2O' in reveals) || !('coef_H2' in reveals)) throw fail('E_CUES_INVALID', 's03 needs reveal cues for coef_H2O and coef_H2 (they switch the tally state)');
+  T_STEP1 = reveals.coef_H2O; T_BAL = reveals.coef_H2;
+}
+function draw(t) {
+  const i = stateIdx(t);
+  ['coef_H2O', 'coef_H2'].forEach(id => { $(id).style.width = (coefW[id] * tl.at('cw.' + id, t, 0)) + 'px'; });
+  circles.forEach(c => {
+    const n = s => fx('results.' + STATES[s] + '.' + c.side + '.' + c.e), vis = c.j < n(i);
+    let k = i; while (vis && k > 0 && c.j < n(k - 1)) k--;           // state where this circle first appeared (for the pop)
+    const u = vis ? clamp01((t - since(k)) / 0.3) : 0;
+    c.el.style.opacity = u; c.el.style.transform = 'scale(' + (REDUCED ? 1 : lerp(0.6, 1, ease.backOut(u))) + ')';
+  });
+  nums.concat(rels).forEach(x => { x.el.style.opacity = x.i === i ? 1 : 0; });
+}

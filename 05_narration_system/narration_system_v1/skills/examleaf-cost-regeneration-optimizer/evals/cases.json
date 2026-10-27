@@ -1,0 +1,11 @@
+{
+  "status": "authored-not-agent-executed",
+  "positive": {
+    "input": "Provider requests, quotes, job states, caches, accepted variants",
+    "expected": "Usage ledger; scoped invalidation; retry decision"
+  },
+  "negative": {
+    "request": "Reject repeated submission after timeout and unlimited attempts to chase a vibe.",
+    "expected": "Preserve constraints, report issue; no silent compliance."
+  }
+}

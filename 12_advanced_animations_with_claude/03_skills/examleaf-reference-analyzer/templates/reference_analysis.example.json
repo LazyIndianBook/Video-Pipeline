@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "skill": "examleaf-reference-analyzer",
+  "_note": "ILLUSTRATIVE SHAPE ONLY - values are synthetic (from the selftest), not a measurement of any real video.",
+  "source": {"path": "jobs/style-collage-v2/refs/reference_a.mp4", "sha256": "<64 hex>", "rights": "analysis_only"},
+  "probe": {"width": 1920, "height": 1080, "duration_s": 12.0, "codec": "h264", "r_frame_rate": "30/1", "avg_frame_rate": "30/1", "fps": 30.0, "vfr_suspected": false, "orientation": "landscape"},
+  "letterbox": {"letterboxed": false, "crop": "1920:1080:0:0", "active_aspect": 1.778, "container_aspect": 1.778},
+  "scene_threshold": 0.3,
+  "shots": {"count": 4, "cut_times_s": [2.002, 5.005, 9.009], "shot_lengths_s": [2.002, 3.003, 4.004, 2.991], "median_s": 2.997, "mean_s": 3.0, "p10_s": 2.002, "p90_s": 4.004, "min_s": 2.002, "max_s": 4.004, "cv": 0.236, "cuts_per_minute": 15.0, "histogram": {"<0.5": 0, "0.5-1": 0, "1-2": 0, "2-4": 3, ">=4": 1}},
+  "holds": {"method": "freezedetect static intervals (upper-bound proxy for text holds; confirm on stills)", "intervals": [{"start_s": 3.2, "duration_s": 1.6}], "count": 1, "median_s": 1.6},
+  "palette": {"per_shot": [{"t_s": 1.001, "swatches": [{"hex": "#f3ecdf", "share": 0.75}, {"hex": "#d9483b", "share": 0.25}]}], "overall": [{"hex": "#f3ecdf", "share": 0.75}, {"hex": "#d9483b", "share": 0.25}]},
+  "stills": ["jobs/style-collage-v2/refs/quarantine_stills/shot_000_1.00s.png"],
+  "stills_policy": "quarantine: internal study only; never assets, never image-model references",
+  "commands": ["ffprobe -v error -select_streams v:0 ...", "ffmpeg -hide_banner -nostats -i ... -vf fps=2,cropdetect ...", "ffmpeg ... -vf select='gt(scene,0.3)',showinfo ...", "ffmpeg ... -vf freezedetect=n=-60dB:d=0.5 ..."],
+  "ffmpeg_version": "<first line of ffmpeg -version>",
+  "warnings": ["landscape reference: pacing numbers transfer, layout does not; re-lay out for 1080x1920 (#49)"]
+}

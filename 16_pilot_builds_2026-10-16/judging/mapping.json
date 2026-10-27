@@ -1,0 +1,22 @@
+{
+ "biology": {
+  "A": "opus",
+  "B": "haiku"
+ },
+ "physics": {
+  "A": "haiku",
+  "B": "opus"
+ },
+ "chemistry": {
+  "A": "haiku",
+  "B": "opus"
+ },
+ "physics_v2": {
+  "A": "opus",
+  "B": "haiku_v2"
+ },
+ "physics_pd": {
+  "A": "diki_v2",
+  "B": "opus"
+ }
+}

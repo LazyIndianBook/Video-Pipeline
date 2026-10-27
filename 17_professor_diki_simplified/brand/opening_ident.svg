@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 864 104" width="864" height="104" role="img" aria-label="Professor Diki Simplified">
+  <!-- Opening ident v2.0.0 (PD-21; replaces header_lockup.svg, whose persistent header is retired). The brand sticker at ident
+       size for the 1080 x 1920 canvas: place at x = 96, y = 136 (tokens.lanes.ident, above the title lane, inside the side
+       margins). On screen from FRAME 0 over the complete board, held to 2.2 s, then Pop out (opacity + scale 1 -> 0.94,
+       0.26 s ease-out): gone by 2.46 s. No lesson code (metadata only). Black plaque #2B2622, 6 px cream outline #FFFDF7,
+       soft double shadow, pink washi; "Professor Diki" Georgia bold cream, "Simplified" sans heavy mustard; rotated -2 deg. -->
+  <defs>
+    <filter id="sh" x="-10%" y="-30%" width="120%" height="170%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3.5"/><feOffset dy="9" result="o1"/>
+      <feFlood flood-color="#4A3016" flood-opacity="0.30"/><feComposite in2="o1" operator="in" result="s1"/>
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0.75"/><feOffset dy="2" result="o2"/>
+      <feFlood flood-color="#000" flood-opacity="0.20"/><feComposite in2="o2" operator="in" result="s2"/>
+      <feMerge><feMergeNode in="s1"/><feMergeNode in="s2"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g transform="rotate(-2 432 52)">
+    <g filter="url(#sh)">
+      <rect x="108" y="10" width="648" height="84" rx="12" fill="#FFFDF7"/>
+      <rect x="114" y="16" width="636" height="72" rx="8" fill="#2B2622"/>
+    </g>
+    <text x="146" y="67" textLength="352" lengthAdjust="spacingAndGlyphs" font-family="Georgia, 'Times New Roman', serif" font-size="46" font-weight="700" fill="#FBF7EE">Professor Diki</text>
+    <text x="518" y="67" textLength="200" lengthAdjust="spacingAndGlyphs" font-family="'Kohinoor Devanagari', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif" font-size="46" font-weight="800" fill="#E0A73A">Simplified</text>
+    <rect x="170" y="0" width="110" height="30" fill="#F1A9A0" fill-opacity="0.72" transform="rotate(-6 225 15)"/>
+  </g>
+</svg>

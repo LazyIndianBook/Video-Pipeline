@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "skill": "examleaf-motion-harness",
+  "_note": "Fields follow 12_advanced_animations_with_claude/04_harness_contract/contract.md section 11 'Render manifest'; null until filled by the harness.",
+  "scene_id": "<scene id>",
+  "scene_path": null,
+  "scene_sha256": null,
+  "contract_version": "<from window.SCENE_META.contract>",
+  "conformance_level": 2,
+  "target": "hyperframes | remotion | raw",
+  "harness": {
+    "name": null,
+    "version": null,
+    "render_command": null
+  },
+  "cue_sheet_sha256": null,
+  "cue_source": "injected | path (production)",
+  "fixtures": [
+    {
+      "path": null,
+      "sha256": null,
+      "fixture_source": null
+    }
+  ],
+  "fps": 30,
+  "duration_s": null,
+  "frame_count": null,
+  "frame_count_rule": "round(duration_s * fps) [N72]",
+  "viewport": {
+    "width": 1080,
+    "height": 1920,
+    "device_scale_factor": 1
+  },
+  "workers": {
+    "requested": null,
+    "workers_max_declared": null,
+    "used": null
+  },
+  "seed": null,
+  "lint_report_sha256": null,
+  "window_errors": [],
+  "window_warnings": [],
+  "render_box": {
+    "os": null,
+    "arch": null,
+    "browser": null,
+    "browser_version": null,
+    "chrome_path": null,
+    "node_version": null,
+    "ffmpeg_version": null,
+    "gpu": null,
+    "driver": null,
+    "fonts_sha256": null,
+    "preflight_sha256": null
+  },
+  "frame_hash_manifest": null,
+  "double_render": {
+    "pass_b_variation": "none | worker count | reverse seek order sample",
+    "identical": null,
+    "first_difference": null
+  },
+  "timings_ms": {
+    "ready": null,
+    "mean_seek": null,
+    "total": null
+  },
+  "verdict": "pending | pass | pass_with_allowances | fail_lint | fail_nondeterministic | fail_box",
+  "allowances": [],
+  "notes": ""
+}

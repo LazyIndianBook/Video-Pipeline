@@ -1,0 +1,11 @@
+{
+  "skill_name": "examleaf-science-reviewer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "A chemical equation is atom-balanced after replacing H2O by H2O2 and is marked the correct answer.",
+      "expected_output": "Fails the altered-species answer even though its atom counts balance.",
+      "files": []
+    }
+  ]
+}

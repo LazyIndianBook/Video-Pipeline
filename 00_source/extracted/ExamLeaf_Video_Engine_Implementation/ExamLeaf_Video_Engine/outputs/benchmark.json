@@ -1,0 +1,698 @@
+[
+  {
+    "scene_id": "biology_genetics",
+    "aspect": "16:9",
+    "cache_key": "48a78b175cb52655ab3042f82685103d1efc6962ab4002a1766c43239e5806d7",
+    "cache_hit": false,
+    "sha256": "d9b2adc53478f73327b2d338c1812d95718c1f06a5f69076d0c45ff7baa2fafa",
+    "video": "biology_genetics_16x9.mp4",
+    "render_wall_seconds": 27.425,
+    "frames": 720,
+    "resolution": [
+      1280,
+      720
+    ],
+    "render_status": "passed",
+    "release_status": "blocked_pending_audio_and_expert_review",
+    "audio_status": "intentionally_silent_technical_preview",
+    "science": {
+      "scene_id": "biology_genetics",
+      "checks": [
+        {
+          "name": "probability_normalization",
+          "passed": true,
+          "detail": "{'AA': Fraction(1, 4), 'Aa': Fraction(1, 2), 'aa': Fraction(1, 4)}"
+        },
+        {
+          "name": "genotype_ratio",
+          "passed": true,
+          "detail": "Expected 1:2:1 for Aa x Aa"
+        },
+        {
+          "name": "complete_dominance_phenotype",
+          "passed": true,
+          "detail": "3/4 dominant phenotype under complete dominance assumption"
+        },
+        {
+          "name": "no_small_sample_guarantee",
+          "passed": true,
+          "detail": "Probabilities are not guaranteed counts in four offspring"
+        }
+      ],
+      "boundary": "Checks cover the specified model only; they do not establish curriculum fit or expert approval."
+    },
+    "media_qa": {
+      "passed": true,
+      "checks": {
+        "dimensions": true,
+        "duration": true,
+        "frame_count": true,
+        "codec": true,
+        "pixel_format": true
+      },
+      "duration_s": 30.0,
+      "frames": 720,
+      "width": 1280,
+      "height": 720,
+      "audio_present": false
+    },
+    "layout_qa": {
+      "passed": true,
+      "sampled_frames": 10,
+      "issues": [],
+      "boundary": "Canvas bounds only. Does not prove absence of all overlaps or mobile readability."
+    },
+    "environment": {
+      "python": "3.13.5",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+      "packages": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "sympy": "1.14.0",
+        "pydantic": "2.13.5",
+        "CairoSVG": "2.8.2",
+        "Pillow": "12.3.0",
+        "rdkit": "2025.9.4"
+      },
+      "ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+      "font_sha256": "57f73e11f51999432bf7ab22ce55b6f945d5eca1bf824404cfa9ec2e3718c84e"
+    },
+    "invoice_cost_usd": 0.0,
+    "billing_note": "No external generation APIs invoked. Local execution was not separately invoiced or cloud-priced.",
+    "warnings": [
+      "Not a full ten-minute pilot.",
+      "Academic correctness not signed off by a teacher.",
+      "Voice quality and alignment untested.",
+      "No student-learning study performed."
+    ]
+  },
+  {
+    "scene_id": "biology_genetics",
+    "aspect": "9:16",
+    "cache_key": "8bc4fa10f4bc5830b5b83020bf672c9a6ffa9656fdf3d1dc1d1f83eaadeb67e7",
+    "cache_hit": false,
+    "sha256": "9dc149431554388396ff511089b86e8d3487b806cae83998c6fded15359b272a",
+    "video": "biology_genetics_9x16.mp4",
+    "render_wall_seconds": 27.951,
+    "frames": 720,
+    "resolution": [
+      720,
+      1280
+    ],
+    "render_status": "passed",
+    "release_status": "blocked_pending_audio_and_expert_review",
+    "audio_status": "intentionally_silent_technical_preview",
+    "science": {
+      "scene_id": "biology_genetics",
+      "checks": [
+        {
+          "name": "probability_normalization",
+          "passed": true,
+          "detail": "{'AA': Fraction(1, 4), 'Aa': Fraction(1, 2), 'aa': Fraction(1, 4)}"
+        },
+        {
+          "name": "genotype_ratio",
+          "passed": true,
+          "detail": "Expected 1:2:1 for Aa x Aa"
+        },
+        {
+          "name": "complete_dominance_phenotype",
+          "passed": true,
+          "detail": "3/4 dominant phenotype under complete dominance assumption"
+        },
+        {
+          "name": "no_small_sample_guarantee",
+          "passed": true,
+          "detail": "Probabilities are not guaranteed counts in four offspring"
+        }
+      ],
+      "boundary": "Checks cover the specified model only; they do not establish curriculum fit or expert approval."
+    },
+    "media_qa": {
+      "passed": true,
+      "checks": {
+        "dimensions": true,
+        "duration": true,
+        "frame_count": true,
+        "codec": true,
+        "pixel_format": true
+      },
+      "duration_s": 30.0,
+      "frames": 720,
+      "width": 720,
+      "height": 1280,
+      "audio_present": false
+    },
+    "layout_qa": {
+      "passed": true,
+      "sampled_frames": 10,
+      "issues": [],
+      "boundary": "Canvas bounds only. Does not prove absence of all overlaps or mobile readability."
+    },
+    "environment": {
+      "python": "3.13.5",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+      "packages": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "sympy": "1.14.0",
+        "pydantic": "2.13.5",
+        "CairoSVG": "2.8.2",
+        "Pillow": "12.3.0",
+        "rdkit": "2025.9.4"
+      },
+      "ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+      "font_sha256": "57f73e11f51999432bf7ab22ce55b6f945d5eca1bf824404cfa9ec2e3718c84e"
+    },
+    "invoice_cost_usd": 0.0,
+    "billing_note": "No external generation APIs invoked. Local execution was not separately invoiced or cloud-priced.",
+    "warnings": [
+      "Not a full ten-minute pilot.",
+      "Academic correctness not signed off by a teacher.",
+      "Voice quality and alignment untested.",
+      "No student-learning study performed."
+    ]
+  },
+  {
+    "scene_id": "chemistry_balance",
+    "aspect": "16:9",
+    "cache_key": "d7f7f7b1fc91022ca43244b41c9e198a91b867ecd6364e98ea2899dfa2f91b80",
+    "cache_hit": false,
+    "sha256": "befef0fd89bbaa5950e4a6a18f2a27d2d91efc16720ed4cb6ec722f421bdf21c",
+    "video": "chemistry_balance_16x9.mp4",
+    "render_wall_seconds": 28.67,
+    "frames": 720,
+    "resolution": [
+      1280,
+      720
+    ],
+    "render_status": "passed",
+    "release_status": "blocked_pending_audio_and_expert_review",
+    "audio_status": "intentionally_silent_technical_preview",
+    "science": {
+      "scene_id": "chemistry_balance",
+      "checks": [
+        {
+          "name": "element_conservation",
+          "passed": true,
+          "detail": "reactants={'H': 4, 'O': 2}; products={'O': 2, 'H': 4}"
+        },
+        {
+          "name": "smallest_whole_numbers",
+          "passed": true,
+          "detail": "coefficients have greatest common divisor 1"
+        },
+        {
+          "name": "approved_formulas",
+          "passed": true,
+          "detail": "RDKit explicit-H atom count verifies H2O composition"
+        }
+      ],
+      "boundary": "Checks cover the specified model only; they do not establish curriculum fit or expert approval."
+    },
+    "media_qa": {
+      "passed": true,
+      "checks": {
+        "dimensions": true,
+        "duration": true,
+        "frame_count": true,
+        "codec": true,
+        "pixel_format": true
+      },
+      "duration_s": 30.0,
+      "frames": 720,
+      "width": 1280,
+      "height": 720,
+      "audio_present": false
+    },
+    "layout_qa": {
+      "passed": true,
+      "sampled_frames": 10,
+      "issues": [],
+      "boundary": "Canvas bounds only. Does not prove absence of all overlaps or mobile readability."
+    },
+    "environment": {
+      "python": "3.13.5",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+      "packages": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "sympy": "1.14.0",
+        "pydantic": "2.13.5",
+        "CairoSVG": "2.8.2",
+        "Pillow": "12.3.0",
+        "rdkit": "2025.9.4"
+      },
+      "ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+      "font_sha256": "57f73e11f51999432bf7ab22ce55b6f945d5eca1bf824404cfa9ec2e3718c84e"
+    },
+    "invoice_cost_usd": 0.0,
+    "billing_note": "No external generation APIs invoked. Local execution was not separately invoiced or cloud-priced.",
+    "warnings": [
+      "Not a full ten-minute pilot.",
+      "Academic correctness not signed off by a teacher.",
+      "Voice quality and alignment untested.",
+      "No student-learning study performed."
+    ]
+  },
+  {
+    "scene_id": "chemistry_balance",
+    "aspect": "9:16",
+    "cache_key": "f3a0e6e7cd8eaacf7f41cb2e3e46ac43a2e156daca89754098a5f949a70d06fc",
+    "cache_hit": false,
+    "sha256": "252cd538ce945b7aa407d2d2cb189d1a6c13217dbb2a907bedbd7a6625b61573",
+    "video": "chemistry_balance_9x16.mp4",
+    "render_wall_seconds": 29.375,
+    "frames": 720,
+    "resolution": [
+      720,
+      1280
+    ],
+    "render_status": "passed",
+    "release_status": "blocked_pending_audio_and_expert_review",
+    "audio_status": "intentionally_silent_technical_preview",
+    "science": {
+      "scene_id": "chemistry_balance",
+      "checks": [
+        {
+          "name": "element_conservation",
+          "passed": true,
+          "detail": "reactants={'H': 4, 'O': 2}; products={'O': 2, 'H': 4}"
+        },
+        {
+          "name": "smallest_whole_numbers",
+          "passed": true,
+          "detail": "coefficients have greatest common divisor 1"
+        },
+        {
+          "name": "approved_formulas",
+          "passed": true,
+          "detail": "RDKit explicit-H atom count verifies H2O composition"
+        }
+      ],
+      "boundary": "Checks cover the specified model only; they do not establish curriculum fit or expert approval."
+    },
+    "media_qa": {
+      "passed": true,
+      "checks": {
+        "dimensions": true,
+        "duration": true,
+        "frame_count": true,
+        "codec": true,
+        "pixel_format": true
+      },
+      "duration_s": 30.0,
+      "frames": 720,
+      "width": 720,
+      "height": 1280,
+      "audio_present": false
+    },
+    "layout_qa": {
+      "passed": true,
+      "sampled_frames": 10,
+      "issues": [],
+      "boundary": "Canvas bounds only. Does not prove absence of all overlaps or mobile readability."
+    },
+    "environment": {
+      "python": "3.13.5",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+      "packages": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "sympy": "1.14.0",
+        "pydantic": "2.13.5",
+        "CairoSVG": "2.8.2",
+        "Pillow": "12.3.0",
+        "rdkit": "2025.9.4"
+      },
+      "ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+      "font_sha256": "57f73e11f51999432bf7ab22ce55b6f945d5eca1bf824404cfa9ec2e3718c84e"
+    },
+    "invoice_cost_usd": 0.0,
+    "billing_note": "No external generation APIs invoked. Local execution was not separately invoiced or cloud-priced.",
+    "warnings": [
+      "Not a full ten-minute pilot.",
+      "Academic correctness not signed off by a teacher.",
+      "Voice quality and alignment untested.",
+      "No student-learning study performed."
+    ]
+  },
+  {
+    "scene_id": "mathematics_chain",
+    "aspect": "16:9",
+    "cache_key": "81d7e52a79250133ad0b2adb89f83ecfec0a4455408ba8bce77bf15dbd99b6ae",
+    "cache_hit": false,
+    "sha256": "60b91b9a12db77d0edab90f3485a21ab03eb8fb6ac6093adfac1bcf4a9e73855",
+    "video": "mathematics_chain_16x9.mp4",
+    "render_wall_seconds": 27.372,
+    "frames": 720,
+    "resolution": [
+      1280,
+      720
+    ],
+    "render_status": "passed",
+    "release_status": "blocked_pending_audio_and_expert_review",
+    "audio_status": "intentionally_silent_technical_preview",
+    "science": {
+      "scene_id": "mathematics_chain",
+      "checks": [
+        {
+          "name": "template_parameter_contract",
+          "passed": true,
+          "detail": "This visual template is the reviewed (3x+1)^2 fixture; build a new template for another expression"
+        },
+        {
+          "name": "symbolic_derivative",
+          "passed": true,
+          "detail": "18*x + 6"
+        },
+        {
+          "name": "finite_difference_crosscheck",
+          "passed": true,
+          "detail": "max finite-difference error 1.24e-10"
+        },
+        {
+          "name": "real_domain",
+          "passed": true,
+          "detail": "Polynomial and derivative valid for all real x"
+        }
+      ],
+      "boundary": "Checks cover the specified model only; they do not establish curriculum fit or expert approval."
+    },
+    "media_qa": {
+      "passed": true,
+      "checks": {
+        "dimensions": true,
+        "duration": true,
+        "frame_count": true,
+        "codec": true,
+        "pixel_format": true
+      },
+      "duration_s": 30.0,
+      "frames": 720,
+      "width": 1280,
+      "height": 720,
+      "audio_present": false
+    },
+    "layout_qa": {
+      "passed": true,
+      "sampled_frames": 10,
+      "issues": [],
+      "boundary": "Canvas bounds only. Does not prove absence of all overlaps or mobile readability."
+    },
+    "environment": {
+      "python": "3.13.5",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+      "packages": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "sympy": "1.14.0",
+        "pydantic": "2.13.5",
+        "CairoSVG": "2.8.2",
+        "Pillow": "12.3.0",
+        "rdkit": "2025.9.4"
+      },
+      "ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+      "font_sha256": "57f73e11f51999432bf7ab22ce55b6f945d5eca1bf824404cfa9ec2e3718c84e"
+    },
+    "invoice_cost_usd": 0.0,
+    "billing_note": "No external generation APIs invoked. Local execution was not separately invoiced or cloud-priced.",
+    "warnings": [
+      "Not a full ten-minute pilot.",
+      "Academic correctness not signed off by a teacher.",
+      "Voice quality and alignment untested.",
+      "No student-learning study performed."
+    ]
+  },
+  {
+    "scene_id": "mathematics_chain",
+    "aspect": "9:16",
+    "cache_key": "ff790de805dcba9290f8f98cc5cd85112c164e3cbca9b73c1e2951c18e7d0376",
+    "cache_hit": false,
+    "sha256": "c2a9231c48dd95ff5109d078b2d277b90f76643bd42fdbc9ff59962e97c3a858",
+    "video": "mathematics_chain_9x16.mp4",
+    "render_wall_seconds": 27.576,
+    "frames": 720,
+    "resolution": [
+      720,
+      1280
+    ],
+    "render_status": "passed",
+    "release_status": "blocked_pending_audio_and_expert_review",
+    "audio_status": "intentionally_silent_technical_preview",
+    "science": {
+      "scene_id": "mathematics_chain",
+      "checks": [
+        {
+          "name": "template_parameter_contract",
+          "passed": true,
+          "detail": "This visual template is the reviewed (3x+1)^2 fixture; build a new template for another expression"
+        },
+        {
+          "name": "symbolic_derivative",
+          "passed": true,
+          "detail": "18*x + 6"
+        },
+        {
+          "name": "finite_difference_crosscheck",
+          "passed": true,
+          "detail": "max finite-difference error 1.24e-10"
+        },
+        {
+          "name": "real_domain",
+          "passed": true,
+          "detail": "Polynomial and derivative valid for all real x"
+        }
+      ],
+      "boundary": "Checks cover the specified model only; they do not establish curriculum fit or expert approval."
+    },
+    "media_qa": {
+      "passed": true,
+      "checks": {
+        "dimensions": true,
+        "duration": true,
+        "frame_count": true,
+        "codec": true,
+        "pixel_format": true
+      },
+      "duration_s": 30.0,
+      "frames": 720,
+      "width": 720,
+      "height": 1280,
+      "audio_present": false
+    },
+    "layout_qa": {
+      "passed": true,
+      "sampled_frames": 10,
+      "issues": [],
+      "boundary": "Canvas bounds only. Does not prove absence of all overlaps or mobile readability."
+    },
+    "environment": {
+      "python": "3.13.5",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+      "packages": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "sympy": "1.14.0",
+        "pydantic": "2.13.5",
+        "CairoSVG": "2.8.2",
+        "Pillow": "12.3.0",
+        "rdkit": "2025.9.4"
+      },
+      "ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+      "font_sha256": "57f73e11f51999432bf7ab22ce55b6f945d5eca1bf824404cfa9ec2e3718c84e"
+    },
+    "invoice_cost_usd": 0.0,
+    "billing_note": "No external generation APIs invoked. Local execution was not separately invoiced or cloud-priced.",
+    "warnings": [
+      "Not a full ten-minute pilot.",
+      "Academic correctness not signed off by a teacher.",
+      "Voice quality and alignment untested.",
+      "No student-learning study performed."
+    ]
+  },
+  {
+    "scene_id": "physics_rc",
+    "aspect": "16:9",
+    "cache_key": "9487ae93e47b744bd92ef0c9ba3040d178aa1ef64966f46919dcb76c11cb3f02",
+    "cache_hit": false,
+    "sha256": "ff1a3bb4a676bc6060ab57ccc348375cc5018f573ac566be83264f15f2f6a5d4",
+    "video": "physics_rc_16x9.mp4",
+    "render_wall_seconds": 27.338,
+    "frames": 720,
+    "resolution": [
+      1280,
+      720
+    ],
+    "render_status": "passed",
+    "release_status": "blocked_pending_audio_and_expert_review",
+    "audio_status": "intentionally_silent_technical_preview",
+    "science": {
+      "scene_id": "physics_rc",
+      "checks": [
+        {
+          "name": "initial_condition",
+          "passed": true,
+          "detail": "V_C(0)=0 for an initially uncharged capacitor"
+        },
+        {
+          "name": "one_time_constant",
+          "passed": true,
+          "detail": "V_C(tau)/V_s=1-exp(-1)"
+        },
+        {
+          "name": "numerical_ode_crosscheck",
+          "passed": true,
+          "detail": "max absolute voltage error 1.9e-10 V"
+        },
+        {
+          "name": "voltage_law",
+          "passed": true,
+          "detail": "V_s=IR+V_C"
+        },
+        {
+          "name": "monotonic_charge",
+          "passed": true,
+          "detail": "Charging is monotonic for the ideal model"
+        }
+      ],
+      "boundary": "Checks cover the specified model only; they do not establish curriculum fit or expert approval."
+    },
+    "media_qa": {
+      "passed": true,
+      "checks": {
+        "dimensions": true,
+        "duration": true,
+        "frame_count": true,
+        "codec": true,
+        "pixel_format": true
+      },
+      "duration_s": 30.0,
+      "frames": 720,
+      "width": 1280,
+      "height": 720,
+      "audio_present": false
+    },
+    "layout_qa": {
+      "passed": true,
+      "sampled_frames": 10,
+      "issues": [],
+      "boundary": "Canvas bounds only. Does not prove absence of all overlaps or mobile readability."
+    },
+    "environment": {
+      "python": "3.13.5",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+      "packages": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "sympy": "1.14.0",
+        "pydantic": "2.13.5",
+        "CairoSVG": "2.8.2",
+        "Pillow": "12.3.0",
+        "rdkit": "2025.9.4"
+      },
+      "ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+      "font_sha256": "57f73e11f51999432bf7ab22ce55b6f945d5eca1bf824404cfa9ec2e3718c84e"
+    },
+    "invoice_cost_usd": 0.0,
+    "billing_note": "No external generation APIs invoked. Local execution was not separately invoiced or cloud-priced.",
+    "warnings": [
+      "Not a full ten-minute pilot.",
+      "Academic correctness not signed off by a teacher.",
+      "Voice quality and alignment untested.",
+      "No student-learning study performed."
+    ]
+  },
+  {
+    "scene_id": "physics_rc",
+    "aspect": "9:16",
+    "cache_key": "ea7f36d64e2132407e033176b432d941886deabf963568426493d0bfec9bdf10",
+    "cache_hit": false,
+    "sha256": "b1dd7d19b09bb7af15518dd94afd12345324102ed100d1004fb7288cb7c41c13",
+    "video": "physics_rc_9x16.mp4",
+    "render_wall_seconds": 28.102,
+    "frames": 720,
+    "resolution": [
+      720,
+      1280
+    ],
+    "render_status": "passed",
+    "release_status": "blocked_pending_audio_and_expert_review",
+    "audio_status": "intentionally_silent_technical_preview",
+    "science": {
+      "scene_id": "physics_rc",
+      "checks": [
+        {
+          "name": "initial_condition",
+          "passed": true,
+          "detail": "V_C(0)=0 for an initially uncharged capacitor"
+        },
+        {
+          "name": "one_time_constant",
+          "passed": true,
+          "detail": "V_C(tau)/V_s=1-exp(-1)"
+        },
+        {
+          "name": "numerical_ode_crosscheck",
+          "passed": true,
+          "detail": "max absolute voltage error 1.9e-10 V"
+        },
+        {
+          "name": "voltage_law",
+          "passed": true,
+          "detail": "V_s=IR+V_C"
+        },
+        {
+          "name": "monotonic_charge",
+          "passed": true,
+          "detail": "Charging is monotonic for the ideal model"
+        }
+      ],
+      "boundary": "Checks cover the specified model only; they do not establish curriculum fit or expert approval."
+    },
+    "media_qa": {
+      "passed": true,
+      "checks": {
+        "dimensions": true,
+        "duration": true,
+        "frame_count": true,
+        "codec": true,
+        "pixel_format": true
+      },
+      "duration_s": 30.0,
+      "frames": 720,
+      "width": 720,
+      "height": 1280,
+      "audio_present": false
+    },
+    "layout_qa": {
+      "passed": true,
+      "sampled_frames": 10,
+      "issues": [],
+      "boundary": "Canvas bounds only. Does not prove absence of all overlaps or mobile readability."
+    },
+    "environment": {
+      "python": "3.13.5",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+      "packages": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "sympy": "1.14.0",
+        "pydantic": "2.13.5",
+        "CairoSVG": "2.8.2",
+        "Pillow": "12.3.0",
+        "rdkit": "2025.9.4"
+      },
+      "ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+      "font_sha256": "57f73e11f51999432bf7ab22ce55b6f945d5eca1bf824404cfa9ec2e3718c84e"
+    },
+    "invoice_cost_usd": 0.0,
+    "billing_note": "No external generation APIs invoked. Local execution was not separately invoiced or cloud-priced.",
+    "warnings": [
+      "Not a full ten-minute pilot.",
+      "Academic correctness not signed off by a teacher.",
+      "Voice quality and alignment untested.",
+      "No student-learning study performed."
+    ]
+  }
+]

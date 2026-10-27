@@ -1,0 +1,638 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://examleaf.local/schemas/v2/epp.json",
+  "title": "ExamLeaf Effective Production Profile (EPP) v2",
+  "description": "Output of resolve(request, registry_snapshot, graph) (Architecture §3.4, §3.5). epp_hash = sha256(JCS-RFC8785(NFC(EPP))) computed with request.request_id, request.requested_by and request.created_at removed (they live in the job manifest). Set-valued arrays (resolved.validators, gates, voice_path_reasons, reviewer_requirements sorted by gate then role) are emitted in Unicode code-point order (Architecture §3.5 Set order). Added 15 Oct 2026.",
+  "$comment": "Commercial-term lint (CE-L1/RD-49; CE-26, CE-70; updated 15 Oct 2026): CI rejects, case-insensitively, any match of (price|pricing|paid|is_free|free_|premium|entitle|subscri|sku|paywall|unlock|monetis|monetiz|revenue|discount|coupon|tier|destination_resource|cta_destination|funnel|purchase_|checkout_|product_id|offer_|trial_|utm_|campaign_|affiliate_|activation_code|storefront) applied to every object key at every depth (including REN fields keys), every required entry, pattern key and enum or const value. Exempt: the editorial fields series_position, flagship and demo_kind, which carry no commercial meaning.",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "pin_key": {
+      "type": "string",
+      "pattern": "^(format|slot|level|overlay|safety|a11y|persona|family|locale|style|voice|model|kit|harness|packaging|qa|music|lex|budget|framework|rights)/[a-z0-9][a-z0-9_.-]*@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(#[a-z][a-z0-9_-]*)?$"
+    },
+    "gate": {
+      "type": "string",
+      "enum": [
+        "H_CG",
+        "GV_CLAIMS",
+        "GA_GRAPH",
+        "GA_DELTA",
+        "H_SB",
+        "VOICE",
+        "A_SUITE",
+        "GF",
+        "GS",
+        "DISCLOSURE",
+        "G_COUNSEL",
+        "GL_GLOSSARY",
+        "GL_VOICE",
+        "RELEASE_CHECK"
+      ]
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "academic_subject",
+        "academic_lead",
+        "family_qualified",
+        "child_development",
+        "native_language_editor",
+        "safety",
+        "sensitivity",
+        "practitioner",
+        "counsel",
+        "founder_cost",
+        "production_qa",
+        "publisher",
+        "voice_panel"
+      ]
+    },
+    "seconds_range": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "min",
+        "max"
+      ]
+    }
+  },
+  "properties": {
+    "epp_version": {
+      "$ref": "#/definitions/semver"
+    },
+    "hash_canon": {
+      "const": "JCS-RFC8785+NFC"
+    },
+    "resolver_version": {
+      "$ref": "#/definitions/semver"
+    },
+    "toolchain": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Pipeline code versions that shape the output (Architecture §3.5, §3.6 pipeline-code row). resolver_version is the top-level field.",
+      "properties": {
+        "format_compiler_version": {
+          "$ref": "#/definitions/semver"
+        },
+        "closure_checker_version": {
+          "$ref": "#/definitions/semver"
+        },
+        "qa_resolve_version": {
+          "$ref": "#/definitions/semver"
+        },
+        "validator_versions": {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "additionalProperties": {
+            "$ref": "#/definitions/semver"
+          }
+        }
+      },
+      "required": [
+        "format_compiler_version",
+        "closure_checker_version",
+        "qa_resolve_version",
+        "validator_versions"
+      ]
+    },
+    "request": {
+      "$ref": "content_request.json"
+    },
+    "pins": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "patternProperties": {
+        "^(format|slot|level|overlay|safety|a11y|persona|family|locale|style|voice|model|kit|harness|packaging|qa|music|lex|budget|framework|rights)/[a-z0-9][a-z0-9_.-]*@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(#[a-z][a-z0-9_-]*)?$": {
+          "$ref": "#/definitions/sha256"
+        }
+      },
+      "allOf": [
+        {
+          "not": {
+            "propertyNames": {
+              "not": {
+                "pattern": "^format/"
+              }
+            }
+          }
+        },
+        {
+          "not": {
+            "propertyNames": {
+              "not": {
+                "pattern": "^level/"
+              }
+            }
+          }
+        },
+        {
+          "not": {
+            "propertyNames": {
+              "not": {
+                "pattern": "^safety/"
+              }
+            }
+          }
+        },
+        {
+          "not": {
+            "propertyNames": {
+              "not": {
+                "pattern": "^family/"
+              }
+            }
+          }
+        },
+        {
+          "not": {
+            "propertyNames": {
+              "not": {
+                "pattern": "^locale/"
+              }
+            }
+          }
+        },
+        {
+          "not": {
+            "propertyNames": {
+              "not": {
+                "pattern": "^a11y/"
+              }
+            }
+          }
+        },
+        {
+          "not": {
+            "propertyNames": {
+              "not": {
+                "pattern": "^persona/"
+              }
+            }
+          }
+        },
+        {
+          "not": {
+            "propertyNames": {
+              "not": {
+                "pattern": "^voice/"
+              }
+            }
+          }
+        },
+        {
+          "not": {
+            "propertyNames": {
+              "not": {
+                "pattern": "^qa/"
+              }
+            }
+          }
+        },
+        {
+          "not": {
+            "propertyNames": {
+              "not": {
+                "pattern": "^model/"
+              }
+            }
+          }
+        },
+        {
+          "not": {
+            "propertyNames": {
+              "not": {
+                "pattern": "^kit/"
+              }
+            }
+          }
+        },
+        {
+          "not": {
+            "propertyNames": {
+              "not": {
+                "pattern": "^harness/"
+              }
+            }
+          }
+        },
+        {
+          "not": {
+            "propertyNames": {
+              "not": {
+                "pattern": "^slot/"
+              }
+            }
+          }
+        },
+        {
+          "not": {
+            "propertyNames": {
+              "not": {
+                "pattern": "^packaging/"
+              }
+            }
+          }
+        },
+        {
+          "not": {
+            "propertyNames": {
+              "not": {
+                "pattern": "^lex/core\\."
+              }
+            }
+          }
+        },
+        {
+          "not": {
+            "propertyNames": {
+              "not": {
+                "pattern": "^qa/catalogue@"
+              }
+            }
+          }
+        },
+        {
+          "not": {
+            "propertyNames": {
+              "not": {
+                "pattern": "^persona/[^@]+@[^#]+#"
+              }
+            }
+          }
+        }
+      ],
+      "description": "Every registry entry the artefact depends on, as kind/id@x.y.z[#variant]: sha256. Required kinds: format, level, safety, family, locale, a11y, persona (with #variant), voice, lex/core.<locale> (plus lex/<family>.<locale> where registered), qa/catalogue, model (one per cascade rung of the Kit cell), kit, harness, every slot used, at least one packaging profile; style when render_target is video; overlay when the request names one. music/ candidates are pinned here at S5 (MUSIC §2.1; placement goes to the cue sheet at S10) and gs/ is recorded on the voice entry, never pinned (15 Oct 2026); reviewer/ is never pinned in the EPP (it is bound on the approval record). 15 Oct 2026 (CE-111, CE-112, CE-120): framework/<id>@x.y.z (the Curriculum Framework version the objectives bind to; Truth class for removals and depth changes, Metadata for text edits) and rights/<publisher>@x.y.z (the rights policy every SRC rights_basis cites) are pinnable kinds; a11y/ profiles beyond a11y/base (low_vision, cognitive, dyslexia [Hypothesis], isl) pin under the existing a11y/ pattern. No voice/ pin for render_target print (no narration)."
+    },
+    "resolved": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "voice_path": {
+          "enum": [
+            "A",
+            "B"
+          ]
+        },
+        "voice_path_reasons": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "format_default_a",
+              "series_first",
+              "flagship",
+              "demo_real",
+              "safety_ac0",
+              "level_floor_a",
+              "a11y_isl",
+              "no_gl_voice_tts",
+              "path_b_default"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "safety_class": {
+          "type": "string",
+          "pattern": "^safety/ac[0-2]$"
+        },
+        "level": {
+          "type": "string",
+          "pattern": "^level/[a-z0-9_]+(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+        },
+        "taught_level": {
+          "type": "string",
+          "pattern": "^level/[a-z0-9_]+(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+        },
+        "format": {
+          "type": "string",
+          "pattern": "^format/[a-z0-9_]+(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+        },
+        "variant": {
+          "type": "string",
+          "pattern": "^[a-z]+\\.[a-z0-9_]+$"
+        },
+        "root_node_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(OBJ|CLM|CON|ANL|MIS|WRK|ASM|SIM|ACT|STY|VOC|TXT|MED|REN)-[A-Za-z0-9_.-]+$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "family": {
+          "type": "string",
+          "pattern": "^family/[a-z0-9_]+(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+        },
+        "locale": {
+          "type": "string",
+          "pattern": "^locale/[a-z0-9][a-z0-9_-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+        },
+        "target_locale": {
+          "type": "string",
+          "pattern": "^locale/[a-z0-9][a-z0-9_-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+        },
+        "style": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^style/[a-z0-9][a-z0-9_-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+          },
+          "uniqueItems": true
+        },
+        "overlay": {
+          "type": "string",
+          "pattern": "^overlay/[a-z0-9][a-z0-9_-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+        },
+        "persona": {
+          "type": "string",
+          "pattern": "^persona/[a-z0-9][a-z0-9_-]*@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)#[a-z][a-z0-9_-]*$"
+        },
+        "register_overlay": {
+          "type": "string",
+          "pattern": "^persona/[a-z0-9][a-z0-9_-]*@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)#[a-z][a-z0-9_-]*$"
+        },
+        "a11y": {
+          "type": "string",
+          "pattern": "^a11y/[a-z0-9][a-z0-9_-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+        },
+        "duration_s": {
+          "$ref": "#/definitions/seconds_range"
+        },
+        "segment_max_s": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 360
+        },
+        "validators": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "gates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gate"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "reviewer_requirements": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "gate": {
+                "$ref": "#/definitions/gate"
+              },
+              "role": {
+                "$ref": "#/definitions/role"
+              },
+              "qualification": {
+                "type": "string",
+                "minLength": 1
+              },
+              "family": {
+                "type": "string",
+                "pattern": "^family/[a-z0-9_]+(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+              },
+              "level": {
+                "type": "string",
+                "pattern": "^level/[a-z0-9_]+(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+              },
+              "locale": {
+                "type": "string",
+                "pattern": "^locale/[a-z0-9][a-z0-9_-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+              },
+              "count": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "required": [
+              "gate",
+              "role",
+              "count"
+            ]
+          }
+        },
+        "kit_cell": {
+          "type": "string",
+          "minLength": 1
+        },
+        "aspect": {
+          "enum": [
+            "9x16",
+            "16x9"
+          ]
+        },
+        "resolution": {
+          "enum": [
+            "1080x1920",
+            "1920x1080"
+          ]
+        },
+        "render_target": {
+          "enum": [
+            "video",
+            "audio_only",
+            "print"
+          ]
+        },
+        "packaging_profiles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^packaging/[a-z0-9][a-z0-9_-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "safety_class",
+        "level",
+        "format",
+        "family",
+        "locale",
+        "persona",
+        "a11y",
+        "validators",
+        "gates",
+        "reviewer_requirements",
+        "kit_cell",
+        "render_target",
+        "packaging_profiles"
+      ],
+      "allOf": [
+        {
+          "$comment": "15 Oct 2026 (CE-119, level-3+): a print render has no narration, timeline or frame, so voice path, durations, aspect and resolution are resolved only for video and audio_only.",
+          "if": {
+            "properties": {
+              "render_target": {
+                "const": "print"
+              }
+            },
+            "required": [
+              "render_target"
+            ]
+          },
+          "else": {
+            "required": [
+              "voice_path",
+              "voice_path_reasons",
+              "duration_s",
+              "segment_max_s",
+              "aspect",
+              "resolution"
+            ]
+          }
+        }
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "description": "Resolved field path → the pin key that set or tightened it, or request / unset.",
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/pin_key"
+          },
+          {
+            "enum": [
+              "request",
+              "unset"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "epp_version",
+    "hash_canon",
+    "resolver_version",
+    "toolchain",
+    "request",
+    "pins",
+    "resolved",
+    "provenance"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "resolved": {
+            "properties": {
+              "render_target": {
+                "const": "video"
+              }
+            },
+            "required": [
+              "render_target"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "pins": {
+            "not": {
+              "propertyNames": {
+                "not": {
+                  "pattern": "^style/"
+                }
+              }
+            }
+          },
+          "resolved": {
+            "required": [
+              "style"
+            ],
+            "properties": {
+              "style": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "request": {
+            "required": [
+              "exam_overlay"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "pins": {
+            "not": {
+              "propertyNames": {
+                "not": {
+                  "pattern": "^overlay/"
+                }
+              }
+            }
+          },
+          "resolved": {
+            "required": [
+              "overlay"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "request": {
+            "required": [
+              "variant"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "resolved": {
+            "required": [
+              "variant"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

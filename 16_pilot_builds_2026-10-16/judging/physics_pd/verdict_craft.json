@@ -1,0 +1,91 @@
+{
+ "lens": "craft",
+ "scores": {
+  "A": {
+   "D1": 4,
+   "D2": 4,
+   "D3": 4,
+   "D4": 4,
+   "D5": 4,
+   "D6": 3,
+   "D7": 4,
+   "D8": 4
+  },
+  "B": {
+   "D1": 3,
+   "D2": 2,
+   "D3": 2,
+   "D4": 2,
+   "D5": 2,
+   "D6": 1,
+   "D7": 2,
+   "D8": 1
+  }
+ },
+ "evidence": {
+  "A": [
+   "A/frames/s01_t000.png, 0.0 s, b01: frame 0 is complete: circuit with R = 10 Ω, V = 2 V, I = 0.20 A, the V | I | V ÷ I table and the 'Current always doubles?' chips; the same circuit persists to the end card (s01_01772.png, 59.07 s; qa A17 min similarity 0.89).",
+   "A/frames/s01_t018.png, s01_t022.png, s01_t028.png, 17.5–28.3 s, b04–b07: 'More, less or same?' plate with a dashed ring on I = ? A, then I = 0.40 A on 'four' (20.34 s), × 2 on 'push' (21.72 s) then 'flow' (22.95 s), and 2 V ÷ 0.20 A = 10 Ω / 4 V ÷ 0.40 A = 10 Ω in V-blue, A-teal, Ω-amber filling the table's V ÷ I column.",
+   "A/frames/s01_t040.png, s01_t042.png, qa_summary A15, 22.5–43 s, b06/b09: the lamp is swapped into the resistor's slot with heat rays, 'R ↑' and a dimmed condition chip, and I × 2 is struck in red on 'double' (41.05 s), but that evidence is gone by about 43 s; earlier, 'Why? Only the voltage changed' (b06) gets only a faint halo on the R chip (no measurable change for 3.5 s from 22.5 s)."
+  ],
+  "B": [
+   "B/frames/s01_t000.png, s01_t002.png, 0–4 s, b01: frame 0 is an empty blue panel and at 2 s only 'twice the voltage' is written; the circuit starts drawing on 'current' (3.72 s); qa A14 edge density 0.049 at 1.5 s, A16 diagram empty 1.0–4.0 s.",
+   "B/frames/s02_t008.png, s03_t000.png, s05_t000.png, 17.0–59.5 s, b02–b06: the 'Pause. Predict.' plate holds 5.5 s of silence (17.0–22.5 s), then the circuit is wiped to two empty cards at 22.4 s, redrawn as a separate lamp loop at 46.3 s and wiped to an empty panel at 57.4 s (qa A17 similarity 0.49 / 0.43 / 0.57).",
+   "B/frames/s05_t014.png, timeline_words.json b07, 66.0–71.9 s: the short ends on 'AI-generated narration; script by ExamLeaf', spoken and printed under the checklist, with no transfer question and no end card, at 71.93 s (qa A11, A12, A18)."
+  ]
+ },
+ "empty_seconds": {
+  "A": 0.6,
+  "B": 13.8
+ },
+ "time_to_first_insight_s": {
+  "A": 8.1,
+  "B": 22.6
+ },
+ "turns_count": {
+  "A": 6,
+  "B": 3
+ },
+ "shareable_line": {
+  "A": "Twice the push, twice the flow.",
+  "B": "none"
+ },
+ "gates": {
+  "A": [],
+  "B": [
+   "'ExamLeaf' spoken (b07, 69.16 s) and on screen (s05 at 69.4 s) (qa A12)",
+   "AI-disclosure line spoken and on screen: 'AI-generated narration; script by ExamLeaf' (b07, PD-20)",
+   "no transfer question: slots end at recap.statement, outro.disclosure (qa A18)",
+   "silence 17.5 % of runtime > 15 % (qa A20)",
+   "board torn down inside the lesson at 22.4 s, 46.3 s and 57.4 s; 5 scene files (qa A17)",
+   "duration 71.93 s outside 60 ± 1 s (qa A11)",
+   "prediction not answerable from shown givens (judge's call): at 'Pause and predict the current at four volts' (b02, 11.4–17.0 s) only R = 10 Ω and V = 4 V are on the board, the baseline 0.2 A first appears at 24.5 s, and 'decide whether always is safe' needs the filament fact first shown at 49 s"
+  ]
+ },
+ "winner": "A",
+ "reason": "A keeps one colour-coded circuit from a complete frame 0 to the end card, lands its reveals on their words, asks an answerable prediction and gets a solved transfer inside 59.1 s, and passes every hard gate. B opens on an empty board, wipes it three times, holds 5.5 s of silence on a frozen predict, has no transfer, runs 71.9 s and speaks and shows 'AI-generated narration; script by ExamLeaf', failing seven gates.",
+ "gap_for_weaker": [
+  "Keep one persistent circuit from frame 0 to the end: put the 2 V / 4 V cards and the V/I row beside it and swap the lamp into the resistor's slot instead of redrawing in scenes s03–s05.",
+  "Make frame 0 complete (circuit, R = 10 Ω, V = 2 V, I = 0.2 A, question chip) and finish the hook question by 3 s; b01 is 27 words and the question ends near 4.0 s.",
+  "Show the baseline current before the predict, ask a choose-type 'more, less or same?' with the options on screen, drop 'decide whether always is safe', and cut the 5 s silent hold to about 2 s with a ring on I = ?.",
+  "Add a transfer (e.g. 6 V across the same 10 Ω) with a think window, the worked answer on the board and spoken feedback.",
+  "Delete the spoken and on-screen 'AI-generated narration; script by ExamLeaf' line; close on the brand end card and the free-lesson line.",
+  "Colour by meaning (V blue, I teal, R/Ω amber, a red strike on a labelled 'I × 2'), use the empty lower 40 % of the frame for a structured card tied to the circuit, and drop the decorative pencil and books.",
+  "Rewrite in short contrastive sentences with one quotable line, add energy marks and purpose-labelled pauses[], and trim to 60 ± 1 s with silence under 15 %."
+ ],
+ "blocking_defects": {
+  "A": [
+   "transcript-vs-script check A7 did not run (STT HTTP 429): the spoken text is unverified until it is re-run",
+   "academic review still required for SIM-push-flow, CLM-filament and ASM-transfer-six-volts (script.json requires.review)"
+  ],
+  "B": [
+   "'AI-generated narration; script by ExamLeaf' spoken and shown (b07, 66.0–69.9 s)",
+   "runtime 71.93 s",
+   "board wiped three times; empty board at 0–4 s and 57.4–59.5 s",
+   "no transfer, feedback, end card or CTA (qa A12, A18)",
+   "5.5 s silent predict hold; silence 17.5 % of runtime",
+   "prediction asked before its givens (no baseline current; 'is always safe' unanswerable from the board)"
+  ]
+ },
+ "notes": "Audio not played: sync and pacing judged from timeline_words.json word starts against the script.json cue anchors, the frames and qa_summary.json (A8, A13, A15, A19, A20). Opened both contact sheets, 20 A frames and 14 B frames. Definitions: empty_seconds = empty diagram lane plus unpurposed dead air or silent holds on a frozen frame. A 0.6 = the unscripted 0.63 s gap at 28.78 s (A13); A's diagram is never empty (A16) and the 0.85 s tail is the scripted end-card hold. B 13.8 = 0.0–4.0 s empty board (s01_t000/t002, A16) + 17.0–22.5 s silent 'Pause. Predict.' hold (A13) + 57.4–59.5 s empty board (s05_t000, A16) + 69.75–71.94 s dead tail (A13). turns_count = re-hooks or reversals after the hook: A at 12.1 (predict), 19.2 (payoff turn), 23.9 ('Why?'), 34.2 ('Always?'), 37.2 (hot bulb), 41.8 (your turn); B at 11.4 (predict), 22.6 (reveal), 46.4 ('But always is not safe'), with no turn for 24 s (22.6–46.4 s). time_to_first_insight_s: A = declared insight beat b03 at 8.07 s (A14; the push / hold back / flow model starts at 3.5 s); B = first explain beat b03 at 22.6 s (A14, no insight beat declared). D1: A4, every on-screen number from the fixture (A3), each beat cites nodes, condition on the definition card and as a board chip; held at 4 by the pending reviews and the unverified transcript. B3, numbers fixture-true and claims correct, but the lamp board's struck '×2' has no V or I referent and no fixture field, and the recap says 'current is proportional to voltage' over a boxed V = I × R. D2: A4, givens (2 V, 0.20 A, 4 V, 10 Ω) shown before 'More current, less, or the same?', lamp confront on the same board, 6 V transfer solved; held back by brief, assertion-level lamp evidence (I = ? A, about 2 s) and short think windows (1.8 s, 2.7 s). B2, predict before its givens, the 'always' half unanswerable, exception asserted on a fresh board with no numbers, no transfer. D3: A4, short contrastive lines, 'Your turn' and 'If you got that, the rule is yours' talk to one student, terms on the board before they are named, quotable 'Twice the push, twice the flow'; minus a clipped hook ('Voltage doubles. Current always doubles?') and three back-to-back question-then-answer lines (b06 'Why? Only…', b08 'Always? Only…', b09 'A hot bulb?…'). B2, 25–27-word textbook sentences ('For this resistor at constant temperature, voltage divided by current stays ten ohms at both points'), awkward 'whether always is safe' / 'always is not safe', textbook recap, disclosure spoken, no quotable line. D4: A4, collage house style, one persistent circuit (A17 min 0.89), V blue / I teal / R and Ω amber / red strike, table + definition card + points card tied to the circuit, legible at phone size (smallest text about 45 px of 1920); minus the title-lane chip palette that prints 'Current', 'push', 'the', 'Ohm's', 'Your', 'turn' on the amber and teal that mean R and I on the board, a card cross-fade overlap at 42 s where the definition text ghosts over the table digits (s01_t042), and long dashed MapSymbol detours at 6 s and 34 s. B2, empty first frame and three teardowns, monochrome navy labels (no colour by meaning for V, I, R), content held in a 570 px band with the lower 40 % blank, decorative pencil and book shelf, ratio cards not tied to any circuit; the clean ratio cards and boxed V = I × R (s03_t022) keep it above 1. D5: A4, reveals land on their words (option chips on 'More' 15.06 / 'less' 16.12 / 'same' 17.02, × 2 on 'push' then 'flow', definition card on 'Ohm's' 29.41, chip on 'constant' 35.86, lamp on 'bulb' 37.66, 0.60 A on 'six' 49.53), think pauses by purpose (A13 matched 7); minus the 3.5 s static 'Why?' stretch (A15), the definition card printing the condition at 29.4 s, six seconds before it is spoken (35.3 s), V = I × R complete by 32.0 s before 'times resistance' (32.26–32.59 s), and uneven pace 97–182 wpm with the CTA rushed (A19; 113 wpm overall, A8 warn). B2, cues sit on their words (× 2 on 'twice' 29.98 / 31.22, V/I on 'ten' 38.08, equation on 'equals' 42.92) but the 5.5 s silent predict hold, 10 unscripted silences > 0.6 s, a 2.2 s dead tail and 4.0 s static during speech from 13.5 s (A13, A15) break the timing. D6: A3, 16 pass / 2 warn / 3 fail, deterministic, loudness and duration pass, transcript check fell back on HTTP 429; B1, 11 fails including duration, brand, persistence, teaching order and silence. D7: A4, the learner computes 0.60 A at 6 V and hears the condition, but the transfer is near (the table pattern alone gives it) and the lamp idea stays qualitative; B2, the ratio and formula are shown but never applied, the exception and recap are told, not tested. D8: A4, frame 0 complete, question on screen at 0 s with its last word at 2.91 s, insight at 8.1 s, a turn every 3–10 s, payoff named, transfer succeeds; the close is a recap plus a rushed CTA with no next-loop tease (cut for time). B1, empty opening, insight at 22.6 s, 24 s without a turn, no transfer, ends on the disclosure. B's script declares format concept_intro / 65 s, but the brief treats both builds as the same 60-second short (QA A11 applies concept_short_60), so the 60 ± 1 s gate applies. B's prediction gate is my call, not a machine check; B's other six gate failures are confirmed by qa_summary and the frames. A's three QA fails (A13 0.63 s gap, A15 3.5 s static, A19 b13 at 182 wpm) are marginal and do not trip a hard gate; A's silence share is 13.3 % and its runtime 59.1 s, both inside the gates but near the edge."
+}

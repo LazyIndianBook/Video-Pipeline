@@ -1,0 +1,2592 @@
+{
+  "schema_version": "1.0.0",
+  "_meta": {
+    "title": "ExamLeaf advanced-animation style tokens (five styles, 1080x1920 at 30 fps)",
+    "date": "2026-10-14",
+    "status": "draft for the pilot; not validated on real phones; every number labelled Recommendation or Hypothesis in the guides remains so here",
+    "fonts_note": "Fonts must be vendored, hashed into the render cache key and licence-checked before use (RD-23). Every licence field is \"verify\" until a human records the licence; vendored is false and sha256 is null until then. No CDN at render time.",
+    "coverage_enum": {
+      "yes": "covers the script (Latin for Latin faces)",
+      "claimed_verify": "the family is believed to cover this script; run the glyph smoke test before use",
+      "assumed_none": "treat as no coverage until a glyph test proves otherwise",
+      "n_a": "not applicable"
+    },
+    "safe_zone_note": "Insets are NOT stored here. Read them from common.safe_zones.source_of_truth. Zone shares are Recommendation.",
+    "twin_of": [
+      "paper-collage-vertical.md",
+      "doodle-handdrawn.md",
+      "editorial-vox.md",
+      "kinetic-type.md",
+      "voxel-isometric.md"
+    ],
+    "precedence": "If a guide and this JSON disagree, the JSON is a bug: fix it and bump the version.",
+    "conventions": {
+      "forbidden_true_means": "the item is forbidden",
+      "ref_keys": "a {\"ref\": \"common.x\"} value points at the common block; additional/overrides extend it",
+      "px": "pixels on the 1080x1920 master",
+      "s": "seconds",
+      "ms": "milliseconds",
+      "db": "decibels"
+    },
+    "sources": [
+      "12_advanced_animations_with_claude/00_reference_videos/master_prompt_paper_collage.md",
+      "12_advanced_animations_with_claude/01_research/RESEARCH_REPORT_advanced_animations_with_claude.md",
+      "02_learning_psychology/palette_and_typography_tokens.json",
+      "02_learning_psychology/INSTRUCTIONS_production_rules.md",
+      "03_super_teacher_framework/INSTRUCTIONS_super_teacher_authoring.md",
+      "07_end_to_end_pipeline_instructions/10_DECISIONS_and_CONFLICT_RESOLUTIONS.md"
+    ],
+    "known_conflicts": [
+      {
+        "id": "C1",
+        "topic": "typography ranges",
+        "detail": "Message-04 (88-96/112-144/104-128 at 1920) vs planning pack (64-72/84-112/72-88). RD-01 picks message-04; scaled by 0.5625 here. Planning-pack values are a floor for secondary text only."
+      },
+      {
+        "id": "C2",
+        "topic": "loudness",
+        "detail": "[V4-MP] -14 LUFS / -1.5 dBFS vs house -16 LUFS / -1 dBTP. House wins. (-1.5 dBFS is a sample-peak figure from [V4-MP], not dBTP; AD-37 corrected 15 Oct 2026.)"
+      },
+      {
+        "id": "C3",
+        "topic": "edge margin",
+        "detail": "[V4-MP] 90 px vs planning-pack 96 px and the safe-zone token file. Larger wins: 96 px, owned by 04_harness_contract/vertical_safe_zones.tokens.json zones.side_margin_min_px (15 Oct 2026; was 90/60/96 across files)."
+      },
+      {
+        "id": "C4",
+        "topic": "never frozen vs no decorative change",
+        "detail": "[V4-MP] idle on everything vs ROOT/02 E3. Resolved: finite idle only on decorative characters in hook/analogy/recap; off in holds, think, fixture panels, reduced motion."
+      },
+      {
+        "id": "C5",
+        "topic": "transition length",
+        "detail": "[V4-MP] 0.5-0.7 s sheets vs ROOT/02 150-300 ms. Resolved by classification: scene-level sheets vs element-level transitions."
+      },
+      {
+        "id": "C6",
+        "topic": "white flash",
+        "detail": "[V4-MP] white flash/bloom vs #56. Forbidden; replaced by a localised paper burst."
+      },
+      {
+        "id": "C7",
+        "topic": "Inter",
+        "detail": "ROOT/02 and RD-23 use Inter for labels; [N51] says avoid Inter. Resolved: allowed for labels/captions, banned as display."
+      },
+      {
+        "id": "C8",
+        "topic": "equation hold",
+        "detail": "Message-04 2-4 s vs planning-pack 1-3 s. RD-02 picks 2-4 s."
+      },
+      {
+        "id": "C9",
+        "topic": "teal on cream",
+        "detail": "ExamLeaf teal #087986 is 4.37:1 on cream #f3ecdf (below 4.5). Science labels use #F7F9FC tags."
+      },
+      {
+        "id": "C10",
+        "topic": "biology colour",
+        "detail": "ROOT/02 has no green; biology green #1F7A3E is a proposed new token pending brand-owner approval."
+      }
+    ]
+  },
+  "common": {
+    "canvas": {
+      "width": 1080,
+      "height": 1920,
+      "aspect": "9:16",
+      "fps": 30,
+      "rd_ref": "Vertical-only decision, 15 Oct 2026 (RD-16 SUPERSEDED; 07_end_to_end_pipeline_instructions/10_DECISIONS_and_CONFLICT_RESOLUTIONS.md) and AD-07"
+    },
+    "safe_zones": {
+      "source_of_truth": "../04_harness_contract/vertical_safe_zones.tokens.json",
+      "rule": "Top, bottom, left and right insets are read ONLY from the source_of_truth file. No inset values are stored here on purpose: exact platform pixel values are not in the verified evidence (report 7.9, 11 item 9). If the file is missing, the brief assembler blocks the brief. While platform_insets_px.measured is false in that file, the insets named by applies_until_measured are used and the job manifest records them as provisional.",
+      "horizontal_band_rule": "Centre content in the band from max(min_side_margin_px, insets.left) to 1080 - max(min_side_margin_px, insets.right), not in the full frame.",
+      "min_side_margin_px": 96,
+      "min_side_margin_px_owner": "../04_harness_contract/vertical_safe_zones.tokens.json#zones.side_margin_min_px (single owner since 15 Oct 2026; this value is a mirror and validate_style_tokens.py fails on drift)",
+      "min_side_margin_origin": "planning-pack safe_margin_px = 96 (04_video_engine/planning_pack_v1/design_tokens.json); larger than the 90 px in [V4-MP].",
+      "zone_shares_of_usable_band": {
+        "title": 0.22,
+        "visual": 0.54,
+        "caption": 0.24
+      },
+      "zone_shares_source": "Mirror of zones.top_title.share, zones.middle_visual.share, zones.bottom_caption.share in the source_of_truth file (token_version 1.0.2), which is the single owner. The file wins; validate_style_tokens.py fails on drift. (15 Oct 2026: the old 0.20/0.58/0.22 note is withdrawn.)",
+      "zone_shares_status": "Recommendation (set by the harness tokens)",
+      "title_zone_max_share_for_three_row_title": 0.3,
+      "title_zone_growth_rule": "May grow from 22% to 30% of the usable band for a three-row title, taking space from the visual zone and never from the caption zone.",
+      "bleed": "Backgrounds, torn strips, vignette, corner sparkles and sheet-transition edges may use the full 1080x1920 frame; everything a learner must read or notice stays inside the safe box."
+    },
+    "text_scale_1080": {
+      "formula": "displayed_px = source_px * (360 / 1080)",
+      "scale_from_1920_masters": 0.5625,
+      "essential_label_px": [
+        50,
+        54
+      ],
+      "caption_px": [
+        50,
+        54
+      ],
+      "equation_px": [
+        63,
+        81
+      ],
+      "heading_px": [
+        59,
+        72
+      ],
+      "secondary_floor_px": [
+        36,
+        40
+      ],
+      "secondary_floor_note": "v1 planning-pack ranges scaled; only for secondary non-essential text that passes the phone test (RD-01).",
+      "basis": "Message-04 ranges (88-96 / 112-144 / 104-128 at 1920) x 0.5625; RD-01 and RD-18 (essential labels at least about 50 px on a 1080-wide master).",
+      "conflict_note": "Planning-pack ranges (64-72 / 84-112 / 72-88) are smaller. Resolved by RD-01 (07_end_to_end_pipeline_instructions/10_DECISIONS_and_CONFLICT_RESOLUTIONS.md): message-04 ranges govern essential text; planning-pack ranges are only a floor for secondary text (15 Oct 2026; earlier wording said unresolved)."
+    },
+    "contrast": {
+      "normal_text_min": 4.5,
+      "essential_graphics_min": 3.0,
+      "display_text_min": 3.0,
+      "display_text_min_glyph_px": 72,
+      "display_text_rationale": "72 px at 1080 wide is 24 px on a 360-px phone, the WCAG large-text size (verify the WCAG definition in QA).",
+      "check_adjacent_colours": true,
+      "accent_luminance_note": "ExamLeaf accents are close in luminance (blue/purple 1.05, teal/green 1.05 computed); never rely on colour alone."
+    },
+    "holds": {
+      "headline_min_s": 1.2,
+      "headline_source": "[N60]",
+      "per_word_floor_s": 0.3,
+      "hold_formula": "hold_s = max(headline_min_s, per_word_floor_s * word_count)",
+      "hold_formula_source": "harness tokens hold_times_s.per_word_floor_s (Hypothesis)",
+      "headline_min_indic_s": 1.8,
+      "indic_multiplier": 1.5,
+      "indic_multiplier_status": "Hypothesis; tune in phone tests",
+      "equation_tail_s": 0.5,
+      "equation_tail_source": "report 7.5 Recommendation",
+      "important_transformation_hold_s": [
+        2,
+        4
+      ],
+      "important_transformation_source": "RD-02 (longer when necessary)",
+      "minor_transformation_hold_s": [
+        1,
+        3
+      ],
+      "spoken_contrast_hold_s": [
+        1,
+        2
+      ],
+      "think_default_s": 6,
+      "simple_prediction_window_s": [
+        5,
+        8
+      ],
+      "think_source": "RD-11"
+    },
+    "timing_defaults_ms": {
+      "simple_transition": [
+        150,
+        300
+      ],
+      "highlight": [
+        300,
+        600
+      ],
+      "simple_equation_transform": [
+        800,
+        1500
+      ],
+      "source": "02_learning_psychology/palette_and_typography_tokens.json animation.timing_defaults (production hypotheses)"
+    },
+    "sync": {
+      "lead_s": 0.05,
+      "cue_at_window_s": [
+        -0.05,
+        0.0
+      ],
+      "cue_at_window_meaning": "cue.at must satisfy word.t0 - 0.05 <= at <= word.t0; the validator rejects at > t0 and warns above 0.10 s early",
+      "entrance_settle_s_max": 0.3,
+      "rule": "Every reveal lands on, or about 0.05 s before, the spoken word it illustrates; times come only from the cue sheet (cues[].at, words[]); one sentence = one visual beat.",
+      "source": "[V4-MP]; report 7.7; #63"
+    },
+    "loudness": {
+      "integrated_lufs": -16,
+      "tolerance_lu": 1,
+      "max_true_peak_dbtp": -1,
+      "measure_after_final_mux": true,
+      "normalise_stems_individually": false,
+      "two_pass_loudnorm": true,
+      "source": "05_narration_system/INSTRUCTIONS_narration_pipeline.md; 04_video_engine/planning_pack_v1/design_tokens.json (internal targets, not platform law)",
+      "v4mp_original": {
+        "integrated_lufs": -14,
+        "peak_dbfs": -1.5
+      },
+      "note": "House target wins over the -14 LUFS / -1.5 dBFS in [V4-MP]."
+    },
+    "music_policy": {
+      "core_explanation_background_music": false,
+      "allowed_in": [
+        "hook",
+        "sheet_transition",
+        "recap_outro",
+        "reel_bed"
+      ],
+      "not_allowed_in": [
+        "reasoning",
+        "derivation",
+        "prediction_window",
+        "think_hold",
+        "pause_video"
+      ],
+      "source": "ROOT/02 G5; section decision AD-15",
+      "bed_level_db_under_speech": [
+        20,
+        24
+      ],
+      "owner_ref": "../04_harness_contract/vertical_safe_zones.tokens.json#audio.music_policy (one policy, AD-15 addendum and AD-37, 15 Oct 2026): muted under teaching; beds only in hooks/transitions/recaps/outros at 20-24 dB under speech; owned sonic logo commissioned; code-composed beds for Reel hooks, SFX and prototypes"
+    },
+    "determinism": {
+      "seek_contract": {
+        "window.DURATION": true,
+        "async window.seek(t)": true,
+        "frames_equal_duration_times_fps": true,
+        "duration_equals_cue_sheet_duration": true,
+        "source": "[N72]; [N68]"
+      },
+      "seeded_prng_required": true,
+      "prng": "stateless keyed hash (fnv1a) feeding mulberry32; key = sceneId:elementId:step",
+      "wall_clock_forbidden": true,
+      "raf_loops_forbidden": true,
+      "set_interval_forbidden": true,
+      "finite_repeats_only": true,
+      "repeat_formula": "ceil(DURATION / period)",
+      "fonts_preloaded_before_first_frame": true,
+      "remote_urls_forbidden_at_render": true,
+      "double_render_frame_hash_test": true,
+      "single_worker_when_video_heavy": true,
+      "authoritative_contract": "../04_harness_contract/contract.md"
+    },
+    "locale": {
+      "launch_locale": "en-IN",
+      "indic_rules_active": false,
+      "gate": "RD-26",
+      "note": "Hindi, Hinglish and Assamese rules are written but inactive until the locale gate passes."
+    },
+    "font_policy": {
+      "allow_ref": "fonts_registry",
+      "ban_as_display": [
+        "Arial",
+        "Helvetica",
+        "Roboto",
+        "system-ui",
+        "sans-serif (generic)",
+        "Space Grotesk",
+        "Inter",
+        "Times New Roman",
+        "Comic Sans",
+        "Papyrus"
+      ],
+      "ban_sources": "[N51] [N55] for Arial/Inter/Space Grotesk; the rest are Recommendation",
+      "inter_allowed_for": [
+        "labels",
+        "captions",
+        "science_text"
+      ],
+      "rotate_display_between_reels": true,
+      "indic_animation_unit": "word_or_grapheme_cluster_never_code_point",
+      "indic_line_height_min": 1.4,
+      "indic_letter_spacing": "none",
+      "indic_text_transform": "none",
+      "vendor_hash_licence_check_required": true,
+      "no_cdn_at_render": true,
+      "rd_ref": "RD-23",
+      "smoke_test_strings": {
+        "devanagari": "क्ष ज्ञ श्र द्ध विद्युत प्रतिरोध",
+        "bengali_assamese": "ৰ ৱ ক্ষ জ্ঞ অসম"
+      },
+      "end_state_equality_test": true
+    },
+    "palettes": {
+      "examleaf_light": {
+        "background": "#F7F9FC",
+        "ink": "#14213D",
+        "secondary": "#526074",
+        "blue": "#185ABD",
+        "teal": "#087986",
+        "amber": "#9A5B00",
+        "purple": "#6E44AA",
+        "red": "#B42318",
+        "contrast_on_background_computed": {
+          "ink": 15.15,
+          "secondary": 6.06,
+          "blue": 6.15,
+          "teal": 4.87,
+          "amber": 5.14,
+          "purple": 6.48,
+          "red": 6.23,
+          "green_proposed": 5.09
+        }
+      },
+      "biology_green_proposed": {
+        "hex": "#1F7A3E",
+        "status": "Proposed new token; needs brand-owner approval",
+        "contrast_on_background": 5.09
+      },
+      "subject_accents": {
+        "physics": "#185ABD",
+        "chemistry": "#087986",
+        "mathematics": "#6E44AA",
+        "biology": "#1F7A3E",
+        "use": "chrome, hook underline, tag border, fill tints only; never to encode a quantity"
+      },
+      "role_meaning": {
+        "blue": "primary explanatory",
+        "teal": "relationship or highlight",
+        "amber": "condition or caution only",
+        "purple": "secondary relationship",
+        "red": "error marker only"
+      },
+      "tints_18pct_over_background": {
+        "secondary": "#D9DDE4",
+        "blue": "#CFDCF1",
+        "teal": "#CCE2E7",
+        "amber": "#E6DDCF",
+        "purple": "#DED8ED",
+        "red": "#EBD2D3",
+        "green": "#D0E2DA"
+      },
+      "tints_28pct_over_background": {
+        "blue": "#B9CCEA",
+        "teal": "#B4D5DB",
+        "amber": "#DDCDB5",
+        "purple": "#D1C6E5",
+        "green": "#BBD5C7"
+      },
+      "ink_on_tint_min_contrast_computed": 9.8,
+      "dark_theme": "not used (RD-27)"
+    },
+    "sfx_global": {
+      "mute_during": [
+        "think",
+        "pause_video",
+        "equation_reading",
+        "inspection"
+      ],
+      "placement": "cue sheet sfx[] only (file, at, gain_db)",
+      "generator": "examleaf-audio-compose (seeded Python)"
+    },
+    "forbidden": {
+      "image_model_text_numbers_formulae": true,
+      "infinite_repeats": true,
+      "math_random": true,
+      "date_now_or_performance_now": true,
+      "set_interval_or_raf_loops": true,
+      "full_frame_flash": true,
+      "camera_fx_during_label_or_measurement_reveal": true,
+      "per_codepoint_indic_animation": true,
+      "crop_16x9_into_9x16": true,
+      "text_outside_safe_box": true,
+      "agent_writes_or_edits_script": true,
+      "agent_researches_facts": true,
+      "science_glyph_without_fixture_field": true,
+      "read_other_folders": true,
+      "ultracode": true,
+      "dont_stop_until_perfect": true,
+      "more_than_iteration_cap": true,
+      "unlicensed_or_scraped_images": true,
+      "reference_creator_artwork_reuse": true,
+      "trending_or_unlicensed_audio": true,
+      "voice_cloning_or_teacher_imitation": true,
+      "photoreal_people_or_real_faces_without_release": true,
+      "stereotypes": true,
+      "third_party_branding_or_logos": true,
+      "secrets_in_prompt_or_repo": true,
+      "cdn_fonts_at_render": true
+    },
+    "accuracy": {
+      "every_science_glyph_marked_data_fx": true,
+      "data_fx_attribute": "data-fx=\"path.to.field\"",
+      "display_text_marked": "data-fx=\"display_text.<id>\" (Recommendation)",
+      "decorative_layers_must_not_encode_data": true,
+      "source": "04_harness_contract/contract.md section 9"
+    },
+    "flash_policy_ref": "vertical_safe_zones.tokens.json flash_policy (full-frame flash banned; max 3 flashes per second; verify against the current WCAG text)",
+    "iteration_cap_fix_loops": 3,
+    "edge_case_sources": "01_research/RESEARCH_REPORT_advanced_animations_with_claude.md section 8"
+  },
+  "fonts_registry": [
+    {
+      "id": "inter",
+      "family": "Inter",
+      "kind": "sans",
+      "roles": [
+        "labels",
+        "captions",
+        "science_text"
+      ],
+      "script_coverage": {
+        "latin": "yes",
+        "devanagari": "assumed_none",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "RD-23 production font. Banned as a display/headline face."
+    },
+    {
+      "id": "noto_sans",
+      "family": "Noto Sans",
+      "kind": "sans",
+      "roles": [
+        "labels",
+        "captions",
+        "science_text",
+        "support"
+      ],
+      "script_coverage": {
+        "latin": "yes",
+        "devanagari": "assumed_none",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Latin family; scripts use the script-specific Noto families below."
+    },
+    {
+      "id": "noto_sans_devanagari",
+      "family": "Noto Sans Devanagari",
+      "kind": "sans",
+      "roles": [
+        "labels",
+        "captions",
+        "support"
+      ],
+      "script_coverage": {
+        "latin": "assumed_none",
+        "devanagari": "claimed_verify",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Run the glyph smoke test."
+    },
+    {
+      "id": "noto_sans_bengali",
+      "family": "Noto Sans Bengali",
+      "kind": "sans",
+      "roles": [
+        "labels",
+        "captions",
+        "support"
+      ],
+      "script_coverage": {
+        "latin": "assumed_none",
+        "devanagari": "assumed_none",
+        "bengali_assamese": "claimed_verify"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Assamese uses the Bengali-Assamese script; verify U+09F0 and U+09F1."
+    },
+    {
+      "id": "noto_serif",
+      "family": "Noto Serif",
+      "kind": "serif",
+      "roles": [
+        "headline"
+      ],
+      "script_coverage": {
+        "latin": "yes",
+        "devanagari": "assumed_none",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Bold/Black weights for editorial headline claim words."
+    },
+    {
+      "id": "noto_serif_devanagari",
+      "family": "Noto Serif Devanagari",
+      "kind": "serif",
+      "roles": [
+        "headline"
+      ],
+      "script_coverage": {
+        "latin": "assumed_none",
+        "devanagari": "claimed_verify",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": ""
+    },
+    {
+      "id": "noto_serif_bengali",
+      "family": "Noto Serif Bengali",
+      "kind": "serif",
+      "roles": [
+        "headline"
+      ],
+      "script_coverage": {
+        "latin": "assumed_none",
+        "devanagari": "assumed_none",
+        "bengali_assamese": "claimed_verify"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Verify U+09F0 and U+09F1."
+    },
+    {
+      "id": "katex_fonts",
+      "family": "KaTeX fonts",
+      "kind": "math",
+      "roles": [
+        "formulae"
+      ],
+      "script_coverage": {
+        "latin": "yes",
+        "devanagari": "n_a",
+        "bengali_assamese": "n_a"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Data-bound; formulae come from fixtures (RD-23)."
+    },
+    {
+      "id": "kalam",
+      "family": "Kalam",
+      "kind": "handwriting",
+      "roles": [
+        "handwriting"
+      ],
+      "script_coverage": {
+        "latin": "claimed_verify",
+        "devanagari": "claimed_verify",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Candidate handwriting face with Devanagari; per-word wipe reveal for Indic."
+    },
+    {
+      "id": "caveat",
+      "family": "Caveat",
+      "kind": "handwriting",
+      "roles": [
+        "handwriting"
+      ],
+      "script_coverage": {
+        "latin": "yes",
+        "devanagari": "assumed_none",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Latin-only hand lettering."
+    },
+    {
+      "id": "caveat_brush",
+      "family": "Caveat Brush",
+      "kind": "handwriting",
+      "roles": [
+        "brush_punchline"
+      ],
+      "script_coverage": {
+        "latin": "yes",
+        "devanagari": "assumed_none",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "From [V4-MP]."
+    },
+    {
+      "id": "patrick_hand",
+      "family": "Patrick Hand",
+      "kind": "handwriting",
+      "roles": [
+        "small_labels"
+      ],
+      "script_coverage": {
+        "latin": "yes",
+        "devanagari": "assumed_none",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "From [V4-MP]. Plain words only; never numbers, units or symbols."
+    },
+    {
+      "id": "alfa_slab_one",
+      "family": "Alfa Slab One",
+      "kind": "display",
+      "roles": [
+        "ransom_display"
+      ],
+      "script_coverage": {
+        "latin": "yes",
+        "devanagari": "assumed_none",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Display face named in [V4-MP]; Latin only until a glyph test proves otherwise."
+    },
+    {
+      "id": "abril_fatface",
+      "family": "Abril Fatface",
+      "kind": "display",
+      "roles": [
+        "ransom_display"
+      ],
+      "script_coverage": {
+        "latin": "yes",
+        "devanagari": "assumed_none",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Display face named in [V4-MP]; Latin only until a glyph test proves otherwise."
+    },
+    {
+      "id": "bowlby_one",
+      "family": "Bowlby One",
+      "kind": "display",
+      "roles": [
+        "ransom_display"
+      ],
+      "script_coverage": {
+        "latin": "yes",
+        "devanagari": "assumed_none",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Display face named in [V4-MP]; Latin only until a glyph test proves otherwise."
+    },
+    {
+      "id": "special_elite",
+      "family": "Special Elite",
+      "kind": "display",
+      "roles": [
+        "ransom_display"
+      ],
+      "script_coverage": {
+        "latin": "yes",
+        "devanagari": "assumed_none",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Display face named in [V4-MP]; Latin only until a glyph test proves otherwise."
+    },
+    {
+      "id": "bungee",
+      "family": "Bungee",
+      "kind": "display",
+      "roles": [
+        "ransom_display"
+      ],
+      "script_coverage": {
+        "latin": "yes",
+        "devanagari": "assumed_none",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Display face named in [V4-MP]; Latin only until a glyph test proves otherwise."
+    },
+    {
+      "id": "titan_one",
+      "family": "Titan One",
+      "kind": "display",
+      "roles": [
+        "ransom_display"
+      ],
+      "script_coverage": {
+        "latin": "yes",
+        "devanagari": "assumed_none",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Display face named in [V4-MP]; Latin only until a glyph test proves otherwise."
+    },
+    {
+      "id": "ultra",
+      "family": "Ultra",
+      "kind": "display",
+      "roles": [
+        "ransom_display"
+      ],
+      "script_coverage": {
+        "latin": "yes",
+        "devanagari": "assumed_none",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Display face named in [V4-MP]; Latin only until a glyph test proves otherwise."
+    },
+    {
+      "id": "lilita_one",
+      "family": "Lilita One",
+      "kind": "display",
+      "roles": [
+        "ransom_display"
+      ],
+      "script_coverage": {
+        "latin": "yes",
+        "devanagari": "assumed_none",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Display face named in [V4-MP]; Latin only until a glyph test proves otherwise."
+    },
+    {
+      "id": "bebas_neue",
+      "family": "Bebas Neue",
+      "kind": "display",
+      "roles": [
+        "ransom_display"
+      ],
+      "script_coverage": {
+        "latin": "yes",
+        "devanagari": "assumed_none",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Display face named in [V4-MP]; Latin only until a glyph test proves otherwise."
+    },
+    {
+      "id": "playfair_display",
+      "family": "Playfair Display",
+      "kind": "display",
+      "roles": [
+        "ransom_display"
+      ],
+      "script_coverage": {
+        "latin": "yes",
+        "devanagari": "assumed_none",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Display face named in [V4-MP]; Latin only until a glyph test proves otherwise."
+    },
+    {
+      "id": "rubik_mono_one",
+      "family": "Rubik Mono One",
+      "kind": "display",
+      "roles": [
+        "ransom_display"
+      ],
+      "script_coverage": {
+        "latin": "yes",
+        "devanagari": "assumed_none",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Display face named in [V4-MP]; Latin only until a glyph test proves otherwise."
+    },
+    {
+      "id": "rozha_one",
+      "family": "Rozha One",
+      "kind": "display",
+      "roles": [
+        "display_indic"
+      ],
+      "script_coverage": {
+        "latin": "claimed_verify",
+        "devanagari": "claimed_verify",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Candidate Devanagari display serif; verify."
+    },
+    {
+      "id": "yatra_one",
+      "family": "Yatra One",
+      "kind": "display",
+      "roles": [
+        "display_indic"
+      ],
+      "script_coverage": {
+        "latin": "claimed_verify",
+        "devanagari": "claimed_verify",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Candidate Devanagari display; verify."
+    },
+    {
+      "id": "baloo_2",
+      "family": "Baloo 2",
+      "kind": "display",
+      "roles": [
+        "display_indic"
+      ],
+      "script_coverage": {
+        "latin": "claimed_verify",
+        "devanagari": "claimed_verify",
+        "bengali_assamese": "assumed_none"
+      },
+      "licence": "verify",
+      "vendored": false,
+      "sha256": null,
+      "note": "Candidate rounded display with Devanagari; verify."
+    }
+  ],
+  "styles": {
+    "paper-collage-vertical": {
+      "style_id": "paper-collage-vertical",
+      "version": "1.0.0",
+      "guide": "paper-collage-vertical.md",
+      "derived_from": "[V4-MP] 16:9 1920x1080 guide, adapted to 1080x1920",
+      "route_tags_allowed": [
+        "illustrative",
+        "narrative",
+        "recap"
+      ],
+      "route_tags_forbidden": [
+        "data-bound",
+        "spatial-hero"
+      ],
+      "cost_class": "A zero credits (default); B licensed/own cutouts; C Higgsfield (gated, estimate + approval)",
+      "credits": 0,
+      "credits_note": "0 for tiers A and B; tier C credits are never assumed - the estimate comes from the verified pricing source at the storyboard gate (prices are not stored here).",
+      "palette": {
+        "storybook_13": {
+          "tomato_red": "#d9483b",
+          "mustard": "#e0a73a",
+          "teal": "#2f7f7a",
+          "ultramarine": "#2f4fa8",
+          "olive": "#7c8a3c",
+          "sage": "#9dbb8e",
+          "blush_pink": "#f1a9a0",
+          "cream": "#f3ecdf",
+          "paper_white": "#fbf7ee",
+          "kraft": "#b98f5e",
+          "ink": "#2b2622",
+          "pencil": "#3a332c",
+          "night_navy": "#1b2a4a"
+        },
+        "storybook_contrast_computed": {
+          "cream": {
+            "tomato_red": 3.62,
+            "mustard": 1.83,
+            "teal": 4.03,
+            "ultramarine": 6.37,
+            "olive": 3.22,
+            "sage": 1.8,
+            "blush_pink": 1.64,
+            "cream": 1.0,
+            "paper_white": 1.1,
+            "kraft": 2.5,
+            "ink": 12.74,
+            "pencil": 10.58,
+            "night_navy": 12.1
+          },
+          "paper_white": {
+            "tomato_red": 3.98,
+            "mustard": 2.01,
+            "teal": 4.43,
+            "ultramarine": 7.0,
+            "olive": 3.53,
+            "sage": 1.98,
+            "blush_pink": 1.8,
+            "cream": 1.1,
+            "paper_white": 1.0,
+            "kraft": 2.75,
+            "ink": 14.0,
+            "pencil": 11.62,
+            "night_navy": 13.3
+          },
+          "kraft": {
+            "tomato_red": 1.45,
+            "mustard": 1.36,
+            "teal": 1.61,
+            "ultramarine": 2.55,
+            "olive": 1.29,
+            "sage": 1.39,
+            "blush_pink": 1.53,
+            "cream": 2.5,
+            "paper_white": 2.75,
+            "kraft": 1.0,
+            "ink": 5.1,
+            "pencil": 4.23,
+            "night_navy": 4.84
+          },
+          "night_navy": {
+            "tomato_red": 3.35,
+            "mustard": 6.61,
+            "teal": 3.01,
+            "ultramarine": 1.9,
+            "olive": 3.76,
+            "sage": 6.73,
+            "blush_pink": 7.4,
+            "cream": 12.1,
+            "paper_white": 13.3,
+            "kraft": 4.84,
+            "ink": 1.05,
+            "pencil": 1.14,
+            "night_navy": 1.0
+          }
+        },
+        "storybook_text_use": {
+          "ink": "default text",
+          "pencil": "doodles; not small text on kraft (4.23)",
+          "mustard": "only on ink or navy",
+          "sage": "fills only; text on navy",
+          "blush_pink": "fills; text on navy",
+          "olive": "fills only",
+          "tomato_red": "display text >= 72 px, fills, underlines",
+          "teal": "display text >= 72 px on cream/paper",
+          "ultramarine": "text OK on cream/paper"
+        },
+        "science_text": {
+          "foreground": "#14213D",
+          "tag_background": "#F7F9FC",
+          "note": "Science-bearing text uses ExamLeaf tokens on an #F7F9FC tag so published ratios hold. ExamLeaf teal is not placed on cream (4.37)."
+        },
+        "wrong_answer_marker": "#B42318",
+        "wrong_answer_note": "No tomato crosses; correct by explanation (ROOT/02 I3).",
+        "usage": {
+          "dominant_background_families_per_scene": 1,
+          "max_foreground_accent_hues": 2,
+          "accent_elements_per_beat": 1
+        }
+      },
+      "fonts": {
+        "primary": [
+          "alfa_slab_one",
+          "abril_fatface",
+          "bowlby_one",
+          "special_elite",
+          "bungee",
+          "titan_one",
+          "ultra",
+          "lilita_one",
+          "bebas_neue",
+          "playfair_display",
+          "rubik_mono_one"
+        ],
+        "primary_role": "ransom-note display tiles (Latin only); use 3-5 per title",
+        "secondary": [
+          "patrick_hand"
+        ],
+        "secondary_role": "small labels on washi-taped tags; plain words only",
+        "handwriting": [
+          "caveat_brush"
+        ],
+        "handwriting_role": "brush punchlines",
+        "science_text": [
+          "inter",
+          "noto_sans",
+          "katex_fonts"
+        ],
+        "indic_fallback": {
+          "devanagari_labels": [
+            "noto_sans_devanagari"
+          ],
+          "devanagari_handwriting": [
+            "kalam"
+          ],
+          "devanagari_display_word_strips": [
+            "noto_sans_devanagari",
+            "rozha_one",
+            "yatra_one",
+            "baloo_2"
+          ],
+          "bengali_assamese": [
+            "noto_sans_bengali"
+          ]
+        },
+        "indic_coverage_summary": "Primary/secondary/handwriting Latin faces cover Latin only; Indic uses the indic_fallback set after a glyph smoke test.",
+        "licence": "verify",
+        "vendor_and_hash": true
+      },
+      "typography": {
+        "ransom": {
+          "unit_latin": "letter",
+          "unit_indic": "word_strip",
+          "tile_edge_px": [
+            112,
+            148
+          ],
+          "glyph_em_px": [
+            80,
+            110
+          ],
+          "rotation_deg_latin": 6,
+          "rotation_deg_indic": 3,
+          "vertical_jitter_px": 8,
+          "letter_stagger_s": [
+            0.04,
+            0.05
+          ],
+          "max_words": 3,
+          "lowercase_some": true,
+          "distinct_fonts_per_title": [
+            3,
+            5
+          ]
+        },
+        "tile_styles": [
+          {
+            "tile": "ink",
+            "letters": "cream",
+            "contrast": 12.74,
+            "class": "any"
+          },
+          {
+            "tile": "ink",
+            "letters": "mustard",
+            "contrast": 6.95,
+            "class": "any"
+          },
+          {
+            "tile": "cream",
+            "letters": "tomato_red",
+            "contrast": 3.62,
+            "class": "display"
+          },
+          {
+            "tile": "cream",
+            "letters": "ink",
+            "contrast": 12.74,
+            "class": "any"
+          },
+          {
+            "tile": "tomato_red",
+            "letters": "cream",
+            "contrast": 3.62,
+            "class": "display"
+          },
+          {
+            "tile": "ultramarine",
+            "letters": "mustard",
+            "contrast": 3.48,
+            "class": "display"
+          },
+          {
+            "tile": "mustard",
+            "letters": "ink",
+            "contrast": 6.95,
+            "class": "any"
+          },
+          {
+            "tile": "blush_pink",
+            "letters": "examleaf_red_B42318",
+            "contrast": 3.42,
+            "class": "display",
+            "note": "original \"dark red\" is not in the 13-colour palette"
+          },
+          {
+            "tile": "blush_pink",
+            "letters": "ultramarine",
+            "contrast": 3.89,
+            "class": "display"
+          },
+          {
+            "tile": "tomato_red_polka_dot",
+            "letters": "cream",
+            "contrast": 3.62,
+            "class": "display"
+          },
+          {
+            "tile": "cream_blue_grid_paper",
+            "letters": "ultramarine",
+            "contrast": 6.37,
+            "class": "any"
+          },
+          {
+            "tile": "teal",
+            "letters": "cream",
+            "contrast": 4.03,
+            "class": "display"
+          }
+        ],
+        "brush_punchline": {
+          "em_px": [
+            64,
+            88
+          ],
+          "reveal_s": [
+            0.4,
+            0.9
+          ],
+          "underline_px": [
+            5,
+            6
+          ],
+          "underline_color": "#d9483b",
+          "max_words": 6,
+          "ink": "#2b2622"
+        },
+        "small_label": {
+          "min_px": 50,
+          "max_words": 4
+        },
+        "science_text": {
+          "essential_px": [
+            50,
+            54
+          ],
+          "equation_px": [
+            63,
+            81
+          ]
+        },
+        "caption_track": {
+          "px": [
+            50,
+            54
+          ],
+          "max_lines": 2,
+          "plate": "#F7F9FC",
+          "color": "#14213D",
+          "karaoke_during_kinetic": false
+        },
+        "side_margin_px_min": 96,
+        "was_edge_margin_px": 90
+      },
+      "shadows_borders": {
+        "die_cut_border_px": [
+          6,
+          12
+        ],
+        "die_cut_border_color": "#fbf7ee",
+        "drop_shadow_layers": [
+          {
+            "x": 0,
+            "y": 9,
+            "blur": 7,
+            "color": "rgba(74,48,22,0.30)"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "blur": 1.5,
+            "color": "rgba(0,0,0,0.20)"
+          }
+        ],
+        "shadow_filter_on": "wrapper",
+        "rotation_on": "child",
+        "doodle": {
+          "color": "#3a332c",
+          "decorative_stroke_px": [
+            3,
+            5
+          ],
+          "functional_stroke_px": [
+            6,
+            8
+          ],
+          "functional_color": "#2b2622",
+          "caps": "round"
+        },
+        "vignette_max_edge_darkening": 0.12,
+        "vignette_status": "Hypothesis"
+      },
+      "motion": {
+        "engine": "tween library driven by seek(t); GSAP naming; HyperFrames bundling of GSAP not verified",
+        "pop_in": {
+          "ease": "back.out",
+          "overshoot": [
+            2,
+            3
+          ],
+          "start_scale": 0,
+          "start_rotation_deg": 12,
+          "pivot": "bottom",
+          "duration_s": [
+            0.3,
+            0.45
+          ]
+        },
+        "drop_in": "bounce from above",
+        "slide_in": "from off-frame",
+        "hop": "squash and stretch from the feet",
+        "idle": {
+          "rotation_deg": [
+            1.5,
+            4
+          ],
+          "translate_px": "a few",
+          "repeat": "finite, computed from DURATION",
+          "allowed_in": [
+            "hook",
+            "analogy",
+            "recap"
+          ],
+          "off_in": [
+            "fixture_panels",
+            "inspect_elements",
+            "think",
+            "pause_video",
+            "reduced_motion"
+          ]
+        },
+        "boil": {
+          "fps_allowed": [
+            8,
+            10
+          ],
+          "fps_default": 8,
+          "frames_per_step_at_30fps_default": 3,
+          "uneven_cadence": {
+            "8": "4-4-4-3",
+            "9": "4-3-3"
+          },
+          "seeded": true,
+          "off_for": [
+            "fixture_content",
+            "text",
+            "reduced_motion"
+          ]
+        },
+        "push_in_scale": [
+          1.03,
+          1.04
+        ],
+        "pan": "vertical tilt between stacked layers",
+        "pan_off_during": [
+          "label_reveal",
+          "measurement"
+        ],
+        "shake": {
+          "max_steps": 3,
+          "max_s": 0.4,
+          "max_px": 10,
+          "status": "Recommendation"
+        },
+        "parallax_factors": {
+          "back": 0.25,
+          "middle": 0.6,
+          "characters": 1.0,
+          "foreground": 1.4
+        },
+        "max_drift_px": 30,
+        "gags": [
+          "multiply",
+          "tear",
+          "paper_flip",
+          "squashy_shrink",
+          "tape_photos"
+        ],
+        "sheet_transition": {
+          "ease": "power3.out",
+          "duration_s": [
+            0.5,
+            0.7
+          ],
+          "start_after_last_word_s": 0.3,
+          "directions": [
+            "bottom_up",
+            "top_down",
+            "left",
+            "right"
+          ],
+          "torn_edge": true,
+          "drop_shadow": true
+        },
+        "somber_sheet": {
+          "ease": "power2.inOut",
+          "duration_s": 0.9,
+          "settle_bounce": true
+        },
+        "whip": {
+          "ease": "expo.out",
+          "duration_s": 0.4
+        },
+        "explosion": {
+          "white_flash_or_bloom": "forbidden",
+          "replacement": "localised paper burst: radial confetti plus cream sheet scale-up over at least 0.5 s",
+          "luminance_rule_starting": "no full-frame mean-luminance change greater than 20% of range inside any 0.25 s window (Hypothesis; examleaf-anim-qa has final say)"
+        },
+        "no_exit_animations": true,
+        "element_transition_ms": [
+          150,
+          300
+        ],
+        "highlight_ms": [
+          300,
+          600
+        ],
+        "reduced_motion": {
+          "sheets": "150-300 ms cross-dissolve",
+          "boil": false,
+          "idle": false,
+          "shake": false,
+          "push_in": false
+        },
+        "never_during": [
+          "think",
+          "pause_video"
+        ],
+        "headline_hold_s_min": 1.2
+      },
+      "sfx": {
+        "list": [
+          "paper_swish",
+          "ransom_tap_per_word",
+          "pop",
+          "boing",
+          "paper_tear",
+          "thud",
+          "sparkle_chime"
+        ],
+        "subtle": true,
+        "booms_and_rumbles": "history-of-science narrative scenes only, short and band-limited",
+        "mute_during": [
+          "think",
+          "pause_video",
+          "equation_reading",
+          "inspection"
+        ]
+      },
+      "music": {
+        "bpm": 100,
+        "bar_s": 2.4,
+        "instruments": [
+          "pizzicato strings",
+          "ukulele",
+          "glockenspiel",
+          "soft clarinet",
+          "light brushed percussion"
+        ],
+        "instrumental": true,
+        "under_voice_db": [
+          20,
+          24
+        ],
+        "preferred_db_during_narration": 20,
+        "low_pass_on_somber": true,
+        "end_card_swell_db_max": 3,
+        "allowed_in": [
+          "hook",
+          "sheet_transition",
+          "recap_outro",
+          "reel_bed"
+        ],
+        "generator": "examleaf-audio-compose",
+        "under_voice_db_note": "15 Oct 2026: unified to 20-24 dB under speech (common.music_policy); [V4-MP]'s 15-20 dB is the reference value only"
+      },
+      "loudness": {
+        "ref": "common.loudness"
+      },
+      "assets": {
+        "tiers": {
+          "A": "code-only paper shapes, zero credits (default)",
+          "B": "owned or licensed cutouts",
+          "C": "Higgsfield GPT Image, gated by storyboard approval and credit estimate"
+        },
+        "cutout_resolution": "2K transparent",
+        "background": {
+          "opaque": true,
+          "aspect": "9:16",
+          "min_px": [
+            1080,
+            1920
+          ],
+          "top_quiet_share": 0.22,
+          "bottom_quiet_share": 0.24,
+          "crop_not_stretch": true
+        },
+        "storyboard_grid": {
+          "panels": "3x3",
+          "panel_aspect": "9:16",
+          "gutter": "thin cream",
+          "number_tags": "added in code",
+          "science_free": true
+        },
+        "manifest_fields": [
+          "tier",
+          "licence_or_job_id",
+          "prompt",
+          "sha256"
+        ]
+      },
+      "determinism": {
+        "ref": "common.determinism",
+        "overrides": {}
+      },
+      "forbidden": {
+        "ref": "common.forbidden",
+        "additional": {
+          "three_d_render": true,
+          "glossy_gradients": true,
+          "photoreal": true,
+          "heavy_blur_or_glow": true,
+          "tomato_cross_for_wrong_answer": true,
+          "faces_on_atoms_ions_electrons_cells_in_explanations": true,
+          "objects_with_faces_as_causal_explanation": true,
+          "crying_poses_on_learner_facing_characters": true
+        }
+      }
+    },
+    "doodle-handdrawn": {
+      "style_id": "doodle-handdrawn",
+      "version": "1.0.0",
+      "guide": "doodle-handdrawn.md",
+      "derived_from": "[V2] doodle style; report 4.2",
+      "route_tags_allowed": [
+        "illustrative",
+        "narrative",
+        "recap",
+        "hook"
+      ],
+      "route_tags_forbidden": [
+        "data-bound",
+        "spatial-hero"
+      ],
+      "default_for_reels": true,
+      "default_for_reels_status": "Recommendation",
+      "cost_class": "zero credits (pure code)",
+      "credits": 0,
+      "palette": {
+        "ref": "common.palettes",
+        "fill_rule": "tints of the subject accent; amber/red only when carrying their role",
+        "paper": "#F7F9FC",
+        "outline_main": "#14213D",
+        "far_layer_outline": "#526074"
+      },
+      "fonts": {
+        "primary": [
+          "inter",
+          "noto_sans"
+        ],
+        "primary_role": "labels and captions",
+        "secondary": [
+          "noto_sans_devanagari",
+          "noto_sans_bengali"
+        ],
+        "secondary_role": "script-specific labels and captions",
+        "handwriting": [
+          "kalam",
+          "caveat"
+        ],
+        "handwriting_role": "doodle titles; Kalam for Latin+Devanagari, Caveat Latin only",
+        "science_text": [
+          "inter",
+          "noto_sans",
+          "katex_fonts"
+        ],
+        "indic_coverage_summary": "Kalam Devanagari claimed (verify); no verified Assamese handwriting font - use Noto Sans Bengali with a per-word wipe.",
+        "ban_as_display": [
+          "Arial",
+          "Helvetica",
+          "Roboto",
+          "system-ui",
+          "Space Grotesk",
+          "Inter",
+          "Comic Sans",
+          "Papyrus"
+        ],
+        "licence": "verify",
+        "vendor_and_hash": true
+      },
+      "typography": {
+        "hook_title_px": [
+          96,
+          140
+        ],
+        "label_px": [
+          50,
+          54
+        ],
+        "caption_px": [
+          50,
+          54
+        ],
+        "heading_px": [
+          59,
+          72
+        ],
+        "equation_px": [
+          63,
+          81
+        ],
+        "side_margin_px_min": 96,
+        "max_title_words": 3
+      },
+      "strokes": {
+        "outline_px": 5,
+        "detail_px": 3,
+        "emphasis_px": 7,
+        "functional_px": [
+          6,
+          8
+        ],
+        "caps": "round",
+        "joins": "round",
+        "wobble_amplitude_px": [
+          0.8,
+          2.5
+        ],
+        "wobble_segment_px": [
+          12,
+          20
+        ],
+        "endpoints_anchored": true,
+        "boil": {
+          "fps_allowed": [
+            8,
+            10
+          ],
+          "fps_default": 8,
+          "amplitude_px": [
+            0.8,
+            1.5
+          ],
+          "nervous_amplitude_px_max": 3
+        },
+        "draw_on": {
+          "speed_px_per_s": 1100,
+          "min_s": 0.25,
+          "max_s": 1.2,
+          "ease": "power1.inOut"
+        },
+        "fill_in": {
+          "offset_px_off_register": [
+            2,
+            6
+          ],
+          "fade_ms": [
+            150,
+            300
+          ]
+        },
+        "pencil_texture": {
+          "static": true,
+          "blend": "multiply",
+          "opacity": [
+            0.06,
+            0.1
+          ],
+          "seeded": true,
+          "feTurbulence_seed": "fixed integer",
+          "not_on": [
+            "caption_plate",
+            "fixture_panels"
+          ]
+        }
+      },
+      "depth": {
+        "min_layers": 4,
+        "layers": [
+          {
+            "id": "L0",
+            "content": "paper and grain",
+            "parallax": 0
+          },
+          {
+            "id": "L1",
+            "content": "far shapes",
+            "parallax": 0.25,
+            "line_weight_x": 0.6,
+            "tint": "18pct"
+          },
+          {
+            "id": "L2",
+            "content": "mid props",
+            "parallax": 0.6,
+            "line_weight_x": 0.8,
+            "tint": "28pct"
+          },
+          {
+            "id": "L3",
+            "content": "subject plane (hero, key prop, fixture panels)",
+            "parallax": 1.0,
+            "line_weight_x": 1.0,
+            "tint": "full ink"
+          },
+          {
+            "id": "L4",
+            "content": "foreground frame element",
+            "parallax": 1.4,
+            "line_weight_x": 1.2,
+            "tint": "full ink"
+          }
+        ],
+        "max_camera_drift_px": 30,
+        "drift_zero_during": [
+          "hold",
+          "think",
+          "label_reveal",
+          "measurement"
+        ],
+        "min_overlap_px": 24,
+        "light_direction": "top-left fixed",
+        "shadow": "3-5 hatch strokes at 45 degrees, spacing 10-14 px, ink at 60%",
+        "size_diminution": [
+          0.6,
+          0.8
+        ],
+        "horizon_share_of_visual_zone": [
+          0.55,
+          0.62
+        ],
+        "fixture_geometry_untouched": true
+      },
+      "motion": {
+        "pop": {
+          "ease": "back.out",
+          "overshoot": 1.7,
+          "start_scale": 0.6,
+          "duration_s": [
+            0.3,
+            0.4
+          ],
+          "pivot": "base"
+        },
+        "underline_s": [
+          0.3,
+          0.4
+        ],
+        "circle_or_tick_s": [
+          0.4,
+          0.5
+        ],
+        "hatch_stagger_ms": [
+          40,
+          60
+        ],
+        "wiggle": {
+          "rotation_deg": 2,
+          "duration_s": 0.4,
+          "repeat": "finite, ceil(DURATION/period)"
+        },
+        "erase_s": 0.25,
+        "scene_cut": "hard cut or 150-300 ms slide; no flashes",
+        "element_transition_ms": [
+          150,
+          300
+        ],
+        "highlight_ms": [
+          300,
+          600
+        ],
+        "camera": "drift as a function of t only",
+        "headline_hold_s_min": 1.2,
+        "reduced_motion": {
+          "boil": false,
+          "idle": false,
+          "drift": false,
+          "wiggle": false,
+          "reveal": "fade"
+        }
+      },
+      "shadows_borders": {
+        "shadow_type": "hatch strokes, no blur",
+        "cutout_border": "none"
+      },
+      "sfx": {
+        "list": [
+          "pencil_scratch_per_stroke_group",
+          "soft_tick",
+          "pop",
+          "paper_rustle_cut",
+          "light_whoosh",
+          "marker_squeak_circle",
+          "soft_chime_confirmed_result_only"
+        ],
+        "mute_during": [
+          "think",
+          "pause_video",
+          "equation_reading",
+          "inspection"
+        ]
+      },
+      "music": {
+        "optional": true,
+        "allowed_in": [
+          "hook",
+          "cta"
+        ],
+        "not_allowed_in": [
+          "reasoning"
+        ]
+      },
+      "loudness": {
+        "ref": "common.loudness"
+      },
+      "determinism": {
+        "ref": "common.determinism",
+        "overrides": {
+          "boil_step": "floor(t * boil_fps)",
+          "jitter_key": "sceneId:elementId:step"
+        }
+      },
+      "forbidden": {
+        "ref": "common.forbidden",
+        "additional": {
+          "wobble_or_boil_on_fixture_content": true,
+          "blurred_shadows": true,
+          "red_or_amber_as_decoration": true,
+          "red_cross_for_wrong_answer": true,
+          "handwriting_font_for_numbers_units_formulae": true
+        }
+      }
+    },
+    "editorial-vox": {
+      "style_id": "editorial-vox",
+      "version": "1.0.0",
+      "guide": "editorial-vox.md",
+      "derived_from": "[V3] Vox-style editorial; report 4.3 (technique only; no outlet branding)",
+      "route_tags_allowed": [
+        "illustrative",
+        "comparison",
+        "scale-story"
+      ],
+      "route_tags_forbidden": [
+        "data-bound-graph",
+        "spatial-hero"
+      ],
+      "cost_class": "zero credits unless Tier C cut-outs are approved",
+      "credits": 0,
+      "palette": {
+        "ref": "common.palettes",
+        "highlighter": {
+          "opacity_blend": "multiply",
+          "tint_pct": [
+            22,
+            28
+          ],
+          "tints_28": {
+            "blue": "#B9CCEA",
+            "teal": "#B4D5DB",
+            "amber": "#DDCDB5",
+            "purple": "#D1C6E5",
+            "green": "#BBD5C7"
+          },
+          "amber_only_for_conditions": true
+        },
+        "panel_tint_pct": 18,
+        "background_grain": {
+          "opacity": [
+            0.03,
+            0.05
+          ],
+          "seeded": true
+        },
+        "halftone": {
+          "min_dot_px": 6,
+          "ink_opacity": [
+            0.06,
+            0.08
+          ],
+          "only_behind": "title_zone"
+        }
+      },
+      "fonts": {
+        "primary": [
+          "noto_serif"
+        ],
+        "primary_role": "headline claim words, bold/black",
+        "secondary": [
+          "noto_sans",
+          "inter"
+        ],
+        "secondary_role": "connecting words, sub-heads, labels, captions",
+        "handwriting": [],
+        "handwriting_role": "none",
+        "science_text": [
+          "inter",
+          "noto_sans",
+          "katex_fonts"
+        ],
+        "indic_fallback": {
+          "devanagari": [
+            "noto_serif_devanagari",
+            "noto_sans_devanagari"
+          ],
+          "bengali_assamese": [
+            "noto_serif_bengali",
+            "noto_sans_bengali"
+          ]
+        },
+        "number_callout": {
+          "family": [
+            "noto_sans",
+            "inter"
+          ],
+          "tabular_numerals": true,
+          "tabular_status": "verify per font"
+        },
+        "ban_as_display": [
+          "Arial",
+          "Helvetica",
+          "Roboto",
+          "system-ui",
+          "Space Grotesk",
+          "Inter"
+        ],
+        "licence": "verify",
+        "vendor_and_hash": true
+      },
+      "typography": {
+        "headline_claim_px": [
+          96,
+          128
+        ],
+        "headline_support_px": [
+          56,
+          64
+        ],
+        "headline_max_lines": 2,
+        "number_callout_px": [
+          160,
+          240
+        ],
+        "unit_px": [
+          56,
+          72
+        ],
+        "label_px": [
+          50,
+          54
+        ],
+        "caption_px": [
+          50,
+          54
+        ],
+        "heading_px": [
+          59,
+          72
+        ],
+        "equation_px": [
+          63,
+          81
+        ],
+        "side_margin_px_min": 96
+      },
+      "shadows_borders": {
+        "cutout_keyline_px": 6,
+        "cutout_keyline_color": "#F7F9FC",
+        "hard_shadow": {
+          "x": 8,
+          "y": 8,
+          "blur": 0,
+          "color": "rgba(20,33,61,0.18)"
+        },
+        "blur": "none"
+      },
+      "layout": {
+        "comparison": {
+          "frames": 2,
+          "frame_share_of_visual_zone": [
+            0.4,
+            0.46
+          ],
+          "divider": "vs or operator, drawn in code",
+          "matched_size_and_scale": true
+        },
+        "ladder": {
+          "axis": "logarithmic unless fixture says linear",
+          "tick_labels_from_fixture": true
+        }
+      },
+      "numbers": {
+        "source": "fixture value_display/unit_display strings",
+        "encoding_declared": true,
+        "encoding_note_from_fixture_or_brief": true,
+        "count_up": "discouraged; max 0.8 s; non-exam-critical only; must land on exact fixture string",
+        "reveal_preferred": "mask-wipe or pop"
+      },
+      "motion": {
+        "stagger": {
+          "ms": [
+            60,
+            90
+          ],
+          "ease": "power3.out",
+          "total_s": [
+            0.3,
+            0.5
+          ],
+          "one_entrance_per_beat": true
+        },
+        "slide": {
+          "ease": "power3.out",
+          "duration_s": [
+            0.3,
+            0.5
+          ]
+        },
+        "pop": {
+          "ease": "back.out",
+          "overshoot": 1.4,
+          "start_scale": 0.85,
+          "duration_s": 0.3
+        },
+        "highlighter": {
+          "ease": "power2.out",
+          "duration_s": [
+            0.35,
+            0.5
+          ],
+          "passes_max": 2,
+          "seeded_ends": true
+        },
+        "push_in_scale": [
+          1.05,
+          1.08
+        ],
+        "push_in_off_during": [
+          "label_reveal",
+          "measurement"
+        ],
+        "cuts": "hard cut on sentence boundary or 150-300 ms slide; no whip pans; no flashes",
+        "element_transition_ms": [
+          150,
+          300
+        ],
+        "highlight_ms": [
+          300,
+          600
+        ],
+        "headline_hold_s_min": 1.2,
+        "reduced_motion": {
+          "push_in": false,
+          "drift": false,
+          "highlighter": "fade"
+        }
+      },
+      "images": {
+        "allowed": [
+          "owned or commissioned",
+          "recorded licence permitting commercial educational use"
+        ],
+        "forbidden": [
+          "scraped",
+          "reference-creator artwork",
+          "model-generated photoreal",
+          "real faces without release",
+          "logos",
+          "maps unless approved asset"
+        ],
+        "manifest_fields": [
+          "source",
+          "licence",
+          "attribution",
+          "sha256",
+          "date"
+        ]
+      },
+      "sfx": {
+        "list": [
+          "soft_thud_number_land",
+          "highlighter_swipe",
+          "slide_whoosh",
+          "tick_divider"
+        ],
+        "mute_during": [
+          "think",
+          "pause_video",
+          "equation_reading",
+          "inspection"
+        ]
+      },
+      "music": {
+        "optional": true,
+        "allowed_in": [
+          "hook",
+          "outro"
+        ],
+        "not_allowed_in": [
+          "reasoning"
+        ]
+      },
+      "loudness": {
+        "ref": "common.loudness"
+      },
+      "determinism": {
+        "ref": "common.determinism",
+        "overrides": {}
+      },
+      "forbidden": {
+        "ref": "common.forbidden",
+        "additional": {
+          "outlet_logo_or_branding": true,
+          "hand_tuned_sizes_that_imply_a_ratio": true,
+          "push_in_over_number_while_revealing": true,
+          "more_than_one_highlight_at_a_time": true
+        }
+      }
+    },
+    "kinetic-type": {
+      "style_id": "kinetic-type",
+      "version": "1.0.0",
+      "guide": "kinetic-type.md",
+      "derived_from": "[V3] SaaS motion graphics; report 4.4; [N50]-[N55], [N60]",
+      "route_tags_allowed": [
+        "typographic",
+        "hook",
+        "label",
+        "cta"
+      ],
+      "route_tags_forbidden": [
+        "data-bound",
+        "equation"
+      ],
+      "cost_class": "zero credits",
+      "credits": 0,
+      "palette": {
+        "ref": "common.palettes",
+        "dominant": [
+          "#14213D",
+          "#F7F9FC"
+        ],
+        "max_accent_colours": 2,
+        "one_highlight_at_a_time": true,
+        "tile_letter_on_tile_note": "paper-white letters on ink 15.15, blue 6.15, teal 4.87, purple 6.48, secondary 6.06, amber 5.14 (token ratios)"
+      },
+      "fonts": {
+        "primary": [
+          "bebas_neue",
+          "alfa_slab_one",
+          "bowlby_one",
+          "bungee",
+          "titan_one",
+          "lilita_one",
+          "abril_fatface",
+          "playfair_display",
+          "noto_serif"
+        ],
+        "primary_role": "display (Latin)",
+        "secondary": [
+          "noto_sans",
+          "inter"
+        ],
+        "secondary_role": "support, labels, captions (Inter not as display)",
+        "handwriting": [
+          "kalam",
+          "caveat"
+        ],
+        "handwriting_role": "handwriting mode",
+        "science_text": [
+          "inter",
+          "noto_sans",
+          "katex_fonts"
+        ],
+        "indic_fallback": {
+          "devanagari_display": [
+            "rozha_one",
+            "yatra_one",
+            "baloo_2",
+            "noto_serif_devanagari",
+            "noto_sans_devanagari"
+          ],
+          "bengali_assamese": [
+            "noto_sans_bengali",
+            "noto_serif_bengali"
+          ]
+        },
+        "ban_as_display": [
+          "Arial",
+          "Helvetica",
+          "Roboto",
+          "system-ui",
+          "sans-serif (generic)",
+          "Space Grotesk",
+          "Inter",
+          "Times New Roman",
+          "Comic Sans",
+          "Papyrus"
+        ],
+        "rotate_display_between_reels": true,
+        "licence": "verify",
+        "vendor_and_hash": true
+      },
+      "typography": {
+        "hook_display_px": [
+          96,
+          150
+        ],
+        "support_px": [
+          56,
+          64
+        ],
+        "label_px": [
+          50,
+          54
+        ],
+        "caption_px": [
+          50,
+          54
+        ],
+        "heading_px_min": 59,
+        "equation_px": [
+          63,
+          81
+        ],
+        "ransom_tile_edge_px": [
+          112,
+          148
+        ],
+        "ransom_glyph_em_px": [
+          80,
+          110
+        ],
+        "handwriting_em_px": [
+          64,
+          88
+        ],
+        "max_lines": 3,
+        "max_words_on_screen": 6,
+        "side_margin_px_min": 96
+      },
+      "modes": {
+        "ransom": {
+          "unit_latin": "letter",
+          "unit_indic": "word_strip",
+          "stagger_s": [
+            0.04,
+            0.05
+          ],
+          "min_stagger_s": 0.02,
+          "rotation_deg": {
+            "latin": 6,
+            "indic": 3
+          },
+          "jitter_px": 8,
+          "shadow": "flat 6 px, ink 18%, no blur"
+        },
+        "handwriting": {
+          "unit_latin": "letter or mask wipe",
+          "unit_indic": "word mask wipe",
+          "wipe_s_max": 0.6,
+          "underline_s": [
+            0.3,
+            0.4
+          ]
+        },
+        "label": {
+          "max_words": 4,
+          "pop": {
+            "ease": "back.out",
+            "overshoot": 1.4,
+            "duration_s": [
+              0.25,
+              0.3
+            ]
+          },
+          "slide_px": [
+            20,
+            30
+          ]
+        }
+      },
+      "timing": {
+        "cue_at_window_s": [
+          -0.05,
+          0.0
+        ],
+        "entrance_settle_s_max": 0.3,
+        "entrance_group_window_s_max": 0.8,
+        "item_stagger_ms": [
+          40,
+          90
+        ],
+        "one_staggered_entrance_per_beat": true,
+        "source": "[N53]",
+        "exit": "none; 150-300 ms fade or slide replacement"
+      },
+      "holds": {
+        "ref": "common.holds"
+      },
+      "motion": {
+        "mask_reveal_up": {
+          "ease": "power3.out",
+          "translate_px": 40,
+          "duration_s": [
+            0.3,
+            0.45
+          ]
+        },
+        "slide_in": {
+          "ease": "power3.out",
+          "px": [
+            20,
+            60
+          ],
+          "duration_s": 0.3
+        },
+        "pop": {
+          "ease": "back.out",
+          "overshoot": 2,
+          "start_scale": 0.85,
+          "duration_s": [
+            0.25,
+            0.35
+          ]
+        },
+        "emphasis": {
+          "scale": [
+            1.0,
+            1.08,
+            1.0
+          ],
+          "duration_s": 0.35,
+          "once": true
+        },
+        "tracking_settle": {
+          "latin_only": true,
+          "from_pct": 6,
+          "duration_s": 0.3
+        },
+        "highlighter": {
+          "duration_s": [
+            0.35,
+            0.5
+          ]
+        },
+        "word_swap_s": [
+          0.25,
+          0.3
+        ],
+        "whip": {
+          "ease": "expo.out",
+          "duration_s": 0.4
+        },
+        "element_transition_ms": [
+          150,
+          300
+        ],
+        "highlight_ms": [
+          300,
+          600
+        ],
+        "css_motion_note": "[N54] prefers CSS-only motion for HTML; allowed only if the harness seeks the Web Animations timeline (verify); wall-clock CSS animation is forbidden.",
+        "reduced_motion": {
+          "emphasis": false,
+          "whip": false,
+          "slide": false,
+          "reveal": "150-300 ms fade"
+        }
+      },
+      "shadows_borders": {
+        "ransom_tile_shadow": {
+          "x": 6,
+          "y": 6,
+          "blur": 0,
+          "color": "rgba(20,33,61,0.18)"
+        },
+        "tile_border": "none",
+        "label_card": "paper card with 2-3 px accent border and the ExamLeaf keyline",
+        "blur": "none"
+      },
+      "caption_interplay": {
+        "captions_in_caption_zone_only": true,
+        "kinetic_text_never_replaces_captions": true,
+        "kinetic_shows_key_words_only": true,
+        "same_word_sequence_not_shown_twice_at_once": true,
+        "caption_highlighting_static_while_kinetic_active": true
+      },
+      "indic": {
+        "ref": "common.font_policy",
+        "unit": "word_or_grapheme_cluster",
+        "intl_segmenter_grapheme_status": "Hypothesis; test in pinned headless Chrome (report 11 item 10)",
+        "end_state_equality_test": true
+      },
+      "identity_check": {
+        "displayed_tokens_must_exist_in_approved_script_bundle": true,
+        "order_preserved": true,
+        "on_mismatch": "blockers.json and stop"
+      },
+      "sfx": {
+        "list": [
+          "soft_tick_per_word_entrance",
+          "slide_whoosh",
+          "label_pop"
+        ],
+        "mute_during": [
+          "think",
+          "pause_video",
+          "equation_reading",
+          "inspection"
+        ]
+      },
+      "music": {
+        "optional": true,
+        "allowed_in": [
+          "hook",
+          "cta"
+        ],
+        "not_allowed_in": [
+          "reasoning"
+        ]
+      },
+      "loudness": {
+        "ref": "common.loudness"
+      },
+      "determinism": {
+        "ref": "common.determinism",
+        "overrides": {}
+      },
+      "forbidden": {
+        "ref": "common.forbidden",
+        "additional": {
+          "kinetic_equations_letter_by_letter": true,
+          "text_not_in_approved_script": true,
+          "letter_spacing_on_indic": true,
+          "kinetic_text_over_caption_zone": true,
+          "karaoke_captions_during_kinetic": true,
+          "same_display_font_in_consecutive_reels": true
+        }
+      }
+    },
+    "voxel-isometric": {
+      "style_id": "voxel-isometric",
+      "version": "1.0.0",
+      "guide": "voxel-isometric.md",
+      "derived_from": "report 4.5; [V1] 3D runs; [V5] voxel island (unverified)",
+      "route_tags_allowed": [
+        "illustrative",
+        "insert",
+        "lattice",
+        "organelle-schematic",
+        "concept-island"
+      ],
+      "route_tags_forbidden": [
+        "bond-angles",
+        "molecular-geometry",
+        "field-lines",
+        "physics-simulation",
+        "hexagonal-lattice-without-fixture"
+      ],
+      "cost_class": "zero credits; render-box minutes",
+      "credits": 0,
+      "palette": {
+        "ref": "common.palettes",
+        "species_default_order": [
+          "blue",
+          "teal",
+          "purple",
+          "secondary",
+          "green"
+        ],
+        "species_forbidden_colours": [
+          "red",
+          "amber"
+        ],
+        "species_forbidden_reason": "carry error-marker and condition meaning in the brand palette; scientific conventions apply",
+        "colour_not_sole_cue": true,
+        "legend_required": true,
+        "identity_stable_across_lesson": true,
+        "face_shading_multipliers": {
+          "top": 1.0,
+          "left": 0.8,
+          "right": 0.62
+        },
+        "face_shading_status": "Recommendation (classic isometric)"
+      },
+      "fonts": {
+        "primary": [
+          "noto_sans",
+          "inter"
+        ],
+        "primary_role": "DOM labels (never in WebGL)",
+        "secondary": [
+          "noto_sans_devanagari",
+          "noto_sans_bengali"
+        ],
+        "secondary_role": "script labels",
+        "handwriting": [],
+        "science_text": [
+          "inter",
+          "noto_sans",
+          "katex_fonts"
+        ],
+        "licence": "verify",
+        "vendor_and_hash": true
+      },
+      "typography": {
+        "label_px": [
+          50,
+          54
+        ],
+        "caption_px": [
+          50,
+          54
+        ],
+        "heading_px": [
+          59,
+          72
+        ],
+        "side_margin_px_min": 96,
+        "text_in_webgl": false
+      },
+      "camera": {
+        "type": "OrthographicCamera",
+        "azimuth_deg": 45,
+        "elevation_deg": 35.264,
+        "elevation_formula": "atan(1/sqrt(2))",
+        "padding_share": 0.08,
+        "framing": "pure function of fixture bounds",
+        "max_orbit_deg": 45,
+        "zoom": [
+          1.0,
+          1.15
+        ],
+        "zoom_ease": "power2.inOut",
+        "min_dwell_on_labelled_view_s": 2,
+        "move_off_during": [
+          "label_reveal",
+          "measurement"
+        ],
+        "perspective_forbidden": true
+      },
+      "rendering": {
+        "geometry": "BoxGeometry(1,1,1) in InstancedMesh; per-instance colour; verify API against the pinned three.js version",
+        "lighting": "baked per-face multipliers, unlit material, no real lights, no shadow maps",
+        "edges": "1 px darker inset or 1 px gap; no post-processing outline",
+        "supersample": 2,
+        "supersample_status": "Hypothesis",
+        "instance_cap": 20000,
+        "instance_cap_status": "Hypothesis; measure on the pinned box and in software GL",
+        "render_on_seek_only": true,
+        "animation_loop_forbidden": true,
+        "pinned_render_box_only": true,
+        "cross_machine_hash_equality_expected": false,
+        "software_gl_fallback_test": true,
+        "software_gl_flag": "verify on the pinned Chrome build; do not guess",
+        "context_lost_behaviour": "fail render with blocker WEBGL_CONTEXT_LOST",
+        "export": "PNG sequence imported as a clip (no extra video decoders; single worker if video)",
+        "cache_key": [
+          "three.js version",
+          "render box ID",
+          "instance data hash",
+          "camera keyframes"
+        ]
+      },
+      "shadows_borders": {
+        "cast_shadows": "none (no shadow maps)",
+        "contact_shadows": "darker ground voxels placed by the layout",
+        "voxel_edges": "1 px darker inset or 1 px gap; no post-processing outline"
+      },
+      "layout_and_labels": {
+        "labels": "DOM overlays from fixture strings; anchors projected from voxel centres at time t",
+        "anchor_tolerance_px": 4,
+        "legend": true,
+        "accuracy_note_from_fixture": true
+      },
+      "motion": {
+        "build_up": {
+          "ease": "back.out",
+          "overshoot": 1.4,
+          "duration_s": [
+            0.25,
+            0.35
+          ],
+          "layer_stagger_ms": [
+            30,
+            60
+          ]
+        },
+        "highlight": {
+          "brightness": [
+            1.0,
+            1.25
+          ],
+          "duration_s": 0.4,
+          "localised": true,
+          "one_at_a_time": true
+        },
+        "dynamics": "only from fixture frames or parametric rules",
+        "element_transition_ms": [
+          150,
+          300
+        ],
+        "highlight_ms": [
+          300,
+          600
+        ],
+        "headline_hold_s_min": 1.2,
+        "reduced_motion": {
+          "orbit": false,
+          "zoom": false,
+          "stagger": false,
+          "reveal": "150-300 ms fade"
+        }
+      },
+      "sfx": {
+        "list": [
+          "block_place_tick_per_layer",
+          "soft_chime_confirmed_result_only"
+        ],
+        "mute_during": [
+          "think",
+          "pause_video",
+          "equation_reading",
+          "inspection"
+        ]
+      },
+      "music": {
+        "optional": true,
+        "allowed_in": [
+          "hook",
+          "outro"
+        ],
+        "not_allowed_in": [
+          "reasoning"
+        ]
+      },
+      "loudness": {
+        "ref": "common.loudness"
+      },
+      "determinism": {
+        "ref": "common.determinism",
+        "overrides": {
+          "layout_key": "sceneId:layout:index",
+          "fixture_voxels_read_only": true,
+          "pinned_render_box": true
+        }
+      },
+      "forbidden": {
+        "ref": "common.forbidden",
+        "additional": {
+          "perspective_camera": true,
+          "real_shadows": true,
+          "bloom_glow_or_post_processing": true,
+          "text_in_webgl": true,
+          "agent_moves_adds_removes_scientific_voxels": true,
+          "red_or_amber_species": true,
+          "colour_only_species_distinction": true,
+          "animation_loop_or_raf": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,278 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://examleaf.local/schemas/v2/curriculum_framework.json",
+  "title": "ExamLeaf Curriculum Framework v2",
+  "description": "One board × stage × subject × medium framework in the CASE 1.1 information-model shape (Architecture §2.6), stored at content/curriculum/<id>.json and pinned as framework/<id>@x.y.z. Gate H-CG approves a version (bound as framework_version). Change class per §3.6 framework diff: removals and depth changes are Truth-class, text edits Metadata. Produced by the ingestion skill examleaf-curriculum-ingest (syllabus PDF → candidate items with spans → H-CG) or hand-authored (M1 step 1). Added 15 Oct 2026 (CE-111, level-1; P1-14: schema, fixtures and negative tests in CI before M1 step 1).",
+  "$comment": "GUID rule (CE-111, 15 Oct 2026): guid = UUIDv5(namespace = UUIDv5(NS_URL, framework_id), name = human_code), lowercase hex. framework_id and human_code are edition-independent, so re-ingesting the same syllabus, or a new edition that keeps a code, returns the same GUIDs and the §3.6 framework diff runs per GUID; a GUID is never re-minted. Item GUIDs are unique within a framework (checked by the ingest linter; JSON Schema cannot express it). Commercial-term lint (CE-L1/RD-49; CE-26, CE-70; updated 15 Oct 2026): CI rejects, case-insensitively, any match of (price|pricing|paid|is_free|free_|premium|entitle|subscri|sku|paywall|unlock|monetis|monetiz|revenue|discount|coupon|tier|destination_resource|cta_destination|funnel|purchase_|checkout_|product_id|offer_|trial_|utm_|campaign_|affiliate_|activation_code|storefront) applied to every object key at every depth (including REN fields keys), every required entry, pattern key and enum or const value. Exempt: the editorial fields series_position, flagship and demo_kind, which carry no commercial meaning.",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "guid": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-5[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "source_span": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Where in an official_curriculum SRC this text comes from (same shape as lesson_graph source_ref).",
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "pattern": "^SRC-[A-Za-z0-9_.-]+$"
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "span_sha256": {
+          "$ref": "#/definitions/sha256"
+        }
+      },
+      "required": [
+        "source_id",
+        "locator",
+        "span_sha256"
+      ]
+    },
+    "exam_window": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Exam window (CE-122, level-3+, 15 Oct 2026). Inside a window touching an entry's affected set, GR releases only Revocation, Safety-tightening and S1 incident fixes.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "start": {
+          "$ref": "#/definitions/date"
+        },
+        "end": {
+          "$ref": "#/definitions/date"
+        }
+      },
+      "required": [
+        "name",
+        "start",
+        "end"
+      ]
+    },
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "guid": {
+          "$ref": "#/definitions/guid"
+        },
+        "human_code": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+          "description": "Edition-independent code; the UUIDv5 name."
+        },
+        "kind": {
+          "enum": [
+            "competency",
+            "learning_outcome",
+            "topic"
+          ]
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parent_guid": {
+          "$ref": "#/definitions/guid"
+        },
+        "associations": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "enum": [
+                  "prerequisite_of",
+                  "crosswalk_equivalent",
+                  "assessed_by_blueprint",
+                  "non_evaluative"
+                ]
+              },
+              "target_guid": {
+                "$ref": "#/definitions/guid"
+              }
+            },
+            "required": [
+              "type",
+              "target_guid"
+            ]
+          }
+        },
+        "dok": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Depth-of-knowledge level only when the framework publishes a rubric (§2.6); read by OBJ.dok_from_framework. A change is a depth change (Truth class)."
+        },
+        "source_span": {
+          "$ref": "#/definitions/source_span"
+        }
+      },
+      "required": [
+        "guid",
+        "human_code",
+        "kind",
+        "statement",
+        "source_span"
+      ]
+    }
+  },
+  "properties": {
+    "framework_id": {
+      "type": "string",
+      "pattern": "^framework/[a-z0-9][a-z0-9_-]*$",
+      "description": "Edition-independent (board × stage × subject × medium)."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "hash_canon": {
+      "const": "JCS-RFC8785+NFC"
+    },
+    "board": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]*$"
+    },
+    "edition": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stage": {
+      "enum": [
+        "foundational",
+        "preparatory",
+        "middle",
+        "secondary",
+        "higher_secondary",
+        "undergraduate",
+        "postgraduate",
+        "adult",
+        "vocational"
+      ]
+    },
+    "subject": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "medium_locale": {
+      "type": "string",
+      "pattern": "^locale/[a-z0-9][a-z0-9_-]*$"
+    },
+    "valid_academic_years": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9]{4}-[0-9]{2}$"
+      },
+      "description": "Academic years (for example 2026-27) this edition serves (CE-116, level-2, 15 Oct 2026). Artefacts stay releasable for every edition still inside its window."
+    },
+    "exam_windows": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/exam_window"
+      },
+      "uniqueItems": true
+    },
+    "source_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/source_span"
+      },
+      "description": "The syllabus text this framework was taken from. GR checks each SRC has reliability_class official_curriculum."
+    },
+    "ingestion": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "enum": [
+            "examleaf-curriculum-ingest",
+            "hand_authored"
+          ]
+        },
+        "run_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "authored_by": {
+          "type": "string",
+          "pattern": "^reviewer/[a-z0-9][a-z0-9_.-]*$"
+        }
+      },
+      "required": [
+        "method"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "method": {
+                "const": "examleaf-curriculum-ingest"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "run_ref"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "method": {
+                "const": "hand_authored"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "authored_by"
+            ]
+          }
+        }
+      ]
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/item"
+      }
+    }
+  },
+  "required": [
+    "framework_id",
+    "version",
+    "hash_canon",
+    "board",
+    "edition",
+    "stage",
+    "subject",
+    "medium_locale",
+    "valid_academic_years",
+    "source_refs",
+    "ingestion",
+    "items"
+  ]
+}

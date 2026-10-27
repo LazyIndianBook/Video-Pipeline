@@ -1,0 +1,12 @@
+{
+  "canvas": {"width": 1080, "height": 1920},
+  "elements": [
+    {"id": "title", "role": "headline", "lang": "en-IN", "x": 120, "y": 300, "w": 840, "h": 180, "visible": [[0.0, 2.1]]},
+    {"id": "label_n1", "role": "label", "cue_id": "label_n1", "x": 160, "y": 980, "w": 260, "h": 80, "visible": [[1.07, 7.4]]},
+    {"id": "eq_snell", "role": "equation", "cue_id": "eq_snell", "x": 140, "y": 1150, "w": 800, "h": 140, "visible": [[3.2, 7.4]], "reading_end_s": 5.9},
+    {"id": "caption_1", "role": "caption", "zone": "caption", "x": 120, "y": 1480, "w": 840, "h": 110, "visible": [[0.2, 7.2]]},
+    {"id": "paper_bg", "role": "decor", "x": -40, "y": -40, "w": 1160, "h": 2000, "visible": [[0.0, 7.4]]}
+  ],
+  "camera": [{"t": 0.0, "scale": 1.0, "tx": 0, "ty": 0}, {"t": 1.07, "scale": 1.0, "tx": 0, "ty": 0}],
+  "_note": "Illustrative coordinates; produced by seeking the scene at each cue boundary and reading getBoundingClientRect()."
+}

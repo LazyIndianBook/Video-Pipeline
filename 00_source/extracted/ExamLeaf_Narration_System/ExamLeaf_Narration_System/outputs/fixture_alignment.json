@@ -1,0 +1,637 @@
+{
+  "question": {
+    "segment_id": "question",
+    "audio_sha256": "ce9f525b08da44eaf8412c0c7f6c2202038d6962943eecaac82ebf081083a9a7",
+    "transcript_sha256": "41ee405975a8a3c22a67fede1bc858c7e07b2be6bc1396fb3e15225f00a2a286",
+    "method": "synthetic-fixture",
+    "engine_version": "fixture-1-NOT-forced-alignment",
+    "words": [
+      {
+        "text": "two",
+        "start": 0.15,
+        "end": 0.31
+      },
+      {
+        "text": "water",
+        "start": 0.32999999999999996,
+        "end": 0.49
+      },
+      {
+        "text": "molecules",
+        "start": 0.51,
+        "end": 0.67
+      },
+      {
+        "text": "how",
+        "start": 0.6900000000000001,
+        "end": 0.8500000000000001
+      },
+      {
+        "text": "many",
+        "start": 0.87,
+        "end": 1.03
+      },
+      {
+        "text": "hydrogen",
+        "start": 1.0499999999999998,
+        "end": 1.2099999999999997
+      },
+      {
+        "text": "atoms",
+        "start": 1.23,
+        "end": 1.39
+      },
+      {
+        "text": "altogether",
+        "start": 1.41,
+        "end": 1.5699999999999998
+      },
+      {
+        "text": "count",
+        "start": 1.5899999999999999,
+        "end": 1.7499999999999998
+      },
+      {
+        "text": "each",
+        "start": 1.7699999999999998,
+        "end": 1.9299999999999997
+      },
+      {
+        "text": "complete",
+        "start": 1.9499999999999997,
+        "end": 2.11
+      },
+      {
+        "text": "molecule",
+        "start": 2.13,
+        "end": 2.29
+      },
+      {
+        "text": "before",
+        "start": 2.31,
+        "end": 2.47
+      },
+      {
+        "text": "you",
+        "start": 2.4899999999999998,
+        "end": 2.65
+      },
+      {
+        "text": "answer",
+        "start": 2.67,
+        "end": 2.83
+      }
+    ]
+  },
+  "answer": {
+    "segment_id": "answer",
+    "audio_sha256": "4eb19b58985d969f1235f34d2323675fd94e5b719501fb1ce2e56fd797273e0d",
+    "transcript_sha256": "eb612356b28c3229c63eed312ecf6100f5c61487936c6ad253409b258b31467f",
+    "method": "synthetic-fixture",
+    "engine_version": "fixture-1-NOT-forced-alignment",
+    "words": [
+      {
+        "text": "four",
+        "start": 0.15,
+        "end": 0.31
+      },
+      {
+        "text": "hydrogen",
+        "start": 0.32999999999999996,
+        "end": 0.49
+      },
+      {
+        "text": "atoms",
+        "start": 0.51,
+        "end": 0.67
+      },
+      {
+        "text": "each",
+        "start": 0.6900000000000001,
+        "end": 0.8500000000000001
+      },
+      {
+        "text": "water",
+        "start": 0.87,
+        "end": 1.03
+      },
+      {
+        "text": "molecule",
+        "start": 1.0499999999999998,
+        "end": 1.2099999999999997
+      },
+      {
+        "text": "contains",
+        "start": 1.23,
+        "end": 1.39
+      },
+      {
+        "text": "two",
+        "start": 1.41,
+        "end": 1.5699999999999998
+      },
+      {
+        "text": "and",
+        "start": 1.5899999999999999,
+        "end": 1.7499999999999998
+      },
+      {
+        "text": "we",
+        "start": 1.7699999999999998,
+        "end": 1.9299999999999997
+      },
+      {
+        "text": "have",
+        "start": 1.9499999999999997,
+        "end": 2.11
+      },
+      {
+        "text": "two",
+        "start": 2.13,
+        "end": 2.29
+      },
+      {
+        "text": "complete",
+        "start": 2.31,
+        "end": 2.47
+      },
+      {
+        "text": "copies",
+        "start": 2.4899999999999998,
+        "end": 2.65
+      },
+      {
+        "text": "that",
+        "start": 2.67,
+        "end": 2.83
+      },
+      {
+        "text": "is",
+        "start": 2.8499999999999996,
+        "end": 3.01
+      },
+      {
+        "text": "what",
+        "start": 3.03,
+        "end": 3.19
+      },
+      {
+        "text": "the",
+        "start": 3.21,
+        "end": 3.37
+      },
+      {
+        "text": "coefficient",
+        "start": 3.3899999999999997,
+        "end": 3.55
+      },
+      {
+        "text": "changes",
+        "start": 3.57,
+        "end": 3.73
+      },
+      {
+        "text": "how",
+        "start": 3.7499999999999996,
+        "end": 3.9099999999999997
+      },
+      {
+        "text": "many",
+        "start": 3.9299999999999997,
+        "end": 4.09
+      },
+      {
+        "text": "molecules",
+        "start": 4.11,
+        "end": 4.2700000000000005
+      },
+      {
+        "text": "not",
+        "start": 4.29,
+        "end": 4.45
+      },
+      {
+        "text": "what",
+        "start": 4.470000000000001,
+        "end": 4.630000000000001
+      },
+      {
+        "text": "a",
+        "start": 4.65,
+        "end": 4.8100000000000005
+      },
+      {
+        "text": "molecule",
+        "start": 4.83,
+        "end": 4.99
+      },
+      {
+        "text": "is",
+        "start": 5.01,
+        "end": 5.17
+      }
+    ]
+  },
+  "repair": {
+    "segment_id": "repair",
+    "audio_sha256": "e8394b03fd0f07b8921598519ec314423e8a7f297572ba29d05d5448dd6b2c49",
+    "transcript_sha256": "cbd21ff88866ee5f41d9060b351a897ab02bf72583c45aaea432d7256e47964f",
+    "method": "synthetic-fixture",
+    "engine_version": "fixture-1-NOT-forced-alignment",
+    "words": [
+      {
+        "text": "changing",
+        "start": 0.15,
+        "end": 0.31
+      },
+      {
+        "text": "h",
+        "start": 0.32999999999999996,
+        "end": 0.49
+      },
+      {
+        "text": "two",
+        "start": 0.51,
+        "end": 0.67
+      },
+      {
+        "text": "o",
+        "start": 0.6900000000000001,
+        "end": 0.8500000000000001
+      },
+      {
+        "text": "into",
+        "start": 0.87,
+        "end": 1.03
+      },
+      {
+        "text": "hydrogen",
+        "start": 1.0499999999999998,
+        "end": 1.2099999999999997
+      },
+      {
+        "text": "peroxide",
+        "start": 1.23,
+        "end": 1.39
+      },
+      {
+        "text": "would",
+        "start": 1.41,
+        "end": 1.5699999999999998
+      },
+      {
+        "text": "be",
+        "start": 1.5899999999999999,
+        "end": 1.7499999999999998
+      },
+      {
+        "text": "a",
+        "start": 1.7699999999999998,
+        "end": 1.9299999999999997
+      },
+      {
+        "text": "very",
+        "start": 1.9499999999999997,
+        "end": 2.11
+      },
+      {
+        "text": "efficient",
+        "start": 2.13,
+        "end": 2.29
+      },
+      {
+        "text": "way",
+        "start": 2.31,
+        "end": 2.47
+      },
+      {
+        "text": "to",
+        "start": 2.4899999999999998,
+        "end": 2.65
+      },
+      {
+        "text": "answer",
+        "start": 2.67,
+        "end": 2.83
+      },
+      {
+        "text": "a",
+        "start": 2.8499999999999996,
+        "end": 3.01
+      },
+      {
+        "text": "different",
+        "start": 3.03,
+        "end": 3.19
+      },
+      {
+        "text": "question",
+        "start": 3.21,
+        "end": 3.37
+      },
+      {
+        "text": "keep",
+        "start": 3.3899999999999997,
+        "end": 3.55
+      },
+      {
+        "text": "the",
+        "start": 3.57,
+        "end": 3.73
+      },
+      {
+        "text": "given",
+        "start": 3.7499999999999996,
+        "end": 3.9099999999999997
+      },
+      {
+        "text": "formulas",
+        "start": 3.9299999999999997,
+        "end": 4.09
+      },
+      {
+        "text": "fixed",
+        "start": 4.11,
+        "end": 4.2700000000000005
+      },
+      {
+        "text": "use",
+        "start": 4.29,
+        "end": 4.45
+      },
+      {
+        "text": "coefficients",
+        "start": 4.470000000000001,
+        "end": 4.630000000000001
+      },
+      {
+        "text": "to",
+        "start": 4.65,
+        "end": 4.8100000000000005
+      },
+      {
+        "text": "change",
+        "start": 4.83,
+        "end": 4.99
+      },
+      {
+        "text": "the",
+        "start": 5.01,
+        "end": 5.17
+      },
+      {
+        "text": "counts",
+        "start": 5.19,
+        "end": 5.3500000000000005
+      }
+    ]
+  },
+  "retry": {
+    "segment_id": "retry",
+    "audio_sha256": "4df8ce4bc9a6642bb8d866bcb921408859230236f5d01a6a0d9f887865f48b43",
+    "transcript_sha256": "fffac9c33c9d062a88a2e1cd758f19586dfc11012adf275a21eec4a54d756af2",
+    "method": "synthetic-fixture",
+    "engine_version": "fixture-1-NOT-forced-alignment",
+    "words": [
+      {
+        "text": "your",
+        "start": 0.15,
+        "end": 0.31
+      },
+      {
+        "text": "turn",
+        "start": 0.32999999999999996,
+        "end": 0.49
+      },
+      {
+        "text": "again",
+        "start": 0.51,
+        "end": 0.67
+      },
+      {
+        "text": "three",
+        "start": 0.6900000000000001,
+        "end": 0.8500000000000001
+      },
+      {
+        "text": "water",
+        "start": 0.87,
+        "end": 1.03
+      },
+      {
+        "text": "molecules",
+        "start": 1.0499999999999998,
+        "end": 1.2099999999999997
+      },
+      {
+        "text": "how",
+        "start": 1.23,
+        "end": 1.39
+      },
+      {
+        "text": "many",
+        "start": 1.41,
+        "end": 1.5699999999999998
+      },
+      {
+        "text": "hydrogen",
+        "start": 1.5899999999999999,
+        "end": 1.7499999999999998
+      },
+      {
+        "text": "atoms",
+        "start": 1.7699999999999998,
+        "end": 1.9299999999999997
+      },
+      {
+        "text": "and",
+        "start": 1.9499999999999997,
+        "end": 2.11
+      },
+      {
+        "text": "how",
+        "start": 2.13,
+        "end": 2.29
+      },
+      {
+        "text": "many",
+        "start": 2.31,
+        "end": 2.47
+      },
+      {
+        "text": "oxygen",
+        "start": 2.4899999999999998,
+        "end": 2.65
+      },
+      {
+        "text": "atoms",
+        "start": 2.67,
+        "end": 2.83
+      },
+      {
+        "text": "pause",
+        "start": 2.8499999999999996,
+        "end": 3.01
+      },
+      {
+        "text": "here",
+        "start": 3.03,
+        "end": 3.19
+      },
+      {
+        "text": "and",
+        "start": 3.21,
+        "end": 3.37
+      },
+      {
+        "text": "write",
+        "start": 3.3899999999999997,
+        "end": 3.55
+      },
+      {
+        "text": "both",
+        "start": 3.57,
+        "end": 3.73
+      },
+      {
+        "text": "counts",
+        "start": 3.7499999999999996,
+        "end": 3.9099999999999997
+      }
+    ]
+  },
+  "check": {
+    "segment_id": "check",
+    "audio_sha256": "4a7269c4e875ace84e825a462a96d2ccf56871c22d0d6c5b70c4c7eca0807720",
+    "transcript_sha256": "28d338020801405e4f13420869d15ab2c5cdb7a9bb8c8834e7bf1d21756d88f3",
+    "method": "synthetic-fixture",
+    "engine_version": "fixture-1-NOT-forced-alignment",
+    "words": [
+      {
+        "text": "six",
+        "start": 0.15,
+        "end": 0.31
+      },
+      {
+        "text": "hydrogen",
+        "start": 0.32999999999999996,
+        "end": 0.49
+      },
+      {
+        "text": "atoms",
+        "start": 0.51,
+        "end": 0.67
+      },
+      {
+        "text": "and",
+        "start": 0.6900000000000001,
+        "end": 0.8500000000000001
+      },
+      {
+        "text": "three",
+        "start": 0.87,
+        "end": 1.03
+      },
+      {
+        "text": "oxygen",
+        "start": 1.0499999999999998,
+        "end": 1.2099999999999997
+      },
+      {
+        "text": "atoms",
+        "start": 1.23,
+        "end": 1.39
+      },
+      {
+        "text": "if",
+        "start": 1.41,
+        "end": 1.5699999999999998
+      },
+      {
+        "text": "those",
+        "start": 1.5899999999999999,
+        "end": 1.7499999999999998
+      },
+      {
+        "text": "match",
+        "start": 1.7699999999999998,
+        "end": 1.9299999999999997
+      },
+      {
+        "text": "check",
+        "start": 1.9499999999999997,
+        "end": 2.11
+      },
+      {
+        "text": "the",
+        "start": 2.13,
+        "end": 2.29
+      },
+      {
+        "text": "method",
+        "start": 2.31,
+        "end": 2.47
+      },
+      {
+        "text": "too",
+        "start": 2.4899999999999998,
+        "end": 2.65
+      },
+      {
+        "text": "the",
+        "start": 2.67,
+        "end": 2.83
+      },
+      {
+        "text": "number",
+        "start": 2.8499999999999996,
+        "end": 3.01
+      },
+      {
+        "text": "of",
+        "start": 3.03,
+        "end": 3.19
+      },
+      {
+        "text": "copies",
+        "start": 3.21,
+        "end": 3.37
+      },
+      {
+        "text": "multiplies",
+        "start": 3.3899999999999997,
+        "end": 3.55
+      },
+      {
+        "text": "every",
+        "start": 3.57,
+        "end": 3.73
+      },
+      {
+        "text": "atom",
+        "start": 3.7499999999999996,
+        "end": 3.9099999999999997
+      },
+      {
+        "text": "count",
+        "start": 3.9299999999999997,
+        "end": 4.09
+      },
+      {
+        "text": "in",
+        "start": 4.11,
+        "end": 4.2700000000000005
+      },
+      {
+        "text": "the",
+        "start": 4.29,
+        "end": 4.45
+      },
+      {
+        "text": "formula",
+        "start": 4.470000000000001,
+        "end": 4.630000000000001
+      }
+    ]
+  }
+}

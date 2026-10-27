@@ -1,0 +1,102 @@
+{
+ "build": "demo/physics_v2",
+ "gates": {
+  "science": "pass",
+  "brand": "pass",
+  "prediction_transfer": "pass",
+  "persistence": "pass",
+  "silence_length": "pass",
+  "technical": "pass"
+ },
+ "any_gate_failed": false,
+ "dimensions": {
+  "D1": {
+   "weight": 20,
+   "machine": 5.0,
+   "judge": 4.666666666666667,
+   "score_0_5": 4.83,
+   "checks": {
+    "A3": "pass",
+    "A7": "pass"
+   }
+  },
+  "D2": {
+   "weight": 20,
+   "machine": 5.0,
+   "judge": 4.0,
+   "score_0_5": 4.5,
+   "checks": {
+    "A18": "pass"
+   }
+  },
+  "D3": {
+   "weight": 10,
+   "machine": 3.0,
+   "judge": 4.0,
+   "score_0_5": 3.5,
+   "checks": {
+    "A19": "warn"
+   }
+  },
+  "D4": {
+   "weight": 15,
+   "machine": 3.75,
+   "judge": 4.666666666666667,
+   "score_0_5": 4.21,
+   "checks": {
+    "A14": "pass",
+    "A15": "fail",
+    "A16": "pass",
+    "A17": "pass"
+   }
+  },
+  "D5": {
+   "weight": 8,
+   "machine": 5.0,
+   "judge": 4.0,
+   "score_0_5": 4.5,
+   "checks": {
+    "A10": "pass",
+    "A13": "pass"
+   }
+  },
+  "D6": {
+   "weight": 5,
+   "machine": 4.714285714285714,
+   "judge": 3.0,
+   "score_0_5": 3.86,
+   "checks": {
+    "A1": "pass",
+    "A2": "pass",
+    "A4": "pass",
+    "A5": "pass",
+    "A6": "pass",
+    "A8": "warn",
+    "A9": "pass"
+   }
+  },
+  "D7": {
+   "weight": 10,
+   "machine": null,
+   "judge": 4.333333333333333,
+   "score_0_5": 4.33,
+   "checks": {}
+  },
+  "D8": {
+   "weight": 12,
+   "machine": 3.75,
+   "judge": 4.0,
+   "score_0_5": 3.88,
+   "checks": {
+    "A14": "pass",
+    "A15": "fail",
+    "A20": "pass",
+    "A21": "pass"
+   }
+  }
+ },
+ "total_0_100": 86.0,
+ "releasable": true,
+ "judge_verdicts": 3,
+ "note": "weights are house policy v1.0; judge scores averaged over the panel; dimensions without any evidence are excluded from the total"
+}

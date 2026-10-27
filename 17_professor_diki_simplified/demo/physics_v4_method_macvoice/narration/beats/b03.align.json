@@ -1,0 +1,68 @@
+{
+ "cache_key": "4159da7e194c51be",
+ "beat": "b03",
+ "chars": 59,
+ "request_id": "macos-say-Rishi-170",
+ "model_id": "macos-say",
+ "voice_id": "Rishi",
+ "unmatched_words": 0,
+ "words": [
+  {
+   "w": "Each",
+   "t0": 0.0,
+   "t1": 0.347
+  },
+  {
+   "w": "wire",
+   "t0": 0.377,
+   "t1": 0.724
+  },
+  {
+   "w": "holds",
+   "t0": 0.754,
+   "t1": 1.171
+  },
+  {
+   "w": "the",
+   "t0": 1.207,
+   "t1": 1.485
+  },
+  {
+   "w": "flow",
+   "t0": 1.509,
+   "t1": 1.856
+  },
+  {
+   "w": "back",
+   "t0": 1.886,
+   "t1": 2.233
+  },
+  {
+   "w": "that",
+   "t0": 2.263,
+   "t1": 2.61
+  },
+  {
+   "w": "is",
+   "t0": 2.64,
+   "t1": 2.849
+  },
+  {
+   "w": "resistance",
+   "t0": 2.867,
+   "t1": 3.63
+  },
+  {
+   "w": "in",
+   "t0": 3.696,
+   "t1": 3.905
+  },
+  {
+   "w": "ohms",
+   "t0": 3.923,
+   "t1": 4.27
+  }
+ ],
+ "provider_alignment": null,
+ "preview": true
+}

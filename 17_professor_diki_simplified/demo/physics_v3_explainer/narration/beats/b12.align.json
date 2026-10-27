@@ -1,0 +1,122 @@
+{
+ "cache_key": "c3492c425314036d",
+ "beat": "b12",
+ "chars": 26,
+ "request_id": "NsnyzdEtj28N1A5zDykh",
+ "model_id": "eleven_v4",
+ "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+ "unmatched_words": 0,
+ "words": [
+  {
+   "w": "Professor",
+   "t0": 0.0,
+   "t1": 0.48
+  },
+  {
+   "w": "Diki",
+   "t0": 0.64,
+   "t1": 1.04
+  },
+  {
+   "w": "Simplified",
+   "t0": 1.28,
+   "t1": 2.32
+  }
+ ],
+ "provider_alignment": {
+  "characters": [
+   "P",
+   "r",
+   "o",
+   "f",
+   "e",
+   "s",
+   "s",
+   "o",
+   "r",
+   " ",
+   "D",
+   "i",
+   "k",
+   "i",
+   " ",
+   "S",
+   "i",
+   "m",
+   "p",
+   "l",
+   "i",
+   "f",
+   "i",
+   "e",
+   "d",
+   "."
+  ],
+  "character_start_times_seconds": [
+   0.0,
+   0.267,
+   0.293,
+   0.32,
+   0.347,
+   0.373,
+   0.4,
+   0.427,
+   0.453,
+   0.48,
+   0.64,
+   0.84,
+   0.907,
+   0.973,
+   1.04,
+   1.28,
+   1.64,
+   1.68,
+   1.72,
+   1.76,
+   1.8,
+   1.84,
+   1.88,
+   1.92,
+   1.96,
+   2.0
+  ],
+  "character_end_times_seconds": [
+   0.267,
+   0.293,
+   0.32,
+   0.347,
+   0.373,
+   0.4,
+   0.427,
+   0.453,
+   0.48,
+   0.64,
+   0.84,
+   0.907,
+   0.973,
+   1.04,
+   1.28,
+   1.64,
+   1.68,
+   1.72,
+   1.76,
+   1.8,
+   1.84,
+   1.88,
+   1.92,
+   1.96,
+   2.0,
+   2.32
+  ]
+ },
+ "voice_segments": [
+  {
+   "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+   "start_time_seconds": 0.0,
+   "end_time_seconds": 2.32,
+   "character_start_index": 0,
+   "character_end_index": 26,
+   "dialogue_input_index": 0
+  }
+ ]
+}

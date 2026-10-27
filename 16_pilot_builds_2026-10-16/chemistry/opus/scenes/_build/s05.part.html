@@ -1,0 +1,34 @@
+<!--CSS-->
+svg text{font-family:var(--font);font-weight:700}
+#coefs{position:absolute;left:0;top:0;width:936px;height:150px}
+#coefs div{position:absolute;background:var(--hl);mix-blend-mode:multiply;border-radius:10px}
+#disc{flex-direction:column;font-size:50px;font-weight:600;color:var(--sec);gap:6px}
+#disc .line{display:flex;gap:0 16px;justify-content:center}
+<!--BODY-->
+<div id="disc" class="box" data-zone="2"></div>
+<!--JS-->
+/* s05 recap + outro: the balanced equation with copies drawn from the coefficients, a final tally chip per element,
+   a highlighter pass over the coefficients, then the disclosure line (cue-sheet words of the outro beat) in the caption zone. */
+const discEls = [];
+function build(under, over) {
+  buildHeadline({ beat: 0, words: [['atoms', 1], ['are', 1], ['conserved', 1, true]] });
+  const c = card($('stage'), 72, 548, 936, 150);
+  const hl = el('div', '', c); hl.id = 'coefs'; hl.dataset.emph = 'swipe'; hl.classList.add('cue');
+  const E = equation(c, 36, 'balanced', 'balanced', {}, 80);
+  const eq = fx('parameters.equations.balanced'), copies = [eq.lhs[0][0], 0, eq.lhs[1][0], 0, eq.rhs[0][0]];
+  [0, 2, 4].forEach(i => molecule(over, E.keys[i], E.xs[i], 846, copies[i], 0.9));
+  const g = svgEl('g', { id: 'tally_final', class: 'cue', 'data-reveal': '1' }, over);
+  ['H', 'O'].forEach((e, i) => {
+    const x0 = 132 + i * 432, y = 1046, ok = fx('results.balanced.match.' + e);
+    svgEl('rect', { x: x0, y: y - 58, width: 384, height: 116, rx: 18, fill: '#CCE2E7' }, g);
+    [['display.elements.' + e + '.symbol', 56, INK], ['display.counts.balanced.left.' + e, 160, INK], ['display.ops.' + (ok ? 'eq' : 'neq'), 250, ok ? TEAL : AMBER], ['display.counts.balanced.right.' + e, 336, INK]]
+      .forEach(([p, dx, col]) => svgEl('text', { x: x0 + dx, y: y + 24, 'font-size': 68, 'text-anchor': 'middle', fill: col, 'data-fx': p }, g));
+  });
+  const ws = beatWords(1), box = $('disc'); box.lang = SHEET.language;
+  [ws.slice(0, 2), ws.slice(2)].forEach(part => { const line = el('div', 'line', box); part.forEach(w => { const s = el('span', 'w', line); s.textContent = w.w; discEls.push({ s, at: Math.max(0, w.t0 - LEAD) }); }); });
+}
+function afterLayout() {   // one highlighter rect behind each non-empty coefficient
+  const c = relBox($('coefs'));
+  $('coefs').parentNode.querySelectorAll('.coef').forEach(k => { if (!k.textContent) return; const b = relBox(k), d = el('div', '', $('coefs')); Object.assign(d.style, { left: (b.x - c.x - 10) + 'px', top: (b.y - c.y - 2) + 'px', width: (b.w + 20) + 'px', height: (b.h + 4) + 'px' }); });
+}
+function draw(t) { discEls.forEach(({ s, at }) => { const u = clamp01((t - at) / 0.25); s.style.opacity = u; }); }

@@ -1,0 +1,187 @@
+{
+  "status": "offline-request-compilation-not-live-integration",
+  "lesson_id": "water_coefficient_demo",
+  "requests": [
+    {
+      "segment_id": "question",
+      "method": "POST",
+      "url": "https://api.cartesia.ai/tts/bytes",
+      "headers_template": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer ENV:CARTESIA_API_KEY",
+        "Cartesia-Version": "REPLACE_WITH_REVIEWED_API_VERSION"
+      },
+      "body": {
+        "model_id": "sonic-3.5-2026-05-04",
+        "transcript": "Two water molecules. How many hydrogen atoms altogether? Count each complete molecule before you answer.",
+        "voice": {
+          "mode": "id",
+          "id": "REPLACE_WITH_APPROVED_VOICE_ID"
+        },
+        "language": "en",
+        "output_format": {
+          "container": "wav",
+          "encoding": "pcm_s16le",
+          "sample_rate": 48000
+        },
+        "generation_config": {
+          "speed": 0.966,
+          "volume": 1
+        }
+      },
+      "canonical_spoken": "Two water molecules. How many hydrogen atoms altogether? Count each complete molecule before you answer.",
+      "caption_text": "Two water molecules. How many hydrogen atoms altogether? Count each complete molecule before you answer.",
+      "audio_cache_key": "ffbbf1310a2398b90f23cffd4afbc1a97ec08285153584f111a2a1d7d7ef5826",
+      "editorial_style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Invite a genuine prediction, curious without theatrical suspense. Aim for approximately 140 spoken words per minute; do not add words. Emphasize: each complete molecule",
+      "warnings": [
+        "Compiled offline; live behavior and pronunciation require separate approval.",
+        "Speed multiplier is a starting heuristic, not a WPM guarantee; beta emotion disabled."
+      ]
+    },
+    {
+      "segment_id": "answer",
+      "method": "POST",
+      "url": "https://api.cartesia.ai/tts/bytes",
+      "headers_template": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer ENV:CARTESIA_API_KEY",
+        "Cartesia-Version": "REPLACE_WITH_REVIEWED_API_VERSION"
+      },
+      "body": {
+        "model_id": "sonic-3.5-2026-05-04",
+        "transcript": "Four hydrogen atoms. Each water molecule contains two, and we have two complete copies. That is what the coefficient changes: how many molecules, not what a molecule is.",
+        "voice": {
+          "mode": "id",
+          "id": "REPLACE_WITH_APPROVED_VOICE_ID"
+        },
+        "language": "en",
+        "output_format": {
+          "container": "wav",
+          "encoding": "pcm_s16le",
+          "sample_rate": 48000
+        },
+        "generation_config": {
+          "speed": 0.897,
+          "volume": 1
+        }
+      },
+      "canonical_spoken": "Four hydrogen atoms. Each water molecule contains two, and we have two complete copies. That is what the coefficient changes: how many molecules, not what a molecule is.",
+      "caption_text": "Four hydrogen atoms. Each water molecule contains two, and we have two complete copies. That is what the coefficient changes: how many molecules, not what a molecule is.",
+      "audio_cache_key": "f2c8357f780c9d5f98a3a87474c063b04562dd6698955b1fb038905474d2c888",
+      "editorial_style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Measure phrases carefully; distinguish scientific terms and conditions. Aim for approximately 130 spoken words per minute; do not add words. Emphasize: Four; not",
+      "warnings": [
+        "Compiled offline; live behavior and pronunciation require separate approval.",
+        "Speed multiplier is a starting heuristic, not a WPM guarantee; beta emotion disabled."
+      ]
+    },
+    {
+      "segment_id": "repair",
+      "method": "POST",
+      "url": "https://api.cartesia.ai/tts/bytes",
+      "headers_template": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer ENV:CARTESIA_API_KEY",
+        "Cartesia-Version": "REPLACE_WITH_REVIEWED_API_VERSION"
+      },
+      "body": {
+        "model_id": "sonic-3.5-2026-05-04",
+        "transcript": "Changing H two O into hydrogen peroxide would be a very efficient way to answer a different question. Keep the given formulas fixed. Use coefficients to change the counts.",
+        "voice": {
+          "mode": "id",
+          "id": "REPLACE_WITH_APPROVED_VOICE_ID"
+        },
+        "language": "en",
+        "output_format": {
+          "container": "wav",
+          "encoding": "pcm_s16le",
+          "sample_rate": 48000
+        },
+        "generation_config": {
+          "speed": 0.979,
+          "volume": 1
+        }
+      },
+      "canonical_spoken": "Changing H two O into hydrogen peroxide would be a very efficient way to answer a different question. Keep the given formulas fixed. Use coefficients to change the counts.",
+      "caption_text": "Changing H two O into hydrogen peroxide would be a very efficient way to answer a different question. Keep the given formulas fixed. Use coefficients to change the counts.",
+      "audio_cache_key": "a064378ca91d11c2035e73130818ab24134d66396c583bf18ac71adc9be9fb45",
+      "editorial_style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. A small amused smile in the delivery, without added laughter. Aim for approximately 142 spoken words per minute; do not add words.  Dry observation, not a laugh. Return to focused explanation after different question.",
+      "warnings": [
+        "Compiled offline; live behavior and pronunciation require separate approval.",
+        "Speed multiplier is a starting heuristic, not a WPM guarantee; beta emotion disabled."
+      ]
+    },
+    {
+      "segment_id": "retry",
+      "method": "POST",
+      "url": "https://api.cartesia.ai/tts/bytes",
+      "headers_template": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer ENV:CARTESIA_API_KEY",
+        "Cartesia-Version": "REPLACE_WITH_REVIEWED_API_VERSION"
+      },
+      "body": {
+        "model_id": "sonic-3.5-2026-05-04",
+        "transcript": "Your turn again: three water molecules. How many hydrogen atoms, and how many oxygen atoms? Pause here and write both counts.",
+        "voice": {
+          "mode": "id",
+          "id": "REPLACE_WITH_APPROVED_VOICE_ID"
+        },
+        "language": "en",
+        "output_format": {
+          "container": "wav",
+          "encoding": "pcm_s16le",
+          "sample_rate": 48000
+        },
+        "generation_config": {
+          "speed": 0.966,
+          "volume": 1
+        }
+      },
+      "canonical_spoken": "Your turn again: three water molecules. How many hydrogen atoms, and how many oxygen atoms? Pause here and write both counts.",
+      "caption_text": "Your turn again: three water molecules. How many hydrogen atoms, and how many oxygen atoms? Pause here and write both counts.",
+      "audio_cache_key": "10bd9d7ad468283d649b59f87847a6e3b6f69fa037c64879df06664ab60021f2",
+      "editorial_style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Warm and matter-of-fact; make correction specific and repairable. Aim for approximately 140 spoken words per minute; do not add words.",
+      "warnings": [
+        "Compiled offline; live behavior and pronunciation require separate approval.",
+        "Speed multiplier is a starting heuristic, not a WPM guarantee; beta emotion disabled."
+      ]
+    },
+    {
+      "segment_id": "check",
+      "method": "POST",
+      "url": "https://api.cartesia.ai/tts/bytes",
+      "headers_template": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer ENV:CARTESIA_API_KEY",
+        "Cartesia-Version": "REPLACE_WITH_REVIEWED_API_VERSION"
+      },
+      "body": {
+        "model_id": "sonic-3.5-2026-05-04",
+        "transcript": "Six hydrogen atoms and three oxygen atoms. If those match, check the method too: the number of copies multiplies every atom count in the formula.",
+        "voice": {
+          "mode": "id",
+          "id": "REPLACE_WITH_APPROVED_VOICE_ID"
+        },
+        "language": "en",
+        "output_format": {
+          "container": "wav",
+          "encoding": "pcm_s16le",
+          "sample_rate": 48000
+        },
+        "generation_config": {
+          "speed": 0.966,
+          "volume": 1
+        }
+      },
+      "canonical_spoken": "Six hydrogen atoms and three oxygen atoms. If those match, check the method too: the number of copies multiplies every atom count in the formula.",
+      "caption_text": "Six hydrogen atoms and three oxygen atoms. If those match, check the method too: the number of copies multiplies every atom count in the formula.",
+      "audio_cache_key": "929da2643a2bb80bcd29707cb0a1a313b3a6ffdf6f92e2689c5d312ff87ec111",
+      "editorial_style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Precise and credible, not promotional. Aim for approximately 140 spoken words per minute; do not add words.",
+      "warnings": [
+        "Compiled offline; live behavior and pronunciation require separate approval.",
+        "Speed multiplier is a starting heuristic, not a WPM guarantee; beta emotion disabled."
+      ]
+    }
+  ],
+  "network_operations": 0
+}

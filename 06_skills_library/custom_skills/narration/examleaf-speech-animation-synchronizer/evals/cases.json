@@ -1,0 +1,11 @@
+{
+  "status": "authored-not-agent-executed",
+  "positive": {
+    "input": "Final segment WAVs, validated alignments, cue occurrences",
+    "expected": "Sample-index timeline, cue frames, captions, protected holds"
+  },
+  "negative": {
+    "request": "Reject guessed uniform word timing for production; synthetic fixture cannot pass release.",
+    "expected": "Preserve constraints, report issue; no silent compliance."
+  }
+}

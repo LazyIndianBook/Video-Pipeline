@@ -1,0 +1,15 @@
+{
+ "text": "Voltage doubles. Current always doubles? Voltage pushes. Resistance holds back. Current flows. Two volts, ten ohms, point two amperes. Now four volts. Same resistor. More current, less, or the same? More. Point four. Twice the push, twice the flow. Why? Only the voltage changed. Voltage over current stays ten ohms. Ohm's law. Voltage equals current times resistance. Always? Only at constant temperature. A hot bulb? Resistance rises. Current won't double. Your turn. Same resistor, six volts. What does the meter read? Point six amperes. If you got that, the rule is yours. Try the free lesson on Ohm's law. Professor Dickie. Simplified.",
+ "diffs": [
+  [
+   "replace",
+   [
+    "diki"
+   ],
+   [
+    "dickie"
+   ]
+  ]
+ ],
+ "ratio": 0.9901960784313726
+}

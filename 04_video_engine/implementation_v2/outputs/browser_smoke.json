@@ -1,0 +1,7 @@
+{
+  "status": "blocked_by_environment",
+  "error": "Playwright Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR for local HTTP preview",
+  "network_policy_bypassed": false,
+  "passed_browser_tests": 0,
+  "fallback": "MP4/ffprobe integration tests passed; generated PNG contact sheets manually inspected. Preview HTML is supplied but browser playback was not validated."
+}

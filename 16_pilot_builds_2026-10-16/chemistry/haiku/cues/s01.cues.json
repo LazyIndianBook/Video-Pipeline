@@ -1,0 +1,200 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "chem-balance-ci-01-s01",
+ "fps": 30,
+ "duration": 10.267,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "c7cfe0ed91884df8b522fb9ebb8cd97ff92242f68684404117e64f2c4bfb3d9e",
+ "script_sha256": "67853079faf35e0a686e7a6c0661db3942d6aaa9b4e470f9e082d74f2b4f2713",
+ "words": [
+  {
+   "w": "Hydrogen",
+   "t0": 0.76,
+   "t1": 1.32
+  },
+  {
+   "w": "burns",
+   "t0": 1.4,
+   "t1": 1.68
+  },
+  {
+   "w": "in",
+   "t0": 1.72,
+   "t1": 1.88
+  },
+  {
+   "w": "oxygen",
+   "t0": 1.96,
+   "t1": 2.52
+  },
+  {
+   "w": "to",
+   "t0": 2.56,
+   "t1": 2.6
+  },
+  {
+   "w": "make",
+   "t0": 2.72,
+   "t1": 2.84
+  },
+  {
+   "w": "water",
+   "t0": 2.92,
+   "t1": 3.88
+  },
+  {
+   "w": "Write",
+   "t0": 3.96,
+   "t1": 4.12
+  },
+  {
+   "w": "it",
+   "t0": 4.2,
+   "t1": 4.28,
+   "occurrence": 1
+  },
+  {
+   "w": "down",
+   "t0": 4.36,
+   "t1": 4.68
+  },
+  {
+   "w": "and",
+   "t0": 4.76,
+   "t1": 4.92
+  },
+  {
+   "w": "count",
+   "t0": 5.04,
+   "t1": 5.16
+  },
+  {
+   "w": "the",
+   "t0": 5.24,
+   "t1": 5.32
+  },
+  {
+   "w": "atoms",
+   "t0": 5.52,
+   "t1": 5.72
+  },
+  {
+   "w": "on",
+   "t0": 5.76,
+   "t1": 5.8
+  },
+  {
+   "w": "each",
+   "t0": 5.88,
+   "t1": 6.04
+  },
+  {
+   "w": "side",
+   "t0": 6.12,
+   "t1": 7.0
+  },
+  {
+   "w": "Something",
+   "t0": 7.24,
+   "t1": 7.48
+  },
+  {
+   "w": "does",
+   "t0": 7.6,
+   "t1": 7.72
+  },
+  {
+   "w": "not",
+   "t0": 7.8,
+   "t1": 7.96
+  },
+  {
+   "w": "add",
+   "t0": 8.04,
+   "t1": 8.2
+  },
+  {
+   "w": "up",
+   "t0": 8.28,
+   "t1": 8.88
+  },
+  {
+   "w": "Can",
+   "t0": 8.92,
+   "t1": 9.0
+  },
+  {
+   "w": "you",
+   "t0": 9.08,
+   "t1": 9.16
+  },
+  {
+   "w": "spot",
+   "t0": 9.24,
+   "t1": 9.4
+  },
+  {
+   "w": "it",
+   "t0": 9.48,
+   "t1": 9.96,
+   "occurrence": 2
+  }
+ ],
+ "beats": [
+  0.6
+ ],
+ "cues": [
+  {
+   "id": "c01",
+   "at": 0.71,
+   "kind": "reveal",
+   "element_id": "eq_reactants",
+   "word_index": 0
+  },
+  {
+   "id": "c02",
+   "at": 2.67,
+   "kind": "reveal",
+   "element_id": "eq_arrow",
+   "word_index": 5
+  },
+  {
+   "id": "c03",
+   "at": 2.87,
+   "kind": "reveal",
+   "element_id": "eq_product",
+   "word_index": 6
+  },
+  {
+   "id": "c04",
+   "at": 7.99,
+   "kind": "emphasis",
+   "element_id": "hl_eq",
+   "word_index": 20
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "chem-balance-ci-01",
+  "scene": "s01",
+  "beat_ids": [
+   "b01"
+  ],
+  "beats_text": [
+   {
+    "id": "b01",
+    "slot": "hook.question_reveal",
+    "text": "Hydrogen burns in oxygen to make water. Write it down and count the atoms on each side. Something does not add up. Can you spot it?",
+    "headline": "Something does not add up",
+    "start": 0.76,
+    "end": 9.96,
+    "word_range": [
+     0,
+     26
+    ]
+   }
+  ],
+  "think_windows": []
+ }
+}

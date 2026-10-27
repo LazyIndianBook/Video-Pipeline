@@ -1,0 +1,16 @@
+{
+  "scene_id": "phy-10-03-s04",
+  "duration_old": 3.3,
+  "duration_new": 3.5,
+  "frames_old": 99,
+  "frames_new": 105,
+  "cues": [
+    {"id": "arrow_2", "old_at": 1.25, "new_at": 1.45, "delta_s": 0.2},
+    {"id": "hindi_label", "old_at": 2.25, "new_at": 2.45, "delta_s": 0.2},
+    {"id": "sheet_in", "old_at": 2.5, "new_at": 2.7, "delta_s": 0.2},
+    {"id": "title", "old_at": 0.0, "new_at": 0.0, "delta_s": 0.0}
+  ],
+  "added": [],
+  "removed": [],
+  "action": "scene code unchanged; re-render the scene and re-run QA (hash changes)"
+}

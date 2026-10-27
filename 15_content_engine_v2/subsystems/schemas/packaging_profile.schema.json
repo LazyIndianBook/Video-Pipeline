@@ -1,0 +1,3070 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://examleaf.local/schemas/v2/packaging_profile.json",
+  "title": "ExamLeaf Packaging Profile v2",
+  "description": "Registry kind packaging/ (proposed; see subsystems/PACKAGING_and_DISTRIBUTION_REGISTRY.md). A packaging profile says how an approved artefact is encoded, captioned, titled, disclosed and described for one channel. Bytes-affecting fields (encode, burned captions) are pinned in the EPP as packaging/<id>@x.y.z#render, whose value is the SHA-256 of {render_variant, loudness, captions.max_lines, safe_zone}; copy and sidecar fields are pinned in the Distribution Package record, so a metadata change re-exports without reopening the full-watch gate. The neutral metadata sidecar is defined in #/definitions/metadata_sidecar. FORBIDDEN FIELDS (documentation only; additionalProperties:false makes them structurally impossible and the commercial-term lint rejects them by name in every pipeline file): (1) the CE-26 regex family: price, pricing, paid, is_free, free_*, premium, entitle*, subscri*, sku, paywall, unlock, monetis*, monetiz*, revenue, discount, coupon; (2) any field name containing 'tier' (for example the v1 ShortSpec access_tier); (3) v1 commercial routing and funnel fields: destination_resource_id, funnel_objective, cta_destination, purchase_*, checkout_*, product_id, bundle_*, offer_*, trial_*, book_activation, activation_code and any activation secret; (4) advertising and growth analytics: ads_*, ad_targeting, advert*, campaign_*, utm_*, affiliate_*, conversion_*, experiment_id, experiment_arm, virality_score, brain_activity; (5) learner data: student_name, learner_id, email, phone, school, handle, any learner submission; (6) secrets and transient access: api_key, access_token, auth_token, playback_token, signed_url, secret, password (design 'tokens' such as safe-zone token files are not secrets and are allowed). Entitlement, pricing, playback tokens and analytics are joined by the platform outside the pipeline (CE-L1, RD-49).",
+  "$comment": "Commercial-term lint (CE-L1/RD-49): CI rejects, case-insensitively, any match of (price|pricing|paid|is_free|free_|premium|entitle|subscri|sku|paywall|unlock|monetis|monetiz|revenue|discount|coupon|tier|destination_resource|cta_destination|funnel|purchase_|checkout_|product_id|offer_|trial_|utm_|campaign_|affiliate_|activation_code|storefront) applied to every object key at every depth (including REN fields keys), every required entry, pattern key and enum or const value (updated 15 Oct 2026, safety-13). Editorial fields series_position, flagship and demo_kind are exempt. Measured quantities are decimal strings with units (CE-32). 15 Oct 2026 (stitch): interaction_sidecar and file role interactions_json added (interaction-01); export_qa holds the packaging-11 unconditional set plus Q-META.interactions_sidecar and Q-RIGHTS.scope, and video profiles add A11.package, A4.platform and Q-A11Y.captions; ac0 sidecars carry no next_step description block (safety-08); binding.approvals also requires VOICE (safety-01); pins keys follow resolver-13 without gs/ and reviewer/.",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "packaging_ref": {
+      "type": "string",
+      "pattern": "^packaging/[a-z0-9][a-z0-9_-]*@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "registry_pin_key": {
+      "type": "string",
+      "pattern": "^(format|slot|level|overlay|safety|a11y|persona|family|locale|style|voice|model|kit|harness|qa|music|lex|budget)/[a-z0-9][a-z0-9_.-]*@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(#[a-z][a-z0-9_-]*)?$",
+      "description": "Registry pin key (15 Oct 2026, resolver-13): the EPP pin kinds of schemas/epp.schema.json except packaging (pinned only as its bytes half, packaging/<id>@x.y.z#render) and gs (recorded on the voice entry, never pinned; resolver-08); reviewer/ is never a pin (resolver-14). Optional #variant as persona/<id>@x.y.z#<variant>."
+    },
+    "format_ref": {
+      "type": "string",
+      "pattern": "^format/[a-z0-9_]+$"
+    },
+    "safety_ref": {
+      "type": "string",
+      "enum": [
+        "safety/ac0",
+        "safety/ac1",
+        "safety/ac2"
+      ]
+    },
+    "locale_ref": {
+      "type": "string",
+      "pattern": "^locale/[a-z0-9][a-z0-9_-]*$"
+    },
+    "seconds": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]{3} s$"
+    },
+    "lufs": {
+      "type": "string",
+      "pattern": "^-[0-9]+\\.[0-9] LUFS$"
+    },
+    "dbtp": {
+      "type": "string",
+      "pattern": "^-[0-9]+\\.[0-9] dBTP$"
+    },
+    "verify_value": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "A platform figure that is not in the verified evidence. It stays null until measured or confirmed from the platform's current documentation, with the source recorded.",
+      "properties": {
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "verify",
+            "measured",
+            "confirmed"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "checked_on": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "value",
+        "status"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "verify"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "measured",
+                  "confirmed"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "source",
+              "checked_on"
+            ]
+          }
+        }
+      ]
+    },
+    "token_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "json_pointer": {
+          "type": "string",
+          "pattern": "^(/[^/]*)*$"
+        },
+        "sha256": {
+          "$ref": "#/definitions/sha256"
+        }
+      },
+      "required": [
+        "path",
+        "json_pointer",
+        "sha256"
+      ]
+    },
+    "check_id": {
+      "type": "string",
+      "pattern": "^(Q-[A-Z0-9]+(\\.[a-z0-9_]+)?|A([1-9]|1[0-7])[ab]?(\\.[a-z0-9_]+)?|RELEASE-CHECK)$"
+    },
+    "evidence_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "claim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tag": {
+          "type": "string",
+          "enum": [
+            "Recommendation",
+            "Hypothesis",
+            "Inherited",
+            "Evidence"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pilot_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "claim",
+        "tag"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "tag": {
+                "const": "Hypothesis"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "owner",
+              "pilot_ref"
+            ]
+          }
+        }
+      ]
+    },
+    "file_entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "type": "string",
+          "enum": [
+            "master_video",
+            "rendition",
+            "burned_caption_variant",
+            "reduced_motion_variant",
+            "audio_described_mix",
+            "audio_only",
+            "captions_webvtt",
+            "captions_srt",
+            "chapters_webvtt",
+            "audio_description_vtt",
+            "transcript_txt",
+            "transcript_json",
+            "cover_image",
+            "c2pa_manifest",
+            "interactions_json"
+          ]
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "locale": {
+          "$ref": "#/definitions/locale_ref"
+        },
+        "derived_from_sha256": {
+          "$ref": "#/definitions/sha256"
+        }
+      },
+      "required": [
+        "role",
+        "path",
+        "sha256"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "enum": [
+                  "rendition",
+                  "burned_caption_variant"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "derived_from_sha256"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "enum": [
+                  "captions_webvtt",
+                  "captions_srt",
+                  "transcript_txt",
+                  "transcript_json",
+                  "audio_description_vtt",
+                  "interactions_json"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "locale"
+            ]
+          }
+        }
+      ]
+    },
+    "metadata_sidecar": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Neutral metadata sidecar (export/sidecar.json) written by the neutral exporter at S14 after RELEASE-CHECK. It carries ids, competency GUIDs, level, format, locale, versions, hashes, audience safety class, accessibility tracks, disclosure and provenance only. Every forbidden field listed in the top-level description is absent by construction.",
+      "properties": {
+        "schema_version": {
+          "$ref": "#/definitions/semver"
+        },
+        "package_id": {
+          "type": "string",
+          "pattern": "^PKG-[A-Za-z0-9_.-]+$"
+        },
+        "artefact_id": {
+          "type": "string",
+          "pattern": "^ART-[A-Za-z0-9_.-]+$"
+        },
+        "packaging_profile": {
+          "$ref": "#/definitions/packaging_ref"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/file_entry"
+          },
+          "minItems": 1,
+          "contains": {
+            "type": "object",
+            "properties": {
+              "role": {
+                "enum": [
+                  "master_video",
+                  "audio_only"
+                ]
+              }
+            },
+            "required": [
+              "role"
+            ]
+          }
+        },
+        "binding": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "artefact_sha256": {
+              "$ref": "#/definitions/sha256"
+            },
+            "epp_hash": {
+              "$ref": "#/definitions/sha256"
+            },
+            "closure_hash": {
+              "$ref": "#/definitions/sha256"
+            },
+            "graph_subtree_sha256": {
+              "$ref": "#/definitions/sha256"
+            },
+            "format_plan_sha256": {
+              "$ref": "#/definitions/sha256"
+            },
+            "approvals": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "gate": {
+                    "type": "string",
+                    "enum": [
+                      "H_CG",
+                      "GV_CLAIMS",
+                      "GA_GRAPH",
+                      "GA_DELTA",
+                      "H_SB",
+                      "VOICE",
+                      "A_SUITE",
+                      "GF",
+                      "GS",
+                      "COPY",
+                      "DISCLOSURE",
+                      "G_COUNSEL",
+                      "GL_GLOSSARY",
+                      "GL_VOICE",
+                      "RELEASE_CHECK"
+                    ]
+                  },
+                  "approval_id": {
+                    "type": "string",
+                    "pattern": "^APR-[A-Za-z0-9_.-]+$"
+                  },
+                  "state": {
+                    "type": "string",
+                    "enum": [
+                      "valid",
+                      "reaffirmed"
+                    ]
+                  },
+                  "bound_sha256": {
+                    "$ref": "#/definitions/sha256"
+                  }
+                },
+                "required": [
+                  "gate",
+                  "approval_id",
+                  "state",
+                  "bound_sha256"
+                ]
+              },
+              "allOf": [
+                {
+                  "contains": {
+                    "properties": {
+                      "gate": {
+                        "const": "GA_DELTA"
+                      }
+                    },
+                    "required": [
+                      "gate"
+                    ]
+                  }
+                },
+                {
+                  "contains": {
+                    "properties": {
+                      "gate": {
+                        "const": "H_SB"
+                      }
+                    },
+                    "required": [
+                      "gate"
+                    ]
+                  }
+                },
+                {
+                  "contains": {
+                    "properties": {
+                      "gate": {
+                        "const": "VOICE"
+                      }
+                    },
+                    "required": [
+                      "gate"
+                    ]
+                  }
+                },
+                {
+                  "contains": {
+                    "properties": {
+                      "gate": {
+                        "enum": [
+                          "GF",
+                          "GS"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "gate"
+                    ]
+                  }
+                },
+                {
+                  "contains": {
+                    "properties": {
+                      "gate": {
+                        "const": "COPY"
+                      }
+                    },
+                    "required": [
+                      "gate"
+                    ]
+                  }
+                },
+                {
+                  "contains": {
+                    "properties": {
+                      "gate": {
+                        "const": "DISCLOSURE"
+                      }
+                    },
+                    "required": [
+                      "gate"
+                    ]
+                  }
+                },
+                {
+                  "contains": {
+                    "properties": {
+                      "gate": {
+                        "const": "RELEASE_CHECK"
+                      }
+                    },
+                    "required": [
+                      "gate"
+                    ]
+                  }
+                }
+              ]
+            },
+            "packaging_profile_sha256": {
+              "$ref": "#/definitions/sha256",
+              "description": "SHA-256 (CE-32 canon) of the whole packaging profile this package was exported under."
+            },
+            "release_manifest_sha256": {
+              "$ref": "#/definitions/sha256",
+              "description": "SHA-256 of the signed release manifest the release service writes at S13 (07/06 §6.3). The manifest never contains package_sha256, so there is no cycle."
+            }
+          },
+          "required": [
+            "artefact_sha256",
+            "epp_hash",
+            "closure_hash",
+            "graph_subtree_sha256",
+            "format_plan_sha256",
+            "approvals",
+            "packaging_profile_sha256",
+            "release_manifest_sha256"
+          ]
+        },
+        "classification": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "format": {
+              "type": "string",
+              "pattern": "^format/[a-z0-9_]+@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+            },
+            "variant": {
+              "type": "string",
+              "minLength": 1
+            },
+            "level": {
+              "type": "string",
+              "pattern": "^level/[a-z0-9_]+@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+            },
+            "audience_class": {
+              "$ref": "#/definitions/safety_ref"
+            },
+            "family": {
+              "type": "string",
+              "pattern": "^family/[a-z0-9_]+@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+            },
+            "subject": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
+            },
+            "locale": {
+              "$ref": "#/definitions/locale_ref"
+            },
+            "exam_overlay": {
+              "type": "string",
+              "pattern": "^overlay/[a-z0-9_]+$"
+            },
+            "persona": {
+              "type": "string",
+              "pattern": "^persona/[a-z0-9][a-z0-9_-]*@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(#[a-z][a-z0-9_-]*)?$"
+            },
+            "voice_path": {
+              "type": "string",
+              "enum": [
+                "A",
+                "B"
+              ]
+            },
+            "render_target": {
+              "type": "string",
+              "enum": [
+                "video",
+                "audio_only"
+              ]
+            },
+            "aspect": {
+              "type": "string",
+              "enum": [
+                "9x16",
+                "16x9"
+              ]
+            }
+          },
+          "required": [
+            "format",
+            "level",
+            "audience_class",
+            "family",
+            "subject",
+            "locale",
+            "voice_path",
+            "render_target"
+          ]
+        },
+        "curriculum": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "framework_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "framework_version": {
+              "$ref": "#/definitions/semver"
+            },
+            "competency_guids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "objective_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^OBJ-[A-Za-z0-9_.-]+$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "framework_id",
+            "framework_version",
+            "competency_guids",
+            "objective_ids"
+          ]
+        },
+        "pins": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": false,
+          "patternProperties": {
+            "^(format|slot|level|overlay|safety|a11y|persona|family|locale|style|voice|model|kit|harness|qa|music|lex|budget)/[a-z0-9][a-z0-9_.-]*@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(#[a-z][a-z0-9_-]*)?$": {
+              "$ref": "#/definitions/sha256"
+            },
+            "^packaging/[a-z0-9][a-z0-9_-]*@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)#render$": {
+              "$ref": "#/definitions/sha256"
+            }
+          },
+          "description": "Every registry pin@version in the closure mapped to its SHA-256. The packaging profile appears only as its bytes half, packaging/<id>@x.y.z#render (SHA-256 of {render_variant, loudness, captions.max_lines, safe_zone}); the whole-profile hash is binding.packaging_profile_sha256 (15 Oct 2026)."
+        },
+        "copy": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "locale": {
+                "$ref": "#/definitions/locale_ref"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "cover_text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description_blocks": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "what_you_get",
+                        "condition",
+                        "audience_line",
+                        "next_step",
+                        "chapters",
+                        "disclosure",
+                        "credits",
+                        "sources",
+                        "last_revised",
+                        "errata"
+                      ]
+                    },
+                    "text": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "text"
+                  ]
+                }
+              },
+              "string_table_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "hashtags": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^#[^\\s#]+$"
+                },
+                "maxItems": 3,
+                "uniqueItems": true,
+                "description": "Approved hashtags for this locale (PACKAGING §4.6). Uploaded exactly as listed; nothing is added at upload."
+              },
+              "copy_sha256": {
+                "$ref": "#/definitions/sha256",
+                "description": "SHA-256 (CE-32 canon) of {locale, title, cover_text, description_blocks, hashtags, cover image sha256}. The COPY approval binds this hash."
+              },
+              "copy_approval_id": {
+                "type": "string",
+                "pattern": "^APR-[A-Za-z0-9_.-]+$",
+                "description": "approval_id of the COPY entry in binding.approvals whose bound_sha256 equals copy_sha256 (recorded at S12)."
+              }
+            },
+            "required": [
+              "locale",
+              "title",
+              "cover_text",
+              "description_blocks",
+              "string_table_ref",
+              "copy_sha256",
+              "copy_approval_id"
+            ]
+          }
+        },
+        "chapters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "index": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "start": {
+                "$ref": "#/definitions/seconds"
+              },
+              "end": {
+                "$ref": "#/definitions/seconds"
+              }
+            },
+            "required": [
+              "index",
+              "title",
+              "start",
+              "end"
+            ]
+          }
+        },
+        "series": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "series_id": {
+              "type": "string",
+              "pattern": "^SER-[A-Za-z0-9_.-]+$"
+            },
+            "series_position": {
+              "type": "string",
+              "enum": [
+                "first",
+                "subsequent",
+                "standalone"
+              ]
+            },
+            "episode_number": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "prerequisites": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^(ART|OBJ)-[A-Za-z0-9_.-]+$"
+              },
+              "uniqueItems": true
+            },
+            "next_step_ref": {
+              "type": "string",
+              "pattern": "^(ART|OBJ)-[A-Za-z0-9_.-]+$"
+            }
+          },
+          "required": [
+            "series_position"
+          ],
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "series_position": {
+                    "enum": [
+                      "first",
+                      "subsequent"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "series_id",
+                  "episode_number"
+                ]
+              }
+            }
+          ]
+        },
+        "render": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "container": {
+              "type": "string",
+              "enum": [
+                "mp4",
+                "m4a"
+              ]
+            },
+            "video_codec": {
+              "type": "string",
+              "enum": [
+                "h264",
+                "none"
+              ]
+            },
+            "pixel_format": {
+              "type": "string",
+              "enum": [
+                "yuv420p",
+                "none"
+              ]
+            },
+            "resolution": {
+              "type": "string",
+              "enum": [
+                "1080x1920",
+                "1920x1080",
+                "none"
+              ]
+            },
+            "frame_rate": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "audio_codec": {
+              "type": "string",
+              "enum": [
+                "aac"
+              ]
+            },
+            "audio_sample_rate_hz": {
+              "const": 48000
+            },
+            "duration": {
+              "$ref": "#/definitions/seconds"
+            },
+            "integrated_loudness": {
+              "$ref": "#/definitions/lufs"
+            },
+            "true_peak": {
+              "$ref": "#/definitions/dbtp"
+            }
+          },
+          "required": [
+            "container",
+            "video_codec",
+            "resolution",
+            "frame_rate",
+            "audio_codec",
+            "audio_sample_rate_hz",
+            "duration",
+            "integrated_loudness",
+            "true_peak"
+          ]
+        },
+        "accessibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "a11y_profile": {
+              "type": "string",
+              "pattern": "^a11y/[a-z0-9_.-]+@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+            },
+            "caption_locales": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/locale_ref"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "captions_source": {
+              "const": "approved_script"
+            },
+            "transcript": {
+              "const": true
+            },
+            "audio_description": {
+              "type": "string",
+              "enum": [
+                "provided",
+                "not_required_all_visual_essential_narrated"
+              ]
+            },
+            "reduced_motion_variant": {
+              "type": "string",
+              "enum": [
+                "provided",
+                "not_applicable_audio_only",
+                "rendered_not_delivered_on_channel"
+              ]
+            },
+            "sign_language": {
+              "const": "deferred_until_o18_trigger"
+            }
+          },
+          "required": [
+            "a11y_profile",
+            "caption_locales",
+            "captions_source",
+            "transcript",
+            "audio_description",
+            "reduced_motion_variant"
+          ]
+        },
+        "disclosure": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "voice_identity": {
+              "type": "string",
+              "pattern": "^voice/[a-z0-9][a-z0-9_-]*@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+            },
+            "voice_path": {
+              "type": "string",
+              "enum": [
+                "A",
+                "B"
+              ]
+            },
+            "ai_voice_disclosure": {
+              "type": "string",
+              "minLength": 1
+            },
+            "performer_credit": {
+              "type": "string",
+              "minLength": 1
+            },
+            "child_variant_text": {
+              "type": "string",
+              "minLength": 1
+            },
+            "placements_required": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "description_line",
+                  "platform_synthetic_toggle",
+                  "platform_ai_label",
+                  "end_card_line",
+                  "transcript_header",
+                  "player_page_line",
+                  "sidecar_field",
+                  "spoken_line"
+                ]
+              }
+            },
+            "disclosure_variant": {
+              "type": "string",
+              "enum": [
+                "path_a_converted",
+                "path_a_direct",
+                "path_b_tts"
+              ]
+            },
+            "text_ref": {
+              "type": "string",
+              "pattern": "^voice/[a-z0-9][a-z0-9_-]*@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)#[a-z0-9_.-]+$",
+              "description": "The pinned voice/ entry's disclosure.text_ref for classification.locale. Q-DISC.script checks ai_voice_disclosure byte for byte against it."
+            }
+          },
+          "required": [
+            "voice_identity",
+            "voice_path",
+            "ai_voice_disclosure",
+            "performer_credit",
+            "placements_required",
+            "disclosure_variant",
+            "text_ref"
+          ],
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "disclosure_variant": {
+                    "const": "path_b_tts"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "voice_path": {
+                    "const": "B"
+                  },
+                  "performer_credit": {
+                    "const": "none"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "disclosure_variant": {
+                    "enum": [
+                      "path_a_converted",
+                      "path_a_direct"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "voice_path": {
+                    "const": "A"
+                  },
+                  "performer_credit": {
+                    "not": {
+                      "const": "none"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "$comment": "15 Oct 2026: the English wording patterns were removed. The text is owned once by the voice/ entry (VOICE §3.9) per locale; Q-DISC.script checks it byte for byte. The schema checks that variant, voice path and performer_credit agree. A mixed (F16) variant waits on O-5."
+        },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "contributors": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "role": {
+                    "type": "string",
+                    "enum": [
+                      "script_author",
+                      "academic_reviewer",
+                      "family_reviewer",
+                      "child_development_reviewer",
+                      "native_editor",
+                      "production_reviewer",
+                      "performer",
+                      "animation_director",
+                      "publisher"
+                    ]
+                  },
+                  "reviewer_id": {
+                    "type": "string",
+                    "pattern": "^(reviewer|performer)/[a-z0-9][a-z0-9_.-]*$"
+                  },
+                  "display_name": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "role",
+                  "reviewer_id",
+                  "display_name"
+                ]
+              }
+            },
+            "sources": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "source_id": {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Za-z0-9_.-]+$"
+                  },
+                  "citation": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "source_id",
+                  "citation"
+                ]
+              }
+            },
+            "last_revision_date": {
+              "type": "string",
+              "format": "date"
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "ledger_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "c2pa": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "mode": {
+                  "type": "string",
+                  "enum": [
+                    "sidecar_manifest",
+                    "embedded_in_distribution_copy",
+                    "not_available"
+                  ]
+                },
+                "manifest_sha256": {
+                  "$ref": "#/definitions/sha256"
+                },
+                "upstream_manifests_recorded": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/sha256"
+                  },
+                  "uniqueItems": true
+                },
+                "stripped_by_pipeline": {
+                  "const": false
+                }
+              },
+              "required": [
+                "mode",
+                "stripped_by_pipeline"
+              ]
+            }
+          },
+          "required": [
+            "contributors",
+            "sources",
+            "last_revision_date",
+            "created_at",
+            "c2pa"
+          ]
+        },
+        "audience": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "audience_class": {
+              "$ref": "#/definitions/safety_ref"
+            },
+            "g_counsel_record": {
+              "type": "string",
+              "pattern": "^GCR-[A-Za-z0-9_.-]+$"
+            },
+            "designation_hint": {
+              "type": "string",
+              "enum": [
+                "made_for_kids_required",
+                "per_counsel_record"
+              ]
+            }
+          },
+          "required": [
+            "audience_class",
+            "g_counsel_record",
+            "designation_hint"
+          ],
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "audience_class": {
+                    "const": "safety/ac0"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "designation_hint": {
+                    "const": "made_for_kids_required"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "pattern": "^SRC-[A-Za-z0-9_.-]+$"
+              },
+              "url": {
+                "type": "string",
+                "pattern": "^https://"
+              },
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "official_board",
+                  "government",
+                  "registered_source"
+                ]
+              }
+            },
+            "required": [
+              "source_id",
+              "url",
+              "kind"
+            ]
+          }
+        },
+        "supersedes_package_id": {
+          "type": "string",
+          "pattern": "^PKG-[A-Za-z0-9_.-]+$",
+          "description": "The released package (same artefact_id and packaging_profile) that this corrected package replaces (07/06 §8)."
+        }
+      },
+      "required": [
+        "schema_version",
+        "package_id",
+        "artefact_id",
+        "packaging_profile",
+        "files",
+        "binding",
+        "classification",
+        "curriculum",
+        "pins",
+        "copy",
+        "render",
+        "accessibility",
+        "disclosure",
+        "provenance",
+        "audience",
+        "links"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "classification": {
+                "properties": {
+                  "audience_class": {
+                    "const": "safety/ac0"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "links": {
+                "maxItems": 0
+              },
+              "disclosure": {
+                "required": [
+                  "child_variant_text"
+                ],
+                "properties": {
+                  "voice_path": {
+                    "const": "A"
+                  }
+                }
+              },
+              "classification": {
+                "properties": {
+                  "voice_path": {
+                    "const": "A"
+                  }
+                }
+              },
+              "copy": {
+                "items": {
+                  "properties": {
+                    "hashtags": {
+                      "maxItems": 0
+                    },
+                    "description_blocks": {
+                      "items": {
+                        "properties": {
+                          "kind": {
+                            "not": {
+                              "const": "next_step"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "classification": {
+                "properties": {
+                  "audience_class": {
+                    "const": "safety/ac1"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "links": {
+                "items": {
+                  "properties": {
+                    "kind": {
+                      "enum": [
+                        "official_board",
+                        "government"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "classification": {
+                "properties": {
+                  "audience_class": {
+                    "const": "safety/ac0"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "audience": {
+                "properties": {
+                  "audience_class": {
+                    "const": "safety/ac0"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "classification": {
+                "properties": {
+                  "audience_class": {
+                    "const": "safety/ac1"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "audience": {
+                "properties": {
+                  "audience_class": {
+                    "const": "safety/ac1"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "classification": {
+                "properties": {
+                  "audience_class": {
+                    "const": "safety/ac2"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "audience": {
+                "properties": {
+                  "audience_class": {
+                    "const": "safety/ac2"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "series": {
+                "properties": {
+                  "series_position": {
+                    "const": "first"
+                  }
+                },
+                "required": [
+                  "series_position"
+                ]
+              }
+            },
+            "required": [
+              "series"
+            ]
+          },
+          "then": {
+            "properties": {
+              "classification": {
+                "properties": {
+                  "voice_path": {
+                    "const": "A"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "classification": {
+                "properties": {
+                  "voice_path": {
+                    "const": "A"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "disclosure": {
+                "properties": {
+                  "voice_path": {
+                    "const": "A"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "classification": {
+                "properties": {
+                  "voice_path": {
+                    "const": "B"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "disclosure": {
+                "properties": {
+                  "voice_path": {
+                    "const": "B"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "classification": {
+                "properties": {
+                  "render_target": {
+                    "const": "audio_only"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "render": {
+                "properties": {
+                  "container": {
+                    "const": "m4a"
+                  },
+                  "video_codec": {
+                    "const": "none"
+                  },
+                  "resolution": {
+                    "const": "none"
+                  },
+                  "frame_rate": {
+                    "const": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "interaction_sidecar": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Neutral interaction sidecar (export/interactions.json, file role interactions_json) written by the neutral exporter at S14 from the approved Interaction Spec and the measured final timeline (15 Oct 2026). Ids, times, item content and keys only; no learner data and no commercial field. AC0 behaviour is carried by audience_class and mapped by the platform (CE-17).",
+      "properties": {
+        "schema_version": {
+          "$ref": "#/definitions/semver"
+        },
+        "package_id": {
+          "type": "string",
+          "pattern": "^PKG-[A-Za-z0-9_.-]+$"
+        },
+        "artefact_id": {
+          "type": "string",
+          "pattern": "^ART-[A-Za-z0-9_.-]+$"
+        },
+        "interaction_spec_id": {
+          "type": "string",
+          "pattern": "^IS-[A-Za-z0-9_.-]+$"
+        },
+        "interaction_spec_sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "audience_class": {
+          "$ref": "#/definitions/safety_ref"
+        },
+        "locale": {
+          "$ref": "#/definitions/locale_ref"
+        },
+        "interactions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "interaction_id": {
+                "type": "string",
+                "pattern": "^II-[A-Za-z0-9_.-]+$"
+              },
+              "beat_id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_-]*$"
+              },
+              "itype": {
+                "type": "string",
+                "pattern": "^[a-z_]+$"
+              },
+              "asm_id": {
+                "type": "string",
+                "pattern": "^ASM-[A-Za-z0-9_.-]+$"
+              },
+              "wrk_step_ref": {
+                "type": "string",
+                "pattern": "^WRK-[A-Za-z0-9_.-]+#[0-9]+$"
+              },
+              "item_kind": {
+                "type": "string",
+                "minLength": 1
+              },
+              "item_label": {
+                "type": "string",
+                "enum": [
+                  "past_paper",
+                  "examleaf_practice_question",
+                  "diagnostic",
+                  "none"
+                ]
+              },
+              "window_kind": {
+                "type": "string",
+                "enum": [
+                  "think",
+                  "pause-video",
+                  "call_response"
+                ]
+              },
+              "reveal_trigger": {
+                "type": "string",
+                "enum": [
+                  "window_end",
+                  "learner_continue",
+                  "no_single_answer"
+                ]
+              },
+              "prompt_start": {
+                "$ref": "#/definitions/seconds"
+              },
+              "window_end": {
+                "$ref": "#/definitions/seconds"
+              },
+              "reveal_start": {
+                "$ref": "#/definitions/seconds"
+              },
+              "stem": {
+                "type": "string",
+                "minLength": 1
+              },
+              "key": {
+                "type": "object",
+                "additionalProperties": false,
+                "description": "Verbatim copy of the ASM key fields; no tolerance field (registry §10 enumerates equivalent forms).",
+                "properties": {
+                  "expected_answer": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "acceptable_variations": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "uniqueItems": true
+                  },
+                  "options": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "option_id": {
+                          "type": "string",
+                          "pattern": "^[A-H]$"
+                        },
+                        "text": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "is_key": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "option_id",
+                        "text",
+                        "is_key"
+                      ]
+                    }
+                  },
+                  "blank_keys": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "blank_id": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "accepted": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "minItems": 1,
+                          "uniqueItems": true
+                        }
+                      },
+                      "required": [
+                        "blank_id",
+                        "accepted"
+                      ]
+                    }
+                  },
+                  "pair_keys": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "left": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "right": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "left",
+                        "right"
+                      ]
+                    }
+                  },
+                  "sequence": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                },
+                "required": [
+                  "expected_answer"
+                ]
+              },
+              "option_labels": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/option_label"
+                },
+                "minItems": 2,
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "interaction_id",
+              "beat_id",
+              "itype",
+              "item_label",
+              "window_kind",
+              "reveal_trigger",
+              "prompt_start",
+              "window_end"
+            ],
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "reveal_trigger": {
+                      "enum": [
+                        "window_end",
+                        "learner_continue"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "reveal_trigger"
+                  ]
+                },
+                "then": {
+                  "required": [
+                    "reveal_start"
+                  ]
+                }
+              },
+              {
+                "if": {
+                  "required": [
+                    "asm_id"
+                  ]
+                },
+                "then": {
+                  "required": [
+                    "item_kind",
+                    "stem",
+                    "key"
+                  ]
+                }
+              },
+              {
+                "$comment": "15 Oct 2026 (level-3+, CE-120): option_labels copied verbatim from the Interaction Spec; required when the key has options or the item presents choices.",
+                "if": {
+                  "anyOf": [
+                    {
+                      "properties": {
+                        "key": {
+                          "required": [
+                            "options"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "key"
+                      ]
+                    },
+                    {
+                      "properties": {
+                        "item_kind": {
+                          "enum": [
+                            "mcq",
+                            "match",
+                            "ordering",
+                            "diagram_label"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "item_kind"
+                      ]
+                    }
+                  ]
+                },
+                "then": {
+                  "required": [
+                    "option_labels"
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "schema_version",
+        "package_id",
+        "artefact_id",
+        "interaction_spec_id",
+        "interaction_spec_sha256",
+        "audience_class",
+        "locale",
+        "interactions"
+      ]
+    },
+    "publish_receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Publish receipt content/packages/PKG-<id>.publish.<channel>.json, written by the publisher per channel after S14 and before the item is public. Q-DISC.placement reads it; it is never inside the sidecar (15 Oct 2026).",
+      "properties": {
+        "channel": {
+          "type": "string",
+          "enum": [
+            "youtube_long",
+            "youtube_shorts",
+            "instagram_reels",
+            "in_app_player",
+            "offline_download",
+            "audio_only",
+            "print_pdf"
+          ]
+        },
+        "package_sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "uploaded_file_sha256": {
+          "$ref": "#/definitions/sha256"
+        },
+        "platform_item_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "published_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "publisher_id": {
+          "type": "string",
+          "pattern": "^reviewer/[a-z0-9][a-z0-9_.-]*$"
+        },
+        "made_for_kids_flag": {
+          "type": "string",
+          "enum": [
+            "set",
+            "not_set",
+            "not_applicable"
+          ]
+        },
+        "synthetic_toggle": {
+          "type": "string",
+          "enum": [
+            "set",
+            "not_applicable"
+          ]
+        },
+        "ai_label": {
+          "type": "string",
+          "enum": [
+            "applied",
+            "not_applicable"
+          ]
+        },
+        "c2pa": {
+          "type": "string",
+          "enum": [
+            "preserved",
+            "unknown"
+          ]
+        }
+      },
+      "required": [
+        "channel",
+        "package_sha256",
+        "uploaded_file_sha256",
+        "platform_item_id",
+        "published_at",
+        "publisher_id",
+        "made_for_kids_flag",
+        "synthetic_toggle",
+        "ai_label",
+        "c2pa"
+      ]
+    },
+    "x_kind_note": {
+      "$comment": "15 Oct 2026 (Architecture §3.4 R8): a property carrying \"x-kind\": \"limit\" is a limit; R8(a) takes the most restrictive value across safety class, a11y profile, level, overlay, format, locale and style. Annotation only; validators ignore it."
+    },
+    "option_label": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Keyboard key and screen-reader label for one ASM option (level-3+, CE-120, 15 Oct 2026). The label gives the option text and position only and never marks the key (answer protection; Q-A11Y.asm_labels).",
+      "properties": {
+        "option_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.-]+$",
+          "description": "The ASM option_id (mcq), left item (match, diagram_label) or sequence element (ordering)."
+        },
+        "screen_reader_label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "keyboard_key": {
+          "type": "string",
+          "pattern": "^([1-9]|[A-Z])$"
+        }
+      },
+      "required": [
+        "option_id",
+        "screen_reader_label",
+        "keyboard_key"
+      ]
+    }
+  },
+  "properties": {
+    "packaging_id": {
+      "type": "string",
+      "pattern": "^packaging/[a-z0-9][a-z0-9_-]*$"
+    },
+    "version": {
+      "$ref": "#/definitions/semver"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "released",
+        "deprecated",
+        "revoked"
+      ]
+    },
+    "channel": {
+      "type": "string",
+      "enum": [
+        "youtube_long",
+        "youtube_shorts",
+        "instagram_reels",
+        "in_app_player",
+        "offline_download",
+        "audio_only",
+        "print_pdf"
+      ]
+    },
+    "render_target": {
+      "type": "string",
+      "enum": [
+        "video",
+        "audio_only",
+        "print"
+      ],
+      "$comment": "15 Oct 2026 (level-3+, CE-119): print = a tagged PDF/UA plus an HTML twin from the same Format Plan through the pinned Chrome print path (packaging/print-pdf)."
+    },
+    "formats_allowed": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/format_ref"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "safety_classes_allowed": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/safety_ref"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "aspects_accepted": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "9x16",
+          "16x9",
+          "none"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "duration_class": {
+      "type": "string",
+      "enum": [
+        "long",
+        "short",
+        "any"
+      ]
+    },
+    "render_variant": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Bytes-affecting fields; pinned in the EPP. A change is a Presentational or Render-toolchain class change.",
+      "properties": {
+        "container": {
+          "type": "string",
+          "enum": [
+            "mp4",
+            "m4a"
+          ]
+        },
+        "video_codec": {
+          "type": "string",
+          "enum": [
+            "h264",
+            "none"
+          ]
+        },
+        "pixel_format": {
+          "type": "string",
+          "enum": [
+            "yuv420p",
+            "none"
+          ]
+        },
+        "frame_rate": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "audio_codec": {
+          "const": "aac"
+        },
+        "audio_sample_rate_hz": {
+          "const": 48000
+        },
+        "faststart": {
+          "type": "boolean"
+        },
+        "bitexact_single_thread_master": {
+          "const": true
+        },
+        "video_bitrate": {
+          "$ref": "#/definitions/verify_value"
+        },
+        "audio_bitrate": {
+          "$ref": "#/definitions/verify_value"
+        },
+        "renditions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "rendition_id": {
+                "type": "string",
+                "pattern": "^[a-z0-9_]+$"
+              },
+              "resolution": {
+                "type": "string",
+                "pattern": "^[0-9]+x[0-9]+$"
+              },
+              "video_bitrate": {
+                "$ref": "#/definitions/verify_value"
+              },
+              "purpose": {
+                "type": "string",
+                "enum": [
+                  "low_bandwidth",
+                  "small_storage"
+                ]
+              },
+              "rechecks": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/check_id"
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "rendition_id",
+              "resolution",
+              "video_bitrate",
+              "purpose",
+              "rechecks"
+            ]
+          }
+        },
+        "burned_captions": {
+          "type": "string",
+          "enum": [
+            "never",
+            "optional_variant",
+            "required_variant"
+          ]
+        }
+      },
+      "required": [
+        "container",
+        "video_codec",
+        "frame_rate",
+        "audio_codec",
+        "audio_sample_rate_hz",
+        "bitexact_single_thread_master",
+        "burned_captions"
+      ]
+    },
+    "print_variant": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Bytes half of a print profile (level-3+, CE-119, 15 Oct 2026): pinned in the EPP as packaging/<id>@x.y.z#render, the SHA-256 of {print_variant}. Replaces render_variant, loudness and captions, which a print profile does not carry.",
+      "properties": {
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "pdf_ua",
+              "html"
+            ]
+          },
+          "minItems": 2,
+          "uniqueItems": true
+        },
+        "renderer": {
+          "const": "pinned_chrome_print_path"
+        },
+        "fonts": {
+          "const": "vendored_bundle"
+        },
+        "document_metadata": {
+          "const": "fixed_no_wall_clock"
+        },
+        "answer_key": {
+          "type": "string",
+          "enum": [
+            "separate_file",
+            "separate_final_section"
+          ]
+        },
+        "file_size_limit": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/verify_value"
+            }
+          ],
+          "x-kind": "limit",
+          "description": "Per-file size ceiling for low-bandwidth use; a value to verify, never assumed (Q-META.size)."
+        }
+      },
+      "required": [
+        "outputs",
+        "renderer",
+        "fonts",
+        "document_metadata",
+        "answer_key",
+        "file_size_limit"
+      ]
+    },
+    "loudness": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "integrated": {
+          "const": "-16.0 LUFS"
+        },
+        "tolerance_lu": {
+          "const": 1
+        },
+        "true_peak_max": {
+          "const": "-1.0 dBTP",
+          "x-kind": "limit"
+        },
+        "measured_after_final_mux": {
+          "const": true
+        },
+        "loudness_test_variant_allowed": {
+          "type": "boolean",
+          "description": "Only the AD-04 Reels loudness A/B test may use -14 LUFS (house true-peak ceiling still applies); never for safety/ac0."
+        }
+      },
+      "required": [
+        "integrated",
+        "tolerance_lu",
+        "true_peak_max",
+        "measured_after_final_mux"
+      ],
+      "$comment": "Values owned by MUSIC_and_SOUND_REGISTRY.md policy 6; the AD-04 -14 LUFS arm is the 12/04 reels_test_variant token, allowed only by loudness_test_variant_allowed (instagram_reels only; never ac0). The test arm is a separate rendition, never the house master (15 Oct 2026)."
+    },
+    "captions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "const": "approved_script"
+        },
+        "sidecar_formats": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "webvtt",
+              "srt"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "platform_sidecar_upload": {
+          "$ref": "#/definitions/verify_value"
+        },
+        "max_lines": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2,
+          "x-kind": "limit"
+        },
+        "keyword_highlight": {
+          "const": "one_per_caption_not_colour_alone"
+        },
+        "inside_caption_reserve": {
+          "const": true
+        },
+        "answer_protected": {
+          "const": true
+        }
+      },
+      "required": [
+        "source",
+        "sidecar_formats",
+        "max_lines",
+        "keyword_highlight",
+        "inside_caption_reserve",
+        "answer_protected"
+      ]
+    },
+    "chapters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "none",
+            "webvtt_chapters",
+            "webvtt_chapters_and_description_timestamps"
+          ]
+        },
+        "from": {
+          "const": "format_plan_chapter_boundaries"
+        },
+        "platform_rules": {
+          "$ref": "#/definitions/verify_value"
+        }
+      },
+      "required": [
+        "mode"
+      ]
+    },
+    "cover": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "type": "string",
+          "enum": [
+            "cue_frame",
+            "code_card",
+            "none"
+          ]
+        },
+        "text_source": {
+          "const": "string_table"
+        },
+        "max_words": {
+          "type": "integer",
+          "minimum": 1,
+          "x-kind": "limit"
+        },
+        "generated_text": {
+          "const": "forbidden"
+        },
+        "answer_reveal": {
+          "const": "forbidden"
+        },
+        "dimensions": {
+          "$ref": "#/definitions/verify_value"
+        }
+      },
+      "required": [
+        "source",
+        "text_source",
+        "generated_text",
+        "answer_reveal"
+      ]
+    },
+    "copy_rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "title_pattern_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title_max_length": {
+          "$ref": "#/definitions/verify_value"
+        },
+        "description_max_length": {
+          "$ref": "#/definitions/verify_value"
+        },
+        "computed_fields_only": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "duration",
+              "chapter_count",
+              "item_count",
+              "episode_number",
+              "marks",
+              "year",
+              "as_of_date"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "banned_phrases_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description_order": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "what_you_get",
+              "condition",
+              "audience_line",
+              "next_step",
+              "chapters",
+              "disclosure",
+              "credits",
+              "sources",
+              "last_revised",
+              "errata"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "title_pattern_ref",
+        "computed_fields_only",
+        "banned_phrases_ref",
+        "description_order"
+      ]
+    },
+    "safe_zone": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tokens": {
+          "$ref": "#/definitions/token_ref"
+        },
+        "platform_key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "insets_measured": {
+          "type": "boolean"
+        },
+        "measured_on": {
+          "type": "string",
+          "format": "date"
+        },
+        "device_list": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "release_requires_measured": {
+          "const": true
+        }
+      },
+      "required": [
+        "platform_key",
+        "insets_measured",
+        "release_requires_measured"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "insets_measured": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "tokens",
+              "measured_on",
+              "device_list"
+            ]
+          }
+        }
+      ]
+    },
+    "disclosure": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "template_source": {
+          "const": "voice_registry"
+        },
+        "placements": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "description_line",
+              "platform_synthetic_toggle",
+              "platform_ai_label",
+              "end_card_line",
+              "transcript_header",
+              "player_page_line",
+              "sidecar_field",
+              "spoken_line"
+            ]
+          }
+        },
+        "c2pa_mode": {
+          "type": "string",
+          "enum": [
+            "sidecar_manifest",
+            "embedded_in_distribution_copy"
+          ]
+        },
+        "strip_upstream_provenance": {
+          "const": false
+        }
+      },
+      "required": [
+        "template_source",
+        "placements",
+        "c2pa_mode",
+        "strip_upstream_provenance"
+      ]
+    },
+    "audience_rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "safety/ac0": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "publish": {
+              "type": "string",
+              "enum": [
+                "allowed_with_made_for_kids_designation",
+                "not_published_pending_g_counsel",
+                "allowed"
+              ]
+            },
+            "links": {
+              "const": "none"
+            },
+            "engagement_prompts": {
+              "const": "forbidden"
+            },
+            "platform_end_elements": {
+              "const": "ac0_playlist_only"
+            },
+            "audio_sources": {
+              "const": "owned_audio_only"
+            }
+          },
+          "required": [
+            "publish",
+            "links",
+            "engagement_prompts",
+            "audio_sources",
+            "platform_end_elements"
+          ]
+        },
+        "safety/ac1": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "links": {
+              "const": "official_board_or_government_only"
+            },
+            "data_solicitation": {
+              "const": "forbidden"
+            }
+          },
+          "required": [
+            "links",
+            "data_solicitation"
+          ]
+        },
+        "safety/ac2": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "links": {
+              "const": "registered_sources_only"
+            }
+          },
+          "required": [
+            "links"
+          ]
+        }
+      },
+      "required": [
+        "safety/ac0",
+        "safety/ac1",
+        "safety/ac2"
+      ]
+    },
+    "series": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "playlist": {
+          "type": "string",
+          "enum": [
+            "one_per_series_id",
+            "none"
+          ]
+        },
+        "episode_numbering": {
+          "const": "from_composition_ordering"
+        },
+        "prerequisites_display": {
+          "type": "string",
+          "enum": [
+            "artefact_titles",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "playlist",
+        "episode_numbering",
+        "prerequisites_display"
+      ]
+    },
+    "accessibility_deliverables": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "captions",
+          "transcript",
+          "audio_description_vtt",
+          "audio_described_mix",
+          "reduced_motion_variant",
+          "chapters",
+          "tagged_pdf_ua",
+          "html_twin",
+          "separate_answer_key"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "sidecar_schema": {
+      "const": "#/definitions/metadata_sidecar"
+    },
+    "export_qa": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/check_id"
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "allOf": [
+        {
+          "contains": {
+            "const": "RELEASE-CHECK"
+          }
+        },
+        {
+          "contains": {
+            "const": "Q-META.hash_bind"
+          }
+        },
+        {
+          "contains": {
+            "const": "Q-META.sidecar_complete"
+          }
+        },
+        {
+          "contains": {
+            "const": "Q-COMM.sidecar"
+          }
+        },
+        {
+          "contains": {
+            "const": "Q-COMM.copy"
+          }
+        },
+        {
+          "contains": {
+            "const": "Q-DISC.placement"
+          }
+        },
+        {
+          "contains": {
+            "const": "Q-RIGHTS.scope"
+          }
+        }
+      ]
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/evidence_item"
+      }
+    },
+    "changelog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "$ref": "#/definitions/semver"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "change_class": {
+            "type": "string",
+            "enum": [
+              "Metadata",
+              "Presentational",
+              "Render toolchain",
+              "Narration/disclosure",
+              "Safety",
+              "Revocation"
+            ]
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "version",
+          "date",
+          "change_class",
+          "summary"
+        ]
+      }
+    }
+  },
+  "required": [
+    "packaging_id",
+    "version",
+    "title",
+    "status",
+    "channel",
+    "render_target",
+    "formats_allowed",
+    "safety_classes_allowed",
+    "aspects_accepted",
+    "duration_class",
+    "chapters",
+    "cover",
+    "copy_rules",
+    "audience_rules",
+    "series",
+    "accessibility_deliverables",
+    "sidecar_schema",
+    "export_qa",
+    "evidence"
+  ],
+  "allOf": [
+    {
+      "$comment": "15 Oct 2026 (level-3+, CE-119): a print profile carries print_variant and no render_variant, loudness or captions; aspects ['none'] and no chapters; its export QA adds Q-A11Y.print_structure and Q-META.size. Every other profile carries render_variant, loudness, captions, safe_zone and disclosure, and its export QA includes A9.package and Q-META.interactions_sidecar (moved here from the unconditional list).",
+      "if": {
+        "properties": {
+          "render_target": {
+            "const": "print"
+          }
+        },
+        "required": [
+          "render_target"
+        ]
+      },
+      "then": {
+        "required": [
+          "print_variant"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "render_variant"
+              ]
+            },
+            {
+              "required": [
+                "loudness"
+              ]
+            },
+            {
+              "required": [
+                "captions"
+              ]
+            }
+          ]
+        },
+        "properties": {
+          "channel": {
+            "const": "print_pdf"
+          },
+          "aspects_accepted": {
+            "items": {
+              "const": "none"
+            }
+          },
+          "chapters": {
+            "properties": {
+              "mode": {
+                "const": "none"
+              }
+            }
+          },
+          "accessibility_deliverables": {
+            "allOf": [
+              {
+                "contains": {
+                  "const": "tagged_pdf_ua"
+                }
+              },
+              {
+                "contains": {
+                  "const": "html_twin"
+                }
+              }
+            ]
+          },
+          "export_qa": {
+            "allOf": [
+              {
+                "contains": {
+                  "const": "Q-A11Y.print_structure"
+                }
+              },
+              {
+                "contains": {
+                  "const": "Q-META.size"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "else": {
+        "required": [
+          "render_variant",
+          "loudness",
+          "captions",
+          "safe_zone",
+          "disclosure"
+        ],
+        "not": {
+          "required": [
+            "print_variant"
+          ]
+        },
+        "properties": {
+          "channel": {
+            "not": {
+              "const": "print_pdf"
+            }
+          },
+          "export_qa": {
+            "allOf": [
+              {
+                "contains": {
+                  "const": "A9.package"
+                }
+              },
+              {
+                "contains": {
+                  "const": "Q-META.interactions_sidecar"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "render_target": {
+            "const": "audio_only"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "render_variant": {
+            "properties": {
+              "container": {
+                "const": "m4a"
+              },
+              "video_codec": {
+                "const": "none"
+              },
+              "frame_rate": {
+                "const": 0
+              },
+              "burned_captions": {
+                "const": "never"
+              }
+            }
+          },
+          "aspects_accepted": {
+            "items": {
+              "const": "none"
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "render_variant": {
+            "properties": {
+              "container": {
+                "const": "mp4"
+              },
+              "video_codec": {
+                "const": "h264"
+              },
+              "pixel_format": {
+                "const": "yuv420p"
+              },
+              "frame_rate": {
+                "const": 30
+              }
+            },
+            "required": [
+              "pixel_format",
+              "faststart"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "released"
+          },
+          "render_target": {
+            "const": "video"
+          }
+        },
+        "required": [
+          "status",
+          "render_target"
+        ]
+      },
+      "then": {
+        "properties": {
+          "safe_zone": {
+            "properties": {
+              "insets_measured": {
+                "const": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "safety_classes_allowed": {
+            "contains": {
+              "const": "safety/ac0"
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "loudness": {
+            "properties": {
+              "loudness_test_variant_allowed": {
+                "const": false
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "channel": {
+            "enum": [
+              "youtube_long",
+              "youtube_shorts"
+            ]
+          }
+        },
+        "required": [
+          "channel"
+        ]
+      },
+      "then": {
+        "properties": {
+          "audience_rules": {
+            "properties": {
+              "safety/ac0": {
+                "properties": {
+                  "publish": {
+                    "enum": [
+                      "allowed_with_made_for_kids_designation",
+                      "not_published_pending_g_counsel"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "channel": {
+            "const": "instagram_reels"
+          }
+        },
+        "required": [
+          "channel"
+        ]
+      },
+      "then": {
+        "properties": {
+          "audience_rules": {
+            "properties": {
+              "safety/ac0": {
+                "properties": {
+                  "publish": {
+                    "const": "not_published_pending_g_counsel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "safety_classes_allowed": {
+            "contains": {
+              "enum": [
+                "safety/ac0",
+                "safety/ac1"
+              ]
+            }
+          }
+        },
+        "required": [
+          "safety_classes_allowed"
+        ]
+      },
+      "then": {
+        "properties": {
+          "export_qa": {
+            "contains": {
+              "const": "Q-SAFE.no_external_prompts"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "loudness": {
+            "properties": {
+              "loudness_test_variant_allowed": {
+                "const": true
+              }
+            },
+            "required": [
+              "loudness_test_variant_allowed"
+            ]
+          }
+        },
+        "required": [
+          "loudness"
+        ]
+      },
+      "then": {
+        "properties": {
+          "channel": {
+            "const": "instagram_reels"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "render_target": {
+            "const": "video"
+          }
+        },
+        "required": [
+          "render_target"
+        ]
+      },
+      "then": {
+        "properties": {
+          "export_qa": {
+            "allOf": [
+              {
+                "contains": {
+                  "const": "A11.package"
+                }
+              },
+              {
+                "contains": {
+                  "const": "A4.platform"
+                }
+              },
+              {
+                "contains": {
+                  "const": "Q-A11Y.captions"
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

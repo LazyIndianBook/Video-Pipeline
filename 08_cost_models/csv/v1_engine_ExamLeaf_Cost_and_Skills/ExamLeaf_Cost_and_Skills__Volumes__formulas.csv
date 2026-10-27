@@ -1,0 +1,23 @@
+EXAMLEAF | PRODUCTION COST,,,
+"USD, pre-tax. Same one-month accounting period. Reusable-component baseline; initial implementation is shown separately.",,,
+,,,
+Cost / capacity metric,1 video,100 videos,"1,000 videos"
+Videos,1,100,1000
+Variable machine cost,=B5*UnitCosts!B16,=C5*UnitCosts!B16,=D5*UnitCosts!B16
+Human review,=B5*UnitCosts!B19,=C5*UnitCosts!B19,=D5*UnitCosts!B19
+Fixed overhead for accounting period,=UnitCosts!B21*Inputs!B44,=UnitCosts!B21*Inputs!B44,=UnitCosts!B21*Inputs!B44
+Optional Remotion licensing,"=Inputs!B51*MAX(Inputs!B52*Inputs!B44,Inputs!B53*Inputs!B54*B5)","=Inputs!B51*MAX(Inputs!B52*Inputs!B44,Inputs!B53*Inputs!B54*C5)","=Inputs!B51*MAX(Inputs!B52*Inputs!B44,Inputs!B53*Inputs!B54*D5)"
+TOTAL PRODUCTION COST,=SUM(B6:B9),=SUM(C6:C9),=SUM(D6:D9)
+Average production cost per video,=B10/B5,=C10/C5,=D10/D5
+One-time implementation,=UnitCosts!B22,=UnitCosts!B22,=UnitCosts!B22
+TOTAL INCLUDING IMPLEMENTATION,"=SUM(B10,B12)","=SUM(C10,C12)","=SUM(D10,D12)"
+Reviewer hours required,"=B5*SUM(Inputs!B37,Inputs!B39)/60","=C5*SUM(Inputs!B37,Inputs!B39)/60","=D5*SUM(Inputs!B37,Inputs!B39)/60"
+Render worker hours required,=B5*Inputs!B28*(1+Inputs!B29)/60,=C5*Inputs!B28*(1+Inputs!B29)/60,=D5*Inputs!B28*(1+Inputs!B29)/60
+Reviewer FTE at 160 h/month,=B14/(160*Inputs!B44),=C14/(160*Inputs!B44),=D14/(160*Inputs!B44)
+Machine cost share of production,=B6/B10,=C6/C10,=D6/D10
+,,,
+"Sensitivity: increasing review to $40/video adds $22/video. Bespoke diagrams, additional languages, heavy Blender rendering, rights clearance, taxes and large platform maintenance are not covered by this baseline.",,,
+,,,
+,,,
+"Remotion switch defaults to 0. When enabled, 20 billable renders/video is an editable assumption, not a verified billing interpretation. Confirm partial-scene/still billing with the vendor before purchase.",,,
+,,,

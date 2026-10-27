@@ -1,0 +1,214 @@
+{
+  "$defs": {
+    "Claim": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "statement": {
+          "title": "Statement",
+          "type": "string"
+        },
+        "source_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Source Ids",
+          "type": "array"
+        },
+        "assumptions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Assumptions",
+          "type": "array"
+        },
+        "status": {
+          "default": "draft",
+          "enum": [
+            "draft",
+            "machine_checked",
+            "expert_approved"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "statement",
+        "source_ids"
+      ],
+      "title": "Claim",
+      "type": "object"
+    },
+    "SourceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 3,
+          "title": "Id",
+          "type": "string"
+        },
+        "uri": {
+          "title": "Uri",
+          "type": "string"
+        },
+        "locator": {
+          "title": "Locator",
+          "type": "string"
+        },
+        "rights_status": {
+          "enum": [
+            "owned",
+            "permission",
+            "open_reference",
+            "unconfirmed"
+          ],
+          "title": "Rights Status",
+          "type": "string"
+        },
+        "claim_scope": {
+          "title": "Claim Scope",
+          "type": "string"
+        },
+        "retrieved_at": {
+          "title": "Retrieved At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "uri",
+        "locator",
+        "rights_status",
+        "claim_scope",
+        "retrieved_at"
+      ],
+      "title": "SourceRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "board": {
+      "title": "Board",
+      "type": "string"
+    },
+    "academic_year": {
+      "title": "Academic Year",
+      "type": "string"
+    },
+    "subject": {
+      "enum": [
+        "physics",
+        "chemistry",
+        "mathematics",
+        "biology"
+      ],
+      "title": "Subject",
+      "type": "string"
+    },
+    "class_level": {
+      "maximum": 12,
+      "minimum": 10,
+      "title": "Class Level",
+      "type": "integer"
+    },
+    "language": {
+      "title": "Language",
+      "type": "string"
+    },
+    "objective": {
+      "title": "Objective",
+      "type": "string"
+    },
+    "prerequisites": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Prerequisites",
+      "type": "array"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/SourceRef"
+      },
+      "minItems": 1,
+      "title": "Sources",
+      "type": "array"
+    },
+    "claims": {
+      "items": {
+        "$ref": "#/$defs/Claim"
+      },
+      "minItems": 1,
+      "title": "Claims",
+      "type": "array"
+    },
+    "target_seconds": {
+      "default": 600,
+      "exclusiveMinimum": 0,
+      "maximum": 1200,
+      "title": "Target Seconds",
+      "type": "integer"
+    },
+    "source_review_status": {
+      "default": "pending",
+      "enum": [
+        "pending",
+        "approved"
+      ],
+      "title": "Source Review Status",
+      "type": "string"
+    },
+    "syllabus_review_status": {
+      "default": "pending",
+      "enum": [
+        "pending",
+        "approved"
+      ],
+      "title": "Syllabus Review Status",
+      "type": "string"
+    },
+    "actual_audio_seconds": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Actual Audio Seconds"
+    }
+  },
+  "required": [
+    "id",
+    "board",
+    "academic_year",
+    "subject",
+    "class_level",
+    "language",
+    "objective",
+    "prerequisites",
+    "sources",
+    "claims"
+  ],
+  "title": "LessonPlan",
+  "type": "object"
+}

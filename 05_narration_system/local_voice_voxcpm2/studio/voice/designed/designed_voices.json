@@ -1,0 +1,13 @@
+{
+ "made": "2026-10-27",
+ "how": "VoxCPM2-4bit voice design through MLX Audio: instruct only, no reference; inference_timesteps 10, cfg_value 2.0; mx.random.seed(seed) before generate",
+ "brief": "Super Teacher voice brief (05_narration_system/VOICE_IDENTITY_and_DELIVERY_GUIDE.md §1): an adult teacher speaking clear Indian English; warm, precise, energetic without shouting",
+ "text": "What makes a bulb glow? A battery pushes electricity through the wire, and the thin filament inside the bulb resists that flow. The filament gets hot, and it shines. Now double the push, and twice as much current flows, so the bulb glows brighter. Let us measure it and see.",
+ "voices": {
+  "male_30s.wav": {"default": true, "seed": 3, "description": "An Indian man in his thirties, a school teacher with a warm, clear, medium-low male voice, speaking confident Indian English with energy.", "seconds": 17.1, "wpm": 178, "whisper_match": 1.0, "median_f0_hz": 139, "f0_iqr_hz": [122, 167]},
+  "female_30s.wav": {"seed": 20261027, "description": "A woman in her thirties speaking clear Indian English, a warm and confident teacher's voice, bright and clear, energetic but never shouting.", "seconds": 15.2, "wpm": 201, "whisper_match": 1.0, "median_f0_hz": 242, "f0_iqr_hz": [198, 309]},
+  "male_40s_calm.wav": {"seed": 20261027, "description": "A man in his forties speaking calm, clear Indian English, a deep and warm professor's voice, precise and confident.", "seconds": 17.3, "wpm": 177, "whisper_match": 1.0, "median_f0_hz": 133, "f0_iqr_hz": [119, 170]}
+ },
+ "rejected": {"male 'mid pitch' wording, seed 20261027": "median F0 200 Hz, too high for the adult man described", "male medium-low, seed 1": "flatter (F0 IQR 100-131)", "male medium-low, seed 2": "139 wpm, too slow"},
+ "use": "voice/default_reference.wav is a copy of the default; narrate_voxcpm.py uses it only while voice/reference.wav (the founder's own voice) does not exist, and marks the narration test_voice"
+}

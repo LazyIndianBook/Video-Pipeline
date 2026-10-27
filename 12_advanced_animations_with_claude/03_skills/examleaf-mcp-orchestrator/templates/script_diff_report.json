@@ -1,0 +1,9 @@
+{
+  "job_key": "hf-<key>",
+  "compared": "approved script segment vs text sent to / returned by the MCP",
+  "approved_segment_id": "<segment_id>",
+  "tool": "examleaf_narration.qa.transcript_check (05_narration_system/narration_system_v1, PYTHONPATH=src)",
+  "result": {"surface_word_error_rate": null, "edit_count": null, "critical_mismatches": [], "needs_human_check": null},
+  "decision": "block if edit_count > 0 or critical_mismatches non-empty",
+  "limitation": "English/surface comparator; Indic text needs a native reviewer"
+}

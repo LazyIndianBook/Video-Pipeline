@@ -1,0 +1,511 @@
+{
+  "video_id": "bio-photosyn-ci-01",
+  "subject": "biology",
+  "topic": "Photosynthesis and where a plant's mass comes from",
+  "level": "l9_10",
+  "locale": "en-IN",
+  "language": "en",
+  "format": "concept_intro",
+  "target_duration_s": 65,
+  "style": "paper-collage-vertical",
+  "voice": {
+    "path": "B",
+    "provider": "elevenlabs",
+    "model_id": "eleven_v4",
+    "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+    "persona": "persona/super-teacher#core"
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "file": "scenes/s01.html",
+      "beats": [
+        "b01"
+      ],
+      "title": "Hook"
+    },
+    {
+      "id": "s02",
+      "file": "scenes/s02.html",
+      "beats": [
+        "b02"
+      ],
+      "title": "Predict pause"
+    },
+    {
+      "id": "s03",
+      "file": "scenes/s03.html",
+      "beats": [
+        "b03",
+        "b04",
+        "b05"
+      ],
+      "title": "Equation from fixture"
+    },
+    {
+      "id": "s04",
+      "file": "scenes/s04.html",
+      "beats": [
+        "b06"
+      ],
+      "title": "Soil misconception"
+    },
+    {
+      "id": "s05",
+      "file": "scenes/s05.html",
+      "beats": [
+        "b07",
+        "b08"
+      ],
+      "title": "Recap and disclosure"
+    }
+  ],
+  "beats": [
+    {
+      "id": "b01",
+      "scene": "s01",
+      "slot": "hook.question_reveal",
+      "mode": "curious",
+      "tag": "[curious]",
+      "text": "Green plants make their own food. Picture a huge banyan tree. Where does all of its material come from?",
+      "node_ids": [
+        "CLM-autotroph-own-food",
+        "CLM-raw-materials"
+      ],
+      "pause_after_s": 0.6,
+      "think_window_s": 0,
+      "on_screen": {
+        "headline": "Where does its material come from?",
+        "fx_refs": []
+      },
+      "cues": [
+        {
+          "id": "c01",
+          "kind": "reveal",
+          "element_id": "sprout",
+          "anchor_word": "plants",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c02",
+          "kind": "reveal",
+          "element_id": "banyan",
+          "anchor_word": "banyan",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c03",
+          "kind": "emphasis",
+          "element_id": "q_mark",
+          "anchor_word": "where",
+          "occurrence": 1,
+          "lead_s": 0.05
+        }
+      ]
+    },
+    {
+      "id": "b02",
+      "scene": "s02",
+      "slot": "check.predict",
+      "mode": "curious",
+      "tag": "[curious]",
+      "text": "Where do you think the carbon in the wood came from: soil, water, or air?",
+      "node_ids": [
+        "ASM-predict-wood-carbon"
+      ],
+      "pause_after_s": 0.8,
+      "think_window_s": 5,
+      "on_screen": {
+        "headline": "The carbon in the wood?",
+        "fx_refs": [
+          "display.soil",
+          "display.water",
+          "display.air",
+          "display.ui.think_prompt"
+        ]
+      },
+      "cues": [
+        {
+          "id": "c04",
+          "kind": "reveal",
+          "element_id": "wood_log",
+          "anchor_word": "wood",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c05",
+          "kind": "reveal",
+          "element_id": "opt_soil",
+          "anchor_word": "soil",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c06",
+          "kind": "reveal",
+          "element_id": "opt_water",
+          "anchor_word": "water",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c07",
+          "kind": "reveal",
+          "element_id": "opt_air",
+          "anchor_word": "air",
+          "occurrence": 1,
+          "lead_s": 0.05
+        }
+      ]
+    },
+    {
+      "id": "b03",
+      "scene": "s03",
+      "slot": "explain.ladder_step",
+      "mode": "steady",
+      "tag": "[calm]",
+      "text": "Plants take in carbon dioxide from the air through the stomata. Water comes in from the soil through the roots.",
+      "node_ids": [
+        "CLM-raw-materials"
+      ],
+      "pause_after_s": 0.4,
+      "think_window_s": 0,
+      "on_screen": {
+        "headline": "Carbon dioxide, water",
+        "fx_refs": [
+          "display.co2",
+          "display.h2o"
+        ]
+      },
+      "cues": [
+        {
+          "id": "c08",
+          "kind": "reveal",
+          "element_id": "leaf_art",
+          "anchor_word": "plants",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c09",
+          "kind": "reveal",
+          "element_id": "lbl_co2",
+          "anchor_word": "carbon",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c10",
+          "kind": "reveal",
+          "element_id": "lbl_h2o",
+          "anchor_word": "water",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c11",
+          "kind": "reveal",
+          "element_id": "root_art",
+          "anchor_word": "roots",
+          "occurrence": 1,
+          "lead_s": 0.05
+        }
+      ]
+    },
+    {
+      "id": "b04",
+      "scene": "s03",
+      "slot": "explain.ladder_step",
+      "mode": "steady",
+      "tag": "[calm]",
+      "text": "Sunlight, absorbed by chlorophyll, drives the reaction. The products are glucose and oxygen.",
+      "node_ids": [
+        "CLM-sunlight-chlorophyll",
+        "CLM-products"
+      ],
+      "pause_after_s": 0.4,
+      "think_window_s": 0,
+      "on_screen": {
+        "headline": "Sunlight drives the reaction",
+        "fx_refs": [
+          "display.sunlight",
+          "display.chlorophyll",
+          "display.co2",
+          "display.h2o",
+          "display.glucose",
+          "display.o2",
+          "display.plus",
+          "display.arrow",
+          "parameters.coef_co2",
+          "parameters.coef_h2o",
+          "parameters.coef_o2"
+        ]
+      },
+      "cues": [
+        {
+          "id": "c12",
+          "kind": "reveal",
+          "element_id": "lbl_sun",
+          "anchor_word": "sunlight",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c13",
+          "kind": "reveal",
+          "element_id": "lbl_chl",
+          "anchor_word": "chlorophyll",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c14",
+          "kind": "reveal",
+          "element_id": "equation",
+          "anchor_word": "reaction",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c15",
+          "kind": "emphasis",
+          "element_id": "eq_glucose",
+          "anchor_word": "glucose",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c16",
+          "kind": "emphasis",
+          "element_id": "eq_o2",
+          "anchor_word": "oxygen",
+          "occurrence": 1,
+          "lead_s": 0.05
+        }
+      ]
+    },
+    {
+      "id": "b05",
+      "scene": "s03",
+      "slot": "worked.step",
+      "mode": "steady",
+      "tag": "[calm]",
+      "text": "Count the atoms on each side. Six carbon, twelve hydrogen, eighteen oxygen. The equation balances.",
+      "node_ids": [
+        "WRK-atom-balance",
+        "CLM-equation-balance"
+      ],
+      "pause_after_s": 0.4,
+      "think_window_s": 0,
+      "on_screen": {
+        "headline": "each side balances",
+        "fx_refs": [
+          "display.elem_C",
+          "display.elem_H",
+          "display.elem_O",
+          "display.equals",
+          "results.atoms_left_C",
+          "results.atoms_right_C",
+          "results.atoms_left_H",
+          "results.atoms_right_H",
+          "results.atoms_left_O",
+          "results.atoms_right_O"
+        ]
+      },
+      "cues": [
+        {
+          "id": "c17",
+          "kind": "reveal",
+          "element_id": "count_table",
+          "anchor_word": "count",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c18",
+          "kind": "emphasis",
+          "element_id": "row_C",
+          "anchor_word": "carbon",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c19",
+          "kind": "emphasis",
+          "element_id": "row_H",
+          "anchor_word": "hydrogen",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c20",
+          "kind": "emphasis",
+          "element_id": "row_O",
+          "anchor_word": "oxygen",
+          "occurrence": 1,
+          "lead_s": 0.05
+        }
+      ]
+    },
+    {
+      "id": "b06",
+      "scene": "s04",
+      "slot": "misconception.confront",
+      "mode": "deliberate",
+      "tag": "[thoughtful]",
+      "text": "A tempting idea: plants eat soil, so their mass comes from the soil. That idea fails. Soil supplies water. The carbon in the wood came from the air.",
+      "node_ids": [
+        "MIS-plants-eat-soil",
+        "CLM-raw-materials",
+        "CLM-carbon-from-air",
+        "CLM-wood-carbon-from-air"
+      ],
+      "pause_after_s": 0.4,
+      "think_window_s": 0,
+      "on_screen": {
+        "headline": "The carbon came from the air",
+        "fx_refs": [
+          "display.soil",
+          "display.water",
+          "display.air"
+        ]
+      },
+      "cues": [
+        {
+          "id": "c21",
+          "kind": "reveal",
+          "element_id": "soil_tag",
+          "anchor_word": "soil",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c22",
+          "kind": "reveal",
+          "element_id": "water_tag",
+          "anchor_word": "water",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c23",
+          "kind": "emphasis",
+          "element_id": "air_tag",
+          "anchor_word": "air",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c28",
+          "kind": "reveal",
+          "element_id": "sprout_art",
+          "anchor_word": "plants",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c29",
+          "kind": "reveal",
+          "element_id": "mound_art",
+          "anchor_word": "soil",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c30",
+          "kind": "reveal",
+          "element_id": "wood_log",
+          "anchor_word": "wood",
+          "occurrence": 1,
+          "lead_s": 0.05
+        }
+      ]
+    },
+    {
+      "id": "b07",
+      "scene": "s05",
+      "slot": "recap.statement",
+      "mode": "light",
+      "tag": "[warm]",
+      "text": "Green plants make glucose and oxygen. About forty percent of glucose is carbon, and that carbon came from the air.",
+      "node_ids": [
+        "CLM-products",
+        "CLM-glucose-carbon-fraction",
+        "CLM-carbon-from-air"
+      ],
+      "pause_after_s": 0.6,
+      "think_window_s": 0,
+      "on_screen": {
+        "headline": "glucose and oxygen",
+        "fx_refs": [
+          "display.glucose",
+          "display.o2",
+          "results.carbon_mass_percent_glucose",
+          "display.percent_sign",
+          "display.carbon_word"
+        ]
+      },
+      "cues": [
+        {
+          "id": "c24",
+          "kind": "reveal",
+          "element_id": "glucose_formula",
+          "anchor_word": "glucose",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c25",
+          "kind": "reveal",
+          "element_id": "oxygen_formula",
+          "anchor_word": "oxygen",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c26",
+          "kind": "emphasis",
+          "element_id": "percent_block",
+          "anchor_word": "forty",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c27",
+          "kind": "reveal",
+          "element_id": "carbon_tag",
+          "anchor_word": "carbon",
+          "occurrence": 2,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c31",
+          "kind": "reveal",
+          "element_id": "leaf_recap",
+          "anchor_word": "plants",
+          "occurrence": 1,
+          "lead_s": 0.05
+        }
+      ]
+    },
+    {
+      "id": "b08",
+      "scene": "s05",
+      "slot": "outro.disclosure",
+      "mode": "steady",
+      "tag": "[calm]",
+      "text": "AI-generated narration; script by ExamLeaf.",
+      "node_ids": [],
+      "pause_after_s": 0.0,
+      "think_window_s": 0,
+      "on_screen": {
+        "headline": "",
+        "fx_refs": []
+      },
+      "cues": []
+    }
+  ]
+}

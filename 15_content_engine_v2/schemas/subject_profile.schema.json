@@ -1,0 +1,545 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://examleaf.local/schemas/v2/subject_profile.json",
+  "title": "ExamLeaf Subject-Family Validation Profile v2",
+  "$comment": "Commercial-term lint (CE-L1/RD-49; CE-26, CE-70; updated 15 Oct 2026): CI rejects, case-insensitively, any match of (price|pricing|paid|is_free|free_|premium|entitle|subscri|sku|paywall|unlock|monetis|monetiz|revenue|discount|coupon|tier|destination_resource|cta_destination|funnel|purchase_|checkout_|product_id|offer_|trial_|utm_|campaign_|affiliate_|activation_code|storefront) applied to every object key at every depth (including REN fields keys), every required entry, pattern key and enum or const value. Exempt: the editorial fields series_position, flagship and demo_kind, which carry no commercial meaning.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "family_id": {
+      "type": "string",
+      "pattern": "^family/[a-z0-9_]+$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subjects": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "levels_allowed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^level/[a-z0-9_]+$"
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "Levels at which a subject of this family may be requested (Architecture §3.4 R3). Added 15 Oct 2026."
+    },
+    "subject_locales": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9_]*$"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^locale/[a-z0-9][a-z0-9_-]*$"
+      },
+      "description": "Language subject → target locale (Architecture §3.4 R9a). Required for family/languages_literature. Added 15 Oct 2026."
+    },
+    "risk_class": {
+      "type": "string",
+      "enum": [
+        "standard",
+        "high"
+      ]
+    },
+    "validation_mode": {
+      "type": "string",
+      "enum": [
+        "fixture",
+        "claim_ledger",
+        "executable",
+        "hybrid"
+      ]
+    },
+    "validators": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "fixture_exec",
+          "unit_dimension",
+          "sigfig",
+          "executable_sandbox",
+          "claim_flagger",
+          "span_hash",
+          "source_policy",
+          "date_name_consistency",
+          "answer_key_solver",
+          "scheme_rubric",
+          "grammar_orthography",
+          "quote_rights",
+          "lexicon",
+          "ledger_recompute",
+          "statute_edition",
+          "safety_claim",
+          "procedure_completeness",
+          "pattern_recompute",
+          "dosage_fixture",
+          "sensitivity_screen",
+          "jurisdiction_check",
+          "expiry_check",
+          "map_boundary"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "claim_types_allowed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "definition",
+          "law_principle",
+          "quantitative",
+          "procedure_fact",
+          "historical_event",
+          "date_fact",
+          "attribution_quote",
+          "interpretation",
+          "normative_position",
+          "safety",
+          "exam_pattern",
+          "legal_rule",
+          "rate_or_threshold",
+          "current_affairs",
+          "biographical",
+          "linguistic_rule",
+          "technique",
+          "clinical"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "source_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min_sources_routine": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "min_sources_exceptional": {
+          "type": "integer",
+          "minimum": 2
+        },
+        "min_sources_sensitive": {
+          "type": "integer",
+          "minimum": 2
+        },
+        "reliability_classes_allowed": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "primary_authority": {
+          "type": "string",
+          "minLength": 1
+        },
+        "wiki_citable": {
+          "const": false
+        },
+        "self_published_about_living": {
+          "const": false
+        },
+        "reject_for_cost_of_access": {
+          "const": false
+        }
+      },
+      "required": [
+        "min_sources_routine",
+        "min_sources_exceptional",
+        "min_sources_sensitive",
+        "reliability_classes_allowed",
+        "primary_authority",
+        "wiki_citable",
+        "self_published_about_living",
+        "reject_for_cost_of_access"
+      ]
+    },
+    "reviewer_roles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": [
+              "academic_subject",
+              "family_qualified",
+              "child_development",
+              "native_language_editor",
+              "safety",
+              "sensitivity",
+              "practitioner",
+              "counsel",
+              "founder_cost"
+            ]
+          },
+          "qualification": {
+            "type": "string",
+            "minLength": 1
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "applies_to": {
+            "type": "string",
+            "enum": [
+              "all",
+              "exceptional",
+              "sensitive",
+              "contested",
+              "activity",
+              "time_bound"
+            ]
+          }
+        },
+        "required": [
+          "role",
+          "qualification",
+          "count",
+          "applies_to"
+        ]
+      },
+      "minItems": 1
+    },
+    "contested_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "statuses_allowed": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "settled",
+              "attributed",
+              "contested",
+              "board_vs_scholarship"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "contested_min_reviewers": {
+          "type": "integer",
+          "minimum": 2
+        },
+        "short_must_attribute": {
+          "const": true
+        },
+        "perspectives_required_at_levels": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^level/[a-z0-9_]+$"
+          },
+          "uniqueItems": true,
+          "description": "Levels at which a contested claim of this family must be taught through format/perspectives; at other levels it renders in attributed form only. May be empty. Replaces the boolean perspectives_format_required (15 Oct 2026)."
+        }
+      },
+      "required": [
+        "statuses_allowed",
+        "contested_min_reviewers",
+        "short_must_attribute",
+        "perspectives_required_at_levels"
+      ]
+    },
+    "time_bound_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "claim_types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "definition",
+              "law_principle",
+              "quantitative",
+              "procedure_fact",
+              "historical_event",
+              "date_fact",
+              "attribution_quote",
+              "interpretation",
+              "normative_position",
+              "safety",
+              "exam_pattern",
+              "legal_rule",
+              "rate_or_threshold",
+              "current_affairs",
+              "biographical",
+              "linguistic_rule",
+              "technique",
+              "clinical"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "default_review_interval_days": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "tag": {
+          "type": "string",
+          "enum": [
+            "Recommendation",
+            "Hypothesis",
+            "Inherited",
+            "Evidence"
+          ]
+        }
+      },
+      "required": [
+        "claim_types",
+        "tag"
+      ]
+    },
+    "sensitivity_checks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "disclaimers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "executable_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sandbox": {
+          "const": "no_network_readonly_fs_cpu_mem_time_capped"
+        },
+        "runtime_pins": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "sandbox",
+        "runtime_pins"
+      ]
+    },
+    "activation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "activated": {
+          "type": "boolean"
+        },
+        "named_reviewer_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^reviewer/[a-z0-9][a-z0-9_.-]*$"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "activated",
+        "named_reviewer_ids"
+      ]
+    }
+  },
+  "required": [
+    "family_id",
+    "version",
+    "title",
+    "subjects",
+    "levels_allowed",
+    "risk_class",
+    "validation_mode",
+    "validators",
+    "claim_types_allowed",
+    "source_policy",
+    "reviewer_roles",
+    "contested_policy",
+    "time_bound_policy",
+    "activation"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "activation": {
+            "properties": {
+              "activated": {
+                "const": true
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "activation": {
+            "properties": {
+              "named_reviewer_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "validation_mode": {
+            "const": "executable"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "executable_policy"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "validators": {
+            "contains": {
+              "const": "executable_sandbox"
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "executable_policy"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "risk_class": {
+            "const": "high"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "source_policy": {
+            "properties": {
+              "min_sources_routine": {
+                "minimum": 2
+              }
+            }
+          }
+        },
+        "required": [
+          "disclaimers"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "validation_mode": {
+            "enum": [
+              "claim_ledger",
+              "hybrid"
+            ]
+          }
+        },
+        "required": [
+          "validation_mode"
+        ]
+      },
+      "then": {
+        "properties": {
+          "validators": {
+            "allOf": [
+              {
+                "contains": {
+                  "const": "claim_flagger"
+                }
+              },
+              {
+                "contains": {
+                  "const": "span_hash"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "validation_mode": {
+            "const": "fixture"
+          }
+        },
+        "required": [
+          "validation_mode"
+        ]
+      },
+      "then": {
+        "properties": {
+          "validators": {
+            "contains": {
+              "const": "fixture_exec"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "family_id": {
+            "const": "family/languages_literature"
+          }
+        },
+        "required": [
+          "family_id"
+        ]
+      },
+      "then": {
+        "required": [
+          "subject_locales"
+        ]
+      }
+    }
+  ]
+}

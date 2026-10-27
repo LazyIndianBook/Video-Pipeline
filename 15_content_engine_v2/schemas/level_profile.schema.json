@@ -1,0 +1,633 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://examleaf.local/schemas/v2/level_profile.json",
+  "title": "ExamLeaf Level Profile v2",
+  "$comment": "Commercial-term lint (CE-L1/RD-49; CE-26, CE-70; updated 15 Oct 2026): CI rejects, case-insensitively, any match of (price|pricing|paid|is_free|free_|premium|entitle|subscri|sku|paywall|unlock|monetis|monetiz|revenue|discount|coupon|tier|destination_resource|cta_destination|funnel|purchase_|checkout_|product_id|offer_|trial_|utm_|campaign_|affiliate_|activation_code|storefront) applied to every object key at every depth (including REN fields keys), every required entry, pattern key and enum or const value. Exempt: the editorial fields series_position, flagship and demo_kind, which carry no commercial meaning. 15 Oct 2026 (stitch): level→safety_class rules live here only (moved from script_spec and interaction_spec; CE-17, CE-L9); tagged numbers are multiples of 0.5 (schemas-13); on_screen.hold_level_multiplier added (visual-12).",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "tagged_value": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "multipleOf": 0.5
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tag": {
+          "type": "string",
+          "enum": [
+            "Recommendation",
+            "Hypothesis",
+            "Inherited",
+            "Evidence"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pilot_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "value",
+        "tag"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "tag": {
+                "const": "Hypothesis"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "owner",
+              "pilot_ref"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "tag": {
+                "const": "Hypothesis"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "tagged_range": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "multipleOf": 0.5
+        },
+        "max": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "multipleOf": 0.5
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tag": {
+          "type": "string",
+          "enum": [
+            "Recommendation",
+            "Hypothesis",
+            "Inherited",
+            "Evidence"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pilot_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "min",
+        "max",
+        "tag"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "tag": {
+                "const": "Hypothesis"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "owner",
+              "pilot_ref"
+            ]
+          }
+        }
+      ]
+    },
+    "x_kind_note": {
+      "$comment": "15 Oct 2026 (Architecture §3.4 R8): a property carrying \"x-kind\": \"limit\" is a limit; R8(a) takes the most restrictive value across safety class, a11y profile, level, overlay, format, locale and style. Annotation only; validators ignore it."
+    }
+  },
+  "properties": {
+    "level_id": {
+      "type": "string",
+      "pattern": "^level/[a-z0-9_]+$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "band": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "grades": {
+          "type": "string",
+          "minLength": 1
+        },
+        "stage_ref": {
+          "type": "string",
+          "enum": [
+            "foundational",
+            "preparatory",
+            "middle",
+            "secondary",
+            "higher_secondary",
+            "undergraduate",
+            "postgraduate",
+            "adult",
+            "vocational"
+          ]
+        },
+        "stage_source": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "grades",
+        "stage_ref"
+      ]
+    },
+    "safety_class": {
+      "type": "string",
+      "pattern": "^safety/ac[0-2]$"
+    },
+    "persona": {
+      "type": "string",
+      "pattern": "^persona/[a-z0-9][a-z0-9_-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?(#[a-z][a-z0-9_-]*)?$"
+    },
+    "accessibility": {
+      "type": "string",
+      "pattern": "^a11y/[a-z0-9][a-z0-9_.-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+    },
+    "voice_path_floor": {
+      "type": "string",
+      "enum": [
+        "A",
+        "either"
+      ]
+    },
+    "attention": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "max_segment_s": {
+          "$ref": "#/definitions/tagged_value",
+          "x-kind": "limit"
+        },
+        "max_new_ideas_per_segment": {
+          "$ref": "#/definitions/tagged_value",
+          "x-kind": "limit"
+        },
+        "max_artefact_s": {
+          "$ref": "#/definitions/tagged_value",
+          "x-kind": "limit"
+        }
+      },
+      "required": [
+        "max_segment_s",
+        "max_new_ideas_per_segment"
+      ]
+    },
+    "pacing": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "wpm_ordinary": {
+          "$ref": "#/definitions/tagged_range"
+        },
+        "wpm_dense": {
+          "$ref": "#/definitions/tagged_range"
+        },
+        "wpm_recap": {
+          "$ref": "#/definitions/tagged_range"
+        },
+        "think_window_s": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/tagged_range"
+            },
+            {
+              "properties": {
+                "min": {
+                  "minimum": 4
+                }
+              }
+            }
+          ],
+          "x-kind": "limit"
+        }
+      },
+      "required": [
+        "wpm_ordinary",
+        "wpm_dense",
+        "wpm_recap",
+        "think_window_s"
+      ]
+    },
+    "language": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lexicon_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "max_sentence_words": {
+          "$ref": "#/definitions/tagged_value",
+          "x-kind": "limit"
+        },
+        "max_new_terms_per_scene": {
+          "$ref": "#/definitions/tagged_value",
+          "x-kind": "limit"
+        },
+        "on_screen_text": {
+          "type": "string",
+          "enum": [
+            "icons_and_single_words",
+            "short_phrases",
+            "sentences",
+            "dense_notation"
+          ]
+        },
+        "notation": {
+          "type": "string",
+          "enum": [
+            "none",
+            "basic",
+            "standard",
+            "advanced"
+          ]
+        },
+        "single_language_per_lesson": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "lexicon_ref",
+        "max_sentence_words",
+        "max_new_terms_per_scene",
+        "on_screen_text",
+        "notation",
+        "single_language_per_lesson"
+      ]
+    },
+    "interaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cadence_s": {
+          "$ref": "#/definitions/tagged_range"
+        },
+        "allowed_types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "response_modes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "think",
+              "say_aloud",
+              "point",
+              "move",
+              "draw",
+              "write",
+              "sing",
+              "solve",
+              "critique"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "cadence_s",
+        "allowed_types",
+        "response_modes"
+      ]
+    },
+    "on_screen": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "max_text_elements": {
+          "$ref": "#/definitions/tagged_value",
+          "x-kind": "limit"
+        },
+        "min_type_px": {
+          "$ref": "#/definitions/tagged_value",
+          "x-kind": "limit"
+        },
+        "caption_policy": {
+          "type": "string",
+          "enum": [
+            "access_only",
+            "standard",
+            "short_lines"
+          ]
+        },
+        "hold_level_multiplier": {
+          "$ref": "#/definitions/tagged_value",
+          "x-kind": "limit",
+          "description": "m_level in the A5 hold formula (VISUAL_STYLE §2.3); Hypothesis with owner and pilot for l1_2–l6_8 (CE-62); 1.0 from l9_10 (15 Oct 2026)"
+        }
+      },
+      "required": [
+        "max_text_elements",
+        "min_type_px",
+        "caption_policy",
+        "hold_level_multiplier"
+      ]
+    },
+    "motion": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "flash_policy": {
+          "type": "string",
+          "enum": [
+            "wcag_2_3_1",
+            "ac0_zero_flash"
+          ]
+        },
+        "reduced_motion_variant": {
+          "const": true
+        },
+        "max_visual_change_rate": {
+          "$ref": "#/definitions/tagged_value",
+          "x-kind": "limit"
+        }
+      },
+      "required": [
+        "flash_policy",
+        "reduced_motion_variant"
+      ]
+    },
+    "assessment_orientation": {
+      "type": "string",
+      "enum": [
+        "play_and_talk",
+        "recall_and_reasoning",
+        "reasoning",
+        "exam_reasoning",
+        "critique"
+      ]
+    },
+    "required_reviewers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "academic_subject",
+          "family_qualified",
+          "child_development",
+          "native_language_editor",
+          "safety",
+          "sensitivity",
+          "practitioner",
+          "counsel",
+          "founder_cost"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "formats_allowed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^format/[a-z0-9_]+$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "exam_overlays_allowed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^overlay/[a-z0-9_]+$"
+      },
+      "uniqueItems": true
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "field": {
+            "type": "string",
+            "minLength": 1
+          },
+          "tag": {
+            "type": "string",
+            "enum": [
+              "Recommendation",
+              "Hypothesis",
+              "Inherited",
+              "Evidence"
+            ]
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "field",
+          "tag",
+          "source"
+        ]
+      }
+    }
+  },
+  "required": [
+    "level_id",
+    "version",
+    "title",
+    "band",
+    "safety_class",
+    "persona",
+    "accessibility",
+    "voice_path_floor",
+    "attention",
+    "pacing",
+    "language",
+    "interaction",
+    "on_screen",
+    "motion",
+    "assessment_orientation",
+    "required_reviewers",
+    "formats_allowed",
+    "evidence"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "safety_class": {
+            "const": "safety/ac0"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "voice_path_floor": {
+            "const": "A"
+          },
+          "motion": {
+            "properties": {
+              "flash_policy": {
+                "const": "ac0_zero_flash"
+              }
+            }
+          },
+          "required_reviewers": {
+            "contains": {
+              "const": "child_development"
+            }
+          }
+        }
+      }
+    },
+    {
+      "properties": {
+        "required_reviewers": {
+          "contains": {
+            "enum": [
+              "academic_subject",
+              "family_qualified"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "level_id": {
+            "enum": [
+              "level/l1_2",
+              "level/l3_5"
+            ]
+          }
+        },
+        "required": [
+          "level_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "safety_class": {
+            "const": "safety/ac0"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "level_id": {
+            "enum": [
+              "level/l6_8",
+              "level/l9_10",
+              "level/l11_12",
+              "level/ug",
+              "level/voc"
+            ]
+          }
+        },
+        "required": [
+          "level_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "safety_class": {
+            "const": "safety/ac1"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "level_id": {
+            "enum": [
+              "level/pg",
+              "level/adult_prof",
+              "level/educator"
+            ]
+          }
+        },
+        "required": [
+          "level_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "safety_class": {
+            "const": "safety/ac2"
+          }
+        }
+      }
+    }
+  ]
+}

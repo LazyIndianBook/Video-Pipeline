@@ -1,0 +1,1711 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://examleaf.local/schemas/v2/qa_profile.json",
+  "title": "ExamLeaf QA Profile v2",
+  "description": "The resolved, parameterised list of checks and human gates for one artefact, computed by profile-resolver as qa_resolve(EPP, qa/catalogue@version). Never hand-edited. See subsystems/QA_PROFILES_REGISTRY.md.",
+  "$comment": "Commercial-term lint (CE-L1/RD-49) applies: CI rejects, case-insensitively, any match of (price|pricing|paid|is_free|free_|premium|entitle|subscri|sku|paywall|unlock|monetis|monetiz|revenue|discount|coupon|tier|destination_resource|cta_destination|funnel|purchase_|checkout_|product_id|offer_|trial_|utm_|campaign_|affiliate_|activation_code|storefront) applied to every object key at every depth (including REN fields keys), every required entry, pattern key and enum or const value (updated 15 Oct 2026, safety-13); 'tier' is not used in any field name (CE-26). Exempt: the editorial fields series_position, flagship and demo_kind. 15 Oct 2026 (stitch): the axes rule level/ug ⇒ safety/ac1 was removed (level_profile.schema.json owns the level→safety mapping; Q-SCHEMA checks EPP equality); COPY gate added; audit_share_per_mille replaces audit_share_per_cell.",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "registry_ref": {
+      "type": "string",
+      "pattern": "^(format|slot|level|overlay|safety|a11y|persona|family|locale|style|voice|model|kit|harness|reviewer|qa)/[a-z0-9][a-z0-9_.-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+    },
+    "check_id": {
+      "type": "string",
+      "pattern": "^(Q-(SCHEMA|COMM|HASH|CLOSURE|FIX|LEDGER|EXPIRY|RIGHTS|DISC|META|FLASH|SAFE|DET|A11Y|LEVEL|PERSONA|LOCALE|NARR|INT|AUDIO|LOC)(\\.[a-z0-9_]+)?|A(1[0-7]|[1-9])[ab]?(\\.[a-z0-9_]+)?)$",
+      "$comment": "15 Oct 2026 (CE-118): parent Q-LOC added for Q-LOC.meaning. Q-REPR (CE-121) is a corpus check and is deliberately not accepted here: it never appears in a per-artefact QA Profile (QA_PROFILES_REGISTRY.md §2.13)."
+    },
+    "stage": {
+      "type": "string",
+      "enum": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7",
+        "S8",
+        "S9",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "GR"
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "critical",
+        "major",
+        "minor"
+      ]
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "academic_subject",
+        "academic_lead",
+        "family_qualified",
+        "child_development",
+        "native_language_editor",
+        "safety",
+        "sensitivity",
+        "practitioner",
+        "counsel",
+        "founder_cost",
+        "production_qa",
+        "publisher",
+        "voice_panel"
+      ]
+    },
+    "open_item": {
+      "type": "string",
+      "pattern": "^O-[0-9]+$"
+    },
+    "gate": {
+      "type": "string",
+      "enum": [
+        "H_CG",
+        "GV_CLAIMS",
+        "GA_GRAPH",
+        "GA_DELTA",
+        "H_SB",
+        "VOICE",
+        "A_SUITE",
+        "GF",
+        "GS",
+        "COPY",
+        "DISCLOSURE",
+        "G_COUNSEL",
+        "GL_GLOSSARY",
+        "GL_VOICE",
+        "RELEASE_CHECK"
+      ]
+    },
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "check_id": {
+          "$ref": "#/definitions/check_id"
+        },
+        "stage": {
+          "$ref": "#/definitions/stage"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "human",
+            "hybrid"
+          ]
+        },
+        "implementation": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "skill": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9-]*$"
+            },
+            "script": {
+              "type": "string",
+              "minLength": 1
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "exists",
+                "extend",
+                "to_build"
+              ]
+            }
+          },
+          "required": [
+            "status"
+          ],
+          "anyOf": [
+            {
+              "required": [
+                "skill"
+              ]
+            },
+            {
+              "required": [
+                "script"
+              ]
+            }
+          ]
+        },
+        "owner": {
+          "description": "Owning skill, or founder-engineer (CI) (QA_PROFILES_REGISTRY.md §2.12).",
+          "type": "string",
+          "minLength": 1
+        },
+        "human_roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/role"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "severity": {
+          "$ref": "#/definitions/severity"
+        },
+        "severity_provenance": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source": {
+                "type": "string",
+                "minLength": 1
+              },
+              "severity": {
+                "$ref": "#/definitions/severity"
+              }
+            },
+            "required": [
+              "source",
+              "severity"
+            ]
+          },
+          "minItems": 1
+        },
+        "enforcement": {
+          "type": "string",
+          "enum": [
+            "blocking",
+            "report_only"
+          ]
+        },
+        "report_only_until": {
+          "type": "string",
+          "minLength": 1
+        },
+        "precondition_open_items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/open_item"
+          },
+          "uniqueItems": true
+        },
+        "waivable": {
+          "type": "boolean"
+        },
+        "waiver_roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/role"
+          },
+          "uniqueItems": true
+        },
+        "params": {
+          "type": "object"
+        },
+        "applies_because": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "pass_criteria": {
+          "type": "string",
+          "minLength": 1
+        },
+        "defect_scope": {
+          "$ref": "#/definitions/defect_scope"
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "bound_to_artefact_sha256": {
+              "const": true
+            }
+          },
+          "required": [
+            "path",
+            "bound_to_artefact_sha256"
+          ]
+        },
+        "review_minutes_estimate": {
+          "$ref": "#/definitions/review_minutes_estimate"
+        }
+      },
+      "required": [
+        "check_id",
+        "stage",
+        "mode",
+        "severity",
+        "enforcement",
+        "waivable",
+        "applies_because",
+        "pass_criteria",
+        "evidence",
+        "owner",
+        "defect_scope"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "severity": {
+                "const": "critical"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "waivable": {
+                "const": false
+              }
+            },
+            "anyOf": [
+              {
+                "properties": {
+                  "enforcement": {
+                    "const": "blocking"
+                  }
+                }
+              },
+              {
+                "required": [
+                  "precondition_open_items"
+                ],
+                "properties": {
+                  "precondition_open_items": {
+                    "minItems": 1
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "waivable": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "waiver_roles"
+            ],
+            "properties": {
+              "waiver_roles": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "enforcement": {
+                "const": "report_only"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "report_only_until"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "const": "auto"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "implementation"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "const": "human"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "human_roles",
+              "review_minutes_estimate"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "const": "hybrid"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "implementation",
+              "human_roles",
+              "review_minutes_estimate"
+            ]
+          }
+        }
+      ]
+    },
+    "gate_requirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "gate": {
+          "$ref": "#/definitions/gate"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "role": {
+                "$ref": "#/definitions/role"
+              },
+              "count": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "co_sign": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "role",
+              "count"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "automated": {
+          "type": "boolean"
+        },
+        "bound_to": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "artefact_sha256",
+              "epp_hash",
+              "graph_subtree_sha256",
+              "closure_hash",
+              "format_plan_sha256",
+              "script_content_sha256",
+              "interaction_spec_content_sha256",
+              "storyboard_sha256",
+              "voice_version",
+              "framework_version",
+              "claim_sha256",
+              "export_record_sha256",
+              "narration_audio_sha256",
+              "cg_selection_sha256",
+              "lex_pins",
+              "copy_sha256",
+              "disclosure_text_sha256"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "sampling": {
+          "const": "never"
+        },
+        "distinct_identities": {
+          "const": true
+        },
+        "author_may_approve": {
+          "const": false
+        },
+        "reopen_on": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "defect_scope": {
+          "$ref": "#/definitions/defect_scope"
+        },
+        "review_minutes_estimate": {
+          "$ref": "#/definitions/review_minutes_estimate"
+        }
+      },
+      "required": [
+        "gate",
+        "roles",
+        "automated",
+        "bound_to",
+        "sampling",
+        "distinct_identities",
+        "author_may_approve",
+        "defect_scope"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "gate": {
+                "enum": [
+                  "RELEASE_CHECK",
+                  "A_SUITE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "automated": {
+                "const": true
+              },
+              "roles": {
+                "maxItems": 0
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "automated": {
+                "const": false
+              },
+              "roles": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "defect_scope": {
+      "description": "Closed defect-scope vocabulary (QA_PROFILES_REGISTRY.md §7): 12/10 rubric scopes R1-R10 plus additional scopes.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "science",
+          "instruction_answer",
+          "readability",
+          "sync",
+          "audio",
+          "accessibility_flash",
+          "craft",
+          "tone",
+          "composition",
+          "rights",
+          "disclosure",
+          "metadata",
+          "determinism",
+          "child_safety",
+          "claims_sources",
+          "schema_hash"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "review_minutes_estimate": {
+      "description": "Estimated human review minutes (QA_PROFILES_REGISTRY.md §2.12, §3 rule 10). Basis moves from rd41_baseline to pilot_timed when O-14 closes.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "minutes": {
+          "type": "number",
+          "minimum": 0
+        },
+        "basis": {
+          "type": "string",
+          "enum": [
+            "rd41_baseline",
+            "o14_timed",
+            "pilot_timed"
+          ]
+        }
+      },
+      "required": [
+        "minutes",
+        "basis"
+      ]
+    }
+  },
+  "properties": {
+    "qa_profile_id": {
+      "type": "string",
+      "pattern": "^QAP-[A-Za-z0-9_.-]+$"
+    },
+    "version": {
+      "$ref": "#/definitions/semver"
+    },
+    "catalogue_pin": {
+      "type": "string",
+      "pattern": "^qa/catalogue@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "request_id": {
+      "type": "string",
+      "pattern": "^CR-[A-Za-z0-9_.-]+$"
+    },
+    "epp_hash": {
+      "$ref": "#/definitions/sha256"
+    },
+    "format_plan_sha256": {
+      "$ref": "#/definitions/sha256"
+    },
+    "axes": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "format": {
+          "type": "string",
+          "pattern": "^format/[a-z0-9_]+(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+        },
+        "format_variant": {
+          "type": "string",
+          "pattern": "^[a-z0-9_.]+$"
+        },
+        "level": {
+          "type": "string",
+          "pattern": "^level/[a-z0-9_]+(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+        },
+        "family": {
+          "type": "string",
+          "pattern": "^family/[a-z0-9_]+(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+        },
+        "locale": {
+          "type": "string",
+          "pattern": "^locale/[a-z0-9][a-z0-9_-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+        },
+        "safety_class": {
+          "type": "string",
+          "pattern": "^safety/ac[0-2]$"
+        },
+        "voice_path": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B"
+          ]
+        },
+        "render_target": {
+          "type": "string",
+          "enum": [
+            "video",
+            "audio_only",
+            "print"
+          ],
+          "$comment": "15 Oct 2026 (level-3+, CE-119): print added; aspect and resolution are absent for print."
+        },
+        "aspect": {
+          "type": "string",
+          "enum": [
+            "9x16",
+            "16x9"
+          ]
+        },
+        "resolution": {
+          "type": "string",
+          "enum": [
+            "1080x1920",
+            "1920x1080"
+          ]
+        },
+        "overlay": {
+          "type": "string",
+          "pattern": "^overlay/[a-z0-9_]+(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+        },
+        "style": {
+          "type": "string",
+          "pattern": "^style/[a-z0-9][a-z0-9_-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+        }
+      },
+      "required": [
+        "format",
+        "level",
+        "family",
+        "locale",
+        "safety_class",
+        "render_target"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "aspect": {
+                "const": "16x9"
+              }
+            },
+            "required": [
+              "aspect"
+            ]
+          },
+          "then": {
+            "properties": {
+              "resolution": {
+                "const": "1920x1080"
+              },
+              "level": {
+                "pattern": "^level/(ug|pg|adult_prof)(@.*)?$"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "resolution": {
+                "const": "1080x1920"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "safety_class": {
+                "const": "safety/ac0"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "voice_path": {
+                "const": "A"
+              }
+            }
+          }
+        },
+        {
+          "$comment": "15 Oct 2026 (CE-119): video and audio_only carry aspect, resolution and voice_path; print has no narration, so it carries none of them (FORMAT_REGISTRY.md render targets).",
+          "if": {
+            "properties": {
+              "render_target": {
+                "const": "print"
+              }
+            },
+            "required": [
+              "render_target"
+            ]
+          },
+          "then": {
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "aspect"
+                  ]
+                },
+                {
+                  "required": [
+                    "resolution"
+                  ]
+                },
+                {
+                  "required": [
+                    "voice_path"
+                  ]
+                }
+              ]
+            }
+          },
+          "else": {
+            "required": [
+              "aspect",
+              "resolution",
+              "voice_path"
+            ]
+          }
+        }
+      ]
+    },
+    "voice_path_reasons": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "format_default_a",
+          "series_first",
+          "flagship",
+          "demo_real",
+          "safety_ac0",
+          "level_floor_a",
+          "a11y_isl",
+          "no_gl_voice_tts",
+          "path_b_default"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/check"
+      },
+      "minItems": 1
+    },
+    "gates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/gate_requirement"
+      },
+      "minItems": 1
+    },
+    "preconditions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "g_counsel_record_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "gl_voice_record_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "gl_glossary_record_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewers_available": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "role": {
+                "$ref": "#/definitions/role"
+              },
+              "primary": {
+                "type": "string",
+                "pattern": "^reviewer/[a-z0-9][a-z0-9_.-]*$"
+              },
+              "backup": {
+                "type": "string",
+                "pattern": "^reviewer/[a-z0-9][a-z0-9_.-]*$"
+              }
+            },
+            "required": [
+              "role",
+              "primary"
+            ]
+          }
+        },
+        "open_items": {
+          "description": "Open items (Architecture §12) this artefact's release waits on. RELEASE-CHECK reads each item's state from the §12 register at release time and refuses while any is open.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/open_item"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "g_counsel_record_ref"
+      ]
+    },
+    "judge_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "judge_model_ref": {
+          "type": "string",
+          "pattern": "^model/[a-z0-9][a-z0-9_.-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?$"
+        },
+        "calibration_record_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "admitted_questions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "may": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "reorder_queue",
+              "add_flag",
+              "prefill_evidence",
+              "recommend_escalation",
+              "block_pending_human"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "may_approve": {
+          "const": false
+        },
+        "may_waive": {
+          "const": false
+        },
+        "may_pass_check": {
+          "const": false
+        },
+        "counts_as_approval": {
+          "const": false
+        }
+      },
+      "required": [
+        "judge_model_ref",
+        "may_approve",
+        "may_waive",
+        "may_pass_check",
+        "counts_as_approval"
+      ]
+    },
+    "reqa_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "automated_coverage": {
+          "const": "all_affected"
+        },
+        "order": {
+          "const": "canary_first"
+        },
+        "audit_share_per_mille": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000,
+          "description": "Audit share per cell in parts per thousand (integer; replaces the float audit_share_per_cell, 15 Oct 2026, schemas-13)."
+        },
+        "human_gates_on_changed_bytes": {
+          "const": "never_sampled"
+        },
+        "auto_reaffirm_requires_identical_bytes": {
+          "const": true
+        }
+      },
+      "required": [
+        "automated_coverage",
+        "order",
+        "human_gates_on_changed_bytes",
+        "auto_reaffirm_requires_identical_bytes"
+      ]
+    },
+    "human_minutes_total": {
+      "description": "Sum of review_minutes_estimate over human and hybrid checks and human gates (QA_PROFILES_REGISTRY.md §3 rule 10).",
+      "type": "number",
+      "minimum": 0
+    },
+    "self_approval_allowed": {
+      "const": false
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "resolver_version": {
+          "$ref": "#/definitions/semver"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source_entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/registry_ref"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "qa_resolve_version": {
+          "$ref": "#/definitions/semver",
+          "description": "qa_resolve version that computed this profile; equals EPP toolchain.qa_resolve_version (Architecture §3.5; 15 Oct 2026)."
+        }
+      },
+      "required": [
+        "resolver_version",
+        "created_at",
+        "source_entries"
+      ]
+    },
+    "qa_profile_sha256": {
+      "description": "sha256(JCS(NFC(profile minus qa_profile_sha256 minus provenance.created_at))) (QA_PROFILES_REGISTRY.md §1). 15 Oct 2026 (resolver-14): also computed with `preconditions` removed (runtime reviewer availability and open-item states), so staffing changes never alter it.",
+      "$ref": "#/definitions/sha256"
+    }
+  },
+  "required": [
+    "qa_profile_id",
+    "version",
+    "catalogue_pin",
+    "request_id",
+    "epp_hash",
+    "format_plan_sha256",
+    "axes",
+    "checks",
+    "gates",
+    "preconditions",
+    "reqa_policy",
+    "human_minutes_total",
+    "self_approval_allowed",
+    "provenance"
+  ],
+  "allOf": [
+    {
+      "properties": {
+        "gates": {
+          "allOf": [
+            {
+              "contains": {
+                "properties": {
+                  "gate": {
+                    "const": "GV_CLAIMS"
+                  }
+                },
+                "required": [
+                  "gate"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "gate": {
+                    "const": "GA_DELTA"
+                  }
+                },
+                "required": [
+                  "gate"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "gate": {
+                    "const": "H_SB"
+                  }
+                },
+                "required": [
+                  "gate"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "gate": {
+                    "const": "A_SUITE"
+                  }
+                },
+                "required": [
+                  "gate"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "gate": {
+                    "const": "DISCLOSURE"
+                  }
+                },
+                "required": [
+                  "gate"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "gate": {
+                    "const": "COPY"
+                  }
+                },
+                "required": [
+                  "gate"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "gate": {
+                    "const": "RELEASE_CHECK"
+                  }
+                },
+                "required": [
+                  "gate"
+                ]
+              }
+            }
+          ],
+          "anyOf": [
+            {
+              "contains": {
+                "properties": {
+                  "gate": {
+                    "const": "GF"
+                  }
+                },
+                "required": [
+                  "gate"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "gate": {
+                    "const": "GS"
+                  }
+                },
+                "required": [
+                  "gate"
+                ]
+              }
+            }
+          ]
+        },
+        "checks": {
+          "allOf": [
+            {
+              "contains": {
+                "properties": {
+                  "check_id": {
+                    "const": "Q-SCHEMA"
+                  }
+                },
+                "required": [
+                  "check_id"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "check_id": {
+                    "const": "Q-COMM"
+                  }
+                },
+                "required": [
+                  "check_id"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "check_id": {
+                    "const": "Q-HASH"
+                  }
+                },
+                "required": [
+                  "check_id"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "check_id": {
+                    "const": "Q-CLOSURE"
+                  }
+                },
+                "required": [
+                  "check_id"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "check_id": {
+                    "const": "Q-META"
+                  }
+                },
+                "required": [
+                  "check_id"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "check_id": {
+                    "const": "Q-DISC.script"
+                  }
+                },
+                "required": [
+                  "check_id"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "check_id": {
+                    "const": "Q-LEDGER.citation"
+                  }
+                },
+                "required": [
+                  "check_id"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "check_id": {
+                    "const": "Q-A11Y.transcript"
+                  }
+                },
+                "required": [
+                  "check_id"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "check_id": {
+                    "const": "Q-DET"
+                  }
+                },
+                "required": [
+                  "check_id"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "check_id": {
+                    "const": "Q-META.hash_bind"
+                  }
+                },
+                "required": [
+                  "check_id"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "axes": {
+            "properties": {
+              "render_target": {
+                "const": "video"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "allOf": [
+              {
+                "contains": {
+                  "properties": {
+                    "check_id": {
+                      "const": "Q-FLASH.full_frame"
+                    }
+                  },
+                  "required": [
+                    "check_id"
+                  ]
+                }
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "check_id": {
+                      "const": "A3"
+                    }
+                  },
+                  "required": [
+                    "check_id"
+                  ]
+                }
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "check_id": {
+                      "const": "A11"
+                    }
+                  },
+                  "required": [
+                    "check_id"
+                  ]
+                }
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "check_id": {
+                      "const": "Q-A11Y.reduced_motion"
+                    }
+                  },
+                  "required": [
+                    "check_id"
+                  ]
+                }
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "check_id": {
+                      "const": "Q-A11Y.captions"
+                    }
+                  },
+                  "required": [
+                    "check_id"
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "Q-A11Y.visual_essential"
+                }
+              },
+              "required": [
+                "check_id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "axes": {
+            "properties": {
+              "family": {
+                "pattern": "^family/(stem_fixture|quant_social|health_medicine|evs_foundational)(@.*)?$"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "Q-FIX"
+                }
+              },
+              "required": [
+                "check_id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "axes": {
+            "properties": {
+              "voice_path": {
+                "const": "B"
+              }
+            },
+            "required": [
+              "voice_path"
+            ]
+          }
+        },
+        "required": [
+          "axes"
+        ]
+      },
+      "then": {
+        "properties": {
+          "preconditions": {
+            "required": [
+              "gl_voice_record_ref"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "axes": {
+            "properties": {
+              "safety_class": {
+                "const": "safety/ac0"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "allOf": [
+              {
+                "contains": {
+                  "properties": {
+                    "check_id": {
+                      "const": "Q-FLASH.ac0_zero"
+                    }
+                  },
+                  "required": [
+                    "check_id"
+                  ]
+                }
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "check_id": {
+                      "const": "Q-SAFE.no_solicitation"
+                    }
+                  },
+                  "required": [
+                    "check_id"
+                  ]
+                }
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "check_id": {
+                      "const": "Q-SAFE.no_external_prompts"
+                    }
+                  },
+                  "required": [
+                    "check_id"
+                  ]
+                }
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "check_id": {
+                      "const": "Q-SAFE.no_timers"
+                    }
+                  },
+                  "required": [
+                    "check_id"
+                  ]
+                }
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "check_id": {
+                      "const": "Q-SAFE.startle"
+                    }
+                  },
+                  "required": [
+                    "check_id"
+                  ]
+                }
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "check_id": {
+                      "const": "Q-SAFE.language"
+                    }
+                  },
+                  "required": [
+                    "check_id"
+                  ]
+                }
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "check_id": {
+                      "const": "Q-SAFE.sensitive"
+                    }
+                  },
+                  "required": [
+                    "check_id"
+                  ]
+                }
+              }
+            ]
+          },
+          "gates": {
+            "allOf": [
+              {
+                "contains": {
+                  "properties": {
+                    "gate": {
+                      "const": "GA_DELTA"
+                    },
+                    "roles": {
+                      "contains": {
+                        "properties": {
+                          "role": {
+                            "const": "child_development"
+                          },
+                          "co_sign": {
+                            "const": true
+                          }
+                        },
+                        "required": [
+                          "role",
+                          "co_sign"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "gate",
+                    "roles"
+                  ]
+                }
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "gate": {
+                      "const": "H_SB"
+                    },
+                    "roles": {
+                      "contains": {
+                        "properties": {
+                          "role": {
+                            "const": "child_development"
+                          },
+                          "co_sign": {
+                            "const": true
+                          }
+                        },
+                        "required": [
+                          "role",
+                          "co_sign"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "gate",
+                    "roles"
+                  ]
+                }
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "gate": {
+                      "enum": [
+                        "GF",
+                        "GS"
+                      ]
+                    },
+                    "roles": {
+                      "contains": {
+                        "properties": {
+                          "role": {
+                            "const": "child_development"
+                          },
+                          "co_sign": {
+                            "const": true
+                          }
+                        },
+                        "required": [
+                          "role",
+                          "co_sign"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "gate",
+                    "roles"
+                  ]
+                }
+              }
+            ]
+          },
+          "preconditions": {
+            "properties": {
+              "reviewers_available": {
+                "contains": {
+                  "properties": {
+                    "role": {
+                      "const": "child_development"
+                    }
+                  },
+                  "required": [
+                    "role",
+                    "primary",
+                    "backup"
+                  ]
+                }
+              },
+              "open_items": {
+                "allOf": [
+                  {
+                    "contains": {
+                      "properties": {
+                        "id": {
+                          "const": "O-1"
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ]
+                    }
+                  },
+                  {
+                    "contains": {
+                      "properties": {
+                        "id": {
+                          "const": "O-2"
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ]
+                    }
+                  },
+                  {
+                    "contains": {
+                      "properties": {
+                        "id": {
+                          "const": "O-22"
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "required": [
+              "reviewers_available",
+              "open_items"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$comment": "15 Oct 2026 (level-3+, CE-119, CE-120): a print profile carries the print accessibility check and has no voice path, voice_path_reasons or VOICE gate; every other profile keeps them.",
+      "if": {
+        "properties": {
+          "axes": {
+            "properties": {
+              "render_target": {
+                "const": "print"
+              }
+            },
+            "required": [
+              "render_target"
+            ]
+          }
+        },
+        "required": [
+          "axes"
+        ]
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "Q-A11Y.print_structure"
+                }
+              },
+              "required": [
+                "check_id"
+              ]
+            }
+          }
+        },
+        "not": {
+          "required": [
+            "voice_path_reasons"
+          ]
+        }
+      },
+      "else": {
+        "required": [
+          "voice_path_reasons"
+        ],
+        "properties": {
+          "gates": {
+            "contains": {
+              "properties": {
+                "gate": {
+                  "const": "VOICE"
+                }
+              },
+              "required": [
+                "gate"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

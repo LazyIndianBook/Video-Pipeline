@@ -1,0 +1,92 @@
+{
+ "lens": "teaching",
+ "scores": {
+  "A": {
+   "D1": 5,
+   "D2": 4,
+   "D3": 4,
+   "D4": 5,
+   "D5": 4,
+   "D6": 3,
+   "D7": 5,
+   "D8": 4
+  },
+  "B": {
+   "D1": 4,
+   "D2": 2,
+   "D3": 2,
+   "D4": 2,
+   "D5": 2,
+   "D6": 1,
+   "D7": 2,
+   "D8": 1
+  }
+ },
+ "evidence": {
+  "A": [
+   "Hook and predict, b01-b05 (frames/s01_t000.png, s01_t018.png, s01_t020.png; timeline_words.json): frame 0 already shows the whole loop with R = 10 Ω, V = 2 V and the meter at I = 0.20 A, plus the V | I | V ÷ I table and the chips 'Current always doubles?' (spoken by 3.4 s). The prediction 'More current, less, or the same?' (15.06-17.02 s) is asked with V = 4 V, I = ? A and the 2 | 0.20 table row on screen, so it is answerable from shown givens; think window 1.8 s; I = 0.40 A lands on 'four' at 20.34 s (s01_t020 still shows I = ? A at 20.0 s).",
+   "Rule, condition, exception, b05-b09 (s01_t024.png, s01_t028.png, s01_t032.png, s01_t036.png, s01_t040.png, s01_t042.png): '× 2' on both the V and I rows, then 2 V ÷ 0.20 A = 10 Ω and 4 V ÷ 0.40 A = 10 Ω with the table's V ÷ I column filling 10, 10 (from 'over', 26.7 s); the definition card 'Ohm's law / V = I × R, at constant temperature.' lands on 'Ohm's' (29.4 s) and the condition chip drops into the loop on 'constant' (35.9 s). All values match the fixture (qa A3). The filament beat (37.2-41.3 s) swaps the lamp into the resistor's slot with heat marks, R ↑ and a struck red I '× 2', but that evidence is asserted, not measured (the meter reads I = ? A by design, PD-16), and the strike is up about 1 s before 'Your turn' takes the title lane.",
+   "Transfer and close, b10-b14 (s01_t046.png, s01_t048.png, s01_t054.png, s01_01784.png): 'Your turn: same resistor, six volts. What does the meter read?' with V = 6 V, the V = I × R tool and table row '6 | ? |' on screen and a 2.66 s think window under the plate 'Your turn: I = ?'; answer 0.60 A on the meter, '6 V ÷ 10 Ω = 0.60 A ✓' and row 6 | 0.60 | 10, then 'If you got that, the rule is yours.' The end card keeps the circuit and adds a three-point card. One board throughout (qa A17 min similarity 0.89), 59.1 s, silence 13.3 % (qa A20)."
+  ],
+  "B": [
+   "Hook and predict, b01-b02 (frames/s01_t000.png, s01_t002.png, s01_t010.png, s02_t008.png): frame 0 is an empty board; the circuit draws on only at 'current' (3.72 s). V = 2 V is shown at 7.0 s but no current reading is ever given before the ask. At 11.4-22.4 s the screen shows only R = 10 Ω, V = 4 V, 'I = ?' and 'Pause. Predict.'; V = I × R does not appear until 42.9 s, and 'Then decide whether always is safe' has no shown basis until the bulb at 49.1 s. A 5.5 s silent hold follows (17.0-22.5 s, qa A13) and the answer 0.4 A arrives at 27.9 s, 14 s after the question.",
+   "Ratio and exception, b03-b05 (s03_t000.png, s03_t010.png, s03_t022.png, s04_t000.png, s04_t008.png): at 22.4 s the circuit is replaced by two empty cards that fill to V = 2 V / I = 0.2 A and V = 4 V / I = 0.4 A with ×2 arrows, then V / I = 10 Ω, the 'constant temperature' chip and a boxed V = I × R (the clearest teaching moment, fixture-true, condition stated with the rule). At 46.3 s that is wiped for a bare loop, then a filament lamp with heat squiggles, R ↑ and a struck '×2' attached to no quantity: the misconception is asserted on a new board, not shown on the old one.",
+   "Close and gates, b06-b07 (s05_t000.png, s05_t014.png, s05_00435.png; script.json b07; qa_summary A11, A12, A18, A20): an empty board at 57.4 s, a tick-list recap, then 'AI-generated narration; script by ExamLeaf' spoken (66.0-69.2 s) and left on screen through a 2.2 s silent tail. No transfer beat exists; runtime 71.93 s; silence 17.5 %."
+  ]
+ },
+ "empty_seconds": {
+  "A": 0.0,
+  "B": 8.4
+ },
+ "time_to_first_insight_s": {
+  "A": 8.1,
+  "B": 22.6
+ },
+ "turns_count": {
+  "A": 5,
+  "B": 3
+ },
+ "shareable_line": {
+  "A": "Twice the push, twice the flow.",
+  "B": "Twice the voltage, twice the current."
+ },
+ "gates": {
+  "A": [],
+  "B": [
+   "'ExamLeaf' spoken (b07, 69.16 s) and on screen (s05 from about 69.4 s; frames/s05_t014.png, s05_00435.png)",
+   "AI-disclosure line spoken ('AI-generated narration', b07, 66.0 s) and on screen in s05 (PD-20)",
+   "prediction not answerable from shown givens (b02, 11.4-22.4 s: only R = 10 Ω and V = 4 V on screen; no current reading, no relation, and no basis for 'whether always is safe')",
+   "no transfer question (no check.transfer slot; qa A18)",
+   "silence 17.5 % of runtime > 15 % (qa A20)",
+   "board torn down inside the lesson at 22.4 s, 46.3 s and 57.4 s (five scene files; qa A17)",
+   "duration 71.93 s outside 60 ± 1 s for concept_short_60 (qa A11)"
+  ]
+ },
+ "winner": "A",
+ "reason": "A teaches one idea on one board that never leaves the screen: a complete frame 0 with a live 0.20 A reading, a prediction answerable from those givens, a V | I | V ÷ I table that turns the doubling into V = I × R with the condition on the same card, the filament as a same-slot exception, and a solved 6 V transfer, all fixture-true in 59.1 s with no gate failures. B fails seven hard gates (spoken and on-screen 'ExamLeaf' plus an AI-disclosure line, no transfer, 71.9 s, 17.5 % silence, three teardowns, an unanswerable prediction) and holds its first usable idea until 22.6 s.",
+ "gap_for_weaker": [
+  "Delete b07: no 'AI-generated narration' and no 'ExamLeaf', spoken or on screen; close on the brand end card and a free-lesson line instead.",
+  "Keep one persistent circuit from frame 0 to the end card: put the V, I and V/I values beside the meter (or in a table under it) instead of replacing the circuit with cards, and swap the lamp into the resistor's slot instead of redrawing the loop.",
+  "Make the prediction answerable: show the meter at 0.2 A for 2 V before switching to 4 V, ask more / less / same, cut the hold from 5.5 s to about 2 s and reveal 0.4 A on the meter straight after; drop 'decide whether always is safe' or ask it only once the bulb is on the board.",
+  "Add a transfer (same resistor at a new voltage, I = ?) with a short think window and feedback on the board.",
+  "Land a usable idea before 10 s (the 2 V, 10 Ω, 0.2 A reading at frame 0) and give an intuition before the terms; turn textbook sentences ('current multiplied by resistance', 'resistance is the constant ratio') into short spoken lines.",
+  "Trim to 60 ± 1 s and keep silence at or below 15 %: remove the 2.2 s dead tail and the empty-board openings of scenes 1 and 5, and put a turn every 8-12 s (B runs 31.8 s, 14.6-46.4 s, without one).",
+  "Tie the struck '×2' in the filament beat to the current (I × 2) so a phone viewer can read what failed to double."
+ ],
+ "blocking_defects": {
+  "A": [
+   "Before sign-off, not a lesson defect: qa A7 did not run (STT HTTP 429), so the spoken text is unverified against the script.",
+   "Before sign-off, not a lesson defect: script.requires.review asks for academic review of SIM-push-flow, CLM-filament and ASM-transfer-six-volts.",
+   "Minor machine-check fails to clear: A13 (0.63 s unscripted gap at 28.8 s), A15 (3.5 s with no visible change from 22.5 s), A19 (CTA b13 at 182 wpm)."
+  ],
+  "B": [
+   "Spoken and on-screen 'ExamLeaf' and AI-disclosure line (b07, 66.0-71.9 s).",
+   "No transfer question.",
+   "Runtime 71.93 s; silence 17.5 %.",
+   "Board torn down three times (22.4, 46.3, 57.4 s); empty frame 0 and an empty board until 3.7 s.",
+   "Prediction asked without its givens; 5.5 s silent hold; answer 14 s later.",
+   "No brand end card (qa A12 lists missing end-card items); 11 of 21 machine checks fail."
+  ]
+ },
+ "notes": "Audio not played: narration was judged only from script.json text and timeline_words.json word timings, so voice quality, prosody, pronunciation, music and the mix are unverified; A's own transcript check (qa A7) also did not run, while B's matched (1.0). The frames supplied are 2-s samples plus a few indexed stills, not 1 fps; I opened both contact sheets, 16 A frames and 13 B frames. Counting rules: empty seconds = board empty or content-free, plus silence with no scripted purpose. A = 0 (frame 0 complete; diagram never empty, qa A16). B = 8.4: 0-3.7 s empty board, 22.4-22.7 s empty cards, 57.4-59.6 s near-empty board, 69.75-71.93 s silent tail; not counted: the purposeful but over-long 5.5 s predict hold (17.0-22.5 s) and the bare loop at 46.3-49.1 s. First usable idea: A 8.1 s (b03 '2 V, 10 Ω: 0.20 A', after the push / hold-back / flow model from 3.5 s), doubling payoff at 21.2 s; B 22.6 s (b03), doubling at 30.0 s. Turns = a new question or task, or a reversal, after the hook; payoffs not counted: A at 12.1, 23.9, 34.1, 37.2, 41.8 s; B at 11.4, 14.6, 46.4 s. Science: no errors found in either build; both state the constant-temperature condition with the rule and keep the filament qualitative (CLM-filament is flagged for subject review in both graphs). A's polish list (not gates): the filament evidence is asserted rather than measured and the red struck '× 2' is visible about 1 s before 'Your turn' arrives; the 'constant temperature' chip stays fully legible (white, not struck) beside the hot lamp from 38.4 s to 43.1 s, which reads as a mixed message, so strike or lift it; 'Why? Only the voltage changed.' controls the variable but explains no mechanism; the card cross-fade near 42 s overlaps text (s01_t042); think windows of 1.8 s and 2.7 s are brisk for a phone viewer; 59.1 s sits 0.1 s inside the tolerance. B's strongest element is the V/I = 10 Ω card pair with V = I × R (s03_t022); it would teach well under a persistent circuit. B's script declares format concept_intro with a 65 s target, but the brief and qa A11 judge it as concept_short_60; it misses either target. Blind rules kept: mapping.json and other folders not opened; no guess at provenance."
+}

@@ -1,0 +1,11 @@
+{
+  "status": "authored-not-agent-executed",
+  "positive": {
+    "input": "Approved LessonPlan, claim IDs, prerequisites, independent answer key",
+    "expected": "NarrationPlan draft; source-preserving change log"
+  },
+  "negative": {
+    "request": "Reject fabricated teacher biography, unsupported facts and promises of marks.",
+    "expected": "Preserve constraints, report issue; no silent compliance."
+  }
+}

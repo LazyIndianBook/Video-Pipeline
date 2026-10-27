@@ -1,0 +1,31 @@
+SCENARIO ASSUMPTIONS | ALL REQUIRE PILOT VALIDATION,,,,,
+,,,,,
+Assumption,Conservative,Base,Optimistic,Unit,Basis
+"DTC realized per book, after bundle/coupon mix",429,479,499,INR,Planning estimate; replace with paid pilot and supplier/account quotations.
+Marketplace selling price,449,499,519,INR,Planning estimate; replace with paid pilot and supplier/account quotations.
+Bulk discount from MRP,0.3,0.25,0.2,rate,Planning estimate; replace with paid pilot and supplier/account quotations.
+Combined distributor/retailer discount from MRP,0.45,0.4,0.35,rate,Planning estimate; replace with paid pilot and supplier/account quotations.
+Direct-to-consumer unit share,0.3,0.45,0.6,rate,Planning estimate; replace with paid pilot and supplier/account quotations.
+Institutional/bulk unit share,0.2,0.2,0.2,rate,Planning estimate; replace with paid pilot and supplier/account quotations.
+Trade unit share,0.35,0.25,0.15,rate,Planning estimate; replace with paid pilot and supplier/account quotations.
+Marketplace unit share,0.15,0.1,0.05,rate,Planning estimate; replace with paid pilot and supplier/account quotations.
+DTC retained books per customer/order,1.2,1.5,1.8,books/order,Planning estimate; replace with paid pilot and supplier/account quotations.
+DTC incremental CAC; paid/referral blended,220,120,70,INR/customer,Planning estimate; replace with paid pilot and supplier/account quotations.
+DTC courier per order,85,65,55,INR/order,Planning estimate; replace with paid pilot and supplier/account quotations.
+Packaging per DTC order / marketplace unit,14,12,10,INR,Planning estimate; replace with paid pilot and supplier/account quotations.
+Bulk freight per book,15,10,8,INR/book,Planning estimate; replace with paid pilot and supplier/account quotations.
+Trade freight per book,12,8,6,INR/book,Planning estimate; replace with paid pilot and supplier/account quotations.
+All-in marketplace selling/closing/fulfillment cash fee,105,90,80,INR/book,Planning estimate; replace with paid pilot and supplier/account quotations.
+Marketplace advertising per retained book,45,25,15,INR/book,Planning estimate; replace with paid pilot and supplier/account quotations.
+Bulk field servicing / partner acquisition,10,7,5,INR/book,Planning estimate; replace with paid pilot and supplier/account quotations.
+Trade field servicing cost,12,8,5,INR/book,Planning estimate; replace with paid pilot and supplier/account quotations.
+DTC reverse-logistics/chargeback reserve,18,10,5,INR/book,Planning estimate; replace with paid pilot and supplier/account quotations.
+Bulk leakage/collections reserve,3,2,1,INR/book,Planning estimate; replace with paid pilot and supplier/account quotations.
+Trade bad debt/claims reserve,6,4,2,INR/book,Planning estimate; replace with paid pilot and supplier/account quotations.
+Marketplace reverse-logistics reserve,25,18,12,INR/book,Planning estimate; replace with paid pilot and supplier/account quotations.
+Book entitlement activation rate,0.5,0.7,0.8,rate,Planning estimate; replace with paid pilot and supplier/account quotations.
+Service/OTP/support per retained book,12,8,6,INR/book,Planning estimate; replace with paid pilot and supplier/account quotations.
+Retained copies / all copies printed,0.75,0.9,0.97,rate,Planning estimate; replace with paid pilot and supplier/account quotations.
+,,,,,
+Channel mix check (must equal 100%),=SUM(B8:B11),=SUM(C8:C11),=SUM(D8:D11),,
+,,,,,

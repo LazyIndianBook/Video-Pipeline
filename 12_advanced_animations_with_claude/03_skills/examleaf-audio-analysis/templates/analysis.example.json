@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "engine": {"name": "bed_metadata", "version": "examleaf-audio-compose/compose_bed.py"},
+  "source": {"path": "audio/bed/neutral/bed_meta.json", "sha256": "<sha256 of bed_meta.json>", "sr_native": 48000, "sr_used": 48000, "channels": 1, "duration_s": 7.2},
+  "params": {"units": "time", "note": "grid taken from compose_bed.py metadata; no detection needed"},
+  "tempo_bpm": 100.0,
+  "tempo_varies": false,
+  "beats_s": [0.0, 0.6, 1.2, 1.8, 2.4, 3.0, 3.6, 4.2, 4.8, 5.4, 6.0, 6.6],
+  "downbeats_s": [0.0, 2.4, 4.8],
+  "onsets_s": null,
+  "energy": null,
+  "fallback": null,
+  "warnings": []
+}

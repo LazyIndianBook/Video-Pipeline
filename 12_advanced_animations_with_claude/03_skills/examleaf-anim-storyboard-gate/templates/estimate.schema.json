@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ExamLeaf storyboard-gate estimate (proposal)",
+  "type": "object",
+  "required": ["schema_version", "skill", "segment_id", "style", "caps", "scenes", "totals", "over_cap", "blockers", "status"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "skill": {"const": "examleaf-anim-storyboard-gate"},
+    "segment_id": {"type": "string"},
+    "lesson_id": {"type": ["string", "null"]},
+    "style": {"type": "string", "description": "id@version"},
+    "pricing_source": {"type": ["string", "null"], "description": "Where credits_per_image came from; null when no paid step."},
+    "caps": {"type": "object", "properties": {"tokens": {"type": ["number", "null"]}, "credits": {"type": ["number", "null"]}, "credits_remaining_on_plan": {"type": ["number", "null"]}}},
+    "scenes": {"type": "array", "items": {"type": "object", "required": ["scene_id", "thumbnail_source", "beats", "tokens_expected", "image_generations_expected"]}},
+    "totals": {"type": "object", "required": ["beats", "grids", "tokens_expected", "tokens_worst_case", "image_generations_expected", "credits_expected", "credits_worst_case", "worst_case_basis"]},
+    "over_cap": {"type": "array", "items": {"type": "string"}},
+    "blockers": {"type": "array", "items": {"type": "string"}},
+    "warnings": {"type": "array", "items": {"type": "string"}},
+    "status": {"enum": ["awaiting_approval", "over_cap", "blocked"]}
+  }
+}

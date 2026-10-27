@@ -1,0 +1,223 @@
+{
+  "lesson_id": "water_coefficient_demo",
+  "sample_rate": 48000,
+  "fps_num": 30,
+  "fps_den": 1,
+  "total_samples": 1677120,
+  "duration_seconds": 34.94,
+  "audio_sha256": "d236d69531a88f74dae6fcf26cb87daa3fba3554b8f565650fe8713813693470",
+  "clips": [
+    {
+      "segment_id": "question",
+      "start_sample": 0,
+      "end_sample": 148800,
+      "audio_sha256": "ce9f525b08da44eaf8412c0c7f6c2202038d6962943eecaac82ebf081083a9a7",
+      "alignment_method": "synthetic-fixture"
+    },
+    {
+      "segment_id": "answer",
+      "start_sample": 436800,
+      "end_sample": 697920,
+      "audio_sha256": "4eb19b58985d969f1235f34d2323675fd94e5b719501fb1ce2e56fd797273e0d",
+      "alignment_method": "synthetic-fixture"
+    },
+    {
+      "segment_id": "repair",
+      "start_sample": 717120,
+      "end_sample": 986880,
+      "audio_sha256": "e8394b03fd0f07b8921598519ec314423e8a7f297572ba29d05d5448dd6b2c49",
+      "alignment_method": "synthetic-fixture"
+    },
+    {
+      "segment_id": "retry",
+      "start_sample": 1001280,
+      "end_sample": 1201920,
+      "audio_sha256": "4df8ce4bc9a6642bb8d866bcb921408859230236f5d01a6a0d9f887865f48b43",
+      "alignment_method": "synthetic-fixture"
+    },
+    {
+      "segment_id": "check",
+      "start_sample": 1441920,
+      "end_sample": 1677120,
+      "audio_sha256": "4a7269c4e875ace84e825a462a96d2ccf56871c22d0d6c5b70c4c7eca0807720",
+      "alignment_method": "synthetic-fixture"
+    }
+  ],
+  "pauses": [
+    {
+      "segment_id": "question",
+      "start_sample": 148800,
+      "end_sample": 436800,
+      "kind": "think",
+      "prompt": "Count hydrogen atoms in two separate water molecules."
+    },
+    {
+      "segment_id": "answer",
+      "start_sample": 697920,
+      "end_sample": 717120,
+      "kind": "beat",
+      "prompt": ""
+    },
+    {
+      "segment_id": "repair",
+      "start_sample": 986880,
+      "end_sample": 1001280,
+      "kind": "beat",
+      "prompt": ""
+    },
+    {
+      "segment_id": "retry",
+      "start_sample": 1201920,
+      "end_sample": 1441920,
+      "kind": "pause-video",
+      "prompt": "Write hydrogen and oxygen atom totals for three water molecules."
+    }
+  ],
+  "events": [
+    {
+      "cue_id": "show_molecules",
+      "sample": 7200,
+      "frame": 5,
+      "action": "show",
+      "element_id": "molecule-pair",
+      "segment_id": "question"
+    },
+    {
+      "cue_id": "reveal_hydrogen",
+      "sample": 444000,
+      "frame": 278,
+      "action": "reveal-answer",
+      "element_id": "hydrogen-count",
+      "segment_id": "answer"
+    },
+    {
+      "cue_id": "highlight_coefficient",
+      "sample": 599520,
+      "frame": 375,
+      "action": "highlight",
+      "element_id": "coefficient",
+      "segment_id": "answer"
+    },
+    {
+      "cue_id": "reveal_retry",
+      "sample": 1449120,
+      "frame": 906,
+      "action": "reveal-answer",
+      "element_id": "retry-totals",
+      "segment_id": "check"
+    }
+  ],
+  "captions": [
+    {
+      "start_sample": 7200,
+      "end_sample": 58080,
+      "text": "two water molecules how many hydrogen"
+    },
+    {
+      "start_sample": 59040,
+      "end_sample": 109920,
+      "text": "atoms altogether count each complete molecule"
+    },
+    {
+      "start_sample": 110880,
+      "end_sample": 135840,
+      "text": "before you answer"
+    },
+    {
+      "start_sample": 444000,
+      "end_sample": 494880,
+      "text": "four hydrogen atoms each water molecule"
+    },
+    {
+      "start_sample": 495840,
+      "end_sample": 546720,
+      "text": "contains two and we have two"
+    },
+    {
+      "start_sample": 547680,
+      "end_sample": 598560,
+      "text": "complete copies that is what the"
+    },
+    {
+      "start_sample": 599520,
+      "end_sample": 650400,
+      "text": "coefficient changes how many molecules not"
+    },
+    {
+      "start_sample": 651360,
+      "end_sample": 684960,
+      "text": "what a molecule is"
+    },
+    {
+      "start_sample": 724320,
+      "end_sample": 775200,
+      "text": "changing h two o into hydrogen"
+    },
+    {
+      "start_sample": 776160,
+      "end_sample": 827040,
+      "text": "peroxide would be a very efficient"
+    },
+    {
+      "start_sample": 828000,
+      "end_sample": 878880,
+      "text": "way to answer a different question"
+    },
+    {
+      "start_sample": 879840,
+      "end_sample": 930720,
+      "text": "keep the given formulas fixed use"
+    },
+    {
+      "start_sample": 931680,
+      "end_sample": 973920,
+      "text": "coefficients to change the counts"
+    },
+    {
+      "start_sample": 1008480,
+      "end_sample": 1059360,
+      "text": "your turn again three water molecules"
+    },
+    {
+      "start_sample": 1060320,
+      "end_sample": 1111200,
+      "text": "how many hydrogen atoms and how"
+    },
+    {
+      "start_sample": 1112160,
+      "end_sample": 1163040,
+      "text": "many oxygen atoms pause here and"
+    },
+    {
+      "start_sample": 1164000,
+      "end_sample": 1188960,
+      "text": "write both counts"
+    },
+    {
+      "start_sample": 1449120,
+      "end_sample": 1500000,
+      "text": "six hydrogen atoms and three oxygen"
+    },
+    {
+      "start_sample": 1500960,
+      "end_sample": 1551840,
+      "text": "atoms if those match check the"
+    },
+    {
+      "start_sample": 1552800,
+      "end_sample": 1603680,
+      "text": "method too the number of copies"
+    },
+    {
+      "start_sample": 1604640,
+      "end_sample": 1655520,
+      "text": "multiplies every atom count in the"
+    },
+    {
+      "start_sample": 1656480,
+      "end_sample": 1664160,
+      "text": "formula"
+    }
+  ],
+  "contains_fixture": true
+}

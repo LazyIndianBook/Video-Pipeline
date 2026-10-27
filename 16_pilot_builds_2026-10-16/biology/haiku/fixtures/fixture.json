@@ -1,0 +1,45 @@
+{
+  "_note": "Computed by fixtures/compute.py for bio-photosyn-ci-01. Do not edit by hand; re-run the script.",
+  "display": {
+    "co2": "CO₂",
+    "h2o": "H₂O",
+    "glucose": "C₆H₁₂O₆",
+    "o2": "O₂",
+    "plus": "+",
+    "arrow": "→",
+    "sunlight": "sunlight",
+    "chlorophyll": "chlorophyll",
+    "elem_C": "C",
+    "elem_H": "H",
+    "elem_O": "O",
+    "carbon_word": "carbon",
+    "soil": "soil",
+    "water": "water",
+    "air": "air",
+    "equals": "=",
+    "percent_sign": "%",
+    "ui": {
+      "think_prompt": "Pause. Predict."
+    }
+  },
+  "parameters": {
+    "coef_co2": 6,
+    "coef_h2o": 6,
+    "coef_glucose": 1,
+    "coef_o2": 6,
+    "atomic_mass_C": 12,
+    "atomic_mass_H": 1,
+    "atomic_mass_O": 16
+  },
+  "results": {
+    "atoms_left_C": 6,
+    "atoms_right_C": 6,
+    "atoms_left_H": 12,
+    "atoms_right_H": 12,
+    "atoms_left_O": 18,
+    "atoms_right_O": 18,
+    "glucose_molar_mass": 180,
+    "carbon_mass_glucose": 72,
+    "carbon_mass_percent_glucose": 40
+  }
+}

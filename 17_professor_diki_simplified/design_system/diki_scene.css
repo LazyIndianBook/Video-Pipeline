@@ -1,0 +1,62 @@
+/* diki_scene.css - Professor Diki Simplified stage styles, design system v2.0.0 (paper cut-out collage, PD-19).
+   Linked by diki_scene_base.html after tokens.css; build_scene.py inlines it. Hand-written (tokens.css is generated).
+   Nothing here moves by itself: no transition, no keyframes. Static rotation of tape is the only CSS transform; every
+   changing opacity / transform / attribute is written by diki_runtime.js from seek(t). */
+html,body{margin:0;background:var(--hue-cream)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--hue-cream);font-family:var(--font-sans);color:var(--c-ink)}
+/* layers, back to front: world (bands, grain, sparkles) < sheets (paper backdrops of result/card) < underlay (halos)
+   < lanes (content, transparent) < overlay (links, strikes, rings, tape) < ident */
+#world,#underlay,#overlay{position:absolute;left:0;top:0;width:1080px;height:1920px;pointer-events:none}
+#world{z-index:0}
+#sheets{position:absolute;inset:0;z-index:1;pointer-events:none}
+#underlay{z-index:2}
+.lane{position:absolute;box-sizing:border-box;z-index:3}
+#overlay{z-index:4}
+#ident{position:absolute;z-index:5;display:flex;align-items:center;justify-content:center;font-size:var(--t-ident);font-weight:800;color:var(--c-ink)}
+
+/* ransom-note chips: one word per chip, cream die-cut border, soft double shadow (style classes .chip-<name> in tokens.css) */
+.chip{display:inline-block;box-sizing:border-box;font-size:var(--t-chip);font-weight:800;line-height:var(--chip-line);padding:var(--chip-pad);border:var(--chip-border) solid var(--outline);border-radius:var(--chip-radius);box-shadow:var(--shadow);white-space:nowrap}
+.chip.lbl{font-size:var(--t-label);line-height:1.15;padding:2px 20px 6px;font-family:var(--font-sans)}
+.chip.readout{font-size:var(--t-readout);line-height:1.1;padding:4px 22px 8px;font-family:var(--font-sans)}
+.chiprow{display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:12px 16px;max-width:100%}
+/* zero-size anchor: a chip placed by its centre (or right/left edge) at x,y of its lane */
+.anchor{position:absolute;width:0;height:0;display:flex;align-items:center;justify-content:center;overflow:visible}
+.anchor.end{justify-content:flex-end}
+.anchor.start{justify-content:flex-start}
+
+/* the brand sticker (opening ident, end-card wordmark): one black plaque, cream outline, pink washi; serif + sans */
+.brand-sticker{position:relative;display:inline-block;box-sizing:border-box;border:var(--chip-border) solid var(--outline);box-shadow:var(--shadow);padding:6px 30px 12px;font-weight:800;line-height:1.08;white-space:nowrap;text-align:center}
+.brand-sticker.two .bs2{display:block}
+.brand-sticker .tape{top:-18px}
+/* paper sheets: cream paper, die-cut outline, soft shadow, washi tape. Never a flat white panel. */
+.sheet{position:absolute;box-sizing:border-box;background:var(--sheet-fill);border:var(--sheet-border) solid var(--outline);border-radius:var(--sheet-radius);box-shadow:var(--shadow)}
+.tape{position:absolute;width:var(--tape-w);height:var(--tape-h);top:-20px;margin-left:calc(var(--tape-w) / -2);z-index:1}
+
+/* title lane: one owner at a time (headline chips | think plate | wordmark chips), stacked in one grid cell */
+#lane-title{display:grid;place-items:center}
+#lane-title>*{grid-area:1/1;opacity:0}
+.plate{position:relative;font-size:var(--t-think);font-weight:800;line-height:1.1;padding:14px 44px 18px;color:var(--c-ink)}
+/* result lane = a taped paper sheet: running result; on the end card the "Free lesson" chip */
+#result-main,#endline-wrap{position:absolute;inset:0}
+#endline-wrap{display:flex;align-items:center;justify-content:center}
+#endline{font-size:var(--t-endline)}
+/* caption lane (layout 'captioned'): the current chunk as one paper chip */
+.caption{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0}
+.caption>span{background:var(--sheet-fill);border:var(--chip-border) solid var(--outline);border-radius:var(--chip-radius);box-shadow:var(--shadow);padding:4px 22px 8px;font-size:var(--t-caption);font-weight:700;line-height:1.2;text-align:center;max-width:820px;color:var(--c-ink)}
+/* card lane (layout 'carded', PD-18): ONE structured element at a time on a taped paper sheet; rows appear whole */
+#lane-card{padding:16px 30px 12px;display:grid}
+.card{grid-area:1/1;display:flex;flex-direction:column;justify-content:center;min-height:0;opacity:0;font-size:var(--t-card);font-weight:700;line-height:1.15;color:var(--c-ink)}
+.card-row{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;align-items:center;height:58px;text-align:center;opacity:0}
+.card-row.card-head{color:var(--c-muted);font-weight:800;border-bottom:3px solid rgba(58,51,44,.28)}
+.card-table{justify-content:flex-start;background-image:repeating-linear-gradient(to bottom,transparent 0 56px,rgba(58,51,44,.16) 56px 59px);background-position:0 3px;background-size:100% calc(100% - 3px);background-repeat:no-repeat}
+.card-table .card-head{border-bottom-color:transparent}
+.card-slot{justify-self:center;display:inline-block;min-width:110px;height:50px;line-height:50px;border-bottom:4px dashed rgba(58,51,44,.32)}
+.card-slot>.card-cell{display:inline-block;width:100%}
+.card-row.card-def{display:block;height:auto;text-align:left;padding:4px 0}
+.card-term{display:inline-block;font-weight:800;margin-bottom:10px}
+.card-text{font-weight:700}
+.card-row.card-point{grid-auto-flow:row;grid-template-columns:76px 1fr;text-align:left}
+.card-num{display:inline-grid;place-items:center;width:54px;height:54px;border-radius:50%;background:var(--hue-black);color:var(--hue-paper);font-size:40px;font-weight:800;border:4px solid var(--outline);box-shadow:var(--shadow)}
+/* debug: ?safe=1 outlines the lanes (never in production frames) */
+.safe .lane{outline:2px dashed var(--c-mismatch)}
+#scrub{position:fixed;right:8px;top:8px;width:360px;z-index:9}

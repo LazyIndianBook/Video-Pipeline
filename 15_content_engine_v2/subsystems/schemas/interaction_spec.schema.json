@@ -1,0 +1,1677 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://examleaf.local/schemas/v2/subsystems/interaction_spec.json",
+  "title": "ExamLeaf Interaction Spec v1",
+  "description": "Every learner interaction in one artefact: type, protected response window, answer reveal, conditional feedback, answer source (ASM or WRK step), accessibility alternatives, confidence checkpoints and the spacing plan. Bound to one Script Spec. The video never adapts to or captures a response; the platform does both from the exported sidecar. See subsystems/INTERACTION_and_ASSESSMENT_REGISTRY.md.",
+  "$comment": "Commercial-term lint (CE-L1/RD-49): CI rejects, case-insensitively, any match of (price|pricing|paid|is_free|free_|premium|entitle|subscri|sku|paywall|unlock|monetis|monetiz|revenue|discount|coupon|tier|destination_resource|cta_destination|funnel|purchase_|checkout_|product_id|offer_|trial_|utm_|campaign_|affiliate_|activation_code|storefront) applied to every object key at every depth (including REN fields keys), every required entry, pattern key and enum or const value (updated 15 Oct 2026, safety-13). No property in this schema matches. Registry ids are patterns; Q-SCHEMA checks that each id resolves to an entry pinned in the EPP at epp_hash and equals the value resolved there, so a new format, level, family, locale, persona or overlay needs no schema change. The slot_id, itype, response_mode and safety_class enums stay closed; adding an entry is a minor version through GR. 15 Oct 2026: sha256 required (GA-Delta closure input); binary_choice, grown_up_cue_sentence_id, seated and point alternatives added; pause matching, call_response floor and AC0 spacing enforced. Exempt: the editorial fields series_position, flagship and demo_kind. 15 Oct 2026 (stitch): the level→safety_class copies were removed (owned by level_profile.schema.json); interaction_spec_content_sha256 added and script_spec_sha256 renamed script_content_sha256 (resolver-07); tagged_seconds values are multiples of 0.5 s (schemas-13).",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "beat_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]*$"
+    },
+    "sentence_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]*$"
+    },
+    "asm_id": {
+      "type": "string",
+      "pattern": "^ASM-[A-Za-z0-9_.-]+$"
+    },
+    "mis_id": {
+      "type": "string",
+      "pattern": "^MIS-[A-Za-z0-9_.-]+$"
+    },
+    "format_id": {
+      "type": "string",
+      "pattern": "^format/[a-z0-9_]+$"
+    },
+    "level_id": {
+      "type": "string",
+      "pattern": "^level/[a-z0-9_]+$"
+    },
+    "family_id": {
+      "type": "string",
+      "pattern": "^family/[a-z0-9_]+$"
+    },
+    "locale_id": {
+      "type": "string",
+      "pattern": "^locale/[a-z0-9][a-z0-9_-]*$"
+    },
+    "slot_id": {
+      "type": "string",
+      "enum": [
+        "hook.realworld",
+        "hook.question_reveal",
+        "hook.surprise",
+        "explain.ladder_step",
+        "explain.definition",
+        "explain.analogy",
+        "explain.derivation_step",
+        "worked.step",
+        "worked.faded_twin",
+        "check.interpolated",
+        "check.predict",
+        "check.retrieval",
+        "misconception.elicit",
+        "misconception.confront",
+        "misconception.retest",
+        "recap.retrieval",
+        "recap.statement",
+        "marking.scheme",
+        "exam.pattern",
+        "exam.time_plan",
+        "compare.dimension",
+        "activity.setup",
+        "activity.do",
+        "activity.observe",
+        "activity.safety_cue",
+        "story.beat",
+        "story.song_chant",
+        "card.front",
+        "card.back",
+        "qa.doubt_statement",
+        "qa.answer",
+        "source.show",
+        "source.read",
+        "source.interpret",
+        "perspective.position",
+        "map.node",
+        "map.link",
+        "viva.prompt",
+        "viva.model_answer",
+        "teach.move",
+        "bridge.return_link",
+        "chapter.title",
+        "close.next_step"
+      ]
+    },
+    "itype": {
+      "type": "string",
+      "enum": [
+        "predict",
+        "retrieve_definition",
+        "record_formula",
+        "reconstruct",
+        "draw",
+        "complete_missing_step",
+        "solve_independently",
+        "explain_error",
+        "verify",
+        "classify",
+        "plan_time",
+        "read_along",
+        "call_response",
+        "point_and_say",
+        "sing_along",
+        "move_along",
+        "do_along",
+        "discussion_prompt",
+        "viva_prompt",
+        "critique"
+      ]
+    },
+    "response_mode": {
+      "type": "string",
+      "enum": [
+        "think",
+        "say_aloud",
+        "point",
+        "move",
+        "draw",
+        "write",
+        "sing",
+        "solve",
+        "critique"
+      ]
+    },
+    "tagged_seconds": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 30,
+          "multipleOf": 0.5
+        },
+        "tag": {
+          "type": "string",
+          "enum": [
+            "Recommendation",
+            "Hypothesis",
+            "Inherited",
+            "Evidence"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pilot_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "value",
+        "tag"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "tag": {
+                "const": "Hypothesis"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "owner",
+              "pilot_ref"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "tag": {
+                "const": "Hypothesis"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "interaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "interaction_id": {
+          "type": "string",
+          "pattern": "^II-[A-Za-z0-9_.-]+$"
+        },
+        "beat_id": {
+          "$ref": "#/definitions/beat_id"
+        },
+        "slot": {
+          "$ref": "#/definitions/slot_id"
+        },
+        "itype": {
+          "$ref": "#/definitions/itype"
+        },
+        "prompt_sentence_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/sentence_id"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "response_modes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/response_mode"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "asm_id": {
+          "$ref": "#/definitions/asm_id"
+        },
+        "wrk_step_ref": {
+          "type": "string",
+          "pattern": "^WRK-[A-Za-z0-9_.-]+#[0-9]+$",
+          "description": "A worked-item step whose result is the answer (predict before a step reveal)."
+        },
+        "mis_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/mis_id"
+          },
+          "uniqueItems": true
+        },
+        "evaluative": {
+          "type": "boolean"
+        },
+        "item_presentation": {
+          "type": "string",
+          "enum": [
+            "mcq",
+            "numeric",
+            "short_answer",
+            "long_answer",
+            "diagram_label",
+            "ordering",
+            "match",
+            "fill_blank",
+            "oral",
+            "practical",
+            "none"
+          ]
+        },
+        "asm_item_kind": {
+          "type": "string",
+          "enum": [
+            "mcq",
+            "short",
+            "long",
+            "numeric",
+            "oral",
+            "practical",
+            "match",
+            "fill_blank",
+            "diagram_label",
+            "ordering"
+          ],
+          "description": "The lesson_graph ASM.item_kind the presentation is stored as. diagram_label and ordering were added to the ASM item_kind enum on 15 Oct 2026 and are stored as themselves."
+        },
+        "window": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "think",
+                "pause-video",
+                "call_response"
+              ]
+            },
+            "seconds": {
+              "$ref": "#/definitions/tagged_seconds"
+            },
+            "protected": {
+              "const": true
+            },
+            "prompt_stays_visible": {
+              "type": "boolean"
+            },
+            "narration_stops": {
+              "const": true
+            }
+          },
+          "required": [
+            "kind",
+            "seconds",
+            "protected",
+            "narration_stops"
+          ]
+        },
+        "reveal": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "trigger": {
+              "type": "string",
+              "enum": [
+                "window_end",
+                "learner_continue",
+                "no_single_answer"
+              ]
+            },
+            "reveal_beat_id": {
+              "$ref": "#/definitions/beat_id"
+            },
+            "answer_hidden_until_reveal": {
+              "const": true
+            },
+            "hidden_channels": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "narration",
+                  "display",
+                  "captions",
+                  "overlays",
+                  "audio_description",
+                  "thumbnail",
+                  "preview",
+                  "transcript_order"
+                ]
+              },
+              "uniqueItems": true,
+              "allOf": [
+                {
+                  "contains": {
+                    "const": "narration"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "display"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "captions"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "overlays"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "audio_description"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "thumbnail"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "preview"
+                  }
+                }
+              ]
+            }
+          },
+          "required": [
+            "trigger",
+            "answer_hidden_until_reveal",
+            "hidden_channels"
+          ]
+        },
+        "feedback": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "structure": {
+              "const": "correct_change_next"
+            },
+            "conditional": {
+              "const": true
+            },
+            "sentence_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/sentence_id"
+              },
+              "uniqueItems": true
+            },
+            "branches": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "error_kind": {
+                    "type": "string",
+                    "enum": [
+                      "arithmetic",
+                      "representation",
+                      "strategy",
+                      "terminology",
+                      "prerequisite",
+                      "misconception"
+                    ]
+                  },
+                  "mis_id": {
+                    "$ref": "#/definitions/mis_id"
+                  },
+                  "sentence_id": {
+                    "$ref": "#/definitions/sentence_id"
+                  }
+                },
+                "required": [
+                  "error_kind",
+                  "sentence_id"
+                ],
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "error_kind": {
+                          "const": "misconception"
+                        }
+                      }
+                    },
+                    "then": {
+                      "required": [
+                        "mis_id"
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "required": [
+            "structure",
+            "conditional",
+            "sentence_ids"
+          ]
+        },
+        "accessibility_alternatives": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "typing",
+              "oral",
+              "partial_template",
+              "choose_from_options",
+              "describe_aloud",
+              "think_only",
+              "larger_view",
+              "audio_described",
+              "captioned_prompt",
+              "seated",
+              "point"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "option_labels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/option_label"
+          },
+          "minItems": 2,
+          "uniqueItems": true
+        },
+        "binary_choice": {
+          "type": "boolean",
+          "default": false,
+          "description": "True only for a two-option prediction; the only case allowing a think window below 5 s (RD-11)."
+        },
+        "grown_up_cue_sentence_id": {
+          "$ref": "#/definitions/sentence_id",
+          "description": "AC0: the sentence asking a grown-up to help; required at AC0 for pause-video (registry §4, §13)."
+        },
+        "timer_display": {
+          "type": "string",
+          "enum": [
+            "none",
+            "neutral_progress"
+          ],
+          "default": "none"
+        },
+        "marks_display": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "shown": {
+              "type": "boolean"
+            },
+            "marks": {
+              "type": "number",
+              "minimum": 0,
+              "multipleOf": 0.5
+            },
+            "marks_source": {
+              "type": "string",
+              "enum": [
+                "source_paper",
+                "official_key"
+              ]
+            },
+            "source_id": {
+              "type": "string",
+              "pattern": "^SRC-[A-Za-z0-9_.-]+$"
+            }
+          },
+          "required": [
+            "shown"
+          ],
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "shown": {
+                    "const": true
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "marks",
+                  "marks_source",
+                  "source_id"
+                ]
+              }
+            }
+          ]
+        },
+        "item_label": {
+          "type": "string",
+          "enum": [
+            "past_paper",
+            "examleaf_practice_question",
+            "diagnostic",
+            "none"
+          ]
+        },
+        "exam_source_display": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "board_or_exam": {
+              "type": "string",
+              "minLength": 1
+            },
+            "year": {
+              "type": "integer",
+              "minimum": 1900,
+              "maximum": 2100
+            },
+            "source_id": {
+              "type": "string",
+              "pattern": "^SRC-[A-Za-z0-9_.-]+$"
+            }
+          },
+          "required": [
+            "board_or_exam",
+            "year",
+            "source_id"
+          ]
+        },
+        "pre_post": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "role": {
+              "type": "string",
+              "enum": [
+                "pre",
+                "post"
+              ]
+            },
+            "pair_id": {
+              "type": "string",
+              "pattern": "^PP-[A-Za-z0-9_.-]+$"
+            }
+          },
+          "required": [
+            "role",
+            "pair_id"
+          ]
+        }
+      },
+      "required": [
+        "interaction_id",
+        "beat_id",
+        "slot",
+        "itype",
+        "prompt_sentence_ids",
+        "response_modes",
+        "evaluative",
+        "item_presentation",
+        "window",
+        "reveal",
+        "feedback",
+        "accessibility_alternatives",
+        "timer_display",
+        "item_label"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "itype": {
+                "enum": [
+                  "predict",
+                  "retrieve_definition",
+                  "record_formula",
+                  "reconstruct",
+                  "draw",
+                  "complete_missing_step",
+                  "solve_independently",
+                  "explain_error",
+                  "verify",
+                  "classify",
+                  "plan_time",
+                  "viva_prompt",
+                  "call_response",
+                  "point_and_say"
+                ]
+              }
+            }
+          },
+          "then": {
+            "anyOf": [
+              {
+                "required": [
+                  "asm_id"
+                ]
+              },
+              {
+                "required": [
+                  "wrk_step_ref"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "asm_id"
+            ]
+          },
+          "then": {
+            "required": [
+              "asm_item_kind"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "window": {
+                "properties": {
+                  "kind": {
+                    "const": "think"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "window": {
+                "properties": {
+                  "seconds": {
+                    "properties": {
+                      "value": {
+                        "type": "number",
+                        "minimum": 4
+                      }
+                    }
+                  }
+                }
+              },
+              "reveal": {
+                "properties": {
+                  "trigger": {
+                    "const": "window_end"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "window": {
+                "properties": {
+                  "kind": {
+                    "const": "pause-video"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "reveal": {
+                "properties": {
+                  "trigger": {
+                    "enum": [
+                      "learner_continue",
+                      "no_single_answer"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "window": {
+                "properties": {
+                  "kind": {
+                    "const": "think"
+                  },
+                  "seconds": {
+                    "properties": {
+                      "value": {
+                        "type": "number",
+                        "exclusiveMaximum": 5
+                      }
+                    },
+                    "required": [
+                      "value"
+                    ]
+                  }
+                },
+                "required": [
+                  "kind",
+                  "seconds"
+                ]
+              }
+            },
+            "required": [
+              "window"
+            ]
+          },
+          "then": {
+            "properties": {
+              "binary_choice": {
+                "const": true
+              }
+            },
+            "required": [
+              "binary_choice"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "window": {
+                "properties": {
+                  "kind": {
+                    "const": "call_response"
+                  }
+                },
+                "required": [
+                  "kind"
+                ]
+              }
+            },
+            "required": [
+              "window"
+            ]
+          },
+          "then": {
+            "properties": {
+              "window": {
+                "properties": {
+                  "seconds": {
+                    "properties": {
+                      "value": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "minimum": 6
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "itype": {
+                "enum": [
+                  "solve_independently",
+                  "record_formula",
+                  "reconstruct",
+                  "draw",
+                  "plan_time",
+                  "discussion_prompt",
+                  "critique",
+                  "do_along"
+                ]
+              }
+            },
+            "required": [
+              "itype"
+            ]
+          },
+          "then": {
+            "properties": {
+              "window": {
+                "properties": {
+                  "kind": {
+                    "const": "pause-video"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "response_modes": {
+                "contains": {
+                  "enum": [
+                    "write",
+                    "draw"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "response_modes"
+            ]
+          },
+          "then": {
+            "properties": {
+              "window": {
+                "properties": {
+                  "kind": {
+                    "const": "pause-video"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "reveal": {
+                "properties": {
+                  "trigger": {
+                    "enum": [
+                      "window_end",
+                      "learner_continue"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "reveal": {
+                "required": [
+                  "reveal_beat_id"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "reveal": {
+                "properties": {
+                  "trigger": {
+                    "const": "no_single_answer"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "itype": {
+                "enum": [
+                  "discussion_prompt",
+                  "critique",
+                  "sing_along",
+                  "move_along",
+                  "read_along",
+                  "do_along"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "reveal": {
+                "properties": {
+                  "trigger": {
+                    "const": "no_single_answer"
+                  }
+                },
+                "required": [
+                  "trigger"
+                ]
+              },
+              "itype": {
+                "enum": [
+                  "discussion_prompt",
+                  "critique"
+                ]
+              }
+            },
+            "required": [
+              "reveal",
+              "itype"
+            ]
+          },
+          "then": {
+            "properties": {
+              "feedback": {
+                "properties": {
+                  "sentence_ids": {
+                    "minItems": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "item_label": {
+                "const": "past_paper"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "exam_source_display"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "item_label": {
+                "const": "examleaf_practice_question"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "marks_display": {
+                "properties": {
+                  "shown": {
+                    "const": false
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "marks_display": {
+                "properties": {
+                  "shown": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "shown"
+                ]
+              }
+            },
+            "required": [
+              "marks_display"
+            ]
+          },
+          "then": {
+            "required": [
+              "exam_source_display"
+            ],
+            "properties": {
+              "item_label": {
+                "const": "past_paper"
+              }
+            }
+          }
+        },
+        {
+          "$comment": "15 Oct 2026 (level-3+, CE-120): every ASM option carries a keyboard key and a screen-reader label; the exporter copies them into the interaction sidecar.",
+          "if": {
+            "properties": {
+              "item_presentation": {
+                "enum": [
+                  "mcq",
+                  "match",
+                  "ordering",
+                  "diagram_label"
+                ]
+              }
+            },
+            "required": [
+              "item_presentation"
+            ]
+          },
+          "then": {
+            "required": [
+              "option_labels"
+            ]
+          }
+        }
+      ]
+    },
+    "option_label": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Keyboard key and screen-reader label for one ASM option (level-3+, CE-120, 15 Oct 2026). The label gives the option text and position only and never marks the key (answer protection; Q-A11Y.asm_labels).",
+      "properties": {
+        "option_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.-]+$",
+          "description": "The ASM option_id (mcq), left item (match, diagram_label) or sequence element (ordering)."
+        },
+        "screen_reader_label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "keyboard_key": {
+          "type": "string",
+          "pattern": "^([1-9]|[A-Z])$"
+        }
+      },
+      "required": [
+        "option_id",
+        "screen_reader_label",
+        "keyboard_key"
+      ]
+    }
+  },
+  "properties": {
+    "interaction_spec_id": {
+      "type": "string",
+      "pattern": "^IS-[A-Za-z0-9_.-]+$"
+    },
+    "version": {
+      "$ref": "#/definitions/semver"
+    },
+    "hash_canon": {
+      "const": "JCS-RFC8785+NFC"
+    },
+    "sha256": {
+      "$ref": "#/definitions/sha256"
+    },
+    "interaction_spec_content_sha256": {
+      "$ref": "#/definitions/sha256",
+      "description": "Content hash bound by GA-Δ (15 Oct 2026, resolver-07): NFC → JCS → SHA-256 with the keys sha256, interaction_spec_content_sha256, interaction_spec_id, version, epp_hash, format_plan_sha256, script_content_sha256, qa_results and provenance removed. A pin-only registry release leaves it unchanged."
+    },
+    "script_spec_id": {
+      "type": "string",
+      "pattern": "^SS-[A-Za-z0-9_.-]+$"
+    },
+    "script_content_sha256": {
+      "$ref": "#/definitions/sha256",
+      "description": "The bound Script Spec's script_content_sha256 (content hash, a required script_spec property; replaces script_spec_sha256, 15 Oct 2026, resolver-07)."
+    },
+    "epp_hash": {
+      "$ref": "#/definitions/sha256"
+    },
+    "format_plan_sha256": {
+      "$ref": "#/definitions/sha256"
+    },
+    "format": {
+      "$ref": "#/definitions/format_id"
+    },
+    "level": {
+      "$ref": "#/definitions/level_id"
+    },
+    "safety_class": {
+      "type": "string",
+      "enum": [
+        "safety/ac0",
+        "safety/ac1",
+        "safety/ac2"
+      ]
+    },
+    "family": {
+      "$ref": "#/definitions/family_id"
+    },
+    "locale": {
+      "$ref": "#/definitions/locale_id"
+    },
+    "render_target": {
+      "type": "string",
+      "enum": [
+        "video",
+        "audio_only"
+      ]
+    },
+    "interactions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/interaction"
+      }
+    },
+    "confidence_checkpoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "checkpoint_id": {
+            "type": "string",
+            "pattern": "^CC-[A-Za-z0-9_.-]+$"
+          },
+          "beat_id": {
+            "$ref": "#/definitions/beat_id"
+          },
+          "kinds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "followed",
+                "completed_with_support",
+                "solved_without_support"
+              ]
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "prompt_sentence_ids": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/sentence_id"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "route_sentence_ids": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/sentence_id"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "self_report_captured_by": {
+            "const": "platform"
+          }
+        },
+        "required": [
+          "checkpoint_id",
+          "beat_id",
+          "kinds",
+          "prompt_sentence_ids",
+          "route_sentence_ids",
+          "self_report_captured_by"
+        ]
+      }
+    },
+    "spacing": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schedule_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tag": {
+          "type": "string",
+          "enum": [
+            "Recommendation",
+            "Hypothesis",
+            "Inherited",
+            "Evidence"
+          ]
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pilot_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "platform_reminders": {
+          "type": "boolean"
+        },
+        "occasions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "occasion": {
+                "type": "string",
+                "enum": [
+                  "end_of_lesson",
+                  "next_day",
+                  "about_3_days",
+                  "about_1_week",
+                  "exam_timed"
+                ]
+              },
+              "asm_ids": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/asm_id"
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              },
+              "cue_change": {
+                "type": "string",
+                "enum": [
+                  "none_same_session",
+                  "new_wording",
+                  "new_representation",
+                  "new_values_and_wording",
+                  "mixed_method_selection"
+                ]
+              },
+              "delivered_by": {
+                "type": "string",
+                "enum": [
+                  "video",
+                  "platform"
+                ]
+              }
+            },
+            "required": [
+              "occasion",
+              "asm_ids",
+              "cue_change",
+              "delivered_by"
+            ],
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "occasion": {
+                      "not": {
+                        "const": "end_of_lesson"
+                      }
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "delivered_by": {
+                      "const": "platform"
+                    },
+                    "cue_change": {
+                      "not": {
+                        "const": "none_same_session"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "schedule_ref",
+        "tag",
+        "platform_reminders",
+        "occasions"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "tag": {
+                "const": "Hypothesis"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "owner",
+              "pilot_ref"
+            ]
+          }
+        }
+      ]
+    },
+    "platform_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "adaptive_feedback_in_video": {
+          "const": false
+        },
+        "response_capture_in_video": {
+          "const": false
+        },
+        "interaction_sidecar_exported": {
+          "const": true
+        }
+      },
+      "required": [
+        "adaptive_feedback_in_video",
+        "response_capture_in_video",
+        "interaction_sidecar_exported"
+      ]
+    },
+    "safety_constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "no_competition_or_comparison": {
+          "const": true
+        },
+        "no_streaks_or_variable_rewards": {
+          "const": true
+        },
+        "no_threatening_countdowns": {
+          "const": true
+        },
+        "no_data_solicitation": {
+          "const": true
+        },
+        "no_links_in_prompts": {
+          "const": true
+        }
+      },
+      "required": [
+        "no_competition_or_comparison",
+        "no_streaks_or_variable_rewards",
+        "no_threatening_countdowns",
+        "no_data_solicitation",
+        "no_links_in_prompts"
+      ]
+    },
+    "qa_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "check_id": {
+            "type": "string",
+            "pattern": "^IQ-[0-9]{2}$"
+          },
+          "result": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "fail",
+              "report_only_flag",
+              "not_applicable"
+            ]
+          },
+          "detail": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "check_id",
+          "result"
+        ]
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "author_kind": {
+          "type": "string",
+          "enum": [
+            "human",
+            "model",
+            "import"
+          ]
+        },
+        "author_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "model_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effort": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        "kit_version": {
+          "$ref": "#/definitions/semver"
+        },
+        "import_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "author_kind",
+        "author_id",
+        "created_at"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "author_kind": {
+                "const": "model"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "model_id",
+              "effort",
+              "kit_version"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "author_kind": {
+                "const": "import"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "import_ref"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "required": [
+    "interaction_spec_id",
+    "version",
+    "hash_canon",
+    "sha256",
+    "interaction_spec_content_sha256",
+    "script_spec_id",
+    "script_content_sha256",
+    "epp_hash",
+    "format_plan_sha256",
+    "format",
+    "level",
+    "safety_class",
+    "family",
+    "locale",
+    "render_target",
+    "interactions",
+    "spacing",
+    "platform_boundary",
+    "safety_constraints",
+    "provenance"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "format": {
+            "not": {
+              "const": "format/series"
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "interactions": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "safety_class": {
+            "const": "safety/ac0"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "spacing": {
+            "properties": {
+              "platform_reminders": {
+                "const": false
+              },
+              "occasions": {
+                "maxItems": 1,
+                "items": {
+                  "properties": {
+                    "occasion": {
+                      "const": "end_of_lesson"
+                    },
+                    "delivered_by": {
+                      "const": "video"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "interactions": {
+            "items": {
+              "properties": {
+                "timer_display": {
+                  "const": "none"
+                },
+                "itype": {
+                  "not": {
+                    "enum": [
+                      "plan_time",
+                      "discussion_prompt",
+                      "viva_prompt",
+                      "critique",
+                      "record_formula",
+                      "explain_error"
+                    ]
+                  }
+                },
+                "marks_display": {
+                  "properties": {
+                    "shown": {
+                      "const": false
+                    }
+                  }
+                }
+              },
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "response_modes": {
+                        "contains": {
+                          "const": "move"
+                        }
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "accessibility_alternatives": {
+                        "contains": {
+                          "const": "seated"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "window": {
+                        "properties": {
+                          "kind": {
+                            "const": "pause-video"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "then": {
+                    "required": [
+                      "grown_up_cue_sentence_id"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "render_target": {
+            "const": "audio_only"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "interactions": {
+            "items": {
+              "properties": {
+                "item_presentation": {
+                  "not": {
+                    "enum": [
+                      "diagram_label",
+                      "ordering"
+                    ]
+                  }
+                },
+                "response_modes": {
+                  "not": {
+                    "contains": {
+                      "const": "point"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

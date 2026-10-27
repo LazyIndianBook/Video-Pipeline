@@ -1,0 +1,210 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "bio-photosyn-ci-01-s05",
+ "fps": 30,
+ "duration": 14.767,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "1f60e4911a1ba326a0a12bded3577026ebba934c995640207d891a9ca41149fe",
+ "script_sha256": "9b85d46aa953f120980194a38416d0bd72c8636a87788d5784b8b9f8e4e9ca08",
+ "words": [
+  {
+   "w": "So",
+   "t0": 0.167,
+   "t1": 0.247
+  },
+  {
+   "w": "a",
+   "t0": 0.327,
+   "t1": 0.407
+  },
+  {
+   "w": "tree's",
+   "t0": 0.487,
+   "t1": 0.887
+  },
+  {
+   "w": "carbon",
+   "t0": 1.127,
+   "t1": 1.367
+  },
+  {
+   "w": "came",
+   "t0": 1.447,
+   "t1": 1.687
+  },
+  {
+   "w": "from",
+   "t0": 1.767,
+   "t1": 1.847
+  },
+  {
+   "w": "the",
+   "t0": 1.927,
+   "t1": 2.007
+  },
+  {
+   "w": "air",
+   "t0": 2.087,
+   "t1": 2.887
+  },
+  {
+   "w": "Carbon",
+   "t0": 3.047,
+   "t1": 3.207
+  },
+  {
+   "w": "dioxide",
+   "t0": 3.287,
+   "t1": 3.927
+  },
+  {
+   "w": "and",
+   "t0": 4.007,
+   "t1": 4.087,
+   "occurrence": 1
+  },
+  {
+   "w": "water",
+   "t0": 4.367,
+   "t1": 4.687
+  },
+  {
+   "w": "with",
+   "t0": 4.727,
+   "t1": 4.887
+  },
+  {
+   "w": "sunlight",
+   "t0": 4.967,
+   "t1": 5.367
+  },
+  {
+   "w": "and",
+   "t0": 5.447,
+   "t1": 5.527,
+   "occurrence": 2
+  },
+  {
+   "w": "chlorophyll",
+   "t0": 5.607,
+   "t1": 6.447
+  },
+  {
+   "w": "make",
+   "t0": 6.487,
+   "t1": 6.647
+  },
+  {
+   "w": "glucose",
+   "t0": 6.727,
+   "t1": 7.287
+  },
+  {
+   "w": "and",
+   "t0": 7.367,
+   "t1": 7.447,
+   "occurrence": 3
+  },
+  {
+   "w": "oxygen",
+   "t0": 7.527,
+   "t1": 8.327
+  },
+  {
+   "w": "AI-generated",
+   "t0": 8.927,
+   "t1": 9.967
+  },
+  {
+   "w": "narration",
+   "t0": 10.007,
+   "t1": 11.087
+  },
+  {
+   "w": "script",
+   "t0": 11.167,
+   "t1": 11.567
+  },
+  {
+   "w": "by",
+   "t0": 11.647,
+   "t1": 11.807
+  },
+  {
+   "w": "ExamLeaf",
+   "t0": 12.007,
+   "t1": 12.847
+  }
+ ],
+ "beats": [
+  0.007,
+  8.847
+ ],
+ "cues": [
+  {
+   "id": "c26",
+   "at": 0.437,
+   "kind": "reveal",
+   "element_id": "tree2",
+   "word_index": 2
+  },
+  {
+   "id": "c27",
+   "at": 3.237,
+   "kind": "reveal",
+   "element_id": "eq_full",
+   "word_index": 9
+  },
+  {
+   "id": "c28",
+   "at": 6.677,
+   "kind": "emphasis",
+   "element_id": "eq_full",
+   "word_index": 17
+  },
+  {
+   "id": "c29",
+   "at": 8.877,
+   "kind": "reveal",
+   "element_id": "disclosure",
+   "word_index": 20
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "bio-photosyn-ci-01",
+  "scene": "s05",
+  "beat_ids": [
+   "b06",
+   "b07"
+  ],
+  "beats_text": [
+   {
+    "id": "b06",
+    "slot": "recap.statement",
+    "text": "So a tree's carbon came from the air. Carbon dioxide and water, with sunlight and chlorophyll, make glucose and oxygen.",
+    "headline": "carbon came from the air",
+    "start": 0.167,
+    "end": 8.327,
+    "word_range": [
+     0,
+     20
+    ]
+   },
+   {
+    "id": "b07",
+    "slot": "outro.disclosure",
+    "text": "AI-generated narration; script by ExamLeaf.",
+    "headline": "",
+    "start": 8.927,
+    "end": 12.847,
+    "word_range": [
+     20,
+     25
+    ]
+   }
+  ],
+  "think_windows": []
+ }
+}

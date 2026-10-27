@@ -1,0 +1,142 @@
+{
+  "status": "offline-request-compilation-not-live-integration",
+  "lesson_id": "water_coefficient_demo",
+  "requests": [
+    {
+      "segment_id": "question",
+      "method": "POST",
+      "url": "https://api.elevenlabs.io/v1/text-to-dialogue",
+      "headers_template": {
+        "Content-Type": "application/json",
+        "xi-api-key": "ENV:ELEVENLABS_API_KEY"
+      },
+      "body": {
+        "model_id": "eleven_v4",
+        "inputs": [
+          {
+            "text": "[curious] Two water molecules. How many hydrogen atoms altogether? Count each complete molecule before you answer.",
+            "voice_id": "REPLACE_WITH_APPROVED_VOICE_ID"
+          }
+        ],
+        "language_code": "en"
+      },
+      "canonical_spoken": "Two water molecules. How many hydrogen atoms altogether? Count each complete molecule before you answer.",
+      "caption_text": "Two water molecules. How many hydrogen atoms altogether? Count each complete molecule before you answer.",
+      "audio_cache_key": "691af72f2699c6b74b38a380421e81fb405e56be2a06fa328ec515361dd24d99",
+      "editorial_style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Invite a genuine prediction, curious without theatrical suspense. Aim for approximately 140 spoken words per minute; do not add words. Emphasize: each complete molecule",
+      "warnings": [
+        "Compiled offline; live behavior and pronunciation require separate approval.",
+        "WPM and detailed acting cues are editorial targets, not exact API controls."
+      ]
+    },
+    {
+      "segment_id": "answer",
+      "method": "POST",
+      "url": "https://api.elevenlabs.io/v1/text-to-dialogue",
+      "headers_template": {
+        "Content-Type": "application/json",
+        "xi-api-key": "ENV:ELEVENLABS_API_KEY"
+      },
+      "body": {
+        "model_id": "eleven_v4",
+        "inputs": [
+          {
+            "text": "[calm] Four hydrogen atoms. Each water molecule contains two, and we have two complete copies. That is what the coefficient changes: how many molecules, not what a molecule is.",
+            "voice_id": "REPLACE_WITH_APPROVED_VOICE_ID"
+          }
+        ],
+        "language_code": "en"
+      },
+      "canonical_spoken": "Four hydrogen atoms. Each water molecule contains two, and we have two complete copies. That is what the coefficient changes: how many molecules, not what a molecule is.",
+      "caption_text": "Four hydrogen atoms. Each water molecule contains two, and we have two complete copies. That is what the coefficient changes: how many molecules, not what a molecule is.",
+      "audio_cache_key": "a0e169aeafc973fc11ec8683572ae2ca77354c3b4cb3cbfc850f1191968e0495",
+      "editorial_style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Measure phrases carefully; distinguish scientific terms and conditions. Aim for approximately 130 spoken words per minute; do not add words. Emphasize: Four; not",
+      "warnings": [
+        "Compiled offline; live behavior and pronunciation require separate approval.",
+        "WPM and detailed acting cues are editorial targets, not exact API controls."
+      ]
+    },
+    {
+      "segment_id": "repair",
+      "method": "POST",
+      "url": "https://api.elevenlabs.io/v1/text-to-dialogue",
+      "headers_template": {
+        "Content-Type": "application/json",
+        "xi-api-key": "ENV:ELEVENLABS_API_KEY"
+      },
+      "body": {
+        "model_id": "eleven_v4",
+        "inputs": [
+          {
+            "text": "Changing H two O into hydrogen peroxide would be a very efficient way to answer a different question. Keep the given formulas fixed. Use coefficients to change the counts.",
+            "voice_id": "REPLACE_WITH_APPROVED_VOICE_ID"
+          }
+        ],
+        "language_code": "en"
+      },
+      "canonical_spoken": "Changing H two O into hydrogen peroxide would be a very efficient way to answer a different question. Keep the given formulas fixed. Use coefficients to change the counts.",
+      "caption_text": "Changing H two O into hydrogen peroxide would be a very efficient way to answer a different question. Keep the given formulas fixed. Use coefficients to change the counts.",
+      "audio_cache_key": "0348217b33a8c7c9ae7460b0ec946137acc66facd43d813bb85b9b9c467ce6ca",
+      "editorial_style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. A small amused smile in the delivery, without added laughter. Aim for approximately 142 spoken words per minute; do not add words.  Dry observation, not a laugh. Return to focused explanation after different question.",
+      "warnings": [
+        "Compiled offline; live behavior and pronunciation require separate approval.",
+        "WPM and detailed acting cues are editorial targets, not exact API controls."
+      ]
+    },
+    {
+      "segment_id": "retry",
+      "method": "POST",
+      "url": "https://api.elevenlabs.io/v1/text-to-dialogue",
+      "headers_template": {
+        "Content-Type": "application/json",
+        "xi-api-key": "ENV:ELEVENLABS_API_KEY"
+      },
+      "body": {
+        "model_id": "eleven_v4",
+        "inputs": [
+          {
+            "text": "[calm] Your turn again: three water molecules. How many hydrogen atoms, and how many oxygen atoms? Pause here and write both counts.",
+            "voice_id": "REPLACE_WITH_APPROVED_VOICE_ID"
+          }
+        ],
+        "language_code": "en"
+      },
+      "canonical_spoken": "Your turn again: three water molecules. How many hydrogen atoms, and how many oxygen atoms? Pause here and write both counts.",
+      "caption_text": "Your turn again: three water molecules. How many hydrogen atoms, and how many oxygen atoms? Pause here and write both counts.",
+      "audio_cache_key": "edfe5cd8d9ba0a145296506920724266872061cdbbec84a98bc1cb49b8f906f9",
+      "editorial_style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Warm and matter-of-fact; make correction specific and repairable. Aim for approximately 140 spoken words per minute; do not add words.",
+      "warnings": [
+        "Compiled offline; live behavior and pronunciation require separate approval.",
+        "WPM and detailed acting cues are editorial targets, not exact API controls."
+      ]
+    },
+    {
+      "segment_id": "check",
+      "method": "POST",
+      "url": "https://api.elevenlabs.io/v1/text-to-dialogue",
+      "headers_template": {
+        "Content-Type": "application/json",
+        "xi-api-key": "ENV:ELEVENLABS_API_KEY"
+      },
+      "body": {
+        "model_id": "eleven_v4",
+        "inputs": [
+          {
+            "text": "Six hydrogen atoms and three oxygen atoms. If those match, check the method too: the number of copies multiplies every atom count in the formula.",
+            "voice_id": "REPLACE_WITH_APPROVED_VOICE_ID"
+          }
+        ],
+        "language_code": "en"
+      },
+      "canonical_spoken": "Six hydrogen atoms and three oxygen atoms. If those match, check the method too: the number of copies multiplies every atom count in the formula.",
+      "caption_text": "Six hydrogen atoms and three oxygen atoms. If those match, check the method too: the number of copies multiplies every atom count in the formula.",
+      "audio_cache_key": "ff067e1d8fb5a8dedcdbd2ba70287fbd71e18bce29b4fde8148fc47c572be647",
+      "editorial_style": "An adult teacher speaking clear Indian English. Warm, precise, energetic without shouting. No fake laughter or added words. Precise and credible, not promotional. Aim for approximately 140 spoken words per minute; do not add words.",
+      "warnings": [
+        "Compiled offline; live behavior and pronunciation require separate approval.",
+        "WPM and detailed acting cues are editorial targets, not exact API controls."
+      ]
+    }
+  ],
+  "network_operations": 0
+}

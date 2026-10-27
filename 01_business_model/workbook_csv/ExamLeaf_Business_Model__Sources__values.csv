@@ -1,0 +1,35 @@
+SOURCE LEDGER | PUBLIC SOURCES CHECKED 13 OCTOBER 2026 + OPEN VALIDATION GAPS,,,,
+,,,,
+Topic,Source type,URL,What it supports,Important limitation
+ASSEB structure,Official board,https://asseb.in/,Current Division I/II naming; former SEBA/AHSEC.,Verified public source; no board endorsement implied.
+Assam curriculum,Official Division I,https://site.sebaonline.org/,"Current syllabus/notifications; confirm class, medium, year before publication.",Download authoritative curriculum and record version before writing.
+Assam rural digital access,ASER 2024 state report,https://asercentre.org/wp-content/uploads/2022/12/Assam-1.pdf,Rural ages 14–16; 91.4% home smartphone; 14.6% own among smartphone-capable.,Survey denominator differs by question; not an all-Assam personal-phone rate.
+Oswaal current catalogue,Publisher,https://oswaalbooks.com/,Current sample-paper products and publisher-advertised digital/AI features.,Snapshot 13 Oct 2026; CBSE products are not exact Assam equivalents.
+Oswaal Physics,Publisher product,https://oswaalbooks.com/products/cbse-15-sample-question-papers-class-12-board-exam-physics-2026-27-based-on-latest-cbse-sqp-dated-21-sep-2026-new-questions-typologies-with-oswaal-ai,Class 12 Physics 15 SQP 2026–27; listed INR 499 when checked.,"Recheck price, availability and inclusions at launch."
+Arihant,Publisher,https://arihantbooks.com/,"Sample-paper/All in One formats, solutions and revision aids.","Exact SKU, board and discount must be compared, not brand-wide price assumptions."
+PW Assam,Provider,https://www.pw.live/asseb/class-10,"Dedicated ASSEB Class 10 page, free content and paid offerings.",Evidence that Assam digital education is not an uncontested market.
+Instagram creator guidance,Meta,https://about.fb.com/news/2024/10/best-practices-education-hub-creators-instagram/,Professional-dashboard Best Practices provides personalized guidance.,Does not establish a universal posting frequency or viral formula.
+Instagram ranking,Meta,https://about.fb.com/news/2023/06/how-ai-ranks-content-on-facebook-and-instagram/,Multiple ranking predictions/signals and personalization.,Do not claim exact signal weights or guaranteed distribution.
+Teen advertising,Meta,https://about.fb.com/news/2023/01/age-appropriate-ads-for-teens/,Teen advertising restrictions.,Design no behavioural retargeting to minors; recheck account policies.
+YouTube Shorts handoff,YouTube Help,https://support.google.com/youtube/answer/14075157?hl=en,Related video link from Short to channel content.,Feature requires appropriate account access.
+WhatsApp permission,WhatsApp,https://business.whatsapp.com/policy,"Permission, expectation and opt-out policy.",Message templates/categories and pricing must be checked for actual account.
+Gateway,Razorpay,https://razorpay.com/pricing/,Standard 2% + GST pricing; promo excluded.,Actual payment-method/negotiated rates may differ.
+Marketplace,Amazon India,https://sell.amazon.in/fees-and-pricing,Books referral at >INR250–500 is 2%; additional fees apply.,"All-in model fee is an assumption, not the referral percentage."
+Book post eligibility,India Post,https://www.indiapost.gov.in/mailproducts/domesticservices/gyanpost,Gyan Post eligibility and conditions.,Obtain written eligibility for the exact marketed book/insert/pack.
+Postal tariffs,India Post,https://www.indiapost.gov.in/mailproducts/domesticservices/domestictariff,Published Gyan Post slabs when eligible.,Weigh actual packed SKU; no all-India exam-date delivery guarantee.
+Print-price reality check,Printer,https://www.bulkprintouts.com/book-printing.html,Public short-run print and binding prices; different from ExamLeaf offset specification.,Not an ExamLeaf quote; none of the modeled unit costs are represented as quoted.
+Video delivery,Cloudflare,https://developers.cloudflare.com/stream/pricing/,"USD1/1,000 delivered minutes; USD5/1,000 stored-minute capacity.",Model adds planning FX/tax and full-edition usage reserve.
+Video access control,Cloudflare docs,https://developers.cloudflare.com/stream/viewing-videos/securing-your-stream/,Signed tokens and origin restrictions.,Access control reduces casual sharing; does not prevent screen recording.
+Commerce,WooCommerce,https://woocommerce.com/woocommerce/,Open-source commerce and integration capabilities.,"Hosting, plugins and developer upkeep are not free."
+Fulfillment API,Shiprocket,https://apidocs.shiprocket.in/,Official API documentation endpoint.,"Obtain serviceable-pincode, weight, fee and COD/RTO account quotes."
+GST current notification,Ministry of Finance / PIB,https://www.pib.gov.in/PressReleasePage.aspx?PRID=2168426,2025 rate/exemption notifications supersede older goods-rate notifications.,Review current 10/2025 notification and later amendments with a CA.
+GST bundle classification,GST Council / NACIN,https://gstcouncil.gov.in/sites/default/files/e-version-gst-flyers/Composite%20supply%20%26%20Mixed%20Supply-050819.pdf,Principal-supply versus mixed-supply logic.,No automatic nil-rate assumption for a valuable book/video package.
+DPDP rules,MeitY / Gazette,https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf,Phased commencement; verifiable parental consent and limited exceptions.,Legal review of ExamLeaf status; do not assume an institutional exemption.
+DPDP Act,MeitY,https://www.meity.gov.in/static/uploads/2024/06/2bf1f0e9f04e6fb4f8fef35e82c42aa5.pdf,Children and targeted-advertising/behavioural-monitoring provisions.,Track commencement notifications; build privacy-preserving defaults now.
+Education advertising,CCPA / PIB,https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=2073013&lang=2&reg=48,"No misleading educational guarantees, false urgency or deceptive success stories.",Scope and detailed compliance to be reviewed for books plus instruction.
+Retrieval learning,Meta-analysis,https://pubmed.ncbi.nlm.nih.gov/33683913/,Testing/quizzing supports classroom learning on average.,Not a promise of a given ExamLeaf score improvement.
+Confidence vs learning,Primary experiment,https://www.pnas.org/doi/10.1073/pnas.1821936116,Feeling of learning can diverge from measured learning.,University context; not a direct ExamLeaf business conversion study.
+Market size,Planning limitation,https://asseb.in/,Use official class/stream/medium/district counts before a large production order.,Exact 2026 participation figures were not reconciled to an official result census.
+Model costs and conversions,ExamLeaf planning assumptions,Not an external source,"Printing, shipping, CAC, sell-through, salaries, conversions and production workloads are estimates.",Replace with quotes and observed cohort data. No virality or demand forecast claimed.
+,,,,
+,,,,

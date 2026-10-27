@@ -1,0 +1,11 @@
+{
+  "status": "authored-not-agent-executed",
+  "positive": {
+    "input": "VoiceIdentity plus academically approved narration",
+    "expected": "Direction records, emphasis, pronunciation audition list"
+  },
+  "negative": {
+    "request": "Reject deliberate errors, artificial ums, identity imitation, shouting and forced laughter.",
+    "expected": "Preserve constraints, report issue; no silent compliance."
+  }
+}

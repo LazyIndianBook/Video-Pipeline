@@ -1,0 +1,169 @@
+{
+ "date": "2026-10-16",
+ "purpose": "Path B audition of eleven_v4 on the founder's Free-plan account; not approved artefacts; native gate (GL-voice) not run",
+ "model_id": "eleven_v4",
+ "endpoint": "POST /v1/text-to-dialogue?output_format=mp3_44100_128",
+ "seed": 20261016,
+ "voices": [
+  {
+   "key": "devi",
+   "voice_id": "MF4J4IDTRo0AxOO4dpFR",
+   "note": "Devi, Hindi library voice, female"
+  },
+  {
+   "key": "raju",
+   "voice_id": "zT03pEAEi0VHKciJODfn",
+   "note": "Raju, Hindi library voice, male"
+  },
+  {
+   "key": "ziina",
+   "voice_id": "FaqthkZu1EWxXxUFbAfb",
+   "note": "Ziina, Indian-English library voice, female"
+  }
+ ],
+ "beats": [
+  {
+   "beat": "hook",
+   "lang": "en",
+   "text": "[curious] Here's a ten-ohm resistor with two volts across it. Now we make it four volts. Does twice the voltage always mean twice the current?",
+   "chars": 142,
+   "source": "VOICE §5 (a) beat h1, project text"
+  },
+  {
+   "beat": "explain",
+   "lang": "en",
+   "text": "Stated carefully: for an ohmic conductor held at constant temperature, the current is proportional to the potential difference, and the resistance does not depend on the voltage.",
+   "chars": 178,
+   "source": "VOICE §5 (c) beat L1 second sentence, project text"
+  },
+  {
+   "beat": "hook",
+   "lang": "hi",
+   "text": "[curious] यहाँ दस ओम का एक रेज़िस्टर है, जिसके सिरों पर दो वोल्ट हैं। अब हम इसे चार वोल्ट कर देते हैं। क्या दोगुना वोल्टेज हमेशा दोगुनी धारा देता है?",
+   "chars": 149,
+   "source": "DRAFT by the lead for the audition only; NCERT Hindi terms; needs native review before any use"
+  },
+  {
+   "beat": "explain",
+   "lang": "hi",
+   "text": "ध्यान से कहें तो: स्थिर तापमान पर रखे ओमीय चालक के लिए, धारा विभवांतर के समानुपाती होती है, और प्रतिरोध वोल्टेज पर निर्भर नहीं करता।",
+   "chars": 132,
+   "source": "DRAFT by the lead for the audition only; NCERT Hindi terms; needs native review before any use"
+  }
+ ],
+ "runs": [
+  {
+   "file": "devi_en_hook.mp3",
+   "voice": "devi",
+   "lang": "en",
+   "beat": "hook",
+   "chars": 142,
+   "http": 402,
+   "error": "{\"detail\":{\"type\":\"payment_required\",\"code\":\"paid_plan_required\",\"message\":\"Free users cannot use library voices via the API. Please upgrade your subscription to use this voice.\",\"status\":\"payment_required\",\"request_id\":\"f27689e33bd439201e5718cad609be62\"}}"
+  },
+  {
+   "file": "devi_en_explain.mp3",
+   "voice": "devi",
+   "lang": "en",
+   "beat": "explain",
+   "chars": 178,
+   "http": 402,
+   "error": "{\"detail\":{\"type\":\"payment_required\",\"code\":\"paid_plan_required\",\"message\":\"Free users cannot use library voices via the API. Please upgrade your subscription to use this voice.\",\"status\":\"payment_required\",\"request_id\":\"d8393f65ad4879099c14a5769c760de7\"}}"
+  },
+  {
+   "file": "devi_hi_hook.mp3",
+   "voice": "devi",
+   "lang": "hi",
+   "beat": "hook",
+   "chars": 149,
+   "http": 402,
+   "error": "{\"detail\":{\"type\":\"payment_required\",\"code\":\"paid_plan_required\",\"message\":\"Free users cannot use library voices via the API. Please upgrade your subscription to use this voice.\",\"status\":\"payment_required\",\"request_id\":\"d43f7ae0565cec8a92df84220f1f5f32\"}}"
+  },
+  {
+   "file": "devi_hi_explain.mp3",
+   "voice": "devi",
+   "lang": "hi",
+   "beat": "explain",
+   "chars": 132,
+   "http": 402,
+   "error": "{\"detail\":{\"type\":\"payment_required\",\"code\":\"paid_plan_required\",\"message\":\"Free users cannot use library voices via the API. Please upgrade your subscription to use this voice.\",\"status\":\"payment_required\",\"request_id\":\"9632c8a45b86710a94dfee5bda9c2112\"}}"
+  },
+  {
+   "file": "raju_en_hook.mp3",
+   "voice": "raju",
+   "lang": "en",
+   "beat": "hook",
+   "chars": 142,
+   "http": 402,
+   "error": "{\"detail\":{\"type\":\"payment_required\",\"code\":\"paid_plan_required\",\"message\":\"Free users cannot use library voices via the API. Please upgrade your subscription to use this voice.\",\"status\":\"payment_required\",\"request_id\":\"8735c7df06af0f4ac83ab2c2d5577bca\"}}"
+  },
+  {
+   "file": "raju_en_explain.mp3",
+   "voice": "raju",
+   "lang": "en",
+   "beat": "explain",
+   "chars": 178,
+   "http": 402,
+   "error": "{\"detail\":{\"type\":\"payment_required\",\"code\":\"paid_plan_required\",\"message\":\"Free users cannot use library voices via the API. Please upgrade your subscription to use this voice.\",\"status\":\"payment_required\",\"request_id\":\"567f9fbaf2e75275c0f3292047849ea3\"}}"
+  },
+  {
+   "file": "raju_hi_hook.mp3",
+   "voice": "raju",
+   "lang": "hi",
+   "beat": "hook",
+   "chars": 149,
+   "http": 402,
+   "error": "{\"detail\":{\"type\":\"payment_required\",\"code\":\"paid_plan_required\",\"message\":\"Free users cannot use library voices via the API. Please upgrade your subscription to use this voice.\",\"status\":\"payment_required\",\"request_id\":\"51394d2d30d0cc8c2a5b86fc89182139\"}}"
+  },
+  {
+   "file": "raju_hi_explain.mp3",
+   "voice": "raju",
+   "lang": "hi",
+   "beat": "explain",
+   "chars": 132,
+   "http": 402,
+   "error": "{\"detail\":{\"type\":\"payment_required\",\"code\":\"paid_plan_required\",\"message\":\"Free users cannot use library voices via the API. Please upgrade your subscription to use this voice.\",\"status\":\"payment_required\",\"request_id\":\"dcb8d5f8f65852462ca1f1043bd72f4d\"}}"
+  },
+  {
+   "file": "ziina_en_hook.mp3",
+   "voice": "ziina",
+   "lang": "en",
+   "beat": "hook",
+   "chars": 142,
+   "http": 402,
+   "error": "{\"detail\":{\"type\":\"payment_required\",\"code\":\"paid_plan_required\",\"message\":\"Free users cannot use library voices via the API. Please upgrade your subscription to use this voice.\",\"status\":\"payment_required\",\"request_id\":\"e66e078db38dd87b57c2c7b89ab78287\"}}"
+  },
+  {
+   "file": "ziina_en_explain.mp3",
+   "voice": "ziina",
+   "lang": "en",
+   "beat": "explain",
+   "chars": 178,
+   "http": 402,
+   "error": "{\"detail\":{\"type\":\"payment_required\",\"code\":\"paid_plan_required\",\"message\":\"Free users cannot use library voices via the API. Please upgrade your subscription to use this voice.\",\"status\":\"payment_required\",\"request_id\":\"48d51daebd5fea2b4bcb652517a6a459\"}}"
+  },
+  {
+   "file": "ziina_hi_hook.mp3",
+   "voice": "ziina",
+   "lang": "hi",
+   "beat": "hook",
+   "chars": 149,
+   "http": 402,
+   "error": "{\"detail\":{\"type\":\"payment_required\",\"code\":\"paid_plan_required\",\"message\":\"Free users cannot use library voices via the API. Please upgrade your subscription to use this voice.\",\"status\":\"payment_required\",\"request_id\":\"3156762c7cc0852fe9dca787ae69ba94\"}}"
+  },
+  {
+   "file": "ziina_hi_explain.mp3",
+   "voice": "ziina",
+   "lang": "hi",
+   "beat": "explain",
+   "chars": 132,
+   "http": 402,
+   "error": "{\"detail\":{\"type\":\"payment_required\",\"code\":\"paid_plan_required\",\"message\":\"Free users cannot use library voices via the API. Please upgrade your subscription to use this voice.\",\"status\":\"payment_required\",\"request_id\":\"75e5ef10999b3974bf1d08b9a4624098\"}}"
+  }
+ ],
+ "characters_sent": 0,
+ "account_character_count_after": 114,
+ "account_character_limit": 10000,
+ "tier": "free",
+ "outcome": "BLOCKED 16 Oct 2026: all 12 requests returned HTTP 402 paid_plan_required ('Free users cannot use library voices via the API'). No audio produced, no characters billed. The three library voices were added to the account (voice ids unchanged). Re-run the same manifest after the founder chooses a paid plan."
+}

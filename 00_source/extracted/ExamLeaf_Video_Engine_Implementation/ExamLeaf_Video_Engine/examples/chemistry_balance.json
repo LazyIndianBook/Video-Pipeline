@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "duration_s": 30,
+  "fps": 24,
+  "status": "technical_preview",
+  "id": "chemistry_balance",
+  "subject": "chemistry",
+  "kind": "atom_balance",
+  "title": "Same atoms. New counts.",
+  "objective": "Distinguish coefficients from molecular formulas and verify element counts.",
+  "class_context": "Class 10 chemistry / Class 12 prerequisite repair; not a Class 12 chapter pilot.",
+  "parameters": {
+    "coefficients": [
+      2,
+      1,
+      2
+    ]
+  },
+  "assumptions": [
+    "Correct starting and product formulas are supplied.",
+    "Counts are conserved for each element.",
+    "Discrete schematic states are not a reaction mechanism or lab demonstration."
+  ],
+  "sources": [
+    {
+      "id": "chemistry_balance_source",
+      "uri": "https://openstax.org/books/chemistry-2e/pages/4-1-writing-and-balancing-chemical-equations",
+      "locator": "Section 4.1: writing and balancing chemical equations",
+      "rights_status": "open_reference",
+      "claim_scope": "Distinguish coefficients from molecular formulas and verify element counts.",
+      "retrieved_at": "2026-10-13"
+    }
+  ],
+  "claims": [
+    {
+      "id": "chemistry_balance_claim",
+      "statement": "Distinguish coefficients from molecular formulas and verify element counts.",
+      "source_ids": [
+        "chemistry_balance_source"
+      ],
+      "assumptions": [
+        "Correct starting and product formulas are supplied.",
+        "Counts are conserved for each element.",
+        "Discrete schematic states are not a reaction mechanism or lab demonstration."
+      ],
+      "status": "draft"
+    }
+  ],
+  "cues": [
+    {
+      "start_s": 0,
+      "end_s": 6,
+      "text": "Balance the quantities without replacing the substances.",
+      "role": "explain",
+      "voice": "steady",
+      "answer_visible": false
+    },
+    {
+      "start_s": 6,
+      "end_s": 11,
+      "text": "Two water molecules fix oxygen\u2014but change the hydrogen total.",
+      "role": "explain",
+      "voice": "steady",
+      "answer_visible": false
+    },
+    {
+      "start_s": 11,
+      "end_s": 16.5,
+      "text": "Your turn: how many hydrogen molecules supply four H atoms?",
+      "role": "question",
+      "voice": "curious",
+      "answer_visible": false
+    },
+    {
+      "start_s": 16.5,
+      "end_s": 24,
+      "text": "Two H\u2082 molecules. Now every element matches on both sides.",
+      "role": "feedback",
+      "voice": "steady",
+      "answer_visible": true
+    },
+    {
+      "start_s": 24,
+      "end_s": 30,
+      "text": "Change coefficients, not the specified chemical formulas.",
+      "role": "recap",
+      "voice": "steady",
+      "answer_visible": true
+    }
+  ]
+}

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>Professor Diki Simplified scene base (seek contract 1.0.0, design system 2.0.0)</title>
+<!-- HOW TO USE: copy this file to <video>/s01.src.html (ONE scene per short: every beat lives in this file), fix the
+     relative paths below, replace the SCENE BLOCK and the two inline fallbacks, then build a self-contained copy with
+     tools/build_scene.py (inlines these files, runs the brand + structural gates and the seek lint).
+     Read order for builders: 05_DESIGN_SYSTEM.md, tokens.json, this file, diki_scene.css, diki_runtime.js, the component.
+     The stage below is fixed chrome: the world (#world) is generated from tokens.world for the scene's subject, the
+     opening ident (#ident) shows the brand from frame 0 and is gone by 2.5 s, the title lane holds the headline chips,
+     the think plate and the end-card wordmark; the result and card lanes sit on taped paper sheets. -->
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="diki_scene.css">
+</head>
+<body>
+<div id="stage">
+  <svg id="world" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+  <svg id="underlay" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+  <div id="lane-title" class="lane">
+    <div id="think-plate"><span data-fx="display.ui.think_prompt"></span></div>
+    <div id="wordmark" data-fx="display.ui.endcard_line1"></div>
+  </div>
+  <div id="lane-diagram" class="lane"></div>
+  <div id="lane-result" class="lane"><div id="result-main"></div><div id="endline-wrap"><span id="endline" data-fx="display.ui.endcard_line2"></span></div></div>
+  <div id="lane-card" class="lane"></div>
+  <div id="lane-caption" class="lane"></div>
+  <svg id="overlay" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+  <div id="ident" aria-label="Professor Diki Simplified">Professor Diki Simplified</div>
+</div>
+
+<!-- [2] INLINE FALLBACKS (preview only; production injects __CUE_SHEET__ and __FIXTURE__). build_scene.py
+     replaces both blocks. This base demo: one tiny lesson so the base renders and lints on its own. -->
+<script type="application/json" id="cue-sheet-inline">
+{"schema_version":"1.0","scene_id":"diki-base-demo","fps":30,"duration":7.2,"language":"en-IN","alignment_source":"example",
+ "narration_audio_sha256":null,"script_sha256":null,
+ "words":[{"w":"Does","t0":0.3,"t1":0.6},{"w":"current","t0":0.65,"t1":1.1},{"w":"double","t0":1.15,"t1":1.6},
+          {"w":"Predict","t0":1.9,"t1":2.3},{"w":"it","t0":2.35,"t1":2.6},
+          {"w":"Professor","t0":4.6,"t1":5.0},{"w":"Diki","t0":5.05,"t1":5.3},{"w":"Simplified","t0":5.35,"t1":5.8}],
+ "beats":[0.0,1.9,4.6],
+ "cues":[{"id":"c01","at":1.1,"kind":"emphasis","element_id":"demo_badge","word_index":2},
+         {"id":"c02","at":2.15,"kind":"reveal","element_id":"eq_rule","word_index":4}],
+ "sfx":[],
+ "meta":{"beats_text":[
+   {"id":"b01","slot":"hook.question_reveal","text":"Does current double?","headline":"Does current double?","start":0.3,"end":1.6,"word_range":[0,3]},
+   {"id":"b02","slot":"check.predict","text":"Predict it.","headline":"Predict it","start":1.9,"end":2.6,"word_range":[3,5]},
+   {"id":"b03","slot":"outro.brand","text":"Professor Diki Simplified.","headline":"","start":4.6,"end":5.8,"word_range":[5,8]}],
+  "think_windows":[{"beat":"b02","seconds":1.4,"start":2.9,"end":4.3}]}}
+</script>
+<script type="application/json" id="fixture-inline">
+{"_note":"BASE DEMO DATA - not science content.",
+ "display":{"condition":"constant temperature","sym":{"V":"V","I":"I","R":"R"},"ops":{"eq":"=","times":"×"},
+            "ui":{"think_prompt":"Pause. Predict.","unknown":"?","endcard_line1":"Professor Diki Simplified","endcard_line2":"Free lesson: base demo"}}}
+</script>
+
+<!-- [3] DESIGN SYSTEM (classic scripts, relative paths: they work from file:// and are inlined by build_scene.py) -->
+<script src="tokens.js"></script>
+<script src="diki_runtime.js"></script>
+<script src="components/badge.js"></script>
+<script src="components/equation.js"></script>
+<script src="components/caption.js"></script>
+<script src="components/card.js"></script>
+<script src="components/physics_circuit.js"></script>
+<script src="components/chemistry_species.js"></script>
+<script src="components/biology_tracer.js"></script>
+
+<!-- [4] SCENE BLOCK - the only part a builder writes. build(D, FX) runs once in ready(): mount ONE persistent
+     hero in the diagram lane, register it (D.hero + D.PreserveObject), then wire verbs to cue/beat/think refs.
+     Never hard-code seconds; never write CSS animation; never tear the hero down (it changes, it does not leave). -->
+<script>
+window.DIKI_SCENE = {
+  subject: 'physics',                                     // world: physics | chemistry | biology
+  captions: false,                                        // true -> 'captioned' layout + caption chip lane
+  card: false,                                            // true -> 'carded' layout + card sheet (PD-18: table / points / definition)
+  build(D) {
+    const lane = D.lane('diagram');
+    // placeholder hero: one cut-out sticker on the bench with a condition chip (real scenes mount a subject component)
+    const svg = D.svg('svg', { width: lane.w, height: lane.h }, lane.el); svg.style.position = 'absolute';
+    const hero = D.svg('g', { id: 'demo_hero' }, svg);
+    const st = D.sticker(hero, {});
+    D.svg('rect', { x: lane.w / 2 - 260, y: 70, width: 520, height: lane.h - 140, rx: 40, fill: D.color('hue.teal') }, st);
+    D.svg('circle', { cx: lane.w / 2, cy: lane.h / 2 - 120, r: 120, fill: D.color('hue.mustard') }, st);
+    const badge = D.Components.badge.mount(svg, null, { id: 'demo_badge', fx: 'display.condition', style: 'condition', x: lane.w / 2, y: lane.h / 2 + 140 });
+    badge.set({ opacity: 1 });
+    D.hero(hero); D.PreserveObject(hero);
+    // result sheet: one equation, revealed whole on its cue
+    const eq = D.Components.equation.mount(document.getElementById('result-main'), null, {
+      terms: { V: { parts: [{ fx: 'display.sym.V' }], role: 'voltage', italic: true }, e: { parts: [{ fx: 'display.ops.eq' }] },
+               I: { parts: [{ fx: 'display.sym.I' }], role: 'current', italic: true }, x: { parts: [{ fx: 'display.ops.times' }] },
+               R: { parts: [{ fx: 'display.sym.R' }], role: 'resistance', italic: true } },
+      states: { rule: { layout: 'line', terms: ['V', 'e', 'I', 'x', 'R'] } } });
+    eq.svg.id = 'eq_rule';
+    eq.drive([D.EquationTransform('rule', 'cue:c02')]);
+  }
+};
+</script>
+
+<!-- [5] CONTRACT BLOCK - keep as is (seek contract 1.0.0: DURATION, async seek, ready, __errors, injected
+     __CUE_SHEET__/__FIXTURE__ > ?cues=/?fixture= > inline, seeded PRNG only, fonts preloaded, offline). -->
+<script>
+(function () {
+'use strict';
+const Q = new URLSearchParams(location.search);
+const num = (k, d) => { const v = parseFloat(Q.get(k)); return isFinite(v) ? v : d; };
+const FPS = num('fps', 30), SEED = num('seed', 20261016);
+
+window.__errors = [];
+const report = (code, severity, message, t) => window.__errors.push({ code, severity, message, t: t == null ? null : t });
+const fail = (code, message, t) => { report(code, 'error', message, t); const e = new Error(code + ': ' + message); e.code = code; return e; };
+
+/* seeded randomness only (F04). rngAt is stateless: same (seed, i) -> same value in any seek order. */
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const rngAt = (seed, i) => mulberry32((seed ^ Math.imul(i + 1, 0x9E3779B1)) >>> 0)();
+
+const deepFreeze = o => { Object.values(o).forEach(v => { if (v && typeof v === 'object') deepFreeze(v); }); return Object.freeze(o); };
+async function loadJson(inject, param, inlineId, what) {
+  if (inject) return { data: inject, source: 'injected' };
+  const path = Q.get(param);
+  if (path) {
+    try { const r = await fetch(path); if (!r.ok) throw new Error('HTTP ' + r.status); return { data: await r.json(), source: 'path' }; }
+    catch (e) {
+      if (Q.get('strict') === '1') throw fail('E_' + what + '_LOAD', 'cannot load ' + path + ': ' + e.message);
+      report('W_' + what + '_FALLBACK', 'warning', 'cannot load ' + path + ' (' + e.message + '); inline fallback used. Not valid for production.');
+      return { data: JSON.parse(document.getElementById(inlineId).textContent), source: 'inline-fallback' };
+    }
+  }
+  return { data: JSON.parse(document.getElementById(inlineId).textContent), source: 'inline' };
+}
+function checkSheet(s) {
+  if (!s || !(s.duration > 0) || !isFinite(s.duration) || !Array.isArray(s.words) || !Array.isArray(s.cues)) throw fail('E_CUES_INVALID', 'cue sheet needs finite duration>0, words[], cues[]');
+  s.words.forEach((w, i) => { if (i && w.t0 < s.words[i - 1].t0) throw fail('E_CUES_INVALID', 'words[' + i + '] not monotonic'); });
+}
+
+window.FPS = FPS;
+window.DURATION = 7.2;                                  // synchronous default; final value comes from the cue sheet in ready()
+window.SCENE_META = { contract: '1.0.0', videoCount: 0, designSystem: 'professor-diki-simplified 2.0.0', notes: 'paper collage; one scene per short; board persists' };
+window.ready = (async () => {
+  const D = window.Diki, T = window.DIKI_TOKENS;
+  if (!D || !T) throw fail('E_READY', 'design system scripts (tokens.js, diki_runtime.js) not loaded');
+  const s = await loadJson(window.__CUE_SHEET__, 'cues', 'cue-sheet-inline', 'CUES'); const SHEET = s.data; window.__cueSource = s.source; checkSheet(SHEET);
+  const f = await loadJson(window.__FIXTURE__, 'fixture', 'fixture-inline', 'FIXTURE'); const FX = deepFreeze(f.data); window.__fixtureSource = f.source;
+  window.DURATION = SHEET.duration;
+  window.FRAME_COUNT = Math.round(window.DURATION * FPS);
+  if (SHEET.fps !== FPS) report('W_FPS_MISMATCH', 'warning', 'cue sheet fps ' + SHEET.fps + ' != render fps ' + FPS + '; times stay in seconds');
+  await Promise.all(T.font.preload.map(p => document.fonts.load(p.weight + ' 40px "' + p.family + '"', p.text).catch(e => report('E_FONT_LOAD', 'error', p.family + ': ' + e.message))));
+  const SC = window.DIKI_SCENE || {}, stage = document.getElementById('stage');
+  const captions = !!SC.captions || Q.get('captions') === '1';
+  const layout = captions ? 'captioned' : (SC.card || Q.get('card') === '1') ? 'carded' : 'default';
+  if (captions && SC.card) report('W_LAYOUT', 'warning', 'captions and a card cannot share a frame; captioned layout used');
+  D.init({ sheet: SHEET, fx: FX, report, fail, stage, captions, layout, subject: SC.subject });
+  D.rngAt = i => rngAt(SEED, i);                        // the only randomness a scene may use
+  D.bindFx(stage);
+  D.buildChrome();
+  if (typeof SC.build === 'function') SC.build(D, FX);
+  if (captions) { const cap = D.Components.caption.mount(document.getElementById('lane-caption'), FX, { sheet: SHEET }); D.track(t => cap.set({ t })); }
+  // cues: every element_id must exist (W_CUE_NO_ELEMENT); 'emphasis' cues get Emphasize automatically,
+  // every other kind is wired by the scene through D.when('cue:<id>').
+  SHEET.cues.forEach(c => {
+    const el = c.element_id && document.getElementById(c.element_id);
+    if (!el) { if (c.kind !== 'hold') report('W_CUE_NO_ELEMENT', 'warning', 'cue ' + c.id + ' targets missing element ' + c.element_id); return; }
+    if (c.kind === 'emphasis') D.Emphasize(el, c.at);
+  });
+  D.finalize();
+  if (Q.get('safe') === '1') stage.classList.add('safe');
+  await document.fonts.ready;
+})().catch(e => { if (!e.code) report('E_READY', 'error', e.message); throw e; });
+
+let chain = Promise.resolve();                          // serialise seeks
+window.seek = async function seek(t) {
+  const prev = chain; let done; chain = new Promise(r => { done = r; });
+  try {
+    await prev; await window.ready;
+    if (typeof t !== 'number' || !isFinite(t)) throw fail('E_BAD_T', 'seek(t) needs a finite number of seconds, got ' + t);
+    const tc = Math.min(Math.max(t, 0), window.DURATION);
+    window.Diki.render(tc);
+    await document.fonts.ready;                         // no rAF: the harness triggers the capture
+    await Promise.all(Array.from(document.images).map(i => i.decode().catch(e => report('E_ASSET_LOAD', 'error', i.src + ': ' + e.message, tc))));
+    return { t: tc, frame: Math.round(tc * FPS) };
+  } finally { done(); }
+};
+window.__hf = window.__hf || { get duration() { return window.DURATION; }, seek: t => window.seek(t) };   // shape unverified [N68]
+
+if (Q.get('preview') === '1') window.ready.then(() => { const r = document.createElement('input'); r.type = 'range'; r.id = 'scrub'; r.min = 0; r.max = window.DURATION; r.step = 1 / FPS; r.value = 0; r.oninput = () => window.seek(parseFloat(r.value)); document.body.appendChild(r); });
+if (Q.has('t')) window.ready.then(() => window.seek(num('t', 0)));
+})();
+</script>
+</body>
+</html>

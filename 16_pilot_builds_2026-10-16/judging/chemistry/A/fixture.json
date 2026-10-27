@@ -1,0 +1,67 @@
+{
+  "fixture_id": "FIX-chem-balance-ci-01",
+  "compute": "fixtures/compute.py",
+  "display": {
+    "formula_h2": "H₂",
+    "formula_o2": "O₂",
+    "formula_h2o": "H₂O",
+    "formula_h2o2": "H₂O₂",
+    "plus": "+",
+    "arrow": "→",
+    "equals": "=",
+    "sym_h": "H",
+    "sym_o": "O",
+    "side_left": "Left side",
+    "side_right": "Right side",
+    "name_h2o": "water",
+    "name_h2o2": "hydrogen peroxide",
+    "note_different": "a different compound",
+    "word_equation": "hydrogen + oxygen → water",
+    "ui": {
+      "think_prompt": "Pause. Predict."
+    }
+  },
+  "parameters": {
+    "coef_h2": 2,
+    "coef_o2": 1,
+    "coef_h2o": 2
+  },
+  "results": {
+    "unbalanced": {
+      "left": {
+        "H": 2,
+        "O": 2
+      },
+      "right": {
+        "H": 2,
+        "O": 1
+      }
+    },
+    "balanced": {
+      "left": {
+        "H": 4,
+        "O": 2
+      },
+      "right": {
+        "H": 4,
+        "O": 2
+      }
+    },
+    "misconception": {
+      "left": {
+        "H": 2,
+        "O": 2
+      },
+      "right": {
+        "H": 2,
+        "O": 2
+      }
+    }
+  },
+  "asserts": [
+    "unbalanced H2 + O2 -> H2O: left H2 O2, right H2 O1 (oxygen mismatch)",
+    "balanced 2H2 + O2 -> 2H2O: left H4 O2, right H4 O2 (equal)",
+    "misconception H2 + O2 -> H2O2: counts match but H2O2 is hydrogen peroxide, not water",
+    "only coefficients change: formulas H2, O2, H2O appear unchanged"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "duration_seconds": 34.94,
+  "sample_rate": 48000,
+  "channels": 1,
+  "sample_peak_dbfs": -19.166395679818002,
+  "rms_dbfs": -26.178135139574415,
+  "clipped_sample_count": 0,
+  "dc_offset_max": 1.0276943561776497e-05,
+  "silences": [
+    {
+      "start": 3.1,
+      "end": 9.1,
+      "planned": true
+    },
+    {
+      "start": 25.04,
+      "end": 30.04,
+      "planned": true
+    }
+  ],
+  "not_measured": [
+    "naturalness",
+    "accent authenticity",
+    "STEM pronunciation",
+    "true-peak until FFmpeg measurement"
+  ]
+}

@@ -1,0 +1,18 @@
+Subject,Library,Modules,Role,Boundary,Source
+Mathematics,SymPy,"diff, integrate, simplify, assumptions, matrices",Symbolic state and checkable derivations,Equivalence depends on domains/assumptions; never parse arbitrary executable expressions,https://docs.sympy.org/latest/index.html
+Mathematics,KaTeX,math rendering and supported extensions,Readable equations in browser compositor,Typesetting is not mathematical verification,https://katex.org/docs/supported.html
+Mathematics,Manim Community,"MathTex, TransformMatchingTex, Axes, NumberPlane",Specialist equation and geometric animation,CE and GL are different APIs; transformations need mathematical justification,https://github.com/ManimCommunity/manim
+Physics,SciPy,integrate.solve_ivp,Numerical trajectories tied to diagrams/graphs,Correct integration does not certify the selected physical model,https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html
+Physics,SymPy physics,"physics.mechanics, physics.vector, optics",Analytical relationships and reference-frame work,Declare sign conventions and idealizations,https://docs.sympy.org/latest/index.html
+Physics,Pint,"UnitRegistry, dimensional conversions",Dimensional checks,Not a physics solver,https://pint.readthedocs.io/en/stable/
+Physics,Schemdraw,Circuit symbols and SVG output,Circuit diagrams,A drawn circuit is not a simulated/verified circuit,https://schemdraw.readthedocs.io/en/latest/
+Physics,Magpylib,Magnetic source/field calculations,Selected magnetostatic fields,Not a general time-dependent Maxwell solver,https://magpylib.readthedocs.io/en/latest/
+Chemistry,RDKit,"Chem, AddHs, rdDepictor, rdMolDraw2D, rdChemReactions, AllChem","Structures, counts, coordinates and approved reaction-state depictions","Parsing/balance do not prove feasibility, mechanism or conditions",https://www.rdkit.org/docs/GettingStartedInPython.html
+Chemistry,3Dmol.js,Molecular viewers and representations,Selected 3D spatial explanations,Geometry/chemistry must be validated; 3D is not automatically useful,https://3dmol.csb.pitt.edu/
+Biology,Biopython,"Bio.Seq, SeqIO, Bio.PDB",Sequence/structure data workflows,Does not draw or validate all anatomy/process diagrams,https://biopython.org/wiki/Documentation
+Biology,Mol*,Molecular structure visualization,Selected proteins/nucleic acids,Not a general biology animation engine,https://molstar.org/
+Biology,Approved layered SVG,Original assets + explicit process state,"Cells, genetics, transport, chromosome-state sequences",Count/compartment/direction reviewed separately; per-asset licence,Original ExamLeaf templates; validate against approved textbook sources
+Cross-subject,Three.js,"Scene graph, camera, geometries",Browser 3D when spatial reasoning matters,Use explicit seek time; no uncontrolled render-loop physics,https://threejs.org/
+Cross-subject,Blender,bpy and headless renderer,Reusable approved specialist 3D inserts,GPL application; asset/voice/output rights remain separate,https://www.blender.org/about/license/
+Cross-subject,FFmpeg,"Encoding, muxing, loudness filters, ffprobe",Media assembly and diagnostics,Build-dependent LGPL/GPL and codec obligations; not science validator,https://ffmpeg.org/legal.html
+Cross-subject,Native SVG/CairoSVG,Original fixture adapter,Offline reference and regression renderer,Only four supplied fixtures implemented; not replacement for a full editor,Local source and tests in this repository

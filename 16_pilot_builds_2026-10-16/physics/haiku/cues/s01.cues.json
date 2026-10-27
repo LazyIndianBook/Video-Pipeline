@@ -1,0 +1,238 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "phy-ohm-ci-01-s01",
+ "fps": 30,
+ "duration": 9.9,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "f883a3702c0dc31e4935fa4d0843ea6749259565b3df3e24e1645d798ad191cd",
+ "script_sha256": "63da8847cf4d03c5d3fd673d8f94ea746cf000bb4f54ba264b54c1a0ad88b41e",
+ "words": [
+  {
+   "w": "Here's",
+   "t0": 0.76,
+   "t1": 1.0
+  },
+  {
+   "w": "a",
+   "t0": 1.08,
+   "t1": 1.16
+  },
+  {
+   "w": "ten-ohm",
+   "t0": 1.24,
+   "t1": 1.64
+  },
+  {
+   "w": "resistor",
+   "t0": 1.76,
+   "t1": 2.28
+  },
+  {
+   "w": "with",
+   "t0": 2.4,
+   "t1": 2.52
+  },
+  {
+   "w": "two",
+   "t0": 2.6,
+   "t1": 2.76
+  },
+  {
+   "w": "volts",
+   "t0": 2.84,
+   "t1": 3.08,
+   "occurrence": 1
+  },
+  {
+   "w": "across",
+   "t0": 3.16,
+   "t1": 3.48
+  },
+  {
+   "w": "it",
+   "t0": 3.56,
+   "t1": 4.2,
+   "occurrence": 1
+  },
+  {
+   "w": "Now",
+   "t0": 4.28,
+   "t1": 4.52
+  },
+  {
+   "w": "we",
+   "t0": 4.6,
+   "t1": 4.68
+  },
+  {
+   "w": "make",
+   "t0": 4.76,
+   "t1": 4.84
+  },
+  {
+   "w": "it",
+   "t0": 4.96,
+   "t1": 5.08,
+   "occurrence": 2
+  },
+  {
+   "w": "four",
+   "t0": 5.16,
+   "t1": 5.24
+  },
+  {
+   "w": "volts",
+   "t0": 5.32,
+   "t1": 6.2,
+   "occurrence": 2
+  },
+  {
+   "w": "Does",
+   "t0": 6.32,
+   "t1": 6.44
+  },
+  {
+   "w": "twice",
+   "t0": 6.52,
+   "t1": 6.76,
+   "occurrence": 1
+  },
+  {
+   "w": "the",
+   "t0": 6.84,
+   "t1": 6.88,
+   "occurrence": 1
+  },
+  {
+   "w": "voltage",
+   "t0": 6.92,
+   "t1": 7.48
+  },
+  {
+   "w": "always",
+   "t0": 7.56,
+   "t1": 7.88
+  },
+  {
+   "w": "mean",
+   "t0": 7.96,
+   "t1": 8.2
+  },
+  {
+   "w": "twice",
+   "t0": 8.28,
+   "t1": 8.52,
+   "occurrence": 2
+  },
+  {
+   "w": "the",
+   "t0": 8.6,
+   "t1": 8.68,
+   "occurrence": 2
+  },
+  {
+   "w": "current",
+   "t0": 8.76,
+   "t1": 9.4
+  }
+ ],
+ "beats": [
+  0.6
+ ],
+ "cues": [
+  {
+   "id": "c01",
+   "at": 0.71,
+   "kind": "reveal",
+   "element_id": "wires",
+   "word_index": 0
+  },
+  {
+   "id": "c02",
+   "at": 1.71,
+   "kind": "reveal",
+   "element_id": "resistor",
+   "word_index": 3
+  },
+  {
+   "id": "c03",
+   "at": 1.71,
+   "kind": "reveal",
+   "element_id": "lbl_r",
+   "word_index": 3
+  },
+  {
+   "id": "c04",
+   "at": 2.55,
+   "kind": "reveal",
+   "element_id": "cell",
+   "word_index": 5
+  },
+  {
+   "id": "c05",
+   "at": 2.55,
+   "kind": "reveal",
+   "element_id": "lbl_v1",
+   "word_index": 5
+  },
+  {
+   "id": "c06",
+   "at": 5.11,
+   "kind": "reveal",
+   "element_id": "lbl_v2",
+   "word_index": 13
+  },
+  {
+   "id": "c07",
+   "at": 5.27,
+   "kind": "emphasis",
+   "element_id": "lbl_v2",
+   "word_index": 14
+  },
+  {
+   "id": "c08",
+   "at": 8.71,
+   "kind": "reveal",
+   "element_id": "ammeter",
+   "word_index": 23
+  },
+  {
+   "id": "c09",
+   "at": 8.71,
+   "kind": "reveal",
+   "element_id": "qmark",
+   "word_index": 23
+  },
+  {
+   "id": "c10",
+   "at": 8.71,
+   "kind": "reveal",
+   "element_id": "lbl_i",
+   "word_index": 23
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "phy-ohm-ci-01",
+  "scene": "s01",
+  "beat_ids": [
+   "b01"
+  ],
+  "beats_text": [
+   {
+    "id": "b01",
+    "slot": "hook.question_reveal",
+    "text": "Here's a ten-ohm resistor with two volts across it. Now we make it four volts. Does twice the voltage always mean twice the current?",
+    "headline": "twice the voltage?",
+    "start": 0.76,
+    "end": 9.4,
+    "word_range": [
+     0,
+     24
+    ]
+   }
+  ],
+  "think_windows": []
+ }
+}

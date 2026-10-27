@@ -1,0 +1,245 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "bio-photosyn-ci-01-s04",
+ "fps": 30,
+ "duration": 12.533,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "1f60e4911a1ba326a0a12bded3577026ebba934c995640207d891a9ca41149fe",
+ "script_sha256": "9b85d46aa953f120980194a38416d0bd72c8636a87788d5784b8b9f8e4e9ca08",
+ "words": [
+  {
+   "w": "Many",
+   "t0": 0.26,
+   "t1": 0.5
+  },
+  {
+   "w": "think",
+   "t0": 0.62,
+   "t1": 0.74
+  },
+  {
+   "w": "a",
+   "t0": 0.82,
+   "t1": 0.9
+  },
+  {
+   "w": "plant",
+   "t0": 0.98,
+   "t1": 1.38
+  },
+  {
+   "w": "is",
+   "t0": 1.46,
+   "t1": 1.62,
+   "occurrence": 1
+  },
+  {
+   "w": "built",
+   "t0": 1.74,
+   "t1": 1.86
+  },
+  {
+   "w": "from",
+   "t0": 1.98,
+   "t1": 2.1,
+   "occurrence": 1
+  },
+  {
+   "w": "soil",
+   "t0": 2.18,
+   "t1": 3.02,
+   "occurrence": 1
+  },
+  {
+   "w": "But",
+   "t0": 3.06,
+   "t1": 3.22
+  },
+  {
+   "w": "soil",
+   "t0": 3.3,
+   "t1": 3.7,
+   "occurrence": 2
+  },
+  {
+   "w": "mainly",
+   "t0": 3.82,
+   "t1": 4.02
+  },
+  {
+   "w": "gives",
+   "t0": 4.1,
+   "t1": 4.34
+  },
+  {
+   "w": "water",
+   "t0": 4.42,
+   "t1": 4.74
+  },
+  {
+   "w": "and",
+   "t0": 4.82,
+   "t1": 4.9
+  },
+  {
+   "w": "minerals",
+   "t0": 4.98,
+   "t1": 5.74
+  },
+  {
+   "w": "the",
+   "t0": 5.78,
+   "t1": 5.86,
+   "occurrence": 1
+  },
+  {
+   "w": "carbon",
+   "t0": 5.94,
+   "t1": 6.26,
+   "occurrence": 1
+  },
+  {
+   "w": "in",
+   "t0": 6.38,
+   "t1": 6.5
+  },
+  {
+   "w": "wood",
+   "t0": 6.66,
+   "t1": 6.82
+  },
+  {
+   "w": "comes",
+   "t0": 6.9,
+   "t1": 7.06
+  },
+  {
+   "w": "from",
+   "t0": 7.14,
+   "t1": 7.22,
+   "occurrence": 2
+  },
+  {
+   "w": "the",
+   "t0": 7.3,
+   "t1": 7.46,
+   "occurrence": 2
+  },
+  {
+   "w": "air",
+   "t0": 7.54,
+   "t1": 8.3
+  },
+  {
+   "w": "About",
+   "t0": 8.34,
+   "t1": 8.66
+  },
+  {
+   "w": "forty",
+   "t0": 8.74,
+   "t1": 9.02
+  },
+  {
+   "w": "percent",
+   "t0": 9.06,
+   "t1": 9.38
+  },
+  {
+   "w": "of",
+   "t0": 9.46,
+   "t1": 9.54
+  },
+  {
+   "w": "glucose",
+   "t0": 9.62,
+   "t1": 10.22
+  },
+  {
+   "w": "by",
+   "t0": 10.26,
+   "t1": 10.42
+  },
+  {
+   "w": "mass",
+   "t0": 10.5,
+   "t1": 11.033
+  },
+  {
+   "w": "is",
+   "t0": 11.087,
+   "t1": 11.14,
+   "occurrence": 2
+  },
+  {
+   "w": "carbon",
+   "t0": 11.22,
+   "t1": 11.94,
+   "occurrence": 2
+  }
+ ],
+ "beats": [
+  0.02
+ ],
+ "cues": [
+  {
+   "id": "c21",
+   "at": 2.13,
+   "kind": "reveal",
+   "element_id": "soil_pot",
+   "word_index": 7
+  },
+  {
+   "id": "c22",
+   "at": 4.37,
+   "kind": "reveal",
+   "element_id": "h2o_tag",
+   "word_index": 12
+  },
+  {
+   "id": "c23",
+   "at": 7.49,
+   "kind": "reveal",
+   "element_id": "co2_tag",
+   "word_index": 22
+  },
+  {
+   "id": "c24",
+   "at": 8.69,
+   "kind": "reveal",
+   "element_id": "pie",
+   "word_index": 24
+  },
+  {
+   "id": "c25",
+   "at": 11.17,
+   "kind": "emphasis",
+   "element_id": "pie_pct",
+   "word_index": 31
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "bio-photosyn-ci-01",
+  "scene": "s04",
+  "beat_ids": [
+   "b05"
+  ],
+  "beats_text": [
+   {
+    "id": "b05",
+    "slot": "misconception.confront",
+    "text": "Many think a plant is built from soil. But soil mainly gives water and minerals; the carbon in wood comes from the air. About forty percent of glucose, by mass, is carbon.",
+    "headline": "carbon comes from the air",
+    "start": 0.26,
+    "end": 11.94,
+    "word_range": [
+     0,
+     32
+    ]
+   }
+  ],
+  "think_windows": []
+ }
+}

@@ -1,0 +1,137 @@
+{
+ "video_id": "phy-ohm-ci-01",
+ "fps": 30,
+ "viewport": [
+  1080,
+  1920
+ ],
+ "seed": 20261016,
+ "scenes": [
+  {
+   "id": "s01",
+   "file": "scenes/s01.html",
+   "scene_sha256": "3770e7a0ea22601fa6f2484293a836d9b3adb75547d7c5f5a7625efca2d3b0a8",
+   "cue_sheet_sha256": "289f7871dcece790421a7dc85e720d4639eceb95ac8c61e1e614546948054ce8",
+   "cue_source": "injected",
+   "fixture_source": "injected",
+   "duration": 9.9,
+   "frames": 297,
+   "errors": [],
+   "warnings": [],
+   "encode_exit": 0,
+   "capture_s": 13.0,
+   "frame_hashes_sample": {
+    "0": "b978438de37fc559b94c0b43c61b803709ba89e00c16c9732e06c5b9dd040e90",
+    "148": "bd6c7cadf8faf491de0c1ea6468ddd60bdd8ecaacd7abf4ced55199b4a285926",
+    "296": "d5afcf0549da788e6a333b6241dd529e80065d2e81506d17d632a74d136a7ca2"
+   },
+   "frames_sha256": "decb01522eb241dcfd75ddc3d804282afc1093184166924773910963773a7dcc",
+   "deterministic_rerender": true,
+   "deterministic_mismatched_frames": 0,
+   "deterministic_sampled_frames": 297
+  },
+  {
+   "id": "s02",
+   "file": "scenes/s02.html",
+   "scene_sha256": "f3d15dd29e9988f85be03f0d2ab47ef8c6f69ca062e1b00cfe8f8266c6e213c1",
+   "cue_sheet_sha256": "a29894dc6847adc66c51b9b511bd5d955b335a4a843ea839abf3f7bf7e0e476d",
+   "cue_source": "injected",
+   "fixture_source": "injected",
+   "duration": 10.567,
+   "frames": 317,
+   "errors": [],
+   "warnings": [],
+   "encode_exit": 0,
+   "capture_s": 13.7,
+   "frame_hashes_sample": {
+    "0": "b978438de37fc559b94c0b43c61b803709ba89e00c16c9732e06c5b9dd040e90",
+    "158": "c36a0662a1780256487fd8017f459be902069ca85bbfca2bb478a7f715375f54",
+    "316": "b873b9f12e763ba3d83203ebc281732ef9378298be9acebdc52753403c26ea57"
+   },
+   "frames_sha256": "600d9c9bcdfb2e18775ea711c30211a8f053f19f28fcb695794370438df6c217",
+   "deterministic_rerender": true,
+   "deterministic_mismatched_frames": 0,
+   "deterministic_sampled_frames": 317
+  },
+  {
+   "id": "s03",
+   "file": "scenes/s03.html",
+   "scene_sha256": "affdab6983cab253cae0c4e61394f9f0d330841276e4737c8e9ed3f1491ac608",
+   "cue_sheet_sha256": "8a98ea5e3dd0d67ba77ca2f8f4ca329fa80f8d43b7a64a8adfc30ab6915968ff",
+   "cue_source": "injected",
+   "fixture_source": "injected",
+   "duration": 24.767,
+   "frames": 743,
+   "errors": [],
+   "warnings": [],
+   "encode_exit": 0,
+   "capture_s": 31.5,
+   "frame_hashes_sample": {
+    "0": "b978438de37fc559b94c0b43c61b803709ba89e00c16c9732e06c5b9dd040e90",
+    "371": "bab82a8f2136378e8115e4d0acf246b308e718fd39f600386fc3ac1079eaa164",
+    "742": "78089462179d6c08d5819545430b2ea962b0e7dec2b22deb605dddd8e2c09528"
+   },
+   "frames_sha256": "8b638ae3c841e7d58a07f43a093afc605126bbdf1b747bd20055b8041c7b7844",
+   "deterministic_rerender": true,
+   "deterministic_mismatched_frames": 0,
+   "deterministic_sampled_frames": 743
+  },
+  {
+   "id": "s04",
+   "file": "scenes/s04.html",
+   "scene_sha256": "bfa3fd928360124f5bda616742560ec2b3f45fb7860d4b2cc9b16db52a4bbd21",
+   "cue_sheet_sha256": "7256e86eb9dcb0cbba682409364180d46c7d4181709abe34c3386e35221df4cb",
+   "cue_source": "injected",
+   "fixture_source": "injected",
+   "duration": 9.5,
+   "frames": 285,
+   "errors": [],
+   "warnings": [],
+   "encode_exit": 0,
+   "capture_s": 12.3,
+   "frame_hashes_sample": {
+    "0": "b978438de37fc559b94c0b43c61b803709ba89e00c16c9732e06c5b9dd040e90",
+    "142": "f437ab7886a6bc4a91696f81f5bb8f09c0dc9c79c3540e50d5a0dc9ab951b786",
+    "284": "ec957b84827edce707b5188f8a87abd348bbf4dfeebd9071b3e2d01b25f60467"
+   },
+   "frames_sha256": "823ce034c5bcadb29afe03170d9ec91861370adb8ce68b5bf7e3ca8637f7dff1",
+   "deterministic_rerender": true,
+   "deterministic_mismatched_frames": 0,
+   "deterministic_sampled_frames": 285
+  },
+  {
+   "id": "s05",
+   "file": "scenes/s05.html",
+   "scene_sha256": "80a8cbd2d3121ab860ab18401951fa30a91c98f887bb2b41a4f079f9c80d2487",
+   "cue_sheet_sha256": "d604551cfd184d01a4b745d3f7f323bd595822454413d959aaff4c117eb73356",
+   "cue_source": "injected",
+   "fixture_source": "injected",
+   "duration": 18.733,
+   "frames": 562,
+   "errors": [],
+   "warnings": [],
+   "encode_exit": 0,
+   "capture_s": 22.0,
+   "frame_hashes_sample": {
+    "0": "b978438de37fc559b94c0b43c61b803709ba89e00c16c9732e06c5b9dd040e90",
+    "281": "31ca63c42582a5367f0bcbfb7e464ae67906368b3a9f4215c202affff650b635",
+    "561": "c9f1ef1d6bcaef796a969d7d9a2681367f744d311f5b2c35c303f8f43b4952cf"
+   },
+   "frames_sha256": "0c217a4d08fc764e49939693aec97c99f1ac43a5cf3a720af515c3f725b1cf3c",
+   "deterministic_rerender": true,
+   "deterministic_mismatched_frames": 0,
+   "deterministic_sampled_frames": 562
+  }
+ ],
+ "script_sha256": "99b14455feefd67b584fa937db6c4bf87e9620b75e03b23d8ec9ff34e06e574d",
+ "narration_audio_sha256": "2092fee6592bacc4b215ff3a4842d3a065b5ee13cd547456e5c294558af35d15",
+ "started": "2026-10-16T15:09:37",
+ "browser": "155.0.8059.82",
+ "output": {
+  "file": "phy-ohm-ci-01.mp4",
+  "sha256": "099a2345127526417372260951d9c9d59bffb5036884bbd6acec921f59e129d2",
+  "bytes": 2685247
+ },
+ "total_errors": 0,
+ "finished": "2026-10-16T15:12:46"
+}

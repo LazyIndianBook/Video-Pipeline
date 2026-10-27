@@ -1,0 +1,200 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "phy-ohm-ci-01-s04",
+ "fps": 30,
+ "duration": 11.533,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "f883a3702c0dc31e4935fa4d0843ea6749259565b3df3e24e1645d798ad191cd",
+ "script_sha256": "63da8847cf4d03c5d3fd673d8f94ea746cf000bb4f54ba264b54c1a0ad88b41e",
+ "words": [
+  {
+   "w": "A",
+   "t0": 0.093,
+   "t1": 0.253
+  },
+  {
+   "w": "tempting",
+   "t0": 0.413,
+   "t1": 0.653
+  },
+  {
+   "w": "idea",
+   "t0": 0.733,
+   "t1": 1.853
+  },
+  {
+   "w": "Ohm's",
+   "t0": 1.933,
+   "t1": 2.333
+  },
+  {
+   "w": "law",
+   "t0": 2.493,
+   "t1": 2.653
+  },
+  {
+   "w": "is",
+   "t0": 2.733,
+   "t1": 2.973
+  },
+  {
+   "w": "always",
+   "t0": 3.053,
+   "t1": 3.453
+  },
+  {
+   "w": "true",
+   "t0": 3.653,
+   "t1": 4.333
+  },
+  {
+   "w": "But",
+   "t0": 4.413,
+   "t1": 4.493
+  },
+  {
+   "w": "a",
+   "t0": 4.533,
+   "t1": 4.573
+  },
+  {
+   "w": "filament",
+   "t0": 4.653,
+   "t1": 5.053
+  },
+  {
+   "w": "bulb",
+   "t0": 5.133,
+   "t1": 5.373
+  },
+  {
+   "w": "heats",
+   "t0": 5.413,
+   "t1": 5.693
+  },
+  {
+   "w": "up",
+   "t0": 5.773,
+   "t1": 6.173
+  },
+  {
+   "w": "its",
+   "t0": 6.253,
+   "t1": 6.413
+  },
+  {
+   "w": "resistance",
+   "t0": 6.533,
+   "t1": 7.053
+  },
+  {
+   "w": "changes",
+   "t0": 7.133,
+   "t1": 7.853
+  },
+  {
+   "w": "and",
+   "t0": 7.933,
+   "t1": 8.013
+  },
+  {
+   "w": "doubling",
+   "t0": 8.053,
+   "t1": 8.413
+  },
+  {
+   "w": "the",
+   "t0": 8.453,
+   "t1": 8.493,
+   "occurrence": 1
+  },
+  {
+   "w": "voltage",
+   "t0": 8.573,
+   "t1": 9.053
+  },
+  {
+   "w": "does",
+   "t0": 9.173,
+   "t1": 9.293
+  },
+  {
+   "w": "not",
+   "t0": 9.373,
+   "t1": 9.613
+  },
+  {
+   "w": "double",
+   "t0": 9.693,
+   "t1": 9.933
+  },
+  {
+   "w": "the",
+   "t0": 10.013,
+   "t1": 10.093,
+   "occurrence": 2
+  },
+  {
+   "w": "current",
+   "t0": 10.333,
+   "t1": 10.813
+  }
+ ],
+ "beats": [
+  0.013
+ ],
+ "cues": [
+  {
+   "id": "c01",
+   "at": 4.603,
+   "kind": "reveal",
+   "element_id": "filament",
+   "word_index": 10
+  },
+  {
+   "id": "c02",
+   "at": 5.083,
+   "kind": "reveal",
+   "element_id": "bulb",
+   "word_index": 11
+  },
+  {
+   "id": "c03",
+   "at": 5.363,
+   "kind": "reveal",
+   "element_id": "heat",
+   "word_index": 12
+  },
+  {
+   "id": "c04",
+   "at": 7.083,
+   "kind": "emphasis",
+   "element_id": "bulb",
+   "word_index": 16
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "phy-ohm-ci-01",
+  "scene": "s04",
+  "beat_ids": [
+   "b05"
+  ],
+  "beats_text": [
+   {
+    "id": "b05",
+    "slot": "misconception.confront",
+    "text": "A tempting idea: Ohm's law is always true. But a filament bulb heats up, its resistance changes, and doubling the voltage does not double the current.",
+    "headline": "resistance changes",
+    "start": 0.093,
+    "end": 10.813,
+    "word_range": [
+     0,
+     26
+    ]
+   }
+  ],
+  "think_windows": []
+ }
+}

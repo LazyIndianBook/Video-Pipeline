@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "scene_id": "phy-10-03-s04",
+  "lesson_id": "phy-10-03",
+  "language": "en-IN",
+  "route": {
+    "tag": "data-bound",
+    "source": "examleaf-storyboard-route",
+    "scene_spec_id": "phy-10-03-s04"
+  },
+  "script": {
+    "path": "jobs/phy-10-03-s04/inputs/approved_script.md",
+    "sha256": "<64 hex>",
+    "approval_status": "approved",
+    "segment_text": "<approved narration for this scene>"
+  },
+  "style": {
+    "id": "doodle-handdrawn",
+    "version": "1.0.0",
+    "guide_path": "12_advanced_animations_with_claude/05_style_guides/doodle-handdrawn.md",
+    "tokens_path": "12_advanced_animations_with_claude/05_style_guides/style_tokens.json"
+  },
+  "cue_sheet": {
+    "path": "jobs/phy-10-03-s04/inputs/cue_sheet.json",
+    "sha256": "<64 hex>"
+  },
+  "brand_tokens": {
+    "path": "jobs/phy-10-03-s04/inputs/brand_tokens.json",
+    "sha256": "<64 hex>"
+  },
+  "reference_analysis": {
+    "path": "jobs/phy-10-03-s04/inputs/reference_analysis.json",
+    "sha256": "<64 hex>",
+    "rights": "analysis_only"
+  },
+  "fixtures": [
+    {
+      "id": "fx-refraction-glass",
+      "path": "jobs/phy-10-03-s04/inputs/fx-refraction-glass.json",
+      "sha256": "<64 hex>",
+      "fields_on_screen": [
+        "n_air",
+        "n_glass",
+        "angle_i_deg",
+        "angle_r_deg"
+      ]
+    }
+  ],
+  "fonts": {
+    "allow": [
+      "Caveat Brush",
+      "Patrick Hand"
+    ],
+    "text": [
+      "Inter",
+      "Noto Sans",
+      "Noto Sans Devanagari"
+    ],
+    "ban": [
+      "Arial",
+      "Inter",
+      "Space Grotesk"
+    ]
+  },
+  "holds": {
+    "headline_min_s": 1.2,
+    "equation_tail_s": 0.5,
+    "indic_multiplier": null,
+    "indic_multiplier_status": "n/a for en-IN; for hi-IN/as-IN copy hold_times_s from 04_harness_contract/vertical_safe_zones.tokens.json and mark hypothesis until calibrated"
+  },
+  "iteration_cap": 3,
+  "effort": {
+    "model": "<pinned full model ID>",
+    "level": "high"
+  },
+  "workspace": "jobs/phy-10-03-s04/",
+  "approval_record": {
+    "path": "jobs/phy-10-03-s04/storyboard/approval_record.json",
+    "sha256": "<64 hex>"
+  },
+  "creative_direction": "Pencil doodle of a straw that appears to bend where it enters the water; the straw itself never changes angle."
+}

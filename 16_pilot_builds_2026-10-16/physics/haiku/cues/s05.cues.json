@@ -1,0 +1,230 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "phy-ohm-ci-01-s05",
+ "fps": 30,
+ "duration": 18.067,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "f883a3702c0dc31e4935fa4d0843ea6749259565b3df3e24e1645d798ad191cd",
+ "script_sha256": "63da8847cf4d03c5d3fd673d8f94ea746cf000bb4f54ba264b54c1a0ad88b41e",
+ "words": [
+  {
+   "w": "For",
+   "t0": 0.16,
+   "t1": 0.24
+  },
+  {
+   "w": "an",
+   "t0": 0.32,
+   "t1": 0.4
+  },
+  {
+   "w": "ohmic",
+   "t0": 0.48,
+   "t1": 0.8
+  },
+  {
+   "w": "conductor",
+   "t0": 0.88,
+   "t1": 1.44
+  },
+  {
+   "w": "at",
+   "t0": 1.52,
+   "t1": 1.6
+  },
+  {
+   "w": "constant",
+   "t0": 1.68,
+   "t1": 2.08,
+   "occurrence": 1
+  },
+  {
+   "w": "temperature",
+   "t0": 2.16,
+   "t1": 3.04
+  },
+  {
+   "w": "current",
+   "t0": 3.12,
+   "t1": 3.44,
+   "occurrence": 1
+  },
+  {
+   "w": "is",
+   "t0": 3.52,
+   "t1": 3.6,
+   "occurrence": 1
+  },
+  {
+   "w": "proportional",
+   "t0": 3.68,
+   "t1": 4.32
+  },
+  {
+   "w": "to",
+   "t0": 4.36,
+   "t1": 4.4
+  },
+  {
+   "w": "voltage",
+   "t0": 4.48,
+   "t1": 5.44,
+   "occurrence": 1
+  },
+  {
+   "w": "Resistance",
+   "t0": 5.8,
+   "t1": 6.16
+  },
+  {
+   "w": "is",
+   "t0": 6.2,
+   "t1": 6.24,
+   "occurrence": 2
+  },
+  {
+   "w": "the",
+   "t0": 6.32,
+   "t1": 6.4
+  },
+  {
+   "w": "constant",
+   "t0": 6.48,
+   "t1": 6.88,
+   "occurrence": 2
+  },
+  {
+   "w": "of",
+   "t0": 6.96,
+   "t1": 7.04
+  },
+  {
+   "w": "proportionality",
+   "t0": 7.12,
+   "t1": 8.4
+  },
+  {
+   "w": "voltage",
+   "t0": 8.48,
+   "t1": 9.04,
+   "occurrence": 2
+  },
+  {
+   "w": "equals",
+   "t0": 9.12,
+   "t1": 9.44
+  },
+  {
+   "w": "current",
+   "t0": 9.52,
+   "t1": 9.92,
+   "occurrence": 2
+  },
+  {
+   "w": "multiplied",
+   "t0": 10.16,
+   "t1": 10.72
+  },
+  {
+   "w": "by",
+   "t0": 10.8,
+   "t1": 10.88,
+   "occurrence": 1
+  },
+  {
+   "w": "resistance",
+   "t0": 10.96,
+   "t1": 11.92
+  },
+  {
+   "w": "AI-generated",
+   "t0": 12.44,
+   "t1": 13.56
+  },
+  {
+   "w": "narration",
+   "t0": 13.64,
+   "t1": 14.68
+  },
+  {
+   "w": "script",
+   "t0": 14.76,
+   "t1": 15.16
+  },
+  {
+   "w": "by",
+   "t0": 15.32,
+   "t1": 15.4,
+   "occurrence": 2
+  },
+  {
+   "w": "ExamLeaf",
+   "t0": 15.48,
+   "t1": 16.52
+  }
+ ],
+ "beats": [
+  0.0,
+  12.44
+ ],
+ "cues": [
+  {
+   "id": "c01",
+   "at": 5.75,
+   "kind": "reveal",
+   "element_id": "card_r",
+   "word_index": 12
+  },
+  {
+   "id": "c02",
+   "at": 5.75,
+   "kind": "reveal",
+   "element_id": "ratio_card",
+   "word_index": 12
+  },
+  {
+   "id": "c03",
+   "at": 12.39,
+   "kind": "reveal",
+   "element_id": "disclosure",
+   "word_index": 24
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "phy-ohm-ci-01",
+  "scene": "s05",
+  "beat_ids": [
+   "b06",
+   "b07"
+  ],
+  "beats_text": [
+   {
+    "id": "b06",
+    "slot": "recap.statement",
+    "text": "For an ohmic conductor at constant temperature, current is proportional to voltage. Resistance is the constant of proportionality: voltage equals current multiplied by resistance.",
+    "headline": "constant of proportionality",
+    "start": 0.16,
+    "end": 11.92,
+    "word_range": [
+     0,
+     24
+    ]
+   },
+   {
+    "id": "b07",
+    "slot": "outro.disclosure",
+    "text": "AI-generated narration; script by ExamLeaf.",
+    "headline": "",
+    "start": 12.44,
+    "end": 16.52,
+    "word_range": [
+     24,
+     29
+    ]
+   }
+  ],
+  "think_windows": []
+ }
+}

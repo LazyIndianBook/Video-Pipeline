@@ -1,0 +1,26 @@
+{
+ "compute": "fixtures/compute.py",
+ "parameters": {
+  "resistance_ohm": 10,
+  "v1": 2,
+  "v2": 4,
+  "v3": 6
+ },
+ "results": {
+  "i1": 0.2,
+  "i2": 0.4,
+  "i3": 0.6,
+  "ratio_i": 2
+ },
+ "display": {
+  "v_unit": "V",
+  "i_unit": "A",
+  "equation": "V / I = R",
+  "condition": "constant temperature",
+  "ui": {
+   "think_prompt": "Pause. Predict.",
+   "endcard_line1": "Professor Diki Simplified",
+   "endcard_line2": "Free lesson: Ohm's law"
+  }
+ }
+}

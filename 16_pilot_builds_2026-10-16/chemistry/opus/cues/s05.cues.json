@@ -1,0 +1,168 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "chem-balance-ci-01-s05",
+ "fps": 30,
+ "duration": 13.433,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "0cafc6b9ba41366a8dfece5586b143e0977d7d86ec7d9d82dc73997d043d7c17",
+ "script_sha256": "ea9184430445e015c20a75b78ce2023f89a08ec192d884746da5cc4b9516ebed",
+ "words": [
+  {
+   "w": "Atoms",
+   "t0": 0.453,
+   "t1": 0.573
+  },
+  {
+   "w": "are",
+   "t0": 0.653,
+   "t1": 0.733
+  },
+  {
+   "w": "conserved",
+   "t0": 0.893,
+   "t1": 1.693
+  },
+  {
+   "w": "so",
+   "t0": 1.773,
+   "t1": 1.933
+  },
+  {
+   "w": "count",
+   "t0": 2.093,
+   "t1": 2.253
+  },
+  {
+   "w": "every",
+   "t0": 2.333,
+   "t1": 2.573
+  },
+  {
+   "w": "element",
+   "t0": 2.653,
+   "t1": 3.053
+  },
+  {
+   "w": "on",
+   "t0": 3.173,
+   "t1": 3.293
+  },
+  {
+   "w": "both",
+   "t0": 3.413,
+   "t1": 3.533
+  },
+  {
+   "w": "sides",
+   "t0": 3.613,
+   "t1": 4.253
+  },
+  {
+   "w": "and",
+   "t0": 4.373,
+   "t1": 4.493
+  },
+  {
+   "w": "balance",
+   "t0": 4.693,
+   "t1": 4.893
+  },
+  {
+   "w": "with",
+   "t0": 4.973,
+   "t1": 5.053
+  },
+  {
+   "w": "coefficients",
+   "t0": 5.133,
+   "t1": 5.853
+  },
+  {
+   "w": "only",
+   "t0": 5.933,
+   "t1": 6.733
+  },
+  {
+   "w": "AI-generated",
+   "t0": 7.333,
+   "t1": 8.453
+  },
+  {
+   "w": "narration",
+   "t0": 8.533,
+   "t1": 9.573
+  },
+  {
+   "w": "script",
+   "t0": 9.653,
+   "t1": 10.053
+  },
+  {
+   "w": "by",
+   "t0": 10.213,
+   "t1": 10.293
+  },
+  {
+   "w": "ExamLeaf",
+   "t0": 10.373,
+   "t1": 11.413
+  }
+ ],
+ "beats": [
+  0.013,
+  7.333
+ ],
+ "cues": [
+  {
+   "id": "c29",
+   "at": 2.043,
+   "kind": "reveal",
+   "element_id": "tally_final",
+   "word_index": 4
+  },
+  {
+   "id": "c30",
+   "at": 5.083,
+   "kind": "emphasis",
+   "element_id": "coefs",
+   "word_index": 13
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "chem-balance-ci-01",
+  "scene": "s05",
+  "beat_ids": [
+   "b06",
+   "b07"
+  ],
+  "beats_text": [
+   {
+    "id": "b06",
+    "slot": "recap.statement",
+    "text": "Atoms are conserved, so count every element on both sides, and balance with coefficients only.",
+    "headline": "atoms are conserved",
+    "start": 0.453,
+    "end": 6.733,
+    "word_range": [
+     0,
+     15
+    ]
+   },
+   {
+    "id": "b07",
+    "slot": "outro.disclosure",
+    "text": "AI-generated narration; script by ExamLeaf.",
+    "headline": "",
+    "start": 7.333,
+    "end": 11.413,
+    "word_range": [
+     15,
+     20
+    ]
+   }
+  ],
+  "think_windows": []
+ }
+}

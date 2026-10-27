@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "examleaf-narration"
+version = "0.1.0"
+description = "Narration contracts, provider request compilation and offline timing/QA proof"
+requires-python = ">=3.11"
+dependencies = ["pydantic>=2.10,<3", "numpy>=2,<3", "scipy>=1.14,<2", "soundfile>=0.12,<1"]
+[project.optional-dependencies]
+test = ["pytest>=8,<10"]
+[project.scripts]
+examleaf-voice = "examleaf_narration.cli:main"
+[tool.setuptools.packages.find]
+where = ["src"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]

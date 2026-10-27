@@ -1,0 +1,153 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://examleaf.local/schemas/v2/format_plan.json",
+  "title": "ExamLeaf Format Plan v2",
+  "description": "Output of Architecture §5.1 steps 4–6: chapters and slot instances bound to node ids. format_plan_sha256 = sha256(JCS-RFC8785(NFC(plan))). Array order is meaningful (chapters, slot_instances, node_ids). Added 15 Oct 2026.",
+  "$comment": "Commercial-term lint (CE-L1/RD-49; CE-26, CE-70; updated 15 Oct 2026): CI rejects, case-insensitively, any match of (price|pricing|paid|is_free|free_|premium|entitle|subscri|sku|paywall|unlock|monetis|monetiz|revenue|discount|coupon|tier|destination_resource|cta_destination|funnel|purchase_|checkout_|product_id|offer_|trial_|utm_|campaign_|affiliate_|activation_code|storefront) applied to every object key at every depth (including REN fields keys), every required entry, pattern key and enum or const value. Exempt: the editorial fields series_position, flagship and demo_kind, which carry no commercial meaning.",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "properties": {
+    "format_plan_version": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "hash_canon": {
+      "const": "JCS-RFC8785+NFC"
+    },
+    "epp_hash": {
+      "$ref": "#/definitions/sha256"
+    },
+    "graph_subtree_sha256": {
+      "$ref": "#/definitions/sha256"
+    },
+    "format": {
+      "type": "string",
+      "pattern": "^format/[a-z0-9_]+@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "grammar_variant": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The level_variants variant_id or format_variants variant_id used, if any."
+    },
+    "chapters": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "index": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "max_s": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 360
+          }
+        },
+        "required": [
+          "index",
+          "max_s"
+        ]
+      }
+    },
+    "slot_instances": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "order": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "slot": {
+            "enum": [
+              "hook.realworld",
+              "hook.question_reveal",
+              "hook.surprise",
+              "explain.ladder_step",
+              "explain.definition",
+              "explain.analogy",
+              "explain.derivation_step",
+              "worked.step",
+              "worked.faded_twin",
+              "check.interpolated",
+              "check.predict",
+              "check.retrieval",
+              "misconception.elicit",
+              "misconception.confront",
+              "misconception.retest",
+              "recap.retrieval",
+              "recap.statement",
+              "marking.scheme",
+              "exam.pattern",
+              "exam.time_plan",
+              "compare.dimension",
+              "activity.setup",
+              "activity.do",
+              "activity.observe",
+              "activity.safety_cue",
+              "story.beat",
+              "story.song_chant",
+              "card.front",
+              "card.back",
+              "qa.doubt_statement",
+              "qa.answer",
+              "source.show",
+              "source.read",
+              "source.interpret",
+              "perspective.position",
+              "map.node",
+              "map.link",
+              "viva.prompt",
+              "viva.model_answer",
+              "teach.move",
+              "bridge.return_link",
+              "chapter.title",
+              "close.next_step"
+            ]
+          },
+          "chapter_index": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "node_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^(OBJ|CLM|CON|ANL|MIS|WRK|ASM|SIM|ACT|STY|VOC|TXT|MED|REN)-[A-Za-z0-9_.-]+$"
+            },
+            "uniqueItems": true
+          },
+          "params": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "order",
+          "slot",
+          "chapter_index",
+          "node_ids"
+        ]
+      }
+    }
+  },
+  "required": [
+    "format_plan_version",
+    "hash_canon",
+    "epp_hash",
+    "graph_subtree_sha256",
+    "format",
+    "chapters",
+    "slot_instances"
+  ]
+}

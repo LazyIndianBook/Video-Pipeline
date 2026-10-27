@@ -1,0 +1,25 @@
+PER FINISHED 10-MINUTE VIDEO | USD,,,
+,,,
+,,,
+Cost category,AI-heavy,Hybrid,Mostly self-hosted
+LLM reasoning / independent review,=((Inputs!$B$7*Inputs!$B$9+Inputs!$B$8*Inputs!$B$10+Inputs!$B$11*Inputs!$B$13+Inputs!$B$12*Inputs!$B$14+Inputs!$B$15*Inputs!$B$17+Inputs!$B$16*Inputs!$B$18)/1000000)*(1+Inputs!$B$19),=((Inputs!$B$7*Inputs!$B$9+Inputs!$B$8*Inputs!$B$10+Inputs!$B$11*Inputs!$B$13+Inputs!$B$12*Inputs!$B$14+Inputs!$B$15*Inputs!$B$17+Inputs!$B$16*Inputs!$B$18)/1000000)*(1+Inputs!$B$19),=Inputs!$B$32*Inputs!$B$33+(Inputs!$B$11*Inputs!$B$13+Inputs!$B$12*Inputs!$B$14)/1000000*(1+Inputs!$B$19)
+Narration generation,=Inputs!$B$20*Inputs!$B$21*Inputs!$B$22/1000,=Inputs!$B$20*Inputs!$B$21*Inputs!$B$22/1000,=Inputs!$B$32*Inputs!$B$34
+Generated video clips,=Inputs!$B$24*Inputs!$B$23*Inputs!$B$25,=Inputs!$B$26*Inputs!$B$23*Inputs!$B$27,=0
+Generated stills,=Inputs!$B$28,=Inputs!$B$28,=0
+Encoding/rendering,=Inputs!$B$60,=Inputs!$B$61,=Inputs!$B$62
+Alignment/audio allowance,=Inputs!$B$63,=Inputs!$B$64,=Inputs!$B$65
+Working storage,=Inputs!$B$66,=Inputs!$B$66,=Inputs!$B$66
+Machine subtotal,=SUM(B5:B11),=SUM(C5:C11),=SUM(D5:D11)
+Academic review,=Inputs!$B$45/60*Inputs!$B$29,=Inputs!$B$46/60*Inputs!$B$29,=Inputs!$B$47/60*Inputs!$B$29
+Production QA,=Inputs!$B$48/60*Inputs!$B$30,=Inputs!$B$49/60*Inputs!$B$30,=Inputs!$B$50/60*Inputs!$B$30
+Repairs / editing,=Inputs!$B$51/60*Inputs!$B$31,=Inputs!$B$52/60*Inputs!$B$31,=Inputs!$B$53/60*Inputs!$B$31
+Human subtotal,=SUM(B13:B15),=SUM(C13:C15),=SUM(D13:D15)
+TOTAL VARIABLE COST,=B12+B16,=C12+C16,=D12+D16
+Monthly fixed allowance,=Inputs!$B$54,=Inputs!$B$55,=Inputs!$B$56
+One-time setup,=Inputs!$B$57,=Inputs!$B$58,=Inputs!$B$59
+Human minutes/video,=Inputs!$B$45+Inputs!$B$48+Inputs!$B$51,=Inputs!$B$46+Inputs!$B$49+Inputs!$B$52,=Inputs!$B$47+Inputs!$B$50+Inputs!$B$53
+,,,
+,,,
+Quality is not assumed equal. AI-heavy scenes can fail scientific requirements regardless of spend. Self-hosted labour and GPU time are unmeasured scenarios. Zero generated clips is the default unless their instructional value is approved.,,,
+,,,
+,,,

@@ -1,0 +1,59 @@
+{
+  "lens": "pull",
+  "scores": {
+    "A": {"D8": 4, "D1": 5, "D2": 4, "D3": 4, "D4": 5, "D5": 4, "D6": 3, "D7": 4},
+    "B": {"D8": 1, "D1": 4, "D2": 2, "D3": 2, "D4": 2, "D5": 2, "D6": 1, "D7": 2}
+  },
+  "evidence": {
+    "A": [
+      "D8 opening (frames/s01_t000.png, s01_t010.png, timeline_words.json, 0.0-7.3 s, b01-b02): frame 0 is already the whole lesson board (R = 10 Ω, V = 2 V, the meter reading I = 0.20 A, the V | I | V ÷ I table) with 'Current always doubles?' on screen before a word is spoken. The spoken question ends about 3.4 s ('doubles' at 2.91 s). The push / hold back / flow model completes on 'flows' at 7.29 s, with the current trace on the wire, so the first usable idea is in by 7.3 s.",
+      "D8 turns and payoff (frames/s01_t018.png, s01_t022.png, s01_t030.png, s01_t040.png, timeline, 12.1-41.3 s, b04-b09): the bet 'More current, less, or the same?' (12.1-17.5 s) keeps its givens on the board, with a 1.7 s think plate. The meter flips to 0.40 A on 'four' (20.34 s) and the claim chips 'Twice the push, twice the flow' land at 21.2-23.0 s. 'Ohm's law' is named with its definition card on 'Ohm's' (29.41 s). The hook's 'always' then pays off: 'Always?' at 34.15 s, then the hot bulb swapped into the resistor's slot with R ↑ and a struck × 2 (37.2-41.3 s). Turns land at 12.1, 19.2, 23.9, 34.2, 37.2 and 41.8 s, so no stretch runs longer than 12.1 s without one.",
+      "D8 transfer and close (frames/s01_t048.png, s01_t050.png, s01_t058.png, timeline, 41.8-59.1 s, b10-b14): 'Your turn: same resistor, six volts' runs on the same board (V = 6 V, I = ? A, V = I × R, table row 3 waiting) with a 2.6 s think plate. The answer 0.60 A lands on 'six' (49.53 s), followed by 'If you got that, the rule is yours.' The close is a points card plus 'Try the free lesson on Ohm's law' (b13, 182 wpm) and the end card. The 'next' tease was cut for time (script.json repair_log), so nothing pulls the viewer toward the next short."
+    ],
+    "B": [
+      "D8 opening (frames/s01_t000.png, s01_t002.png, s01_t004.png, s01_t008.png, qa_summary A14/A16, 0-10.6 s, b01): frame 0 is a blank board, and at 2 s only the handwritten 'twice the voltage' is up. The circuit draws on at 'current' (3.72 s) and its values arrive at 5.9-9.7 s. The spoken question ends about 4.1 s, then a narrated setup ('Here is a resistor of ten ohms with two volts across it. Now we make it four volts.') runs to 10.6 s. The first usable idea, 'Twice the voltage, twice the current', completes at 31.8 s (b03; the first number, 0.2 A, comes at 25.4 s).",
+      "D8 stall (frames/s02_t006.png, s02_t010.png, s03_t000.png, timeline, 11.4-22.6 s, b02-b03): 'Pause and predict the current at four volts. Then decide whether always is safe.' is asked with only R = 10 Ω and V = 4 V on the board. No current was ever given at 2 V, and nothing on the board bears on 'always' until the bulb at 49 s. Then come 5.5 s of silence on 'Pause. Predict.' (17.0-22.5 s), and at 22.4 s the circuit is torn down to two empty cards. The board is torn down again at 46.3 s (a bare loop, s04_t000) and at 57.4 s (a lone resistor squiggle, s05_t002). Turns land at 11.4, 22.6 and 46.4 s only, leaving gaps of 23.8 s and 25.5 s.",
+      "D8 payoff and close (frames/s03_t020.png, s04_t008.png, s05_t014.png, timeline, 22.6-71.9 s, b03-b07): the payoff is read out (0.4 A at 28.9 s) and called 'that constant is the resistance', but 'Ohm's law' is never said or shown. There is no transfer question. The close is a textbook recap (57.6-64.5 s), then the spoken and on-screen 'AI-generated narration; script by ExamLeaf.' (66.0-69.2 s), then a 2.2 s silent tail with no end card. Runtime is 71.93 s."
+    ]
+  },
+  "empty_seconds": {"A": 0.6, "B": 13.6},
+  "time_to_first_insight_s": {"A": 7.3, "B": 31.8},
+  "turns_count": {"A": 6, "B": 3},
+  "shareable_line": {"A": "Twice the push, twice the flow.", "B": "none"},
+  "gates": {
+    "A": [],
+    "B": [
+      "AI-disclosure line spoken and on screen (PD-20): b07 'AI-generated narration' from 66.0 s; the caption stays to the last frame (s05_t014)",
+      "forbidden string 'ExamLeaf' spoken (b07, 69.16 s) and on screen (s05 at 69.4 s; frames/s05_t014.png; qa A12)",
+      "no transfer question: the script's slots end at recap.statement and outro.disclosure (qa A18)",
+      "silence is 17.5 % of runtime, above 15 % (qa A20: 12.61 s of 71.93 s)",
+      "board torn down inside the lesson: 5 scene files, diagram similarity 0.49 at 22.5 s, 0.43 at 46.5 s and 0.57 at 57.5 s (qa A17; frames s03_t000, s04_t000, s05_t002)",
+      "duration 71.93 s, outside 60 ± 1 s (qa A11). The script itself declares concept_intro with a 65 s target and still overruns that by 6.9 s",
+      "prediction not answerable from shown givens: at b02 only R = 10 Ω and V = 4 V are shown, the 2 V current was never given, and 'decide whether always is safe' has nothing on the board to support it. This is my reading of s01_t008 and s02_t010; qa A18 failed the build on missing slots, not on this reason"
+    ]
+  },
+  "winner": "A",
+  "reason": "A is the build a scrolling Class 10 student stays with. The whole board and the question are on screen at frame 0, a usable idea is in by 7.3 s, and no stretch runs longer than 12.1 s without a turn. The payoff is named twice ('Twice the push, twice the flow', then Ohm's law at 29.4 s), the hook's 'always' pays off with the hot bulb, the learner gets a transfer they can solve (6 V gives 0.60 A), and there is a line worth sharing. B opens on a blank board and gives nothing usable until 31.8 s. It stalls on a 5.5 s silent hold and three teardowns, never names Ohm's law, has no transfer, runs 71.9 s and ends on 'AI-generated narration; script by ExamLeaf.' It fails seven hard gates.",
+  "gap_for_weaker": [
+    "Complete frame 0: show the circuit with R = 10 Ω, V = 2 V and a live 0.20 A meter reading, put the question on screen, and finish speaking it by 3 s. Show 'Here is a resistor of ten ohms with two volts across it' in the picture instead of narrating it.",
+    "Make the prediction answerable from the board: show the 2 V current first, make it a quick choice (more / less / same) with a short think plate instead of a 5 s silent 'Pause. Predict.' hold, and either drop 'decide whether always is safe' or put its givens on the board.",
+    "Keep one persistent board: grow a V | I | V ÷ I table under the circuit and swap the bulb into the resistor's slot, instead of tearing down to empty cards, a bare loop and a lone squiggle.",
+    "Name the payoff on its word ('Ohm's law' with a definition card) and give it a short contrastive line a student would repeat.",
+    "Add a transfer on the same board (same resistor, 6 V, what does the meter read?) with a think window and a confirmation.",
+    "Remove the spoken and on-screen 'AI-generated narration; script by ExamLeaf' (PD-20, F01). Close on a recap card, a next step and the brand end card.",
+    "Cut to 60 ± 1 s with short contrastive sentences (b01 and b04 are 27 words each), keep silence under 15 %, and land a turn every 8-12 s (today the gaps are 23.8 s and 25.5 s)."
+  ],
+  "blocking_defects": {
+    "A": [],
+    "B": [
+      "spoken and on-screen 'AI-generated narration; script by ExamLeaf.' (b07, 66.0-69.2 s; s05_t014)",
+      "no transfer question",
+      "board torn down three times inside the lesson (22.4 s, 46.3 s, 57.4 s); five scenes instead of one",
+      "silence is 17.5 % of runtime",
+      "runtime 71.93 s, outside 60 ± 1 s",
+      "prediction asked without its givens: no 2 V current is shown, and nothing on the board supports 'always is safe'",
+      "no brand end card: the opening ident, end-card brand line, free-lesson line and spoken outro are all missing (qa A12)"
+    ]
+  },
+  "notes": "I cannot play audio (or the MP4). Voice energy, intonation, emphasis, the end motif and how the pauses actually feel are unverified. Momentum was judged from timeline_words.json word timings, script.json, the storyboards, qa_summary.json, both contact sheets and the frames I opened: 15 for A and 12 for B. The frames are 2 s samples, so reveals shorter than 2 s are taken from the cue sheets. DEFINITIONS (same for both builds). Empty seconds = time the lesson lane is blank, plus unscripted silence over 0.6 s on a static board; scripted think windows are excluded up to their scripted length. A has only the 0.63 s unscripted silence at 28.78 s. B has a blank board at 0-4.0 s and 58.0-59.5 s (5.5 s), static silences at 8.15, 10.47, 32.10, 45.40, 56.43 and 65.08 s plus the 2.2 s tail (7.6 s), and a 0.5 s think-window overrun; counting B's scripted 5 s 'Pause. Predict.' hold too would make it about 18.6 s. First usable idea = the word that completes the first idea a learner could act on. For reference, the QA's insight-beat start is 8.07 s for A, and B's first explain beat starts at 22.6 s. Turns = re-hooks and reversals after the hook. A: b04 bet, b05 reveal, b06 'Why?' (weak), b08 'Always?', b09 hot-bulb reversal, b10 'Your turn'. B: b02 predict, b03 reveal, b05 'But always is not safe'. PER DIMENSION. D8: A meets every D8 marker except a close that makes you want the next one, because the tease was cut and the CTA points to a lesson on the same topic. B meets every 1-level marker that can be checked from the files; its only strength is the 'always' loop (opened 2.3 s, paid 46.8 s), which arrives after the blank opening and the long hold. D1: every on-screen value in both builds matches the fixture (qa A3). A states the condition on the definition card with the rule and keeps the lamp qualitative with no number. B's struck '×2' on the lamp has no fixture result behind it. D2: A's prediction is answerable from the shown givens and its transfer is solved. Its confront is a visual assertion (the meter shows '?'), and 'Why? Only the voltage changed' restates rather than explains. B gives no intuition, asks the prediction without its givens, and has no transfer. D3: A uses short contrastive lines with one quotable line, but repeats an 'X? Only Y.' pattern (b06, b08) and its CTA reads like an ad. B is in textbook register, with 27-word sentences and the awkward 'always is not safe'. D4: A keeps one persistent collage board, with causal swaps, colour by meaning, and table, definition and points cards tied to the circuit; the 'constant temperature' chip only dims (still readable) over the hot lamp (s01_t040). B is doodle style across five scenes, with teardowns, a decorative pencil and books, and an empty opening. D5: A's reveals land on their words and its pauses match their purpose, but qa A13 (0.63 s), A15 (3.5 s static from 22.5 s) and A19 (b13 at 182 wpm) fail. A's hook is spoken at 99 wpm and the whole track at 113 wpm, which may soften momentum (not heard). B holds 5.5 s for a simple prediction, has ten silences over 0.6 s and a 4 s static stretch from 13.5 s. D6: A is 16 pass / 2 warn / 3 fail and deterministic; B is 10 pass / 11 fail. D7: A's learner leaves able to solve the next one; B's learner hears the rule but never uses it or hears its name. A, non-blocking but to do before release: rerun the transcript check (qa A7 failed on STT HTTP 429) and complete the academic review that script.requires names (SIM-push-flow, CLM-filament, ASM-transfer-six-volts). B's own script declares format concept_intro (65 s target); the brief treats both builds as the 60 s short. Blind rules kept: I read only judging/physics_pd/A and B and the two tooling files; mapping.json was not opened."
+}

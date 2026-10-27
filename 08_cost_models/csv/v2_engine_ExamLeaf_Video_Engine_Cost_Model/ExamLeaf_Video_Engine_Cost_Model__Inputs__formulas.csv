@@ -1,0 +1,66 @@
+EXAMLEAF | Video production economics,,,,
+"USD, before tax. Published tariffs are inputs; workloads, rates of regeneration, labour and setup budgets are assumptions. No Higgsfield whole-lesson quote is claimed.",,,,
+,,,,
+,,,,
+Input,Value,Unit,Evidence class,Source / qualification
+Lesson duration,600,seconds,Production assumption,User target ~10 minutes
+Sonnet input,120000,tokens/video,Workload assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Sonnet output,25000,tokens/video,Workload assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Sonnet input tariff,3,USD/million tokens,Published API tariff,https://platform.claude.com/docs/en/about-claude/pricing
+Sonnet output tariff,15,USD/million tokens,Published API tariff,https://platform.claude.com/docs/en/about-claude/pricing
+Opus review input,60000,tokens/video,Workload assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Opus review output,10000,tokens/video,Workload assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Opus input tariff,5,USD/million tokens,Published API tariff,https://platform.claude.com/docs/en/about-claude/pricing
+Opus output tariff,25,USD/million tokens,Published API tariff,https://platform.claude.com/docs/en/about-claude/pricing
+Haiku input,20000,tokens/video,Workload assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Haiku output,3000,tokens/video,Workload assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Haiku input tariff,1,USD/million tokens,Published API tariff,https://platform.claude.com/docs/en/about-claude/pricing
+Haiku output tariff,5,USD/million tokens,Published API tariff,https://platform.claude.com/docs/en/about-claude/pricing
+LLM regeneration uplift,0.3,fraction,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Narration characters,8000,characters/video,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Narration regeneration multiplier,1.2,multiple,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+TTS tariff,0.1,"USD/1,000 characters",Published API tariff,https://elevenlabs.io/pricing/api
+Generated clip tariff,0.1,USD/second,Runway illustrative route,https://docs.dev.runwayml.com/guides/pricing/ | Gemini Omni Flash listed rate; not Higgsfield quote; model features and surcharges vary
+AI-heavy generated seconds,600,seconds/video,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+AI-heavy clip attempt multiplier,1.8,multiple,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Hybrid generated seconds,20,seconds/video,Optional allowance,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload. Zero is allowed; generation is not compulsory.
+Hybrid clip attempt multiplier,2,multiple,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Generated still allowance,0.2,USD/video,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Academic reviewer rate,20,USD/hour,Planning labour rate,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Production QA rate,15,USD/hour,Planning labour rate,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Repair/editor rate,20,USD/hour,Planning labour rate,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Self-hosted GPU rate,1,USD/worker-hour,Unquoted compute assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Self-hosted model GPU time,0.8,worker-hour/video,Unbenchmarked assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Self-hosted voice GPU time,0.05,worker-hour/video,Unbenchmarked assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Hours per FTE-month,160,hours,Capacity assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Optional paid Remotion fee,0.01,USD/billable render,Published conditional licence,https://www.remotion.dev/docs/license/pricing
+Remotion monthly minimum,100,USD/month,Published conditional licence,https://www.remotion.dev/docs/license/pricing
+Billable renders per video,20,renders/video,Unconfirmed accounting assumption,Confirm contract definition; finished lesson may have multiple billed renders.
+Optional Shorts per lesson,3,shorts,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Shorts total additional TTS chars,1800,characters,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Shorts additional LLM,0.2,USD/lesson,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Shorts additional rendering,0.15,USD/lesson,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Shorts total editorial review,15,minutes/lesson,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Accounting period,1,months,Assumption,Same one-month project period for 1/100/1000 comparison; change monthly overhead allocation for longer programmes.
+AI-heavy academic review,75,minutes/video,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Hybrid academic review,45,minutes/video,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Self-host academic review,60,minutes/video,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+AI-heavy production QA,30,minutes/video,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Hybrid production QA,20,minutes/video,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Self-host production QA,20,minutes/video,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+AI-heavy repairs,45,minutes/video,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Hybrid repairs,20,minutes/video,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Self-host repairs,30,minutes/video,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+AI-heavy monthly fixed,250,USD/month,Assumption,Storage/tools/orchestration and modest maintenance allowance; no viewer delivery or full engineering team.
+Hybrid monthly fixed,300,USD/month,Assumption,Storage/tools/orchestration and modest maintenance allowance; no viewer delivery or full engineering team.
+Self-host monthly fixed,900,USD/month,Assumption,"Higher administration/maintenance allowance; GPU usage is charged separately above, not an always-on fleet."
+AI-heavy setup,5000,USD one-time,Illustrative setup budget,Initial integration/templates only; not quotation or complete curriculum production.
+Hybrid setup,10000,USD one-time,Illustrative setup budget,Initial engine/templates only; actual authoring and specialist asset requirements may exceed this.
+Self-host setup,16000,USD one-time,Illustrative setup budget,Serving/integration/templates only; no owned GPU purchase included.
+AI-heavy encode,0.3,USD/video,Unbenchmarked cloud allowance,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Hybrid encode,0.5,USD/video,Unbenchmarked cloud allowance,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Self-host encode,0.5,USD/video,Unbenchmarked cloud allowance,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+AI-heavy alignment/audio,0.1,USD/video,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Hybrid alignment/audio,0.1,USD/video,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Self-host alignment/audio,0.05,USD/video,Assumption,ExamLeaf planning assumption; not a quote or benchmark. Replace with measured workload.
+Working asset storage,0.2,USD/video per model period,Assumption,Working assets; audience streaming/egress and long-term retention excluded.

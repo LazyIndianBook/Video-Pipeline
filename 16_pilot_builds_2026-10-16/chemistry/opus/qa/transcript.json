@@ -1,0 +1,13 @@
+{
+ "text": "Hydrogen burns in oxygen to make water. Write it down. H2 + O2 gives H2O. Count the atoms. Did an atom just vanish? Count the oxygen atoms on each side. Which side is short? Left, two oxygen atoms. Right, only one. But atoms are never created or destroyed in a reaction. That is the law of conservation of mass. So each element needs the same count on both sides. Put a two in front of water. Oxygen, two and two. Hydrogen is four on the right, so put a two in front of hydrogen. Four and four. Balanced. Why not write H2O2? That is hydrogen peroxide, a different substance. Change the coefficients in front, never the subscripts inside. Atoms are conserved, so count every element on both sides and balance with coefficients only. AI-generated narration. Script by Examleaf.",
+ "diffs": [
+  [
+   "delete",
+   [
+    "plus"
+   ],
+   []
+  ]
+ ],
+ "ratio": 0.996309963099631
+}

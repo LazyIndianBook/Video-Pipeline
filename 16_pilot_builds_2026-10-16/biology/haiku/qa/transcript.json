@@ -1,0 +1,22 @@
+{
+ "text": "Green plants make their own food. Picture a huge banyan tree. Where does all of its material come from? Where do you think the carbon in the wood came from? Soil, water, or air? Plants take in carbon dioxide from the air through the stomata. Water comes in from the soil through the roots. Sunlight absorbed by chlorophyll drives the reaction. The products are glucose and oxygen. Count the atoms on each side. Six carbon, 12 hydrogen, 18 oxygen. The equation balances. A tempting idea. Plants eat soil, so their mass comes from the soil. That idea fails. Soil supplies water. The carbon in the wood came from the air. Green plants make glucose and oxygen. About 40% of glucose is carbon, and that carbon came from the air. AI-generated narration. Script by Examleaf.",
+ "diffs": [
+  [
+   "replace",
+   [
+    "eighteen"
+   ],
+   [
+    "18"
+   ]
+  ],
+  [
+   "delete",
+   [
+    "percent"
+   ],
+   []
+  ]
+ ],
+ "ratio": 0.9888475836431226
+}

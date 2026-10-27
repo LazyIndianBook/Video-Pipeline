@@ -1,0 +1,24 @@
+{
+ "text": "What is Ohm's law? When electricity passes through a wire, something pushes it along. That push is called voltage, and we measure it in volt. The flow is called current. This meter reads it in amperes. Each wire holds the flow back. That is resistance in Ohms. Ohm's law says the current goes up with the push, as long as the temperature stays the same. So voltage equals current times resistance. V equals I R. Then I is V over R, and R is V over I. Two volts over 10 Ohms gives 0 .2 amperes. Double the push to 4 volts, and the current doubles to 0 .4. Keep two volts, double the resistance to 20 Ohms, and the current halves to 0 .1. Voltage against current makes a straight line through zero. Its slope is the resistant. But a hot bulb's line bends, because its filament resists more. Twice the push, twice the flow. Try more cases in the free lesson. Professor Diki Simplified.",
+ "diffs": [
+  [
+   "replace",
+   [
+    "volts"
+   ],
+   [
+    "volt"
+   ]
+  ],
+  [
+   "replace",
+   [
+    "resistance"
+   ],
+   [
+    "resistant"
+   ]
+  ]
+ ],
+ "ratio": 0.9878787878787879
+}

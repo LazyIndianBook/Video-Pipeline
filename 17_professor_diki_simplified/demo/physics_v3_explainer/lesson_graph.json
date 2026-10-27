@@ -1,0 +1,160 @@
+{
+ "graph_id": "phy-ohm-pd-03",
+ "subject": "physics",
+ "level": "l9_10",
+ "scope": "PD-14 / PD-24 explainer: one claim (Ohm's law: I proportional to V; V = I × R) plus its condition (constant temperature); the filament as the bounded qualitative exception; one worked example shown",
+ "sources": [
+  {
+   "id": "SRC-ncert-10-electricity-ohm",
+   "kind": "textbook",
+   "title": "NCERT Class 10 Science",
+   "section": "Chapter 'Electricity', section 'Electric Current and Circuit' (ammeter in series) and section 'Ohm's Law' (V ∝ I at constant temperature; V/I = R; V = IR)",
+   "reliability_class": "official_curriculum"
+  },
+  {
+   "id": "SRC-ncert-10-electricity-heating",
+   "kind": "textbook",
+   "title": "NCERT Class 10 Science",
+   "section": "Chapter 'Electricity', section 'Heating Effect of Electric Current' (the electric bulb filament gets very hot)",
+   "reliability_class": "official_curriculum"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "OBJ-ohm-condition",
+   "type": "objective",
+   "statement": "Say what Ohm's law states (current proportional to voltage at constant temperature), read V = I × R symbol by symbol, and see it decide the current at 2 V, 4 V and 6 V for a 10 Ω resistor."
+  },
+  {
+   "id": "CTX-torch-cells",
+   "type": "context",
+   "statement": "A torch with run-down cells glows dimmer: weaker cells give a smaller voltage, so a smaller current flows through the bulb.",
+   "source_ids": [
+    "SRC-ncert-10-electricity-ohm"
+   ],
+   "reliability_note": "Qualitative everyday context; the torch bulb is a filament (non-ohmic), so only the direction (less push, less flow) is claimed, never a proportion or a number. Needs subject review.",
+   "review": "required (new node)"
+  },
+  {
+   "id": "CLM-ohm-proportional",
+   "type": "claim",
+   "statement": "For a conductor at constant temperature, the current through it is directly proportional to the potential difference across it.",
+   "assumptions": [
+    "constant temperature"
+   ],
+   "source_ids": [
+    "SRC-ncert-10-electricity-ohm"
+   ],
+   "fixture_ids": [
+    "FIX-ohm-pd-03"
+   ]
+  },
+  {
+   "id": "CLM-resistance-constant",
+   "type": "claim",
+   "statement": "The ratio V/I is constant for such a conductor; this constant is its resistance R, so V = I × R.",
+   "assumptions": [
+    "constant temperature"
+   ],
+   "source_ids": [
+    "SRC-ncert-10-electricity-ohm"
+   ],
+   "fixture_ids": [
+    "FIX-ohm-pd-03"
+   ]
+  },
+  {
+   "id": "CLM-filament",
+   "type": "claim",
+   "statement": "A bulb filament gets hot when current flows; its resistance rises as it heats, so doubling the voltage gives less than double the current.",
+   "source_ids": [
+    "SRC-ncert-10-electricity-heating",
+    "SRC-ncert-10-electricity-ohm"
+   ],
+   "fixture_ids": [
+    "FIX-ohm-pd-03"
+   ],
+   "fixture_fields": [
+    "results.lamp.current_doubles"
+   ],
+   "reliability_note": "NCERT states the constant-temperature condition (Ohm's Law) and describes the hot filament (Heating Effect); it does not state in one sentence that filament resistance rises with temperature. That is standard physics at this level but needs subject review. The claim stays qualitative: no lamp current number exists anywhere in this build (PD-16).",
+   "review": "required"
+  },
+  {
+   "id": "MIS-always-doubles",
+   "type": "misconception",
+   "statement": "Doubling the voltage always doubles the current.",
+   "why_wrong": "Only while the resistance stays constant; a filament heats, its resistance rises, so the current rises by less than double."
+  },
+  {
+   "id": "SIM-push-flow",
+   "type": "simplification",
+   "statement": "Voltage is described as the push that drives current, resistance as what holds it back, current as the flow the meter counts.",
+   "what_is_lost": "Voltage is energy per unit charge; 'push' does not say how much energy each charge carries. Nothing is used up: the same current flows all round the loop.",
+   "source_ids": [
+    "SRC-ncert-10-electricity-ohm"
+   ],
+   "review": "required (new node)"
+  },
+  {
+   "id": "SIM-constant-temperature",
+   "type": "simplification",
+   "statement": "The resistor is treated as staying at exactly the same temperature at two, four and six volts.",
+   "what_is_lost": "A real resistor warms slightly with current; the change is negligible here but not zero."
+  },
+  {
+   "id": "WRK-ohm-two-points",
+   "type": "worked_item",
+   "prompt": "A ten-ohm resistor at two volts, then four volts: the meter reads the current each time.",
+   "steps": [
+    "2 V ÷ 10 Ω = 0.20 A.",
+    "4 V ÷ 10 Ω = 0.40 A.",
+    "Twice the voltage, twice the current (ratio 2).",
+    "V ÷ I = 10 Ω at both points: the resistance."
+   ],
+   "fixture_ids": [
+    "FIX-ohm-pd-03"
+   ]
+  },
+  {
+   "id": "WRK-ohm-six-volts",
+   "type": "worked_item",
+   "prompt": "Same ten-ohm resistor at six volts (shown, not asked).",
+   "steps": [
+    "I = V ÷ R = 6 V ÷ 10 Ω = 0.60 A.",
+    "V ÷ I is still 10 Ω."
+   ],
+   "fixture_ids": [
+    "FIX-ohm-pd-03"
+   ],
+   "review": "required (new node)"
+  },
+  {
+   "id": "SIM-flow-speed",
+   "type": "simplification",
+   "statement": "The animated current dashes move round the loop at a speed proportional to the meter reading (2 V slow, 4 V twice as fast, 6 V three times); at the resistor the flow narrows (it is held back); in the hot filament the dashes slow.",
+   "what_is_lost": "Dash speed is not electron drift speed (drift is millimetres per second and the same current flows everywhere in the loop); the narrowing is a picture of opposition, not of a thinner current; the filament slowdown is qualitative only (no lamp current value exists, PD-16).",
+   "review": "required (new node)"
+  },
+  {
+   "id": "FIX-ohm-pd-03",
+   "type": "fixture",
+   "compute": "fixtures/compute.py",
+   "outputs": [
+    "parameters.resistance_ohm",
+    "parameters.v1",
+    "parameters.v2",
+    "parameters.v3",
+    "results.i1",
+    "results.i2",
+    "results.i3",
+    "results.ratio_v",
+    "results.ratio_i",
+    "results.v_over_i_1",
+    "results.v_over_i_2",
+    "results.v_over_i_3",
+    "results.lamp.current_doubles"
+   ]
+  }
+ ]
+}

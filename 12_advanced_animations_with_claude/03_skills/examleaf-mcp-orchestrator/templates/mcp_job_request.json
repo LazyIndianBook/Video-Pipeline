@@ -1,0 +1,60 @@
+{
+  "job_id": "L-phy10-03",
+  "lesson_id": "phy-10-03",
+  "scene_id": "phy-10-03-s01",
+  "requested_by": "examleaf-selective-generation",
+  "server": "higgsfield",
+  "tool": "image",
+  "model": "gpt_image_2_5",
+  "purpose": "cutout",
+  "prompt": null,
+  "prompt_source": "built from [V4-MP] section 12; not copied here",
+  "prompt_sha256": "<sha256 of prompt>",
+  "reference_images": [
+    {
+      "path": "gate/storyboard_grid.png",
+      "sha256": "<sha256>",
+      "role": "storyboard"
+    },
+    {
+      "path": "assets/hero_kid_red_beanie.png",
+      "sha256": "<sha256>",
+      "role": "hero_cutout"
+    }
+  ],
+  "estimate": {
+    "credits": null,
+    "source": "<provider model page / estimate call>",
+    "captured_at": "<ISO date>"
+  },
+  "approval_ref": "gate/approval.json#<sha256>",
+  "permission_grant": "grants/L-phy10-03.json",
+  "attempt": 1,
+  "job_key_rule": "hf- + sha256(job_id|scene_id|tool|model|prompt_sha256|ref_sha256s|attempt)[:16]",
+  "lint": {
+    "no_text_in_image": true,
+    "spoken_text_diff": null
+  },
+  "prompt_build": {
+    "template_source": "12_advanced_animations_with_claude/00_reference_videos/master_prompt_paper_collage.md section 12 (cutout template); prefer the vertical adaptation in 12_advanced_animations_with_claude/06_prompts_and_templates/ when present",
+    "must_include": [
+      "fully transparent background",
+      "die-cut white paper border",
+      "single isolated object, flat straight-on view",
+      "no cast shadow, no ground, no scenery",
+      "no text",
+      "house palette names",
+      "match the attached storyboard sheet / hero reference"
+    ],
+    "subject": "{{subject from the approved storyboard beat: no writing, no labels, no numbers}}",
+    "forbidden_nouns": [
+      "label",
+      "sign",
+      "poster",
+      "book cover",
+      "equation",
+      "chart",
+      "diagram"
+    ]
+  }
+}

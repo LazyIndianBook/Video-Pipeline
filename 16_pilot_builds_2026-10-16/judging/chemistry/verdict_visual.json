@@ -1,0 +1,43 @@
+{
+  "subject": "chemistry",
+  "lens": "visual",
+  "scores": {
+    "A": {"D4": 2, "D5": 3, "D6": 5, "D7": 2},
+    "B": {"D4": 4, "D5": 4, "D6": 3, "D7": 4}
+  },
+  "evidence": {
+    "A": [
+      "Subscripts not lowered: A/frames/s01_00289.png (zoom _scratch/A_sub_zoom.png) shows 'H2 + O2 -> H2O' with old-style digits sitting on the baseline. The same happens in s03, s04 ('H2O2') and s05 ('2H2O'), so a coefficient 2 and a subscript 2 look almost the same in a lesson about telling them apart.",
+      "Stale state: s03_00682 / s03_t022 show the balanced '2H2 + O2 -> 2H2O' above tallies that still read Right side H 2, O 1 with the 'short' highlight (about 40.9-42.9 s). Balanced counts H 4 / O 2 only appear in s05 at 'four' (64.4 s).",
+      "Generic, under-filled look: plain paper with no grain, halftone, tinted cards, keylines or cut-outs, and a Helvetica-like support sans. Content sits in y of about 520-1080 only. The middle zone is empty for about 8 s (42.3-44.5 s, the s04 opening with only 'Change a'; 67.3-72.7 s, an outro with the disclosure only). The title zone is empty for 30.5 s, including about 8 s in the middle of s03."
+    ],
+    "B": [
+      "The editorial-vox style is recognisable: grain plus a halftone title band, serif claim words ('vanish', 'conserved') with sans connecting words, a teal-tint equation card and keylined cut-out molecules with a flat 8/8 shadow (s01_00338, s05_00402). Subscripts are properly lowered (H₂O, O₂).",
+      "The visual explains the step: the s03 tally rows re-derive at each coefficient. On 'two' (37.3 s) the H row turns to 2 ≠ 4 with four open circles, the O row to 2 = 2, and a tick lands on 'balanced' (47.9 s). s04 uses equal A-over-B frames (H₂O₂ with its molecule vs 2H₂O with two waters), and s05 shows molecule copies equal to the coefficients with H 4 = 4 and O 2 = 2.",
+      "Sync: at 7 cues, every reveal starts 0.61-0.64 s before its word (coef_H2O at 36.70 s vs 'two' at 37.34 s; frame_b at 55.13 s vs 'coefficients' at 55.74 s). The lead is the same every time, but it is outside the 0.05 s reveal_lead_s. QA A9 is a warn: deterministic false."
+    ]
+  },
+  "empty_seconds": {"A": 8, "B": 1},
+  "winner": "B",
+  "reason": "B is recognisably editorial-vox, renders true subscripts, and its tally visibly re-derives at each coefficient. A has baseline 'subscripts', a balanced equation shown above an unbalanced tally, and about 8 s with an empty middle zone.",
+  "gap_for_weaker": [
+    {"rule": "Chemical formulas use real subscript markup (<sub>, or verified U+2080-2089 glyphs) with digits at 60-70% size and lowered at least 0.25 em. Old-style or proportional figures are banned in formulas. The QA glyph test renders H₂O, 2H₂O and H₂O₂ at 1080 width and fails if a subscript bottom sits on the baseline.", "where": "12_advanced_animations_with_claude/05_style_guides/editorial-vox.md §5 Typography (Glyph tests bullet) and §14 QA checklist"},
+    {"rule": "Every element that encodes state (tally counts, circles, the =/≠ relation, the highlight) is a pure function of the current equation state. When a coefficient appears, the tally re-derives from results.<state> on the same cue, and a 'short' highlight is removed once its row balances.", "where": "editorial-vox.md §7 Number callouts and scale integrity (new item 8) and §8 Motion vocabulary, Sync bullet"},
+    {"rule": "Minimum look per scene: grain background, halftone band behind the title, tinted panel card with a flat 8/8 hard shadow, and at least three depth layers. Support text in Noto Sans or Inter, never a system fallback. A scene on plain paper only fails the style check.", "where": "editorial-vox.md §3 Materials and surfaces and §14 QA checklist"},
+    {"rule": "The middle visual zone is never empty for more than 0.5 s. Each scene opens with its visual on the first anchor word, the outro keeps the recap visual under the disclosure, and a scene headline persists across its beats until the next headline replaces it.", "where": "editorial-vox.md §6 Layout in 1080x1920 and §8 Holds bullet; mirror in 04_harness_contract/vertical_safe_zones.tokens.json hold_times_s"}
+  ],
+  "blocking_defects": {
+    "A": [
+      "Subscripts render as baseline digits in every formula, s01-s05 (H2O, H2O2, 2H2O).",
+      "The end of s03 (about 40.9-42.9 s) shows the balanced 2H2 + O2 -> 2H2O over an unbalanced tally (O 1, 'short' highlight).",
+      "The video track leads the audio by about 0.6 s at every cue (video 72.73 s vs timeline 73.33 s; e.g. tally_right at 32.13 s vs 'Right' at 32.76 s).",
+      "No narration captions in bottom_caption (shared with B; the storyboard defers them to the lead)."
+    ],
+    "B": [
+      "QA A9: re-render is not deterministic (deterministic false).",
+      "The video track leads the audio by about 0.6 s at every cue (video 72.60 s vs timeline 73.20 s; e.g. coef_H2O at 36.70 s vs 'two' at 37.34 s).",
+      "No narration captions in bottom_caption (shared with A; the storyboard defers them to the lead)."
+    ]
+  },
+  "notes": "Both MP4s are about 0.6 s shorter than timeline_words, and the audio onsets match the timeline. The 0.6 s visual lead is therefore an assembler/mux offset in both builds, not a cue-authoring error; within each build the reveals stay locked to their words. B minor issues: the equation card's left edge sits at x of about 72 (text is inside the 96 px margin); the coefficient 2 is raised above the baseline; the tally 'O' in the sans reads close to '0'; the lowest ~120 px of the visual zone and the caption zone are unused. A's s04 is cramped (four stacked rows in about 300 px) and its 'H 2 O 2 = H 2 O 2' tally is hard to parse. Empty seconds were measured from 4 fps ink density in y 518-1177."
+}

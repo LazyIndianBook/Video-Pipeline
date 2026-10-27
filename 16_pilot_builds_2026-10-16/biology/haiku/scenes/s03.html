@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>Scene s03 equation and atom count (bio-photosyn-ci-01)</title>
+<style>
+/* [1] TOKENS. Colour tokens from vertical_safe_zones.tokens.json (palette_light) and the 13-colour storybook palette
+   (style guide section 3.1). Font: system stack only (no network, no vendored fonts in this pilot). */
+:root{--bg:#F7F9FC;--ink:#14213D;--sec:#526074;--blue:#185ABD;--teal:#087986;--amber:#9A5B00;--red:#B42318;
+  --cream:#f3ecdf;--paper:#fbf7ee;--kraft:#b98f5e;--olive:#7c8a3c;--sage:#9dbb8e;--ink2:#2b2622;--pencil:#3a332c;
+  --font:"Noto Sans","Helvetica Neue",Arial,system-ui,sans-serif;--head:64px;--label:54px;--eq:66px}
+html,body{margin:0;background:var(--cream)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--cream);font-family:var(--font);color:var(--ink2)}
+#art{position:absolute;left:0;top:0;width:1080px;height:1920px}
+/* [2] LAYOUT. Zones: top_title y 250-518, middle_visual y 518-1177, bottom_caption y 1177-1470; x 96-960. */
+#headline{position:absolute;left:96px;top:250px;width:864px;height:268px}
+.hl{position:absolute;left:0;top:0;width:864px;height:268px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  font-size:var(--head);font-weight:700;line-height:1.25;color:var(--ink2);text-align:center;opacity:0}
+.w{display:inline-block;opacity:0;white-space:pre}
+/* Science tags: fill #F7F9FC so the ink text keeps its token contrast (15.15:1). Opacity starts at 0; cues reveal them. */
+.tag{position:absolute;background:#F7F9FC;color:#14213D;font-size:var(--label);font-weight:600;line-height:1.4;padding:8px 22px;
+  border-radius:12px;white-space:nowrap;box-shadow:0 9px 7px rgba(74,48,22,.30),0 2px 1.5px rgba(0,0,0,.20);opacity:0;
+  display:flex;align-items:center;gap:12px}
+#lbl_co2{left:345px;top:575px}
+#lbl_h2o{left:200px;top:745px}
+#lbl_sun{left:560px;top:548px}
+#lbl_chl{left:560px;top:640px}
+/* Equation card (fixture-bound pieces only). Inside the card: #F7F9FC fill. */
+#equation{position:absolute;left:96px;top:826px;width:864px;box-sizing:border-box;padding:14px 20px;text-align:center;
+  font-size:var(--eq);font-weight:700;line-height:1.4;color:#14213D;background:#F7F9FC;border-radius:14px;opacity:0;
+  box-shadow:0 9px 7px rgba(74,48,22,.30),0 2px 1.5px rgba(0,0,0,.20)}
+#equation .row{display:block;white-space:nowrap}
+#equation span{display:inline-block}
+/* Atom count row (three cells). Each cell is a fixture-bound card: element, left count, equals sign, right count. */
+#count_table{position:absolute;left:96px;top:1058px;width:864px;display:flex;justify-content:space-evenly;align-items:center;opacity:0}
+.cell{display:flex;align-items:center;gap:12px;background:#F7F9FC;color:#14213D;border-radius:12px;padding:8px 18px;
+  font-size:63px;font-weight:700;line-height:1.4;box-shadow:0 9px 7px rgba(74,48,22,.30),0 2px 1.5px rgba(0,0,0,.20)}
+</style>
+</head>
+<body>
+<div id="stage">
+  <svg id="art" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="vig" cx="50%" cy="45%" r="75%">
+        <stop offset="60%" stop-color="#4a3016" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#4a3016" stop-opacity="0.12"/>
+      </radialGradient>
+      <!-- Cut-paper filter (procedural-2d primitives 7): white die-cut border 6-12 px, two-layer warm shadow. Static, seek-safe. -->
+      <filter id="cut" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+        <feMorphology in="SourceAlpha" operator="dilate" radius="7" result="grow"/>
+        <feFlood flood-color="#fbf7ee" result="paper"/>
+        <feComposite in="paper" in2="grow" operator="in" result="border"/>
+        <feMerge result="cutout"><feMergeNode in="border"/><feMergeNode in="SourceGraphic"/></feMerge>
+        <feOffset in="cutout" dx="0" dy="9" result="o1"/>
+        <feGaussianBlur in="o1" stdDeviation="3.5" result="b1"/>
+        <feFlood flood-color="#4a3016" flood-opacity="0.3" result="c1"/>
+        <feComposite in="c1" in2="b1" operator="in" result="sh1"/>
+        <feOffset in="cutout" dx="0" dy="2" result="o2"/>
+        <feGaussianBlur in="o2" stdDeviation="0.75" result="b2"/>
+        <feFlood flood-color="#000000" flood-opacity="0.2" result="c2"/>
+        <feComposite in="c2" in2="b2" operator="in" result="sh2"/>
+        <feMerge><feMergeNode in="sh1"/><feMergeNode in="sh2"/><feMergeNode in="cutout"/></feMerge>
+      </filter>
+    </defs>
+
+    <!-- z0 background paper -->
+    <rect x="0" y="0" width="1080" height="1920" fill="#f3ecdf"/>
+    <rect x="0" y="0" width="1080" height="1920" fill="url(#vig)"/>
+
+    <!-- torn kraft soil strip at the foot of the visual zone (decorative) -->
+    <g filter="url(#cut)">
+      <path d="M-20 1200 Q270 1172 540 1196 T1100 1184 L1100 1260 L-20 1260 Z" fill="#b98f5e"/>
+    </g>
+
+    <!-- leaf (cut paper): revealed on the word "plants" -->
+    <g id="leaf_art" filter="url(#cut)">
+      <path d="M110 700 C100 580 190 520 300 530 C320 640 250 712 110 700 Z" fill="#7c8a3c"/>
+      <path d="M120 690 Q190 630 290 560" stroke="#9dbb8e" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <path d="M150 706 L150 790" stroke="#2f7f7a" stroke-width="12" stroke-linecap="round" fill="none"/>
+    </g>
+
+    <!-- roots (cut paper, kraft): revealed on the word "roots" -->
+    <g id="root_art" filter="url(#cut)">
+      <path d="M150 760 Q140 790 120 812 M150 760 Q160 790 184 812 M150 760 L150 812" stroke="#b98f5e" stroke-width="10" fill="none" stroke-linecap="round"/>
+    </g>
+
+    <!-- decorative sparkles (boil at 8 fps; frozen inside think windows; no data) -->
+    <g class="boil" id="sp1"><path d="M930 470 L930 520 M905 495 L955 495" stroke="#3a332c" stroke-width="4" stroke-linecap="round"/></g>
+    <g class="boil" id="sp2"><path d="M40 1000 L40 1040 M20 1020 L60 1020" stroke="#3a332c" stroke-width="4" stroke-linecap="round"/></g>
+    <g class="boil" id="sp3"><path d="M1040 1000 L1040 1040 M1020 1020 L1060 1020" stroke="#3a332c" stroke-width="4" stroke-linecap="round"/></g>
+  </svg>
+
+  <!-- Labels (fixture-bound). Revealed on their words. -->
+  <div class="tag" id="lbl_co2"><span data-fx="display.co2"></span></div>
+  <div class="tag" id="lbl_h2o"><span data-fx="display.h2o"></span></div>
+  <div class="tag" id="lbl_sun">
+    <svg width="54" height="54" viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="13" fill="#e0a73a"/>
+      <g stroke="#e0a73a" stroke-width="4" stroke-linecap="round"><path d="M27 3 L27 8 M27 46 L27 51 M3 27 L8 27 M46 27 L51 27 M9 9 L12 12 M42 42 L45 45 M45 9 L42 12 M12 42 L9 45"/></g></svg>
+    <span data-fx="display.sunlight"></span>
+  </div>
+  <div class="tag" id="lbl_chl"><span data-fx="display.chlorophyll"></span></div>
+
+  <!-- Equation: the completed state stays on screen once revealed (no disappearing animation). -->
+  <div id="equation">
+    <div class="row"><span data-fx="parameters.coef_co2"></span><span data-fx="display.co2"></span> <span data-fx="display.plus"></span> <span data-fx="parameters.coef_h2o"></span><span data-fx="display.h2o"></span> <span data-fx="display.arrow"></span></div>
+    <div class="row"><span id="eq_glucose" data-pulse-only="1" data-fx="display.glucose"></span> <span data-fx="display.plus"></span> <span id="eq_o2" data-pulse-only="1"><span data-fx="parameters.coef_o2"></span><span data-fx="display.o2"></span></span></div>
+  </div>
+
+  <!-- Atom count: left count, equals, right count, for each element. -->
+  <div id="count_table">
+    <div class="cell" id="row_C" data-pulse-only="1"><span data-fx="display.elem_C"></span><span data-fx="results.atoms_left_C"></span><span data-fx="display.equals"></span><span data-fx="results.atoms_right_C"></span></div>
+    <div class="cell" id="row_H" data-pulse-only="1"><span data-fx="display.elem_H"></span><span data-fx="results.atoms_left_H"></span><span data-fx="display.equals"></span><span data-fx="results.atoms_right_H"></span></div>
+    <div class="cell" id="row_O" data-pulse-only="1"><span data-fx="display.elem_O"></span><span data-fx="results.atoms_left_O"></span><span data-fx="display.equals"></span><span data-fx="results.atoms_right_O"></span></div>
+  </div>
+
+  <div id="headline"></div>
+</div>
+
+<script>
+(function () {
+'use strict';
+/* [3] CONFIG. Everything variable arrives as a URL parameter or the injected cue sheet and fixture; the page never reads the clock. */
+const Q = new URLSearchParams(location.search);
+const num = (k, d) => { const v = parseFloat(Q.get(k)); return isFinite(v) ? v : d; };
+const FPS = num('fps', 30), SEED = num('seed', 20261016), EPS = 1e-6, LEAD = 0.05, BOIL_FPS = 8, HOLD_MIN = 1.2;
+const SCENE = 's03';
+
+/* [4] ERROR CHANNEL. Never swallow. The harness reads window.__errors after every seek. */
+window.__errors = [];
+const report = (code, severity, message, t) => window.__errors.push({ code, severity, message, t: t == null ? null : t });
+const fail = (code, message, t) => { report(code, 'error', message, t); const e = new Error(code + ': ' + message); e.code = code; return e; };
+
+/* [5] SEEDED RANDOMNESS. Stateless: rngAt(seed, i) gives the same value in any seek order. Math.random is forbidden. */
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const rngAt = (seed, i) => mulberry32((seed ^ Math.imul(i + 1, 0x9E3779B1)) >>> 0)();
+function hashStr(s) { let h = 0x811c9dc5; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193); } return h >>> 0; }
+
+/* [6] EASING. Pure functions of a progress value in [0, 1]. */
+const clamp01 = x => x < 0 ? 0 : x > 1 ? 1 : x;
+const cubicOut = u => 1 - Math.pow(1 - u, 3);
+const backOut = (u, s = 2.5) => { const v = u - 1; return 1 + (s + 1) * v * v * v + s * v * v; };
+// Finite damped pulse for emphasis cues: n periods, then rest.
+const pulse = (t, at, n = 2, period = 0.5, amp = 0.08) => { const d = t - at; return d < 0 || d > n * period ? 1 : 1 + amp * Math.sin(2 * Math.PI * d / period) * (1 - d / (n * period)); };
+const normW = s => String(s).normalize('NFC').toLowerCase().replace(/[^\p{L}\p{M}\p{N}'’]/gu, '');
+const deepFreeze = o => { Object.values(o).forEach(v => { if (v && typeof v === 'object') deepFreeze(v); }); return Object.freeze(o); };
+
+/* [7] LOADERS. Order: harness-injected window.__CUE_SHEET__ / window.__FIXTURE__, then ?cues= / ?fixture= paths.
+   No inline fallback: a missing sheet or fixture is an error, never a silent default. */
+async function loadJson(inject, param, what) {
+  if (inject) return { data: inject, source: 'injected' };
+  const p = Q.get(param);
+  if (p) {
+    try { const r = await fetch(p); if (!r.ok) throw new Error('HTTP ' + r.status); return { data: await r.json(), source: 'path' }; }
+    catch (e) { if (Q.get('strict') === '1') throw fail('E_' + what + '_LOAD', 'cannot load ' + p + ': ' + e.message); report('W_' + what + '_FALLBACK', 'warning', 'cannot load ' + p + ' (' + e.message + ')'); }
+  }
+  throw fail('E_' + what + '_LOAD', 'no injected or path source for ' + what);
+}
+
+/* [8] STATE, built once in window.ready; render(t) only reads it. */
+let SHEET = null, FX = null, CUE_EL = [];
+const fx = path => { const v = path.split('.').reduce((o, k) => o == null ? o : o[k], FX); if (v === undefined) throw fail('E_FIXTURE_MISSING', 'fixture has no ' + path); return v; };
+
+// Headline: verbatim text from meta.beats_text, one span per WORD (never per code point), each revealed on its word's t0.
+function buildHeadlines() {
+  const box = document.getElementById('headline');
+  const beats = SHEET.meta.beats_text;
+  beats.forEach((rec, i) => {
+    if (!rec.headline) return;
+    const to = beats[i + 1] ? beats[i + 1].start : SHEET.duration;
+    const wrap = document.createElement('div'); wrap.className = 'hl'; wrap.lang = SHEET.language;
+    wrap.dataset.from = rec.start; wrap.dataset.to = to;
+    let cur = rec.word_range[0], lastAt = rec.start;
+    rec.headline.split(/\s+/).filter(Boolean).forEach(tok => {
+      const n = normW(tok); let idx = -1;
+      for (let k = cur; k < rec.word_range[1]; k++) { if (normW(SHEET.words[k].w) === n) { idx = k; break; } }
+      if (idx < 0) { report('W_HEADLINE_UNMATCHED', 'warning', 'headline word "' + tok + '" not spoken in ' + rec.id); idx = Math.max(rec.word_range[0], cur - 1); }
+      else cur = idx + 1;
+      const sp = document.createElement('span'); sp.className = 'w'; sp.textContent = tok + ' ';
+      sp.dataset.at = String(Math.max(0, SHEET.words[idx].t0 - LEAD)); lastAt = Math.max(lastAt, SHEET.words[idx].t0);
+      wrap.appendChild(sp);
+    });
+    if (to - lastAt < HOLD_MIN) report('W_HOLD_SHORT', 'warning', 'headline hold ' + (to - lastAt).toFixed(2) + ' s < ' + HOLD_MIN + ' s in ' + rec.id);
+    box.appendChild(wrap);
+  });
+}
+
+// Cue elements: a reveal or emphasis cue makes its element appear at cue.at (reveal lands on the word, 0.05 s before it).
+// data-pulse-only="1": the element sits inside a revealed container; the emphasis cue only pulses it (no own fade-in).
+function buildCues() {
+  const map = new Map();
+  SHEET.cues.forEach(c => {
+    const el = c.element_id && document.getElementById(c.element_id);
+    if (!el) { report('W_CUE_NO_ELEMENT', 'warning', 'cue ' + c.id + ' targets missing element ' + c.element_id); return; }
+    if (!map.has(c.element_id)) {
+      const bb = (el instanceof SVGGraphicsElement) ? el.getBBox() : { x: 0, y: 0, width: 0, height: 0 };
+      map.set(c.element_id, { el, appear: Infinity, pulses: [], cx: bb.x + bb.width / 2, cy: bb.y + bb.height / 2, pulseOnly: el.dataset.pulseOnly === '1' });
+    }
+    const r = map.get(c.element_id);
+    if (c.kind === 'reveal' || c.kind === 'emphasis') r.appear = Math.min(r.appear, c.at);
+    if (c.kind === 'emphasis') r.pulses.push(c.at);
+  });
+  CUE_EL = [...map.values()];
+  CUE_EL.forEach(r => { if (!isFinite(r.appear)) r.appear = 0; });
+}
+
+/* [9] RENDER. Synchronous, pure function of t (plus immutable state). Same t, same pixels, any order. */
+function place(el, op, s, dx, dy, cx, cy) {
+  if (el instanceof SVGElement) {
+    el.setAttribute('opacity', String(op));
+    el.setAttribute('transform', 'translate(' + dx + ' ' + dy + ') translate(' + cx + ' ' + cy + ') scale(' + s + ') translate(' + (-cx) + ' ' + (-cy) + ')');
+  } else {
+    el.style.opacity = String(op);
+    el.style.transform = 'translate(' + dx + 'px, ' + dy + 'px) scale(' + s + ')';
+  }
+}
+// Boil step: 8 fps, frozen during a think window (no motion while the learner predicts). Decoration only.
+function boilStep(t) {
+  for (const w of (SHEET.meta.think_windows || [])) if (t >= w.start - EPS && t < w.end - EPS) return Math.floor(w.start * BOIL_FPS + EPS);
+  return Math.floor(t * BOIL_FPS + EPS);
+}
+function boilXY(id, k) { return [(rngAt(SEED, (hashStr(id) + k * 7919) >>> 0) - 0.5) * 3, (rngAt(SEED + 1, (hashStr(id) + k * 104729) >>> 0) - 0.5) * 3]; }
+
+function render(t) {
+  document.querySelectorAll('.hl').forEach(wrap => {
+    const from = +wrap.dataset.from, to = +wrap.dataset.to;
+    wrap.style.opacity = (t >= from - EPS && t < to - EPS) ? '1' : '0';
+    wrap.querySelectorAll('.w').forEach(sp => {
+      const d = t - (+sp.dataset.at);
+      const u = d < -EPS ? 0 : clamp01((d + EPS) / 0.18);
+      const y = d < -EPS ? 40 : 40 * (1 - backOut(clamp01((d + EPS) / 0.35)));
+      sp.style.opacity = String(cubicOut(u)); sp.style.transform = 'translateY(' + y + 'px)';
+    });
+  });
+  // Think plate (only where the scene has a think window): calm fade-in at the window start, gone at its end.
+  const tp = document.getElementById('think');
+  if (tp) {
+    const w = (SHEET.meta.think_windows || [])[0];
+    const on = !!w && t >= w.start - EPS && t < w.end - EPS;
+    tp.style.opacity = on ? String(cubicOut(clamp01((t - w.start) / 0.3))) : '0';
+  }
+  CUE_EL.forEach(r => {
+    const d = t - r.appear;
+    let op = d < -EPS ? 0 : cubicOut(clamp01((d + EPS) / 0.25));
+    let s = d < -EPS ? 0.6 : 0.6 + 0.4 * backOut(clamp01((d + EPS) / 0.45));
+    if (r.pulseOnly) { op = 1; s = 1; }
+    r.pulses.forEach(p => { s *= pulse(t, p); });
+    place(r.el, op, s, 0, 0, r.cx, r.cy);
+  });
+  const k = boilStep(t);
+  document.querySelectorAll('.boil').forEach(el => { const xy = boilXY(el.id, k); place(el, 1, 1, xy[0], xy[1], 0, 0); });
+}
+
+/* [10] READY + SEEK. seek(t) applies state for time t, then waits for fonts. It never waits on requestAnimationFrame. */
+window.FPS = FPS;
+window.DURATION = 4.0;   // synchronous default; the final value comes from the cue sheet inside ready()
+window.SCENE_META = { contract: '1.0.0', videoCount: 0, notes: 'paper-collage-vertical pilot ' + SCENE };
+window.ready = (async () => {
+  const s = await loadJson(window.__CUE_SHEET__, 'cues', 'CUES'); SHEET = s.data; window.__cueSource = s.source;
+  if (!(SHEET.duration > 0) || !isFinite(SHEET.duration) || !Array.isArray(SHEET.words) || !Array.isArray(SHEET.cues)) throw fail('E_CUES_INVALID', 'cue sheet needs finite duration>0, words[], cues[]');
+  const f = await loadJson(window.__FIXTURE__, 'fixture', 'FIXTURE'); FX = deepFreeze(f.data); window.__fixtureSource = f.source;
+  window.DURATION = SHEET.duration;
+  window.FRAME_COUNT = Math.round(window.DURATION * FPS);
+  if (SHEET.fps !== FPS) report('W_FPS_MISMATCH', 'warning', 'cue sheet fps ' + SHEET.fps + ' != render fps ' + FPS);
+  await Promise.all([document.fonts.load('700 64px "Noto Sans"', 'Sunlight drives the reaction'), document.fonts.load('600 54px "Noto Sans"', 'chlorophyll sunlight'), document.fonts.load('700 66px "Noto Sans"', '6CO2 H2O 0123456789')]);
+  document.querySelectorAll('[data-fx]').forEach(el => { el.textContent = String(fx(el.dataset.fx)); });
+  buildHeadlines(); buildCues();
+  await document.fonts.ready;
+})().catch(e => { if (!e.code) report('E_READY', 'error', e.message); throw e; });
+
+let chain = Promise.resolve();   // serialise seeks so two calls can never interleave
+window.seek = async function seek(t) {
+  const prev = chain; let done; chain = new Promise(r => { done = r; });
+  try {
+    await prev; await window.ready;
+    if (typeof t !== 'number' || !isFinite(t)) throw fail('E_BAD_T', 'seek(t) needs a finite number of seconds, got ' + t);
+    const tc = Math.min(Math.max(t, 0), window.DURATION);
+    render(tc);
+    await document.fonts.ready;
+    return { t: tc, frame: Math.round(tc * FPS) };
+  } finally { done(); }
+};
+
+/* [11] HYPERFRAMES ADAPTER (shape unverified; see contract section 13). */
+window.__hf = window.__hf || { get duration() { return window.DURATION; }, seek: t => window.seek(t) };
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "status": "provider_returned_audio",
+  "provider_surface": "connected Runway tool",
+  "task_id": "2cf16161-f661-430f-a80d-a70908c1b972",
+  "model": "eleven_multilingual_v2",
+  "voice": "Arjun",
+  "language": "en",
+  "speed": 0.95,
+  "credits_debited": 9,
+  "provider_reported_duration_s": 32.182857,
+  "local_audio_download": "blocked by container DNS/network; no audio file included",
+  "integrated_into_video": false,
+  "listened_and_academically_approved": false,
+  "financial_boundary": "9 workspace credits were debited; no conversion to USD asserted; separate from local-render invoice fields",
+  "packaged_provider_adapter": "not implemented",
+  "signed_asset_url": "omitted to avoid redistributing a temporary bearer URL"
+}

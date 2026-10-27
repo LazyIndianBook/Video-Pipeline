@@ -1,0 +1,20 @@
+{
+  "_note": "Founder sets every value before production; null blocks production runs ('no cap, no run'). Replace with pilot p95 x 1.2. Separate from the $1.72 S2-S8 LLM line, which excludes animation.",
+  "per_run_tokens": {
+    "brief_text": null,
+    "storyboard_text": null,
+    "prompt_assembly": null,
+    "scene_code_2d": null,
+    "scene_code_complex": null,
+    "render_debug": null,
+    "batch_clerical": null,
+    "kit_route": null,
+    "kit_fill": null,
+    "kit_fill_xhigh": null,
+    "kit_escalate_sonnet": null,
+    "kit_escalate_opus": null
+  },
+  "_kit_cascade_note": "15 Oct 2026: kit_* tasks are the kit_cascade family (13 STRATEGY section 5.8, D-16; AD-41). Attempts, k and USD ceilings per tier are fixed in effort_policy.py KIT; token caps here are still founder-set (null blocks production).",
+  "per_lesson_tokens": null,
+  "alert_fraction": 0.8
+}

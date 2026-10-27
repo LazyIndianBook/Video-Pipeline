@@ -1,0 +1,41 @@
+{
+  "graph_id": "bio-photosyn-ci-01-graph",
+  "subject": "biology",
+  "level": "l9_10",
+  "sources": [
+    {"id": "SRC-ncert-life-processes", "kind": "textbook", "title": "NCERT Class 10 Science", "section": "Chapter: Life Processes; section: Autotrophic nutrition", "reliability_class": "official_curriculum"}
+  ],
+  "nodes": [
+    {"id": "OBJ-explain-inputs-outputs", "type": "objective", "statement": "Name the raw materials and products of photosynthesis and say where each raw material comes from.", "source_ids": ["SRC-ncert-life-processes"]},
+
+    {"id": "CLM-autotroph-own-food", "type": "claim", "statement": "Green plants make their own food. This mode of nutrition is called autotrophic nutrition.", "source_ids": ["SRC-ncert-life-processes"], "fixture_ids": []},
+    {"id": "CLM-raw-materials", "type": "claim", "statement": "Photosynthesis takes in carbon dioxide from the air through the stomata and water from the soil through the roots.", "source_ids": ["SRC-ncert-life-processes"], "fixture_ids": []},
+    {"id": "CLM-sunlight-chlorophyll", "type": "claim", "statement": "Chlorophyll absorbs sunlight, and that light energy drives the conversion of the raw materials into sugar.", "source_ids": ["SRC-ncert-life-processes"], "fixture_ids": []},
+    {"id": "CLM-products", "type": "claim", "statement": "Photosynthesis produces glucose and oxygen.", "source_ids": ["SRC-ncert-life-processes"], "fixture_ids": []},
+    {"id": "CLM-equation-balance", "type": "claim", "statement": "The overall equation is 6CO2 + 6H2O gives C6H12O6 + 6O2, in the presence of sunlight and chlorophyll. Each element has the same number of atoms on both sides.", "source_ids": ["SRC-ncert-life-processes"], "fixture_ids": ["FIX-photosynthesis-balance"]},
+
+    {"id": "CLM-carbon-from-air", "type": "claim", "statement": "The carbon in glucose comes from carbon dioxide taken in from the air, not from the soil.", "source_ids": ["SRC-ncert-life-processes"], "fixture_ids": ["FIX-photosynthesis-balance"],
+     "reasoning": "Water (H2O) has no carbon, so the six carbon atoms in glucose can only come from the six carbon dioxide molecules. The equation balances carbon at six on each side, and soil supplies water and minerals, not carbon compounds. The step that the carbon is carried from CO2 into glucose is the balance check, not a separate measurement."},
+    {"id": "CLM-glucose-carbon-fraction", "type": "claim", "statement": "About forty percent of the mass of one glucose molecule is carbon.", "source_ids": [], "fixture_ids": ["FIX-photosynthesis-balance"],
+     "reasoning": "Integer atomic masses C = 12, H = 1, O = 16 give glucose 6x12 + 12x1 + 6x16 = 180, and carbon 6x12 = 72. 72 / 180 = 0.4. Computed in fixtures/compute.py, not taken from a source."},
+    {"id": "CLM-carbon-to-structure", "type": "claim", "statement": "The sugar made in the leaf is the starting material for other carbon compounds the plant builds, such as starch and the cellulose of wood.", "source_ids": ["SRC-ncert-life-processes"], "fixture_ids": [],
+     "review_status": "flagged: NCERT names glucose and starch storage; cellulose and wood are not named in the cited section. Needs subject reviewer before release."},
+    {"id": "CLM-wood-carbon-from-air", "type": "claim", "statement": "The carbon in a plant's wood came from carbon dioxide in the air.", "source_ids": ["SRC-ncert-life-processes"], "fixture_ids": ["FIX-photosynthesis-balance"],
+     "reasoning": "Chain: wood is built from carbon compounds made from sugar (CLM-carbon-to-structure); the sugar's carbon comes from CO2 (CLM-carbon-from-air). The first link is outside the cited NCERT section.",
+     "review_status": "flagged: depends on CLM-carbon-to-structure. Needs subject reviewer."},
+    {"id": "CLM-dry-mass-carbon", "type": "claim", "statement": "A large share of a plant's dry mass is carbon.", "source_ids": [], "fixture_ids": [],
+     "review_status": "flagged: the brief's wording 'most of the dry mass' is not supported; carbon is roughly half of dry plant matter, so the script says 'a large share'. No number is spoken. Needs subject reviewer."},
+
+    {"id": "MIS-plants-eat-soil", "type": "misconception", "statement": "Plants eat soil, so their mass comes from the soil.", "why_wrong": "Soil supplies water and minerals. The carbon that builds sugar and wood comes from carbon dioxide in the air, through the stomata."},
+    {"id": "SIM-equation-only", "type": "simplification", "statement": "Photosynthesis is shown as one balanced equation with no intermediate steps.", "what_is_lost": "The stepwise light and dark reactions, and where each oxygen atom in O2 ends up."},
+
+    {"id": "WRK-atom-balance", "type": "worked_item", "prompt": "Count the atoms on each side of 6CO2 + 6H2O gives C6H12O6 + 6O2.",
+     "steps": ["Carbon: 6 on the left (in 6CO2), 6 on the right (in C6H12O6).", "Hydrogen: 12 on the left (in 6H2O), 12 on the right (in C6H12O6).", "Oxygen: 18 on the left (12 in 6CO2 plus 6 in 6H2O), 18 on the right (6 in C6H12O6 plus 12 in 6O2).", "Every element balances, so the equation is consistent with the carbon in glucose coming from CO2."],
+     "fixture_ids": ["FIX-photosynthesis-balance"]},
+
+    {"id": "ASM-predict-wood-carbon", "type": "assessment_item", "stem": "Where did the carbon in the wood come from: soil, water, or air?", "answer": "Air, as carbon dioxide taken in through the stomata.", "original": true},
+    {"id": "ASM-retrieval-co2-count", "type": "assessment_item", "stem": "How many carbon dioxide molecules does the balanced equation use to make one glucose molecule?", "answer": "Six.", "original": true, "fixture_ids": ["FIX-photosynthesis-balance"]},
+
+    {"id": "FIX-photosynthesis-balance", "type": "fixture", "compute": "fixtures/compute.py", "outputs": ["fixtures/fixture.json", "parameters.coef_co2", "parameters.coef_h2o", "parameters.coef_o2", "results.atoms_left_C", "results.atoms_right_C", "results.atoms_left_H", "results.atoms_right_H", "results.atoms_left_O", "results.atoms_right_O", "results.glucose_molar_mass", "results.carbon_mass_percent_glucose"]}
+  ]
+}

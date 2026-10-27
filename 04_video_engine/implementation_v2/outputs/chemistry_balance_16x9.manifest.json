@@ -1,0 +1,82 @@
+{
+  "scene_id": "chemistry_balance",
+  "aspect": "16:9",
+  "cache_key": "d7f7f7b1fc91022ca43244b41c9e198a91b867ecd6364e98ea2899dfa2f91b80",
+  "cache_hit": false,
+  "sha256": "befef0fd89bbaa5950e4a6a18f2a27d2d91efc16720ed4cb6ec722f421bdf21c",
+  "video": "chemistry_balance_16x9.mp4",
+  "render_wall_seconds": 28.67,
+  "frames": 720,
+  "resolution": [
+    1280,
+    720
+  ],
+  "render_status": "passed",
+  "release_status": "blocked_pending_audio_and_expert_review",
+  "audio_status": "intentionally_silent_technical_preview",
+  "science": {
+    "scene_id": "chemistry_balance",
+    "checks": [
+      {
+        "name": "element_conservation",
+        "passed": true,
+        "detail": "reactants={'H': 4, 'O': 2}; products={'O': 2, 'H': 4}"
+      },
+      {
+        "name": "smallest_whole_numbers",
+        "passed": true,
+        "detail": "coefficients have greatest common divisor 1"
+      },
+      {
+        "name": "approved_formulas",
+        "passed": true,
+        "detail": "RDKit explicit-H atom count verifies H2O composition"
+      }
+    ],
+    "boundary": "Checks cover the specified model only; they do not establish curriculum fit or expert approval."
+  },
+  "media_qa": {
+    "passed": true,
+    "checks": {
+      "dimensions": true,
+      "duration": true,
+      "frame_count": true,
+      "codec": true,
+      "pixel_format": true
+    },
+    "duration_s": 30.0,
+    "frames": 720,
+    "width": 1280,
+    "height": 720,
+    "audio_present": false
+  },
+  "layout_qa": {
+    "passed": true,
+    "sampled_frames": 10,
+    "issues": [],
+    "boundary": "Canvas bounds only. Does not prove absence of all overlaps or mobile readability."
+  },
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "packages": {
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "sympy": "1.14.0",
+      "pydantic": "2.13.5",
+      "CairoSVG": "2.8.2",
+      "Pillow": "12.3.0",
+      "rdkit": "2025.9.4"
+    },
+    "ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+    "font_sha256": "57f73e11f51999432bf7ab22ce55b6f945d5eca1bf824404cfa9ec2e3718c84e"
+  },
+  "invoice_cost_usd": 0.0,
+  "billing_note": "No external generation APIs invoked. Local execution was not separately invoiced or cloud-priced.",
+  "warnings": [
+    "Not a full ten-minute pilot.",
+    "Academic correctness not signed off by a teacher.",
+    "Voice quality and alignment untested.",
+    "No student-learning study performed."
+  ]
+}

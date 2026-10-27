@@ -1,0 +1,67 @@
+{
+ "fixture_id": "FIX-diki-ohm-demo",
+ "_note": "DESIGN-SYSTEM EXAMPLE fixture. Resistor values follow V = I x R with R = 10 ohm. lamp_i2 (0.32 A at 4 V, i.e. a hot filament of 12.5 ohm) is ILLUSTRATIVE, not measured; replace with sourced data before any release.",
+ "parameters": {
+  "resistance_ohm": 10,
+  "v1": 2,
+  "v2": 4,
+  "v3": 6
+ },
+ "results": {
+  "i1": 0.2,
+  "i2": 0.4,
+  "i3": 0.6,
+  "ratio_v": 2,
+  "ratio_i": 2,
+  "v_over_i": 10,
+  "lamp_i2": 0.32
+ },
+ "display": {
+  "r_label": "R =",
+  "r_unit": "Ω",
+  "v_label": "V =",
+  "v_unit": "V",
+  "i_label": "I =",
+  "i_unit": "A",
+  "ammeter_symbol": "A",
+  "condition": "constant temperature",
+  "lamp_label": "filament lamp",
+  "sym": {
+   "V": "V",
+   "I": "I",
+   "R": "R"
+  },
+  "ops": {
+   "eq": "=",
+   "div": "/",
+   "ne": "≠"
+  },
+  "times": "×",
+  "decimals": {
+   "v": 0,
+   "i": 2
+  },
+  "ui": {
+   "think_prompt": "Pause. Predict.",
+   "unknown": "?",
+   "endcard_line1": "Professor Diki Simplified",
+   "endcard_line2": "Free lesson: Ohm's law"
+  },
+  "card": {
+   "head": {
+    "v": "V",
+    "i": "I",
+    "ratio": "V ÷ I"
+   },
+   "def": {
+    "term": "Ohm's law",
+    "text": "V ÷ I stays the same, at constant temperature."
+   },
+   "points": {
+    "p1": "Double V, double I.",
+    "p2": "V ÷ I = R.",
+    "p3": "Only at constant temperature."
+   }
+  }
+ }
+}

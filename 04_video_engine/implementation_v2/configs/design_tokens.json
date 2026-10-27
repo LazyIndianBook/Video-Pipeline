@@ -1,0 +1,15 @@
+{
+  "schema_version":"1.0",
+  "background":"#F7F9FC",
+  "ink":"#14213D",
+  "muted":"#526074",
+  "blue":"#185ABD",
+  "teal":"#087986",
+  "amber":"#9A5B00",
+  "purple":"#6E44AA",
+  "error":"#B42318",
+  "line":"#D9E1EC",
+  "card":"#FFFFFF",
+  "font_family":"DejaVu Sans",
+  "comment":"System font for offline proof only; no font binaries distributed. Production brand fonts must be licensed and independently pinned."
+}

@@ -1,0 +1,209 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "phy-ohm-ci-01-s04",
+ "fps": 30,
+ "duration": 11.067,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "6060db7d871bad188a93033007d9124e697aa921f729bae55e9bdf67bba20305",
+ "script_sha256": "cf2a4a3da3233d15b72dfb09f353504544608bf99699191cbcb9b920baf104e7",
+ "words": [
+  {
+   "w": "But",
+   "t0": 0.107,
+   "t1": 0.347
+  },
+  {
+   "w": "always",
+   "t0": 0.427,
+   "t1": 0.987
+  },
+  {
+   "w": "is",
+   "t0": 1.067,
+   "t1": 1.227
+  },
+  {
+   "w": "not",
+   "t0": 1.307,
+   "t1": 1.467
+  },
+  {
+   "w": "safe",
+   "t0": 1.547,
+   "t1": 2.267
+  },
+  {
+   "w": "A",
+   "t0": 2.507,
+   "t1": 2.667
+  },
+  {
+   "w": "filament",
+   "t0": 2.747,
+   "t1": 3.067
+  },
+  {
+   "w": "bulb",
+   "t0": 3.147,
+   "t1": 3.387
+  },
+  {
+   "w": "gets",
+   "t0": 3.507,
+   "t1": 3.627
+  },
+  {
+   "w": "hot",
+   "t0": 3.707,
+   "t1": 4.267
+  },
+  {
+   "w": "so",
+   "t0": 4.347,
+   "t1": 4.427
+  },
+  {
+   "w": "its",
+   "t0": 4.507,
+   "t1": 4.587
+  },
+  {
+   "w": "resistance",
+   "t0": 4.707,
+   "t1": 5.227,
+   "occurrence": 1
+  },
+  {
+   "w": "rises",
+   "t0": 5.307,
+   "t1": 5.92
+  },
+  {
+   "w": "and",
+   "t0": 5.974,
+   "t1": 6.027
+  },
+  {
+   "w": "the",
+   "t0": 6.107,
+   "t1": 6.187
+  },
+  {
+   "w": "current",
+   "t0": 6.387,
+   "t1": 6.587
+  },
+  {
+   "w": "no",
+   "t0": 6.667,
+   "t1": 6.747
+  },
+  {
+   "w": "longer",
+   "t0": 6.827,
+   "t1": 7.067
+  },
+  {
+   "w": "doubles",
+   "t0": 7.36,
+   "t1": 8.0
+  },
+  {
+   "w": "The",
+   "t0": 8.054,
+   "t1": 8.107
+  },
+  {
+   "w": "rule",
+   "t0": 8.267,
+   "t1": 8.427
+  },
+  {
+   "w": "needs",
+   "t0": 8.507,
+   "t1": 8.827
+  },
+  {
+   "w": "constant",
+   "t0": 9.067,
+   "t1": 9.307
+  },
+  {
+   "w": "resistance",
+   "t0": 9.387,
+   "t1": 10.347,
+   "occurrence": 2
+  }
+ ],
+ "beats": [
+  0.027
+ ],
+ "cues": [
+  {
+   "id": "c22",
+   "at": 2.697,
+   "kind": "reveal",
+   "element_id": "bulb",
+   "word_index": 6
+  },
+  {
+   "id": "c23",
+   "at": 3.097,
+   "kind": "reveal",
+   "element_id": "lamp_label",
+   "word_index": 7
+  },
+  {
+   "id": "c24",
+   "at": 3.657,
+   "kind": "reveal",
+   "element_id": "heat",
+   "word_index": 9
+  },
+  {
+   "id": "c25",
+   "at": 5.257,
+   "kind": "reveal",
+   "element_id": "r_rise",
+   "word_index": 13
+  },
+  {
+   "id": "c26",
+   "at": 7.31,
+   "kind": "reveal",
+   "element_id": "not_double",
+   "word_index": 19
+  },
+  {
+   "id": "c27",
+   "at": 9.017,
+   "kind": "emphasis",
+   "element_id": "r_rise",
+   "word_index": 23
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "phy-ohm-ci-01",
+  "scene": "s04",
+  "beat_ids": [
+   "b05"
+  ],
+  "beats_text": [
+   {
+    "id": "b05",
+    "slot": "misconception.confront",
+    "text": "But always is not safe. A filament bulb gets hot, so its resistance rises, and the current no longer doubles. The rule needs constant resistance.",
+    "headline": "always is not safe",
+    "start": 0.107,
+    "end": 10.347,
+    "word_range": [
+     0,
+     25
+    ]
+   }
+  ],
+  "think_windows": []
+ }
+}

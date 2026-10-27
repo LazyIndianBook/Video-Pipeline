@@ -1,0 +1,441 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "phy-ohm-ci-01-s03",
+ "fps": 30,
+ "duration": 23.8,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "f883a3702c0dc31e4935fa4d0843ea6749259565b3df3e24e1645d798ad191cd",
+ "script_sha256": "63da8847cf4d03c5d3fd673d8f94ea746cf000bb4f54ba264b54c1a0ad88b41e",
+ "words": [
+  {
+   "w": "At",
+   "t0": 0.093,
+   "t1": 0.333,
+   "occurrence": 1
+  },
+  {
+   "w": "two",
+   "t0": 0.413,
+   "t1": 0.573,
+   "occurrence": 1
+  },
+  {
+   "w": "volts",
+   "t0": 0.653,
+   "t1": 1.293,
+   "occurrence": 1
+  },
+  {
+   "w": "the",
+   "t0": 1.373,
+   "t1": 1.453,
+   "occurrence": 1
+  },
+  {
+   "w": "current",
+   "t0": 1.613,
+   "t1": 1.773,
+   "occurrence": 1
+  },
+  {
+   "w": "is",
+   "t0": 1.853,
+   "t1": 2.013,
+   "occurrence": 1
+  },
+  {
+   "w": "zero",
+   "t0": 2.093,
+   "t1": 2.333,
+   "occurrence": 1
+  },
+  {
+   "w": "point",
+   "t0": 2.493,
+   "t1": 2.733,
+   "occurrence": 1
+  },
+  {
+   "w": "two",
+   "t0": 2.813,
+   "t1": 2.893,
+   "occurrence": 2
+  },
+  {
+   "w": "amperes",
+   "t0": 3.053,
+   "t1": 4.093,
+   "occurrence": 1
+  },
+  {
+   "w": "At",
+   "t0": 4.213,
+   "t1": 4.333,
+   "occurrence": 2
+  },
+  {
+   "w": "four",
+   "t0": 4.413,
+   "t1": 4.493,
+   "occurrence": 1
+  },
+  {
+   "w": "volts",
+   "t0": 4.653,
+   "t1": 5.133,
+   "occurrence": 2
+  },
+  {
+   "w": "it",
+   "t0": 5.173,
+   "t1": 5.213
+  },
+  {
+   "w": "is",
+   "t0": 5.293,
+   "t1": 5.373,
+   "occurrence": 2
+  },
+  {
+   "w": "zero",
+   "t0": 5.453,
+   "t1": 5.613,
+   "occurrence": 2
+  },
+  {
+   "w": "point",
+   "t0": 5.773,
+   "t1": 6.093,
+   "occurrence": 2
+  },
+  {
+   "w": "four",
+   "t0": 6.173,
+   "t1": 6.253,
+   "occurrence": 2
+  },
+  {
+   "w": "amperes",
+   "t0": 6.413,
+   "t1": 7.453,
+   "occurrence": 2
+  },
+  {
+   "w": "Twice",
+   "t0": 7.493,
+   "t1": 7.693
+  },
+  {
+   "w": "the",
+   "t0": 7.773,
+   "t1": 7.813,
+   "occurrence": 2
+  },
+  {
+   "w": "voltage",
+   "t0": 7.853,
+   "t1": 8.573
+  },
+  {
+   "w": "twice",
+   "t0": 8.653,
+   "t1": 8.893
+  },
+  {
+   "w": "the",
+   "t0": 8.973,
+   "t1": 9.013,
+   "occurrence": 3
+  },
+  {
+   "w": "current",
+   "t0": 9.053,
+   "t1": 9.693,
+   "occurrence": 2
+  },
+  {
+   "w": "at",
+   "t0": 9.773,
+   "t1": 9.853
+  },
+  {
+   "w": "constant",
+   "t0": 9.933,
+   "t1": 10.333
+  },
+  {
+   "w": "temperature",
+   "t0": 10.413,
+   "t1": 11.293
+  },
+  {
+   "w": "Voltage",
+   "t0": 12.133,
+   "t1": 12.613
+  },
+  {
+   "w": "over",
+   "t0": 12.693,
+   "t1": 12.853,
+   "occurrence": 1
+  },
+  {
+   "w": "current",
+   "t0": 12.933,
+   "t1": 13.893,
+   "occurrence": 3
+  },
+  {
+   "w": "two",
+   "t0": 13.973,
+   "t1": 14.213,
+   "occurrence": 3
+  },
+  {
+   "w": "over",
+   "t0": 14.293,
+   "t1": 14.533,
+   "occurrence": 2
+  },
+  {
+   "w": "zero",
+   "t0": 14.613,
+   "t1": 14.853,
+   "occurrence": 3
+  },
+  {
+   "w": "point",
+   "t0": 15.013,
+   "t1": 15.253,
+   "occurrence": 3
+  },
+  {
+   "w": "two",
+   "t0": 15.373,
+   "t1": 15.493,
+   "occurrence": 4
+  },
+  {
+   "w": "is",
+   "t0": 15.733,
+   "t1": 15.973,
+   "occurrence": 3
+  },
+  {
+   "w": "ten",
+   "t0": 16.053,
+   "t1": 16.133,
+   "occurrence": 1
+  },
+  {
+   "w": "ohms",
+   "t0": 16.213,
+   "t1": 17.093,
+   "occurrence": 1
+  },
+  {
+   "w": "Four",
+   "t0": 17.213,
+   "t1": 17.333
+  },
+  {
+   "w": "over",
+   "t0": 17.493,
+   "t1": 17.733,
+   "occurrence": 3
+  },
+  {
+   "w": "zero",
+   "t0": 17.813,
+   "t1": 17.973,
+   "occurrence": 4
+  },
+  {
+   "w": "point",
+   "t0": 18.133,
+   "t1": 18.373,
+   "occurrence": 4
+  },
+  {
+   "w": "four",
+   "t0": 18.453,
+   "t1": 18.773,
+   "occurrence": 3
+  },
+  {
+   "w": "is",
+   "t0": 18.853,
+   "t1": 19.013,
+   "occurrence": 4
+  },
+  {
+   "w": "also",
+   "t0": 19.093,
+   "t1": 19.413
+  },
+  {
+   "w": "ten",
+   "t0": 19.493,
+   "t1": 19.653,
+   "occurrence": 2
+  },
+  {
+   "w": "ohms",
+   "t0": 19.733,
+   "t1": 20.533,
+   "occurrence": 2
+  },
+  {
+   "w": "That",
+   "t0": 20.653,
+   "t1": 20.773
+  },
+  {
+   "w": "fixed",
+   "t0": 20.853,
+   "t1": 21.173
+  },
+  {
+   "w": "ratio",
+   "t0": 21.253,
+   "t1": 21.733
+  },
+  {
+   "w": "is",
+   "t0": 21.813,
+   "t1": 21.893,
+   "occurrence": 5
+  },
+  {
+   "w": "the",
+   "t0": 21.973,
+   "t1": 22.013,
+   "occurrence": 4
+  },
+  {
+   "w": "resistance",
+   "t0": 22.053,
+   "t1": 23.093
+  }
+ ],
+ "beats": [
+  0.013,
+  11.893
+ ],
+ "cues": [
+  {
+   "id": "c01",
+   "at": 0.363,
+   "kind": "reveal",
+   "element_id": "card1",
+   "word_index": 1
+  },
+  {
+   "id": "c02",
+   "at": 0.363,
+   "kind": "reveal",
+   "element_id": "lbl_v1s",
+   "word_index": 1
+  },
+  {
+   "id": "c03",
+   "at": 3.003,
+   "kind": "reveal",
+   "element_id": "i1_val",
+   "word_index": 9
+  },
+  {
+   "id": "c04",
+   "at": 4.363,
+   "kind": "reveal",
+   "element_id": "card2",
+   "word_index": 11
+  },
+  {
+   "id": "c05",
+   "at": 4.363,
+   "kind": "reveal",
+   "element_id": "lbl_v2s",
+   "word_index": 11
+  },
+  {
+   "id": "c06",
+   "at": 6.363,
+   "kind": "reveal",
+   "element_id": "i2_val",
+   "word_index": 18
+  },
+  {
+   "id": "c07",
+   "at": 7.443,
+   "kind": "emphasis",
+   "element_id": "i2_val",
+   "word_index": 19
+  },
+  {
+   "id": "c08",
+   "at": 16.003,
+   "kind": "reveal",
+   "element_id": "ratio_1",
+   "word_index": 37
+  },
+  {
+   "id": "c09",
+   "at": 19.443,
+   "kind": "reveal",
+   "element_id": "ratio_2",
+   "word_index": 46
+  },
+  {
+   "id": "c10",
+   "at": 20.803,
+   "kind": "emphasis",
+   "element_id": "ratio_1",
+   "word_index": 49
+  },
+  {
+   "id": "c11",
+   "at": 20.803,
+   "kind": "emphasis",
+   "element_id": "ratio_2",
+   "word_index": 49
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "phy-ohm-ci-01",
+  "scene": "s03",
+  "beat_ids": [
+   "b03",
+   "b04"
+  ],
+  "beats_text": [
+   {
+    "id": "b03",
+    "slot": "explain.ladder_step",
+    "text": "At two volts, the current is zero point two amperes. At four volts, it is zero point four amperes. Twice the voltage, twice the current, at constant temperature.",
+    "headline": "twice the current",
+    "start": 0.093,
+    "end": 11.293,
+    "word_range": [
+     0,
+     28
+    ]
+   },
+   {
+    "id": "b04",
+    "slot": "worked.step",
+    "text": "Voltage over current: two over zero point two is ten ohms. Four over zero point four is also ten ohms. That fixed ratio is the resistance.",
+    "headline": "",
+    "start": 12.133,
+    "end": 23.093,
+    "word_range": [
+     28,
+     54
+    ]
+   }
+  ],
+  "think_windows": []
+ }
+}

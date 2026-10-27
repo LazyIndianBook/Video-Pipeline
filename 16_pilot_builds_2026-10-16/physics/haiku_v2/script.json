@@ -1,0 +1,746 @@
+{
+  "video_id": "phy-ohm-ci-01",
+  "subject": "physics",
+  "topic": "Ohm's law: does twice the voltage mean twice the current?",
+  "level": "l9_10",
+  "locale": "en-IN",
+  "language": "en",
+  "format": "concept_intro",
+  "target_duration_s": 65,
+  "style": "doodle-handdrawn",
+  "voice": {
+    "path": "B",
+    "provider": "elevenlabs",
+    "model_id": "eleven_v4",
+    "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+    "persona": "persona/super-teacher#core"
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "file": "scenes/s01.html",
+      "beats": [
+        "b01"
+      ],
+      "title": "Hook"
+    },
+    {
+      "id": "s02",
+      "file": "scenes/s02.html",
+      "beats": [
+        "b02"
+      ],
+      "title": "Predict pause"
+    },
+    {
+      "id": "s03",
+      "file": "scenes/s03.html",
+      "beats": [
+        "b03",
+        "b04"
+      ],
+      "title": "Ratio reveal"
+    },
+    {
+      "id": "s04",
+      "file": "scenes/s04.html",
+      "beats": [
+        "b05"
+      ],
+      "title": "Filament confront"
+    },
+    {
+      "id": "s05",
+      "file": "scenes/s05.html",
+      "beats": [
+        "b06",
+        "b07"
+      ],
+      "title": "Recap and disclosure"
+    }
+  ],
+  "beats": [
+    {
+      "id": "b01",
+      "scene": "s01",
+      "slot": "hook.question_reveal",
+      "mode": "curious",
+      "tag": "[curious]",
+      "text": "Here's a ten-ohm resistor with two volts across it. Now we make it four volts. Does twice the voltage always mean twice the current?",
+      "node_ids": [
+        "ASM-ohm-double-always",
+        "FIX-ohm-readings"
+      ],
+      "pause_after_s": 0.6,
+      "think_window_s": 0,
+      "on_screen": {
+        "headline": "twice the voltage?",
+        "fx_refs": [
+          "parameters.resistance_ohm",
+          "display.r_value",
+          "display.v1_value",
+          "display.v2_value"
+        ]
+      },
+      "cues": [
+        {
+          "id": "c01",
+          "kind": "reveal",
+          "element_id": "board",
+          "anchor_word": "Here's",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c02",
+          "kind": "reveal",
+          "element_id": "shelf",
+          "anchor_word": "Here's",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c03",
+          "kind": "reveal",
+          "element_id": "wires",
+          "anchor_word": "Here's",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c04",
+          "kind": "reveal",
+          "element_id": "cell",
+          "anchor_word": "a",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c05",
+          "kind": "reveal",
+          "element_id": "resistor",
+          "anchor_word": "resistor",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c06",
+          "kind": "reveal",
+          "element_id": "r_chip",
+          "anchor_word": "ten-ohm",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c07",
+          "kind": "reveal",
+          "element_id": "v1_chip",
+          "anchor_word": "two",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c08",
+          "kind": "reveal",
+          "element_id": "v2_chip",
+          "anchor_word": "four",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c09",
+          "kind": "emphasis",
+          "element_id": "v2_chip",
+          "anchor_word": "volts",
+          "occurrence": 2,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c10",
+          "kind": "reveal",
+          "element_id": "ammeter",
+          "anchor_word": "current",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c11",
+          "kind": "reveal",
+          "element_id": "i_label",
+          "anchor_word": "current",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c12",
+          "kind": "reveal",
+          "element_id": "qmark",
+          "anchor_word": "current",
+          "occurrence": 1,
+          "lead_s": 0.05
+        }
+      ]
+    },
+    {
+      "id": "b02",
+      "scene": "s02",
+      "slot": "check.predict",
+      "mode": "curious",
+      "tag": "[curious]",
+      "text": "Predict the current at four volts. Then decide whether always is safe.",
+      "node_ids": [
+        "ASM-ohm-predict-4v",
+        "WRK-ohm-ratio"
+      ],
+      "pause_after_s": 0.6,
+      "think_window_s": 5,
+      "on_screen": {
+        "headline": "predict the current",
+        "fx_refs": [
+          "display.ui.think_prompt",
+          "display.v2_value",
+          "display.i_label"
+        ]
+      },
+      "cues": [
+        {
+          "id": "c13",
+          "kind": "reveal",
+          "element_id": "board",
+          "anchor_word": "Predict",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c14",
+          "kind": "reveal",
+          "element_id": "shelf",
+          "anchor_word": "Predict",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c15",
+          "kind": "reveal",
+          "element_id": "wires",
+          "anchor_word": "Predict",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c16",
+          "kind": "reveal",
+          "element_id": "cell",
+          "anchor_word": "Predict",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c17",
+          "kind": "reveal",
+          "element_id": "resistor",
+          "anchor_word": "Predict",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c18",
+          "kind": "reveal",
+          "element_id": "r_chip",
+          "anchor_word": "Predict",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c19",
+          "kind": "reveal",
+          "element_id": "v2_chip",
+          "anchor_word": "four",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c20",
+          "kind": "reveal",
+          "element_id": "ammeter",
+          "anchor_word": "current",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c21",
+          "kind": "reveal",
+          "element_id": "i_label",
+          "anchor_word": "current",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c22",
+          "kind": "reveal",
+          "element_id": "qmark",
+          "anchor_word": "current",
+          "occurrence": 1,
+          "lead_s": 0.05
+        }
+      ]
+    },
+    {
+      "id": "b03",
+      "scene": "s03",
+      "slot": "explain.ladder_step",
+      "mode": "steady",
+      "tag": "[thoughtful]",
+      "text": "At two volts the current is zero point two amperes. At four volts it is zero point four amperes. Twice the voltage, twice the current, at constant temperature.",
+      "node_ids": [
+        "CLM-ohm-proportional",
+        "CLM-ohm-condition",
+        "WRK-ohm-ratio"
+      ],
+      "pause_after_s": 0.6,
+      "think_window_s": 0,
+      "on_screen": {
+        "headline": "twice the current",
+        "fx_refs": [
+          "display.i1_value",
+          "display.i2_value",
+          "display.times_two",
+          "display.condition"
+        ]
+      },
+      "cues": [
+        {
+          "id": "c23",
+          "kind": "reveal",
+          "element_id": "board",
+          "anchor_word": "At",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c24",
+          "kind": "reveal",
+          "element_id": "shelf",
+          "anchor_word": "At",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c25",
+          "kind": "reveal",
+          "element_id": "wires",
+          "anchor_word": "At",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c26",
+          "kind": "reveal",
+          "element_id": "cell",
+          "anchor_word": "At",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c27",
+          "kind": "reveal",
+          "element_id": "resistor",
+          "anchor_word": "At",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c28",
+          "kind": "reveal",
+          "element_id": "ammeter",
+          "anchor_word": "current",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c29",
+          "kind": "reveal",
+          "element_id": "i_label",
+          "anchor_word": "current",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c30",
+          "kind": "reveal",
+          "element_id": "card1",
+          "anchor_word": "two",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c31",
+          "kind": "reveal",
+          "element_id": "col1_v",
+          "anchor_word": "two",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c32",
+          "kind": "reveal",
+          "element_id": "col1_i",
+          "anchor_word": "amperes",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c33",
+          "kind": "reveal",
+          "element_id": "card2",
+          "anchor_word": "four",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c34",
+          "kind": "reveal",
+          "element_id": "col2_v",
+          "anchor_word": "four",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c35",
+          "kind": "reveal",
+          "element_id": "col2_i",
+          "anchor_word": "amperes",
+          "occurrence": 2,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c36",
+          "kind": "reveal",
+          "element_id": "rel_x2",
+          "anchor_word": "Twice",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c37",
+          "kind": "emphasis",
+          "element_id": "rel_x2",
+          "anchor_word": "twice",
+          "occurrence": 2,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c38",
+          "kind": "reveal",
+          "element_id": "cond_chip",
+          "anchor_word": "constant",
+          "occurrence": 1,
+          "lead_s": 0.05
+        }
+      ]
+    },
+    {
+      "id": "b04",
+      "scene": "s03",
+      "slot": "worked.step",
+      "mode": "steady",
+      "tag": "[calm]",
+      "text": "Voltage over current: two over zero point two is ten ohms. Four over zero point four is also ten ohms. Voltage equals current multiplied by resistance.",
+      "node_ids": [
+        "WRK-ohm-ratio",
+        "CLM-ohm-resistance"
+      ],
+      "pause_after_s": 0.8,
+      "think_window_s": 0,
+      "on_screen": {
+        "headline": "voltage over current",
+        "fx_refs": [
+          "results.v1_over_i1_ohm",
+          "results.v2_over_i2_ohm",
+          "display.equation",
+          "display.ratio_value"
+        ]
+      },
+      "cues": [
+        {
+          "id": "c39",
+          "kind": "reveal",
+          "element_id": "r_chip",
+          "anchor_word": "ten",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c40",
+          "kind": "reveal",
+          "element_id": "ratio_1",
+          "anchor_word": "ten",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c41",
+          "kind": "reveal",
+          "element_id": "ratio_2",
+          "anchor_word": "ten",
+          "occurrence": 2,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c42",
+          "kind": "reveal",
+          "element_id": "eq_box",
+          "anchor_word": "multiplied",
+          "occurrence": 1,
+          "lead_s": 0.05
+        }
+      ]
+    },
+    {
+      "id": "b05",
+      "scene": "s04",
+      "slot": "misconception.confront",
+      "mode": "deliberate",
+      "tag": "[thoughtful]",
+      "text": "Always is not safe. A filament lamp heats up, its resistance rises, so doubling the voltage does not double the current.",
+      "node_ids": [
+        "MIS-ohm-universal",
+        "CLM-ohm-filament",
+        "ASM-ohm-double-always"
+      ],
+      "pause_after_s": 0.8,
+      "think_window_s": 0,
+      "on_screen": {
+        "headline": "resistance rises",
+        "fx_refs": [
+          "display.lamp_name",
+          "display.rise_glyph",
+          "display.times_two"
+        ]
+      },
+      "cues": [
+        {
+          "id": "c43",
+          "kind": "reveal",
+          "element_id": "board",
+          "anchor_word": "Always",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c44",
+          "kind": "reveal",
+          "element_id": "shelf",
+          "anchor_word": "Always",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c45",
+          "kind": "reveal",
+          "element_id": "wires",
+          "anchor_word": "Always",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c46",
+          "kind": "reveal",
+          "element_id": "cell",
+          "anchor_word": "Always",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c47",
+          "kind": "reveal",
+          "element_id": "name_lamp",
+          "anchor_word": "filament",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c48",
+          "kind": "reveal",
+          "element_id": "swap_lamp",
+          "anchor_word": "lamp",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c49",
+          "kind": "reveal",
+          "element_id": "chg_r",
+          "anchor_word": "rises",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c50",
+          "kind": "reveal",
+          "element_id": "strike_x2",
+          "anchor_word": "doubling",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c51",
+          "kind": "reveal",
+          "element_id": "ammeter",
+          "anchor_word": "current",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c52",
+          "kind": "reveal",
+          "element_id": "i_label",
+          "anchor_word": "current",
+          "occurrence": 1,
+          "lead_s": 0.05
+        }
+      ]
+    },
+    {
+      "id": "b06",
+      "scene": "s05",
+      "slot": "recap.statement",
+      "mode": "steady",
+      "tag": "[warm]",
+      "text": "At constant temperature, an ohmic conductor's current is proportional to voltage. Voltage equals current multiplied by resistance. A filament lamp breaks the rule: its resistance rises.",
+      "node_ids": [
+        "CLM-ohm-proportional",
+        "CLM-ohm-resistance",
+        "CLM-ohm-condition",
+        "CLM-ohm-filament"
+      ],
+      "pause_after_s": 0.6,
+      "think_window_s": 0,
+      "on_screen": {
+        "headline": "constant temperature",
+        "fx_refs": [
+          "display.condition",
+          "display.relation",
+          "display.equation",
+          "display.lamp_name",
+          "display.rise_glyph",
+          "display.times_two"
+        ]
+      },
+      "cues": [
+        {
+          "id": "c53",
+          "kind": "reveal",
+          "element_id": "cond_row",
+          "anchor_word": "constant",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c54",
+          "kind": "reveal",
+          "element_id": "tick1",
+          "anchor_word": "temperature",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c55",
+          "kind": "reveal",
+          "element_id": "rel_row",
+          "anchor_word": "proportional",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c56",
+          "kind": "reveal",
+          "element_id": "tick2",
+          "anchor_word": "voltage",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c57",
+          "kind": "reveal",
+          "element_id": "eq_row",
+          "anchor_word": "equals",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c58",
+          "kind": "reveal",
+          "element_id": "tick3",
+          "anchor_word": "resistance",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c59",
+          "kind": "reveal",
+          "element_id": "lamp_row",
+          "anchor_word": "lamp",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c60",
+          "kind": "reveal",
+          "element_id": "chg_row",
+          "anchor_word": "rises",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c61",
+          "kind": "reveal",
+          "element_id": "strike_row",
+          "anchor_word": "breaks",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c62",
+          "kind": "reveal",
+          "element_id": "tick5",
+          "anchor_word": "rule",
+          "occurrence": 1,
+          "lead_s": 0.05
+        },
+        {
+          "id": "c64",
+          "kind": "reveal",
+          "element_id": "tick4",
+          "anchor_word": "rises",
+          "occurrence": 1,
+          "lead_s": 0.05
+        }
+      ]
+    },
+    {
+      "id": "b07",
+      "scene": "s05",
+      "slot": "outro.disclosure",
+      "mode": "steady",
+      "text": "AI-generated narration; script by ExamLeaf.",
+      "node_ids": [],
+      "pause_after_s": 0,
+      "think_window_s": 0,
+      "on_screen": {
+        "headline": "",
+        "fx_refs": []
+      },
+      "cues": [
+        {
+          "id": "c63",
+          "kind": "reveal",
+          "element_id": "disclosure",
+          "anchor_word": "AI-generated",
+          "occurrence": 1,
+          "lead_s": 0.05
+        }
+      ]
+    }
+  ]
+}

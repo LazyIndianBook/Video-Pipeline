@@ -1,0 +1,46 @@
+# Professor Diki Simplified: banned and flagged phrases (v1.0.0, 16 Oct 2026)
+# Format: level <TAB> id <TAB> python regex (case-insensitive, matched per sentence of spoken text) <TAB> what to do instead
+# level: block = the script fails; warn = the writer must justify or rewrite.
+# Sources: brand/strings.json F01-F09, A1-26/A1-31/A1-M6, Super Teacher Step 2 retire list, 02 H4, SR SQ-05/06/09, PD-02.
+block	B01	exam[\s_.\-]*leaf	Remove. The only spoken brand words are the outro line "Professor Diki Simplified." (PD-02, F01)
+block	B02	\bsuper[\s-]*teacher\b	Internal persona name; never spoken or shown (F09)
+block	B03	\bguarantee(s|d)?\b	No outcome promises; name the capability instead (F02)
+block	B04	\bfull[\s-]+marks\b	No marks promises (F03)
+block	B05	\b100\s?(%|per\s?cent|percent)	Say "all of it" or get a reviewer waiver (F04)
+block	B06	always\s+comes?\s+in\s+(the\s+)?exams?	"In the exam, write: ..." gives the form without predicting papers (F05)
+block	B07	\bmind[\s-]*(blown|blowing)\b	Let the picture make the point; cut the line (F06)
+block	B08	\blet(\s+us|['’]s)\s+embark\b	Start on the object: "Double the voltage." (F07)
+block	B09	\bit(['’]s|\s+is)\s+that\s+simple\b	Cut; offer the transfer instead (F08)
+block	B10	\bpause\s+and\s+predict\b	State the task: "Now four volts. What will the meter read?" (A1-26)
+block	B11	\bmany\s+(people\s+|students\s+)?think\b	Pose the wrong idea as a choice or a tempting shortcut: "Tempted to write H two O two?" (A1-26)
+block	B12	\blet(['’]s|\s+us)\s+dive\b|\bdive\s+(in|into)\b	Start on the object (ST Step 2)
+block	B13	\bfascinating\s+world\b	Cut (ST Step 2)
+block	B14	\b(super|so|really)\s+easy\b|\bthis\s+is\s+easy\b	"This step uses the result we just found." (02 H4)
+block	B15	\beven\s+a\s+child\b	Cut (ST Step 2)
+block	B16	\byou(\s+have|['’]ve)\s+mastered\b|\bboom\b	"If you got 0.6, you used the rule on a new case." (02 H6)
+block	B17	\bI\s+(heard|can\s+see|know)\s+you\b|\byou\s+got\s+it\s+right\b	Conditional only: "If you said ..." (SQ-05)
+block	B18	\bunlock(s|ing)?\b	Cut (ST Step 2)
+block	B19	\bdid\s+you\s+get\s+(it|that)\b	Ask a real question with a window, or none (ST Step 2)
+block	B20	\b(amazing|incredible|awesome|mind[\s-]*boggling)\b	Name what changed instead (SQ-06)
+block	B21	\bwelcome\s+(back|to)\b|\bin\s+this\s+video\b|\btoday\s+we(['’]ll|\s+will|\s+are\s+going\s+to)\b	First sentence is the hook on a visible object (PD-07 first insight by 10 s)
+block	B22	\bwithout\s+further\s+ado\b|\bbuckle\s+up\b|\bgame[\s-]*changer\b	Cut
+block	B23	\byou\s+won['’]?t\s+believe\b|\bbelieve\s+it\s+or\s+not\b	Forbidden hook (SR §9); show the surprising reading
+block	B24	\bAI[\s-]*generated\b|\bscript\s+by\b|\bnarration\s+by\b	Disclosure is on the end card and in metadata, never spoken in shorts (PD-02)
+block	B25	\b(weak|slow|average)\s+(students?|learners?)\b	Never label learners (ST Step 3)
+block	B26	\b(like|subscribe|share)\s+(and|this|the|for)\b|\bsmash\b|\bhit\s+the\s+bell\b	No engagement prompts (strings.json cta_rule)
+block	B27	\balways\s+is\s+(not\s+)?safe\b	A quoted word used as a noun; say "Not every time." (A1-02)
+block	B28	\btoppers?\b|\bdon['’]t\s+lose\s+marks\b|\bscore\s+more\b|\byou(['’]ll|\s+will)?\s+fail\b	No pressure, fear or comparison (SQ-09)
+block	B29	^(that|this|it)(['’]s|\s+is)\s+(called\s+)?(the|a|an)\s+[\w\s'’-]{1,40}[.!]$	Standalone naming sentence; name the term inside a sentence that uses it (A1-M6c)
+warn	W01	\b(obviously|clearly|simply|basically|essentially)\b	Delete: it tells a struggling learner they should already see it
+warn	W02	\bin\s+a\s+nutshell\b|\blet['’]s\s+break\s+it\s+down\b|\bhere['’]s\s+the\s+(thing|kicker|catch)\b|\bplot\s+twist\b|\bspoiler\b	Stock connective; use a consequence word tied to the visual: "so", "but", "which means"
+warn	W03	\bit['’]s\s+important\s+to\s+(note|remember)\b|\bnote\s+that\b|\bremember\s+that\b	Make it a condition badge with an inspect pause instead
+warn	W04	\bwrite\s+(it|this)\s+down\b	Only with a pause_video purpose and its 1.0 s hold (A1-11)
+warn	W05	\b(great|good|nice)\s+(job|work)\b|\bwell\s+done\b|\bperfect\b|\bexcellent\b	Unconditional praise; use "If you got X, ..." (02 H3)
+warn	W06	\bas\s+we\s+(all\s+)?know\b|\blet['’]s\s+find\s+out\b|\bhold\s+that\s+thought\b	Stock furniture; cut or replace with the next visible change
+warn	W07	\bconductor\b	Check the noun did not switch from the one shown (A1-06)
+states that	lecture opener (PD-25)	SQ-30	SQ-30
+is defined as	lecture opener (PD-25)	SQ-30	SQ-30
+we can see that	lecture opener (PD-25)	SQ-30	SQ-30
+it is important to note	lecture opener (PD-25)	SQ-30	SQ-30
+let us understand	lecture opener (PD-25)	SQ-30	SQ-30
+in this video we will	lecture opener (PD-25)	SQ-30	SQ-30

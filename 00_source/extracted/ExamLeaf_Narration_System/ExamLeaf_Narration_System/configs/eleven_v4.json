@@ -1,0 +1,5 @@
+{
+  "provider": "elevenlabs",
+  "model": "eleven_v4",
+  "voice_id": "REPLACE_WITH_APPROVED_VOICE_ID"
+}

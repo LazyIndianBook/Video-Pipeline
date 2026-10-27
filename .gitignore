@@ -1,0 +1,33 @@
+# Video Pipeline: everything is versioned except rendered media and local runtimes.
+# Ignored media stays on disk; rebuild it with the pipeline (CLAUDE.md, "Rebuilding media").
+
+# Videos, and stills cut from them (render samples, judge frames, scene previews)
+*.mp4
+*.mov
+*.m4v
+*.webm
+*.mkv
+*.avi
+frames/
+_scratch/
+_preview/
+
+# Narration build output: narrate_voxcpm.py + narrate.py regenerate it (align.json and timeline.json stay)
+**/narration/**/*.wav
+**/narration/**/*.mp3
+**/narration/**/*.aiff
+
+# The founder's own voice recording is personal data
+reference.wav
+reference_backup.wav
+
+# Local runtimes, caches and secrets
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
+*.safetensors
+.env
+.DS_Store

@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.1",
+  "schema_note": "15 Oct 2026 (audit M10): two roles and fixture/style/hero hashes per 02_documentation/05 section 5.1 and RD-46. The agent writes only the stub (approved=false everywhere). Approvers record decisions in the RD-17 approval service; the RUNNER (never the agent) verifies identities and the signature against that service, then runs estimate_and_gate.py --verify-approval for the hash and role checks. storyboard/** is Edit-denied to the agent.",
+  "approval_id": null,
+  "gate": "storyboard",
+  "segment_id": "<segment id>",
+  "style": "<id@version>",
+  "gate_status": "awaiting_approval",
+  "script_sha256": "<64 hex of the approved script; read by 06_prompts_and_templates/brief_template.md>",
+  "approvers": [
+    {"role": "founder", "scope": "cost (estimate, caps, credits)", "reviewer_id": null, "approved": false, "reviewed_at": null},
+    {"role": "academic_lead", "scope": "science fit with the approved script and fixtures", "reviewer_id": null, "approved": false, "reviewed_at": null}
+  ],
+  "decision_notes": "",
+  "override_reason": null,
+  "fixture_hashes": {"<fixture file name>": "<64 hex>"},
+  "style_hash": "<64 hex of the style guide file at the pinned version>",
+  "hero_hash": "<64 hex of the hero reference image, or not_applicable when no panel has a hero_ref>",
+  "bound_sha256": {
+    "estimate.json": "<64 hex>",
+    "beats.json": "<64 hex>",
+    "grid": "<64 hex>",
+    "script": "<64 hex>",
+    "fixtures": "<sha256 of sorted 'name:hash' lines of fixture_hashes>",
+    "style": "<= style_hash>",
+    "hero": "<= hero_hash>"
+  },
+  "artifact_sha256": "<sha256 of sorted 'name:hash' lines of bound_sha256>",
+  "signature": null,
+  "authentication": "local JSON is not authentication; each approver identity and the signature are verified by the runner against the RD-17 approval service, never by the agent"
+}

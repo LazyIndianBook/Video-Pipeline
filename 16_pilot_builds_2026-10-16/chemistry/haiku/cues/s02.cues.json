@@ -1,0 +1,124 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "chem-balance-ci-01-s02",
+ "fps": 30,
+ "duration": 9.867,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "c7cfe0ed91884df8b522fb9ebb8cd97ff92242f68684404117e64f2c4bfb3d9e",
+ "script_sha256": "67853079faf35e0a686e7a6c0661db3942d6aaa9b4e470f9e082d74f2b4f2713",
+ "words": [
+  {
+   "w": "Count",
+   "t0": 0.093,
+   "t1": 0.333
+  },
+  {
+   "w": "the",
+   "t0": 0.413,
+   "t1": 0.493
+  },
+  {
+   "w": "oxygen",
+   "t0": 0.573,
+   "t1": 0.973
+  },
+  {
+   "w": "atoms",
+   "t0": 1.053,
+   "t1": 1.373
+  },
+  {
+   "w": "on",
+   "t0": 1.453,
+   "t1": 1.533
+  },
+  {
+   "w": "each",
+   "t0": 1.653,
+   "t1": 1.773
+  },
+  {
+   "w": "side",
+   "t0": 2.213,
+   "t1": 2.693,
+   "occurrence": 1
+  },
+  {
+   "w": "Which",
+   "t0": 2.733,
+   "t1": 2.893
+  },
+  {
+   "w": "side",
+   "t0": 2.973,
+   "t1": 3.213,
+   "occurrence": 2
+  },
+  {
+   "w": "is",
+   "t0": 3.333,
+   "t1": 3.453
+  },
+  {
+   "w": "short",
+   "t0": 3.693,
+   "t1": 4.173
+  }
+ ],
+ "beats": [
+  0.013
+ ],
+ "cues": [
+  {
+   "id": "c05",
+   "at": 0.043,
+   "kind": "reveal",
+   "element_id": "eq_full",
+   "word_index": 0
+  },
+  {
+   "id": "c06",
+   "at": 0.523,
+   "kind": "emphasis",
+   "element_id": "hl_o",
+   "word_index": 2
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "chem-balance-ci-01",
+  "scene": "s02",
+  "beat_ids": [
+   "b02"
+  ],
+  "beats_text": [
+   {
+    "id": "b02",
+    "slot": "check.predict",
+    "text": "Count the oxygen atoms on each side. Which side is short?",
+    "headline": "Which side is short?",
+    "start": 0.093,
+    "end": 4.173,
+    "word_range": [
+     0,
+     11
+    ],
+    "think_window": {
+     "beat": "b02",
+     "seconds": 5.0,
+     "start": 4.973,
+     "end": 9.973
+    }
+   }
+  ],
+  "think_windows": [
+   {
+    "beat": "b02",
+    "seconds": 5.0,
+    "start": 4.973,
+    "end": 9.973
+   }
+  ]
+ }
+}

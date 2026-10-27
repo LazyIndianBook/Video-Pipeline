@@ -1,0 +1,188 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "bio-photosyn-ci-01-s02",
+ "fps": 30,
+ "duration": 11.933,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "1f60e4911a1ba326a0a12bded3577026ebba934c995640207d891a9ca41149fe",
+ "script_sha256": "9b85d46aa953f120980194a38416d0bd72c8636a87788d5784b8b9f8e4e9ca08",
+ "words": [
+  {
+   "w": "Where",
+   "t0": 0.16,
+   "t1": 0.32
+  },
+  {
+   "w": "did",
+   "t0": 0.4,
+   "t1": 0.48
+  },
+  {
+   "w": "the",
+   "t0": 0.56,
+   "t1": 0.64,
+   "occurrence": 1
+  },
+  {
+   "w": "carbon",
+   "t0": 0.84,
+   "t1": 1.04
+  },
+  {
+   "w": "in",
+   "t0": 1.08,
+   "t1": 1.12
+  },
+  {
+   "w": "that",
+   "t0": 1.2,
+   "t1": 1.36
+  },
+  {
+   "w": "wood",
+   "t0": 1.44,
+   "t1": 1.68
+  },
+  {
+   "w": "come",
+   "t0": 1.8,
+   "t1": 1.92
+  },
+  {
+   "w": "from",
+   "t0": 2.04,
+   "t1": 2.64
+  },
+  {
+   "w": "the",
+   "t0": 2.72,
+   "t1": 2.8,
+   "occurrence": 2
+  },
+  {
+   "w": "soil",
+   "t0": 2.88,
+   "t1": 3.52
+  },
+  {
+   "w": "the",
+   "t0": 3.6,
+   "t1": 3.68,
+   "occurrence": 3
+  },
+  {
+   "w": "water",
+   "t0": 3.88,
+   "t1": 4.32
+  },
+  {
+   "w": "or",
+   "t0": 4.4,
+   "t1": 4.48
+  },
+  {
+   "w": "the",
+   "t0": 4.52,
+   "t1": 4.56,
+   "occurrence": 4
+  },
+  {
+   "w": "air",
+   "t0": 4.64,
+   "t1": 5.52
+  },
+  {
+   "w": "Pause",
+   "t0": 5.8,
+   "t1": 6.08
+  },
+  {
+   "w": "and",
+   "t0": 6.16,
+   "t1": 6.24
+  },
+  {
+   "w": "predict",
+   "t0": 6.52,
+   "t1": 7.04
+  }
+ ],
+ "beats": [
+  0.0
+ ],
+ "cues": [
+  {
+   "id": "c04",
+   "at": 1.39,
+   "kind": "reveal",
+   "element_id": "log",
+   "word_index": 6
+  },
+  {
+   "id": "c05",
+   "at": 2.83,
+   "kind": "reveal",
+   "element_id": "card_soil",
+   "word_index": 10
+  },
+  {
+   "id": "c06",
+   "at": 3.83,
+   "kind": "reveal",
+   "element_id": "card_water",
+   "word_index": 12
+  },
+  {
+   "id": "c07",
+   "at": 4.59,
+   "kind": "reveal",
+   "element_id": "card_air",
+   "word_index": 15
+  },
+  {
+   "id": "c08",
+   "at": 6.47,
+   "kind": "hold",
+   "element_id": "pause_chip",
+   "word_index": 18,
+   "until": 11.933
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "bio-photosyn-ci-01",
+  "scene": "s02",
+  "beat_ids": [
+   "b02"
+  ],
+  "beats_text": [
+   {
+    "id": "b02",
+    "slot": "check.predict",
+    "text": "Where did the carbon in that wood come from: the soil, the water, or the air? Pause and predict.",
+    "headline": "soil water or air",
+    "start": 0.16,
+    "end": 7.04,
+    "word_range": [
+     0,
+     19
+    ],
+    "think_window": {
+     "beat": "b02",
+     "seconds": 5.0,
+     "start": 7.04,
+     "end": 12.04
+    }
+   }
+  ],
+  "think_windows": [
+   {
+    "beat": "b02",
+    "seconds": 5.0,
+    "start": 7.04,
+    "end": 12.04
+   }
+  ]
+ }
+}

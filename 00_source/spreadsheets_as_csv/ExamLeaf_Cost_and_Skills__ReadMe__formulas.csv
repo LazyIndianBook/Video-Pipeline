@@ -1,0 +1,20 @@
+EXAMLEAF | RESEARCH & PLANNING MODEL,
+"Research date: 13 October 2026. This workbook is an editable planning artifact, not a benchmark, purchasing quote or deployed production system.",
+,
+Topic,Guidance
+Recommended baseline,HyperFrames + SVG/KaTeX/GSAP + Python science checks + selective Manim + FFmpeg. Remotion is the React alternative. Keep source data renderer-independent.
+How to use,Edit blue Inputs cells. UnitCosts and Volumes recalculate. Sources are recorded alongside every raw input. USD before tax; no live currency conversion assumed.
+Verified prices versus estimates,"Provider token, voice, storage, CPU/RAM and Remotion prices are cited. Token budgets, render duration, staffing rates and setup effort are assumptions requiring pilot measurements."
+Scientific approval,Every released lesson requires academic approval of the source/claim/script package and review of the entire final rendered lesson. Model agreement is not proof.
+No benchmark claim,"No candidate renderer, voice, locale or model was benchmarked or auditioned as part of this report. Run a representative pilot before committing."
+Volumes comparison,"1, 100 and 1,000 videos are compared over the same editable accounting period. Fixed cost is not multiplied per video. Staff capacity is shown explicitly."
+Excluded / additional costs,"Taxes, rights purchases, playback product development, heavy bespoke 3D, source cleanup, additional languages, and engineering beyond the maintenance allowance require separate budgets."
+Remotion option,Paid licensing is disabled in the HyperFrames baseline. Toggle only when the organization and usage need it. Confirm what counts as a billable partial render or still.
+Storage / compute scope,"Fargate is a US East rate example, not Mumbai pricing. Render time is an estimate. Storage assumes 2 GB per video for one month; prolonged retention compounds."
+TTS scope,"8,000 narration characters plus 20% regeneration, regular ElevenLabs Multilingual v2 price. Character counts and pronunciation review differ by locale."
+Assamese localization gate,Do not infer locale support from marketing. Verify the exact model API enum and perform native-speaker review. Sarvam marketing and model-specific lists were inconsistent.
+Skills inventory,40 proposed custom Skills are marked as not implemented. Existing Skills are curated references; do not install entire repositories without license/security review.
+Deprecation gate,Check model availability and pinned Skill defaults before deployment. The checked OpenAI speech Skill used a TTS model whose model card was marked deprecated.
+Implementation budget,"$8,000 is an illustrative 320-hour initial build/template budget. This is not a promise of a mature system at that price."
+Learning outcomes,"Evaluate unprompted solving, delayed recall, transfer and confidence calibration. Completion/watch time is a secondary measure."
+Source retention,"Keep source URLs, retrieval dates, license snapshots, dependency lockfiles and benchmark receipts with the release manifest."

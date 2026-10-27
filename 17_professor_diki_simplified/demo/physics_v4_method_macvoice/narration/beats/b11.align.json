@@ -1,0 +1,43 @@
+{
+ "cache_key": "6dd1ff2876a7a3d3",
+ "beat": "b11",
+ "chars": 31,
+ "request_id": "macos-say-Rishi-170",
+ "model_id": "macos-say",
+ "voice_id": "Rishi",
+ "unmatched_words": 0,
+ "words": [
+  {
+   "w": "Twice",
+   "t0": 0.01,
+   "t1": 0.35
+  },
+  {
+   "w": "the",
+   "t0": 0.38,
+   "t1": 0.607
+  },
+  {
+   "w": "push",
+   "t0": 0.627,
+   "t1": 0.91
+  },
+  {
+   "w": "twice",
+   "t0": 0.935,
+   "t1": 1.275
+  },
+  {
+   "w": "the",
+   "t0": 1.305,
+   "t1": 1.532
+  },
+  {
+   "w": "flow",
+   "t0": 1.552,
+   "t1": 1.835
+  }
+ ],
+ "provider_alignment": null,
+ "preview": true
+}

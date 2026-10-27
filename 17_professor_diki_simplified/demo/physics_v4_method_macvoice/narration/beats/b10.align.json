@@ -1,0 +1,68 @@
+{
+ "cache_key": "22eeaa22efd658d9",
+ "beat": "b10",
+ "chars": 63,
+ "request_id": "macos-say-Rishi-170",
+ "model_id": "macos-say",
+ "voice_id": "Rishi",
+ "unmatched_words": 0,
+ "words": [
+  {
+   "w": "But",
+   "t0": 0.0,
+   "t1": 0.235
+  },
+  {
+   "w": "a",
+   "t0": 0.255,
+   "t1": 0.373
+  },
+  {
+   "w": "hot",
+   "t0": 0.383,
+   "t1": 0.618
+  },
+  {
+   "w": "bulb's",
+   "t0": 0.639,
+   "t1": 1.05
+  },
+  {
+   "w": "line",
+   "t0": 1.086,
+   "t1": 1.38
+  },
+  {
+   "w": "bends",
+   "t0": 1.405,
+   "t1": 1.758
+  },
+  {
+   "w": "because",
+   "t0": 1.788,
+   "t1": 2.258
+  },
+  {
+   "w": "its",
+   "t0": 2.299,
+   "t1": 2.534
+  },
+  {
+   "w": "filament",
+   "t0": 2.555,
+   "t1": 3.084
+  },
+  {
+   "w": "resists",
+   "t0": 3.13,
+   "t1": 3.6
+  },
+  {
+   "w": "more",
+   "t0": 3.641,
+   "t1": 3.934
+  }
+ ],
+ "provider_alignment": null,
+ "preview": true
+}

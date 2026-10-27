@@ -1,0 +1,25 @@
+<!--CSS-->
+#think{position:absolute;left:240px;width:600px;height:150px;border-radius:18px;background:var(--panel);box-shadow:8px 8px 0 var(--shadow);
+  display:flex;align-items:center;justify-content:center;font:700 64px var(--serif);color:var(--ink);opacity:0}
+<!--BODY-->
+<div id="think"><span data-fx="display.ui.think_prompt"></span></div>
+<!--JS-->
+/* s02 predict: same skeletal equation, halos on the oxygen atoms, side brackets, then a calm think plate in the caption zone.
+   The think window starts at the end of the beat's last word; no clock, no countdown, no answer. */
+let THINK0 = Infinity;
+function build(under, over) {
+  buildHeadline({ beat: 0, words: [['which', 1], ['side', 2], ['is', 1], ['short', 1, true]] });
+  const c = card($('stage'), 72, 584, 936, 150);
+  const E = equation(c, 36, 'unbalanced', null, {});
+  const halo = svgEl('g', { id: 'o_halo', class: 'cue', 'data-reveal': '1' }, under);
+  [0, 2, 4].forEach(i => molecule(over, E.keys[i], E.xs[i], 950, 1, 1.75));
+  ATOMS.filter(a => a.e === 'O').forEach(a => svgEl('circle', { cx: a.x, cy: a.y, r: a.r + 26, fill: HLC }, halo));
+  const by = 1120, br = (id, x0, x1) => svgEl('path', { id, class: 'cue', 'data-reveal': '1', d: `M${x0},${by - 26} L${x0},${by} L${x1},${by} L${x1},${by - 26}`, fill: 'none', stroke: SEC, 'stroke-width': 7, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, over);
+  br('br_left', LEFT + 16, LEFT + CELLS[0] + CELLS[1] + CELLS[2] - 16);
+  br('br_right', W - RIGHT - CELLS[4] + 16, W - RIGHT - 16);
+  const z = ZONES[2]; $('think').style.top = Math.round((z.y0 + z.y1) / 2 - 75) + 'px';
+  const ws = beatWords(0); THINK0 = ws[ws.length - 1].t1;
+  if (!(SHEET.meta && SHEET.meta.think_windows && SHEET.meta.think_windows.length)) report('W_THINK_META', 'warning', 'cue sheet meta.think_windows missing; think plate starts after the last word');
+}
+function afterLayout() {}
+function draw(t) { $('think').style.opacity = ease.cubicOut(clamp01((t - THINK0) / 0.6)); }

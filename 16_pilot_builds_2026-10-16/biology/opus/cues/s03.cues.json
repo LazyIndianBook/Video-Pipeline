@@ -1,0 +1,383 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "bio-photosyn-ci-01-s03",
+ "fps": 30,
+ "duration": 21.067,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "1f60e4911a1ba326a0a12bded3577026ebba934c995640207d891a9ca41149fe",
+ "script_sha256": "9b85d46aa953f120980194a38416d0bd72c8636a87788d5784b8b9f8e4e9ca08",
+ "words": [
+  {
+   "w": "Green",
+   "t0": 0.187,
+   "t1": 0.427
+  },
+  {
+   "w": "plants",
+   "t0": 0.507,
+   "t1": 0.907
+  },
+  {
+   "w": "make",
+   "t0": 0.987,
+   "t1": 1.147
+  },
+  {
+   "w": "their",
+   "t0": 1.227,
+   "t1": 1.387
+  },
+  {
+   "w": "own",
+   "t0": 1.507,
+   "t1": 1.627
+  },
+  {
+   "w": "food",
+   "t0": 1.707,
+   "t1": 2.587
+  },
+  {
+   "w": "Carbon",
+   "t0": 2.667,
+   "t1": 2.987
+  },
+  {
+   "w": "dioxide",
+   "t0": 3.027,
+   "t1": 3.627,
+   "occurrence": 1
+  },
+  {
+   "w": "enters",
+   "t0": 3.707,
+   "t1": 4.027
+  },
+  {
+   "w": "from",
+   "t0": 4.107,
+   "t1": 4.187,
+   "occurrence": 1
+  },
+  {
+   "w": "the",
+   "t0": 4.267,
+   "t1": 4.427,
+   "occurrence": 1
+  },
+  {
+   "w": "air",
+   "t0": 4.507,
+   "t1": 4.747
+  },
+  {
+   "w": "through",
+   "t0": 4.867,
+   "t1": 4.987,
+   "occurrence": 1
+  },
+  {
+   "w": "stomata",
+   "t0": 5.067,
+   "t1": 5.947
+  },
+  {
+   "w": "and",
+   "t0": 6.027,
+   "t1": 6.107,
+   "occurrence": 1
+  },
+  {
+   "w": "water",
+   "t0": 6.187,
+   "t1": 6.587
+  },
+  {
+   "w": "comes",
+   "t0": 6.667,
+   "t1": 6.827
+  },
+  {
+   "w": "up",
+   "t0": 6.907,
+   "t1": 7.067
+  },
+  {
+   "w": "from",
+   "t0": 7.147,
+   "t1": 7.227,
+   "occurrence": 2
+  },
+  {
+   "w": "the",
+   "t0": 7.307,
+   "t1": 7.387,
+   "occurrence": 2
+  },
+  {
+   "w": "soil",
+   "t0": 7.467,
+   "t1": 7.787
+  },
+  {
+   "w": "through",
+   "t0": 7.907,
+   "t1": 8.027,
+   "occurrence": 2
+  },
+  {
+   "w": "roots",
+   "t0": 8.107,
+   "t1": 8.827
+  },
+  {
+   "w": "Sunlight",
+   "t0": 9.487,
+   "t1": 10.207
+  },
+  {
+   "w": "absorbed",
+   "t0": 10.367,
+   "t1": 10.847
+  },
+  {
+   "w": "by",
+   "t0": 10.927,
+   "t1": 11.007
+  },
+  {
+   "w": "chlorophyll",
+   "t0": 11.167,
+   "t1": 11.887
+  },
+  {
+   "w": "drives",
+   "t0": 11.967,
+   "t1": 12.367
+  },
+  {
+   "w": "the",
+   "t0": 12.447,
+   "t1": 12.527,
+   "occurrence": 3
+  },
+  {
+   "w": "change",
+   "t0": 12.767,
+   "t1": 13.327
+  },
+  {
+   "w": "making",
+   "t0": 13.487,
+   "t1": 13.647
+  },
+  {
+   "w": "glucose",
+   "t0": 13.727,
+   "t1": 14.287
+  },
+  {
+   "w": "and",
+   "t0": 14.367,
+   "t1": 14.447,
+   "occurrence": 2
+  },
+  {
+   "w": "oxygen",
+   "t0": 14.527,
+   "t1": 15.247
+  },
+  {
+   "w": "Count",
+   "t0": 15.487,
+   "t1": 15.647
+  },
+  {
+   "w": "the",
+   "t0": 15.727,
+   "t1": 15.767,
+   "occurrence": 4
+  },
+  {
+   "w": "carbon",
+   "t0": 15.807,
+   "t1": 16.687,
+   "occurrence": 1
+  },
+  {
+   "w": "six",
+   "t0": 16.767,
+   "t1": 17.007
+  },
+  {
+   "w": "atoms",
+   "t0": 17.207,
+   "t1": 17.407
+  },
+  {
+   "w": "on",
+   "t0": 17.487,
+   "t1": 17.567
+  },
+  {
+   "w": "each",
+   "t0": 17.647,
+   "t1": 17.727
+  },
+  {
+   "w": "side",
+   "t0": 17.807,
+   "t1": 18.447
+  },
+  {
+   "w": "all",
+   "t0": 18.607,
+   "t1": 18.767
+  },
+  {
+   "w": "from",
+   "t0": 18.847,
+   "t1": 18.927,
+   "occurrence": 3
+  },
+  {
+   "w": "carbon",
+   "t0": 19.087,
+   "t1": 19.327,
+   "occurrence": 2
+  },
+  {
+   "w": "dioxide",
+   "t0": 19.407,
+   "t1": 20.367,
+   "occurrence": 2
+  }
+ ],
+ "beats": [
+  0.027,
+  9.247
+ ],
+ "cues": [
+  {
+   "id": "c09",
+   "at": 0.457,
+   "kind": "reveal",
+   "element_id": "plant",
+   "word_index": 1
+  },
+  {
+   "id": "c10",
+   "at": 2.617,
+   "kind": "reveal",
+   "element_id": "eq_co2",
+   "word_index": 6
+  },
+  {
+   "id": "c11",
+   "at": 5.017,
+   "kind": "reveal",
+   "element_id": "stomata",
+   "word_index": 13
+  },
+  {
+   "id": "c12",
+   "at": 6.137,
+   "kind": "reveal",
+   "element_id": "eq_h2o",
+   "word_index": 15
+  },
+  {
+   "id": "c13",
+   "at": 8.057,
+   "kind": "reveal",
+   "element_id": "roots",
+   "word_index": 22
+  },
+  {
+   "id": "c14",
+   "at": 9.437,
+   "kind": "reveal",
+   "element_id": "sun",
+   "word_index": 23
+  },
+  {
+   "id": "c15",
+   "at": 11.117,
+   "kind": "reveal",
+   "element_id": "chl_tag",
+   "word_index": 26
+  },
+  {
+   "id": "c16",
+   "at": 11.917,
+   "kind": "reveal",
+   "element_id": "eq_arrow",
+   "word_index": 27
+  },
+  {
+   "id": "c17",
+   "at": 13.677,
+   "kind": "reveal",
+   "element_id": "eq_glucose",
+   "word_index": 31
+  },
+  {
+   "id": "c18",
+   "at": 14.477,
+   "kind": "reveal",
+   "element_id": "eq_o2",
+   "word_index": 33
+  },
+  {
+   "id": "c19",
+   "at": 15.437,
+   "kind": "reveal",
+   "element_id": "c_count",
+   "word_index": 34
+  },
+  {
+   "id": "c20",
+   "at": 16.717,
+   "kind": "emphasis",
+   "element_id": "c_count",
+   "word_index": 37
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "bio-photosyn-ci-01",
+  "scene": "s03",
+  "beat_ids": [
+   "b03",
+   "b04"
+  ],
+  "beats_text": [
+   {
+    "id": "b03",
+    "slot": "explain.ladder_step",
+    "text": "Green plants make their own food. Carbon dioxide enters from the air through stomata, and water comes up from the soil through roots.",
+    "headline": "plants make their own food",
+    "start": 0.187,
+    "end": 8.827,
+    "word_range": [
+     0,
+     23
+    ]
+   },
+   {
+    "id": "b04",
+    "slot": "explain.ladder_step",
+    "text": "Sunlight, absorbed by chlorophyll, drives the change, making glucose and oxygen. Count the carbon: six atoms on each side, all from carbon dioxide.",
+    "headline": "count the carbon",
+    "start": 9.487,
+    "end": 20.367,
+    "word_range": [
+     23,
+     46
+    ]
+   }
+  ],
+  "think_windows": []
+ }
+}

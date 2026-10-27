@@ -1,0 +1,11 @@
+{
+  "status": "authored-not-agent-executed",
+  "positive": {
+    "input": "Formula AST/approved notation, locale, glossary",
+    "expected": "Versioned spoken/display/caption mappings and test corpus"
+  },
+  "negative": {
+    "request": "Reject inverse sine interpreted as reciprocal sine, mA/MA confusion, molarity/molality merging and unreviewed IPA.",
+    "expected": "Preserve constraints, report issue; no silent compliance."
+  }
+}

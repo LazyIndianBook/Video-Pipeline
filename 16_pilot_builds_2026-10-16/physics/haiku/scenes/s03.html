@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>Ohm's law ratio reveal (phy-ohm-ci-01 s03)</title>
+<style>
+:root{--bg:#F7F9FC;--ink:#14213D;--sec:#526074;--blue:#185ABD;--teal:#087986;--amber:#9A5B00;--red:#B42318;
+  --font:"Noto Sans","Noto Sans Devanagari","Noto Sans Bengali","Kohinoor Devanagari","Kohinoor Bangla",system-ui,sans-serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#F7F9FC;--ink:#14213D}}
+@media (prefers-color-scheme: dark){:root[data-theme="dark"]{--bg:#F7F9FC;--ink:#14213D}}
+html,body{margin:0;background:var(--bg)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-family:var(--font);color:var(--ink)}
+svg#art{position:absolute;left:0;top:0}
+text{font-family:var(--font)}
+.box{position:absolute;left:0;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;box-sizing:border-box;line-height:1.4}
+#title{font-size:59px;font-weight:700;gap:0 22px}
+.w{display:inline-block;opacity:0}
+#plate{opacity:0}
+.pl{font-size:50px;font-weight:600;color:var(--blue);background:var(--bg);border:4px solid var(--ink);border-radius:28px;padding:12px 34px}
+#disclosure{font-size:50px;font-weight:600;color:var(--sec);text-align:center;opacity:0}
+.zone{display:none;position:absolute;border:2px dashed var(--red);box-sizing:border-box;font:600 28px system-ui;color:var(--red);padding:6px 12px}
+.safe .zone{display:block}
+</style>
+</head>
+<body>
+<!-- Ohm's law ratio reveal (phy-ohm-ci-01 s03). Seek contract 1.0.0; structure follows 04_harness_contract/scene_template.html.
+     Every science glyph is data-fx bound to fixtures/fixture.json; headline and disclosure text come from meta.beats_text. -->
+<div id="stage">
+  <svg id="art" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs><filter id="grain" filterUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" stitchTiles="stitch" result="n"/><feComponentTransfer in="n" result="s"><feFuncA type="linear" slope="6" intercept="-4.2"/></feComponentTransfer><feColorMatrix in="s" type="matrix" values="0 0 0 0 0.08  0 0 0 0 0.13  0 0 0 0 0.24  0 0 0 1 0"/></filter><filter id="wob" filterUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920" color-interpolation-filters="sRGB"><feTurbulence id="boilNoise" type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="1" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="3" xChannelSelector="R" yChannelSelector="G"/></filter></defs><rect x="0" y="0" width="1080" height="1177" filter="url(#grain)" opacity="0.35"/>
+  <g transform="translate(0 40)"><g id="card1" class="ink" filter="url(#wob)" fill="none" stroke="#14213D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M140 600 H450 Q470 600 470 620 V1020 Q470 1040 450 1040 H140 Q120 1040 120 1020 V620 Q120 600 140 600 Z"/></g><g id="card2" class="ink" filter="url(#wob)" fill="none" stroke="#14213D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M630 600 H940 Q960 600 960 620 V1020 Q960 1040 940 1040 H630 Q610 1040 610 1020 V620 Q610 600 630 600 Z"/></g><g id="lbl_v1s" class="lbl"><text x="150" y="700" font-size="54" text-anchor="start"><tspan data-fx="display.v_label" fill="#185ABD" font-weight="600" dx="0"></tspan><tspan data-fx="parameters.v1" fill="#14213D" font-weight="700" dx="14"></tspan><tspan data-fx="display.v_unit" fill="#14213D" font-weight="600" dx="8"></tspan></text></g><g id="i1_val" class="lbl"><text x="150" y="820" font-size="54" text-anchor="start"><tspan data-fx="display.i_label" fill="#185ABD" font-weight="600" dx="0"></tspan><tspan data-fx="results.i1_a" fill="#14213D" font-weight="700" dx="14"></tspan><tspan data-fx="display.i_unit" fill="#14213D" font-weight="600" dx="8"></tspan></text></g><g id="ratio_1" class="lbl"><text x="150" y="930" font-size="63" text-anchor="start"><tspan data-fx="display.ratio_label" fill="#185ABD" font-weight="600" dx="0"></tspan></text><text x="150" y="1000" font-size="63" text-anchor="start"><tspan data-fx="results.v1_over_i1_ohm" fill="#14213D" font-weight="700" dx="0"></tspan><tspan data-fx="display.r_unit" fill="#14213D" font-weight="600" dx="12"></tspan></text></g><g id="lbl_v2s" class="lbl"><text x="640" y="700" font-size="54" text-anchor="start"><tspan data-fx="display.v_label" fill="#185ABD" font-weight="600" dx="0"></tspan><tspan data-fx="parameters.v2" fill="#14213D" font-weight="700" dx="14"></tspan><tspan data-fx="display.v_unit" fill="#14213D" font-weight="600" dx="8"></tspan></text></g><g id="i2_val" class="lbl"><text x="640" y="820" font-size="54" text-anchor="start"><tspan data-fx="display.i_label" fill="#185ABD" font-weight="600" dx="0"></tspan><tspan data-fx="results.i2_a" fill="#14213D" font-weight="700" dx="14"></tspan><tspan data-fx="display.i_unit" fill="#14213D" font-weight="600" dx="8"></tspan></text></g><g id="ratio_2" class="lbl"><text x="640" y="930" font-size="63" text-anchor="start"><tspan data-fx="display.ratio_label" fill="#185ABD" font-weight="600" dx="0"></tspan></text><text x="640" y="1000" font-size="63" text-anchor="start"><tspan data-fx="results.v2_over_i2_ohm" fill="#14213D" font-weight="700" dx="0"></tspan><tspan data-fx="display.r_unit" fill="#14213D" font-weight="600" dx="12"></tspan></text></g></g>
+  </svg>
+  <div id="title" class="box" data-zone="0"></div>
+  <div id="plate" class="box" data-zone="2"><span class="pl" data-fx="display.ui.think_prompt"></span></div>
+  <div id="disclosure" class="box fade" data-zone="2"></div>
+</div>
+
+<!-- Inline fallbacks (used only when nothing is injected and no ?cues= / ?fixture= path is given). -->
+<script type="application/json" id="cue-sheet-inline">{"schema_version": "1.0", "scene_id": "phy-ohm-ci-01-s03", "fps": 30, "duration": 24.3, "language": "en-IN", "alignment_source": "synthetic_even_spacing", "narration_audio_sha256": null, "script_sha256": "63da8847cf4d03c5d3fd673d8f94ea746cf000bb4f54ba264b54c1a0ad88b41e", "words": [{"w": "At", "t0": 0.0, "t1": 0.357, "occurrence": 1}, {"w": "two", "t0": 0.417, "t1": 0.773, "occurrence": 1}, {"w": "volts", "t0": 0.833, "t1": 1.19, "occurrence": 1}, {"w": "the", "t0": 1.25, "t1": 1.607, "occurrence": 1}, {"w": "current", "t0": 1.667, "t1": 2.023, "occurrence": 1}, {"w": "is", "t0": 2.083, "t1": 2.44, "occurrence": 1}, {"w": "zero", "t0": 2.5, "t1": 2.857, "occurrence": 1}, {"w": "point", "t0": 2.917, "t1": 3.273, "occurrence": 1}, {"w": "two", "t0": 3.333, "t1": 3.69, "occurrence": 2}, {"w": "amperes", "t0": 3.75, "t1": 4.107, "occurrence": 1}, {"w": "At", "t0": 4.167, "t1": 4.523, "occurrence": 2}, {"w": "four", "t0": 4.583, "t1": 4.94, "occurrence": 1}, {"w": "volts", "t0": 5.0, "t1": 5.357, "occurrence": 2}, {"w": "it", "t0": 5.417, "t1": 5.773}, {"w": "is", "t0": 5.833, "t1": 6.19, "occurrence": 2}, {"w": "zero", "t0": 6.25, "t1": 6.607, "occurrence": 2}, {"w": "point", "t0": 6.667, "t1": 7.023, "occurrence": 2}, {"w": "four", "t0": 7.083, "t1": 7.44, "occurrence": 2}, {"w": "amperes", "t0": 7.5, "t1": 7.857, "occurrence": 2}, {"w": "Twice", "t0": 7.917, "t1": 8.273}, {"w": "the", "t0": 8.333, "t1": 8.69, "occurrence": 2}, {"w": "voltage", "t0": 8.75, "t1": 9.107}, {"w": "twice", "t0": 9.167, "t1": 9.523}, {"w": "the", "t0": 9.583, "t1": 9.94, "occurrence": 3}, {"w": "current", "t0": 10.0, "t1": 10.357, "occurrence": 2}, {"w": "at", "t0": 10.417, "t1": 10.773}, {"w": "constant", "t0": 10.833, "t1": 11.19}, {"w": "temperature", "t0": 11.25, "t1": 11.607}, {"w": "Voltage", "t0": 12.267, "t1": 12.623}, {"w": "over", "t0": 12.683, "t1": 13.04, "occurrence": 1}, {"w": "current", "t0": 13.1, "t1": 13.457, "occurrence": 3}, {"w": "two", "t0": 13.517, "t1": 13.873, "occurrence": 3}, {"w": "over", "t0": 13.933, "t1": 14.29, "occurrence": 2}, {"w": "zero", "t0": 14.35, "t1": 14.707, "occurrence": 3}, {"w": "point", "t0": 14.767, "t1": 15.123, "occurrence": 3}, {"w": "two", "t0": 15.183, "t1": 15.54, "occurrence": 4}, {"w": "is", "t0": 15.6, "t1": 15.957, "occurrence": 3}, {"w": "ten", "t0": 16.017, "t1": 16.373, "occurrence": 1}, {"w": "ohms", "t0": 16.433, "t1": 16.79, "occurrence": 1}, {"w": "Four", "t0": 16.85, "t1": 17.207}, {"w": "over", "t0": 17.267, "t1": 17.623, "occurrence": 3}, {"w": "zero", "t0": 17.683, "t1": 18.04, "occurrence": 4}, {"w": "point", "t0": 18.1, "t1": 18.457, "occurrence": 4}, {"w": "four", "t0": 18.517, "t1": 18.873, "occurrence": 3}, {"w": "is", "t0": 18.933, "t1": 19.29, "occurrence": 4}, {"w": "also", "t0": 19.35, "t1": 19.707}, {"w": "ten", "t0": 19.767, "t1": 20.123, "occurrence": 2}, {"w": "ohms", "t0": 20.183, "t1": 20.54, "occurrence": 2}, {"w": "That", "t0": 20.6, "t1": 20.957}, {"w": "fixed", "t0": 21.017, "t1": 21.373}, {"w": "ratio", "t0": 21.433, "t1": 21.79}, {"w": "is", "t0": 21.85, "t1": 22.207, "occurrence": 5}, {"w": "the", "t0": 22.267, "t1": 22.623, "occurrence": 4}, {"w": "resistance", "t0": 22.683, "t1": 23.04}], "beats": [0.0, 12.267], "cues": [{"id": "c01", "at": 0.367, "kind": "reveal", "element_id": "card1", "word_index": 1}, {"id": "c02", "at": 0.367, "kind": "reveal", "element_id": "lbl_v1s", "word_index": 1}, {"id": "c03", "at": 3.7, "kind": "reveal", "element_id": "i1_val", "word_index": 9}, {"id": "c04", "at": 4.533, "kind": "reveal", "element_id": "card2", "word_index": 11}, {"id": "c05", "at": 4.533, "kind": "reveal", "element_id": "lbl_v2s", "word_index": 11}, {"id": "c06", "at": 7.45, "kind": "reveal", "element_id": "i2_val", "word_index": 18}, {"id": "c07", "at": 7.867, "kind": "emphasis", "element_id": "i2_val", "word_index": 19}, {"id": "c08", "at": 15.967, "kind": "reveal", "element_id": "ratio_1", "word_index": 37}, {"id": "c09", "at": 19.717, "kind": "reveal", "element_id": "ratio_2", "word_index": 46}, {"id": "c10", "at": 20.967, "kind": "emphasis", "element_id": "ratio_1", "word_index": 49}, {"id": "c11", "at": 20.967, "kind": "emphasis", "element_id": "ratio_2", "word_index": 49}], "sfx": [], "meta": {"video_id": "phy-ohm-ci-01", "scene": "s03", "beat_ids": ["b03", "b04"], "beats_text": [{"id": "b03", "slot": "explain.ladder_step", "text": "At two volts, the current is zero point two amperes. At four volts, it is zero point four amperes. Twice the voltage, twice the current, at constant temperature.", "headline": "twice the current", "start": 0.0, "end": 11.607, "word_range": [0, 28]}, {"id": "b04", "slot": "worked.step", "text": "Voltage over current: two over zero point two is ten ohms. Four over zero point four is also ten ohms. That fixed ratio is the resistance.", "headline": "", "start": 12.267, "end": 23.04, "word_range": [28, 54]}], "think_windows": []}}</script>
+<script type="application/json" id="fixture-inline">{"fixture_id": "FIX-ohm-readings", "display": {"r_label": "R =", "r_unit": "Ω", "v_label": "V =", "v_unit": "V", "i_label": "I =", "i_unit": "A", "ratio_label": "V / I =", "ui": {"think_prompt": "Pause. Predict."}}, "parameters": {"resistance_ohm": 10, "v1": 2, "v2": 4}, "results": {"i1_a": 0.2, "i2_a": 0.4, "ratio_i2_over_i1": 2, "v1_over_i1_ohm": 10, "v2_over_i2_ohm": 10}}</script>
+<script>
+(function () {
+'use strict';
+/* [5] CONFIG. Everything variable arrives as a URL parameter. The page never reads the clock.
+   ?fps=30 ?seed=N ?cues=path.json ?fixture=path.json ?strict=1 ?safe=1 (zone overlay) ?t=SECONDS (one seek) */
+const Q = new URLSearchParams(location.search);
+const num = (k, d) => { const v = parseFloat(Q.get(k)); return isFinite(v) ? v : d; };
+const FPS = num('fps', 30), SEED = num('seed', 20261016), EPS = 1e-6;
+const W = 1080, H = 1920;
+const LEAD = 0.05;                                     // a reveal lands on its word, or 0.05 s before it [V4-MP]
+const HOLD_MIN = 1.2;                                  // headline hold in seconds [N60]
+const BOIL_FPS = 10;                                    // doodle boil: 10 fps (style guide 2.1); the wobble filter sets the amplitude
+const INSETS = { top: 250, bottom: 450, left: 60, right: 120 };   // PLACEHOLDER insets (vertical_safe_zones.tokens.json)
+const SHARES = [0.22, 0.54, 0.24];                     // tokens zones.*.share
+const SIDE_MIN = 96;                                   // tokens zones.side_margin_min_px
+const LEFT = Math.max(INSETS.left, SIDE_MIN), RIGHT = Math.max(INSETS.right, SIDE_MIN);
+const FONT_SPECS = [                                   // preloaded before the first seek (edge case 55)
+  { family: 'Noto Sans', weight: 700, text: 'Aa 0123' },
+  { family: 'Noto Sans Devanagari', weight: 700, text: 'प्रकाश क्ष ज्ञ' }];
+
+/* [6] ERROR CHANNEL. Scenes report, never swallow. The harness reads window.__errors after every seek. */
+window.__errors = [];
+const report = (code, severity, message, t) => window.__errors.push({ code, severity, message, t: t == null ? null : t });
+const fail = (code, message, t) => { report(code, 'error', message, t); const e = new Error(code + ': ' + message); e.code = code; return e; };
+
+/* [7] SEEDED RANDOMNESS. rngAt is stateless: the same (seed, i) gives the same value in any seek order. Math.random is forbidden. */
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const rngAt = (seed, i) => mulberry32((seed ^ Math.imul(i + 1, 0x9E3779B1)) >>> 0)();
+
+/* [8] EASING AND PULSES. Pure functions of time. Draw-on uses power1.inOut, pops use back.out(1.7), pulses are finite. */
+const clamp01 = x => x < 0 ? 0 : x > 1 ? 1 : x;
+const easeOutBack = u => { const s = 1.70158, c = s + 1, v = u - 1; return 1 + c * v * v * v + s * v * v; };
+const easeInOut1 = u => u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2;
+const pulse = (t, at, n = 2, period = 0.5, amp = 0.08) => { const d = t - at; return d < 0 || d > n * period ? 1 : 1 + amp * Math.sin(2 * Math.PI * d / period) * (1 - d / (n * period)); };
+const normWord = s => s.normalize('NFC').toLowerCase().replace(/[^\p{L}\p{M}\p{N}'’]/gu, '');
+
+/* [9] LOADERS. Order: harness-injected window.__CUE_SHEET__, then ?cues= path, then the inline block. strict=1 refuses a failed path. */
+const deepFreeze = o => { Object.values(o).forEach(v => { if (v && typeof v === 'object') deepFreeze(v); }); return Object.freeze(o); };
+async function loadJson(inject, param, inlineId, what) {
+  if (inject) return { data: inject, source: 'injected' };
+  const path = Q.get(param);
+  let source = 'inline';
+  if (path) {
+    try { const r = await fetch(path); if (!r.ok) throw new Error('HTTP ' + r.status); return { data: await r.json(), source: 'path' }; }
+    catch (e) {
+      if (Q.get('strict') === '1') throw fail('E_' + what + '_LOAD', 'cannot load ' + path + ': ' + e.message);
+      report('W_' + what + '_FALLBACK', 'warning', 'cannot load ' + path + ' (' + e.message + '); inline fallback used. Not valid for production.');
+      source = 'inline-fallback';
+    }
+  }
+  const node = document.getElementById(inlineId);
+  if (!node) throw fail('E_' + what + '_LOAD', 'no injected, path or inline ' + what);
+  return { data: JSON.parse(node.textContent), source };
+}
+function checkSheet(s) {
+  if (!s || !(s.duration > 0) || !isFinite(s.duration) || !Array.isArray(s.words) || !Array.isArray(s.cues)) throw fail('E_CUES_INVALID', 'cue sheet needs finite duration>0, words[], cues[]');
+  s.words.forEach((w, i) => { if (i && w.t0 < s.words[i - 1].t0) throw fail('E_CUES_INVALID', 'words[' + i + '] not monotonic'); });
+}
+
+/* [10] STATE. Built once in ready(); render(t) only reads it. */
+let SHEET, FX, ZONES = [];
+const REV = {}, EMPH = {}, HOLD = {};                   // element id -> cue time, from the cue sheet only
+let INKS = [], LBLS = [], HEADS = [], FADES = [], PLATE = null, THINK = [];
+const fx = path => { const v = path.split('.').reduce((o, k) => o == null ? o : o[k], FX); if (v === undefined) throw fail('E_FIXTURE_MISSING', 'fixture has no ' + path); return v; };
+
+function buildZones() {                                 // zones derive from the tokens' shares and the placeholder insets
+  const y0 = INSETS.top, band = H - INSETS.top - INSETS.bottom; let y = y0;
+  ZONES = SHARES.map(s => { const z = { y0: Math.round(y), y1: Math.round(y + s * band) }; y += s * band; return z; });
+  document.querySelectorAll('.box').forEach(b => { const z = ZONES[+b.dataset.zone]; b.style.top = z.y0 + 'px'; b.style.height = (z.y1 - z.y0) + 'px'; b.style.left = LEFT + 'px'; b.style.width = (W - LEFT - RIGHT) + 'px'; });
+  if (Q.get('safe') === '1') {                          // debug overlay only, never in production frames
+    const names = ['top_title', 'middle_visual', 'bottom_caption'];
+    ZONES.forEach((z, i) => { const d = document.createElement('div'); d.className = 'zone'; d.style.top = z.y0 + 'px'; d.style.height = (z.y1 - z.y0) + 'px'; d.style.left = LEFT + 'px'; d.style.width = (W - LEFT - RIGHT) + 'px'; d.textContent = names[i] + ' (placeholder insets)'; document.getElementById('stage').appendChild(d); });
+    document.getElementById('stage').classList.add('safe');
+  }
+}
+
+function buildCues() {                                  // cues drive elements by element_id; times are never hard-coded here
+  SHEET.cues.forEach(c => {
+    if (!c.element_id || !document.getElementById(c.element_id)) { report('W_CUE_NO_ELEMENT', 'warning', 'cue ' + c.id + ' targets missing element ' + c.element_id); return; }   // never ignore silently
+    if ((c.kind === 'reveal' || c.kind === 'hold') && REV[c.element_id] == null) REV[c.element_id] = c.at;
+    if (c.kind === 'hold') HOLD[c.element_id] = { until: c.until == null ? window.DURATION : c.until };
+    if (c.kind === 'emphasis') (EMPH[c.element_id] = EMPH[c.element_id] || []).push(c.at);
+  });
+}
+
+function buildArt() {                                   // ink = hand-drawn strokes (draw-on + boil); lbl = science labels (pop); fade = HTML text
+  document.querySelectorAll('.ink').forEach((g, n) => {
+    const paths = Array.from(g.querySelectorAll('path')).map(p => {
+      const L = p.getTotalLength();
+      p.style.strokeDasharray = (L + 1).toFixed(2); p.style.strokeDashoffset = (L + 1).toFixed(2);   // dash = length+1: no gap at the end; hidden until drawn
+      return { el: p, L };
+    });
+    const b = g.getBBox();
+    INKS.push({ id: g.id, el: g, paths, at: REV[g.id] == null ? null : REV[g.id], n: n + 1, cx: b.x + b.width / 2, cy: b.y + b.height / 2 });
+  });
+  document.querySelectorAll('.lbl').forEach(g => {
+    const b = g.getBBox();
+    LBLS.push({ id: g.id, el: g, at: REV[g.id] == null ? null : REV[g.id], cx: b.x + b.width / 2, cy: b.y + b.height / 2 });
+  });
+  document.querySelectorAll('.fade').forEach(el => FADES.push({ id: el.id, el, at: REV[el.id] == null ? null : REV[el.id] }));
+}
+
+function buildHeadline(recs) {                          // headline words come from meta.beats_text; each word reveals on its own word time
+  const box = document.getElementById('title'); box.lang = SHEET.language || 'en';
+  const rec = recs.find(b => b.headline && b.headline.trim());
+  if (!rec) return;
+  let last = rec.word_range[0] - 1, lastAt = 0;
+  rec.headline.trim().split(/\s+/).forEach(tok => {
+    const sp = document.createElement('span'); sp.className = 'w'; sp.textContent = tok; box.appendChild(sp);
+    let k = -1;
+    for (let j = last + 1; j < rec.word_range[1]; j++) { if (normWord(SHEET.words[j].w) === normWord(tok)) { k = j; break; } }
+    if (k < 0) { report('E_CUES_INVALID', 'error', 'headline word "' + tok + '" is not spoken in beat ' + rec.id); return; }
+    last = k;
+    const at = Math.max(0, SHEET.words[k].t0 - LEAD);
+    HEADS.push({ el: sp, at }); lastAt = Math.max(lastAt, at);
+  });
+  if (window.DURATION - lastAt < HOLD_MIN) report('W_HOLD_SHORT', 'warning', 'headline hold ' + (window.DURATION - lastAt).toFixed(2) + ' s < ' + HOLD_MIN + ' s [N60]');
+}
+
+/* [11] RENDER. Synchronous, a pure function of t plus immutable state. Same t, same pixels, in any order. */
+function render(t) {
+  HEADS.forEach(h => { const d = t - h.at + EPS, e = easeOutBack(clamp01(d / 0.35)); h.el.style.opacity = clamp01(d / 0.18); h.el.style.transform = 'translateY(' + (40 * (1 - e)).toFixed(2) + 'px) scale(' + (0.8 + 0.2 * e).toFixed(4) + ')'; });
+  const k = Math.floor(t * BOIL_FPS + EPS);             // boil step: the wobble seed is a function of the step only (stateless)
+  const bn = document.getElementById('boilNoise');
+  if (bn) bn.setAttribute('seed', String(1 + (k % 64)));
+  INKS.forEach(g => {
+    const live = g.at != null && (!HOLD[g.id] || t < HOLD[g.id].until);
+    g.paths.forEach((p, i) => {
+      const at = live ? g.at + i * 0.06 : Infinity, dur = Math.min(1.2, Math.max(0.25, p.L / 1100));
+      p.el.style.strokeDashoffset = ((p.L + 1) * (1 - easeInOut1(clamp01((t - at + EPS) / dur)))).toFixed(3);
+    });
+    const p = (EMPH[g.id] || []).reduce((a, at) => a * pulse(t, at), 1);
+    g.el.setAttribute('transform', 'translate(' + g.cx.toFixed(2) + ' ' + g.cy.toFixed(2) + ') scale(' + p.toFixed(4) + ') translate(' + (-g.cx).toFixed(2) + ' ' + (-g.cy).toFixed(2) + ')');
+  });
+  LBLS.forEach(l => {
+    const live = l.at != null && t >= l.at - EPS && (!HOLD[l.id] || t < HOLD[l.id].until);
+    if (!live) { l.el.style.opacity = 0; return; }
+    const d = t - l.at + EPS, e = easeOutBack(clamp01(d / 0.35));
+    const p = (EMPH[l.id] || []).reduce((a, at) => a * pulse(t, at), 1);
+    l.el.style.opacity = clamp01(d / 0.2);
+    l.el.setAttribute('transform', 'translate(' + l.cx.toFixed(2) + ' ' + l.cy.toFixed(2) + ') scale(' + ((0.6 + 0.4 * e) * p).toFixed(4) + ') translate(' + (-l.cx).toFixed(2) + ' ' + (-l.cy).toFixed(2) + ')');
+  });
+  FADES.forEach(f => { f.el.style.opacity = f.at == null || t < f.at - EPS ? 0 : clamp01((t - f.at + EPS) / 0.3); });
+  const win = THINK.find(w => t >= w.start - EPS && t <= w.end + EPS);   // calm plate only inside the think window: no clock, no countdown
+  PLATE.style.opacity = win ? clamp01((t - win.start + EPS) / 0.4) : 0;
+}
+
+/* [12] READY AND SEEK. seek(t) applies the state for t, then waits for fonts. It never waits on requestAnimationFrame. */
+window.FPS = FPS;
+window.DURATION = 4.0;                                  // synchronous default; the cue sheet's duration is final in ready()
+window.SCENE_META = { contract: '1.0.0', videoCount: 0, notes: 'phy-ohm-ci-01 doodle-handdrawn scene' };
+window.ready = (async () => {
+  const s = await loadJson(window.__CUE_SHEET__, 'cues', 'cue-sheet-inline', 'CUES');
+  SHEET = s.data; window.__cueSource = s.source; checkSheet(SHEET);
+  const f = await loadJson(window.__FIXTURE__, 'fixture', 'fixture-inline', 'FIXTURE');
+  FX = deepFreeze(f.data); window.__fixtureSource = f.source;
+  window.DURATION = SHEET.duration;
+  window.FRAME_COUNT = Math.round(window.DURATION * FPS);
+  if (SHEET.fps !== FPS) report('W_FPS_MISMATCH', 'warning', 'cue sheet fps ' + SHEET.fps + ' != render fps ' + FPS + '; times stay in seconds');
+  await Promise.all(FONT_SPECS.map(sp => document.fonts.load(sp.weight + ' 40px "' + sp.family + '"', sp.text).catch(e => report('E_FONT_LOAD', 'error', sp.family + ': ' + e.message))));
+  document.querySelectorAll('[data-fx]').forEach(el => { el.textContent = String(fx(el.dataset.fx)); });   // read-only, unformatted
+  const recs = (SHEET.meta && SHEET.meta.beats_text) || [];
+  THINK = (SHEET.meta && SHEET.meta.think_windows) || [];
+  PLATE = document.getElementById('plate');
+  buildZones(); buildCues(); buildArt(); buildHeadline(recs);
+  const disc = recs.find(b => b.slot === 'outro.disclosure');   // verbatim approved text from the cue sheet
+  if (disc) document.getElementById('disclosure').textContent = disc.text;
+  await document.fonts.ready;
+})().catch(e => { if (!e.code) report('E_READY', 'error', e.message); throw e; });
+
+let chain = Promise.resolve();                          // serialise seeks so two calls can never interleave
+window.seek = async function seek(t) {
+  const prev = chain; let done; chain = new Promise(r => { done = r; });
+  try {
+    await prev; await window.ready;
+    if (typeof t !== 'number' || !isFinite(t)) throw fail('E_BAD_T', 'seek(t) needs a finite number of seconds, got ' + t);
+    const tc = Math.min(Math.max(t, 0), window.DURATION);
+    render(tc);
+    await document.fonts.ready;                         // resolves when no font is loading; no rAF
+    return { t: tc, frame: Math.round(tc * FPS) };
+  } finally { done(); }
+};
+
+/* [13] HYPERFRAMES ADAPTER (shape unverified; never overwrite a harness-defined one). */
+window.__hf = window.__hf || { get duration() { return window.DURATION; }, seek: t => window.seek(t) };
+if (Q.has('t')) window.ready.then(() => window.seek(num('t', 0)));
+})();
+
+</script>
+</body>
+</html>

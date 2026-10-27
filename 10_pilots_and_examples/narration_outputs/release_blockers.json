@@ -1,0 +1,14 @@
+{
+  "release_allowed": false,
+  "blockers": [
+    "Synthetic fixture is not speech and cannot be released",
+    "Missing academic_listening",
+    "Missing voice_rights",
+    "Missing native_language_review",
+    "Missing caption_review",
+    "Missing sync_review",
+    "Approval/audio hash mismatch",
+    "Audio mastering not passed",
+    "Authenticated approval service not implemented; local booleans are not trusted approvals"
+  ]
+}

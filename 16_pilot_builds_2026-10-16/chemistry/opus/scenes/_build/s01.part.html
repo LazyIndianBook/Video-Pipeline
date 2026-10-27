@@ -1,0 +1,14 @@
+<!--CSS-->
+<!--BODY-->
+<!--JS-->
+/* s01 hook: molecules appear on their names, the skeletal equation builds word by word. No atom counts shown (answer hidden). */
+function build(under, over) {
+  buildHeadline({ beat: 0, words: [['did', 1], ['an', 1], ['atom', 1], ['vanish', 1, true]] });
+  const c = card($('stage'), 72, 584, 936, 150, 'eq'); c.classList.add('cue');
+  const E = equation(c, 36, 'unbalanced', null, { f: ['f_H2', 'f_O2', 'f_H2O'], plus: 'op_plus', arrow: 'op_arrow' });
+  const mols = svgEl('g', { id: 'mols', class: 'cue' }, over);
+  [0, 2, 4].forEach(i => molecule(mols, E.keys[i], E.xs[i], 950, 1, 1.75, 'mol_' + E.keys[i]));
+  ['f_H2', 'op_plus', 'f_O2', 'op_arrow', 'f_H2O', 'mol_H2', 'mol_O2', 'mol_H2O'].forEach(id => { $(id).dataset.reveal = '1'; $(id).classList.add('cue'); });
+}
+function afterLayout() {}
+function draw(t) { $('eq').style.opacity = tl.at('f_H2.o', t, 0); }   // no empty card before the first formula

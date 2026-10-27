@@ -1,0 +1,11 @@
+{
+  "status": "authored-not-agent-executed",
+  "positive": {
+    "input": "Concept, misconception, local audience information",
+    "expected": "Analogy mapping; boundary; return-to-science line"
+  },
+  "negative": {
+    "request": "Reject human intentions as causes in molecules, enzymes or evolution.",
+    "expected": "Preserve constraints, report issue; no silent compliance."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "default_renderer": "native_svg_proof",
+  "production_compositor_candidate": "hyperframes",
+  "network_generation_enabled": false,
+  "higgsfield": {
+    "enabled": false,
+    "authentication": "workspace OAuth or separately contracted API; not interchangeable",
+    "max_scene_estimate_cents": 200,
+    "requires_live_model_schema": true
+  },
+  "elevenlabs": {
+    "enabled": false,
+    "key_environment_name": "ELEVENLABS_API_KEY",
+    "model": "must_be_confirmed",
+    "voice_id": "must_be_auditioned",
+    "max_chars_per_chunk": 700
+  },
+  "blender_mcp": {
+    "enabled": false,
+    "authoring_only": true,
+    "DISABLE_TELEMETRY": true
+  },
+  "release": {
+    "publish_enabled": false,
+    "required_review_roles": [
+      "academic",
+      "production"
+    ],
+    "authenticated_review_service": "not_implemented"
+  }
+}

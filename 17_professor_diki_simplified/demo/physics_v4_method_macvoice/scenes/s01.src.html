@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>phy-ohm-pd-04 s01: what Ohm's law is (Professor Diki Simplified, fast 60-second explainer)</title>
+<!-- HOW TO USE: copy this file to <video>/s01.src.html (ONE scene per short: every beat lives in this file), fix the
+     relative paths below, replace the SCENE BLOCK and the two inline fallbacks, then build a self-contained copy with
+     tools/build_scene.py (inlines these files, runs the brand + structural gates and the seek lint).
+     Read order for builders: 05_DESIGN_SYSTEM.md, tokens.json, this file, diki_scene.css, diki_runtime.js, the component.
+     The stage below is fixed chrome: the world (#world) is generated from tokens.world for the scene's subject, the
+     opening ident (#ident) shows the brand from frame 0 and is gone by 2.5 s, the title lane holds the headline chips,
+     the think plate and the end-card wordmark; the result and card lanes sit on taped paper sheets. -->
+<link rel="stylesheet" href="../../../design_system/tokens.css">
+<link rel="stylesheet" href="../../../design_system/diki_scene.css">
+</head>
+<body>
+<div id="stage">
+  <svg id="world" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+  <svg id="underlay" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+  <div id="lane-title" class="lane">
+    <div id="wordmark" data-fx="display.ui.endcard_line1"></div>
+  </div>
+  <div id="lane-diagram" class="lane"></div>
+  <div id="lane-result" class="lane"><div id="result-main"></div><div id="endline-wrap"><span id="endline" data-fx="display.ui.endcard_line2"></span></div></div>
+  <div id="lane-card" class="lane"></div>
+  <div id="lane-caption" class="lane"></div>
+  <svg id="overlay" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+  <div id="ident" aria-label="Professor Diki Simplified">Professor Diki Simplified</div>
+</div>
+
+<!-- [2] INLINE FALLBACKS (preview only; production injects __CUE_SHEET__ and __FIXTURE__). build_scene.py
+     replaces both blocks. This base demo: one tiny lesson so the base renders and lints on its own. -->
+<script type="application/json" id="cue-sheet-inline">
+{}
+</script>
+<script type="application/json" id="fixture-inline">
+{}
+</script>
+
+<!-- [3] DESIGN SYSTEM (classic scripts, relative paths: they work from file:// and are inlined by build_scene.py) -->
+<script src="../../../design_system/tokens.js"></script>
+<script src="../../../design_system/diki_runtime.js"></script>
+<script src="../../../design_system/components/badge.js"></script>
+<script src="../../../design_system/components/equation.js"></script>
+<script src="../../../design_system/components/card.js"></script>
+<script src="../../../design_system/components/physics_circuit.js"></script>
+
+<!-- [4] SCENE BLOCK - the only part a builder writes. build(D, FX) runs once in ready(): mount ONE persistent
+     hero in the diagram lane, register it (D.hero + D.PreserveObject), then wire verbs to cue/beat/think refs.
+     Never hard-code seconds; never write CSS animation; never tear the hero down (it changes, it does not leave). -->
+<script>
+/* SCENE BLOCK: What is Ohm's law? Fast, packed explainer (phy-ohm-pd-04, explainer_60, PD-26/27/28).
+   One board: the meter reads "?" until b06; definition cards with their unit meanings, linked to their objects; the
+   NCERT 12.3 statement verbatim at 50 px on a sheet over the result and card lanes (b04-b05), with halos on the V, I
+   and R chips as the formula is spoken; three readings on the same board (2 V -> 0.20 A, 4 V -> 0.40 A,
+   20 ohm -> 0.10 A) filling the table; the V-I graph on the card lane (straight line through the origin, slope R on the
+   result sheet); the hot filament bends the line; the claim replays the doubling.
+   Cue ids (script.json):
+   b01 c00 passes, c01 pushes, c02 voltage, c03 volts | b02 c04 flow (halo on the running dashes), c05 current, c06 meter, c07 amperes | b03 c08 holds, c08b back,
+   c09 resistance, c10 ohms | b04 c11 says, c12 up, c12b push, c13 temperature | b05 c14 voltage, c14b current, c14c resistance,
+   c14d V (the formula line appears on the NCERT page), c15 R, c16 over, c16b over(2) |
+   b06 c17 volts, c18 ohms, c19 point, c19b amperes | b07 c20 four, c21 point, c22 four(2) | b08 c23 Keep, c24 twenty,
+   c25 halves, c26 point | b09 c27 Voltage, c28 straight, c29 slope | b10 c30 hot, c32 bends, c31 resists |
+   b11 c33 Twice, c34 push, c35 flow | b12 c36 cases | b13 c37 Professor. */
+window.DIKI_SCENE = {
+  subject: 'physics',
+  captions: false,
+  card: true,
+  build(D) {
+    const $ = id => document.getElementById(id), FX = p => D.fx(p);
+    const BACK = 'beat:b10.end+0.1';                               // the resistor returns after the bulb beat
+    const DI = 'display.decimals.i';
+
+    // 1. the hero: one sticker circuit, complete at frame 0 (10 ohm, 2 V, meter "?"), preserved to the end card
+    const board = D.lane('diagram');
+    const C = D.Components.physicsCircuit.mount(board.el, null, {});
+    D.hero(C.hero); D.PreserveObject(C.hero, { name: 'circuit' });
+    const rUp = D.chip(null, { role: 'resistance', kind: 'lbl', id: 'r_up', rot: 2 });
+    D.text(D.div('', rUp, 'span'), 'display.r_symbol'); rUp.appendChild(document.createTextNode(' ')); D.text(D.div('', rUp, 'span'), 'display.rises');
+    const ll = C.el.lamp_label.getBoundingClientRect(), lb = board.el.getBoundingClientRect();
+    D.place(rUp, board.el, ll.right - lb.left + 26, ll.top - lb.top + ll.height / 2, 'start');
+    D.Pop(rUp, 'cue:c31', { until: BACK });
+
+    // 2. circuit states (one owner). The R chip's value is driven here too (10 -> 20 -> 10 ohm): a wrapper adds key r.
+    const rSpan = C.el.r_label.querySelectorAll('span')[1], decR = 0;
+    const W = { set(s) { C.set(s); if (s.r != null) { rSpan.textContent = D.fmt(s.r, decR); rSpan.setAttribute('data-fx', (s.fx && s.fx.r) || 'parameters.resistance_ohm'); rSpan.setAttribute('data-fx-dec', String(decR)); } } };
+    D.StateTable(W, {
+      initial: 'base',
+      states: {
+        base:   { v: 'fx:parameters.v1', i: null, r: 'fx:parameters.resistance_ohm', load: 0, heat: 0, badge: 0, badgeDim: 0 },
+        cond:   { badge: 1 },
+        i1:     { i: 'fx:results.i1' },
+        four:   { v: 'fx:parameters.v2', i: null },
+        four_i: { i: 'fx:results.i2' },
+        keep:   { v: 'fx:parameters.v1', i: null },
+        r2:     { r: 'fx:parameters.r2' },
+        ir2:    { i: 'fx:results.i_r2' },
+        plot:   { r: 'fx:parameters.resistance_ohm', i: 'fx:results.i1' },
+        lamp:   { load: 1, i: null },
+        hot:    { heat: 1, badgeDim: 1 },
+        back:   { load: 0, heat: 0, badgeDim: 0, i: 'fx:results.i1' },
+        tw_v:   { v: 'fx:parameters.v2' },
+        tw_i:   { i: 'fx:results.i2' }
+      },
+      steps: [
+        { at: 'cue:c13', state: 'cond',   verb: 'Badge' },
+        { at: 'cue:c19', state: 'i1',     verb: 'ChangeValue' },
+        { at: 'cue:c20', state: 'four',   verb: 'ChangeValue' },
+        { at: 'cue:c21', state: 'four_i', verb: 'ChangeValue' },
+        { at: 'cue:c23', state: 'keep',   verb: 'ChangeValue' },
+        { at: 'cue:c24', state: 'r2',     verb: 'ChangeValue' },
+        { at: 'cue:c26', state: 'ir2',    verb: 'ChangeValue' },
+        { at: 'cue:c27', state: 'plot',   verb: 'ChangeValue' },
+        { at: 'cue:c30', state: 'lamp',   verb: 'SwapPart' },
+        { at: 'cue:c30+0.4', state: 'hot', verb: 'SwapPart' },
+        { at: BACK,      state: 'back',   verb: 'SwapPart' },
+        { at: 'cue:c34', state: 'tw_v',   verb: 'ChangeValue' },
+        { at: 'cue:c35', state: 'tw_i',   verb: 'ChangeValue' }
+      ]
+    });
+    D.Emphasize(C.el.badge, 'cue:c13+0.24');
+    // b01: "pushes" links the V chip to the battery and bumps the battery; "voltage" bumps the V chip (scale-only pops:
+    // the preserved stickers never fade; one finite 0.94 -> 1 -> 0.94 dip-and-return, seek-pure)
+    D.MapSymbol(C.el.v_label, C.el.cell, 'cue:c01', { until: 'cue:c02+0.6', side: 'left', color: 'voltage' });
+    const bump = (el, at, svg) => { const a = D.when(at), dur = 0.52, rot = parseFloat(el.dataset.rot || 0);
+      if (svg) { el.style.transformBox = 'fill-box'; el.style.transformOrigin = '50% 50%'; }
+      D.track(t => { const k = 1 + 0.08 * D.prog(t, a, dur, 'pulse'); el.style.transform = (svg ? '' : 'rotate(' + rot.toFixed(2) + 'deg) ') + 'scale(' + k.toFixed(4) + ')'; }); };
+    bump(C.el.cell, 'cue:c01', true);
+    bump(C.el.v_label, 'cue:c02', false);
+    D.StrikeThrough(C.el.badge, 'cue:c32', { until: BACK });        // the condition fails in the hot filament
+    D.Emphasize(C.el.resistor, 'cue:c24', { pad: 18, dur: 0.35 });  // the part whose resistance doubled
+    D.Emphasize(C.el.resistor, BACK, { pad: 18, dur: 0.35 });       // the resistor is back
+
+    // 3. "across the ends": a royal bracket over the resistor from lead to lead (NCERT: the p.d. across its ends)
+    const rb = C.el.resistor.getBBox(), yT = rb.y + rb.height / 2, xa = rb.x + 2, xb = rb.x + rb.width - 2, yk = yT - 60;
+    const across = D.svg('g', { id: 'across_ends', opacity: 0 }, C.svg);
+    const brD = `M${xa},${yT - 14} L${xa},${yk} L${xb},${yk} L${xb},${yT - 14}`;
+    D.svg('path', { d: brD, fill: 'none', stroke: D.T.sticker.outline_color, 'stroke-width': 16, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, across);
+    D.svg('path', { d: brD, fill: 'none', stroke: D.color('line.voltage'), 'stroke-width': 8, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, across);
+    [xa, xb].forEach(x => D.svg('circle', { cx: x, cy: yT, r: 13, fill: D.color('voltage'), stroke: D.T.sticker.outline_color, 'stroke-width': 5 }, across));
+    D.Reveal(across, 'cue:c12', { until: 'cue:c30' });
+
+    // 4. the current, animated (SIM-flow-speed): dash speed = display.flow.px_per_a x the current; slower in the hot
+    //    filament (qualitative), back with the resistor. Integrated from keyframes (seek-pure).
+    const wd = C.hero.querySelector('path').getAttribute('d').match(/-?\d+(\.\d+)?/g).map(Number);
+    const [xL, yTop, yB, xR] = [wd[2], wd[1], wd[5], wd[10]], xPlus = wd[8], xMinus = wd[6];
+    const ab = C.el.ammeter.getBBox(), yA = ab.y + ab.height / 2, gA = ab.height / 2 + 4;
+    const nL = rb.x - 4, nR = rb.x + rb.width + 4, NW = 78;
+    const mainD = `M${xPlus},${yB} L${xR},${yB} L${xR},${yA + gA} M${xR},${yA - gA} L${xR},${yTop} L${nR + NW},${yTop} ` +
+                  `M${nL - NW},${yTop} L${xL},${yTop} L${xL},${yB} L${xMinus - 30},${yB}`;
+    const narrowD = `M${nR + NW},${yTop} L${nR},${yTop} M${nL},${yTop} L${nL - NW},${yTop}`;
+    const flow = D.svg('g', { id: 'flow_dash', opacity: 0 }, C.svg);
+    const dashed = [];
+    const mk = (d, w, col) => { const e = D.svg('path', { d, fill: 'none', stroke: col, 'stroke-width': w, 'stroke-linecap': 'round', 'stroke-dasharray': '22 30', 'stroke-dashoffset': 0 }, flow); dashed.push(e); return e; };
+    mk(mainD, 20, D.T.sticker.outline_color); mk(mainD, 11, D.color('current'));
+    mk(narrowD, 11, D.T.sticker.outline_color); mk(narrowD, 5, D.color('current'));
+    D.svg('path', { d: `M${xMinus - 2},${yB} L${xMinus - 38},${yB - 22} L${xMinus - 38},${yB + 22} Z`, fill: D.color('current'), stroke: D.T.sticker.outline_color, 'stroke-width': 4, 'stroke-linejoin': 'round' }, flow);
+    D.Reveal(flow, 'cue:c00');                                     // "electricity passes through a wire": the flow starts at the 2 V pace  // b02 "flow" (c04, emphasis cue): the runtime halos the running dashes
+    const k = FX('display.flow.px_per_a'), lf = FX('display.flow.lamp_factor');
+    const s1 = k * FX('results.i1'), s2 = k * FX('results.i2'), sr = k * FX('results.i_r2'), w = r => D.when(r);
+    const KF = [[w('cue:c00'), s1], [w('cue:c21'), s1], [w('cue:c21') + 0.6, s2], [w('cue:c26'), s2], [w('cue:c26') + 0.6, sr],
+                [w('cue:c27'), sr], [w('cue:c27') + 0.6, s1], [w('cue:c30') + 0.4, s1], [w('cue:c30') + 1.4, s1 * lf],
+                [w(BACK), s1 * lf], [w(BACK) + 0.7, s1], [w('cue:c35'), s1], [w('cue:c35') + 0.6, s2]];
+    const phase = t => {
+      let s = 0;
+      for (let j = 0; j < KF.length; j++) {
+        const [a, va] = KF[j], nx = KF[j + 1], b = nx ? nx[0] : Infinity, vb = nx ? nx[1] : va;
+        if (t <= a) break;
+        const e = Math.min(t, b), ve = b === Infinity || b === a ? va : va + (vb - va) * (e - a) / (b - a);
+        s += (va + ve) / 2 * (e - a);
+      }
+      return s;
+    };
+    D.track(t => { const off = (-phase(t) % 52).toFixed(2); dashed.forEach(e => e.setAttribute('stroke-dashoffset', off)); });
+
+    // 5. result sheet: "I = ?" from frame 0; V = I R and its rearrangements (terms move); each reading built as
+    //    I = V / R with units and the answer; the doubling side by side with x2 marks (again for the claim)
+    const sym = (s, role) => ({ parts: [{ fx: 'display.sym.' + s }], role, italic: true });
+    const op = o => ({ parts: [{ fx: 'display.ops.' + o }], role: 'ink' });
+    const q = (fx, unit, role, dec) => ({ parts: [{ fx, dec }, { fx: unit }], role });
+    const unk = { parts: [{ fx: 'display.ui.unknown' }], role: 'current' };
+    const E = D.Components.equation.mount($('result-main'), null, {
+      terms: {
+        I: sym('I', 'current'), eq: op('eq'), q: unk, V: sym('V', 'voltage'), R: sym('R', 'resistance'), x: op('times'), div: op('div'),
+        v1: q('parameters.v1', 'display.v_unit', 'voltage'), r: q('parameters.resistance_ohm', 'display.r_unit', 'resistance'),
+        r2v: q('parameters.r2', 'display.r_unit', 'resistance'), eq2: op('eq'),
+        i1: q('results.i1', 'display.i_unit', 'current', DI), ir2: q('results.i_r2', 'display.i_unit', 'current', DI),
+        V2: sym('V', 'voltage'), eqV2: op('eq'), v2: q('parameters.v2', 'display.v_unit', 'voltage'), eqV: op('eq'),
+        I2: sym('I', 'current'), eqI2: op('eq'), q2: unk, i2: q('results.i2', 'display.i_unit', 'current', DI),
+        mv: { parts: [{ fx: 'display.times' }, { fx: 'results.ratio_v' }], role: 'voltage' },
+        mi: { parts: [{ fx: 'display.times' }, { fx: 'results.ratio_i' }], role: 'current' },
+        gt: { parts: [{ fx: 'display.card.graph.title' }], role: 'ink' },
+        sA: { parts: [{ fx: 'display.card.graph.slope' }], role: 'resistance' }, sB: { parts: [{ fx: 'display.card.graph.slope_r' }], role: 'resistance' }
+      },
+      states: {
+        task:  { layout: 'line', terms: ['I', 'eq', 'q'] },
+        gtitle:{ layout: 'line', terms: ['gt'], size: 54 },
+        slope: { layout: 'line', terms: ['sA', 'sB'], size: 56 },
+        val1:  { layout: 'line', terms: ['I', 'eq', 'v1', 'div', 'r', 'eq2', 'q'], size: 62 },
+        ans1:  { layout: 'line', terms: ['I', 'eq', 'v1', 'div', 'r', 'eq2', 'i1'], size: 62 },
+        ABv:   { layout: 'grid', rows: [{ l: ['V', 'eqV', 'v1'], r: ['V2', 'eqV2', 'v2'] }, { l: ['I', 'eq', 'i1'], r: ['I2', 'eqI2', 'q2'] }] },
+        AB:    { layout: 'grid', rows: [{ l: ['V', 'eqV', 'v1'], r: ['V2', 'eqV2', 'v2'] }, { l: ['I', 'eq', 'i1'], r: ['I2', 'eqI2', 'i2'] }] },
+        ABm:   { layout: 'grid', rows: [{ l: ['V', 'eqV', 'v1'], m: ['mv'], r: ['V2', 'eqV2', 'v2'] }, { l: ['I', 'eq', 'i1'], m: ['mi'], r: ['I2', 'eqI2', 'i2'] }] },
+        val2:  { layout: 'line', terms: ['I', 'eq', 'v1', 'div', 'r2v', 'eq2', 'q'], size: 62 },
+        ans2:  { layout: 'line', terms: ['I', 'eq', 'v1', 'div', 'r2v', 'eq2', 'ir2'], size: 62 }
+      }
+    });
+    E.drive([
+      D.EquationTransform('val1', 'cue:c17'),
+      D.EquationTransform('ans1', 'cue:c19'),
+      D.CompareStates('ABv', 'cue:c20'),
+      D.CompareStates('AB', 'cue:c21'),
+      D.CompareStates('ABm', 'cue:c22'),
+      D.EquationTransform('val1', 'cue:c23'),
+      D.EquationTransform('val2', 'cue:c24'),
+      D.EquationTransform('ans2', 'cue:c26'),
+      D.EquationTransform('gtitle', 'cue:c27'),
+      D.EquationTransform('slope', 'cue:c29'),
+      D.CompareStates('ABm', 'cue:c33')
+    ], { initial: 'task' });
+    D.Emphasize(E.el('i1'), 'cue:c19+0.4', { pad: 14 });            // the completed step and the meter answer together
+    D.Emphasize(E.el('ir2'), 'cue:c26+0.4', { pad: 14 });
+
+    // 6. card lane (PD-18): the empty table at frame 0; a definition card per quantity with its unit meaning, linked
+    //    to its object; the table filling with the three readings; the answer sheet from "Twice"
+    const lane = D.lane('card').el;
+    const cell = (fx, role, at, dec) => ({ fx, role, at, dec });
+    const Tb = D.Components.card.mount(lane, null, { id: 'card_table', kind: 'table', table: {
+      head: ['display.card.head3.v', 'display.card.head3.r', 'display.card.head3.i'],
+      rows: [
+        { cells: [cell('parameters.v1', 'voltage', 'cue:c17'), cell('parameters.resistance_ohm', 'resistance', 'cue:c18'), cell('results.i1', 'current', 'cue:c19', DI)] },
+        { cells: [cell('parameters.v2', 'voltage', 'cue:c20'), cell('parameters.resistance_ohm', 'resistance', 'cue:c20'), cell('results.i2', 'current', 'cue:c21', DI)] },
+        { cells: [cell('parameters.v1', 'voltage', 'cue:c23'), cell('parameters.r2', 'resistance', 'cue:c24'), cell('results.i_r2', 'current', 'cue:c26', DI)] }
+      ] } });
+    D.Card(Tb.el, null, { windows: [[0, 'cue:c02'], ['beat:b06.start', 'cue:c33']] });
+    const defCard = (key, at, until, obj, side, color) => {
+      const c = D.Components.card.mount(lane, null, { id: 'card_def_' + key, kind: 'definition', definition: { term: 'display.card.def.' + key + '.term', text: 'display.card.def.' + key + '.text', role: color } });
+      D.Card(c.el, at, { until });
+      D.MapSymbol(c.el.querySelector('.card-term'), obj, at, { until, side, color });
+      return c;
+    };
+    defCard('voltage', 'cue:c02', 'cue:c05', C.el.v_label, 'left', 'voltage');
+    defCard('current', 'cue:c05', 'cue:c09', C.el.ammeter, 'right', 'current');
+    defCard('resistance', 'cue:c09', 'beat:b04.start', C.el.resistor, 'left', 'resistance');
+    const Pt = D.Components.card.mount(lane, null, { id: 'card_points', kind: 'points', points: [
+      { fx: 'display.card.points.p1', at: 'cue:c33' }, { fx: 'display.card.points.p2', at: 'cue:c33+0.5' },
+      { fx: 'display.card.points.p3', at: 'cue:c33+1.0' }] });
+    D.Card(Pt.el, 'cue:c33');
+
+    // 7. sheets over the lanes (taped paper, the lane-sheet style).
+    //    NCERT 12.3 verbatim at 50 px on one sheet spanning the result and card lanes for b04 and b05, in two pages
+    //    (the whole sentence does not fit 422 px at 50 px), with the source line at 44 px; then the normal lanes return.
+    const res = D.lane('result'), crd = D.lane('card');
+    const both = { x: res.x, y: res.y, w: res.w, h: crd.y + crd.h - res.y }, cardBox = { x: crd.x, y: crd.y, w: crd.w, h: crd.h };
+    const sheet = (id, box, tapes) => { const s = D.sheetEl(D.overlayHtml(), box, tapes); s.id = id; s.style.opacity = 0; return s; };
+    const NS = sheet('card_ncert', both, [['mustard', 0.14], ['pink', 0.86]]);
+    Object.assign(NS.style, { padding: '18px 32px 10px', display: 'flex', flexDirection: 'column', gap: '8px' });
+    const src = D.div('', NS); D.text(src, 'display.card.ncert.source');
+    Object.assign(src.style, { fontSize: '44px', lineHeight: '1.05', fontWeight: '800', color: 'var(--c-muted)' });
+    const pages = D.div('', NS); pages.style.display = 'grid';
+    const page = (parts, at, until) => {
+      const pg = D.div('', pages); Object.assign(pg.style, { gridArea: '1/1', fontSize: '50px', lineHeight: '1.1', fontWeight: '700', color: 'var(--c-ink)', opacity: 0 });
+      parts.forEach((f, n) => { if (n) pg.appendChild(document.createTextNode(' ')); D.text(D.div('', pg, 'span'), f); });
+      D.Card(pg, at, { until }); return pg;
+    };
+    page(['display.card.ncert.p1', 'display.ui.ellipsis'], 'beat:b04.start', 'beat:b05.start');
+    const p2 = page(['display.ui.ellipsis', 'display.card.ncert.p2'], 'beat:b05.start', null);
+    // the formula line under page 2, whole on "V" of "V equals I R" (c14d): V = I R · I = V / R · R = V / I, colour by role
+    const fl = D.div('', p2); fl.id = 'ncert_formula';
+    Object.assign(fl.style, { marginTop: '8px', fontFamily: 'var(--font-math)', fontSize: '50px', lineHeight: '1.15', fontWeight: '700', whiteSpace: 'nowrap', opacity: 0 });
+    const role = { V: 'voltage', I: 'current', R: 'resistance' };
+    [['V', 'eq', 'I', 'R'], ['I', 'eq', 'V', 'over', 'R'], ['R', 'eq', 'V', 'over', 'I']].forEach((f, k) => {
+      if (k) { fl.appendChild(document.createTextNode(' ')); const sp = D.div('', fl, 'span'); D.text(sp, 'display.ops.sep'); sp.style.color = D.color('muted'); fl.appendChild(document.createTextNode(' ')); }
+      f.forEach((t, n) => { if (n) fl.appendChild(document.createTextNode(' ')); const sp = D.div('', fl, 'span');
+        if (role[t]) { D.text(sp, 'display.sym.' + t); sp.style.color = D.color(role[t]); sp.style.fontStyle = 'italic'; } else { D.text(sp, 'display.ops.' + t); sp.style.color = D.color('ink'); } });
+    });
+    D.Card(fl, 'cue:c14d');
+    if (fl.scrollWidth > p2.clientWidth + 1) D._warn('W_EQ_OVERFLOW', 'NCERT formula line wider than the sheet');
+    D.Card(NS, 'beat:b04.start', { until: 'beat:b06.start' });
+    if (NS.scrollHeight > both.h + 1) D._warn('W_CARD_OVERFLOW', 'card_ncert exceeds its sheet');
+
+    //    The V-I graph (REP-vi-graph) on the whole card lane: axis words with units 50 px, tick numerals 44 px, the origin and the three
+    //    fixture points, the line through them; slope = V / I = R is written on the result sheet above; the hot
+    //    filament's bend is a shape only (PD-16: no lamp values).
+    const GS = sheet('card_graph', cardBox, [['teal', 0.14], ['mustard', 0.86]]);
+    const G = D.svg('svg', { width: cardBox.w, height: cardBox.h, viewBox: `0 0 ${cardBox.w} ${cardBox.h}` }, GS);
+    G.style.position = 'absolute'; G.style.left = '0'; G.style.top = '0'; G.style.overflow = 'visible';
+    const X0 = 170, Y0 = 194, KX = 900, KY = 25.5, px = i => X0 + KX * i, py = v => Y0 - KY * v;
+    const txt = (x, y, anchor, size, fill, parts) => { const t = D.svg('text', { x, y, 'text-anchor': anchor, 'font-size': size, 'font-weight': 800, fill }, G); t.style.fontFamily = 'var(--font-sans)';
+      parts.forEach((p, n) => { if (n) t.appendChild(document.createTextNode(' ')); D.text(D.svg('tspan', {}, t), p.fx, p.dec); }); return t; };
+    const ink = D.color('line.ink');
+    D.svg('path', { d: `M${X0},${py(6.6)} L${X0},${Y0} L${px(0.62)},${Y0}`, fill: 'none', stroke: ink, 'stroke-width': 6, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, G);
+    txt(X0 + 22, 50, 'start', 50, D.color('voltage'), [{ fx: 'display.card.graph.y' }]);
+    txt(cardBox.w - 22, Y0 - 16, 'end', 50, D.color('current'), [{ fx: 'display.card.graph.x' }]);
+    const pts = FX('results.graph');
+    if (!(pts.length === 4 && pts[0][0] === 0 && pts[0][1] === 0)) D._warn('W_GRAPH_DATA', 'results.graph must start at the origin');
+    [['parameters.v1', 'results.i1'], ['parameters.v2', 'results.i2'], ['parameters.v3', 'results.i3']].forEach(([vf, if_], n) => {
+      const v = FX(vf), i = FX(if_);
+      D.svg('line', { x1: X0 - 10, y1: py(v), x2: X0, y2: py(v), stroke: ink, 'stroke-width': 5 }, G);
+      D.svg('line', { x1: px(i), y1: Y0, x2: px(i), y2: Y0 + 10, stroke: ink, 'stroke-width': 5 }, G);
+      txt(X0 - 18, py(v) + 15, 'end', 44, D.color('voltage'), [{ fx: vf }]);
+      txt(px(i), Y0 + 56, 'middle', 44, D.color('current'), [{ fx: if_, dec: DI }]);
+      const dot = D.svg('circle', { cx: px(i), cy: py(v), r: 13, fill: D.color('current'), stroke: D.T.sticker.outline_color, 'stroke-width': 5 }, G);
+      D.Pop(dot, 'cue:c27+' + (0.35 + 0.3 * n).toFixed(2));
+    });
+    D.svg('circle', { cx: X0, cy: Y0, r: 11, fill: ink }, G);
+    const line = D.svg('path', { id: 'graph_line', d: `M${X0},${Y0} L${px(0.635)},${py(6.35)}`, fill: 'none', stroke: D.color('line.resistance'), 'stroke-width': 9, 'stroke-linecap': 'butt' }, G);   // butt caps: no dot before TracePath draws it
+    D.TracePath(line, 'cue:c28');
+    const bend = D.svg('path', { id: 'graph_bend', d: `M${X0},${Y0} Q${px(0.3)},${py(0.8)} ${px(0.42)},${py(6.2)}`, fill: 'none', stroke: D.color('line.mismatch'), 'stroke-width': 9, 'stroke-linecap': 'butt' }, G);
+    D.TracePath(bend, 'cue:c32');
+    const bl = txt(X0 + 30, 100, 'start', 44, D.color('mismatch'), [{ fx: 'display.lamp_label' }]);   // two lines, upper left, above the line
+    { const w = bl.textContent.split(' '); bl.textContent = ''; w.forEach((x, n) => { const t = D.svg('tspan', n ? { x: X0 + 30, dy: 44 } : {}, bl); t.textContent = x; }); bl.setAttribute('data-fx', 'display.lamp_label'); }
+    D.Pop(bl, 'cue:c32+0.5');
+    D.Emphasize(E.el('sB'), 'cue:c29+0.4', { pad: 10 });
+    D.Card(GS, 'cue:c27', { until: 'cue:c33+0.6' });
+  }
+};
+</script>
+
+<!-- [5] CONTRACT BLOCK - keep as is (seek contract 1.0.0: DURATION, async seek, ready, __errors, injected
+     __CUE_SHEET__/__FIXTURE__ > ?cues=/?fixture= > inline, seeded PRNG only, fonts preloaded, offline). -->
+<script>
+(function () {
+'use strict';
+const Q = new URLSearchParams(location.search);
+const num = (k, d) => { const v = parseFloat(Q.get(k)); return isFinite(v) ? v : d; };
+const FPS = num('fps', 30), SEED = num('seed', 20261016);
+
+window.__errors = [];
+const report = (code, severity, message, t) => window.__errors.push({ code, severity, message, t: t == null ? null : t });
+const fail = (code, message, t) => { report(code, 'error', message, t); const e = new Error(code + ': ' + message); e.code = code; return e; };
+
+/* seeded randomness only (F04). rngAt is stateless: same (seed, i) -> same value in any seek order. */
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const rngAt = (seed, i) => mulberry32((seed ^ Math.imul(i + 1, 0x9E3779B1)) >>> 0)();
+
+const deepFreeze = o => { Object.values(o).forEach(v => { if (v && typeof v === 'object') deepFreeze(v); }); return Object.freeze(o); };
+async function loadJson(inject, param, inlineId, what) {
+  if (inject) return { data: inject, source: 'injected' };
+  const path = Q.get(param);
+  if (path) {
+    try { const r = await fetch(path); if (!r.ok) throw new Error('HTTP ' + r.status); return { data: await r.json(), source: 'path' }; }
+    catch (e) {
+      if (Q.get('strict') === '1') throw fail('E_' + what + '_LOAD', 'cannot load ' + path + ': ' + e.message);
+      report('W_' + what + '_FALLBACK', 'warning', 'cannot load ' + path + ' (' + e.message + '); inline fallback used. Not valid for production.');
+      return { data: JSON.parse(document.getElementById(inlineId).textContent), source: 'inline-fallback' };
+    }
+  }
+  return { data: JSON.parse(document.getElementById(inlineId).textContent), source: 'inline' };
+}
+function checkSheet(s) {
+  if (!s || !(s.duration > 0) || !isFinite(s.duration) || !Array.isArray(s.words) || !Array.isArray(s.cues)) throw fail('E_CUES_INVALID', 'cue sheet needs finite duration>0, words[], cues[]');
+  s.words.forEach((w, i) => { if (i && w.t0 < s.words[i - 1].t0) throw fail('E_CUES_INVALID', 'words[' + i + '] not monotonic'); });
+}
+
+window.FPS = FPS;
+window.DURATION = 7.2;                                  // synchronous default; final value comes from the cue sheet in ready()
+window.SCENE_META = { contract: '1.0.0', videoCount: 0, designSystem: 'professor-diki-simplified 2.0.0', notes: 'paper collage; one scene per short; board persists' };
+window.ready = (async () => {
+  const D = window.Diki, T = window.DIKI_TOKENS;
+  if (!D || !T) throw fail('E_READY', 'design system scripts (tokens.js, diki_runtime.js) not loaded');
+  const s = await loadJson(window.__CUE_SHEET__, 'cues', 'cue-sheet-inline', 'CUES'); const SHEET = s.data; window.__cueSource = s.source; checkSheet(SHEET);
+  const f = await loadJson(window.__FIXTURE__, 'fixture', 'fixture-inline', 'FIXTURE'); const FX = deepFreeze(f.data); window.__fixtureSource = f.source;
+  window.DURATION = SHEET.duration;
+  window.FRAME_COUNT = Math.round(window.DURATION * FPS);
+  if (SHEET.fps !== FPS) report('W_FPS_MISMATCH', 'warning', 'cue sheet fps ' + SHEET.fps + ' != render fps ' + FPS + '; times stay in seconds');
+  await Promise.all(T.font.preload.map(p => document.fonts.load(p.weight + ' 40px "' + p.family + '"', p.text).catch(e => report('E_FONT_LOAD', 'error', p.family + ': ' + e.message))));
+  const SC = window.DIKI_SCENE || {}, stage = document.getElementById('stage');
+  const captions = !!SC.captions || Q.get('captions') === '1';
+  const layout = captions ? 'captioned' : (SC.card || Q.get('card') === '1') ? 'carded' : 'default';
+  if (captions && SC.card) report('W_LAYOUT', 'warning', 'captions and a card cannot share a frame; captioned layout used');
+  D.init({ sheet: SHEET, fx: FX, report, fail, stage, captions, layout, subject: SC.subject });
+  D.rngAt = i => rngAt(SEED, i);                        // the only randomness a scene may use
+  D.bindFx(stage);
+  D.buildChrome();
+  if (typeof SC.build === 'function') SC.build(D, FX);
+  if (captions) { const cap = D.Components.caption.mount(document.getElementById('lane-caption'), FX, { sheet: SHEET }); D.track(t => cap.set({ t })); }
+  // cues: every element_id must exist (W_CUE_NO_ELEMENT); 'emphasis' cues get Emphasize automatically,
+  // every other kind is wired by the scene through D.when('cue:<id>').
+  SHEET.cues.forEach(c => {
+    const el = c.element_id && document.getElementById(c.element_id);
+    if (!el) { if (c.kind !== 'hold') report('W_CUE_NO_ELEMENT', 'warning', 'cue ' + c.id + ' targets missing element ' + c.element_id); return; }
+    if (c.kind === 'emphasis') D.Emphasize(el, c.at);
+  });
+  D.finalize();
+  if (Q.get('safe') === '1') stage.classList.add('safe');
+  await document.fonts.ready;
+})().catch(e => { if (!e.code) report('E_READY', 'error', e.message); throw e; });
+
+let chain = Promise.resolve();                          // serialise seeks
+window.seek = async function seek(t) {
+  const prev = chain; let done; chain = new Promise(r => { done = r; });
+  try {
+    await prev; await window.ready;
+    if (typeof t !== 'number' || !isFinite(t)) throw fail('E_BAD_T', 'seek(t) needs a finite number of seconds, got ' + t);
+    const tc = Math.min(Math.max(t, 0), window.DURATION);
+    window.Diki.render(tc);
+    await document.fonts.ready;                         // no rAF: the harness triggers the capture
+    await Promise.all(Array.from(document.images).map(i => i.decode().catch(e => report('E_ASSET_LOAD', 'error', i.src + ': ' + e.message, tc))));
+    return { t: tc, frame: Math.round(tc * FPS) };
+  } finally { done(); }
+};
+window.__hf = window.__hf || { get duration() { return window.DURATION; }, seek: t => window.seek(t) };   // shape unverified [N68]
+
+if (Q.get('preview') === '1') window.ready.then(() => { const r = document.createElement('input'); r.type = 'range'; r.id = 'scrub'; r.min = 0; r.max = window.DURATION; r.step = 1 / FPS; r.value = 0; r.oninput = () => window.seek(parseFloat(r.value)); document.body.appendChild(r); });
+if (Q.has('t')) window.ready.then(() => window.seek(num('t', 0)));
+})();
+</script>
+</body>
+</html>

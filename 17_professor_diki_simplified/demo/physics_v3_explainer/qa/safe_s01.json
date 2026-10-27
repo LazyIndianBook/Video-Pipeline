@@ -1,0 +1,30 @@
+{
+  "safe_rect": null,
+  "canvas": {
+    "width_px": 1080,
+    "height_px": 1920,
+    "aspect": "9:16",
+    "fps_default": 30,
+    "fps_note": "fps is a PARAMETER of the contract. 30 is the master default; the engine fixtures under 04_video_engine/implementation_v2/examples are authored at 24 fps and that does not constrain the render fps because cue times are in seconds.",
+    "device_scale_factor": 1,
+    "colour": "sRGB, 8-bit",
+    "width": 1080,
+    "height": 1920
+  },
+  "platform": "all",
+  "unmeasured": [
+    "placeholder:top",
+    "placeholder:bottom",
+    "placeholder:left",
+    "placeholder:right"
+  ],
+  "defects": [
+    {
+      "severity": "major",
+      "element": null,
+      "edge_case": "#51",
+      "message": "safe-zone insets unmeasured for ['placeholder:top', 'placeholder:bottom', 'placeholder:left', 'placeholder:right']: cannot certify (#51); phone review by a named reviewer required"
+    }
+  ],
+  "severity": "major"
+}

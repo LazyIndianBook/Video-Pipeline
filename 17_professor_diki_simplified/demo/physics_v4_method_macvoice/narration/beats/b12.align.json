@@ -1,0 +1,48 @@
+{
+ "cache_key": "03a7cf789e838e8c",
+ "beat": "b12",
+ "chars": 41,
+ "request_id": "macos-say-Rishi-170",
+ "model_id": "macos-say",
+ "voice_id": "Rishi",
+ "unmatched_words": 0,
+ "words": [
+  {
+   "w": "Try",
+   "t0": 0.0,
+   "t1": 0.211
+  },
+  {
+   "w": "more",
+   "t0": 0.229,
+   "t1": 0.493
+  },
+  {
+   "w": "cases",
+   "t0": 0.516,
+   "t1": 0.833
+  },
+  {
+   "w": "in",
+   "t0": 0.86,
+   "t1": 1.019
+  },
+  {
+   "w": "the",
+   "t0": 1.032,
+   "t1": 1.243
+  },
+  {
+   "w": "free",
+   "t0": 1.262,
+   "t1": 1.526
+  },
+  {
+   "w": "lesson",
+   "t0": 1.549,
+   "t1": 1.918
+  }
+ ],
+ "provider_alignment": null,
+ "preview": true
+}

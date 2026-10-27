@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>phy-ohm-ci-01 scene s03 (haiku_v2)</title>
+<style>
+/* [1] TOKENS - mirror of vertical_safe_zones.tokens.json (zones, heading 59 px, label 50 px, equation 63 px). */
+:root{--bg:#F7F9FC;--ink:#14213D;--sec:#526074;--blue:#185ABD;--teal:#087986;--amber:#9A5B00;--board:#B9CCEA;--shelf:#CFDCF1;
+  --head:66px;--label:50px;--eq:66px;--hand:"Kalam","Chalkboard SE","Bradley Hand",cursive;--sans:"Noto Sans",sans-serif}
+html,body{margin:0;background:var(--bg)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--bg);color:var(--ink);font-family:var(--sans)}
+.layer{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.zone{position:absolute;left:96px;width:888px}
+#top{top:250px;height:268px}
+#mid{top:518px;height:659px}
+#bot{top:1177px;height:293px}
+#hero{position:absolute;left:0;top:0;width:888px;height:659px}
+#title{position:absolute;left:0;top:0;width:888px;height:268px}
+.hg{position:absolute;left:0;top:0;width:888px;height:268px;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;font-family:var(--hand);font-size:var(--head);font-weight:700;line-height:1.25;opacity:0}
+.hw{display:inline-block;opacity:0;margin:0 .12em;white-space:nowrap}
+.chip{position:absolute;white-space:nowrap;font-size:var(--label);font-weight:600;line-height:1;display:flex;align-items:center;height:56px;box-sizing:border-box;padding:0 14px;background:var(--bg);border:3px solid var(--ink);border-radius:14px}
+.chip.amber{border-color:var(--amber);color:var(--amber)}
+.chip.teal{border-color:var(--teal);color:var(--teal)}
+.chip.blue{border-color:var(--blue);color:var(--blue)}
+.lab{position:absolute;white-space:nowrap;font-size:var(--label);font-weight:600;line-height:1}
+.card{position:absolute;box-sizing:border-box;background:var(--bg);border:2px solid var(--ink);border-radius:12px;padding:8px 16px;display:flex;flex-direction:column}
+.row{font-size:var(--label);font-weight:600;line-height:50px;height:50px;white-space:nowrap}
+.eq{position:absolute;box-sizing:border-box;font-size:var(--eq);font-weight:700;white-space:nowrap;line-height:1;display:flex;align-items:center;justify-content:center;border:3px solid var(--blue);border-radius:12px;color:var(--blue);background:var(--bg)}
+.strike{text-decoration:line-through;text-decoration-thickness:5px}
+.plate{position:absolute;left:0;top:40px;width:888px;height:60px;box-sizing:border-box;text-align:center;font-size:var(--label);font-weight:600;line-height:56px;border:3px solid var(--sec);border-radius:14px;opacity:0}
+.disc{position:absolute;left:0;top:130px;width:888px;text-align:center;font-size:var(--label);font-weight:600;line-height:1.3;color:var(--sec)}
+[data-emph="1"]{color:var(--blue)}
+</style>
+</head>
+<body>
+<div id="stage">
+<div class="layer" data-layer="L0"></div>
+<svg class="layer" data-layer="L4" viewBox="0 0 1080 1920" width="1080" height="1920">
+  <path d="M-6 600 C 14 640, 8 700, 18 760 S 6 880, 16 960 S 4 1080, 14 1140" fill="none" stroke="#14213D" stroke-width="7" stroke-linecap="round"/>
+</svg>
+<div id="top" class="zone"><div id="title"></div></div>
+<div id="mid" class="zone"><div id="hero">
+<!-- s03 ratio reveal: same loop as s01 (reused ids), two readings in matched cards, x2 mark in the gap, condition chip, boxed equation -->
+<svg width="888" height="659" viewBox="0 0 888 659" style="position:absolute;left:0;top:0;overflow:visible">
+  <g id="shelf" data-rv="1" data-layer="L1">
+    <line x1="0" y1="60" x2="888" y2="60" stroke="#526074" stroke-width="4"/>
+    <rect x="60" y="14" width="34" height="46" fill="#CFDCF1" stroke="#526074" stroke-width="2"/>
+    <rect x="96" y="22" width="26" height="38" fill="#CFDCF1" stroke="#526074" stroke-width="2"/>
+    <rect x="124" y="10" width="40" height="50" fill="#CFDCF1" stroke="#526074" stroke-width="2"/>
+    <rect x="700" y="16" width="30" height="44" fill="#CFDCF1" stroke="#526074" stroke-width="2"/>
+    <rect x="732" y="8" width="44" height="52" fill="#CFDCF1" stroke="#526074" stroke-width="2"/>
+  </g>
+  <g id="board" data-rv="1" data-layer="L2">
+    <rect x="24" y="36" width="840" height="264" rx="18" fill="#B9CCEA"/>
+    <path d="M846 302 L866 282 M836 304 L862 278 M826 306 L858 274" stroke="#14213D" stroke-width="2.5" opacity="0.6"/>
+  </g>
+  <path id="wires" data-rv="1" data-layer="L3" d="M120 150 H690 V290 H120 Z" fill="none" stroke="#14213D" stroke-width="5" stroke-linejoin="round"/>
+  <g id="cell" data-rv="1" data-layer="L3">
+    <path d="M104 212 H136" stroke="#14213D" stroke-width="7"/>
+    <path d="M112 228 H128" stroke="#14213D" stroke-width="4"/>
+  </g>
+  <g id="resistor" data-rv="1" data-layer="L3">
+    <rect x="352" y="136" width="136" height="28" fill="#B9CCEA"/>
+    <path data-pts='[[360,150],[370,140],[380,160],[390,140],[400,160],[410,140],[420,160],[430,140],[440,160],[450,140],[460,160],[470,140],[480,150]]' fill="none" stroke="#14213D" stroke-width="5" stroke-linejoin="round"/>
+  </g>
+  <g id="ammeter" data-rv="1" data-layer="L3">
+    <circle cx="690" cy="220" r="30" fill="#F7F9FC" stroke="#14213D" stroke-width="5"/>
+  </g>
+</svg>
+<div class="chip" id="r_chip" data-rv="1" style="left:520px;top:60px"><span data-fx="display.r_label"></span>&nbsp;<span data-fx="display.r_value"></span></div>
+<div class="card" id="card1" data-rv="1" style="left:0;top:318px;width:369px;height:170px">
+  <div class="row" id="col1_v" data-rv="1"><span data-fx="display.v_label"></span>&nbsp;<span data-fx="display.v1_value"></span></div>
+  <div class="row" id="col1_i" data-rv="1"><span data-fx="display.i_label"></span>&nbsp;<span data-fx="display.i1_value"></span></div>
+  <div class="row" id="ratio_1" data-rv="1"><span data-fx="display.ratio_label"></span>&nbsp;<span data-fx="display.ratio_value"></span></div>
+</div>
+<div class="card" id="card2" data-rv="1" style="left:519px;top:318px;width:369px;height:170px">
+  <div class="row" id="col2_v" data-rv="1"><span data-fx="display.v_label"></span>&nbsp;<span data-fx="display.v2_value"></span></div>
+  <div class="row" id="col2_i" data-rv="1"><span data-fx="display.i_label"></span>&nbsp;<span data-fx="display.i2_value"></span></div>
+  <div class="row" id="ratio_2" data-rv="1"><span data-fx="display.ratio_label"></span>&nbsp;<span data-fx="display.ratio_value"></span></div>
+</div>
+<div class="chip teal" id="rel_x2" data-rv="1" style="left:404px;top:375px"><span data-fx="display.times_two"></span></div>
+<div class="chip amber" id="cond_chip" data-rv="1" style="left:150px;top:512px"><span data-fx="display.condition"></span></div>
+<div class="eq" id="eq_box" data-rv="1" style="left:264px;top:592px;width:360px;height:66px"><span data-fx="display.equation"></span></div>
+<div class="lab" id="i_label" data-rv="1" style="left:748px;top:203px"><span data-fx="display.i_label"></span></div>
+</div></div>
+<div id="bot" class="zone">
+<div id="think_plate" class="plate"><span data-fx="display.ui.think_prompt"></span></div>
+</div>
+</div>
+<script>
+(function () {
+'use strict';
+var Q = new URLSearchParams(location.search);
+var FPS = parseFloat(Q.get('fps')) || 30, SEED = parseFloat(Q.get('seed')) || 20261016;
+var EPS = 1e-6, LEAD = 0.05, FADE = 0.25, EMPH_LEN = 0.8, BOIL_FPS = 8, BOIL_AMP = 1.2;
+window.__errors = [];
+window.__cueSource = 'missing';
+window.__fixtureSource = 'missing';
+window.FPS = FPS;
+window.DURATION = 4.0;
+window.FRAME_COUNT = 120;
+window.SCENE_META = { contract: '1.0.0', videoCount: 0, notes: 'phy-ohm-ci-01 haiku_v2 concept_intro' };
+
+function report(code, severity, message) { window.__errors.push({ code: code, severity: severity, message: message, t: null }); }
+function fail(code, message) { report(code, 'error', message); var e = new Error(code + ': ' + message); e.code = code; return e; }
+function clamp01(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
+function ramp(t, at) { return clamp01((t - at) / FADE); }
+// Stateless PRNG keyed by (seed, a, b, c): same inputs, same value, in any seek order.
+function hash(a, b, c) {
+  var x = (SEED ^ Math.imul(a + 1, 0x9E3779B1) ^ Math.imul(b + 1, 0x85EBCA77) ^ Math.imul(c + 1, 0xC2B2AE3D)) >>> 0;
+  x = Math.imul(x ^ (x >>> 15), 0x2C1B3C6D); x = Math.imul(x ^ (x >>> 12), 0x297A2D39); x ^= x >>> 15;
+  return (x >>> 0) / 4294967296;
+}
+function fx(path) {
+  var v = path.split('.').reduce(function (o, k) { return o == null ? o : o[k]; }, window.__FX);
+  if (v === undefined) throw fail('E_FIXTURE_MISSING', 'fixture has no ' + path);
+  return v;
+}
+function deepFreeze(o) { Object.keys(o).forEach(function (k) { var v = o[k]; if (v && typeof v === 'object') deepFreeze(v); }); return Object.freeze(o); }
+function norm(w) { return String(w).normalize('NFC').toLowerCase().replace(/[^\p{L}\p{M}\p{N}]/gu, ''); }
+
+var SHEET = null, RV = [], EMPH_EL = [], HEAD = [], BOIL = [], THINK = null, THINK_EL = null;
+
+async function load() {
+  var sheet = window.__CUE_SHEET__, fixture = window.__FIXTURE__;
+  if (sheet) window.__cueSource = 'injected';
+  else if (Q.get('cues')) { sheet = await (await fetch(Q.get('cues'))).json(); window.__cueSource = 'path'; }
+  else throw fail('E_CUES_MISSING', 'no cue sheet injected and no ?cues= path');
+  if (fixture) window.__fixtureSource = 'injected';
+  else if (Q.get('fixture')) { fixture = await (await fetch(Q.get('fixture'))).json(); window.__fixtureSource = 'path'; }
+  else throw fail('E_FIXTURE_MISSING', 'no fixture injected and no ?fixture= path');
+  if (!(sheet.duration > 0) || !Array.isArray(sheet.words) || !Array.isArray(sheet.cues)) throw fail('E_CUES_INVALID', 'cue sheet needs duration, words[], cues[]');
+  SHEET = sheet;
+  window.__FX = deepFreeze(fixture);
+  window.DURATION = sheet.duration;
+  window.FRAME_COUNT = Math.round(window.DURATION * FPS);
+  await Promise.all([
+    document.fonts.load('700 66px "Kalam"', 'twice the voltage constant temperature'),
+    document.fonts.load('600 50px "Noto Sans"', 'V = I × R Ω'),
+    document.fonts.load('400 50px "Noto Sans"', 'Pause. Predict.')
+  ]);
+  document.querySelectorAll('[data-fx]').forEach(function (el) { el.textContent = String(fx(el.getAttribute('data-fx'))); });
+
+  var revealAt = {}, emphAt = {};
+  SHEET.cues.forEach(function (c) {
+    if (!document.getElementById(c.element_id)) { report('W_CUE_NO_ELEMENT', 'warning', 'cue ' + c.id + ' targets missing element ' + c.element_id); return; }
+    if (c.kind === 'reveal') { if (revealAt[c.element_id] === undefined || c.at < revealAt[c.element_id]) revealAt[c.element_id] = c.at; }
+    else if (c.kind === 'emphasis') { (emphAt[c.element_id] = emphAt[c.element_id] || []).push(c.at); }
+    else report('W_CUE_KIND', 'warning', 'cue ' + c.id + ' kind ' + c.kind + ' is not handled by this runtime');
+  });
+  document.querySelectorAll('[data-rv]').forEach(function (el) {
+    var at = revealAt[el.id];
+    if (at === undefined) { report('W_ELEMENT_NO_CUE', 'warning', el.id + ' has data-rv but no reveal cue; kept hidden'); at = Infinity; }
+    RV.push({ el: el, at: at });
+  });
+  Object.keys(emphAt).forEach(function (id) { var el = document.getElementById(id); if (el) EMPH_EL.push({ el: el, ats: emphAt[id] }); });
+
+  var title = document.getElementById('title');
+  ((SHEET.meta && SHEET.meta.beats_text) || []).forEach(function (b) {
+    if (b.slot === 'outro.disclosure') { var d = document.getElementById('disclosure'); if (d) d.textContent = b.text; }
+    if (!b.headline) return;
+    var cursor = b.word_range[0], spans = [], gdiv = document.createElement('div');
+    gdiv.className = 'hg'; title.appendChild(gdiv);
+    b.headline.split(/\s+/).filter(Boolean).forEach(function (tok) {
+      var found = -1;
+      for (var i = cursor; i < b.word_range[1]; i++) { if (norm(SHEET.words[i].w) === norm(tok)) { found = i; break; } }
+      if (found < 0) throw fail('E_HEADLINE_WORD', b.id + ': headline word "' + tok + '" is not spoken in order in this beat');
+      var el = document.createElement('span'); el.className = 'hw'; el.textContent = tok; gdiv.appendChild(el);
+      spans.push({ el: el, at: SHEET.words[found].t0 - LEAD }); cursor = found + 1;
+    });
+    HEAD.push({ start: spans[0].at, spans: spans, div: gdiv });
+  });
+
+  var tw = ((SHEET.meta && SHEET.meta.think_windows) || [])[0];
+  if (tw) { THINK = { start: tw.start, end: tw.end }; THINK_EL = document.getElementById('think_plate'); }
+
+  document.querySelectorAll('[data-pts]').forEach(function (el, idx) {
+    BOIL.push({ el: el, idx: idx + 1, pts: JSON.parse(el.getAttribute('data-pts')), closed: el.getAttribute('data-closed') === '1' });
+  });
+}
+window.ready = load().catch(function (e) { if (!e.code) report('E_READY', 'error', e.message); throw e; });
+
+function render(t) {
+  RV.forEach(function (x) { x.el.style.opacity = t >= x.at - EPS ? ramp(t, x.at) : 0; });
+  EMPH_EL.forEach(function (x) {
+    var on = x.ats.some(function (a) { return t >= a - EPS && t < a + EMPH_LEN - EPS; });
+    x.el.setAttribute('data-emph', on ? '1' : '0');
+  });
+  HEAD.forEach(function (g, gi) {
+    var end = gi + 1 < HEAD.length ? HEAD[gi + 1].start : Infinity;
+    g.div.style.opacity = (t >= g.start - EPS && t < end - EPS) ? 1 : 0;   // group swap: opacity step, no layout shift
+    g.spans.forEach(function (s) { s.el.style.opacity = t >= s.at - EPS ? ramp(t, s.at) : 0; });
+  });
+  var inWin = THINK && t >= THINK.start - EPS && t <= THINK.end + EPS;
+  if (THINK_EL) THINK_EL.style.opacity = inWin ? ramp(t, THINK.start) : 0;
+  var tb = inWin ? THINK.start : t;                       // boil is frozen during a think window
+  var k = Math.floor(tb * BOIL_FPS + EPS);
+  BOIL.forEach(function (b) {
+    var d = b.pts.map(function (p, i) {
+      var dx = (hash(b.idx, i, k) - 0.5) * 2 * BOIL_AMP, dy = (hash(b.idx, i + 97, k) - 0.5) * 2 * BOIL_AMP;
+      return (i ? 'L' : 'M') + (p[0] + dx).toFixed(2) + ' ' + (p[1] + dy).toFixed(2);
+    }).join(' ') + (b.closed ? ' Z' : '');
+    b.el.setAttribute('d', d);
+  });
+}
+
+var chain = Promise.resolve();
+window.seek = async function seek(t) {
+  var prev = chain, done;
+  chain = new Promise(function (r) { done = r; });
+  try {
+    await prev;
+    await window.ready;
+    if (typeof t !== 'number' || !isFinite(t)) throw fail('E_BAD_T', 'seek(t) needs a finite number of seconds, got ' + t);
+    var tc = Math.min(Math.max(t, 0), window.DURATION);
+    render(tc);
+    await document.fonts.ready;
+    return { t: tc, frame: Math.round(tc * FPS) };
+  } finally { done(); }
+};
+})();
+</script>
+</body>
+</html>

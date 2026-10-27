@@ -1,0 +1,77 @@
+{
+ "cache_key": "41e05c452c9b6b8a",
+ "beat": "b02",
+ "chars": 59,
+ "request_id": "voxcpm2-4bit-ref-876b843068d2-seed20261016",
+ "model_id": "voxcpm2-4bit",
+ "voice_id": "ref-876b843068d2",
+ "take": 1,
+ "seed": 20261016,
+ "generation_s": 13.3,
+ "unmatched_words": 0,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0.0,
+   "t1": 0.22
+  },
+  {
+   "w": "flow",
+   "t0": 0.22,
+   "t1": 0.56
+  },
+  {
+   "w": "is",
+   "t0": 0.56,
+   "t1": 0.8
+  },
+  {
+   "w": "called",
+   "t0": 0.8,
+   "t1": 1.14
+  },
+  {
+   "w": "current",
+   "t0": 1.14,
+   "t1": 1.58
+  },
+  {
+   "w": "this",
+   "t0": 2.04,
+   "t1": 2.28
+  },
+  {
+   "w": "meter",
+   "t0": 2.28,
+   "t1": 2.52
+  },
+  {
+   "w": "reads",
+   "t0": 2.52,
+   "t1": 2.88
+  },
+  {
+   "w": "it",
+   "t0": 2.88,
+   "t1": 3.14
+  },
+  {
+   "w": "in",
+   "t0": 3.14,
+   "t1": 3.32
+  },
+  {
+   "w": "amperes",
+   "t0": 3.32,
+   "t1": 4.16
+  }
+ ],
+ "provider_alignment": null,
+ "alignment_source": "forced_alignment",
+ "stt": {
+  "model": "models/whisper-small.en-asr-fp16",
+  "heard": "The flow is called current. This meter reads it in amperes.",
+  "match_ratio": 1.0,
+  "diffs": []
+ }
+}

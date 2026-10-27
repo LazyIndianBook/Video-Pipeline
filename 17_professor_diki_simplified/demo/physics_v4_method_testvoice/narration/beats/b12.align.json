@@ -1,0 +1,57 @@
+{
+ "cache_key": "720d2e12fd4c26b2",
+ "beat": "b12",
+ "chars": 41,
+ "request_id": "voxcpm2-4bit-ref-876b843068d2-seed20261016",
+ "model_id": "voxcpm2-4bit",
+ "voice_id": "ref-876b843068d2",
+ "take": 1,
+ "seed": 20261016,
+ "generation_s": 6.4,
+ "unmatched_words": 0,
+ "words": [
+  {
+   "w": "Try",
+   "t0": 0.0,
+   "t1": 0.22
+  },
+  {
+   "w": "more",
+   "t0": 0.22,
+   "t1": 0.44
+  },
+  {
+   "w": "cases",
+   "t0": 0.44,
+   "t1": 0.8
+  },
+  {
+   "w": "in",
+   "t0": 0.8,
+   "t1": 1.04
+  },
+  {
+   "w": "the",
+   "t0": 1.04,
+   "t1": 1.16
+  },
+  {
+   "w": "free",
+   "t0": 1.16,
+   "t1": 1.36
+  },
+  {
+   "w": "lesson",
+   "t0": 1.36,
+   "t1": 1.68
+  }
+ ],
+ "provider_alignment": null,
+ "alignment_source": "forced_alignment",
+ "stt": {
+  "model": "models/whisper-small.en-asr-fp16",
+  "heard": "Try more cases in the free lesson.",
+  "match_ratio": 1.0,
+  "diffs": []
+ }
+}

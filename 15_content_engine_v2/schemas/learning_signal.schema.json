@@ -1,0 +1,184 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://examleaf.local/schemas/v2/learning_signal.json",
+  "title": "ExamLeaf Learning Signal v2 (aggregate only)",
+  "description": "One aggregate cell the platform sends back, keyed by ids the sidecar already exports (Architecture §9.7 Learning signals; CE-117: interface level-2, operation level-3+; added 15 Oct 2026). A signal never edits the graph: it opens a proposal (raise MIS priority, add a SIM, author a new MIS, or queue an F15 doubt) that goes through S4 and GA-Graph, and writes a signal_proposal ledger row.",
+  "$comment": "No learner identifiers (CE-117, 15 Oct 2026): no learner, device, account, session, school or location id, no free text written by a learner, and no timestamps finer than the window; additionalProperties is false at every level so none can be added. Intake rejects a record whose cohort_size is below min_cohort_size; the minimum is set by counsel under O-3, stricter for safety/ac0 and safety/ac1, and recorded with its policy ref. doubt_cluster_text is a paraphrase written by the platform, never a quote. Commercial-term lint (CE-L1/RD-49; CE-26, CE-70; updated 15 Oct 2026): CI rejects, case-insensitively, any match of (price|pricing|paid|is_free|free_|premium|entitle|subscri|sku|paywall|unlock|monetis|monetiz|revenue|discount|coupon|tier|destination_resource|cta_destination|funnel|purchase_|checkout_|product_id|offer_|trial_|utm_|campaign_|affiliate_|activation_code|storefront) applied to every object key at every depth (including REN fields keys), every required entry, pattern key and enum or const value. Exempt: the editorial fields series_position, flagship and demo_kind, which carry no commercial meaning.",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "share": {
+      "type": "string",
+      "pattern": "^(0(\\.[0-9]{1,4})?|1(\\.0{1,4})?)$",
+      "description": "Decimal string in [0, 1] (hash canon: measured quantities are decimal strings)."
+    }
+  },
+  "properties": {
+    "signal_id": {
+      "type": "string",
+      "pattern": "^LS-[A-Za-z0-9_.-]+$"
+    },
+    "signal_kind": {
+      "enum": [
+        "option_selection",
+        "misconception_selection",
+        "cue_rewatch",
+        "doubt_cluster"
+      ]
+    },
+    "artefact_sha256": {
+      "$ref": "#/definitions/sha256"
+    },
+    "window": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "$ref": "#/definitions/date"
+        },
+        "end": {
+          "$ref": "#/definitions/date"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ]
+    },
+    "cohort_level": {
+      "type": "string",
+      "pattern": "^level/[a-z0-9_]+$"
+    },
+    "safety_class": {
+      "type": "string",
+      "pattern": "^safety/ac[0-2]$"
+    },
+    "cohort_size": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "min_cohort_size": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The threshold applied, from the O-3 policy for this safety_class."
+    },
+    "min_cohort_policy_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "asm_id": {
+      "type": "string",
+      "pattern": "^ASM-[A-Za-z0-9_.-]+$"
+    },
+    "option_id": {
+      "type": "string",
+      "pattern": "^[A-H]$"
+    },
+    "misconception_id": {
+      "type": "string",
+      "pattern": "^MIS-[A-Za-z0-9_.-]+$"
+    },
+    "attempts": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "selection_share": {
+      "$ref": "#/definitions/share"
+    },
+    "cue_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rewatch_share": {
+      "$ref": "#/definitions/share"
+    },
+    "doubt_cluster_text": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "signal_id",
+    "signal_kind",
+    "artefact_sha256",
+    "window",
+    "cohort_level",
+    "safety_class",
+    "cohort_size",
+    "min_cohort_size",
+    "min_cohort_policy_ref"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "signal_kind": {
+            "const": "option_selection"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "asm_id",
+          "option_id",
+          "attempts",
+          "selection_share"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "signal_kind": {
+            "const": "misconception_selection"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "asm_id",
+          "misconception_id",
+          "attempts",
+          "selection_share"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "signal_kind": {
+            "const": "cue_rewatch"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "cue_id",
+          "rewatch_share"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "signal_kind": {
+            "const": "doubt_cluster"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "doubt_cluster_text"
+        ]
+      }
+    }
+  ]
+}

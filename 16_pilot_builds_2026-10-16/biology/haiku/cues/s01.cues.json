@@ -1,0 +1,156 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "bio-photosyn-ci-01-s01",
+ "fps": 30,
+ "duration": 8.533,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "d1f95c0aa2e81578b788ba3ab68691fb6b3fba330869335d92f623c7d73c3f7d",
+ "script_sha256": "fb56e0d2da7e69198ff182ee889c4beda47930cfe7a3435f4099ea3176e5093f",
+ "words": [
+  {
+   "w": "Green",
+   "t0": 0.76,
+   "t1": 1.0
+  },
+  {
+   "w": "plants",
+   "t0": 1.08,
+   "t1": 1.48
+  },
+  {
+   "w": "make",
+   "t0": 1.56,
+   "t1": 1.72
+  },
+  {
+   "w": "their",
+   "t0": 1.8,
+   "t1": 1.96
+  },
+  {
+   "w": "own",
+   "t0": 2.08,
+   "t1": 2.2
+  },
+  {
+   "w": "food",
+   "t0": 2.28,
+   "t1": 2.96
+  },
+  {
+   "w": "Picture",
+   "t0": 3.24,
+   "t1": 3.64
+  },
+  {
+   "w": "a",
+   "t0": 3.72,
+   "t1": 3.88
+  },
+  {
+   "w": "huge",
+   "t0": 4.04,
+   "t1": 4.44
+  },
+  {
+   "w": "banyan",
+   "t0": 4.52,
+   "t1": 4.92
+  },
+  {
+   "w": "tree",
+   "t0": 5.0,
+   "t1": 5.6
+  },
+  {
+   "w": "Where",
+   "t0": 5.88,
+   "t1": 6.04
+  },
+  {
+   "w": "does",
+   "t0": 6.12,
+   "t1": 6.2
+  },
+  {
+   "w": "all",
+   "t0": 6.28,
+   "t1": 6.36
+  },
+  {
+   "w": "of",
+   "t0": 6.4,
+   "t1": 6.44
+  },
+  {
+   "w": "its",
+   "t0": 6.52,
+   "t1": 6.6
+  },
+  {
+   "w": "material",
+   "t0": 6.68,
+   "t1": 7.16
+  },
+  {
+   "w": "come",
+   "t0": 7.24,
+   "t1": 7.4
+  },
+  {
+   "w": "from",
+   "t0": 7.48,
+   "t1": 8.04
+  }
+ ],
+ "beats": [
+  0.6
+ ],
+ "cues": [
+  {
+   "id": "c01",
+   "at": 1.03,
+   "kind": "reveal",
+   "element_id": "sprout",
+   "word_index": 1
+  },
+  {
+   "id": "c02",
+   "at": 4.47,
+   "kind": "reveal",
+   "element_id": "banyan",
+   "word_index": 9
+  },
+  {
+   "id": "c03",
+   "at": 5.83,
+   "kind": "emphasis",
+   "element_id": "q_mark",
+   "word_index": 11
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "bio-photosyn-ci-01",
+  "scene": "s01",
+  "beat_ids": [
+   "b01"
+  ],
+  "beats_text": [
+   {
+    "id": "b01",
+    "slot": "hook.question_reveal",
+    "text": "Green plants make their own food. Picture a huge banyan tree. Where does all of its material come from?",
+    "headline": "Where does its material come from?",
+    "start": 0.76,
+    "end": 8.04,
+    "word_range": [
+     0,
+     19
+    ]
+   }
+  ],
+  "think_windows": []
+ }
+}

@@ -1,0 +1,60 @@
+Provider tariff references,,,,,
+"Public rates can change. Model, plan, minimum spend and licensing are not interchangeable. Legacy model prices must not drive a new launch.",,,,,
+,,,,,
+,,,,,
+Provider / method,Pricing basis,Example synthesis cost,Scope,Lifecycle / limit,Source
+ElevenLabs v2/v3 reference,"$0.10 / 1,000 chars",0.9359999999999999,"9,360 generated characters","Reference budget, not verified v4 tariff",https://elevenlabs.io/pricing/api
+Eleven v4,Account/model quote required,TBD,Latest expressive audition candidate,Do not infer from v2/v3 or approximate $/minute marketing,https://elevenlabs.io/pricing/api
+Gemini 3.8 Flash TTS — now,$0.50 input / $9 output per million,0.1392,612 generated seconds + estimated text,Current through 2026-12-31 per published schedule,https://ai.google.dev/gemini-api/docs/pricing
+Gemini 3.8 Flash TTS — scheduled,$1 input / $18 output per million,0.2784,Same workload,Scheduled from 2027-01-01; recheck,https://ai.google.dev/gemini-api/docs/pricing
+Cartesia Pro,"$5 / 100,000 credits","Plan, not variable invoice",1 character = 1 TTS credit,"Allowance, concurrency and model constraints apply",https://cartesia.ai/pricing
+Cartesia Startup,$49 / 1.25 million credits,"$49 plan fits 936,000 chars",100 lessons at the modeled length,"Does not price 1,000 lessons",https://cartesia.ai/pricing
+Cartesia Scale,$299 / 8 million credits,9.36 million exceeds this allowance,"1,000 modeled lessons",Obtain higher tier / overage quote,https://cartesia.ai/pricing
+OpenAI realtime2.1-mini,$0.60 / M text input; $20 / M audio output,Usage-dependent,Do not transplant Gemini token/second rate,New adapter and exact-script audition required,https://developers.openai.com/api/docs/models/gpt-realtime-2.1-mini
+OpenAI old TTS models,Legacy migration fixture,Do not use for new production,Model shutdown 2027-01-06,Official notice 2026-10-01,https://developers.openai.com/api/docs/deprecations
+Eleven speech-to-speech,$0.12 / generated minute,1.224,10.2 generated minutes with retry allowance,Voice rights + human reference production separate,https://elevenlabs.io/pricing/api
+Human performance,Illustrative $30 / recording hour,Not a market quote,Recording time is NOT finished audio time,"Buyouts, licensing and retakes must be quoted",Planning assumption
+Self-hosted inference,Illustrative $0.80 / GPU hour,0.272,"RTF 2, including 20% regeneration",No local neural TTS benchmark performed,Planning assumption
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,

@@ -1,0 +1,33 @@
+{
+ "fixture_id": "FIX-ohm-two-points",
+ "compute": "fixtures/compute.py",
+ "parameters": {
+  "resistance_ohm": 10,
+  "v1": 2,
+  "v2": 4
+ },
+ "results": {
+  "i1": 0.2,
+  "i2": 0.4,
+  "ratio_v": 2,
+  "ratio_i": 2,
+  "v_over_i_1": 10,
+  "v_over_i_2": 10
+ },
+ "display": {
+  "r_label": "R =",
+  "r_unit": "Ω",
+  "v_label": "V =",
+  "v_unit": "V",
+  "i_label": "I =",
+  "i_unit": "A",
+  "ammeter_symbol": "A",
+  "vi_label": "V / I =",
+  "times": "×",
+  "equation": "V = I × R",
+  "condition": "constant temperature",
+  "lamp_label": "filament lamp",
+  "r_symbol": "R",
+  "rises": "↑"
+ }
+}

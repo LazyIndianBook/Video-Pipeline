@@ -1,0 +1,138 @@
+{
+ "video_id": "chem-balance-ci-01",
+ "fps": 30,
+ "viewport": [
+  1080,
+  1920
+ ],
+ "seed": 20261016,
+ "scenes": [
+  {
+   "id": "s01",
+   "file": "scenes/s01.html",
+   "scene_sha256": "cfbbf7a61d03c5ddbd4a0ca60008245489803510064a8a8228fb4b3aac291e87",
+   "cue_sheet_sha256": "e661d08109e00666c3db8ae521c7dd092d37ff323946cca1d8159e221ffd9040",
+   "cue_source": "injected",
+   "fixture_source": "injected",
+   "duration": 10.267,
+   "frames": 308,
+   "errors": [],
+   "warnings": [],
+   "encode_exit": 0,
+   "capture_s": 11.6,
+   "frame_hashes_sample": {
+    "0": "56845946e9a77ba979b190bde99c3ae81af3f26dbcb6b2d7ab1cd6a633646071",
+    "154": "657b658779ff20c3cc30f01e97f262ce994e524d5699aa2d993f732928330c43",
+    "307": "974068e3053398e1f587345e455efb2a313f10c2ce36271df15f6714d996a2e2"
+   },
+   "frames_sha256": "514f50fed7354b432bef5b4599d2d42357ca6cfd41acdca64cae91114dc9b4c6",
+   "deterministic_rerender": true,
+   "deterministic_mismatched_frames": 0,
+   "deterministic_sampled_frames": 308
+  },
+  {
+   "id": "s02",
+   "file": "scenes/s02.html",
+   "scene_sha256": "c18cac272163586c20439bd609672962d39b30932b317160542f0490fef2d2e9",
+   "cue_sheet_sha256": "43a6d9fc0981cef9ac1c251c6187a983a5c100a383497a85f48c0592f322501a",
+   "cue_source": "injected",
+   "fixture_source": "injected",
+   "duration": 9.867,
+   "frames": 296,
+   "errors": [],
+   "warnings": [],
+   "encode_exit": 0,
+   "capture_s": 13.4,
+   "frame_hashes_sample": {
+    "0": "56845946e9a77ba979b190bde99c3ae81af3f26dbcb6b2d7ab1cd6a633646071",
+    "148": "2486246a4d826f46cdd828d650c7b2df12e4e8237baba73afdc5ac3529d8975b",
+    "295": "a6308f5b2c47eb3e5e38cdf8dfdc7723b6f6152301006bd1969a7cd07e957a22"
+   },
+   "frames_sha256": "bebb282c99e93d2a4bae2d5a219dd7e23247efac560f3603a95c97fe3ff75557",
+   "deterministic_rerender": true,
+   "deterministic_mismatched_frames": 0,
+   "deterministic_sampled_frames": 296
+  },
+  {
+   "id": "s03",
+   "file": "scenes/s03.html",
+   "scene_sha256": "eecec33bee4f7c8d10f86e82c97794e4dd736cf41b0cdf225a99935a6c0587ea",
+   "cue_sheet_sha256": "4390c858d6b35454d829a38d25e4a55fcb72350b722c8ed0e9407910cffc6f31",
+   "cue_source": "injected",
+   "fixture_source": "injected",
+   "duration": 22.767,
+   "frames": 683,
+   "errors": [],
+   "warnings": [],
+   "encode_exit": 0,
+   "capture_s": 26.8,
+   "frame_hashes_sample": {
+    "0": "56845946e9a77ba979b190bde99c3ae81af3f26dbcb6b2d7ab1cd6a633646071",
+    "341": "b12719d43dd60d13b682ed8c361cfaddd5f4986f19501786903ebcafc766a9d0",
+    "682": "41261a168bfc6e54f902dcda80fd6831fda7b632555154076d1a7950b901816c"
+   },
+   "frames_sha256": "f924d6d17e41d9311d85807803f7c7f6d715c015971397ffc7ecb2c20d16e854",
+   "deterministic_rerender": true,
+   "deterministic_mismatched_frames": 0,
+   "deterministic_sampled_frames": 683
+  },
+  {
+   "id": "s04",
+   "file": "scenes/s04.html",
+   "scene_sha256": "83fe336a6dd5c0fd78d7e1962608c069b5e677ab18ff55ced4591c17b434c1af",
+   "cue_sheet_sha256": "b334decb4d4c85a285b1305d40dbf203980aef15d8ddbb2edbf013127bca7ce8",
+   "cue_source": "injected",
+   "fixture_source": "injected",
+   "duration": 12.1,
+   "frames": 363,
+   "errors": [],
+   "warnings": [],
+   "encode_exit": 0,
+   "capture_s": 13.7,
+   "frame_hashes_sample": {
+    "0": "56845946e9a77ba979b190bde99c3ae81af3f26dbcb6b2d7ab1cd6a633646071",
+    "181": "e596ffd9a7ee66837a2d841fa85446405be4e8204acb8835497382100c87316a",
+    "362": "df7f435d203bd369e5e75a5893cf21da294f8765357e96c887120e96c6b8da02"
+   },
+   "frames_sha256": "dda6c29a2bc8a2e1b5d20375c663dd82f4a787ab869e98840d4d225397337985",
+   "deterministic_rerender": true,
+   "deterministic_mismatched_frames": 0,
+   "deterministic_sampled_frames": 363
+  },
+  {
+   "id": "s05",
+   "file": "scenes/s05.html",
+   "scene_sha256": "a55749c1066833bb7593bae3da69079aff0fb18534c84abf50b64b74a967b68d",
+   "cue_sheet_sha256": "c98487fb1f12101d4024c091a654e4abc8df253829ebd4ab4a7a5dccbd70342d",
+   "cue_source": "injected",
+   "fixture_source": "injected",
+   "duration": 18.333,
+   "frames": 550,
+   "errors": [],
+   "warnings": [],
+   "encode_exit": 0,
+   "capture_s": 20.0,
+   "frame_hashes_sample": {
+    "0": "56845946e9a77ba979b190bde99c3ae81af3f26dbcb6b2d7ab1cd6a633646071",
+    "275": "e17acb2cff99eb4dc85924264592a757abfde04a3b89bf039e0e3b1d55ba7fa8",
+    "549": "16f002269fe57b734c8404dce3ead17a814b873fcd6883edfba2fd40707025d2"
+   },
+   "frames_sha256": "c4c3fc7a40f326f93830a0143dffc45e8103e9afb5fb3a8b6d52b1936a3466ca",
+   "deterministic_rerender": true,
+   "deterministic_mismatched_frames": 0,
+   "deterministic_sampled_frames": 550
+  }
+ ],
+ "script_sha256": "67853079faf35e0a686e7a6c0661db3942d6aaa9b4e470f9e082d74f2b4f2713",
+ "narration_audio_sha256": "c7cfe0ed91884df8b522fb9ebb8cd97ff92242f68684404117e64f2c4bfb3d9e",
+ "started": "2026-10-16T14:59:17",
+ "browser": "155.0.8059.82",
+ "capture_started": "2026-10-16T14:06:30",
+ "output": {
+  "file": "chem-balance-ci-01.mp4",
+  "sha256": "6fac68d3a6515a81eaac6c0d2b98be07fc78a2d9a5506dd06121c9a9218be366",
+  "bytes": 2582465
+ },
+ "total_errors": 0,
+ "finished": "2026-10-16T14:59:42"
+}

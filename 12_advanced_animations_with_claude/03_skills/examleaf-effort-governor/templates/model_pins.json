@@ -1,0 +1,6 @@
+{
+  "_note": "Fill model_id with the FULL model IDs from the current model catalog (never aliases, never from memory) [N28]. supported_efforts: list only levels confirmed for that model; null = unknown (effective level is then read from the session log) [N23].",
+  "opus": {"model_id": "<full Opus 5.5 model ID from the catalog>", "supported_efforts": ["low", "medium", "high", "xhigh", "max"], "supported_efforts_source": "[V1] ran all five levels on Opus 5.5"},
+  "sonnet": {"model_id": "<full Sonnet 5.5 model ID from the catalog>", "supported_efforts": null},
+  "haiku": {"model_id": "<full Haiku 5.5 model ID from the catalog>", "supported_efforts": null}
+}

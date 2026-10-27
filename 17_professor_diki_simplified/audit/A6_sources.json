@@ -1,0 +1,464 @@
+[
+  {
+    "id": "S01",
+    "title": "Veritasium: Publications (lists Muller, Bewes, Sharma & Reimann 2008, 'Saying the wrong thing: improving learning with multimedia by including misconceptions', J. Computer Assisted Learning 24(2):144-155, and Muller's 2008 Sydney PhD)",
+    "url": "https://veritasium.com/publications",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Citation and existence of the 2008 JCAL paper and the PhD thesis. The d~0.79/0.83 refutation-vs-concise effect sizes and the 'low prior knowledge benefited most' result come from a search-tool summary of the abstract (DOI 10.1111/j.1365-2729.2007.00248.x); full text not opened."
+  },
+  {
+    "id": "S02",
+    "title": "Muller & Sharma: Tackling misconceptions in introductory physics using multimedia presentations (Univ. Sydney open journals; Proc. Australian Conf. on Science and Mathematics Education)",
+    "url": "https://openjournals.library.sydney.edu.au/IISME/article/view/6345",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Abstract: misconceptions give a false sense of knowing (less effort) and interfere with memory of new concepts; exposing students to common misconceptions, even non-interactively, can help. No effect sizes on the page."
+  },
+  {
+    "id": "S03",
+    "title": "Scientific American: How YouTube star Derek Muller of Veritasium is challenging scientific... (28 May 2025)",
+    "url": "https://www.scientificamerican.com/article/how-youtube-star-derek-muller-of-veritasium-is-challenging-scientific/",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Muller's stated approach: confusion/friction helps learning; his PhD compared a polished textbook-style video (easier to follow, little learning) with one showing a student struggling (more improvement); Veritasium poses questions and asks viewers to predict before the reveal; began as short street-quiz clips. Fetched summary of the article."
+  },
+  {
+    "id": "S04",
+    "title": "Tubefilter: Veritasium signs with A3 Artists Agency (8 Sep 2022)",
+    "url": "https://www.tubefilter.com/2022/09/08/veritasium-a3-artists-agency/amp",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Veritasium launched 2011 drawing on Muller's physics-education PhD; became known for videos asking the public science questions that exposed misconceptions."
+  },
+  {
+    "id": "S05",
+    "title": "Crouch, Fagen, Callan & Mazur (2004) Classroom demonstrations: learning tools or entertainment? Am. J. Phys. 72:835-838 (Compadre record)",
+    "url": "https://www.compadre.org/introphys/items/detail.cfm?ID=2329",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Students who only watched a demonstration understood the concepts no better than students who never saw it; predicting the outcome first gave significantly greater understanding. Effect sizes 0.09/0.36/0.45 appear only in a secondary blog (unverified)."
+  },
+  {
+    "id": "S06",
+    "title": "Szpunar, Khan & Schacter (2013) Interpolated memory tests reduce mind wandering and improve learning of online lectures, PNAS 110(16):6313-6317 (PMC record)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3631699/",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Tests interleaved into online lectures reduced mind-wandering (baseline about 40%), increased note-taking and improved later learning. Seen via search-tool summary of abstract/interview; page not opened by me."
+  },
+  {
+    "id": "S07",
+    "title": "Richland, Kornell & Kao (2009) The pretesting effect: do unsuccessful retrieval attempts enhance learning? J. Exp. Psychology: Applied 15(3)",
+    "url": "https://learninglab.uchicago.edu/Pre-Testing_files/RichlandKornellKao.pdf",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Pre-questions help later learning even when the initial answer is wrong, provided corrective feedback follows; the paper notes unretrieved items show little benefit without feedback. Search-tool summary; PDF not opened by me."
+  },
+  {
+    "id": "S08",
+    "title": "Faculty Focus: Student learning in 3 seconds (secondary summary of Rowe's wait-time research)",
+    "url": "https://www.facultyfocus.com/articles/effective-teaching-strategies/student-learning-in-3-seconds/",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Classroom wait-time lore of about 3 s (Rowe); secondary, older and soft evidence; no video-specific data. Used only to show a 5 s silent window is not supported and 1.4 s is below classroom guidance."
+  },
+  {
+    "id": "S09",
+    "title": "Wikipedia: Hypercorrection (psychology) (secondary; original Butterfield & Metcalfe 2001, J. Exp. Psychology: Learning, Memory, and Cognition 27(6):1491-1494)",
+    "url": "https://en.wikipedia.org/wiki/Hypercorrection_(psychology)",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "High-confidence errors are more likely to be corrected on retest than low-confidence errors; attention to feedback rises after confident errors. Original paper not opened."
+  },
+  {
+    "id": "S10",
+    "title": "Chen & Klahr (1999) All other things being equal: acquisition and transfer of the control of variables strategy, Child Development 70(5):1098-1120 (CMU PDF)",
+    "url": "https://www.cmu.edu/dietrich/psychology/pdf/klahr/PDFs/chen-klahr.pdf",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Explicit training plus probe questions taught 7-10-year-olds to control variables and transfer it; the 40% to 80% figure is from Klahr & Nigam's later summary as relayed by a search tool; PDF not opened."
+  },
+  {
+    "id": "S11",
+    "title": "Li & Singh: Students' difficulties with equations involving circuit elements (arXiv:1602.04872; PERC 2012 proceedings)",
+    "url": "https://arxiv.org/abs/1602.04872",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Abstract: introductory students struggle to see how an ohmic resistor's resistance, written as V/I, does not change when V is varied. Abstract only."
+  },
+  {
+    "id": "S12",
+    "title": "Schwartz & Bransford (1998) A time for telling, Cognition and Instruction 16(4):475-522 (PDF)",
+    "url": "https://www.wright.edu/sites/www.wright.edu/files/uploads/2017/Feb/event/Schwartz_Bransford_1998_TimeForTelling.pdf",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Students who analysed contrasting cases (inventing graphs) before a lecture learned and transferred more than those who first summarised a text; explicit telling works best after preparation. Search-tool summary of abstract; PDF not opened."
+  },
+  {
+    "id": "S13",
+    "title": "The expertise reversal effect (Educational Psychologist 38(1):23-31, 2003; Kalyuga, Ayres, Chandler & Sweller) (UOW record)",
+    "url": "https://ro.uow.edu.au/edupapers/136",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Techniques that help novices (worked examples, integrated text) can lose effect or backfire for more experienced learners; basis for guiding weak-foundation learners. Abstract-level."
+  },
+  {
+    "id": "S14",
+    "title": "Renkl & Atkinson (2003) Structuring the transition from example study to problem solving in cognitive skill acquisition: a cognitive load perspective, Educational Psychologist 38:15-22 (record)",
+    "url": "https://asu.elsevierpure.com/en/publications/structuring-the-transition-from-example-study-to-problem-solving--2",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Worked examples are most effective in early skill acquisition, problem solving later; fade solution steps gradually (backward fading) as intrinsic load falls. Abstract-level."
+  },
+  {
+    "id": "S15",
+    "title": "Heer & Robertson (2007) Animated transitions in statistical data graphics, IEEE InfoVis (PDF)",
+    "url": "https://vis.berkeley.edu/papers/animated_transitions/2007-AnimatedTransitions-InfoVis.pdf",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Two controlled experiments: animated transitions improved graphical perception (object tracking, value estimation) over static transitions; guidelines follow Tversky et al.'s congruence and apprehension. Abstract/summary level; caveats about timing and axis re-scaling relayed second-hand."
+  },
+  {
+    "id": "S16",
+    "title": "Ozcelik, Karakus, Kursun & Cagiltay (2009) An eye-tracking study of how color coding affects multimedia learning, Computers & Education 53(2):445-453",
+    "url": "https://avesis.metu.edu.tr/yayin/4c4f4fae-afe5-4186-b7a3-ea75cb837310/an-eye-tracking-study-of-how-color-coding-affects-multimedia-learning",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "N=52; colour-coded materials improved retention and transfer; learners found matching text/illustration information more efficiently. Abstract-level."
+  },
+  {
+    "id": "S17",
+    "title": "Alpizar, Adesope & Wong (2020) A meta-analysis of signaling principle in multimedia learning environments, ETR&D 68:2095-2119",
+    "url": "https://rex.libraries.wsu.edu/esploro/outputs/journalArticle/A-meta-analysis-of-signaling-principle-in/99900601052901842",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "44 effect sizes from 29 experiments (N=2,726); overall d=.38. Abstract-level."
+  },
+  {
+    "id": "S18",
+    "title": "Cambridge Handbook of Multimedia Learning (3rd ed.): Principles for reducing extraneous processing (coherence, signaling, redundancy, spatial and temporal contiguity)",
+    "url": "https://resolve-he.cambridge.org/core/books/cambridge-handbook-of-multimedia-learning/principles-for-reducing-extraneous-processing-in-multimedia-learning-coherence-signaling-redundancy-spatial-contiguity-and-temporal-contiguity-principles/CD5B7AE1279A9AB81F8EEBB53DBEC86E",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Coherence: support in 23 of 23 tests, median d=0.86; signaling: 24 of 28 tests, median d=0.41 (3rd-edition figures as relayed by search tool; the 2nd edition gives different values, e.g. coherence 1.32). Page seen only as a search result."
+  },
+  {
+    "id": "S19",
+    "title": "The Learning Scientists: Designing effective instructional videos (summary of Mayer 2021, JARMAC)",
+    "url": "https://learningscientists.org/blog/2021/7/1-1",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Mayer lists 14 video principles; this summary covers multimedia, signaling (flag key material), segmenting and personalization. The JARMAC abstract (seen via search summary, not opened) lists pre-training among the principles."
+  },
+  {
+    "id": "S20",
+    "title": "Rey et al. (2019) A meta-analysis of the segmenting effect, Educational Psychology Review 31:389-419",
+    "url": "https://www.doi.org/10.1007/S10648-018-9456-4",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "56 studies, 88 comparisons: small-to-medium benefit for retention and transfer, lower cognitive load, longer learning time. Abstract-level via search summary."
+  },
+  {
+    "id": "S21",
+    "title": "WSU News: Seductive details inhibit learning (Sundararajan & Adesope, Educational Psychology Review, 2020)",
+    "url": "https://news.wsu.edu/?p=201521",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Meta-analysis of 58 studies (>7,500 students): interesting-but-irrelevant details (jokes, cat videos, background music) lowered learning; harm larger beside relevant diagrams and for static details; most studies 6-12 minutes. The g=-0.33 figure is only in a secondary summary."
+  },
+  {
+    "id": "S22",
+    "title": "Moreno & Mayer (2000) A coherence effect in multimedia learning: the case for minimizing irrelevant sounds, J. Educational Psychology 92(1):117-125 (PDF is a scan)",
+    "url": "https://tecfa.unige.ch/tecfa/teaching/methodo/Moreno_Mayer00.pdf",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Adding background music and/or environmental sounds to narrated animations lowered retention and transfer (sound-only effect in Exp. 2). Abstract-level via search summary; scanned PDF not machine-readable."
+  },
+  {
+    "id": "S23",
+    "title": "Kampfe, Sedlmeier & Renkewitz (2011) The impact of background music on adult listeners: a meta-analysis, Psychology of Music 39(4):424-448",
+    "url": "https://journals.sagepub.com/doi/10.1177/0305735610376261",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Overall null effect; music interferes with reading, small detrimental effect on memory, positive effects on emotion and sports performance; few studies allowed effect sizes. Abstract-level."
+  },
+  {
+    "id": "S24",
+    "title": "Impact of background music on reading comprehension: influence of lyrics language and study habits, Frontiers in Psychology (2024)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11027201",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Vocal music reduced reading comprehension versus no music, most when lyrics were in the same language as the text; habitual music listeners less affected. Search-summary level."
+  },
+  {
+    "id": "S25",
+    "title": "Guo, Kim & Rubin (2014) How video production affects student engagement: an empirical study of MOOC videos, ACM Learning at Scale (PDF)",
+    "url": "https://up.csail.mit.edu/other-pubs/las2014-pguo-engagement.pdf",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Read in full via pdftotext: 6.9M edX sessions; videos under 6 minutes engage most; Khan-style tablet drawing held viewers 1.5-2x as long as slides/code and 40% vs 31% went on to attempt problems; best tutorials had planned layout; faster speaking (mean 156 wpm, range 48-254) engaged more, with the 145-165 wpm bucket least energetic. MOOC context; engagement time, not learning."
+  },
+  {
+    "id": "S26",
+    "title": "Gentner & Gentner (1983) Flowing waters or teeming crowds: mental models of electricity, in Mental Models (PDF)",
+    "url": "https://groups.psych.northwestern.edu/gentner/papers/GentnerGentner83.pdf",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Read in full via pdftotext: different analogies produce systematically different inferences; the flowing-fluid model helped with batteries, the moving-crowd (gates) model with resistors; a subject using the pipe model wrongly predicted less current for parallel resistors and corrected it with the crowd model."
+  },
+  {
+    "id": "S27",
+    "title": "Common misunderstandings of electricity: analysis of interview responses of electrical engineering technology students (iJEP)",
+    "url": "https://online-journals.org/index.php/i-jep/article/view/5146",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Students kept applying an incorrect water-analogy to current and treated electricity as a substance that can be used up. Abstract via search summary."
+  },
+  {
+    "id": "S28",
+    "title": "Yarroch (1985) Student understanding of chemical equation balancing, J. Research in Science Teaching 22(5):449-459 (MTU record)",
+    "url": "https://digitalcommons.mtu.edu/michigantech-p/3925",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Students with weak grasp of subscripts were willing to break the rule against changing them when balancing; those with consistent particle diagrams grasped subscripts. Record-level."
+  },
+  {
+    "id": "S29",
+    "title": "Kang et al. (2009) The wick in the candle of learning: epistemic curiosity activates reward circuitry and enhances memory, Psychological Science 20(8):963-973 (CMU PDF)",
+    "url": "https://www.cmu.edu/dietrich/sds/docs/loewenstein/WickCandleLearning.pdf",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Read in full via pdftotext: curiosity is an inverted-U function of confidence; higher curiosity predicted better recall of surprising answers 1-2 weeks later; frames curiosity as an information gap (Loewenstein 1994)."
+  },
+  {
+    "id": "S30",
+    "title": "Faculty Focus: Humor in the classroom, 40 years of research (summary of Banas, Dunbar, Rodriguez & Liu 2011, Communication Education 60(1):115-144)",
+    "url": "https://www.facultyfocus.com/articles/effective-teaching-strategies/humor-in-the-classroom-40-years-of-research/",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Content-related, non-hostile humour is appropriate; mocking or disparaging humour is harmful; humour reliably aids attention and interest while evidence on learning is mixed; laugh with students, not at them. Secondary summary; original not opened."
+  },
+  {
+    "id": "S31",
+    "title": "Teaching and learning with instructional humor: a review of five-decades research and further direction, Frontiers in Psychology (2025)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11814177/",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Narrative review of about 140 works: related humour most consistently beneficial; unrelated humour mixed; self-disparaging humour neutral for learning but warming; aggressive humour generally worse; optimal frequency for online/video unclear. First 100k characters read."
+  },
+  {
+    "id": "S32",
+    "title": "APLU/NTED: Humor to engage students (secondary citing Kaplan & Pascoe 1977, J. Educational Psychology 69:61-65)",
+    "url": "https://aplnexted.com/humor-to-engage-students/",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Concept-related humorous examples improved retention on delayed tests (6 weeks) though not immediate comprehension. Secondary; original not opened."
+  },
+  {
+    "id": "S33",
+    "title": "Lab News: Q&A with Steve Mould (23 Oct 2018)",
+    "url": "https://labnews.co.uk/?p=231865",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Mould says the ah-ha moment of understanding matters more than the ha-ha of entertainment. Nothing on his topic choice or demonstration method on this page."
+  },
+  {
+    "id": "S34",
+    "title": "The Stanford Daily: 3Blue1Brown creator Grant Sanderson '15 talks engaging with math using stories and visuals (24 Jan 2020)",
+    "url": "https://www.stanforddaily.com/2020/01/24/3blue1brown-creator-grant-sanderson-15-talks-engaging-with-math-using-stories-and-visuals",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Sanderson starts with visuals and then articulates meaning, which gives learners ownership; treats explanation like story; emphasises emotion, wonder and imagination over usefulness."
+  },
+  {
+    "id": "S35",
+    "title": "3Blue1Brown: FAQ",
+    "url": "https://www.3blue1brown.com/faq/",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Sentences confirmed verbatim on a second fetch: every movement should be deliberate with an identifiable purpose; definitions are an ending point, not a starting point; best pedagogical order often differs from logical order; each visual and movement should make the same point as the narration. Undated page."
+  },
+  {
+    "id": "S36",
+    "title": "Kurzgesagt: Our video process",
+    "url": "https://kurzgesagt.org/youtube/",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Stages: research with sourcesheet and expert check; script that 'can take about a dozen drafts'; sketching of visual metaphors then illustration; narrator's voice-over sets timing for animators; specially composed soundtrack per video. No dates or hour counts on the page."
+  },
+  {
+    "id": "S37",
+    "title": "Education Week: Professor Dave Explains, how he attracted 345,000 YouTube subscribers (Mar 2019)",
+    "url": "https://www.edweek.org/technology/professor-dave-explains-how-he-attracted-345-000-youtube-subscribers/2019/03",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Farina positions his videos between hook-driven edutainment and long Khan-style lectures, aiming for depth after the hook; audience is high-school and undergraduate students; he does writing, filming, editing and animation himself."
+  },
+  {
+    "id": "S38",
+    "title": "Tubefilter: YouTube Millionaires, Professor Dave (28 Jul 2022)",
+    "url": "https://www.tubefilter.com/2022/07/28/youtube-millionaires-professor-dave/",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Removes filler and gives viewers only what they need ('guided learning'), highlights keywords, uses diagrams and directs attention to the right place at the right time; breaks complex subjects into digestible parts; no longer appears on camera; uses writers; Premiere and After Effects."
+  },
+  {
+    "id": "S39",
+    "title": "The Falconer (Torrey Pines High School): Q&A with Professor Dave Explains (7 Nov 2024)",
+    "url": "https://torreypinesfalconer.com/3827/feature/qa-with-professor-dave-explains/",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "A writer drafts the script; Farina edits lightly, narrates, then plans visuals (improvised in After Effects); academic and precise, avoids songs and characters; anticipates common pitfalls from classroom experience; treats comprehension as the engagement measure."
+  },
+  {
+    "id": "S40",
+    "title": "Digiday: The secret sauce behind YouTube giant Vsauce (4 Dec 2014)",
+    "url": "https://digiday.com/media/secret-sauce-behind-youtube-giant-vsauce/",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Stevens writes down facts that surprise him and connects them into a script; follows questions down the rabbit hole; long descriptions act as bibliographies; researches and writes alone."
+  },
+  {
+    "id": "S41",
+    "title": "Unsung (Marcin Wichary): Three good interactive explainers (2 Jun 2026)",
+    "url": "https://unsung.aresluna.org/three-good-interactive-explainers/",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Ciechanowski's 'Curves and Surfaces' colour-matches key ideas between text and interactive elements and offers undo."
+  },
+  {
+    "id": "S42",
+    "title": "Bartosz Ciechanowski: Lights and Shadows",
+    "url": "https://ciechanow.ski/lights-and-shadows/",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Builds from one source outward; most demos let the reader change one property per slider; text refers to diagram colours; states approximations (e.g. the inverse-square law holds accurately only for infinitely small light sources). No interview with him was found."
+  },
+  {
+    "id": "S43",
+    "title": "Wikipedia: MinutePhysics",
+    "url": "https://en.wikipedia.org/wiki/MinutePhysics",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Whiteboard-animation style; early videos about one minute. Drawing-while-speaking and time-lapse come from a Live Science search summary (https://livescience.com/55121-youtube-channel-minute-physics.html, page body unreadable); scripting/recording process not found."
+  },
+  {
+    "id": "S44",
+    "title": "Cristobal et al. (2026) PaperTok: exploring the use of generative AI for creating short-form videos for research communication (arXiv:2601.18218, HTML), formative study N=8",
+    "url": "https://arxiv.org/html/2601.18218v1",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Creators/science communicators: hooks that correct a misconception, subvert an expectation or lead with an unexpected statistic; fast body with dynamic simple visuals; recommended 15-30 s (under 60 s at most); ending circles back to the opening promise and says what to do next; text overlays useful because feeds autoplay muted; robotic/AI-sounding narration caused disengagement; avoid long intros. Small qualitative study on research communication. First 100k characters read."
+  },
+  {
+    "id": "S45",
+    "title": "Educational short videos: bibliometric trends, thematic structure and operationalisation (arXiv:2608.06932, Aug 2026)",
+    "url": "https://arxiv.org/abs/2608.06932",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "2,169 records; no consistent numerical threshold for 'short'; shortness should be judged by purpose and unit, not duration alone. Abstract-level."
+  },
+  {
+    "id": "S46",
+    "title": "Outlook India: interview with Alakh Pandey (3 Nov 2022, updated 18 Jan 2024)",
+    "url": "https://outlookindia.com/national/teachers-are-finally-getting-the-status-they-deserve-says-online-guru-alakh-pandey-news-234439",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Because online students cannot ask, he tries to address even the smallest doubts; advises teachers to win the hearts of children; says teachers should not chase cheap fame by going viral. No statement about language or humour."
+  },
+  {
+    "id": "S47",
+    "title": "CBSE: Science (086) Marking Scheme, Class X, 2025-26 sample paper",
+    "url": "https://cbseacademic.nic.in/web_material/SQP/ClassX_2025_26/Science-MS.pdf",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Read via pdftotext: model answers for numericals use 'Given data', Step 1 to Step 3 and a conclusion; e.g. I = V/R = 6/24 = 0.25 A. Mark splits within steps could not be extracted (formulas are images); stepwise-marking claims elsewhere are secondary."
+  },
+  {
+    "id": "S48",
+    "title": "Vedantu: CBSE Class 10 science practical (secondary)",
+    "url": "https://www.vedantu.com/cbse/class-10-science-practical",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Class 10 practical list includes determining the dependence of potential difference across a resistor on current with a graph; FAQ refers to the 2026-27 session."
+  },
+  {
+    "id": "S49",
+    "title": "Bhatia (2020) Teaching code-mixed English (Hinglish) in India, FORTELL issue 40",
+    "url": "https://www.fortell.org/wp-content/uploads/2020/12/40-issue-January-2020-20-32.pdf",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Conceptual paper with no classroom comprehension data; used only to show no controlled Hinglish-versus-English evidence was found. Search-summary level."
+  },
+  {
+    "id": "S50",
+    "title": "Assam State Board (SEBA/AHSEC) complete guide (secondary)",
+    "url": "https://getschoolsinfo.com/blog/assam-state-board-seba-ahsec-complete-guide",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Reports SEBA/AHSEC instruction and examination in Assamese, English, Bengali, Hindi, Bodo and Manipuri. Secondary; page not opened."
+  },
+  {
+    "id": "S51",
+    "title": "Wikipedia: 6-7 meme",
+    "url": "https://en.wikipedia.org/wiki/6-7_meme",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Popular from mid-2025 on TikTok and Reels; Dictionary.com 2025 Word of the Year (Oct 2025); school bans; by March 2026 teens still using it were mocked (Yahoo Life cited on the page)."
+  },
+  {
+    "id": "S52",
+    "title": "Khaleej Times: Explained, from meme to movement, how 'Cockroach Party' inspired Indian students' protest (7 Jun 2026)",
+    "url": "https://www.khaleejtimes.com/world/asia/explained-from-meme-to-movement-how-cockroach-party-inspired-indian-students-protest",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Cockroach Janta Party: satirical youth collective launched May 2026 as a parody of the ruling party; protests over alleged exam irregularities; millions of followers."
+  },
+  {
+    "id": "S53",
+    "title": "Boston University College of Communication: profile of Cockroach Janta Party founder (8 Jun 2026)",
+    "url": "https://www.bu.edu/com/?p=46451",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Founder Abhijeet Dipke; about 50,000 sign-ups in 24 hours, over one million in five days; Instagram account above 22 million followers; exam mismanagement among the concerns listed."
+  },
+  {
+    "id": "S54",
+    "title": "Storyboard18: Delhi HC backs Aishwarya Rai Bachchan, rules personality rights breach erodes celebrity dignity (11 Sep 2025)",
+    "url": "https://www.storyboard18.com/brand-makers/delhi-hc-backs-aishwarya-rai-bachchan-rules-personality-rights-breach-erodes-celebrity-dignity-80781.htm",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Interim protection granted 9 Sep 2025 (Justice Tejas Karia) against misuse of name and likeness via AI/deepfakes; takedowns within 72 hours. The article does not address memes or fan content."
+  },
+  {
+    "id": "S55",
+    "title": "Netflix Partner Help: English Timed Text Style Guide",
+    "url": "https://partnerhelp.netflixstudios.com/hc/en-us/articles/217350977-English-Timed-Text-Style-Guide",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "42 characters per line, maximum two lines, up to 20 characters per second for adult programs and 17 for children's programs."
+  },
+  {
+    "id": "S56",
+    "title": "Reap: YouTube Shorts, Reels and TikTok safe zones (secondary)",
+    "url": "https://reap.video/blog/short-form-video-safe-zones",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Third-party margins 288 top, 672 bottom, 48 left, 192 right at 1080x1920; ad-derived and not an official organic-Shorts spec; sources conflict. Seen via search summary."
+  },
+  {
+    "id": "S57",
+    "title": "Abrams & Christ (2003) Motion onset captures attention, Psychological Science 14(5):427-432 (PubMed)",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/12930472/",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Attention is captured by the onset of motion rather than by motion itself. Abstract-level."
+  },
+  {
+    "id": "S58",
+    "title": "We Are Listen: What is sonic branding, part 2",
+    "url": "https://wearelisten.com/what-is-sonic-branding-pt-2",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Practitioner view: audio logos about 2-3 s, textural ones 1-2 s, melodic ones built on 3-5 notes; cites no research."
+  },
+  {
+    "id": "S59",
+    "title": "Our Opus pilot builds: narration/timeline.json for physics, chemistry and biology (my calculation)",
+    "url": "file:///Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/16_pilot_builds_2026-10-16/physics/opus/narration/timeline.json",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "My calc: first word 0.68-0.76 s; silent think gap 5.08-5.43 s; spoken disclosure beat 3.92-4.08 s at 74-77 wpm; non-teaching time 9.68-10.22 s = 14.0-14.4% of 67.1-73.2 s; teaching-beat pace 127-204 wpm per beat and 138-149 wpm overall excluding the think gap. Chemistry and biology files are siblings of the physics path."
+  },
+  {
+    "id": "S60",
+    "title": "Digest colour tokens (00_INPUTS_digest.md section 2) with my WCAG and colour-vision-deficiency calculation",
+    "url": "file:///Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/17_professor_diki_simplified/00_INPUTS_digest.md",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "My calc: contrast vs paper #F5F2EA: voltage 5.98, current 4.52, resistance 5.76, error 6.08, muted 5.66; L* 39.0/46.7/40.1 for V/I/R; CIEDE2000 under simulated deuteranopia (Machado 2009 matrices, severity 1): resistance-error 10.0, current-muted 5.1. The phone type-size arithmetic (71 mm width, 35 cm assumed, ISO 9241 angles second-hand) is also mine."
+  },
+  {
+    "id": "S61",
+    "title": "GWU Teaching: TED-Ed (secondary)",
+    "url": "https://gwteach.gwu.edu/ted-ed",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "TED-Ed lesson shell is Watch, Think, Dig deeper, Discuss; no narrative-craft guidance found, so TED-Ed is listed as unverified."
+  },
+  {
+    "id": "S62",
+    "title": "Fostering learning from instructional video in a second language (Applied Cognitive Psychology, 2018)",
+    "url": "https://pure.uos.ac.kr/en/publications/fostering-learning-from-instructional-video-in-a-second-language/",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Korean university students: video plus narration plus text beat video plus narration, contradicting the redundancy principle for second-language learners. Summary-level."
+  },
+  {
+    "id": "S63",
+    "title": "Social Samosa: 91% of India's Next Gen pay more attention to brands that use humour (Snapchat and Omnicom study, 18 Sep 2026)",
+    "url": "https://www.socialsamosa.com/report/91-india-next-gen-pay-attention-brands-use-humour-12549059",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "6,000+ users aged 13-28 in US, UK, Canada, France, Germany and India (India sample size not stated); 87% say humour is how their generation discusses serious things; about 80% say brands online feel like older people trying to joke; 79% say explaining a joke ruins it; self-deprecation and logic-underneath-randomness land; forced or out-of-touch humour is poorly received. Industry-commissioned, Snapchat-heavy; scope of the 80% figure unclear."
+  },
+  {
+    "id": "S64",
+    "title": "SME Street: PhysicsWallah's Alakh Pandey to expand presence across five South Indian states (24 Sep 2026)",
+    "url": "https://smestreet.in/sectors/physicswallahs-alakh-pandey-to-expand-presence-across-five-south-indian-states-12570902",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "PW was originally known for Hinglish batches and now offers courses in Hindi, English, Hinglish and nine regional languages."
+  },
+  {
+    "id": "S65",
+    "title": "Google Ads Help: About video ad specs",
+    "url": "https://support.google.com/google-ads/answer/13547298?hl=en",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Safe-zone guidance for 1080x1920 vertical ads is an image template; pixel numbers are not in the page text and the page does not tie the zone to Shorts."
+  },
+  {
+    "id": "S66",
+    "title": "edu-physics.com: Experiment, Studying Ohm's Law with V-I Graph (4 Jun 2025)",
+    "url": "https://edu-physics.com/2025/06/04/experiment-studying-ohms-law-with-v-i-graph/",
+    "retrieved": "2026-10-16",
+    "what_it_supports": "Rheostat varies current; ammeter in series, voltmeter in parallel; slope of the V-I graph gives R; precaution: avoid high current because heating raises resistance; take readings quickly and switch off between them."
+  }
+]

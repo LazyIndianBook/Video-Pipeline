@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "unit": "credits",
+  "provider": "higgsfield",
+  "cap": 60,
+  "frozen": false,
+  "freeze_reason": null,
+  "approvals": [],
+  "jobs": {
+    "hf-3f9c2a71d0b44e1a": {
+      "state": "committed",
+      "estimate": 4,
+      "actual": 4,
+      "estimate_source": "provider model page, 2026-10-14",
+      "tool": "image",
+      "approval_ref": "gate/approval.json#<sha256>",
+      "provider_job_id": "<provider job id>",
+      "submitted_at": "2026-10-14T10:00:00Z",
+      "outcome": "succeeded",
+      "history": [
+        {"event": "reserve", "at": "2026-10-14T09:59:58Z", "estimate": 4},
+        {"event": "submit", "at": "2026-10-14T10:00:00Z", "provider_job_id": "<provider job id>"},
+        {"event": "commit", "at": "2026-10-14T10:01:30Z", "actual": 4, "outcome": "succeeded"}
+      ]
+    }
+  },
+  "_note": "Illustrative values only; credits per call must come from the account's own estimate source."
+}

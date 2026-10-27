@@ -1,0 +1,26 @@
+EXAMLEAF | UNIT ECONOMICS,,
+"Established reusable templates; not a cost guarantee for bespoke diagrams or 3D. No promotional prices, free tiers, batch discounts or caching savings assumed.",,
+,,
+Cost component,USD / video,Basis / scope
+Haiku extraction / routing,=(Inputs!B9*Inputs!B11+Inputs!B10*Inputs!B12)/1000000,Haiku 5.5; prompts remain within short-context tier.
+Sonnet scripting / component adaptation,=(Inputs!B13*Inputs!B15+Inputs!B14*Inputs!B16)/1000000,Sonnet 5.5; total tokens across bounded calls.
+Independent OpenAI review,=(Inputs!B17*Inputs!B19+Inputs!B18*Inputs!B20)/1000000,gpt-6.1-sol; short-context rates.
+Opus escalation reserve,=(Inputs!B21*Inputs!B23+Inputs!B22*Inputs!B24)/1000000,"Opus 5.5 amortized reserve, not required on every scene."
+Base LLM subtotal,=SUM(B5:B8),Before regeneration allowance.
+LLM cost with regeneration,=B9*(1+Inputs!B25),Includes a 30% retry/rewrite reserve.
+Narration with regeneration,=Inputs!B6*(1+Inputs!B7)*Inputs!B8/1000,ElevenLabs Multilingual v2 standard character price.
+Rendering with retries,=(Inputs!B26*Inputs!B30+Inputs!B27*Inputs!B31)*Inputs!B28*60*(1+Inputs!B29),Fargate US East rate example. 45 minutes is an unmeasured planning assumption.
+ASR validation,=Inputs!B5*Inputs!B32,Validation transcription only; alignment accuracy must still be checked.
+Working-asset storage,=Inputs!B33*Inputs!B34*Inputs!B35,2 GB retained for one month; archive growth is recurring.
+API / request reserve,=Inputs!B36,"Planning reserve, not a quoted service bundle."
+VARIABLE MACHINE COST,=SUM(B10:B15),"Excludes humans, fixed overhead and initial engine development."
+Academic review,=Inputs!B37/60*Inputs!B38,"Review approved claims, script, derivations and the entire final lesson."
+Production QA,=Inputs!B39/60*Inputs!B40,"Mobile, audio, captions, continuity and export review."
+HUMAN REVIEW COST,=SUM(B17:B18),One reviewer-hour in the base scenario.
+TOTAL VARIABLE COST,"=SUM(B16,B19)",Established engine and component library.
+Fixed monthly overhead,"=SUM(Inputs!B41,Inputs!B42*Inputs!B43,Inputs!B55)",Infrastructure allowance + maintenance + optional developer subscriptions.
+One-time implementation budget,"=SUM(Inputs!B45*Inputs!B46,Inputs!B47*Inputs!B48,Inputs!B49*Inputs!B50)",Illustrative 320-hour setup. A mature platform may cost substantially more.
+,,
+,,
+,,
+,,

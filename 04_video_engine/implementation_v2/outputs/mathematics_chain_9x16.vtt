@@ -1,0 +1,21 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:06.000
+First change the inside. Then square its result.
+
+2
+00:00:06.000 --> 00:00:11.000
+Let u = 3x + 1. The outside function is y = u².
+
+3
+00:00:11.000 --> 00:00:16.500
+The outside gives 2u. What factor comes from the inside?
+
+4
+00:00:16.500 --> 00:00:24.000
+Multiply by 3: dy/dx = 6(3x + 1).
+
+5
+00:00:24.000 --> 00:00:30.000
+The inside function is not on leave. Account for both layers.

@@ -1,0 +1,60 @@
+Narration assumptions,,,,
+"USD, before tax | Editable inputs in blue. Reference tariffs and workload assumptions are explicitly separate. Checked 13 October 2026.",,,,
+,,,,
+,,,,
+Assumption,Value,Unit,Source,Caution
+Media duration,10,minutes,Planning assumption,Not all media time is spoken.
+Active spoken duration,8.5,minutes,Planning assumption,Narration-only cost basis; response windows are inserted locally.
+Spoken word budget,1200,words,Planning assumption,Pacing varies with complexity and language.
+Canonical transcript length,7800,characters,Planning assumption,Count actual final provider input in deployment.
+Generation/retry allowance,0.2,fraction,Planning assumption,"Extra generated audio, not a guarantee of acceptance."
+Premium TTS reference tariff,0.1,"USD / 1,000 characters",https://elevenlabs.io/pricing/api,v2/v3 published reference used for budget; NOT a verified Eleven v4 quote.
+Speech-to-speech tariff,0.12,USD / generated minute,https://elevenlabs.io/pricing/api,Confirm selected account/model; reference usage price.
+LLM writing/direction allowance,0.6,USD / video,Planning assumption,Incremental narration editing/direction only; not whole academic research.
+ASR/alignment/automatic QA allowance,0.08,USD / video,Planning assumption,"Service/compute budget, not a provider price guarantee."
+Storage/export allowance,0.05,USD / video,Planning assumption,Excludes audience streaming and indefinite storage.
+Academic audio review rate,20,USD / hour,Planning assumption,Obtain actual native subject-reviewer quotations.
+Audio editing rate,15,USD / hour,Planning assumption,"Labour assumption, not a market survey."
+Performer rate,30,USD / hour,Planning assumption,Illustrative; licensing/buyout fees require a separate agreement.
+GPU price,0.8,USD / compute hour,Planning assumption,No GPU benchmark or supplier quote obtained.
+GPU real-time factor,2,compute sec / generated sec,Planning assumption,Unbenchmarked; 2 means slower than real time.
+Initial subsystem setup,4000,USD one-time,Planning assumption,Optional separate initial implementation reserve; not in operating totals.
+Gemini input token estimate,2500,tokens / script,Planning assumption,Includes direction; actual billed token count governs.
+Gemini audio tokens / sec,25,tokens / second,https://ai.google.dev/gemini-api/docs/pricing,Model pricing calculation convention; verify usage records.
+Gemini 3.8 current input,0.5,USD / million input tokens,https://ai.google.dev/gemini-api/docs/pricing,Before scheduled 2027-01-01 rate change.
+Gemini 3.8 current output,9,USD / million audio tokens,https://ai.google.dev/gemini-api/docs/pricing,Before scheduled 2027-01-01 rate change.
+Gemini 3.8 future input,1,USD / million input tokens,https://ai.google.dev/gemini-api/docs/pricing,Scheduled from 2027-01-01; recheck before use.
+Gemini 3.8 future output,18,USD / million audio tokens,https://ai.google.dev/gemini-api/docs/pricing,Scheduled from 2027-01-01; recheck before use.
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,

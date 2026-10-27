@@ -1,0 +1,830 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://examleaf.local/schemas/v2/format_spec.json",
+  "title": "ExamLeaf Format Spec v2",
+  "description": "A format is data over a closed slot vocabulary. The spec linter additionally checks satisfiability against the golden graphs and that every slot exists in the Slot Type registry.",
+  "$comment": "Commercial-term lint (CE-L1/RD-49; CE-26, CE-70; updated 15 Oct 2026): CI rejects, case-insensitively, any match of (price|pricing|paid|is_free|free_|premium|entitle|subscri|sku|paywall|unlock|monetis|monetiz|revenue|discount|coupon|tier|destination_resource|cta_destination|funnel|purchase_|checkout_|product_id|offer_|trial_|utm_|campaign_|affiliate_|activation_code|storefront) applied to every object key at every depth (including REN fields keys), every required entry, pattern key and enum or const value. Exempt: the editorial fields series_position, flagship and demo_kind, which carry no commercial meaning.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "format_id": {
+      "type": "string",
+      "pattern": "^format/[a-z0-9_]+$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1
+    },
+    "learner_outcome": {
+      "type": "string",
+      "minLength": 1
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "primary",
+        "derived",
+        "composition"
+      ]
+    },
+    "select": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "root": {
+          "type": "string",
+          "enum": [
+            "objective_set",
+            "assessment_item",
+            "misconception",
+            "worked_item",
+            "claim",
+            "claim_pair",
+            "activity",
+            "story",
+            "text_passage",
+            "member_artefacts"
+          ]
+        },
+        "include": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 3
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "root"
+      ]
+    },
+    "node_requirements_by_level": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "levels": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^(\\*|level/[a-z0-9_]+)$"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "requirements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "node_type": {
+                  "type": "string",
+                  "enum": [
+                    "OBJ",
+                    "CLM",
+                    "CON",
+                    "ANL",
+                    "MIS",
+                    "WRK",
+                    "ASM",
+                    "SIM",
+                    "ACT",
+                    "STY",
+                    "VOC",
+                    "TXT",
+                    "MED",
+                    "REN"
+                  ]
+                },
+                "per": {
+                  "type": "string",
+                  "enum": [
+                    "objective",
+                    "artefact"
+                  ]
+                },
+                "min": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "any_of": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "OBJ",
+                      "CLM",
+                      "CON",
+                      "ANL",
+                      "MIS",
+                      "WRK",
+                      "ASM",
+                      "SIM",
+                      "ACT",
+                      "STY",
+                      "VOC",
+                      "TXT",
+                      "MED",
+                      "REN"
+                    ]
+                  },
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "node_type",
+                "per",
+                "min"
+              ]
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "levels",
+          "requirements"
+        ]
+      }
+    },
+    "grammar": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "slot": {
+            "type": "string",
+            "pattern": "^[a-z]+(\\.[a-z0-9_]+)+$"
+          },
+          "min": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "max": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "repeat": {
+            "type": "string",
+            "enum": [
+              "once",
+              "per_objective",
+              "per_step",
+              "per_item",
+              "all"
+            ]
+          },
+          "params": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "slot"
+        ]
+      },
+      "minItems": 1
+    },
+    "level_variants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "variant_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "levels": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^level/[a-z0-9_]+$"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "grammar": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "slot": {
+                  "type": "string",
+                  "pattern": "^[a-z]+(\\.[a-z0-9_]+)+$"
+                },
+                "min": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "max": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "repeat": {
+                  "type": "string",
+                  "enum": [
+                    "once",
+                    "per_objective",
+                    "per_step",
+                    "per_item",
+                    "all"
+                  ]
+                },
+                "params": {
+                  "type": "object"
+                }
+              },
+              "required": [
+                "slot"
+              ]
+            },
+            "minItems": 1
+          },
+          "duration_s": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "min": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "max": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "tag": {
+                "type": "string",
+                "enum": [
+                  "Recommendation",
+                  "Hypothesis",
+                  "Inherited",
+                  "Evidence"
+                ]
+              },
+              "source": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "min",
+              "max",
+              "tag"
+            ]
+          },
+          "notes": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "variant_id",
+          "levels"
+        ]
+      }
+    },
+    "format_variants": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Content variants of one format, each with its own root and grammar (for example short.concept, short.misconception, short.trap). request.variant must name one (Architecture §3.4 R4). Added 15 Oct 2026.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "variant_id": {
+            "type": "string",
+            "pattern": "^[a-z]+\\.[a-z0-9_]+$"
+          },
+          "select": {
+            "$ref": "#/properties/select"
+          },
+          "grammar": {
+            "$ref": "#/properties/grammar"
+          },
+          "duration_s": {
+            "$ref": "#/properties/duration_s"
+          }
+        },
+        "required": [
+          "variant_id",
+          "select",
+          "grammar"
+        ]
+      }
+    },
+    "duration_s": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "tag": {
+          "type": "string",
+          "enum": [
+            "Recommendation",
+            "Hypothesis",
+            "Inherited",
+            "Evidence"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "min",
+        "max",
+        "tag"
+      ],
+      "x-kind": "limit"
+    },
+    "max_segment_s": {
+      "type": "integer",
+      "minimum": 10,
+      "maximum": 360,
+      "x-kind": "limit"
+    },
+    "aspect": {
+      "type": "string",
+      "enum": [
+        "9x16",
+        "16x9"
+      ]
+    },
+    "resolution": {
+      "type": "string",
+      "enum": [
+        "1080x1920",
+        "1920x1080"
+      ]
+    },
+    "voice_path_default": {
+      "type": "string",
+      "enum": [
+        "A",
+        "B"
+      ]
+    },
+    "render_targets": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "video",
+          "audio_only",
+          "print"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "print added 15 Oct 2026 (CE-119, level-3+) for the print configurations of an existing spec (FORMAT_REGISTRY: practice_set, teacher_explainer, recap, revision_sheet)."
+    },
+    "interaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "interpolated_checks": {
+          "type": "string",
+          "enum": [
+            "required",
+            "optional",
+            "forbidden"
+          ]
+        },
+        "check_answer_hidden": {
+          "const": true
+        },
+        "think_window_protected": {
+          "const": true
+        }
+      },
+      "required": [
+        "interpolated_checks",
+        "check_answer_hidden",
+        "think_window_protected"
+      ]
+    },
+    "levels_allowed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^level/[a-z0-9_]+$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "families_allowed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^family/[a-z0-9_]+$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "overlays_allowed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^overlay/[a-z0-9_]+$"
+      },
+      "uniqueItems": true
+    },
+    "styles_allowed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^style/[a-z0-9][a-z0-9_-]*$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "style_defaults": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "levels": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^level/[a-z0-9_]+$"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "style": {
+            "type": "string",
+            "pattern": "^style/[a-z0-9][a-z0-9_-]*$"
+          }
+        },
+        "required": [
+          "levels",
+          "style"
+        ]
+      },
+      "description": "One default style per level (VISUAL_STYLE §4.1 step 7, §4.2; 15 Oct 2026). Spec linter: levels sets disjoint; union equals levels_allowed; each style in styles_allowed; the style's levels_allowed and safety_classes_allowed admit every listed level."
+    },
+    "gates": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "H_CG",
+          "GV_CLAIMS",
+          "GA_GRAPH",
+          "GA_DELTA",
+          "H_SB",
+          "VOICE",
+          "A_SUITE",
+          "GF",
+          "GS",
+          "DISCLOSURE",
+          "G_COUNSEL",
+          "GL_GLOSSARY",
+          "GL_VOICE",
+          "RELEASE_CHECK"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "qa_checks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "derivation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "may_introduce_node_types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "OBJ",
+              "CLM",
+              "CON",
+              "ANL",
+              "MIS",
+              "WRK",
+              "ASM",
+              "SIM",
+              "ACT",
+              "STY",
+              "VOC",
+              "TXT",
+              "MED",
+              "REN"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "parent_formats": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^format/[a-z0-9_]+$"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "may_introduce_node_types"
+      ]
+    },
+    "composition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "member_formats": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^format/[a-z0-9_]+$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "ordering": {
+          "type": "string",
+          "enum": [
+            "curriculum",
+            "difficulty",
+            "paper_order",
+            "explicit"
+          ]
+        },
+        "single_file": {
+          "type": "boolean"
+        },
+        "members_must_be_approved": {
+          "const": true
+        }
+      },
+      "required": [
+        "member_formats",
+        "ordering",
+        "single_file",
+        "members_must_be_approved"
+      ]
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "claim": {
+            "type": "string",
+            "minLength": 1
+          },
+          "tag": {
+            "type": "string",
+            "enum": [
+              "Recommendation",
+              "Hypothesis",
+              "Inherited",
+              "Evidence"
+            ]
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "claim",
+          "tag"
+        ]
+      }
+    }
+  },
+  "required": [
+    "format_id",
+    "version",
+    "title",
+    "purpose",
+    "learner_outcome",
+    "kind",
+    "select",
+    "grammar",
+    "voice_path_default",
+    "render_targets",
+    "interaction",
+    "levels_allowed",
+    "families_allowed",
+    "styles_allowed",
+    "style_defaults",
+    "gates",
+    "qa_checks",
+    "derivation"
+  ],
+  "allOf": [
+    {
+      "properties": {
+        "gates": {
+          "allOf": [
+            {
+              "contains": {
+                "const": "H_SB"
+              }
+            },
+            {
+              "contains": {
+                "const": "A_SUITE"
+              }
+            },
+            {
+              "contains": {
+                "const": "DISCLOSURE"
+              }
+            },
+            {
+              "contains": {
+                "const": "RELEASE_CHECK"
+              }
+            },
+            {
+              "contains": {
+                "const": "GA_DELTA"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "properties": {
+        "gates": {
+          "anyOf": [
+            {
+              "contains": {
+                "const": "GF"
+              }
+            },
+            {
+              "contains": {
+                "const": "GS"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "aspect": {
+            "const": "16x9"
+          }
+        },
+        "required": [
+          "aspect"
+        ]
+      },
+      "then": {
+        "properties": {
+          "resolution": {
+            "const": "1920x1080"
+          },
+          "levels_allowed": {
+            "items": {
+              "pattern": "^level/(ug|pg|adult_prof)$"
+            }
+          }
+        }
+      },
+      "else": {
+        "if": {
+          "required": [
+            "aspect"
+          ]
+        },
+        "then": {
+          "properties": {
+            "resolution": {
+              "const": "1080x1920"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "derived"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "derivation": {
+            "properties": {
+              "may_introduce_node_types": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "composition"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "composition"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "primary"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "gates": {
+            "contains": {
+              "const": "GA_GRAPH"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "composition"
+          }
+        }
+      },
+      "then": {
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "duration_s"
+              ]
+            },
+            {
+              "required": [
+                "aspect"
+              ]
+            },
+            {
+              "required": [
+                "resolution"
+              ]
+            }
+          ]
+        }
+      },
+      "else": {
+        "required": [
+          "duration_s",
+          "aspect",
+          "resolution"
+        ]
+      },
+      "$comment": "15 Oct 2026 (schemas-05): a composition takes aspect, resolution and duration from its approved members (Architecture §3.4 R4, R5); every other kind declares them."
+    }
+  ]
+}

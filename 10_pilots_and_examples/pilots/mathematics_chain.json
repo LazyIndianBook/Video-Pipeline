@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0",
+  "duration_s": 30,
+  "fps": 24,
+  "status": "technical_preview",
+  "id": "mathematics_chain",
+  "subject": "mathematics",
+  "kind": "chain_rule",
+  "title": "Two layers. One derivative.",
+  "objective": "Differentiate a squared linear expression using the chain rule.",
+  "class_context": "Class 12: differentiation technical benchmark.",
+  "parameters": {
+    "a": 3,
+    "b": 1
+  },
+  "assumptions": [
+    "Real x; polynomial function.",
+    "The tangent and displayed derivative share the same symbolic model."
+  ],
+  "sources": [
+    {
+      "id": "mathematics_chain_source",
+      "uri": "https://openstax.org/books/calculus-volume-1/pages/3-6-the-chain-rule",
+      "locator": "Section 3.6: the chain rule",
+      "rights_status": "open_reference",
+      "claim_scope": "Differentiate a squared linear expression using the chain rule.",
+      "retrieved_at": "2026-10-13"
+    }
+  ],
+  "claims": [
+    {
+      "id": "mathematics_chain_claim",
+      "statement": "Differentiate a squared linear expression using the chain rule.",
+      "source_ids": [
+        "mathematics_chain_source"
+      ],
+      "assumptions": [
+        "Real x; polynomial function.",
+        "The tangent and displayed derivative share the same symbolic model."
+      ],
+      "status": "draft"
+    }
+  ],
+  "cues": [
+    {
+      "start_s": 0,
+      "end_s": 6,
+      "text": "First change the inside. Then square its result.",
+      "role": "explain",
+      "voice": "steady",
+      "answer_visible": false
+    },
+    {
+      "start_s": 6,
+      "end_s": 11,
+      "text": "Let u = 3x + 1. The outside function is y = u\u00b2.",
+      "role": "explain",
+      "voice": "steady",
+      "answer_visible": false
+    },
+    {
+      "start_s": 11,
+      "end_s": 16.5,
+      "text": "The outside gives 2u. What factor comes from the inside?",
+      "role": "question",
+      "voice": "curious",
+      "answer_visible": false
+    },
+    {
+      "start_s": 16.5,
+      "end_s": 24,
+      "text": "Multiply by 3: dy/dx = 6(3x + 1).",
+      "role": "feedback",
+      "voice": "steady",
+      "answer_visible": true
+    },
+    {
+      "start_s": 24,
+      "end_s": 30,
+      "text": "The inside function is not on leave. Account for both layers.",
+      "role": "recap",
+      "voice": "light",
+      "answer_visible": true
+    }
+  ]
+}

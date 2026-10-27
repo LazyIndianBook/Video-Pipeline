@@ -1,0 +1,83 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "source_lesson_id": {
+      "title": "Source Lesson Id",
+      "type": "string"
+    },
+    "source_claim_ids": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Source Claim Ids",
+      "type": "array"
+    },
+    "target_seconds": {
+      "maximum": 60,
+      "minimum": 20,
+      "title": "Target Seconds",
+      "type": "integer"
+    },
+    "hook": {
+      "title": "Hook",
+      "type": "string"
+    },
+    "complete_payoff": {
+      "title": "Complete Payoff",
+      "type": "string"
+    },
+    "retained_conditions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Retained Conditions",
+      "type": "array"
+    },
+    "destination_resource_id": {
+      "title": "Destination Resource Id",
+      "type": "string"
+    },
+    "access_tier": {
+      "enum": [
+        "free",
+        "book_entitlement",
+        "preview"
+      ],
+      "title": "Access Tier",
+      "type": "string"
+    },
+    "layout_strategy": {
+      "const": "reflow",
+      "default": "reflow",
+      "title": "Layout Strategy",
+      "type": "string"
+    },
+    "approval_status": {
+      "default": "pending",
+      "enum": [
+        "pending",
+        "approved"
+      ],
+      "title": "Approval Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "source_lesson_id",
+    "source_claim_ids",
+    "target_seconds",
+    "hook",
+    "complete_payoff",
+    "retained_conditions",
+    "destination_resource_id",
+    "access_tier"
+  ],
+  "title": "ShortSpec",
+  "type": "object"
+}

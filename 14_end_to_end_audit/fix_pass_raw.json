@@ -1,0 +1,312 @@
+{
+ "fixes": [
+  {
+   "files_changed": [
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/07_end_to_end_pipeline_instructions/00_OVERVIEW_and_PRINCIPLES.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/07_end_to_end_pipeline_instructions/01_SETUP_new_machine_and_repository.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/07_end_to_end_pipeline_instructions/02_PHASED_BUILD_ROADMAP.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/07_end_to_end_pipeline_instructions/03_PER_LESSON_PRODUCTION_PROCEDURE.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/07_end_to_end_pipeline_instructions/04_NARRATION_SUBPIPELINE.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/07_end_to_end_pipeline_instructions/05_SHORTS_and_REELS_PROCEDURE.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/07_end_to_end_pipeline_instructions/06_QA_GATES_and_RELEASE.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/07_end_to_end_pipeline_instructions/08_COST_TRACKING_and_BUDGETS.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/07_end_to_end_pipeline_instructions/09_ROLES_humans_and_agents.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/07_end_to_end_pipeline_instructions/11_MASTER_CHECKLIST.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/07_end_to_end_pipeline_instructions/12_GLOSSARY_and_DATA_CONTRACTS.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/07_end_to_end_pipeline_instructions/README.md"
+   ],
+   "done": [
+    "M1 (vertical-only), 07 part only. Every 16:9 remnant the audit cites is changed and marked with the date. 07/00: the S12 line and the SH line in the diagram; the v2 data-flow quote is kept word for word with a dated note after it. 07/03: the scope line, the master token, the safe-zone and phone-readability rows, the S12 heading, and `--aspect 9:16`, with a note that the CLI makes only 1280x720/720x1280 at 24 fps. 07/06: the caption reserve and the phone rule. 07/11: lines 39 and 104 (now 45 and 113). 07/README: §3 line 69. 07/02 P1: a 1080x1920 @ 30 fps output mode is added as build item (7); the benchmark scores 9:16 only, and 16:9 is an unscored smoke test. The renderer is never claimed to support 1080x1920.",
+    "M2 (AI-voice disclosure). 07/06: a blocking reason 11 under §6.1, marked as not yet in `release_check()`. A new §6.4 covers the description line, the YouTube altered/synthetic toggle, the Meta label and C2PA left intact, with the Path A and Path B templates in the exact wording you gave. New rows in the §1 gate map and the §7 export table. `ai_voice_disclosure` and `performer_credit` added to the 07/03 S14 export record, the 07/05 SH2 ShortSpec table (with a build note that the strict `ShortSpec` model lacks both fields) and the 07/12 contracts. Publish steps added at 03 S14 and 05 SH8. Checklist items added to 07/11 sections D, F and G. Cites RD-45.",
+    "M5 PA-03: H-SB storyboard gate added between S8 and S9/S10 in the 07/00 diagram, as a 07/03 stage-table row and a new H-SB section, and in the 07/06 gate map and 07/11. The H-SB section notes the M10 gap: the single-role approval template is not a valid approval yet. Cites RD-46 and RD-43.",
+    "M5 PA-07: new 07/06 §3.1 with the A1-A17 table and the H-RV rubric. The A2 row records what preflight.sh actually checks (M11), and the A11 row requires 1080x1920.",
+    "M5 PA-11: new 'Animation authoring (Claude Code)' cost line in 07/08 §1, outside the modelled total, with a provisional cap of about 78K tokens per scene. Run-ledger fields added to §3.",
+    "M5 PA-12: effort and ultracode rule in 07/09 §4.1 and 07/08 §8. Effort is always set explicitly: high for scene code, xhigh for complex scenes, max only with a written justification. Ultracode is never used in production. Full model IDs are pinned. Caps are 3 creative rounds plus 2 failed repairs.",
+    "Per-surface effort defaults stated once, in 07/09 §4.1. Claude Code: Opus, Sonnet and Haiku 5.5 all default to medium. API: Opus and Haiku default to medium, Sonnet 5.5 to high, sourced to 13 SOURCES [D3].",
+    "M5 PA-17: 07/11 section A gains the 12/02/01 setup, preflight.sh and an S-ANIM gate. Sections D, F, G and I gain the H-SB, cue-sheet, A-check and ledger items. 07/01 now makes Node 22+ and Chrome REQUIRED when animation is in scope, adds node/Chrome to the prerequisite check and S-ANIM to S-GATE. It also lists this Mac's blockers: Node 20.19.4 active, 24.6.0 under nvm; no ffmpeg or ffprobe; Python 3.14 default; no `python` binary. Both venv commands are pinned to `python3.13` (or 3.11).",
+    "M6 ($0 review cash). Dated addenda in 07/README §3 and §4, and in 07/08 §1, §4 (new row and paragraph note), §6 and §9. Review-free totals: about $7.67, or $3.67 with zero generated video; 13 §7.13 shows $7.68/$3.68 because it rounds the LLM line. Capacity is about 1,417 hours per 1,000 lessons. The principle is reworded to 'Review minutes, not AI, are the throughput constraint'. 04 §17's '583 h dominant cost' is annotated. Cites RD-41.",
+    "M8 (launch locales). 07/03 S5 rule 10 and 07/04 §18 now give en-IN, Hinglish and hi-IN behind the locale gate, with as-IN deferred and human voice only. The Assamese provider list is marked research only, with no TTS commitment. The old text is kept struck through. Also updated in 07/02 P0/W3 and 07/11 P0. Cites RD-42.",
+    "Stale narration test counts. P-3, the S-GATE row, the 01 N4 row, 07/11 line 20, 07/06 §10, 07/00 §7 and the 07/04 status line now read 58 passed + 2 FFmpeg-environment failures without FFmpeg, 60 with FFmpeg. The intentional differences of pronunciation.py and tests/test_narration.py from DELIVERY_MANIFEST are noted, citing narration_system_v1/CHANGES.md.",
+    "07/06 §4 severity: early answer reveal, untraceable science text and full-frame flashes are now Critical, with a dated change note. 07/03 S13 is changed to match.",
+    "07/05: dated addendum. Reels are 1-3 recomposed complete units from the approved vertical scenes, never '3-5 Reels cut'. HyperFrames is the default compositor [Recommendation], and the RD-07 benchmark still decides. Each Reel passes H-SB, A1-A17, GS and the disclosure gate.",
+    "Free-chapter policy and the digital-only SKU are recorded as DECISION NEEDED (RD-44) with the options, without choosing one. Places: 07/06 §7, 07/11 W3 and W11, 07/02 P2 inputs, W3 and W11, 07/03 S0, and the README and 00 addenda.",
+    "Dated addendum §8 added to 07/00 summarising all of the above. The 07/README decisions row now names RD-41 to RD-46."
+   ],
+   "not_done": [
+    "M1 outside 07: the ROOT README pipeline line, the 10 pilot step 6, 12/10 A11, walkthrough B.6, RD-16 in 07/10, and the engine CLI defaults in pipeline.py and visuals.py. These files are not mine, and code changes are a P1 build item.",
+    "M2: adding the disclosure check to 12/10 §5 (not my file) and coding reason 11 in `release_check()` and the two fields in `ShortSpec` (code; recorded as build items).",
+    "M5: PA-01/02/04/05/06/08/09/10/13/14/15/16/18 were not applied, because RD-43 accepts only PA-03/07/11/12/17. One cue-sheet line was added to the checklist only because PA-17 asks for it.",
+    "M6: dated addenda in the 08 README and CONSOLIDATED Part E, the business-plan line and 13 §9.1 (not my files). 07/08 now calls the business Rs 3,000 line opportunity cost.",
+    "M3, M4, M7, M9, M10, M11 and M12 are fixes outside 07. They were only referenced: the M10 gap in the 03 H-SB section, M11 in the 06 A2 row and the checklist, and M7 in the checklist cue-sheet line.",
+    "The safe-zone geometry conflict (3 files) is not resolved. 07 just points to vertical_safe_zones.tokens.json as the owner.",
+    "The '57 custom Skills' count (correct figure 72) in 07/00 §7 and 07/01 §6 is unchanged. It was not in my task list."
+   ],
+   "notes": "I did not edit 07/10 or 00_source, installed nothing, used no network and ran no render, batch or build scripts. I only read the Mac's tool versions.\n\nPre-edit backups of all 07 files are in /private/tmp/claude-501/-Users-chinmoybhuyan-Desktop-Personal-Book-Videos/e7dd322a-a174-4149-805e-5961efcb1de7/scratchpad/backup07/, so you can diff any change.\n\nThings the next agent should know:\n1. 07/10 already has two rows besides the ones in my brief: RD-45 (disclosure) and RD-46 (H-SB storyboard gate). I cite both by number in 03, 05, 06 and 11.\n2. RD-45 in 07/10 words the two templates differently from my brief (\"voice converted with AI\" with no \"reviewed by\"). 07 uses the brief's wording: \"Performed by X; voice converted with AI tools; reviewed by Y.\" and \"AI-generated narration; script by X; reviewed by Y.\" The 07/10 owner should make RD-45 match.\n3. I checked the code: the proof CLI's `--aspect` accepts only 16:9 (default) or 9:16, sizes are hard-coded to 1280x720/720x1280 in pipeline.py and visuals.py, and the fixtures use fps 24 (contracts.py default 24, max 60). `ShortSpec` is a strict model with no disclosure fields.\n4. The animation-authoring cap of about 78K tokens per non-template scene is the 12/09 §10 [Hypothesis] figure, not a measurement."
+  },
+  {
+   "files_changed": [
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/07_end_to_end_pipeline_instructions/10_DECISIONS_and_CONFLICT_RESOLUTIONS.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/README.md"
+   ],
+   "done": [
+    "M1 (07/10 part): RD-16 is marked SUPERSEDED in its ID cell, Decision cell and Chosen value cell (vertical 1080x1920 @ 30 fps, decided 14 Oct 2026). The old value is struck through but still readable.",
+    "M1 related minor executability-8 (contested): the 07/10 addendum line about re-rendering at 1080x1920 now carries a dated correction. The renderer hard-codes 1280x720 / 720x1280, so a 1080x1920 @ 30 fps output mode is a P1 build item.",
+    "M8 (07/10 part): RD-26 is marked SUPERSEDED by RD-42. New row RD-42: launch locales en-IN, Hinglish and hi-IN, each behind the doc 04 section 18 locale gate. as-IN is deferred and human-voiced only, with no Assamese TTS commitment.",
+    "M6 (07/10 part): new row RD-41. Review cash is $0 (done in-house). 85 min per lesson is kept as a capacity metric (about 1,417 h per 1,000 lessons). RD-15 rates and the business plan's Rs 3,000 line are now opportunity cost only. The row points to 13 STRATEGY section 7.13.",
+    "M5 (07/10 part): new row RD-43. PA-03, PA-07, PA-11, PA-12 and PA-17 are accepted and recorded as applied in 07 on 15 Oct 2026. All other PAs stay [Recommendation] proposals.",
+    "goal-alignment-5: new row RD-44 marked DECISION NEEDED. It lists options A (first three sequential chapters), B (three selected chapters) and C (launch with A, then test). It separately lists SKU options (i) no digital-only SKU at launch and (ii) a Rs 299 SKU at launch, with what each one changes. RD-20 stands until the founder decides.",
+    "M2 + science-safety-3 (07/10 part): new row RD-45. AI-voice disclosure is a release blocker covering the description line, the YouTube altered/synthetic toggle, the Meta label and C2PA not being stripped. New export/ShortSpec fields ai_voice_disclosure and performer_credit. Separate Path A and Path B wording.",
+    "M10 / PA-03 (07/10 part): new row RD-46. Gate H-SB sits after GA and before any paid generation or scene authoring, for every lesson and Reel. It needs two roles (founder for cost, academic lead for script fit), binds hashes and is verified by the runner, never written by an agent.",
+    "M9 (07/10 part): the 15 Oct addendum sentence 'nothing there is contradicted' is struck through and corrected. The playbook's 3 s cap applies to TTS break tags only; protected think windows follow RD-11 (5-8 s, default 6 s).",
+    "Intro paragraph of 07/10 now notes that RD-41 to RD-46 were added on 15 Oct 2026 after the audit.",
+    "M1 (ROOT part): the pipeline one-liner now reads vertical 1080x1920 @ 30 fps master, then Reels recomposed from approved lesson scenes, then GS. It also adds STORYBOARD GATE (H-SB), performance + STS or TTS, and an AI-voice disclosure step.",
+    "goal-alignment-10 / completeness-vs-asks-13: added Start-here rows for sections 11, 12, 13 and 14, and changed 'Install the 57 Skills' to 72 (57 + 15).",
+    "factual-and-arithmetic-correctness-11: the Skills count of 72 is noted in the status paragraph. The 07 row now says 46 recorded decisions.",
+    "Stale test counts / integrity claim (ROOT part): the provenance sentence now says files are byte-identical except src/examleaf_narration/pronunciation.py and tests/test_narration.py, changed 15 Oct 2026 (see CHANGES.md); 403 of 405 manifest files match. The status paragraph notes the narration suite is now 60 cases, with 58 passing here and 2 needing FFmpeg.",
+    "Added a 14_end_to_end_audit/ row to the Directory map (verdict partially aligned, fixes applied 15 Oct 2026).",
+    "factual-and-arithmetic-correctness-1/-4 (ROOT part): the 13 row's cost wording is corrected. At the lean floor the maximum is about 7x against an Opus Kit and 14-27x against bespoke generation (about 6.2x and 12-23x after the 1 Jan 2027 TTS price rise). 40-100x applies only against [V1]-max bespoke runs.",
+    "Known gaps: listed the three open founder decisions (free-chapter/SKU = RD-44; Path A for every full lesson; the $50 Ultra probe), matching 14_end_to_end_audit/README.md. Line 11's 'first three chapters free' now points to RD-44 as open."
+   ],
+   "not_done": [
+    "The 07/03, 07/00, 07/04, 07/05, 07/06, 07/08, 07/09, 07/11, 07/README, 08, 12, 13 and 05 edits that the new RD rows reference are owned by other agents. RD-43 says PAs 'applied in 07' as instructed, but that depends on those agents actually applying them.",
+    "The Path A and Ultra-probe founder decisions have no RD rows in 07/10. They were not in my DO list, so they are listed only in the ROOT README Known gaps."
+   ],
+   "notes": "Pre-edit backups of both files are at /private/tmp/claude-501/-Users-chinmoybhuyan-Desktop-Personal-Book-Videos/e7dd322a-a174-4149-805e-5961efcb1de7/scratchpad/ (10_backup.md, README_backup.md). All edits are dated 15 Oct 2026. Old values are struck through rather than deleted. Nothing under 00_source was touched, and no scripts or network were used. RD-44 cites the business plan's Rs 299 SKU (FULL_business_model_launch_financial_plan.md, pricing table) and about Rs 112 contribution (Digital_Offer sheet). The 14_end_to_end_audit/README.md refers to a FIXES_APPLIED_2026-10-15.md that does not exist yet. The ROOT row therefore gives the file count as '3+'."
+  },
+  {
+   "files_changed": [
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/13_strong_to_cheap_model_strategy/STRATEGY_strong_to_cheap_models.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/13_strong_to_cheap_model_strategy/EXPERIMENT_PROTOCOL_strong_model_campaign.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/13_strong_to_cheap_model_strategy/DOCUMENTATION_TEMPLATES.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/13_strong_to_cheap_model_strategy/README.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/13_strong_to_cheap_model_strategy/architect_plans/PLAN_2_verifier-and-cascade-first.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/13_strong_to_cheap_model_strategy/architect_plans/PLAN_4_economics-and-ops-first.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/06_skills_library/README.md (append only)",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/06_skills_library/OVERLAP_and_DEDUPLICATION.md (append only)"
+   ],
+   "done": [
+    "M3 (goal-alignment-7, cross-section-consistency-5, science-safety-nonnegotiables-1): rewrote STRATEGY §5.7. Reels never inherit approval. LLM-drafted hook, CTA or caption text is new script and goes to GA. Each Reel gets its own H-SB, the full A-suite and GS bound to the Reel's hash by two identities. A deterministic cut-down may shorten review because approved claim IDs carry over, but it removes no gate. Also updated §2.2, the §7.5 derived-Reel row, D-11, the PROTOCOL integration arm and §9.2 item 9.",
+    "M4 (science-safety-nonnegotiables-8, sceptic-and-bloat-3): redrew the §2.1 diagram and rewrote §5.5 as GA (bundle hash) → routing (token-only) → H-SB → TTS → cascade → A-suite → GF, with GS for Reels. Academic approval is never after rendering. Updated V8 and added D-18.",
+    "M12 (cross-section-consistency-6, science-safety-nonnegotiables-7, sceptic-and-bloat-6): V2 and V4 now point to the existing anim-qa text_fixture_diff.py and safe_zone_check.py (extend, not 'New'). V5 uses the contract rule (reveal at word t0 or up to 0.05 s before, late = fail), with ±150 ms only as a quality metric. V3 adds the reverse-order render (AD-21). Added a paragraph saying V0–V8 run in addition to 12/10 A1–A17 and 07/06 (answer-hidden window, flash, licences, loudness, captions and the rest of the suite). §2.3 and §3.2 route fixture-visual archetypes to examleaf-svg-scenes and examleaf-manim-scenes. Added D-19, fixed the V5 example in DOCUMENTATION_TEMPLATES and closed open question 4.",
+    "factual-and-arithmetic-correctness-1: corrected '40–100× at the lean floor' to the tables' own maxima: ≈7× vs an Opus Kit and 14–27× vs bespoke [V1]-low; 40–100× only vs [V1]-max runs. Applied in §0 item 6, §7.12, §7.13 items 2 and 5, the new §7.14 and the README.",
+    "factual-and-arithmetic-correctness-2, cross-section-consistency-8, sceptic-and-bloat-5: re-priced Today at 5.5 tariffs ($1.214) and show it next to the old $1.716 row in §7.13 and §7.14. On one basis the cascade is −2% at today's floor and −4% at clips $0.",
+    "cross-section-consistency-9: Today's generated clips set to $0. The clips-$0 column is the RD-39 baseline and the $4 allowance is kept only as a sensitivity.",
+    "factual-and-arithmetic-correctness-4: lean-floor TTS shown as $0.14 now and $0.28 from 1 Jan 2027 (floor $0.73), with both ratio sets (≈6.2×, 12–23× from 2027).",
+    "factual-and-arithmetic-correctness-7: 'open models save <1%' changed to the review-free share (≈5% / 13% / 33%, or 28% at 2027 prices) in §0 item 11 and §7.8.",
+    "factual-and-arithmetic-correctness-8: 'upper bound' renamed 'token-based floor' in §7.7.",
+    "factual-and-arithmetic-correctness-9: batched cascade corrected to ≈$0.71–0.80.",
+    "factual-and-arithmetic-correctness-10 and completeness-vs-asks-12: S-arm budget aligned to $435 and judge calibration to $5. $2,317 is labelled 'at the $1,000 cap' (≈$2,127 itemised), with break-even shown both ways.",
+    "factual-and-arithmetic-correctness-14: README cache reads now read $0.25/$0.20/$0.20/$0.01 (2.5–10% of input). The Sonnet cache-read difference is scoped to the cascade (≈$0.07 for Sonnet-only C).",
+    "factual-and-arithmetic-correctness-15: §7.2 sensitivity is now 1.77×, 19.4→13.9 and 15.2→10.2. §7.13 item 1 gives the LLM-share range per floor and the bespoke range as 4.5–8.1×.",
+    "factual-and-arithmetic-correctness-17: PROTOCOL rater table uses 10 shadow pairs (13.8 h; total 53.7 ≈ 54 h, ≈$1,011).",
+    "factual-and-arithmetic-correctness-18: README word count updated to ≈17,400 by wc -w after the corrections (≈13,500 before).",
+    "goal-alignment-8 and sceptic-and-bloat-12: added Path A rows to §7.14: STS $1.224, performer 0.75 h ($0 in-house or $22.50 paid), cutaways and Higgsfield credits as unknowns, storyboard-review minutes unmeasured, capacity ≈130 min per lesson ≈ 13.5 FTE-months per 1,000 lessons. States that the lean floor applies only to Path B content.",
+    "cross-section-consistency-4: added D-16 (text only). It scopes AD-02, AD-11 and AD-24 to the strong-model phase and defines a kit_cascade family with its own caps. Also added a governance note in §5.8 and PROTOCOL precondition 9 so no Kit run starts before the family exists.",
+    "cross-section-consistency-15, completeness-vs-asks-5, science-safety-nonnegotiables-14: made the S5 Ultra probe an attended, founder-approved exception in D-9, §3.3, §9.2 and PROTOCOL §2.1/§2.2. It runs in an isolated sandbox outside the governor, on a dedicated key with a $50 provider-side spend limit, and can never enable ultracode in production. The revisit trigger is withdrawn.",
+    "goal-alignment-11 and cross-section-consistency-16: added D-17 stating per-surface effort defaults once (Claude Code: all medium; Messages API: Opus and Haiku medium, Sonnet high; always set explicitly). Fixed §0 item 10, §2.5 and PROTOCOL §2.1.",
+    "cross-section-consistency-7 (06 part): appended a 'Section 13 registration' addendum to 06 README and OVERLAP. The eight examleaf-fill-<archetype> skills and the templates are PROPOSED, not built. Owners: motion-harness for the contract, style-guides for style slots, anim-brief for the brief, with svg/manim adapters, anim-qa and effort-governor rows. Both point to 13. Added D-21.",
+    "M6 (13-only line): marked the §9.1 risk 1 statement 'review is about 78%' as superseded.",
+    "Updated 13/README.md: corrected answer paragraph, gate order, file-table details and a dated 'Audit corrections (15 Oct 2026)' table mapping each finding to its edits. Added dated supersession banners to architect PLAN_2 (V5 ±150 ms) and PLAN_4 (Reels inherit approval)."
+   ],
+   "not_done": [
+    "kit_cascade code change in 12/03_skills/examleaf-effort-governor/scripts/effort_policy.py and the matching AD row in 12/02_documentation/14: owned by the section-12 agent. D-16 records the text, and PROTOCOL precondition 9 blocks Kit runs until it lands.",
+    "12/02_documentation/12_EDGE_CASES #3 ('ultracode sandbox only, low effort') still conflicts with D-9: owned by section 12.",
+    "cross-section-consistency-7 (07 part): the 07/10 addendum mapping D-1…D-21 to RD rows and the 07/README row for section 13 are owned by the section-07 agent.",
+    "RD-04 update recording the 5.5 prices as verified, and the M6 $0-review addenda in 07/08: owned by section 07/08.",
+    "SKILLS_MATRIX.csv not changed on purpose: the fill skills are PROPOSED and are added only after an archetype passes C4 (D-21).",
+    "No founder decisions were needed in my scope. The free-chapter policy and the digital-only SKU are outside section 13 and were not touched.",
+    "Contested sceptic item (shrink the campaign; defer S3/S4/S5 etc.) not applied: it is contested and needs a judgement call. S5 was kept as the attended exception, as instructed."
+   ],
+   "notes": "All edits are dated \"15 Oct 2026\" and made in place on the cited lines, plus a new STRATEGY §7.14 addendum and decision rows D-16…D-21 in §11.1. The 06 files were append-only; a diff against the pre-edit backups shows zero removed lines. [Recommendation] and [Hypothesis] labels are kept. All recomputed figures were checked with a script: today at 5.5 tariffs is $3.17 at clips $0 against cascade $3.04; at the lean floor in 2026/2027, Opus-Kit to Haiku-all (D2) is 7.06/6.23× and bespoke [V1]-low to D2 is 14.1–26.6 / 12.3–23.1×; [V1]-max token floor to D2 is ≥109× (lean 2026). Markdown table column counts were validated for every edited file. Pre-edit backups are in the session scratchpad under s13/. Nothing was installed, run, rendered or fetched, and 00_source was not touched."
+  },
+  {
+   "files_changed": [
+    "12_advanced_animations_with_claude/03_skills/examleaf-cue-sheet/scripts/build_cue_sheet.py",
+    "12_advanced_animations_with_claude/03_skills/examleaf-cue-sheet/scripts/validate_cue_sheet.py (DELETED, plus stray __pycache__ in cue-sheet and audio-compose scripts)",
+    "12_advanced_animations_with_claude/03_skills/examleaf-cue-sheet/SKILL.md",
+    "12_advanced_animations_with_claude/03_skills/examleaf-cue-sheet/references/cue_sheet_contract.md",
+    "12_advanced_animations_with_claude/03_skills/examleaf-cue-sheet/evals/cases.json",
+    "12_advanced_animations_with_claude/03_skills/examleaf-cue-sheet/templates/cue_spec.template.json",
+    "12_advanced_animations_with_claude/03_skills/README_skills_9-15.md",
+    "12_advanced_animations_with_claude/04_harness_contract/README.md",
+    "12_advanced_animations_with_claude/04_harness_contract/preflight.sh",
+    "12_advanced_animations_with_claude/04_harness_contract/vertical_safe_zones.tokens.json",
+    "12_advanced_animations_with_claude/04_harness_contract/scene_template.html",
+    "12_advanced_animations_with_claude/04_harness_contract/import_clip_notes.md",
+    "12_advanced_animations_with_claude/03_skills/examleaf-anim-storyboard-gate/templates/approval_record.json",
+    "12_advanced_animations_with_claude/03_skills/examleaf-anim-storyboard-gate/scripts/estimate_and_gate.py",
+    "12_advanced_animations_with_claude/03_skills/examleaf-anim-storyboard-gate/SKILL.md",
+    "12_advanced_animations_with_claude/03_skills/examleaf-anim-storyboard-gate/references/gate_procedure.md",
+    "12_advanced_animations_with_claude/03_skills/examleaf-anim-storyboard-gate/templates/segment_scenes.example.json",
+    "12_advanced_animations_with_claude/03_skills/examleaf-effort-governor/scripts/effort_policy.py",
+    "12_advanced_animations_with_claude/03_skills/examleaf-effort-governor/templates/budget_caps.json",
+    "12_advanced_animations_with_claude/03_skills/examleaf-effort-governor/SKILL.md",
+    "12_advanced_animations_with_claude/03_skills/examleaf-vertical-adapt/scripts/layout_zones.py",
+    "12_advanced_animations_with_claude/03_skills/examleaf-vertical-adapt/SKILL.md",
+    "12_advanced_animations_with_claude/03_skills/examleaf-vertical-adapt/references/vertical_layout_rules.md",
+    "12_advanced_animations_with_claude/03_skills/examleaf-vertical-adapt/references/reel_subrange_recipe.md",
+    "12_advanced_animations_with_claude/03_skills/examleaf-vertical-adapt/evals/cases.json",
+    "12_advanced_animations_with_claude/03_skills/examleaf-anim-qa/scripts/safe_zone_check.py",
+    "12_advanced_animations_with_claude/03_skills/examleaf-anim-qa/scripts/flash_check.py",
+    "12_advanced_animations_with_claude/03_skills/examleaf-anim-qa/scripts/text_fixture_diff.py",
+    "12_advanced_animations_with_claude/03_skills/examleaf-anim-qa/SKILL.md",
+    "12_advanced_animations_with_claude/03_skills/examleaf-anim-qa/references/qa_rubric.md",
+    "12_advanced_animations_with_claude/03_skills/examleaf-anim-qa/references/safe_zones.md",
+    "12_advanced_animations_with_claude/03_skills/examleaf-anim-qa/evals/cases.json",
+    "12_advanced_animations_with_claude/03_skills/examleaf-style-guides/scripts/validate_style_tokens.py",
+    "12_advanced_animations_with_claude/03_skills/examleaf-style-guides/references/vertical_adaptation_rules.md",
+    "12_advanced_animations_with_claude/03_skills/examleaf-audio-compose/SKILL.md",
+    "12_advanced_animations_with_claude/03_skills/examleaf-audio-compose/references/mixing_levels.md",
+    "12_advanced_animations_with_claude/03_skills/examleaf-audio-compose/references/synthesis_recipes.md",
+    "12_advanced_animations_with_claude/03_skills/examleaf-audio-compose/scripts/compose_bed.py",
+    "12_advanced_animations_with_claude/03_skills/examleaf-anim-brief/SKILL.md",
+    "12_advanced_animations_with_claude/03_skills/examleaf-motion-harness/SKILL.md",
+    "12_advanced_animations_with_claude/05_style_guides/style_tokens.json",
+    "12_advanced_animations_with_claude/05_style_guides/README.md",
+    "12_advanced_animations_with_claude/05_style_guides/paper-collage-vertical.md",
+    "12_advanced_animations_with_claude/06_prompts_and_templates/brief_template.md",
+    "12_advanced_animations_with_claude/06_prompts_and_templates/README.md",
+    "12_advanced_animations_with_claude/06_prompts_and_templates/negative_tests.md",
+    "12_advanced_animations_with_claude/06_prompts_and_templates/review_checkpoint.md",
+    "12_advanced_animations_with_claude/02_documentation/00_OVERVIEW_and_PRINCIPLES.md",
+    "12_advanced_animations_with_claude/02_documentation/01_SETUP_environment_harnesses_skills.md",
+    "12_advanced_animations_with_claude/02_documentation/02_PROMPTING_the_structured_brief.md",
+    "12_advanced_animations_with_claude/02_documentation/03_STYLE_GUIDES_vertical.md",
+    "12_advanced_animations_with_claude/02_documentation/04_HARNESS_CONTRACT_and_DETERMINISM.md",
+    "12_advanced_animations_with_claude/02_documentation/05_STORYBOARD_GATE_and_MCP_budgets.md",
+    "12_advanced_animations_with_claude/02_documentation/06_AUDIO_compose_analyze_sync.md",
+    "12_advanced_animations_with_claude/02_documentation/09_EFFORT_COST_GOVERNANCE.md",
+    "12_advanced_animations_with_claude/02_documentation/10_QA_GATES_anim.md",
+    "12_advanced_animations_with_claude/02_documentation/11_INTEGRATION_with_ExamLeaf_pipeline.md",
+    "12_advanced_animations_with_claude/02_documentation/12_EDGE_CASES_master_table.md",
+    "12_advanced_animations_with_claude/02_documentation/13_END_TO_END_WALKTHROUGH.md",
+    "12_advanced_animations_with_claude/02_documentation/14_DECISIONS_and_OPEN_QUESTIONS.md",
+    "12_advanced_animations_with_claude/07_benchmark_and_pilot_plan/PILOT_three_test_lessons.md",
+    "12_advanced_animations_with_claude/README.md"
+   ],
+   "done": [
+    "M7: build_cue_sheet.py emits schema_version 1.0, language (required spec field), alignment_source, narration_audio_sha256 (WAV hash; it blocks if that hash disagrees with the alignment's or spec's audio_sha256), script_sha256 (from spec.script file or script_sha256) and meta. It maps narration kinds to the schema enum (show->reveal, highlight->emphasis, transform/hide->transition, reveal-answer->reveal plus meta.answer_protection), emits element_id and word_index (re-indexed under --window), and has a --production flag. It imports 04_harness_contract/validate_cue_sheet.py by path (EXAMLEAF_HARNESS_DIR override) and validates every sheet with it. The selftest runs the builder output through the harness validator in-process and as a 'python3 -B -I ... --production --json' subprocess with real file hashes. It also checks that a missing script hash, a synthetic alignment and a late reveal all fail.",
+    "M7 / 'Two cue-sheet validators' minor: deleted the skill copy 03_skills/examleaf-cue-sheet/scripts/validate_cue_sheet.py. Updated the cue-sheet SKILL.md, cue_sheet_contract.md, evals, spec template, README_skills_9-15.md (including the run-all loop, now python3 -B -I) and 04_harness_contract/README.md. The builder tokenizer now matches narration normalized_words(): ZWJ/ZWNJ are dropped without splitting the word, inner apostrophes are kept only before a letter, and maths symbols are tokens. Selftest asserts this.",
+    "M10: approval_record.json is schema 1.1 with approvers[] founder(cost) + academic_lead(science fit), fixture_hashes, style_hash, hero_hash (not_applicable only when no panel has hero_ref), signature and approval_id. All are bound in bound_sha256. estimate_and_gate.py write_all hashes fixtures/style/hero. verify() checks both roles, two distinct identities, script/fixture/style/hero hashes (re-hashed from --style-file/--fixtures-dir/--hero), refuses the legacy single-role record, and returns an 'authentication' note that the RUNNER must verify identities and signature against the RD-17 service. Selftest covers each case. Edit(./storyboard/**) was added to the deny list in brief_template.md, doc 01 §7.4 and doc 02. The Read(../**) problem is fixed by staging hashed read-only copies into style/ and contract/ (doc 01 §8.1, brief §2, Edit-denied). Docs 05 §5.3, gate SKILL.md, gate_procedure.md and review_checkpoint.md were updated.",
+    "M11: preflight.sh --workspace JOB_DIR adds a secret scan (sk-ant-, AKIA, BEGIN ... PRIVATE KEY, api_key=), an ultracode-effort scan (flag, EFFORT_LEVEL env, effortLevel setting) and an unversioned claude-opus/sonnet/haiku or bare alias scan. Only file names are printed. Without --workspace the scans are skipped with a WARN. The selftest now has 13 assertions (synthetic key files, plus a check that the script does not match its own patterns) and passes. Doc 01 §9 table is relabelled implemented vs proposed, and V13 points at the new scan plus the governor.",
+    "Safe zones (AD-42): vertical_safe_zones.tokens.json (v1.0.2) is the single owner of zones.*.share and the new zones.side_margin_min_px=96 (reconciles 90/60/96). layout_zones.py reads shares and side margin from the tokens, with fallback defaults equal to the token values; --ratios is an experiment override only; selftest checks the real token file. safe_zone_check.py reads side_margin_min_px. scene_template.html mirrors SIDE_MIN (lint level 2 --hf --strict still exit 0). style_tokens.json references the owner, and validate_style_tokens.py fails on drift (new selftest). Removed the stale 0.20/0.58/0.22 note. Doc 03, vertical-adapt, anim-qa and README_skills updated.",
+    "Loudness/music: AD-37 now reads '-1.5 dBFS sample peak (original [V4-MP])' and keeps the -1 dBTP ceiling. Tokens audio.loudness.reels_test_variant uses sample_peak_dbfs. import_clip_notes §6.3 points to audio.loudness and says resolved. One music_policy (muted under teaching; beds only in hooks/transitions/recaps/outros at 20-24 dB under speech; owned sonic logo commissioned; code-composed beds for Reel hooks/SFX/prototypes) is recorded in the tokens, style_tokens (paper-collage under_voice_db 15-20 -> 20-24), the AD-15 addendum, audio-compose SKILL/mixing_levels/synthesis_recipes/compose_bed.py string, reel_subrange_recipe, paper-collage guide, docs 03/06/11 and PILOT P8.",
+    "Vertical: doc 10 A11 accepts only 1080x1920. Doc 13 B.6 drops the --aspect 16:9 line and explains that the proof renderer does only --aspect 9:16 at 720x1280 @ 24 fps today (I checked visuals.py and examples/*.json), with a 1080x1920 @ 30 fps mode as a P1 build item. Style tokens rd_ref, AD-07, C1 and Q16 cite the 15 Oct vertical decision (RD-16 superseded) as the authority, as do docs 00, 03, 04, 05/README, 06, 11, the paper-collage guide and vertical-adapt SKILL.",
+    "anim-qa critical severities (science-safety-6/-12, AD-45): text_fixture_diff untraceable science text -> critical; flash_check any full-frame flash -> critical (a tile >3/s stays major); safe_zone_check --cues gives critical for an early answer reveal (answer:true or a cue in meta.answer_protection). Selftests updated. qa_rubric (new Q6a), SKILL.md, evals and doc 10 (R1/R2/R6 plus a severity alignment note) updated.",
+    "Typography: 'unresolved' wording replaced with RD-01 in the harness tokens, style_tokens C1 conflict_note, vertical_layout_rules.md and the harness README. The anim-qa equation-hold note cites RD-02.",
+    "Edge cases #53 (anim-brief, motion-harness) and #62 (effort-governor) are now in their owner skills' edge-case tables. Doc 12 rows note this, and row #3 notes that the governor refuses sandbox ultracode.",
+    "negative_tests.md: added NT-32 (disclosure removal), NT-33 (fake 'I heard you' sensing) and NT-34 (activation secret on screen), each run in chat and as Kit slot values. The machine-readable table now has 34 entries and the count line is updated.",
+    "effort_policy.py: new kit_cascade family (kit_route, kit_fill, kit_fill_xhigh, kit_escalate_sonnet, kit_escalate_opus) with per-tier attempts, k cap, USD ceilings, 20% circuit breaker and a 60K Haiku token guard. Haiku may author only in this family. Ultracode is refused in every family and mode with any justification, and there is no attended or S5 exception in code. Selftest covers all of this. budget_caps.json, governor SKILL.md, doc 09 §4/§5 and AD-41 added.",
+    "Doc 01 setup: dated addendum covers python3 only (no python binary) and python3 -B -I selftests, a venv pinned to python3.13 or 3.11 (not 3.14), Node 24.6.0 via 'nvm use 24', and both ffmpeg and ffprobe missing. Added a minimal headless-Chrome frame-capture command for V10/V11 (forward plus reverse order, then determinism_hash_check), marked [verify].",
+    "12/README.md 'Things to know' has a dated 15 Oct 2026 change list. New decisions AD-41..AD-45 are in doc 14 §1.2. All selftests in 12 pass (17 Python, 3 Node, 2 bash) and every JSON file in 12 parses."
+   ],
+   "not_done": [
+    "Free-chapter policy and digital-only SKU: nothing in section 12 depends on them, so no DECISION NEEDED entry was added here. RD-44 in 07/10 already records it as DECISION NEEDED; NT-34 only cites it as 'pending founder decision'.",
+    "preflight.sh still does not check the Manim variant, repository weight, provider-key environment variables or that effortLevel is set. Doc 01 §9 labels these 'proposed'. They were not required, and checking env keys could flag the ANTHROPIC_API_KEY that headless Claude Code legitimately needs.",
+    "The frame-capture command was not run: no render/build scripts were allowed and ffmpeg is absent. Its Chrome flags (--headless=new, --virtual-time-budget) are marked [verify].",
+    "Files outside 12/ that still carry stale text (not owned, so not edited): 06_skills_library/SKILLS_MATRIX.csv row 64 (describes the deleted skill validator's invariants and 1 ms tolerance); 11_human_feel_voice_audio_research playbook ('genuinely human-composed' music, Reel 18-22 dB); 13_strong_to_cheap_model_strategy V2/V4/V5 wording (anim-qa SKILL.md now states it is the canonical V2/V4 and that V5 = harness validator late=fail)."
+   ],
+   "notes": "Root for every path above: /Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/. Every change is dated 15 Oct 2026. Where I changed text I struck through or annotated the old wording rather than rewriting whole files. [Recommendation]/[Hypothesis] labels are kept.\n\nThings to know:\n- **Cue spec requirement.** build_cue_sheet.py now hard-requires spec.language; old specs without it block. --production also needs spec.script or script_sha256.\n- **Approval verification.** `--verify-approval` now needs `--style-file` and `--fixtures-dir`, plus `--hero` when any panel has a hero_ref. The runner must pass them.\n- **Reels peak value.** In the tokens, the Reels test variant now records sample_peak_dbfs -1.5 and true_peak_dbtp -1.0 (it was -1.5 dBTP), consistent with AD-04's 'house measure stays dBTP'.\n- **Margin change effect.** The side margin is now 96 px everywhere, so placeholder-derived zones are x=96..960 (was 60..960). safe_zone_check and layout_zones outputs shift by 36 px on the left.\n- **Concurrent edits.** Other agents had already edited 07/06 (early answer reveal is now Critical) and 07/10 (RD-41..RD-46). Doc 10 and AD-44 cite them.\n- **Interpreters used.** Selftests were run with python3 3.14.2 (-B -I), node v20.19.4 and bash 3.2. lint_seek_contract.js and determinism_hash_check.py are still byte-identical to the motion-harness copies (cmp ok)."
+  },
+  {
+   "files_changed": [
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/05_narration_system/README.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/05_narration_system/INSTRUCTIONS_narration_pipeline.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/06_skills_library/INSTRUCTIONS_install_and_use_skills.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/08_cost_models/README.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/08_cost_models/CONSOLIDATED_COST_SCENARIOS.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/08_cost_models/INSTRUCTIONS_how_to_use_cost_models.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/09_research_and_evidence/VERIFIED_vs_PROPOSED.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/10_pilots_and_examples/INSTRUCTIONS_running_the_four_pilots.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/11_human_feel_voice_audio_research/PLAYBOOK_human_crafted_vertical_video.md",
+    "/Users/chinmoybhuyan/Desktop/Personal/Book/Videos/ExamLeaf_Video_EdTech_Pipeline/11_human_feel_voice_audio_research/README.md"
+   ],
+   "done": [
+    "Minor 'Stale test counts and integrity claims' (goal-alignment-9, factual-and-arithmetic-correctness-3, completeness-vs-asks-6, executability-3, science-safety-nonnegotiables-17, sceptic-and-bloat-8, executability-9, cross-section-consistency-12), 05 part: every '57 passed' / '49 functions = 57 cases' in the 05 README and INSTRUCTIONS now also carries '58 passed + 2 FFmpeg-environment failures here; 60 with FFmpeg' (52 functions = 60 cases). The original wording is kept as the 'at delivery' figure. Notes added that pronunciation.py and tests/test_narration.py differ from DELIVERY_MANIFEST.json on purpose (see CHANGES.md), that the comparator is now category-based and Indic-safe (no longer English-only), that the 3 new tests are listed, and that the loudness gate is verified only where FFmpeg is installed.",
+    "factual-and-arithmetic-correctness-11 / goal-alignment-10 (06 INSTRUCTIONS count only): '57 Skills' changed to '72 (57 + 15 advanced-animation skills, canonical in section 12)' in the intro and the status banner. A note says the later 'the 57' mentions mean the audited custom_skills/ set.",
+    "M6 (08 part): dated addendum README §3.1 and CONSOLIDATED Part E.8 (same text). It covers RD-41 review cash $0 with capacity minutes kept, and gives review-free cash totals per model: v1 $2.37; v2 $111.48 / $7.68 / $2.32; hybrid with clips $0 $3.68; premium narration $1.67; hybrid + narration $8.28. It points to 13 §7.13 as the canonical review-free table. Inline dated notes were added on the E.7 '88%/78%' sentence, the E.4 Rs 3,000 seam, the README Seam row and gaps item 5. A matching addendum and inline notes were added to INSTRUCTIONS_how_to_use_cost_models.md. Workbook numbers were left intact.",
+    "M6 business line: the Rs 3,000 'Reviewed chapter videos' line (90-Day Budget B6) is relabelled as opportunity cost. Cash part is about Rs 745/video, about Rs 29,800 for the 40-video pilot. Cell B6 was not edited.",
+    "factual-and-arithmetic-correctness-12 (34 sheets not 35): 08 already said 34. Added dated notes that the '35 sheets' error lives in 00_source/README.md line 37, which is read-only and was not edited.",
+    "factual-and-arithmetic-correctness-4 (2027 TTS price): added in the 08 addenda and in the 11 PLAYBOOK Gemini line (lean-floor TTS ≈$0.14 → ≈$0.28 from 1 Jan 2027; lean floor ≈$0.59 → ≈$0.73; lean floor is Path B only).",
+    "Navigation minor '09 VERIFIED_vs_PROPOSED does not reference sections 11–13': added dated Part H covering 11, 12, 13 and 14, with a header pointer and an updated narration-tests row in Part A. Statuses: 11 RESEARCHED/PROPOSED; 12 scripts TESTED offline-selftest only, 15 skills DRAFTED with 0 agent evals, no real render (NOT DONE); 13 PROPOSED/unmetered and Kit NOT DONE; 14 audit verdict PARTIALLY ALIGNED with fixes being applied.",
+    "M1 (10 pilots part) and the sceptic 'one pilot plan, one benchmark' item: dated addendum plus inline edits to step 6, §6 procedure step 3, the recording grid and §12. The scored output is 1080×1920 (9:16) @ 30 fps. 16:9 is an unscored smoke test only. A note says the proof renderer hard-codes 720×1280 (pipeline.py:35, visuals.py:74) and defaults to 16:9. The compositor benchmark now points to 12's vertical-only BENCHMARK doc.",
+    "M9: in the PLAYBOOK, the 3 s cap is scoped to TTS break tags. Protected think windows follow RD-11 (room-tone insert, default 6 s, 5–8 s range) or pause-video. Edited in Step 1, Step 8, catalogue row 1 and the spec sheet, which has a new protected-window row; the THINK 1.2–2.0 s pause is relabelled as an emphasis hold.",
+    "science-safety-nonnegotiables-5: Path A ASR diff of keeper takes against the approved script (qa.transcript_check plus the fake-sensing lint). Any wording change goes back to GA on a new bundle hash. Added to Step 3, the Step 13 gate, the §9 human gates and the exec bullet 5.",
+    "science-safety-nonnegotiables-3 / M2 (11 part): two disclosure templates matching RD-45. Path A: 'Performed by [Teacher]; voice converted with AI.' Path B: 'AI-generated narration; script by [Teacher/author].' Added in Step 14 and §7.3, with a rule that Path A wording is never used on Path B content.",
+    "science-safety-nonnegotiables-18: 'you've got this' replaced with conditional confidence phrasing per the 03 Step 9 rules (exec bullet 3, Step 1, usage map). Any third-party STS processor (ElevenLabs Voice Changer, Segmind) must pass 07/07 admission (§2, §4, §7) and be named in the performer consent (Step 3, Step 4, tools table, §7.4, §9 row 3).",
+    "goal-alignment-12: Step 15 now says '1–3 recomposed complete units' (more only after the GS gate holds). The renderer is now 'HyperFrames default master timeline; Remotion benchmark only; Manim inserts' (tools table, §9 row 7).",
+    "Music records (science-safety-nonnegotiables-11, cross-section-consistency-11, 11 part): playbook aligned with 12 AD-15/AD-37. Muted under teaching (a spoken recap counts as teaching); owned, commissioned sonic logo; code-generated beds allowed for Reel hooks/CTA, transitions, SFX, intros/outros and prototypes, never called human-composed; 15–20 dB in those placements, 20–24 dB only for a T2 A/B arm. Edited in exec bullet 3, Step 10, the spec sheet, the usage map and §7.1 item 7.",
+    "11/README: dated 'Corrections applied 15 Oct 2026' table summarising all playbook changes and their basis (RD-11, RD-45, 07/05, 12 AD-01/AD-15/AD-37, 03 Step 9, 07/07, 08 E.6)."
+   ],
+   "not_done": [
+    "Did not edit 00_source/README.md line 37 ('35 sheets'), because 00_source is never to be touched. It is recorded as a dated note in 08 README §8 and in the addenda.",
+    "Did not regenerate narration_system_v1/DELIVERY_MANIFEST.json or outputs/tests.txt (repo code is out of scope). The docs now state they record the delivered state.",
+    "Did not change the remaining 'the 57' references in 06 INSTRUCTIONS (frontmatter audit lines 44/91/204). The brief said count only, and those lines describe the 57 custom_skills that were audited; a scoping sentence was added instead.",
+    "Did not ask for a founder decision on whether a paid performer (Path A) is in-house. RD-41 covers review only, so the 08 addendum shows both the paid ($30/h workbook rate) and in-house machine-only figures rather than choosing one.",
+    "Free-chapter policy and the digital-only SKU are not in my files (RD-44 already records them as DECISION NEEDED in 07/10). Nothing was decided here.",
+    "Did not edit REPORT_human_crafted_feel_vertical_videos.md (its line 204 cutaway advice is cited by science-safety-3). It is not in my owned list; the PLAYBOOK Step 14 rule covers it (no real-teacher cutaway over Path B audio unless the label says the voice is synthetic)."
+   ],
+   "notes": "All changes are dated 15 Oct 2026 and made as inline annotations (originals kept, struck through or marked 'at delivery') or appended addenda. No workbook, code, 00_source file or render/build script was touched, nothing was installed and no network was used. RD-41 and RD-45 already exist in 07/10 (written by another owner), and my text references them by ID. Review-free arithmetic (verified with python3): hybrid + premium narration = 34.3427 − 26.6667 − 0.96 − 0.10 + 1.666 = $8.28 (Rs 745 at Rs 90/USD); clips $0 gives $4.28. The 08 README and CONSOLIDATED share one addendum text, in README §3.1 and CONSOLIDATED E.8. Pre-edit backups of every edited file are in the session scratchpad (/private/tmp/claude-501/.../scratchpad/)."
+  }
+ ],
+ "verify": {
+  "checks": [
+   {
+    "check": "1 selftests",
+    "pass": true,
+    "detail": "24 scripts (py/js/sh across 03_skills/*/scripts and 04_harness_contract) run with --selftest: 24 pass, 0 fail. The first attempt failed only because zsh did not word-split the command string, so I re-ran the loop under bash."
+   },
+   {
+    "check": "2 cue-sheet validator routing",
+    "pass": true,
+    "detail": "build_cue_sheet.py sets HARNESS_VALIDATOR = HARNESS / \"validate_cue_sheet.py\" and loads it by path via importlib. Its header says every sheet is checked by the ONE harness validator, 04_harness_contract/validate_cue_sheet.py. The examleaf-cue-sheet/scripts/ folder holds only build_cue_sheet.py, so the local validate_cue_sheet.py is gone. The builder's own selftest is among the 24 that passed."
+   },
+   {
+    "check": "3 16:9 remnants in 07/ROOT README",
+    "pass": true,
+    "detail": "Every hit is marked superseded, a smoke test, a P1 build item, or provenance. 10_DECISIONS RD-01 and RD-16 are labelled SUPERSEDED. 11_MASTER_CHECKLIST lines 45, 54 and 113 use strikethrough or 'was', with RD-16 SUPERSEDED. 03_PER_LESSON lines 3, 240, 241, 298 and 302 are SUPERSEDED, 'v1 values for the superseded master', or the 720x1280 proof (changed from 16:9). 02_PHASED_BUILD_ROADMAP lines 54 and 65 are the P1 build item and an unscored 16:9 smoke test. 00_OVERVIEW lines 100-102, 316 and 335 are provenance, or state the proof renderer supports only 1280x720/720x1280 and that RD-16 is SUPERSEDED. 07/README line 102 says no 16:9 master. 01_SETUP line 123 and 12_GLOSSARY line 56 describe the proof renderer's validate mode and the reflow-vs-crop term. The root README line 53 contains one of the patterns. I did not read the full line 53 or the 06_QA_GATES line 89 hit, so those two are inferred from the visible part of each line."
+   },
+   {
+    "check": "4 disclosure gate",
+    "pass": true,
+    "detail": "'disclos' matches 5 times in 06_QA_GATES_and_RELEASE.md, 3 times in 03_PER_LESSON_PRODUCTION_PROCEDURE.md and 6 times in 11_MASTER_CHECKLIST.md."
+   },
+   {
+    "check": "5 decisions",
+    "pass": true,
+    "detail": "10_DECISIONS has rows RD-41 through RD-46, all dated 15 Oct 2026, and 2 lines containing SUPERSEDED (RD-16 and the RD-16 note). RD-41 to RD-46 are also cited across 00_OVERVIEW, 01_SETUP, 02_PHASED_BUILD_ROADMAP and 03_PER_LESSON_PRODUCTION_PROCEDURE."
+   },
+   {
+    "check": "6 stale counts",
+    "pass": true,
+    "detail": "No '57 Skills' or '57 skills' hits. '57 passed' remains in 17 places, all about the Narration pack's delivered test run (tests.txt copies, the DELIVERY_MANIFEST, the narration docs and 09/10). Where the docs touch the later 58/60 figures they note them: 05_narration_system/README.md line 83 says 58 passed + 2 FFmpeg failures, and 60 with FFmpeg. VERIFIED_vs_PROPOSED.md line 32 gives a 15 Oct 2026 count after the Indic tokenizer fix. 01_SETUP line 162 gives the 58/60 counts. These are historical delivery records, so I treated them as non-stale."
+   },
+   {
+    "check": "7 section 13",
+    "pass": true,
+    "detail": "STRATEGY §5.7 (line 650) says 'A Reel never inherits approval'. Each Reel is a new hashed artefact, with its own H-SB, the full A-suite and GS. Line 662 withdraws the earlier 'inherits' wording. The §2.1 diagram (lines 199-231) puts [GATE GA] and [GATE H-SB] ahead of synthesis. [GATE GF] comes after the A-suite, with GS per Reel. Line 236 states the gate order: GA, H-SB, TTS, cascade, A-suite, GF."
+   },
+   {
+    "check": "8 JSON validity",
+    "pass": true,
+    "detail": "67 *.json files under 12_ and 13_ parsed with json.load. 0 invalid."
+   },
+   {
+    "check": "9 markdown links",
+    "pass": true,
+    "detail": "282 relative links checked in project .md files, excluding 00_source, 14_end_to_end_audit, skill folders and code fences. 0 broken."
+   },
+   {
+    "check": "10 storyboard approval record",
+    "pass": true,
+    "detail": "approval_record.json (schema 1.1) has two approvers, founder (cost) and academic_lead (science). It has fixture_hashes, style_hash and hero_hash fields. bound_sha256 covers estimate, beats, grid, script, fixtures, style and hero. It also has artifact_sha256 and a signature field, which is null."
+   },
+   {
+    "check": "11 cache dirs",
+    "pass": true,
+    "detail": "find outside 00_source returned no __pycache__ or .pytest_cache directories."
+   }
+  ],
+  "summary": "All 11 checks pass. The 24 selftests under 03_skills/*/scripts and 04_harness_contract pass with 0 failures. The cue-sheet builder routes through 04_harness_contract/validate_cue_sheet.py and the local copy is gone. The remaining 16:9 and 1920x1080 mentions in 07 and the root README are in superseded, smoke-test, build-item or provenance context. The disclosure gate appears in all three 07 files. RD-41 to RD-46 and the RD-16 SUPERSEDED note are in the decisions file. The 57-count hits that remain are only the Narration pack's historical delivery records, with later counts noted where relevant. Section 13 now says a Reel never inherits approval, and its diagram puts GA before rendering. All 67 JSON files parse, 282 relative markdown links resolve, the approval record has two roles and hash fields, and there are no cache directories outside 00_source. No files were modified."
+ }
+}

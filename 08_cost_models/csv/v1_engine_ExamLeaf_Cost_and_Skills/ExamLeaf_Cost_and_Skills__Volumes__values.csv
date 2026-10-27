@@ -1,0 +1,23 @@
+EXAMLEAF | PRODUCTION COST,,,
+"USD, pre-tax. Same one-month accounting period. Reusable-component baseline; initial implementation is shown separately.",,,
+,,,
+Cost / capacity metric,1 video,100 videos,"1,000 videos"
+Videos,1,100,1000
+Variable machine cost,2.3676168799999995,236.76168799999994,2367.6168799999996
+Human review,18,1800,18000
+Fixed overhead for accounting period,200,200,200
+Optional Remotion licensing,0,0,0
+TOTAL PRODUCTION COST,220.36761688,2236.761688,20567.61688
+Average production cost per video,220.36761688,22.36761688,20.567616880000003
+One-time implementation,8000,8000,8000
+TOTAL INCLUDING IMPLEMENTATION,8220.36761688,10236.761688,28567.61688
+Reviewer hours required,1,100,1000
+Render worker hours required,0.9,90,900
+Reviewer FTE at 160 h/month,0.00625,0.625,6.25
+Machine cost share of production,0.010743941934487009,0.10585020714106577,0.11511381672527535
+,,,
+"Sensitivity: increasing review to $40/video adds $22/video. Bespoke diagrams, additional languages, heavy Blender rendering, rights clearance, taxes and large platform maintenance are not covered by this baseline.",,,
+,,,
+,,,
+"Remotion switch defaults to 0. When enabled, 20 billable renders/video is an editable assumption, not a verified billing interpretation. Confirm partial-scene/still billing with the vendor before purchase.",,,
+,,,

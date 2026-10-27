@@ -1,0 +1,22 @@
+VOLUME COMPARISON | same one-month operating period,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+Architecture,Videos,Variable USD/video,Variable USD,Fixed USD,Operating total USD,Average USD/video,Setup USD,Total with setup USD
+AI-heavy,1,='Per Video'!B17,=B5*C5,='Per Video'!B18*Inputs!$B$44,=D5+E5,=F5/B5,='Per Video'!B19,=F5+H5
+AI-heavy,100,='Per Video'!B17,=B6*C6,='Per Video'!B18*Inputs!$B$44,=D6+E6,=F6/B6,='Per Video'!B19,=F6+H6
+AI-heavy,1000,='Per Video'!B17,=B7*C7,='Per Video'!B18*Inputs!$B$44,=D7+E7,=F7/B7,='Per Video'!B19,=F7+H7
+Hybrid,1,='Per Video'!C17,=B8*C8,='Per Video'!C18*Inputs!$B$44,=D8+E8,=F8/B8,='Per Video'!C19,=F8+H8
+Hybrid,100,='Per Video'!C17,=B9*C9,='Per Video'!C18*Inputs!$B$44,=D9+E9,=F9/B9,='Per Video'!C19,=F9+H9
+Hybrid,1000,='Per Video'!C17,=B10*C10,='Per Video'!C18*Inputs!$B$44,=D10+E10,=F10/B10,='Per Video'!C19,=F10+H10
+Self-hosted,1,='Per Video'!D17,=B11*C11,='Per Video'!D18*Inputs!$B$44,=D11+E11,=F11/B11,='Per Video'!D19,=F11+H11
+Self-hosted,100,='Per Video'!D17,=B12*C12,='Per Video'!D18*Inputs!$B$44,=D12+E12,=F12/B12,='Per Video'!D19,=F12+H12
+Self-hosted,1000,='Per Video'!D17,=B13*C13,='Per Video'!D18*Inputs!$B$44,=D13+E13,=F13/B13,='Per Video'!D19,=F13+H13
+,,,,,,,,
+,,,,,,,,
+Capacity/add-on,Value,Unit,Qualification,,,,,
+"Hybrid reviewer hours at 1,000",='Per Video'!C20*B10/60,hours,"Includes academic, QA and repair time",,,,,
+"Hybrid FTE equivalent at 1,000",=B17/Inputs!$B$35,FTE-month,Not a hiring promise; workload allocation,,,,,
+Optional three-Short package,=Inputs!$B$41+Inputs!$B$40*Inputs!$B$21*Inputs!$B$22/1000+Inputs!$B$42+Inputs!$B$43/60*Inputs!$B$30,USD/lesson,Additional cost for total three reviewed Shorts,,,,,
+"Optional Remotion paid tier at 1,000","=MAX(Inputs!$B$37*Inputs!$B$44,B10*Inputs!$B$38*Inputs!$B$36)",USD/month,Only if licence applies; render count needs confirmation,,,,,
+Hybrid with zero generated clips: variable,='Per Video'!C17-'Per Video'!C7,USD/video,Removes only optional generation allowance,,,,,
+,,,,,,,,

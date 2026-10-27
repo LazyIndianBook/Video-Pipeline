@@ -1,0 +1,63 @@
+{
+ "physics": {
+  "explain_window": [
+   22.5,
+   57.4
+  ],
+  "events": 18,
+  "per_10s": 5.2,
+  "mean_interval": 1.94,
+  "gaps_gt_3s": [
+   [
+    31.17,
+    3.62
+   ],
+   [
+    34.79,
+    3.24
+   ],
+   [
+    42.87,
+    3.46
+   ]
+  ]
+ },
+ "chemistry": {
+  "explain_window": [
+   21.65,
+   59.77
+  ],
+  "events": 17,
+  "per_10s": 4.5,
+  "mean_interval": 2.24,
+  "gaps_gt_3s": [
+   [
+    25.57,
+    8.96
+   ],
+   [
+    39.17,
+    3.52
+   ]
+  ]
+ },
+ "biology": {
+  "explain_window": [
+   18.87,
+   52.33
+  ],
+  "events": 18,
+  "per_10s": 5.4,
+  "mean_interval": 1.86,
+  "gaps_gt_3s": [
+   [
+    35.45,
+    4.35
+   ],
+   [
+    44.17,
+    3.12
+   ]
+  ]
+ }
+}

@@ -1,0 +1,16 @@
+{
+  "job_id": "R-phy10-03-a",
+  "scene_id": "reel-phy-10-03-a",
+  "source_kind": "licensed",
+  "audio": "assets/licensed/bed_upbeat_01.wav",
+  "asset_manifest_id": "AM-2026-0141",
+  "licence_confirmed": true,
+  "bed_meta": null,
+  "start_bpm": 100,
+  "prior_norm": null,
+  "bpm_curve": null,
+  "words": "audio/alignment/reel-a.json",
+  "hop": 512,
+  "command": "python3 scripts/beat_grid.py --audio assets/licensed/bed_upbeat_01.wav --start-bpm 100 --words audio/alignment/reel-a.json --out jobs/reel-phy-10-03-a/audio/analysis.json",
+  "ear_check": {"required": true, "reviewer": null, "result": null}
+}

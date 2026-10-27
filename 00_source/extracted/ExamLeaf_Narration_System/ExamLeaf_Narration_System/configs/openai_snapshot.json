@@ -1,0 +1,5 @@
+{
+  "provider": "openai",
+  "model": "gpt-4o-mini-tts-2025-12-15",
+  "voice_id": "marin"
+}

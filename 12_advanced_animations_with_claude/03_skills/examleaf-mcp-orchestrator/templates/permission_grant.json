@@ -1,0 +1,18 @@
+{
+  "job_id": "L-phy10-03",
+  "granted_by": "<named human reviewer>",
+  "granted_at": "<ISO timestamp>",
+  "expires_at": "<ISO timestamp, same day>",
+  "servers": [
+    {"name": "higgsfield", "tools": ["image"], "models": ["gpt_image_2_5"], "max_calls": 12, "credit_cap": null}
+  ],
+  "forbidden": [
+    "video models (premium or otherwise)",
+    "text2speech_v2 for production narration",
+    "website building",
+    "any image containing text, numbers, formulas or labels"
+  ],
+  "secrets_source": "env (provider worker only)",
+  "enforced_by": "runner tool allowlist for this job's provider worker",
+  "caveat": "local JSON is not authentication; production approvals use the authenticated review identity"
+}

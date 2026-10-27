@@ -1,0 +1,68 @@
+{
+ "cache_key": "74d4b36a2e9c287b",
+ "beat": "b02",
+ "chars": 59,
+ "request_id": "macos-say-Rishi-170",
+ "model_id": "macos-say",
+ "voice_id": "Rishi",
+ "unmatched_words": 0,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0.0,
+   "t1": 0.236
+  },
+  {
+   "w": "flow",
+   "t0": 0.257,
+   "t1": 0.552
+  },
+  {
+   "w": "is",
+   "t0": 0.577,
+   "t1": 0.754
+  },
+  {
+   "w": "called",
+   "t0": 0.77,
+   "t1": 1.183
+  },
+  {
+   "w": "current",
+   "t0": 1.219,
+   "t1": 1.691
+  },
+  {
+   "w": "this",
+   "t0": 1.732,
+   "t1": 2.027
+  },
+  {
+   "w": "meter",
+   "t0": 2.052,
+   "t1": 2.406
+  },
+  {
+   "w": "reads",
+   "t0": 2.437,
+   "t1": 2.791
+  },
+  {
+   "w": "it",
+   "t0": 2.822,
+   "t1": 2.999
+  },
+  {
+   "w": "in",
+   "t0": 3.014,
+   "t1": 3.192
+  },
+  {
+   "w": "amperes",
+   "t0": 3.207,
+   "t1": 3.679
+  }
+ ],
+ "provider_alignment": null,
+ "preview": true
+}

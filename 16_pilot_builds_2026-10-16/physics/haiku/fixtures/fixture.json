@@ -1,0 +1,27 @@
+{
+  "fixture_id": "FIX-ohm-readings",
+  "display": {
+    "r_label": "R =",
+    "r_unit": "Ω",
+    "v_label": "V =",
+    "v_unit": "V",
+    "i_label": "I =",
+    "i_unit": "A",
+    "ratio_label": "V / I =",
+    "ui": {
+      "think_prompt": "Pause. Predict."
+    }
+  },
+  "parameters": {
+    "resistance_ohm": 10,
+    "v1": 2,
+    "v2": 4
+  },
+  "results": {
+    "i1_a": 0.2,
+    "i2_a": 0.4,
+    "ratio_i2_over_i1": 2,
+    "v1_over_i1_ohm": 10,
+    "v2_over_i2_ohm": 10
+  }
+}

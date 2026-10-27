@@ -1,0 +1,22 @@
+VOLUME COMPARISON | same one-month operating period,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+Architecture,Videos,Variable USD/video,Variable USD,Fixed USD,Operating total USD,Average USD/video,Setup USD,Total with setup USD
+AI-heavy,1,158.976,158.976,250,408.976,408.976,5000,5408.976
+AI-heavy,100,158.976,15897.6,250,16147.6,161.476,5000,21147.6
+AI-heavy,1000,158.976,158976,250,159226,159.226,5000,164226
+Hybrid,1,34.342666666666666,34.342666666666666,300,334.3426666666667,334.3426666666667,10000,10334.342666666667
+Hybrid,100,34.342666666666666,3434.2666666666664,300,3734.2666666666664,37.342666666666666,10000,13734.266666666666
+Hybrid,1000,34.342666666666666,34342.666666666664,300,34642.666666666664,34.64266666666666,10000,44642.666666666664
+Self-hosted,1,37.315,37.315,900,937.315,937.315,16000,16937.315
+Self-hosted,100,37.315,3731.5,900,4631.5,46.315,16000,20631.5
+Self-hosted,1000,37.315,37315,900,38215,38.215,16000,54215
+,,,,,,,,
+,,,,,,,,
+Capacity/add-on,Value,Unit,Qualification,,,,,
+"Hybrid reviewer hours at 1,000",1416.6666666666667,hours,"Includes academic, QA and repair time",,,,,
+"Hybrid FTE equivalent at 1,000",8.854166666666668,FTE-month,Not a hiring promise; workload allocation,,,,,
+Optional three-Short package,4.316,USD/lesson,Additional cost for total three reviewed Shorts,,,,,
+"Optional Remotion paid tier at 1,000",200,USD/month,Only if licence applies; render count needs confirmation,,,,,
+Hybrid with zero generated clips: variable,30.342666666666666,USD/video,Removes only optional generation allowance,,,,,
+,,,,,,,,

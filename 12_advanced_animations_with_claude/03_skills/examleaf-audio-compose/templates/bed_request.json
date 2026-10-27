@@ -1,0 +1,21 @@
+{
+  "job_id": "L-phy10-03",
+  "scene_id": "phy-10-03-reel01",
+  "segment_role": "reel_hook",
+  "style": "paper-collage-vertical",
+  "bpm": 100,
+  "length": {"seconds": 21.5},
+  "seed": 995300448,
+  "seed_rule": "int(sha256('L-phy10-03|phy-10-03-reel01|bed|v1').hexdigest()[:8], 16)",
+  "mood_sections": [
+    {"mood": "neutral", "bars": 7},
+    {"mood": "endcard", "bars": 2}
+  ],
+  "sfx": {"needed": ["pop", "paper_swish", "tap"]},
+  "narration_present": true,
+  "policy_check": {
+    "learning_tokens": "02_learning_psychology/palette_and_typography_tokens.json",
+    "background_music_in_core_explanation": false,
+    "segment_is_core_explanation": false
+  }
+}

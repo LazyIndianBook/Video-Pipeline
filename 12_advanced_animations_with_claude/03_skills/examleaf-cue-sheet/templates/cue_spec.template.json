@@ -1,0 +1,34 @@
+{
+  "scene_id": "{{scene_id}}",
+  "fps": 30,
+  "language": "{{bcp47, e.g. en-IN or hi-IN}}",
+  "script": "../script/{{approved_script}}.txt",
+  "default_offset_s": -0.05,
+  "tail_s": 0.3,
+  "narration": {
+    "alignment": "../audio/alignment/{{segment_id}}.json",
+    "wav": "../audio/{{segment_id}}.wav",
+    "duration_s": null
+  },
+  "synchronizer": {"timeline": "../audio/timeline.json", "segment_id": "{{segment_id}}"},
+  "beats": {"analysis": "../audio/analysis.json", "offset_s": 0.0},
+  "sfx_manifest": "../audio/sfx/sfx_palette.json",
+  "cues": [
+    {"id": "{{cue_id_reveal}}", "kind": "reveal", "element_id": "{{element_id}}", "anchor": {"phrase": "{{spoken phrase}}", "occurrence": 1, "edge": "start"}},
+    {"id": "{{cue_id_highlight}}", "kind": "highlight", "anchor": {"phrase": "{{spoken phrase}}", "occurrence": 2, "edge": "start"}, "offset_s": -0.05},
+    {"id": "{{cue_id_transition}}", "kind": "transition", "anchor": {"phrase": "{{last word of line}}", "occurrence": 1, "edge": "end"}, "offset_s": 0.3},
+    {"id": "{{cue_id_answer}}", "kind": "reveal-answer", "anchor": {"phrase": "{{first answer word}}", "occurrence": 1, "edge": "start"}},
+    {"id": "{{cue_id_title}}", "kind": "show", "at": 0.0}
+  ],
+  "sfx": [
+    {"file": "pop.wav", "cue": "{{cue_id_reveal}}", "offset_s": 0.0, "gain_db": -12},
+    {"file": "paper_swish.wav", "cue": "{{cue_id_transition}}", "offset_s": 0.0, "gain_db": -18}
+  ],
+  "_notes": [
+    "Paths are relative to this file. Remove 'synchronizer' if no timeline exists yet; remove 'beats' when there is no music.",
+    "occurrence is 1-based and must be re-checked whenever the approved script changes.",
+    "reveal-answer cues never take a negative offset.",
+    "15 Oct 2026 (audit M7): language and script (approved script text, hashed into script_sha256) are required; the narration WAV hash becomes narration_audio_sha256. Spec kinds show/highlight/reveal-answer are mapped to the schema enum. Release builds use --production (harness validator rules).",
+    "gain_db values are starting points for the mixer, not mastering levels."
+  ]
+}

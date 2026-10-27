@@ -1,0 +1,76 @@
+{
+ "fixture_id": "FIX-ohm-pd-03",
+ "compute": "fixtures/compute.py",
+ "parameters": {
+  "resistance_ohm": 10,
+  "v1": 2,
+  "v2": 4,
+  "v3": 6
+ },
+ "results": {
+  "i1": 0.2,
+  "i2": 0.4,
+  "i3": 0.6,
+  "ratio_v": 2,
+  "ratio_i": 2,
+  "v_over_i_1": 10,
+  "v_over_i_2": 10,
+  "v_over_i_3": 10,
+  "lamp": {
+   "current_doubles": false
+  }
+ },
+ "display": {
+  "r_label": "R =",
+  "r_unit": "Ω",
+  "v_label": "V =",
+  "v_unit": "V",
+  "i_label": "I =",
+  "i_unit": "A",
+  "ammeter_symbol": "A",
+  "condition": "constant temperature",
+  "lamp_label": "filament lamp",
+  "r_symbol": "R",
+  "rises": "↑",
+  "sym": {
+   "V": "V",
+   "I": "I",
+   "R": "R"
+  },
+  "ops": {
+   "eq": "=",
+   "div": "÷",
+   "times": "×"
+  },
+  "times": "×",
+  "decimals": {
+   "v": 0,
+   "i": 2
+  },
+  "ui": {
+   "unknown": "?",
+   "endcard_line1": "Professor Diki Simplified",
+   "endcard_line2": "Free lesson: Ohm's law"
+  },
+  "card": {
+   "head": {
+    "v": "V",
+    "i": "I",
+    "ratio": "V ÷ I"
+   },
+   "def": {
+    "term": "Ohm's law",
+    "text": "I is proportional to V, at constant temperature."
+   },
+   "points": {
+    "p1": "Double V, double I.",
+    "p2": "6 V ÷ 10 Ω = 0.60 A.",
+    "p3": "Only at constant temperature."
+   }
+  },
+  "flow": {
+   "px_per_a": 300,
+   "lamp_factor": 0.7
+  }
+ }
+}

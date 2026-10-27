@@ -1,0 +1,38 @@
+{
+  "_note": "EXAMPLE shape; units abbreviated. Produced by grapheme_clusters.py --plan on 04_harness_contract/cue_sheet.example.json (illustrative timings).",
+  "scene_id": "phy-10-03-s04",
+  "cue_sheet_sha256": "<64 hex>",
+  "elements": [
+    {
+      "element_id": "headline",
+      "mode": "kinetic",
+      "unit": "cluster",
+      "font_role": "devanagari",
+      "zone": "top_title",
+      "units": [
+        {"word_index": 1, "unit_index": 0, "text": "प्र", "at": 0.55, "lang": "hi-IN"},
+        {"word_index": 1, "unit_index": 1, "text": "का", "at": 0.595, "lang": "hi-IN"},
+        {"word_index": 1, "unit_index": 2, "text": "श", "at": 0.64, "lang": "hi-IN"}
+      ],
+      "fully_visible_at": 0.99,
+      "exit_at": 3.4,
+      "hold_s": 2.41,
+      "required_hold_s": 1.8,
+      "warnings": []
+    },
+    {
+      "element_id": "label_refraction",
+      "mode": "label",
+      "unit": "word",
+      "font_role": "label",
+      "zone": "middle_visual",
+      "text_source": "cue sheet words[16] (approved script); not typed by hand",
+      "units": [{"word_index": 16, "unit_index": 0, "text": "refraction", "at": 5.65, "lang": "en-IN"}],
+      "fully_visible_at": 6.0,
+      "exit_at": 7.4,
+      "hold_s": 1.4,
+      "required_hold_s": 1.2,
+      "warnings": []
+    }
+  ]
+}

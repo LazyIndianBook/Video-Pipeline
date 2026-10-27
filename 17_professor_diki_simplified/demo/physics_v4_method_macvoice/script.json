@@ -1,0 +1,1311 @@
+{
+ "schema_version": "script/v2",
+ "script_version": 2,
+ "video_id": "phy-ohm-pd-04",
+ "subject": "physics",
+ "topic": "What is Ohm's law? Voltage, current and resistance, NCERT 12.3, V = I R, three cases, the V–I graph and the hot filament (60-second method, PD-26/27/28)",
+ "level": "l9_10",
+ "locale": "en-IN",
+ "language": "en",
+ "format": "explainer_60",
+ "profile": "pds-60-method-1.0",
+ "target_duration_s": 60,
+ "duration_tolerance_s": 1,
+ "tail_s": 0.9,
+ "style": "professor-diki",
+ "voice": {
+  "path": "B",
+  "provider": "elevenlabs",
+  "model_id": "macos-say",
+  "voice_id": "Rishi",
+  "persona": "persona/super-teacher#core",
+  "rate_scale": 1.2,
+  "note": "stock English voice (PD-05); rate_scale 1.2 is the PD-28 fast-read plan (not yet measured; the quota is exhausted until 15 Nov 2026); re-measure on the first fast narration",
+  "preview": "macOS say -r 170 (not for release)"
+ },
+ "outcome": "The viewer can say what voltage, current and resistance are and their units (1 V = 1 J/C, 1 A = 1 C/s, 1 Ω = 1 V/A); state Ohm's law in plain words and recognise NCERT 12.3's statement with its condition; use V = I R, I = V/R and R = V/I on 2 V, 10 Ω → 0.20 A, 4 V → 0.40 A and 2 V, 20 Ω → 0.10 A; read the V–I graph as a straight line through the origin whose slope is R; and know that a hot filament bends the line.",
+ "promise_line": "What is Ohm's law?",
+ "claim_line": "Twice the push, twice the flow.",
+ "cta_line": "Try more cases in the free lesson.",
+ "outro": {
+  "beat": "b12",
+  "spoken": "Professor Diki Simplified.",
+  "end_card": {
+   "brand_line": "Professor Diki Simplified",
+   "free_lesson_line": "Free lesson: Ohm's law",
+   "min_on_screen_s": 1.5
+  },
+  "motif": "music/diki-end-motif",
+  "motif_starts": "after_last_word",
+  "tail_s": 0.9
+ },
+ "board_at_start": [
+  "ident",
+  "lane-title",
+  "circuit",
+  "cell",
+  "resistor",
+  "ammeter",
+  "v_label",
+  "r_label",
+  "i_readout",
+  "eq_I",
+  "eq_q",
+  "card_table"
+ ],
+ "artefacts": {
+  "scroll_test": "A meter showing '?' and one plain question, 'What is Ohm's law?', answered in a minute with three readings, NCERT's own sentence and a graph: a Class 10 student stays because they can feel the chapter fitting into one picture.",
+  "surprise": "Two numbers on the board decide the meter: double the push and the reading doubles, double the resistance and it halves, and a hot bulb bends the straight line.",
+  "outcome": "The viewer can say what voltage, current and resistance are and their units (1 V = 1 J/C, 1 A = 1 C/s, 1 Ω = 1 V/A); state Ohm's law in plain words and recognise NCERT 12.3's statement with its condition; use V = I R, I = V/R and R = V/I on 2 V, 10 Ω → 0.20 A, 4 V → 0.40 A and 2 V, 20 Ω → 0.10 A; read the V–I graph as a straight line through the origin whose slope is R; and know that a hot filament bends the line.",
+  "prerequisite_boundary": "Class 10: knows a cell, a wire and a bulb; has heard 'volt' and 'amp'; has not met Ohm's law. Coulomb and joule appear only on the unit cards.",
+  "prerequisite_bridge": "The meter counts charge per second (current); the resistor holds the flow back (resistance); the voltage across its ends is the push, energy per coulomb.",
+  "dependency_map": [
+   "voltage (b01) before 'push' is used in the law",
+   "current (b02) before 'current grows'",
+   "resistance (b03) before R",
+   "the law and its condition (b04) before the formula",
+   "V = I R and both rearrangements (b05) before any number",
+   "I = V/R on 2 V, 10 Ω (b06) before the changes",
+   "double V (b07) and double R (b08) on the same board",
+   "the three points before the graph (b09)",
+   "the straight line before the bend (b10)",
+   "everything before the claim line (b11)"
+  ],
+  "ledgers": {
+   "terms": [
+    {
+     "term": "voltage (potential difference)",
+     "plain": "the push",
+     "unit": "volt, 1 V = 1 J/C",
+     "beat": "b01",
+     "node": "DEF-potential-difference, DEF-units"
+    },
+    {
+     "term": "current",
+     "plain": "the flow",
+     "unit": "ampere, 1 A = 1 C/s",
+     "beat": "b02",
+     "node": "DEF-current, DEF-units"
+    },
+    {
+     "term": "resistance",
+     "plain": "how much the wire holds the flow back",
+     "unit": "ohm, 1 Ω = 1 V/A",
+     "beat": "b03",
+     "node": "DEF-resistance, DEF-units"
+    },
+    {
+     "term": "Ohm's law",
+     "plain": "current grows in step with the push, while the temperature stays the same",
+     "unit": "-",
+     "beat": "b04",
+     "node": "CLM-ncert-ohm (NCERT 12.3 verbatim on the card)"
+    },
+    {
+     "term": "slope",
+     "plain": "how steep the line is; here it is the resistance",
+     "unit": "Ω",
+     "beat": "b09",
+     "node": "REP-vi-graph"
+    }
+   ],
+   "quantities": [
+    {
+     "q": "R",
+     "value": "10 Ω, then 20 Ω (b08), back to 10 Ω (b09)",
+     "fx": "parameters.resistance_ohm, parameters.r2"
+    },
+    {
+     "q": "V",
+     "value": "2 V, 4 V (b07), 2 V (b08), 4 V (b11)",
+     "fx": "parameters.v1, parameters.v2"
+    },
+    {
+     "q": "I",
+     "value": "? until b06; 0.20 A, 0.40 A, 0.10 A, 0.20 A, ? (bulb), 0.40 A",
+     "fx": "results.i1, results.i2, results.i_r2"
+    },
+    {
+     "q": "graph",
+     "value": "(0, 0), (0.20, 2), (0.40, 4), (0.60, 6); slope 10 Ω",
+     "fx": "results.graph"
+    },
+    {
+     "q": "temperature",
+     "value": "the same (qualitative)",
+     "fx": "display.condition"
+    }
+   ],
+   "claims": [
+    {
+     "claim": "voltage is the push (potential difference), 1 V = 1 J/C",
+     "node": "DEF-potential-difference"
+    },
+    {
+     "claim": "current is the flow the meter reads, 1 A = 1 C/s",
+     "node": "DEF-current"
+    },
+    {
+     "claim": "resistance holds the flow back, 1 Ω = 1 V/A",
+     "node": "DEF-resistance"
+    },
+    {
+     "claim": "NCERT 12.3: V ∝ I provided the temperature remains the same",
+     "node": "CLM-ncert-ohm"
+    },
+    {
+     "claim": "V = I R, I = V/R, R = V/I",
+     "node": "CLM-resistance-constant"
+    },
+    {
+     "claim": "double R at the same V halves I",
+     "node": "WRK-ohm-double-r"
+    },
+    {
+     "claim": "the V–I graph is a straight line through the origin with slope R",
+     "node": "REP-vi-graph"
+    },
+    {
+     "claim": "a hot filament resists more, so its line bends (qualitative)",
+     "node": "CLM-filament"
+    }
+   ],
+   "misconception": {
+    "node": "MIS-always-doubles",
+    "how_met": "b09: the bulb in the same slot, I × 2 struck, the condition chip struck; no lamp number"
+   },
+   "controlled_example": "one resistor on an ideal cell (SIM-ideal-cell): V changed with R held (b07), R changed with V held (b08); temperature held throughout; the bulb breaks the hold (b10)"
+  },
+  "fact_sheet": [
+   {
+    "fact": "voltage is the push (potential difference), 1 V = 1 J/C",
+    "node": "DEF-potential-difference"
+   },
+   {
+    "fact": "current is the flow the meter reads, 1 A = 1 C/s",
+    "node": "DEF-current"
+   },
+   {
+    "fact": "resistance holds the flow back, 1 Ω = 1 V/A",
+    "node": "DEF-resistance"
+   },
+   {
+    "fact": "NCERT 12.3: V ∝ I provided the temperature remains the same",
+    "node": "CLM-ncert-ohm"
+   },
+   {
+    "fact": "V = I R, I = V/R, R = V/I",
+    "node": "CLM-resistance-constant"
+   },
+   {
+    "fact": "double R at the same V halves I",
+    "node": "WRK-ohm-double-r"
+   },
+   {
+    "fact": "the V–I graph is a straight line through the origin with slope R",
+    "node": "REP-vi-graph"
+   },
+   {
+    "fact": "a hot filament resists more, so its line bends (qualitative)",
+    "node": "CLM-filament"
+   },
+   {
+    "fact": "10 Ω: 2 V → 0.20 A, 4 V → 0.40 A, 6 V → 0.60 A; 20 Ω at 2 V → 0.10 A",
+    "node": "FIX-ohm-pd-04"
+   }
+  ],
+  "causal_chain": [
+   "Voltage pushes, resistance holds back, the meter counts the current.",
+   "So I = V ÷ R: 2 V over 10 Ω gives 0.20 A.",
+   "Double V and I doubles; double R and I halves; V against I is a straight line of slope R.",
+   "All of that holds only while the temperature stays the same; a hot filament bends the line."
+  ],
+  "openings": [
+   {
+    "text": "Ohm's law: what's this meter reading? Let's calculate.",
+    "topic_clarity": 5,
+    "uncertainty": 4,
+    "payoff": 5,
+    "note": "v4 opening; the founder rejected it as a clipped fragment (PD-27)"
+   },
+   {
+    "text": "What is Ohm's law? Something pushes electricity through a wire. That push is voltage, and we measure it in volts.",
+    "topic_clarity": 5,
+    "uncertainty": 3,
+    "payoff": 5,
+    "chosen": true,
+    "note": "the founder's question opening (PD-24), then the first definition at once in full plain sentences (PD-27); the question ends at about 1.6 s planned; paid by the NCERT statement (b04) and the claim (b11)"
+   },
+   {
+    "text": "This meter shows a question mark. Ohm's law tells us the number, so let's find it.",
+    "topic_clarity": 4,
+    "uncertainty": 4,
+    "payoff": 5,
+    "note": "a good puzzle, but it spends five seconds before the first definition and the founder asked to start with the question 'What is Ohm's law?'"
+   }
+  ],
+  "hooks": [
+   {
+    "kind": "definition_question",
+    "text": "What is Ohm's law? Something pushes electricity through a wire. That push is voltage, and we measure it in volts.",
+    "scroll": 4,
+    "honest": true,
+    "chosen": true
+   },
+   {
+    "kind": "visible_puzzle",
+    "text": "This meter shows a question mark. Ohm's law tells us the number, so let's find it.",
+    "scroll": 4,
+    "honest": true,
+    "why_rejected": "slower to the first definition; founder's opening is the question"
+   },
+   {
+    "kind": "bold_claim",
+    "text": "Ohm's law lets you calculate electric current.",
+    "scroll": 3,
+    "honest": true,
+    "why_rejected": "a claim, not a question; no picture to look at"
+   },
+   {
+    "kind": "pattern_interrupt",
+    "text": "Your phone charger obeys one rule from Class 10.",
+    "scroll": 3,
+    "honest": false,
+    "why_rejected": "a charger is not an ohmic resistor; not supported by the graph"
+   },
+   {
+    "kind": "stakes",
+    "text": "Every circuit sum in Class 10 starts here.",
+    "scroll": 3,
+    "honest": false,
+    "why_rejected": "unsourced exam claim"
+   }
+  ],
+  "hook_choice_rule": "Founder steer (PD-24, PD-27): open on the question 'What is Ohm's law?' and continue in full plain sentences; honest; picture complete at frame 0; question ends by 3 s",
+  "metaphor": "one sustained metaphor (PD-25): voltage PUSHES, current FLOWS, resistance HOLDS BACK; the proper words follow in full sentences and on the cards",
+  "retention_plan": "re-hooks: question 0.3 s, picture (dashes) ~7, answer (the law) ~16, formula ~22, worked readings 27-38, edge case ~38, graph ~44, exception ~50, moral ~53",
+  "adjective_test": "Kept: 'hot' (the cause of the exception), 'straight' (the shape that is the claim), 'same' (the condition).",
+  "repair_log": [
+   {
+    "original": "Ohm's law: what's this meter reading? Let's calculate.",
+    "replacement": "What is Ohm's law? Something pushes electricity through a wire. That push is voltage, and we measure it in volts.",
+    "reason": "PD-27: clipped caption fragments read as AI-written; full sentences, plain word first, term second, unit third",
+    "science_check": "DEF-potential-difference"
+   },
+   {
+    "original": "The resistor holds the flow back: resistance, ten ohms.",
+    "replacement": "Each wire holds the flow back a little; that is resistance, in ohms.",
+    "reason": "PD-27: no colon lists, no bare noun phrases",
+    "science_check": "DEF-resistance"
+   },
+   {
+    "original": "In NCERT's words, the potential difference across a wire is directly proportional to the current through it, as long as its temperature stays the same. (draft, 26 words)",
+    "replacement": "Ohm's law says current grows in step with the push, while the temperature stays the same. (the verbatim NCERT sentence is on the card)",
+    "reason": "a 26-word sentence breaks the 18-word limit and the 60 s plan; the brief asks for the NCERT wording on the card and a simplified voice",
+    "science_check": "CLM-ncert-ohm"
+   },
+   {
+    "original": "As a formula, voltage equals current times resistance, so current equals voltage divided by resistance. (draft)",
+    "replacement": "So V equals I R. Then I is V over R, and R is V over I.",
+    "reason": "adds the third rearrangement in fewer words; the letters are on the board chips from frame 0",
+    "science_check": "CLM-resistance-constant"
+   },
+   {
+    "original": "Here the battery pushes with two volts and the resistance is ten ohms, so the current is two divided by ten, which is point two amperes. (draft, 27 words)",
+    "replacement": "Two volts over ten ohms gives a current of point two amperes.",
+    "reason": "fit at 60 s; the board shows 2 V ÷ 10 Ω being built",
+    "science_check": "WRK-ohm-two-points"
+   },
+   {
+    "original": "There is one catch. A hot wire, like the filament of a bulb, resists more, so the line bends. Ohm's law works only when the temperature stays the same. (draft)",
+    "replacement": "But a hot bulb filament resists more, so its line bends.",
+    "reason": "fit at 60 s; the condition is already spoken in b04, struck on the chip here and kept as point 3 of the answer sheet",
+    "science_check": "CLM-filament"
+   }
+  ]
+ },
+ "terms": [
+  {
+   "term": "voltage",
+   "shown_by": "v_label",
+   "meaning_beat": "b01"
+  },
+  {
+   "term": "current",
+   "shown_by": "i_readout",
+   "meaning_beat": "b02"
+  },
+  {
+   "term": "resistance",
+   "shown_by": "r_label",
+   "meaning_beat": "b03"
+  },
+  {
+   "term": "temperature",
+   "shown_by": "cond_badge",
+   "meaning_beat": "b04"
+  },
+  {
+   "term": "slope",
+   "shown_by": "eq_sA",
+   "meaning_beat": "b09"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "file": "scenes/s01.html",
+   "beats": [
+    "b01",
+    "b02",
+    "b03",
+    "b04",
+    "b05",
+    "b06",
+    "b07",
+    "b08",
+    "b09",
+    "b10",
+    "b11",
+    "b12",
+    "b13"
+   ],
+   "title": "One board: what Ohm's law is, three readings and its line"
+  }
+ ],
+ "beats": [
+  {
+   "id": "b01",
+   "scene": "s01",
+   "slot": "hook.question_reveal",
+   "mode": "curious",
+   "tag": "[curious]",
+   "energy": "high",
+   "visual_op": [
+    "PreserveObject",
+    "TracePath",
+    "MapSymbol",
+    "Card"
+   ],
+   "text": "What is Ohm's law? When electricity passes through a wire, something pushes it along. That push is called voltage, and we measure it in volts.",
+   "node_ids": [
+    "OBJ-ohm-condition",
+    "DEF-potential-difference",
+    "SIM-push-flow"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.2
+    }
+   ],
+   "emphasis_words": [
+    "pushes",
+    "voltage"
+   ],
+   "on_screen": {
+    "headline": "What is Ohm's law?",
+    "fx_refs": [
+     "display.v_label",
+     "parameters.v1",
+     "display.v_unit",
+     "display.r_label",
+     "parameters.resistance_ohm",
+     "display.r_unit",
+     "display.i_label",
+     "display.ui.unknown",
+     "display.i_unit",
+     "display.card.def.voltage.term",
+     "display.card.def.voltage.text",
+     "display.units.volt"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c00",
+     "kind": "reveal",
+     "element_id": "flow_dash",
+     "anchor_word": "passes",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c01",
+     "kind": "reveal",
+     "element_id": "cell",
+     "anchor_word": "pushes",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c02",
+     "kind": "reveal",
+     "element_id": "card_def_voltage",
+     "anchor_word": "voltage",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c03",
+     "kind": "emphasis",
+     "element_id": "v_label",
+     "anchor_word": "volts",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "question"
+   }
+  },
+  {
+   "id": "b02",
+   "scene": "s01",
+   "slot": "explain.definition",
+   "mode": "steady",
+   "energy": "mid",
+   "visual_op": [
+    "Card",
+    "MapSymbol",
+    "TracePath"
+   ],
+   "text": "The flow is called current; this meter reads it in amperes.",
+   "node_ids": [
+    "DEF-current",
+    "DEF-units",
+    "SIM-flow-speed"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.2
+    }
+   ],
+   "emphasis_words": [
+    "meter"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.card.def.current.term",
+     "display.card.def.current.text",
+     "display.units.ampere",
+     "display.i_unit"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c04",
+     "kind": "emphasis",
+     "element_id": "flow_dash",
+     "anchor_word": "flow",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c05",
+     "kind": "reveal",
+     "element_id": "card_def_current",
+     "anchor_word": "current",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c06",
+     "kind": "emphasis",
+     "element_id": "ammeter",
+     "anchor_word": "meter",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c07",
+     "kind": "emphasis",
+     "element_id": "i_readout",
+     "anchor_word": "amperes",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "insight_beat": true,
+   "rehook": {
+    "kind": "picture"
+   },
+   "card": {
+    "verb": "Card",
+    "what": "definition card 'Current' (1 A = 1 C/s) on 'current', linked to the meter; halo on the running dashes on 'flow'"
+   }
+  },
+  {
+   "id": "b03",
+   "scene": "s01",
+   "slot": "explain.definition",
+   "mode": "steady",
+   "energy": "mid",
+   "visual_op": [
+    "Card",
+    "MapSymbol",
+    "Emphasize"
+   ],
+   "text": "Each wire holds the flow back; that is resistance, in ohms.",
+   "node_ids": [
+    "DEF-resistance",
+    "DEF-units"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.2
+    }
+   ],
+   "emphasis_words": [
+    "holds"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.card.def.resistance.term",
+     "display.card.def.resistance.text",
+     "display.units.ohm",
+     "parameters.resistance_ohm",
+     "display.r_unit"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c08",
+     "kind": "emphasis",
+     "element_id": "resistor",
+     "anchor_word": "holds",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c08b",
+     "kind": "emphasis",
+     "element_id": "r_label",
+     "anchor_word": "back",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c09",
+     "kind": "reveal",
+     "element_id": "card_def_resistance",
+     "anchor_word": "resistance",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c10",
+     "kind": "emphasis",
+     "element_id": "r_label",
+     "anchor_word": "ohms",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "card": {
+    "verb": "Card",
+    "what": "definition card 'Resistance' (1 Ω = 1 V/A) on 'resistance', linked to the resistor"
+   }
+  },
+  {
+   "id": "b04",
+   "scene": "s01",
+   "slot": "explain.definition",
+   "mode": "steady",
+   "energy": "mid",
+   "visual_op": [
+    "Card",
+    "Badge",
+    "Reveal"
+   ],
+   "text": "Ohm's law says the current goes up with the push, as long as the temperature stays the same.",
+   "node_ids": [
+    "CLM-ncert-ohm",
+    "SIM-constant-temperature"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.2
+    }
+   ],
+   "emphasis_words": [
+    "temperature"
+   ],
+   "on_screen": {
+    "headline": "Ohm's law",
+    "fx_refs": [
+     "display.card.ncert.p1",
+     "display.card.ncert.p2",
+     "display.card.ncert.source",
+     "display.condition"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c11",
+     "kind": "reveal",
+     "element_id": "card_ncert",
+     "anchor_word": "says",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c12",
+     "kind": "reveal",
+     "element_id": "across_ends",
+     "anchor_word": "up",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c12b",
+     "kind": "emphasis",
+     "element_id": "cell",
+     "anchor_word": "push",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c13",
+     "kind": "reveal",
+     "element_id": "cond_badge",
+     "anchor_word": "temperature",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "answer"
+   },
+   "card": {
+    "verb": "Card",
+    "what": "the NCERT 12.3 statement verbatim on a sheet over the result and card lanes, from 'says' to the formula"
+   }
+  },
+  {
+   "id": "b05",
+   "scene": "s01",
+   "slot": "explain.formal",
+   "mode": "deliberate",
+   "tag": "[calm]",
+   "energy": "low",
+   "visual_op": [
+    "EquationTransform",
+    "MapSymbol"
+   ],
+   "text": "So voltage equals current times resistance: V equals I R. Then I is V over R, and R is V over I.",
+   "node_ids": [
+    "CLM-resistance-constant"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.2
+    }
+   ],
+   "emphasis_words": [
+    "equals",
+    "over"
+   ],
+   "on_screen": {
+    "headline": "Voltage equals current times resistance",
+    "fx_refs": [
+     "display.sym.V",
+     "display.ops.eq",
+     "display.sym.I",
+     "display.ops.times",
+     "display.sym.R",
+     "display.ops.over",
+     "display.ops.sep"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c14",
+     "kind": "emphasis",
+     "element_id": "v_label",
+     "anchor_word": "voltage",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c14b",
+     "kind": "emphasis",
+     "element_id": "i_readout",
+     "anchor_word": "current",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c14c",
+     "kind": "emphasis",
+     "element_id": "r_label",
+     "anchor_word": "resistance",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c14d",
+     "kind": "reveal",
+     "element_id": "ncert_formula",
+     "anchor_word": "V",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c15",
+     "kind": "emphasis",
+     "element_id": "resistor",
+     "anchor_word": "R",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c16",
+     "kind": "emphasis",
+     "element_id": "i_readout",
+     "anchor_word": "over",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c16b",
+     "kind": "emphasis",
+     "element_id": "r_label",
+     "anchor_word": "over",
+     "occurrence": 2,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "formula"
+   }
+  },
+  {
+   "id": "b06",
+   "scene": "s01",
+   "slot": "explain.mechanism",
+   "mode": "steady",
+   "energy": "high",
+   "visual_op": [
+    "EquationTransform",
+    "ChangeValue",
+    "Card"
+   ],
+   "text": "Two volts over ten ohms gives point two amperes.",
+   "node_ids": [
+    "WRK-ohm-two-points",
+    "CLM-resistance-constant"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.2
+    }
+   ],
+   "emphasis_words": [
+    "point two"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "parameters.v1",
+     "display.v_unit",
+     "parameters.resistance_ohm",
+     "display.r_unit",
+     "results.i1",
+     "display.i_unit",
+     "display.card.head3.v",
+     "display.card.head3.r",
+     "display.card.head3.i"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c17",
+     "kind": "reveal",
+     "element_id": "eq_v1",
+     "anchor_word": "volts",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c18",
+     "kind": "emphasis",
+     "element_id": "r_label",
+     "anchor_word": "ohms",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c19",
+     "kind": "reveal",
+     "element_id": "eq_i1",
+     "anchor_word": "point",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c19b",
+     "kind": "emphasis",
+     "element_id": "i_readout",
+     "anchor_word": "amperes",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "card": {
+    "verb": "Card",
+    "what": "table row 1 (2, 10, 0.20): V on 'volts', R on 'ohms', I on 'point'"
+   }
+  },
+  {
+   "id": "b07",
+   "scene": "s01",
+   "slot": "explain.mechanism",
+   "mode": "steady",
+   "energy": "peak",
+   "visual_op": [
+    "ChangeValue",
+    "CompareStates",
+    "Card"
+   ],
+   "text": "Double the push to four volts, and the current doubles to point four.",
+   "node_ids": [
+    "WRK-ohm-two-points",
+    "CLM-ncert-ohm"
+   ],
+   "pauses": [
+    {
+     "purpose": "land",
+     "after_s": 0.5
+    }
+   ],
+   "emphasis_words": [
+    "four"
+   ],
+   "on_screen": {
+    "headline": "Double the push",
+    "fx_refs": [
+     "parameters.v2",
+     "display.v_unit",
+     "results.i2",
+     "display.i_unit",
+     "display.times",
+     "results.ratio_v",
+     "results.ratio_i"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c20",
+     "kind": "reveal",
+     "element_id": "v_label",
+     "anchor_word": "four",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c21",
+     "kind": "reveal",
+     "element_id": "i_readout",
+     "anchor_word": "point",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c22",
+     "kind": "reveal",
+     "element_id": "eq_mi",
+     "anchor_word": "four",
+     "occurrence": 2,
+     "lead_s": 0.05
+    }
+   ],
+   "payoff_beat": true,
+   "rehook": {
+    "kind": "turn"
+   },
+   "card": {
+    "verb": "Card",
+    "what": "table row 2 (4, 10, 0.40)"
+   }
+  },
+  {
+   "id": "b08",
+   "scene": "s01",
+   "slot": "worked.step",
+   "mode": "steady",
+   "energy": "high",
+   "visual_op": [
+    "ChangeValue",
+    "EquationTransform",
+    "Card"
+   ],
+   "text": "Keep two volts, double the resistance to twenty ohms, and the current halves to point one.",
+   "node_ids": [
+    "WRK-ohm-double-r",
+    "CLM-resistance-constant"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.2
+    }
+   ],
+   "emphasis_words": [
+    "twenty"
+   ],
+   "on_screen": {
+    "headline": "Double the resistance",
+    "fx_refs": [
+     "parameters.v1",
+     "parameters.r2",
+     "display.r_unit",
+     "results.i_r2",
+     "display.i_unit"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c23",
+     "kind": "reveal",
+     "element_id": "v_label",
+     "anchor_word": "Keep",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c24",
+     "kind": "reveal",
+     "element_id": "r_label",
+     "anchor_word": "twenty",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c25",
+     "kind": "emphasis",
+     "element_id": "eq_q",
+     "anchor_word": "halves",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c26",
+     "kind": "reveal",
+     "element_id": "i_readout",
+     "anchor_word": "point",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "edge_case"
+   },
+   "card": {
+    "verb": "Card",
+    "what": "table row 3 (2, 20, 0.10)"
+   }
+  },
+  {
+   "id": "b09",
+   "scene": "s01",
+   "slot": "explain.condition",
+   "mode": "steady",
+   "energy": "mid",
+   "visual_op": [
+    "TracePath",
+    "Card",
+    "ChangeValue"
+   ],
+   "text": "Voltage against current makes a straight line through zero. Its slope is the resistance.",
+   "node_ids": [
+    "REP-vi-graph",
+    "CLM-resistance-constant"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.2
+    }
+   ],
+   "emphasis_words": [
+    "straight",
+    "slope"
+   ],
+   "on_screen": {
+    "headline": "A straight line through zero",
+    "fx_refs": [
+     "display.card.graph.title",
+     "display.card.graph.x",
+     "display.card.graph.y",
+     "results.graph",
+     "display.card.graph.slope",
+     "display.card.graph.slope_r",
+     "display.card.graph.title"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c27",
+     "kind": "reveal",
+     "element_id": "card_graph",
+     "anchor_word": "Voltage",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c28",
+     "kind": "reveal",
+     "element_id": "graph_line",
+     "anchor_word": "straight",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c29",
+     "kind": "reveal",
+     "element_id": "eq_sA",
+     "anchor_word": "slope",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "picture"
+   },
+   "card": {
+    "verb": "Card",
+    "what": "the V–I graph sheet (NCERT 12.3) over the result and card lanes: points, the line on 'straight', slope = R on 'slope'"
+   }
+  },
+  {
+   "id": "b10",
+   "scene": "s01",
+   "slot": "explain.condition",
+   "mode": "alert",
+   "energy": "high",
+   "visual_op": [
+    "SwapPart",
+    "TracePath",
+    "StrikeThrough"
+   ],
+   "text": "But a hot bulb's line bends, because its filament resists more.",
+   "node_ids": [
+    "CLM-filament",
+    "MIS-always-doubles"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.2
+    }
+   ],
+   "emphasis_words": [
+    "bends"
+   ],
+   "on_screen": {
+    "headline": "Line bends",
+    "fx_refs": [
+     "display.lamp_label",
+     "display.ui.unknown",
+     "display.r_symbol",
+     "display.rises",
+     "display.condition"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c30",
+     "kind": "reveal",
+     "element_id": "lamp",
+     "anchor_word": "hot",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c32",
+     "kind": "reveal",
+     "element_id": "graph_bend",
+     "anchor_word": "bends",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c31",
+     "kind": "reveal",
+     "element_id": "r_up",
+     "anchor_word": "resists",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "exception"
+   },
+   "evidence": "CLM-filament",
+   "evidence_shown_as": "filament lamp in the resistor's slot, meter back to '?', heat rays, 'R ↑', the condition chip struck and a curved brick line bending away from the straight V–I line; qualitative only (results.lamp.current_doubles = false, PD-16); the resistor returns after the beat"
+  },
+  {
+   "id": "b11",
+   "scene": "s01",
+   "slot": "recap.statement",
+   "mode": "steady",
+   "energy": "high",
+   "visual_op": [
+    "Card",
+    "ChangeValue",
+    "CompareStates"
+   ],
+   "text": "Twice the push, twice the flow.",
+   "node_ids": [
+    "CLM-ncert-ohm"
+   ],
+   "pauses": [
+    {
+     "purpose": "land",
+     "after_s": 0.5
+    }
+   ],
+   "emphasis_words": [
+    "Twice"
+   ],
+   "on_screen": {
+    "headline": "Twice the push, twice the flow",
+    "claim_line": "Twice the push, twice the flow.",
+    "fx_refs": [
+     "display.card.points.p1",
+     "display.card.points.p2",
+     "display.card.points.p3",
+     "parameters.v2",
+     "results.i2"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c33",
+     "kind": "reveal",
+     "element_id": "card_points",
+     "anchor_word": "Twice",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c34",
+     "kind": "reveal",
+     "element_id": "v_label",
+     "anchor_word": "push",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c35",
+     "kind": "reveal",
+     "element_id": "i_readout",
+     "anchor_word": "flow",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "moral"
+   },
+   "card": {
+    "verb": "Card",
+    "what": "points card (the answer sheet) on 'Twice', p2 +0.5 s, p3 +1.0 s, kept on the end card"
+   }
+  },
+  {
+   "id": "b12",
+   "scene": "s01",
+   "slot": "close.next_step",
+   "mode": "reassuring",
+   "tag": "[warm]",
+   "energy": "mid",
+   "visual_op": "Badge",
+   "text": "Try more cases in the free lesson.",
+   "node_ids": [
+    "OBJ-ohm-condition"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.2
+    }
+   ],
+   "emphasis_words": [
+    "more"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.ui.endcard_line2"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c36",
+     "kind": "emphasis",
+     "element_id": "ammeter",
+     "anchor_word": "cases",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  },
+  {
+   "id": "b13",
+   "scene": "s01",
+   "slot": "outro.brand",
+   "mode": "steady",
+   "energy": "mid",
+   "visual_op": [
+    "Badge",
+    "EndMotif"
+   ],
+   "text": "Professor Diki Simplified.",
+   "node_ids": [],
+   "pauses": [],
+   "emphasis_words": [],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.ui.endcard_line1",
+     "display.ui.endcard_line2"
+    ],
+    "free_lesson": "Free lesson: Ohm's law"
+   },
+   "cues": [
+    {
+     "id": "c37",
+     "kind": "reveal",
+     "element_id": "wordmark",
+     "anchor_word": "Professor",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  }
+ ],
+ "requires": {
+  "lesson_graph_nodes_new": [
+   "DEF-current",
+   "DEF-resistance",
+   "DEF-potential-difference",
+   "DEF-units",
+   "SIM-ideal-cell",
+   "CLM-ncert-ohm",
+   "WRK-ohm-double-r",
+   "REP-vi-graph"
+  ],
+  "review": "Academic review of DEF-*, DEF-units, SIM-ideal-cell, CLM-ncert-ohm (verbatim check against the current NCERT edition), WRK-ohm-double-r, REP-vi-graph (figure number), SIM-push-flow, SIM-flow-speed and CLM-filament before release.",
+  "lamp_measurement": "No lamp current or lamp graph values anywhere (PD-16): the bent line is drawn as a shape, the meter shows '?'.",
+  "next_gain_route": "The free lesson must contain more cases (e.g. 6 V → 0.60 A from the fixture); the business layer verifies the route (M11)."
+ },
+ "pace": "fast"
+}

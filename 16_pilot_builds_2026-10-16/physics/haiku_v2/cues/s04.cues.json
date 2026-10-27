@@ -1,0 +1,219 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "phy-ohm-ci-01-s04",
+ "fps": 30,
+ "duration": 9.5,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "2092fee6592bacc4b215ff3a4842d3a065b5ee13cd547456e5c294558af35d15",
+ "script_sha256": "99b14455feefd67b584fa937db6c4bf87e9620b75e03b23d8ec9ff34e06e574d",
+ "words": [
+  {
+   "w": "Always",
+   "t0": 0.167,
+   "t1": 0.647
+  },
+  {
+   "w": "is",
+   "t0": 0.727,
+   "t1": 0.967
+  },
+  {
+   "w": "not",
+   "t0": 1.087,
+   "t1": 1.207,
+   "occurrence": 1
+  },
+  {
+   "w": "safe",
+   "t0": 1.287,
+   "t1": 1.967
+  },
+  {
+   "w": "A",
+   "t0": 2.167,
+   "t1": 2.247
+  },
+  {
+   "w": "filament",
+   "t0": 2.327,
+   "t1": 2.647
+  },
+  {
+   "w": "lamp",
+   "t0": 2.727,
+   "t1": 2.967
+  },
+  {
+   "w": "heats",
+   "t0": 3.047,
+   "t1": 3.287
+  },
+  {
+   "w": "up",
+   "t0": 3.367,
+   "t1": 3.927
+  },
+  {
+   "w": "its",
+   "t0": 4.007,
+   "t1": 4.087
+  },
+  {
+   "w": "resistance",
+   "t0": 4.207,
+   "t1": 4.727
+  },
+  {
+   "w": "rises",
+   "t0": 4.807,
+   "t1": 5.607
+  },
+  {
+   "w": "so",
+   "t0": 5.687,
+   "t1": 5.927
+  },
+  {
+   "w": "doubling",
+   "t0": 5.98,
+   "t1": 6.247
+  },
+  {
+   "w": "the",
+   "t0": 6.327,
+   "t1": 6.407,
+   "occurrence": 1
+  },
+  {
+   "w": "voltage",
+   "t0": 6.487,
+   "t1": 6.967
+  },
+  {
+   "w": "does",
+   "t0": 7.047,
+   "t1": 7.207
+  },
+  {
+   "w": "not",
+   "t0": 7.367,
+   "t1": 7.607,
+   "occurrence": 2
+  },
+  {
+   "w": "double",
+   "t0": 7.687,
+   "t1": 7.927
+  },
+  {
+   "w": "the",
+   "t0": 7.967,
+   "t1": 8.007,
+   "occurrence": 2
+  },
+  {
+   "w": "current",
+   "t0": 8.087,
+   "t1": 8.807
+  }
+ ],
+ "beats": [
+  0.007
+ ],
+ "cues": [
+  {
+   "id": "c43",
+   "at": 0.117,
+   "kind": "reveal",
+   "element_id": "board",
+   "word_index": 0
+  },
+  {
+   "id": "c44",
+   "at": 0.117,
+   "kind": "reveal",
+   "element_id": "shelf",
+   "word_index": 0
+  },
+  {
+   "id": "c45",
+   "at": 0.117,
+   "kind": "reveal",
+   "element_id": "wires",
+   "word_index": 0
+  },
+  {
+   "id": "c46",
+   "at": 0.117,
+   "kind": "reveal",
+   "element_id": "cell",
+   "word_index": 0
+  },
+  {
+   "id": "c47",
+   "at": 2.277,
+   "kind": "reveal",
+   "element_id": "name_lamp",
+   "word_index": 5
+  },
+  {
+   "id": "c48",
+   "at": 2.677,
+   "kind": "reveal",
+   "element_id": "swap_lamp",
+   "word_index": 6
+  },
+  {
+   "id": "c49",
+   "at": 4.757,
+   "kind": "reveal",
+   "element_id": "chg_r",
+   "word_index": 11
+  },
+  {
+   "id": "c50",
+   "at": 5.93,
+   "kind": "reveal",
+   "element_id": "strike_x2",
+   "word_index": 13
+  },
+  {
+   "id": "c51",
+   "at": 8.037,
+   "kind": "reveal",
+   "element_id": "ammeter",
+   "word_index": 20
+  },
+  {
+   "id": "c52",
+   "at": 8.037,
+   "kind": "reveal",
+   "element_id": "i_label",
+   "word_index": 20
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "phy-ohm-ci-01",
+  "scene": "s04",
+  "beat_ids": [
+   "b05"
+  ],
+  "beats_text": [
+   {
+    "id": "b05",
+    "slot": "misconception.confront",
+    "text": "Always is not safe. A filament lamp heats up, its resistance rises, so doubling the voltage does not double the current.",
+    "headline": "resistance rises",
+    "start": 0.167,
+    "end": 8.807,
+    "word_range": [
+     0,
+     21
+    ]
+   }
+  ],
+  "think_windows": []
+ }
+}

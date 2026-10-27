@@ -1,0 +1,689 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://examleaf.local/schemas/v2/persona.json",
+  "title": "ExamLeaf Persona v2",
+  "$comment": "Registry kind persona/ (Architecture §3.1). Personas inherit the 03 Super Teacher core; safety and retired-expression rules are inherited and never relaxed (R11, CE-23). Pacing numbers live only in Level Profiles (CE-16, R8: persona has the lowest scalar precedence), so this schema has no wpm field. Commercial-term lint (CE-L1/RD-49): CI rejects, case-insensitively, any match of (price|pricing|paid|is_free|free_|premium|entitle|subscri|sku|paywall|unlock|monetis|monetiz|revenue|discount|coupon|tier|destination_resource|cta_destination|funnel|purchase_|checkout_|product_id|offer_|trial_|utm_|campaign_|affiliate_|activation_code|storefront) applied to every object key at every depth (including REN fields keys), every required entry, pattern key and enum or const value (updated 15 Oct 2026, safety-13). Exempt: the editorial fields series_position, flagship and demo_kind.",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "persona_ref": {
+      "type": "string",
+      "pattern": "^persona/[a-z0-9][a-z0-9_-]*(@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))?(#[a-z][a-z0-9_-]*)?$"
+    },
+    "level_ref": {
+      "type": "string",
+      "pattern": "^level/[a-z0-9_]+$"
+    },
+    "overlay_ref": {
+      "type": "string",
+      "pattern": "^overlay/[a-z0-9_]+$"
+    },
+    "safety_ref": {
+      "type": "string",
+      "pattern": "^safety/ac[0-2]$"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "curious",
+        "steady",
+        "deliberate",
+        "light",
+        "reassuring",
+        "focused"
+      ],
+      "description": "The six narration-schema modes (05 VOICE_IDENTITY §3; RD-12). A new mode is a contract change to the 05 narration schema and the engine Cue.voice enum."
+    },
+    "beat": {
+      "type": "string",
+      "enum": [
+        "hook",
+        "prerequisite",
+        "core",
+        "worked",
+        "guided",
+        "independent",
+        "misconception",
+        "recap",
+        "cta"
+      ]
+    },
+    "core_rule": {
+      "type": "string",
+      "enum": [
+        "no_fake_sensing",
+        "no_invented_biography",
+        "no_impersonation",
+        "no_unconditional_praise",
+        "no_ease_or_marks_guarantees",
+        "no_ridicule_or_sarcasm_at_learner",
+        "no_fake_disfluency_or_laughter",
+        "no_intention_as_cause",
+        "no_pressure_fear_or_urgency",
+        "no_data_solicitation",
+        "no_claims_outside_closure",
+        "no_stage_tags_in_spoken_text",
+        "no_speeding_science_to_fit_time",
+        "humour_ceiling_not_quota",
+        "answer_hidden_until_window_ends"
+      ]
+    },
+    "direction_cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "beat": {
+          "$ref": "#/definitions/beat"
+        },
+        "mode": {
+          "$ref": "#/definitions/mode"
+        },
+        "intent": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "beat",
+        "mode",
+        "intent"
+      ]
+    },
+    "variant": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "variant_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]*$"
+        },
+        "architecture_name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Persona name used in Architecture §6 / LEVEL_PROFILES (for example 'Super Teacher Coach')."
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/level_ref"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "safety_classes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/safety_ref"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "register": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sentence_style": {
+              "type": "string",
+              "minLength": 1
+            },
+            "vocabulary": {
+              "type": "string",
+              "enum": [
+                "controlled_list",
+                "board_terms_with_glossary",
+                "discipline_register",
+                "research_register",
+                "trade_register",
+                "professional_register"
+              ]
+            },
+            "humour": {
+              "type": "string",
+              "enum": [
+                "none",
+                "play_safe",
+                "concept_linked",
+                "dry_rare"
+              ]
+            },
+            "sarcasm_allowed": {
+              "const": false
+            },
+            "rigour_markers": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            },
+            "required_moves": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "summary",
+            "sentence_style",
+            "vocabulary",
+            "humour",
+            "sarcasm_allowed"
+          ]
+        },
+        "modes_allowed": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/mode"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "direction_map": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/direction_cell"
+          },
+          "allOf": [
+            {
+              "contains": {
+                "properties": {
+                  "beat": {
+                    "const": "hook"
+                  }
+                }
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "beat": {
+                    "const": "prerequisite"
+                  }
+                }
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "beat": {
+                    "const": "core"
+                  }
+                }
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "beat": {
+                    "const": "worked"
+                  }
+                }
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "beat": {
+                    "const": "guided"
+                  }
+                }
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "beat": {
+                    "const": "independent"
+                  }
+                }
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "beat": {
+                    "const": "misconception"
+                  }
+                }
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "beat": {
+                    "const": "recap"
+                  }
+                }
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "beat": {
+                    "const": "cta"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "additional_never": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "retired_expressions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "capture_brief": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Path A direction brief: describe the learner, not the line (11 PLAYBOOK Step 3)."
+        },
+        "pacing_notes": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "variant_id",
+        "levels",
+        "safety_classes",
+        "register",
+        "modes_allowed",
+        "direction_map",
+        "capture_brief"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "safety_classes": {
+                "contains": {
+                  "const": "safety/ac0"
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "safety_classes": {
+                "maxItems": 1
+              },
+              "register": {
+                "properties": {
+                  "humour": {
+                    "enum": [
+                      "none",
+                      "play_safe"
+                    ]
+                  }
+                }
+              },
+              "modes_allowed": {
+                "items": {
+                  "not": {
+                    "const": "focused"
+                  }
+                }
+              },
+              "direction_map": {
+                "items": {
+                  "properties": {
+                    "mode": {
+                      "not": {
+                        "const": "focused"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "evidence_row": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tag": {
+          "type": "string",
+          "enum": [
+            "Recommendation",
+            "Hypothesis",
+            "Inherited",
+            "Evidence"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pilot_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "field",
+        "tag",
+        "source"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "tag": {
+                "const": "Hypothesis"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "owner",
+              "pilot_ref"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "properties": {
+    "persona_id": {
+      "type": "string",
+      "pattern": "^persona/[a-z0-9][a-z0-9_-]*$"
+    },
+    "version": {
+      "$ref": "#/definitions/semver"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "released",
+        "superseded",
+        "revoked"
+      ]
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "root",
+        "derived",
+        "register_overlay"
+      ],
+      "description": "root = the 03 core (persona/super-teacher); derived = a level persona; register_overlay = an exam-overlay register applied on top of the level persona (R11)."
+    },
+    "inherits": {
+      "$ref": "#/definitions/persona_ref"
+    },
+    "identity": {
+      "type": "string",
+      "minLength": 40
+    },
+    "voice_brief": {
+      "type": "string",
+      "minLength": 1
+    },
+    "core_rules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/core_rule"
+      },
+      "uniqueItems": true,
+      "allOf": [
+        {
+          "contains": {
+            "const": "no_fake_sensing"
+          }
+        },
+        {
+          "contains": {
+            "const": "no_invented_biography"
+          }
+        },
+        {
+          "contains": {
+            "const": "no_impersonation"
+          }
+        },
+        {
+          "contains": {
+            "const": "no_unconditional_praise"
+          }
+        },
+        {
+          "contains": {
+            "const": "no_ease_or_marks_guarantees"
+          }
+        },
+        {
+          "contains": {
+            "const": "no_ridicule_or_sarcasm_at_learner"
+          }
+        },
+        {
+          "contains": {
+            "const": "no_fake_disfluency_or_laughter"
+          }
+        },
+        {
+          "contains": {
+            "const": "no_intention_as_cause"
+          }
+        },
+        {
+          "contains": {
+            "const": "no_pressure_fear_or_urgency"
+          }
+        },
+        {
+          "contains": {
+            "const": "no_data_solicitation"
+          }
+        },
+        {
+          "contains": {
+            "const": "no_claims_outside_closure"
+          }
+        },
+        {
+          "contains": {
+            "const": "no_stage_tags_in_spoken_text"
+          }
+        },
+        {
+          "contains": {
+            "const": "no_speeding_science_to_fit_time"
+          }
+        },
+        {
+          "contains": {
+            "const": "humour_ceiling_not_quota"
+          }
+        },
+        {
+          "contains": {
+            "const": "answer_hidden_until_window_ends"
+          }
+        }
+      ]
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/variant"
+      },
+      "minItems": 1
+    },
+    "overlays": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/overlay_ref"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "excluded_safety_classes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/safety_ref"
+      },
+      "uniqueItems": true
+    },
+    "pacing": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "owner": {
+          "const": "level_profile"
+        },
+        "mode_order_slow_to_fast": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/mode"
+          },
+          "uniqueItems": true
+        },
+        "locale_rule": {
+          "const": "no_cross_language_rate_transfer"
+        }
+      },
+      "required": [
+        "owner",
+        "locale_rule"
+      ]
+    },
+    "persona_lint": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "blocking": {
+          "type": "boolean"
+        },
+        "rules_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "blocking"
+      ]
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/evidence_row"
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "persona_id",
+    "version",
+    "title",
+    "status",
+    "kind",
+    "identity",
+    "voice_brief",
+    "core_rules",
+    "variants",
+    "pacing",
+    "persona_lint",
+    "owner",
+    "evidence"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "root"
+          }
+        }
+      },
+      "then": {
+        "not": {
+          "required": [
+            "inherits"
+          ]
+        }
+      },
+      "else": {
+        "required": [
+          "inherits"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "register_overlay"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "overlays",
+          "excluded_safety_classes"
+        ],
+        "properties": {
+          "excluded_safety_classes": {
+            "contains": {
+              "const": "safety/ac0"
+            }
+          }
+        }
+      },
+      "else": {
+        "not": {
+          "required": [
+            "overlays"
+          ]
+        }
+      }
+    }
+  ]
+}

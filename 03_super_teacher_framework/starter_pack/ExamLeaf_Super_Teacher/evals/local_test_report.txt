@@ -1,0 +1,17 @@
+test_active_task_needs_answer_key (test_linter.TestLinter.test_active_task_needs_answer_key) ... ok
+test_boolean_time_rejected (test_linter.TestLinter.test_boolean_time_rejected) ... ok
+test_checker_does_not_modify_lesson (test_linter.TestLinter.test_checker_does_not_modify_lesson) ... ok
+test_duplicate_is_caught (test_linter.TestLinter.test_duplicate_is_caught) ... ok
+test_fake_sensing_is_flagged (test_linter.TestLinter.test_fake_sensing_is_flagged) ... ok
+test_gap_is_caught (test_linter.TestLinter.test_gap_is_caught) ... ok
+test_hold_cannot_fill_entire_beat (test_linter.TestLinter.test_hold_cannot_fill_entire_beat) ... ok
+test_nonfinite_time (test_linter.TestLinter.test_nonfinite_time) ... ok
+test_runtime_mismatch (test_linter.TestLinter.test_runtime_mismatch) ... ok
+test_sample_is_structurally_valid (test_linter.TestLinter.test_sample_is_structurally_valid) ... ok
+test_stage_direction_is_not_spoken (test_linter.TestLinter.test_stage_direction_is_not_spoken) ... ok
+test_wrong_root (test_linter.TestLinter.test_wrong_root) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.007s
+
+OK

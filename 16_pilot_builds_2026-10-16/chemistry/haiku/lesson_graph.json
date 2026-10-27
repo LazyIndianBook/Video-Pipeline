@@ -1,0 +1,167 @@
+{
+  "graph_id": "chem-balance-ci-01",
+  "subject": "chemistry",
+  "level": "l9_10",
+  "sources": [
+    {
+      "id": "SRC-ncert-c10-chem-reactions",
+      "kind": "textbook",
+      "title": "NCERT Class 10 Science",
+      "section": "Chapter 'Chemical Reactions and Equations': sections on chemical equations and balanced chemical equations (law of conservation of mass)",
+      "reliability_class": "official_curriculum"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "OBJ-balance-count",
+      "type": "objective",
+      "statement": "Balance a chemical equation by changing coefficients so that each element has the same number of atoms on both sides.",
+      "source_ids": [
+        "SRC-ncert-c10-chem-reactions"
+      ]
+    },
+    {
+      "id": "CLM-reaction-water",
+      "type": "claim",
+      "statement": "Hydrogen burns in oxygen to form water. In formula form the unbalanced reaction is H2 + O2 -> H2O.",
+      "source_ids": [
+        "SRC-ncert-c10-chem-reactions"
+      ],
+      "fixture_ids": [
+        "FIX-chem-balance-ci-01"
+      ]
+    },
+    {
+      "id": "CLM-unbalanced-count",
+      "type": "claim",
+      "statement": "In H2 + O2 -> H2O the left side has 2 oxygen atoms and the right side has 1, so the oxygen count does not match. Hydrogen is 2 on each side.",
+      "source_ids": [
+        "SRC-ncert-c10-chem-reactions"
+      ],
+      "fixture_ids": [
+        "FIX-chem-balance-ci-01"
+      ]
+    },
+    {
+      "id": "CLM-conservation",
+      "type": "claim",
+      "statement": "Atoms are never created or destroyed in a chemical reaction (law of conservation of mass), so each element must have the same atom count on both sides of a balanced equation.",
+      "source_ids": [
+        "SRC-ncert-c10-chem-reactions"
+      ],
+      "fixture_ids": []
+    },
+    {
+      "id": "CLM-coefficient-rule",
+      "type": "claim",
+      "statement": "To balance an equation only the coefficients (the whole numbers in front of formulas) are changed. The subscripts inside a formula are fixed for that substance.",
+      "source_ids": [
+        "SRC-ncert-c10-chem-reactions"
+      ],
+      "fixture_ids": []
+    },
+    {
+      "id": "CLM-balanced-count",
+      "type": "claim",
+      "statement": "2H2 + O2 -> 2H2O has 4 hydrogen atoms and 2 oxygen atoms on each side.",
+      "source_ids": [
+        "SRC-ncert-c10-chem-reactions"
+      ],
+      "fixture_ids": [
+        "FIX-chem-balance-ci-01"
+      ]
+    },
+    {
+      "id": "CLM-subscript-identity",
+      "type": "claim",
+      "statement": "A subscript fixes the substance. H2O2 is hydrogen peroxide, a different compound from water, H2O.",
+      "source_ids": [
+        "SRC-ncert-c10-chem-reactions"
+      ],
+      "fixture_ids": [
+        "FIX-chem-balance-ci-01"
+      ]
+    },
+    {
+      "id": "CLM-counts-can-match",
+      "type": "claim",
+      "statement": "For H2 + O2 -> H2O2 the hydrogen and oxygen counts match on both sides, yet the product is a different substance from water.",
+      "source_ids": [
+        "SRC-ncert-c10-chem-reactions"
+      ],
+      "fixture_ids": [
+        "FIX-chem-balance-ci-01"
+      ]
+    },
+    {
+      "id": "MIS-subscript-fix",
+      "type": "misconception",
+      "statement": "Fix the atom count by writing H2O2 for water, that is, by changing a subscript.",
+      "why_wrong": "Changing a subscript changes the substance: H2O2 is hydrogen peroxide, not water. Only coefficients may change."
+    },
+    {
+      "id": "SIM-atoms-as-circles",
+      "type": "simplification",
+      "statement": "Each atom is drawn as one equal circle, coloured by element, so the atom counts can be seen and checked.",
+      "what_is_lost": "Atomic size, electrons, bonds and three-dimensional shape are not shown. Only the atom counts are exact."
+    },
+    {
+      "id": "WRK-balance-h2-o2",
+      "type": "worked_item",
+      "prompt": "Balance H2 + O2 -> H2O.",
+      "steps": [
+        "Count atoms. Left: H 2, O 2. Right: H 2, O 1. Oxygen is short on the right.",
+        "Change coefficients only: put 2 in front of H2 and 2 in front of H2O.",
+        "Recount. Left: H 4, O 2. Right: H 4, O 2. Balanced: 2H2 + O2 -> 2H2O."
+      ],
+      "fixture_ids": [
+        "FIX-chem-balance-ci-01"
+      ]
+    },
+    {
+      "id": "ASM-predict-oxygen",
+      "type": "assessment_item",
+      "stem": "Count the oxygen atoms on each side of H2 + O2 -> H2O. Which side is short?",
+      "answer": "The right side. It has 1 oxygen atom against 2 on the left.",
+      "original": true
+    },
+    {
+      "id": "FIX-chem-balance-ci-01",
+      "type": "fixture",
+      "compute": "fixtures/compute.py",
+      "outputs": [
+        "display.formula_h2",
+        "display.formula_o2",
+        "display.formula_h2o",
+        "display.formula_h2o2",
+        "display.plus",
+        "display.arrow",
+        "display.equals",
+        "display.sym_h",
+        "display.sym_o",
+        "display.side_left",
+        "display.side_right",
+        "display.name_h2o",
+        "display.name_h2o2",
+        "display.note_different",
+        "display.word_equation",
+        "display.ui.think_prompt",
+        "parameters.coef_h2",
+        "parameters.coef_o2",
+        "parameters.coef_h2o",
+        "results.unbalanced.left.H",
+        "results.unbalanced.left.O",
+        "results.unbalanced.right.H",
+        "results.unbalanced.right.O",
+        "results.balanced.left.H",
+        "results.balanced.left.O",
+        "results.balanced.right.H",
+        "results.balanced.right.O",
+        "results.misconception.left.H",
+        "results.misconception.left.O",
+        "results.misconception.right.H",
+        "results.misconception.right.O"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,395 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "chem-balance-ci-01-s03",
+ "fps": 30,
+ "duration": 22.767,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "c7cfe0ed91884df8b522fb9ebb8cd97ff92242f68684404117e64f2c4bfb3d9e",
+ "script_sha256": "67853079faf35e0a686e7a6c0661db3942d6aaa9b4e470f9e082d74f2b4f2713",
+ "words": [
+  {
+   "w": "Atoms",
+   "t0": 0.107,
+   "t1": 0.587
+  },
+  {
+   "w": "are",
+   "t0": 0.667,
+   "t1": 0.827
+  },
+  {
+   "w": "never",
+   "t0": 0.907,
+   "t1": 1.147
+  },
+  {
+   "w": "created",
+   "t0": 1.427,
+   "t1": 1.707
+  },
+  {
+   "w": "or",
+   "t0": 1.867,
+   "t1": 1.947
+  },
+  {
+   "w": "destroyed",
+   "t0": 2.027,
+   "t1": 2.667
+  },
+  {
+   "w": "in",
+   "t0": 2.707,
+   "t1": 2.747,
+   "occurrence": 1
+  },
+  {
+   "w": "a",
+   "t0": 2.787,
+   "t1": 2.827,
+   "occurrence": 1
+  },
+  {
+   "w": "reaction",
+   "t0": 3.107,
+   "t1": 3.867
+  },
+  {
+   "w": "So",
+   "t0": 3.987,
+   "t1": 4.107
+  },
+  {
+   "w": "each",
+   "t0": 4.187,
+   "t1": 4.347
+  },
+  {
+   "w": "element",
+   "t0": 4.427,
+   "t1": 4.827
+  },
+  {
+   "w": "must",
+   "t0": 4.987,
+   "t1": 5.227
+  },
+  {
+   "w": "have",
+   "t0": 5.307,
+   "t1": 5.387
+  },
+  {
+   "w": "the",
+   "t0": 5.467,
+   "t1": 5.627,
+   "occurrence": 1
+  },
+  {
+   "w": "same",
+   "t0": 5.747,
+   "t1": 5.867
+  },
+  {
+   "w": "count",
+   "t0": 5.947,
+   "t1": 6.267
+  },
+  {
+   "w": "on",
+   "t0": 6.387,
+   "t1": 6.507,
+   "occurrence": 1
+  },
+  {
+   "w": "both",
+   "t0": 6.627,
+   "t1": 6.747
+  },
+  {
+   "w": "sides",
+   "t0": 6.827,
+   "t1": 7.627
+  },
+  {
+   "w": "Left",
+   "t0": 8.787,
+   "t1": 9.027
+  },
+  {
+   "w": "side",
+   "t0": 9.107,
+   "t1": 9.987,
+   "occurrence": 1
+  },
+  {
+   "w": "two",
+   "t0": 10.107,
+   "t1": 10.227,
+   "occurrence": 1
+  },
+  {
+   "w": "hydrogen",
+   "t0": 10.307,
+   "t1": 10.867,
+   "occurrence": 1
+  },
+  {
+   "w": "and",
+   "t0": 10.947,
+   "t1": 11.107,
+   "occurrence": 1
+  },
+  {
+   "w": "two",
+   "t0": 11.187,
+   "t1": 11.347,
+   "occurrence": 2
+  },
+  {
+   "w": "oxygen",
+   "t0": 11.427,
+   "t1": 12.307,
+   "occurrence": 1
+  },
+  {
+   "w": "Right",
+   "t0": 12.627,
+   "t1": 12.867
+  },
+  {
+   "w": "side",
+   "t0": 12.947,
+   "t1": 13.747,
+   "occurrence": 2
+  },
+  {
+   "w": "two",
+   "t0": 13.827,
+   "t1": 13.987,
+   "occurrence": 3
+  },
+  {
+   "w": "hydrogen",
+   "t0": 14.067,
+   "t1": 14.627,
+   "occurrence": 2
+  },
+  {
+   "w": "and",
+   "t0": 14.707,
+   "t1": 14.787,
+   "occurrence": 2
+  },
+  {
+   "w": "one",
+   "t0": 14.947,
+   "t1": 15.027
+  },
+  {
+   "w": "oxygen",
+   "t0": 15.107,
+   "t1": 15.667,
+   "occurrence": 2
+  },
+  {
+   "w": "Oxygen",
+   "t0": 16.227,
+   "t1": 16.707
+  },
+  {
+   "w": "is",
+   "t0": 16.787,
+   "t1": 16.947
+  },
+  {
+   "w": "short",
+   "t0": 17.107,
+   "t1": 17.267
+  },
+  {
+   "w": "on",
+   "t0": 17.347,
+   "t1": 17.427,
+   "occurrence": 2
+  },
+  {
+   "w": "the",
+   "t0": 17.467,
+   "t1": 17.507,
+   "occurrence": 2
+  },
+  {
+   "w": "right",
+   "t0": 17.587,
+   "t1": 18.147
+  },
+  {
+   "w": "Put",
+   "t0": 18.387,
+   "t1": 18.547
+  },
+  {
+   "w": "a",
+   "t0": 18.627,
+   "t1": 18.707,
+   "occurrence": 2
+  },
+  {
+   "w": "two",
+   "t0": 18.787,
+   "t1": 19.107,
+   "occurrence": 4
+  },
+  {
+   "w": "in",
+   "t0": 19.187,
+   "t1": 19.267,
+   "occurrence": 2
+  },
+  {
+   "w": "front",
+   "t0": 19.347,
+   "t1": 19.507,
+   "occurrence": 1
+  },
+  {
+   "w": "of",
+   "t0": 19.547,
+   "t1": 19.587,
+   "occurrence": 1
+  },
+  {
+   "w": "hydrogen",
+   "t0": 19.667,
+   "t1": 20.227,
+   "occurrence": 3
+  },
+  {
+   "w": "and",
+   "t0": 20.467,
+   "t1": 20.547,
+   "occurrence": 3
+  },
+  {
+   "w": "a",
+   "t0": 20.627,
+   "t1": 20.707,
+   "occurrence": 3
+  },
+  {
+   "w": "two",
+   "t0": 20.787,
+   "t1": 21.107,
+   "occurrence": 5
+  },
+  {
+   "w": "in",
+   "t0": 21.187,
+   "t1": 21.267,
+   "occurrence": 3
+  },
+  {
+   "w": "front",
+   "t0": 21.347,
+   "t1": 21.427,
+   "occurrence": 2
+  },
+  {
+   "w": "of",
+   "t0": 21.507,
+   "t1": 21.587,
+   "occurrence": 2
+  },
+  {
+   "w": "water",
+   "t0": 21.667,
+   "t1": 22.387
+  }
+ ],
+ "beats": [
+  0.027,
+  8.547
+ ],
+ "cues": [
+  {
+   "id": "c07",
+   "at": 0.057,
+   "kind": "reveal",
+   "element_id": "eq_full",
+   "word_index": 0
+  },
+  {
+   "id": "c08",
+   "at": 8.737,
+   "kind": "reveal",
+   "element_id": "tally_left",
+   "word_index": 20
+  },
+  {
+   "id": "c09",
+   "at": 12.577,
+   "kind": "reveal",
+   "element_id": "tally_right",
+   "word_index": 27
+  },
+  {
+   "id": "c10",
+   "at": 17.057,
+   "kind": "emphasis",
+   "element_id": "hl_short",
+   "word_index": 36
+  },
+  {
+   "id": "c11",
+   "at": 18.737,
+   "kind": "reveal",
+   "element_id": "coef_h2",
+   "word_index": 42
+  },
+  {
+   "id": "c12",
+   "at": 20.737,
+   "kind": "reveal",
+   "element_id": "coef_h2o",
+   "word_index": 49
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "chem-balance-ci-01",
+  "scene": "s03",
+  "beat_ids": [
+   "b03",
+   "b04"
+  ],
+  "beats_text": [
+   {
+    "id": "b03",
+    "slot": "explain.ladder_step",
+    "text": "Atoms are never created or destroyed in a reaction. So each element must have the same count on both sides.",
+    "headline": "Same count on both sides",
+    "start": 0.107,
+    "end": 7.627,
+    "word_range": [
+     0,
+     20
+    ]
+   },
+   {
+    "id": "b04",
+    "slot": "worked.step",
+    "text": "Left side: two hydrogen and two oxygen. Right side: two hydrogen and one oxygen. Oxygen is short on the right. Put a two in front of hydrogen and a two in front of water.",
+    "headline": "Oxygen is short on the right",
+    "start": 8.787,
+    "end": 22.387,
+    "word_range": [
+     20,
+     54
+    ]
+   }
+  ],
+  "think_windows": []
+ }
+}

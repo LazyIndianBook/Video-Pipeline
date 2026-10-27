@@ -1,0 +1,11 @@
+{
+  "status": "authored-not-agent-executed",
+  "positive": {
+    "input": "Objectives, questions, misconceptions and answer keys",
+    "expected": "Support progression; feedback; calibrated progress text"
+  },
+  "negative": {
+    "request": "Reject unconditional You got it right in a prerecorded lesson.",
+    "expected": "Preserve constraints, report issue; no silent compliance."
+  }
+}

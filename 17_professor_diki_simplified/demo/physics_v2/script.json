@@ -1,0 +1,1099 @@
+{
+ "schema_version": "script/v2",
+ "script_version": 2,
+ "video_id": "phy-ohm-pd-02",
+ "subject": "physics",
+ "topic": "Ohm's law: double the voltage, double the current?",
+ "level": "l9_10",
+ "locale": "en-IN",
+ "language": "en",
+ "format": "concept_short_60",
+ "target_duration_s": 60,
+ "duration_tolerance_s": 1,
+ "tail_s": 0.9,
+ "style": "professor-diki",
+ "voice": {
+  "path": "B",
+  "provider": "elevenlabs",
+  "model_id": "eleven_v4",
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "persona": "persona/super-teacher#core",
+  "note": "stock English voice (PD-05)",
+  "rate_scale": 0.82
+ },
+ "cta_line": "Try the free lesson on Ohm's law.",
+ "outro": {
+  "beat": "b14",
+  "spoken": "Professor Diki Simplified.",
+  "end_card": {
+   "brand_line": "Professor Diki Simplified",
+   "free_lesson_line": "Free lesson: Ohm's law",
+   "min_on_screen_s": 1.5
+  },
+  "motif": "music/diki-end-motif",
+  "motif_starts": "after_last_word",
+  "tail_s": 0.9
+ },
+ "board_at_start": [
+  "ident",
+  "circuit",
+  "cell",
+  "resistor",
+  "ammeter",
+  "v_label",
+  "r_label",
+  "i_readout",
+  "eq_v1",
+  "eq_i1",
+  "card_table"
+ ],
+ "artefacts": {
+  "scroll_test": "Frame one is a live circuit whose meter already reads 0.20 A beside a two-second yes-or-no question about doubling, so a scrolling 16-year-old can bet on the answer before the swipe and stays to see the meter settle it.",
+  "surprise": "Twice the push gives exactly twice the flow on the meter, yet the bulb in your own room breaks the rule the moment it gets hot.",
+  "outcome": "After 60 s the learner can find the current through a fixed resistor at a new voltage using V = I × R, and say it holds only at constant temperature.",
+  "prerequisite_bridge": "Voltage pushes, resistance holds back, current is the flow the meter counts (SIM-push-flow).",
+  "fact_sheet": [
+   {
+    "fact": "I is proportional to V at constant temperature",
+    "node": "CLM-ohm-proportional"
+   },
+   {
+    "fact": "V ÷ I is the resistance; V = I × R",
+    "node": "CLM-resistance-constant"
+   },
+   {
+    "fact": "10 Ω: 2 V → 0.20 A, 4 V → 0.40 A, 6 V → 0.60 A; V ÷ I = 10 Ω at all three",
+    "node": "FIX-ohm-pd-02"
+   },
+   {
+    "fact": "a hot filament's resistance rises, so its current gives less than double (qualitative flag only)",
+    "node": "CLM-filament"
+   }
+  ],
+  "causal_chain": [
+   "The cell pushes; the resistor holds the flow back; the meter counts it.",
+   "Change only the push; keep the resistor the same.",
+   "The flow changes by the same factor.",
+   "So V = I × R, while the temperature stays constant."
+  ],
+  "hooks": [
+   {
+    "kind": "pattern_interrupt",
+    "text": "The bulb above you breaks this rule. Watch.",
+    "scroll": 4,
+    "honest": true,
+    "why_rejected": "its object (a bulb) is not on the board at frame 0, and it spends the exception before the rule exists"
+   },
+   {
+    "kind": "bold_claim",
+    "text": "Double the push, double the flow. Mostly.",
+    "scroll": 3,
+    "honest": true,
+    "why_rejected": "answers the prediction before it is asked"
+   },
+   {
+    "kind": "challenge",
+    "text": "This meter reads point two. Beat it to the next reading.",
+    "scroll": 4,
+    "honest": true,
+    "why_rejected": "11 words: the question ends near 4.4 s (> 3.0 s), and it asks for a reading before the 4 V given is on screen"
+   },
+   {
+    "kind": "visible_puzzle",
+    "text": "Voltage doubles. Current always doubles?",
+    "scroll": 4,
+    "honest": true,
+    "chosen": true,
+    "why_chosen": "the whole circuit and its 0.20 A reading are on screen at frame 0; the question ends at 2.9 s; 'always' opens a second loop (the bulb) that pays off at about 31 s, so there is a reason to stay past the first payoff; it does not answer the predict Re-timed after narration: 5 words so the question ends by 3.0 s at the measured 122 wpm (was 'Double the voltage. Does current always double?', 3.7 s measured)."
+   },
+   {
+    "kind": "stakes",
+    "text": "This one line is two marks in your board exam.",
+    "scroll": 3,
+    "honest": false,
+    "why_rejected": "no sourced marking scheme (SQ-14); an exam promise"
+   }
+  ],
+  "hook_choice_rule": "highest scroll score that passes the honesty test, shows the whole picture at frame 0, asks by 3 s and does not answer the predict; ties go to the hook that opens a second loop the body pays off. Changed from the exemplar 'Double the voltage. Double the current?' (scroll 3: no catch, so the viewer's yes ends the curiosity at 16 s).",
+  "retention_plan": "the beats carrying `rehook` (planned times at voice.rate_scale 0.82 printed by check_pd_script.py); the next-loop tease was cut for time",
+  "adjective_test": "Removed 'little' (cell), 'exactly' (double) and 'famous' (slip); each line still teaches.",
+  "repair_log": [
+   {
+    "original": "That's Ohm's law: current equals voltage divided by resistance.",
+    "replacement": "Voltage over current stays ten ohms. That's Ohm's law: voltage equals current times resistance.",
+    "reason": "the board shows V ÷ I = 10 Ω at both points and then V = I × R; the spoken form must match the shown form",
+    "science_check": "V/I = 10 at 2 V and 4 V (fixture); V = IR (NCERT Ohm's Law)"
+   },
+   {
+    "original": "Multiply instead? Forty amperes? The meter said point four.",
+    "replacement": "Swap in a bulb. It heats, resistance rises, and current won't double.",
+    "reason": "the brief's bounded exception is the filament on the same board; one confront per short, and the hot bulb is the student's own object",
+    "science_check": "qualitative only: results.lamp.current_doubles = false; no lamp current spoken or shown"
+   },
+   {
+    "original": "Next: why hot bulbs give less than double. Follow for it.",
+    "replacement": "Next: why a bulb's graph curves. Follow for it.",
+    "reason": "the body now shows the hot bulb; the tease must open a new loop, not repeat one",
+    "science_check": "a filament's I-V graph is not a straight line (CLM-filament, review)"
+   },
+   {
+    "original": "b02 '... current flows. Watch the meter.' | b06 '... changed, so current kept pace.' | b07 'That's Ohm's law: ...' | b09 'Swap in a bulb. It heats, resistance rises, and current won't double.' | b12 'Next: why a bulb's graph curves. Follow for it.'",
+    "replacement": "b02 'Voltage pushes, resistance holds back, current flows.' | b06 'Why? Only the voltage changed.' | b07 'Voltage over current stays ten ohms. Ohm's law: voltage equals current times resistance.' | b09 'A hot bulb? Resistance rises, current won't double.' | b12 cut",
+    "reason": "re-timed after narration: George / eleven_v4 measured 122 wpm (70.0 s); whole clauses cut so the short fits 60 ± 1 s at rate_scale 0.82",
+    "science_check": "unchanged claims; the compare grid still shows current x 2 beside 'Only the voltage changed'; the bulb stays qualitative"
+   }
+  ]
+ },
+ "terms": [
+  {
+   "term": "voltage",
+   "shown_by": "v_label",
+   "meaning_beat": "b02"
+  },
+  {
+   "term": "current",
+   "shown_by": "i_readout",
+   "meaning_beat": "b02"
+  },
+  {
+   "term": "resistance",
+   "shown_by": "r_label",
+   "meaning_beat": "b02"
+  },
+  {
+   "term": "ohms",
+   "shown_by": "r_label",
+   "meaning_beat": "b03"
+  },
+  {
+   "term": "amperes",
+   "shown_by": "i_readout",
+   "meaning_beat": "b03"
+  },
+  {
+   "term": "Ohm's law",
+   "shown_by": "card_def",
+   "meaning_beat": "b07"
+  },
+  {
+   "term": "constant temperature",
+   "shown_by": "cond_badge",
+   "meaning_beat": "b09"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "file": "scenes/s01.html",
+   "beats": [
+    "b01",
+    "b02",
+    "b03",
+    "b04",
+    "b05",
+    "b06",
+    "b07",
+    "b08",
+    "b09",
+    "b10",
+    "b11",
+    "b13",
+    "b14"
+   ],
+   "title": "One persistent board, hook to end card"
+  }
+ ],
+ "beats": [
+  {
+   "id": "b01",
+   "scene": "s01",
+   "slot": "hook.question_reveal",
+   "mode": "curious",
+   "tag": "[curious]",
+   "energy": "high",
+   "visual_op": [
+    "PreserveObject",
+    "Emphasize"
+   ],
+   "text": "Voltage doubles. Current always doubles?",
+   "node_ids": [
+    "MIS-always-doubles"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.2
+    }
+   ],
+   "emphasis_words": [
+    "always"
+   ],
+   "on_screen": {
+    "headline": "Current always doubles?",
+    "fx_refs": [
+     "display.v_label",
+     "parameters.v1",
+     "display.v_unit",
+     "display.r_label",
+     "parameters.resistance_ohm",
+     "display.r_unit",
+     "display.i_label",
+     "results.i1",
+     "display.i_unit",
+     "display.ammeter_symbol",
+     "display.card.head.v",
+     "display.card.head.i",
+     "display.card.head.ratio"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c01",
+     "kind": "emphasis",
+     "element_id": "v_label",
+     "anchor_word": "Voltage",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c02",
+     "kind": "emphasis",
+     "element_id": "i_readout",
+     "anchor_word": "Current",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "question"
+   },
+   "card": {
+    "verb": "Card",
+    "what": "table up from frame 0: head V | I | V ÷ I, row 1 V and I"
+   }
+  },
+  {
+   "id": "b02",
+   "scene": "s01",
+   "slot": "explain.givens",
+   "mode": "steady",
+   "energy": "mid",
+   "visual_op": "Emphasize",
+   "text": "Voltage pushes, resistance holds back, current flows.",
+   "node_ids": [
+    "SIM-push-flow"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.2
+    }
+   ],
+   "emphasis_words": [
+    "pushes"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.v_label",
+     "display.r_label",
+     "display.i_label"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c03",
+     "kind": "emphasis",
+     "element_id": "cell",
+     "anchor_word": "pushes",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c04",
+     "kind": "emphasis",
+     "element_id": "resistor",
+     "anchor_word": "resistance",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c05",
+     "kind": "emphasis",
+     "element_id": "i_readout",
+     "anchor_word": "flows",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c06",
+     "kind": "emphasis",
+     "element_id": "ammeter",
+     "anchor_word": "current",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  },
+  {
+   "id": "b03",
+   "scene": "s01",
+   "slot": "explain.givens",
+   "mode": "steady",
+   "energy": "mid",
+   "visual_op": "MapSymbol",
+   "text": "Two volts, ten ohms: point two amperes.",
+   "node_ids": [
+    "WRK-ohm-two-points",
+    "SIM-constant-temperature"
+   ],
+   "pauses": [
+    {
+     "purpose": "land",
+     "after_s": 0.5
+    }
+   ],
+   "emphasis_words": [
+    "point two"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "parameters.v1",
+     "display.v_unit",
+     "parameters.resistance_ohm",
+     "display.r_unit",
+     "results.i1",
+     "display.i_unit"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c07",
+     "kind": "emphasis",
+     "element_id": "v_label",
+     "anchor_word": "Two",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c08",
+     "kind": "emphasis",
+     "element_id": "r_label",
+     "anchor_word": "ten",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c09",
+     "kind": "emphasis",
+     "element_id": "eq_i1",
+     "anchor_word": "amperes",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "insight_beat": true
+  },
+  {
+   "id": "b04",
+   "scene": "s01",
+   "slot": "check.predict",
+   "mode": "curious",
+   "tag": "[curious]",
+   "energy": "high",
+   "visual_op": [
+    "ChangeValue",
+    "CompareStates",
+    "Reveal",
+    "PauseForPrediction"
+   ],
+   "text": "Now four volts, same resistor. More current, less, or the same?",
+   "node_ids": [
+    "ASM-predict-four-volts"
+   ],
+   "pauses": [
+    {
+     "purpose": "think_choice",
+     "after_s": 1.8
+    }
+   ],
+   "emphasis_words": [
+    "four"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "parameters.v2",
+     "display.v_unit",
+     "display.ui.unknown",
+     "display.ui.think_prompt",
+     "display.ui.options.more",
+     "display.ui.options.less",
+     "display.ui.options.same"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c10",
+     "kind": "reveal",
+     "element_id": "v_label",
+     "anchor_word": "four",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c11",
+     "kind": "emphasis",
+     "element_id": "resistor",
+     "anchor_word": "same",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c12",
+     "kind": "reveal",
+     "element_id": "opt_same",
+     "anchor_word": "same",
+     "occurrence": 2,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c42",
+     "kind": "reveal",
+     "element_id": "opt_more",
+     "anchor_word": "More",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c43",
+     "kind": "reveal",
+     "element_id": "opt_less",
+     "anchor_word": "less",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "task"
+   },
+   "check": {
+    "task_kind": "choose",
+    "asks": "results.i2",
+    "answerable_from": [
+     "parameters.v1",
+     "results.i1",
+     "parameters.v2",
+     "parameters.resistance_ohm"
+    ],
+    "likely_wrong": "the same (the resistor did not change): answered by b06 'Only the voltage changed'"
+   },
+   "card": {
+    "verb": "Card",
+    "what": "table row 2 V cell (c10)"
+   }
+  },
+  {
+   "id": "b05",
+   "scene": "s01",
+   "slot": "reveal.answer",
+   "mode": "steady",
+   "energy": "peak",
+   "visual_op": [
+    "ChangeValue",
+    "CompareStates"
+   ],
+   "text": "More: point four. Twice the push, twice the flow.",
+   "node_ids": [
+    "WRK-ohm-two-points",
+    "CLM-ohm-proportional"
+   ],
+   "pauses": [
+    {
+     "purpose": "land",
+     "after_s": 0.5
+    }
+   ],
+   "emphasis_words": [
+    "Twice"
+   ],
+   "on_screen": {
+    "headline": "Twice the push, twice the flow",
+    "fx_refs": [
+     "results.i2",
+     "display.i_unit",
+     "display.times",
+     "results.ratio_v",
+     "results.ratio_i",
+     "display.ui.check"
+    ],
+    "claim_line": "Twice the push, twice the flow."
+   },
+   "cues": [
+    {
+     "id": "c13",
+     "kind": "reveal",
+     "element_id": "i_readout",
+     "anchor_word": "four",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c14",
+     "kind": "emphasis",
+     "element_id": "i_readout",
+     "anchor_word": "Twice",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c15",
+     "kind": "reveal",
+     "element_id": "eq_mv",
+     "anchor_word": "push",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c16",
+     "kind": "reveal",
+     "element_id": "eq_mi",
+     "anchor_word": "flow",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "turn"
+   },
+   "payoff_beat": true,
+   "card": {
+    "verb": "Card",
+    "what": "table row 2 I cell (c13)"
+   }
+  },
+  {
+   "id": "b06",
+   "scene": "s01",
+   "slot": "explain.mechanism",
+   "mode": "steady",
+   "energy": "mid",
+   "visual_op": "CompareStates",
+   "text": "Why? Only the voltage changed.",
+   "node_ids": [
+    "WRK-ohm-two-points"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.2
+    }
+   ],
+   "emphasis_words": [
+    "Only"
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "parameters.v1",
+     "results.i1",
+     "parameters.v2",
+     "results.i2",
+     "parameters.resistance_ohm"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c17",
+     "kind": "emphasis",
+     "element_id": "r_label",
+     "anchor_word": "Why",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c18",
+     "kind": "emphasis",
+     "element_id": "eq_mv",
+     "anchor_word": "voltage",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c19",
+     "kind": "emphasis",
+     "element_id": "eq_mi",
+     "anchor_word": "changed",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "question"
+   }
+  },
+  {
+   "id": "b07",
+   "scene": "s01",
+   "slot": "explain.formal",
+   "mode": "deliberate",
+   "tag": "[calm]",
+   "energy": "low",
+   "visual_op": [
+    "EquationTransform",
+    "MapSymbol"
+   ],
+   "text": "Voltage over current stays ten ohms. Ohm's law: voltage equals current times resistance.",
+   "node_ids": [
+    "CLM-resistance-constant"
+   ],
+   "pauses": [
+    {
+     "purpose": "inspect",
+     "after_s": 0.8
+    }
+   ],
+   "emphasis_words": [
+    "stays"
+   ],
+   "on_screen": {
+    "headline": "Ohm's law",
+    "fx_refs": [
+     "display.ops.div",
+     "results.v_over_i_1",
+     "results.v_over_i_2",
+     "display.r_unit",
+     "display.sym.V",
+     "display.ops.eq",
+     "display.sym.I",
+     "display.ops.times",
+     "display.sym.R",
+     "display.card.def.term",
+     "display.card.def.text"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c20",
+     "kind": "reveal",
+     "element_id": "eq_d1",
+     "anchor_word": "over",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c21",
+     "kind": "emphasis",
+     "element_id": "r_label",
+     "anchor_word": "ten",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c22",
+     "kind": "emphasis",
+     "element_id": "eq_r2",
+     "anchor_word": "ohms",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c23",
+     "kind": "reveal",
+     "element_id": "card_def",
+     "anchor_word": "Ohm's",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c24",
+     "kind": "reveal",
+     "element_id": "eq_x",
+     "anchor_word": "equals",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c25",
+     "kind": "reveal",
+     "element_id": "eq_R",
+     "anchor_word": "resistance",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "card": {
+    "verb": "Card",
+    "what": "table V ÷ I cells rows 1-2 (c20); definition card replaces the table (c23)"
+   }
+  },
+  {
+   "id": "b08",
+   "scene": "s01",
+   "slot": "exam.language",
+   "mode": "deliberate",
+   "energy": "mid",
+   "visual_op": "Badge",
+   "text": "Always? Only at constant temperature.",
+   "node_ids": [
+    "CLM-ohm-proportional",
+    "SIM-constant-temperature"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.25
+    }
+   ],
+   "emphasis_words": [
+    "constant"
+   ],
+   "on_screen": {
+    "headline": "Always?",
+    "fx_refs": [
+     "display.condition"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c26",
+     "kind": "reveal",
+     "element_id": "card_def",
+     "anchor_word": "Always",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c27",
+     "kind": "reveal",
+     "element_id": "cond_badge",
+     "anchor_word": "constant",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "exception"
+   }
+  },
+  {
+   "id": "b09",
+   "scene": "s01",
+   "slot": "misconception.confront",
+   "mode": "alert",
+   "energy": "high",
+   "visual_op": [
+    "SwapPart",
+    "RevealMismatch",
+    "StrikeThrough"
+   ],
+   "text": "A hot bulb? Resistance rises, current won't double.",
+   "node_ids": [
+    "CLM-filament",
+    "MIS-always-doubles"
+   ],
+   "pauses": [
+    {
+     "purpose": "land",
+     "after_s": 0.5
+    }
+   ],
+   "emphasis_words": [
+    "rises"
+   ],
+   "on_screen": {
+    "headline": "Resistance rises",
+    "fx_refs": [
+     "display.lamp_label",
+     "display.r_symbol",
+     "display.rises",
+     "results.lamp.current_doubles",
+     "display.times",
+     "results.ratio_i"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c28",
+     "kind": "reveal",
+     "element_id": "lamp",
+     "anchor_word": "bulb",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c29",
+     "kind": "reveal",
+     "element_id": "heat",
+     "anchor_word": "Resistance",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c30",
+     "kind": "reveal",
+     "element_id": "r_up",
+     "anchor_word": "rises",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c31",
+     "kind": "reveal",
+     "element_id": "eq_mi",
+     "anchor_word": "current",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c32",
+     "kind": "reveal",
+     "element_id": "eq_mi",
+     "anchor_word": "double",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "reversal"
+   },
+   "evidence": "CLM-filament",
+   "evidence_shown_as": "the lamp swapped into the resistor's slot with heat marks and 'R ↑', the condition badge dimmed, and the current row's '× 2' turned red and struck; the meter shows '?' because the fixture holds only results.lamp.current_doubles = false (PD-16, no lamp current number)"
+  },
+  {
+   "id": "b10",
+   "scene": "s01",
+   "slot": "check.transfer",
+   "mode": "curious",
+   "tag": "[curious]",
+   "energy": "high",
+   "visual_op": [
+    "SwapPart",
+    "ChangeValue",
+    "PauseForPrediction"
+   ],
+   "text": "Your turn: same resistor, six volts. What does the meter read?",
+   "node_ids": [
+    "ASM-transfer-six-volts"
+   ],
+   "pauses": [
+    {
+     "purpose": "think_calc",
+     "after_s": 2.7
+    }
+   ],
+   "emphasis_words": [
+    "six"
+   ],
+   "on_screen": {
+    "headline": "Your turn",
+    "fx_refs": [
+     "parameters.v3",
+     "display.v_unit",
+     "display.ui.transfer_prompt",
+     "display.ui.unknown"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c33",
+     "kind": "reveal",
+     "element_id": "card_table",
+     "anchor_word": "turn",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c34",
+     "kind": "reveal",
+     "element_id": "resistor",
+     "anchor_word": "resistor",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c35",
+     "kind": "reveal",
+     "element_id": "v_label",
+     "anchor_word": "six",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c36",
+     "kind": "hold",
+     "element_id": "think-plate",
+     "anchor_word": "read",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "rehook": {
+    "kind": "task"
+   },
+   "check": {
+    "task_kind": "calc",
+    "asks": "results.i3",
+    "changed_parameter": "parameters.v3",
+    "answerable_from": [
+     "parameters.v3",
+     "parameters.resistance_ohm",
+     "display.sym.V",
+     "display.sym.I",
+     "display.sym.R"
+    ]
+   },
+   "card": {
+    "verb": "Card",
+    "what": "table returns (c33); row 3 V cell (c35)"
+   }
+  },
+  {
+   "id": "b11",
+   "scene": "s01",
+   "slot": "feedback.transfer",
+   "mode": "reassuring",
+   "tag": "[warm]",
+   "energy": "peak",
+   "visual_op": [
+    "ChangeValue",
+    "Badge"
+   ],
+   "text": "Point six amperes. If you got that, the rule is yours.",
+   "node_ids": [
+    "ASM-transfer-six-volts",
+    "CLM-resistance-constant"
+   ],
+   "pauses": [
+    {
+     "purpose": "land",
+     "after_s": 0.5
+    }
+   ],
+   "emphasis_words": [
+    "six"
+   ],
+   "on_screen": {
+    "headline": "The rule is yours",
+    "fx_refs": [
+     "results.i3",
+     "display.i_unit",
+     "parameters.v3",
+     "parameters.resistance_ohm",
+     "display.ui.check",
+     "results.v_over_i_3"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c37",
+     "kind": "reveal",
+     "element_id": "i_readout",
+     "anchor_word": "six",
+     "occurrence": 1,
+     "lead_s": 0.05
+    },
+    {
+     "id": "c38",
+     "kind": "reveal",
+     "element_id": "eq_tick",
+     "anchor_word": "rule",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "card": {
+    "verb": "Card",
+    "what": "table row 3 I cell (c37) and V ÷ I cell (c38)"
+   }
+  },
+  {
+   "id": "b13",
+   "scene": "s01",
+   "slot": "close.next_step",
+   "mode": "steady",
+   "tag": "[calm]",
+   "energy": "mid",
+   "visual_op": "Badge",
+   "text": "Try the free lesson on Ohm's law.",
+   "node_ids": [
+    "OBJ-ohm-condition"
+   ],
+   "pauses": [
+    {
+     "purpose": "join",
+     "after_s": 0.2
+    }
+   ],
+   "emphasis_words": [],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.card.points.p1",
+     "display.card.points.p2",
+     "display.card.points.p3",
+     "display.ui.endcard_line2"
+    ]
+   },
+   "cues": [
+    {
+     "id": "c40",
+     "kind": "reveal",
+     "element_id": "endline",
+     "anchor_word": "free",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ],
+   "card": {
+    "verb": "Card",
+    "what": "points card: p1 (c40 'free'), p2 (+0.5 s), p3 (+1.0 s); stays on the end card"
+   }
+  },
+  {
+   "id": "b14",
+   "scene": "s01",
+   "slot": "outro.brand",
+   "mode": "steady",
+   "energy": "mid",
+   "visual_op": [
+    "Badge",
+    "EndMotif"
+   ],
+   "text": "Professor Diki Simplified.",
+   "node_ids": [],
+   "pauses": [],
+   "emphasis_words": [],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.ui.endcard_line1",
+     "display.ui.endcard_line2"
+    ],
+    "free_lesson": "Free lesson: Ohm's law"
+   },
+   "cues": [
+    {
+     "id": "c41",
+     "kind": "reveal",
+     "element_id": "wordmark",
+     "anchor_word": "Professor",
+     "occurrence": 1,
+     "lead_s": 0.05
+    }
+   ]
+  }
+ ],
+ "requires": {
+  "lesson_graph_nodes_new": [
+   "SIM-push-flow",
+   "ASM-transfer-six-volts"
+  ],
+  "review": "Academic review of SIM-push-flow, CLM-filament (reliability note) and ASM-transfer-six-volts before release.",
+  "next_short": "resolved: the tease was cut for time, so no unscheduled 'next' promise ships",
+  "lamp_measurement": "No lamp current anywhere (PD-16). A reviewed measurement fixture is needed before any lamp number appears.",
+  "design": "design system v2.0.1 (PD-18 cards, PD-19 collage, PD-20 no disclosure on screen, PD-21 ident + end card only)",
+  "tooling": "pilotlib.VISUAL_OPS lacks 'Card' (design system v2 verb): visual_op 'Card' fails check_script, so card landings are recorded per beat in `card` {verb: Card}. Add 'Card' (and Pop, Slide, Chips, Tape) to VISUAL_OPS, then move them into visual_op."
+ }
+}

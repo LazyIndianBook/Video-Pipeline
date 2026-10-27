@@ -1,0 +1,1437 @@
+{
+ "schema_version": "1.0",
+ "scene_id": "phy-ohm-pd-02-s01",
+ "fps": 30,
+ "duration": 59.2,
+ "language": "en-IN",
+ "alignment_source": "tts_provider",
+ "narration_audio_sha256": "8bd7bff8bac3a0ef1144205d03258e83b0b2ee91a27acddce732fb2fab91eedf",
+ "script_sha256": "6592b5e5bf7582dae08831bc61b047fb7c19f787a3ed66d2951c80f407c7af9a",
+ "words": [
+  {
+   "w": "Voltage",
+   "t0": 0.3,
+   "t1": 0.708,
+   "occurrence": 1
+  },
+  {
+   "w": "doubles",
+   "t0": 0.871,
+   "t1": 1.688,
+   "occurrence": 1
+  },
+  {
+   "w": "Current",
+   "t0": 1.933,
+   "t1": 2.341
+  },
+  {
+   "w": "always",
+   "t0": 2.504,
+   "t1": 2.831
+  },
+  {
+   "w": "doubles",
+   "t0": 2.912,
+   "t1": 3.335,
+   "occurrence": 2
+  },
+  {
+   "w": "Voltage",
+   "t0": 3.535,
+   "t1": 4.025,
+   "occurrence": 2
+  },
+  {
+   "w": "pushes",
+   "t0": 4.107,
+   "t1": 5.004
+  },
+  {
+   "w": "resistance",
+   "t0": 5.127,
+   "t1": 5.658,
+   "occurrence": 1
+  },
+  {
+   "w": "holds",
+   "t0": 5.821,
+   "t1": 5.984
+  },
+  {
+   "w": "back",
+   "t0": 6.066,
+   "t1": 6.719
+  },
+  {
+   "w": "current",
+   "t0": 6.8,
+   "t1": 7.209,
+   "occurrence": 1
+  },
+  {
+   "w": "flows",
+   "t0": 7.29,
+   "t1": 7.865
+  },
+  {
+   "w": "Two",
+   "t0": 8.065,
+   "t1": 8.25
+  },
+  {
+   "w": "volts",
+   "t0": 8.332,
+   "t1": 8.985,
+   "occurrence": 1
+  },
+  {
+   "w": "ten",
+   "t0": 9.107,
+   "t1": 9.23,
+   "occurrence": 1
+  },
+  {
+   "w": "ohms",
+   "t0": 9.393,
+   "t1": 10.291,
+   "occurrence": 1
+  },
+  {
+   "w": "point",
+   "t0": 10.454,
+   "t1": 10.617,
+   "occurrence": 1
+  },
+  {
+   "w": "two",
+   "t0": 10.699,
+   "t1": 10.781
+  },
+  {
+   "w": "amperes",
+   "t0": 10.944,
+   "t1": 11.625,
+   "occurrence": 1
+  },
+  {
+   "w": "Now",
+   "t0": 12.125,
+   "t1": 12.37
+  },
+  {
+   "w": "four",
+   "t0": 12.615,
+   "t1": 12.86,
+   "occurrence": 1
+  },
+  {
+   "w": "volts",
+   "t0": 12.941,
+   "t1": 13.594,
+   "occurrence": 2
+  },
+  {
+   "w": "same",
+   "t0": 13.758,
+   "t1": 13.921,
+   "occurrence": 1
+  },
+  {
+   "w": "resistor",
+   "t0": 14.003,
+   "t1": 14.819,
+   "occurrence": 1
+  },
+  {
+   "w": "More",
+   "t0": 15.064,
+   "t1": 15.309,
+   "occurrence": 1
+  },
+  {
+   "w": "current",
+   "t0": 15.554,
+   "t1": 15.962,
+   "occurrence": 2
+  },
+  {
+   "w": "less",
+   "t0": 16.125,
+   "t1": 16.615
+  },
+  {
+   "w": "or",
+   "t0": 16.697,
+   "t1": 16.778
+  },
+  {
+   "w": "the",
+   "t0": 16.86,
+   "t1": 16.941,
+   "occurrence": 1
+  },
+  {
+   "w": "same",
+   "t0": 17.023,
+   "t1": 17.392,
+   "occurrence": 2
+  },
+  {
+   "w": "More",
+   "t0": 19.192,
+   "t1": 19.927,
+   "occurrence": 2
+  },
+  {
+   "w": "point",
+   "t0": 20.09,
+   "t1": 20.253,
+   "occurrence": 2
+  },
+  {
+   "w": "four",
+   "t0": 20.335,
+   "t1": 21.151,
+   "occurrence": 2
+  },
+  {
+   "w": "Twice",
+   "t0": 21.233,
+   "t1": 21.559
+  },
+  {
+   "w": "the",
+   "t0": 21.6,
+   "t1": 21.641,
+   "occurrence": 2
+  },
+  {
+   "w": "push",
+   "t0": 21.722,
+   "t1": 22.376
+  },
+  {
+   "w": "twice",
+   "t0": 22.457,
+   "t1": 22.784
+  },
+  {
+   "w": "the",
+   "t0": 22.824,
+   "t1": 22.865,
+   "occurrence": 3
+  },
+  {
+   "w": "flow",
+   "t0": 22.947,
+   "t1": 23.372
+  },
+  {
+   "w": "Why",
+   "t0": 23.872,
+   "t1": 24.566
+  },
+  {
+   "w": "Only",
+   "t0": 24.77,
+   "t1": 25.096,
+   "occurrence": 1
+  },
+  {
+   "w": "the",
+   "t0": 25.137,
+   "t1": 25.178,
+   "occurrence": 4
+  },
+  {
+   "w": "voltage",
+   "t0": 25.341,
+   "t1": 25.749,
+   "occurrence": 1
+  },
+  {
+   "w": "changed",
+   "t0": 25.831,
+   "t1": 26.332
+  },
+  {
+   "w": "Voltage",
+   "t0": 26.532,
+   "t1": 26.63,
+   "occurrence": 3
+  },
+  {
+   "w": "over",
+   "t0": 26.711,
+   "t1": 26.875
+  },
+  {
+   "w": "current",
+   "t0": 27.038,
+   "t1": 27.446,
+   "occurrence": 3
+  },
+  {
+   "w": "stays",
+   "t0": 27.528,
+   "t1": 27.854
+  },
+  {
+   "w": "ten",
+   "t0": 27.936,
+   "t1": 28.099,
+   "occurrence": 2
+  },
+  {
+   "w": "ohms",
+   "t0": 28.262,
+   "t1": 29.079,
+   "occurrence": 2
+  },
+  {
+   "w": "Ohm's",
+   "t0": 29.405,
+   "t1": 29.732,
+   "occurrence": 1
+  },
+  {
+   "w": "law",
+   "t0": 29.813,
+   "t1": 30.548,
+   "occurrence": 1
+  },
+  {
+   "w": "voltage",
+   "t0": 30.711,
+   "t1": 31.201,
+   "occurrence": 2
+  },
+  {
+   "w": "equals",
+   "t0": 31.283,
+   "t1": 31.609
+  },
+  {
+   "w": "current",
+   "t0": 31.773,
+   "t1": 32.099,
+   "occurrence": 4
+  },
+  {
+   "w": "times",
+   "t0": 32.262,
+   "t1": 32.507
+  },
+  {
+   "w": "resistance",
+   "t0": 32.589,
+   "t1": 33.348,
+   "occurrence": 2
+  },
+  {
+   "w": "Always",
+   "t0": 34.148,
+   "t1": 35.006
+  },
+  {
+   "w": "Only",
+   "t0": 35.291,
+   "t1": 35.618,
+   "occurrence": 2
+  },
+  {
+   "w": "at",
+   "t0": 35.699,
+   "t1": 35.781
+  },
+  {
+   "w": "constant",
+   "t0": 35.863,
+   "t1": 36.271
+  },
+  {
+   "w": "temperature",
+   "t0": 36.352,
+   "t1": 36.978
+  },
+  {
+   "w": "A",
+   "t0": 37.228,
+   "t1": 37.332
+  },
+  {
+   "w": "hot",
+   "t0": 37.454,
+   "t1": 37.577
+  },
+  {
+   "w": "bulb",
+   "t0": 37.658,
+   "t1": 38.27
+  },
+  {
+   "w": "Resistance",
+   "t0": 38.474,
+   "t1": 39.046
+  },
+  {
+   "w": "rises",
+   "t0": 39.128,
+   "t1": 39.944
+  },
+  {
+   "w": "current",
+   "t0": 40.026,
+   "t1": 40.434,
+   "occurrence": 5
+  },
+  {
+   "w": "won't",
+   "t0": 40.515,
+   "t1": 40.842
+  },
+  {
+   "w": "double",
+   "t0": 41.046,
+   "t1": 41.258
+  },
+  {
+   "w": "Your",
+   "t0": 41.758,
+   "t1": 41.922
+  },
+  {
+   "w": "turn",
+   "t0": 42.003,
+   "t1": 42.575
+  },
+  {
+   "w": "same",
+   "t0": 42.82,
+   "t1": 43.064,
+   "occurrence": 3
+  },
+  {
+   "w": "resistor",
+   "t0": 43.187,
+   "t1": 43.84,
+   "occurrence": 2
+  },
+  {
+   "w": "six",
+   "t0": 44.044,
+   "t1": 44.289,
+   "occurrence": 1
+  },
+  {
+   "w": "volts",
+   "t0": 44.411,
+   "t1": 45.024,
+   "occurrence": 3
+  },
+  {
+   "w": "What",
+   "t0": 45.269,
+   "t1": 45.432
+  },
+  {
+   "w": "does",
+   "t0": 45.513,
+   "t1": 45.595
+  },
+  {
+   "w": "the",
+   "t0": 45.677,
+   "t1": 45.718,
+   "occurrence": 5
+  },
+  {
+   "w": "meter",
+   "t0": 45.758,
+   "t1": 46.085
+  },
+  {
+   "w": "read",
+   "t0": 46.167,
+   "t1": 46.425
+  },
+  {
+   "w": "Point",
+   "t0": 49.125,
+   "t1": 49.37
+  },
+  {
+   "w": "six",
+   "t0": 49.533,
+   "t1": 49.778,
+   "occurrence": 2
+  },
+  {
+   "w": "amperes",
+   "t0": 49.86,
+   "t1": 50.717,
+   "occurrence": 2
+  },
+  {
+   "w": "If",
+   "t0": 50.921,
+   "t1": 51.084
+  },
+  {
+   "w": "you",
+   "t0": 51.125,
+   "t1": 51.166
+  },
+  {
+   "w": "got",
+   "t0": 51.248,
+   "t1": 51.411
+  },
+  {
+   "w": "that",
+   "t0": 51.574,
+   "t1": 51.982
+  },
+  {
+   "w": "the",
+   "t0": 52.064,
+   "t1": 52.146,
+   "occurrence": 6
+  },
+  {
+   "w": "rule",
+   "t0": 52.268,
+   "t1": 52.39
+  },
+  {
+   "w": "is",
+   "t0": 52.472,
+   "t1": 52.554
+  },
+  {
+   "w": "yours",
+   "t0": 52.635,
+   "t1": 53.102
+  },
+  {
+   "w": "Try",
+   "t0": 53.602,
+   "t1": 53.847
+  },
+  {
+   "w": "the",
+   "t0": 53.888,
+   "t1": 53.928,
+   "occurrence": 7
+  },
+  {
+   "w": "free",
+   "t0": 54.092,
+   "t1": 54.255
+  },
+  {
+   "w": "lesson",
+   "t0": 54.337,
+   "t1": 54.826
+  },
+  {
+   "w": "on",
+   "t0": 54.908,
+   "t1": 55.071
+  },
+  {
+   "w": "Ohm's",
+   "t0": 55.153,
+   "t1": 55.561,
+   "occurrence": 2
+  },
+  {
+   "w": "law",
+   "t0": 55.643,
+   "t1": 56.019,
+   "occurrence": 2
+  },
+  {
+   "w": "Professor",
+   "t0": 56.219,
+   "t1": 56.638
+  },
+  {
+   "w": "Diki",
+   "t0": 56.802,
+   "t1": 57.21
+  },
+  {
+   "w": "Simplified",
+   "t0": 57.536,
+   "t1": 58.279
+  }
+ ],
+ "beats": [
+  0.27,
+  3.535,
+  8.035,
+  12.095,
+  19.192,
+  23.872,
+  26.502,
+  34.148,
+  37.198,
+  41.728,
+  49.095,
+  53.572,
+  56.189
+ ],
+ "cues": [
+  {
+   "id": "c01",
+   "at": 0.25,
+   "kind": "emphasis",
+   "element_id": "v_label",
+   "word_index": 0
+  },
+  {
+   "id": "c02",
+   "at": 1.883,
+   "kind": "emphasis",
+   "element_id": "i_readout",
+   "word_index": 2
+  },
+  {
+   "id": "c03",
+   "at": 4.057,
+   "kind": "emphasis",
+   "element_id": "cell",
+   "word_index": 6
+  },
+  {
+   "id": "c04",
+   "at": 5.077,
+   "kind": "emphasis",
+   "element_id": "resistor",
+   "word_index": 7
+  },
+  {
+   "id": "c06",
+   "at": 6.75,
+   "kind": "emphasis",
+   "element_id": "ammeter",
+   "word_index": 10
+  },
+  {
+   "id": "c05",
+   "at": 7.24,
+   "kind": "emphasis",
+   "element_id": "i_readout",
+   "word_index": 11
+  },
+  {
+   "id": "c07",
+   "at": 8.015,
+   "kind": "emphasis",
+   "element_id": "v_label",
+   "word_index": 12
+  },
+  {
+   "id": "c08",
+   "at": 9.057,
+   "kind": "emphasis",
+   "element_id": "r_label",
+   "word_index": 14
+  },
+  {
+   "id": "c09",
+   "at": 10.894,
+   "kind": "emphasis",
+   "element_id": "eq_i1",
+   "word_index": 18
+  },
+  {
+   "id": "c10",
+   "at": 12.565,
+   "kind": "reveal",
+   "element_id": "v_label",
+   "word_index": 20
+  },
+  {
+   "id": "c11",
+   "at": 13.708,
+   "kind": "emphasis",
+   "element_id": "resistor",
+   "word_index": 22
+  },
+  {
+   "id": "c42",
+   "at": 15.014,
+   "kind": "reveal",
+   "element_id": "opt_more",
+   "word_index": 24
+  },
+  {
+   "id": "c43",
+   "at": 16.075,
+   "kind": "reveal",
+   "element_id": "opt_less",
+   "word_index": 26
+  },
+  {
+   "id": "c12",
+   "at": 16.973,
+   "kind": "reveal",
+   "element_id": "opt_same",
+   "word_index": 29
+  },
+  {
+   "id": "c13",
+   "at": 20.285,
+   "kind": "reveal",
+   "element_id": "i_readout",
+   "word_index": 32
+  },
+  {
+   "id": "c14",
+   "at": 21.183,
+   "kind": "emphasis",
+   "element_id": "i_readout",
+   "word_index": 33
+  },
+  {
+   "id": "c15",
+   "at": 21.672,
+   "kind": "reveal",
+   "element_id": "eq_mv",
+   "word_index": 35
+  },
+  {
+   "id": "c16",
+   "at": 22.897,
+   "kind": "reveal",
+   "element_id": "eq_mi",
+   "word_index": 38
+  },
+  {
+   "id": "c17",
+   "at": 23.822,
+   "kind": "emphasis",
+   "element_id": "r_label",
+   "word_index": 39
+  },
+  {
+   "id": "c18",
+   "at": 25.291,
+   "kind": "emphasis",
+   "element_id": "eq_mv",
+   "word_index": 42
+  },
+  {
+   "id": "c19",
+   "at": 25.781,
+   "kind": "emphasis",
+   "element_id": "eq_mi",
+   "word_index": 43
+  },
+  {
+   "id": "c20",
+   "at": 26.661,
+   "kind": "reveal",
+   "element_id": "eq_d1",
+   "word_index": 45
+  },
+  {
+   "id": "c21",
+   "at": 27.886,
+   "kind": "emphasis",
+   "element_id": "r_label",
+   "word_index": 48
+  },
+  {
+   "id": "c22",
+   "at": 28.212,
+   "kind": "emphasis",
+   "element_id": "eq_r2",
+   "word_index": 49
+  },
+  {
+   "id": "c23",
+   "at": 29.355,
+   "kind": "reveal",
+   "element_id": "card_def",
+   "word_index": 50
+  },
+  {
+   "id": "c24",
+   "at": 31.233,
+   "kind": "reveal",
+   "element_id": "eq_x",
+   "word_index": 53
+  },
+  {
+   "id": "c25",
+   "at": 32.539,
+   "kind": "reveal",
+   "element_id": "eq_R",
+   "word_index": 56
+  },
+  {
+   "id": "c26",
+   "at": 34.098,
+   "kind": "reveal",
+   "element_id": "card_def",
+   "word_index": 57
+  },
+  {
+   "id": "c27",
+   "at": 35.813,
+   "kind": "reveal",
+   "element_id": "cond_badge",
+   "word_index": 60
+  },
+  {
+   "id": "c28",
+   "at": 37.608,
+   "kind": "reveal",
+   "element_id": "lamp",
+   "word_index": 64
+  },
+  {
+   "id": "c29",
+   "at": 38.424,
+   "kind": "reveal",
+   "element_id": "heat",
+   "word_index": 65
+  },
+  {
+   "id": "c30",
+   "at": 39.078,
+   "kind": "reveal",
+   "element_id": "r_up",
+   "word_index": 66
+  },
+  {
+   "id": "c31",
+   "at": 39.976,
+   "kind": "reveal",
+   "element_id": "eq_mi",
+   "word_index": 67
+  },
+  {
+   "id": "c32",
+   "at": 40.996,
+   "kind": "reveal",
+   "element_id": "eq_mi",
+   "word_index": 69
+  },
+  {
+   "id": "c33",
+   "at": 41.953,
+   "kind": "reveal",
+   "element_id": "card_table",
+   "word_index": 71
+  },
+  {
+   "id": "c34",
+   "at": 43.137,
+   "kind": "reveal",
+   "element_id": "resistor",
+   "word_index": 73
+  },
+  {
+   "id": "c35",
+   "at": 43.994,
+   "kind": "reveal",
+   "element_id": "v_label",
+   "word_index": 74
+  },
+  {
+   "id": "c36",
+   "at": 46.117,
+   "kind": "hold",
+   "element_id": "think-plate",
+   "word_index": 80,
+   "until": 59.2
+  },
+  {
+   "id": "c37",
+   "at": 49.483,
+   "kind": "reveal",
+   "element_id": "i_readout",
+   "word_index": 82
+  },
+  {
+   "id": "c38",
+   "at": 52.218,
+   "kind": "reveal",
+   "element_id": "eq_tick",
+   "word_index": 89
+  },
+  {
+   "id": "c40",
+   "at": 54.042,
+   "kind": "reveal",
+   "element_id": "endline",
+   "word_index": 94
+  },
+  {
+   "id": "c41",
+   "at": 56.169,
+   "kind": "reveal",
+   "element_id": "wordmark",
+   "word_index": 99
+  }
+ ],
+ "sfx": [],
+ "meta": {
+  "video_id": "phy-ohm-pd-02",
+  "scene": "s01",
+  "beat_ids": [
+   "b01",
+   "b02",
+   "b03",
+   "b04",
+   "b05",
+   "b06",
+   "b07",
+   "b08",
+   "b09",
+   "b10",
+   "b11",
+   "b13",
+   "b14"
+  ],
+  "beats_text": [
+   {
+    "id": "b01",
+    "slot": "hook.question_reveal",
+    "text": "Voltage doubles. Current always doubles?",
+    "headline": "Current always doubles?",
+    "start": 0.3,
+    "end": 3.335,
+    "word_range": [
+     0,
+     5
+    ],
+    "energy": "high",
+    "visual_op": [
+     "PreserveObject",
+     "Emphasize"
+    ],
+    "emphasis_words": [
+     "always"
+    ],
+    "pause": {
+     "beat": "b01",
+     "purpose": "join",
+     "seconds": 0.2,
+     "start": 3.335,
+     "end": 3.535
+    }
+   },
+   {
+    "id": "b02",
+    "slot": "explain.givens",
+    "text": "Voltage pushes, resistance holds back, current flows.",
+    "headline": "",
+    "start": 3.535,
+    "end": 7.865,
+    "word_range": [
+     5,
+     12
+    ],
+    "energy": "mid",
+    "visual_op": "Emphasize",
+    "emphasis_words": [
+     "pushes"
+    ],
+    "pause": {
+     "beat": "b02",
+     "purpose": "join",
+     "seconds": 0.2,
+     "start": 7.865,
+     "end": 8.065
+    }
+   },
+   {
+    "id": "b03",
+    "slot": "explain.givens",
+    "text": "Two volts, ten ohms: point two amperes.",
+    "headline": "",
+    "start": 8.065,
+    "end": 11.625,
+    "word_range": [
+     12,
+     19
+    ],
+    "energy": "mid",
+    "visual_op": "MapSymbol",
+    "insight_beat": true,
+    "emphasis_words": [
+     "point two"
+    ],
+    "pause": {
+     "beat": "b03",
+     "purpose": "land",
+     "seconds": 0.5,
+     "start": 11.625,
+     "end": 12.125
+    }
+   },
+   {
+    "id": "b04",
+    "slot": "check.predict",
+    "text": "Now four volts, same resistor. More current, less, or the same?",
+    "headline": "",
+    "start": 12.125,
+    "end": 17.392,
+    "word_range": [
+     19,
+     30
+    ],
+    "energy": "high",
+    "visual_op": [
+     "ChangeValue",
+     "CompareStates",
+     "Reveal",
+     "PauseForPrediction"
+    ],
+    "emphasis_words": [
+     "four"
+    ],
+    "pause": {
+     "beat": "b04",
+     "purpose": "think_choice",
+     "seconds": 1.8,
+     "start": 17.392,
+     "end": 19.192
+    },
+    "think_window": {
+     "beat": "b04",
+     "purpose": "think_choice",
+     "seconds": 1.8,
+     "start": 17.392,
+     "end": 19.192
+    }
+   },
+   {
+    "id": "b05",
+    "slot": "reveal.answer",
+    "text": "More: point four. Twice the push, twice the flow.",
+    "headline": "Twice the push, twice the flow",
+    "start": 19.192,
+    "end": 23.372,
+    "word_range": [
+     30,
+     39
+    ],
+    "energy": "peak",
+    "visual_op": [
+     "ChangeValue",
+     "CompareStates"
+    ],
+    "emphasis_words": [
+     "Twice"
+    ],
+    "claim_line": "Twice the push, twice the flow.",
+    "pause": {
+     "beat": "b05",
+     "purpose": "land",
+     "seconds": 0.5,
+     "start": 23.372,
+     "end": 23.872
+    }
+   },
+   {
+    "id": "b06",
+    "slot": "explain.mechanism",
+    "text": "Why? Only the voltage changed.",
+    "headline": "",
+    "start": 23.872,
+    "end": 26.332,
+    "word_range": [
+     39,
+     44
+    ],
+    "energy": "mid",
+    "visual_op": "CompareStates",
+    "emphasis_words": [
+     "Only"
+    ],
+    "pause": {
+     "beat": "b06",
+     "purpose": "join",
+     "seconds": 0.2,
+     "start": 26.332,
+     "end": 26.532
+    }
+   },
+   {
+    "id": "b07",
+    "slot": "explain.formal",
+    "text": "Voltage over current stays ten ohms. Ohm's law: voltage equals current times resistance.",
+    "headline": "Ohm's law",
+    "start": 26.532,
+    "end": 33.348,
+    "word_range": [
+     44,
+     57
+    ],
+    "energy": "low",
+    "visual_op": [
+     "EquationTransform",
+     "MapSymbol"
+    ],
+    "emphasis_words": [
+     "stays"
+    ],
+    "pause": {
+     "beat": "b07",
+     "purpose": "inspect",
+     "seconds": 0.8,
+     "start": 33.348,
+     "end": 34.148
+    }
+   },
+   {
+    "id": "b08",
+    "slot": "exam.language",
+    "text": "Always? Only at constant temperature.",
+    "headline": "Always?",
+    "start": 34.148,
+    "end": 36.978,
+    "word_range": [
+     57,
+     62
+    ],
+    "energy": "mid",
+    "visual_op": "Badge",
+    "emphasis_words": [
+     "constant"
+    ],
+    "pause": {
+     "beat": "b08",
+     "purpose": "join",
+     "seconds": 0.25,
+     "start": 36.978,
+     "end": 37.228
+    }
+   },
+   {
+    "id": "b09",
+    "slot": "misconception.confront",
+    "text": "A hot bulb? Resistance rises, current won't double.",
+    "headline": "Resistance rises",
+    "start": 37.228,
+    "end": 41.258,
+    "word_range": [
+     62,
+     70
+    ],
+    "energy": "high",
+    "visual_op": [
+     "SwapPart",
+     "RevealMismatch",
+     "StrikeThrough"
+    ],
+    "emphasis_words": [
+     "rises"
+    ],
+    "pause": {
+     "beat": "b09",
+     "purpose": "land",
+     "seconds": 0.5,
+     "start": 41.258,
+     "end": 41.758
+    }
+   },
+   {
+    "id": "b10",
+    "slot": "check.transfer",
+    "text": "Your turn: same resistor, six volts. What does the meter read?",
+    "headline": "Your turn",
+    "start": 41.758,
+    "end": 46.425,
+    "word_range": [
+     70,
+     81
+    ],
+    "energy": "high",
+    "visual_op": [
+     "SwapPart",
+     "ChangeValue",
+     "PauseForPrediction"
+    ],
+    "emphasis_words": [
+     "six"
+    ],
+    "pause": {
+     "beat": "b10",
+     "purpose": "think_calc",
+     "seconds": 2.7,
+     "start": 46.425,
+     "end": 49.125
+    },
+    "think_window": {
+     "beat": "b10",
+     "purpose": "think_calc",
+     "seconds": 2.7,
+     "start": 46.425,
+     "end": 49.125
+    }
+   },
+   {
+    "id": "b11",
+    "slot": "feedback.transfer",
+    "text": "Point six amperes. If you got that, the rule is yours.",
+    "headline": "The rule is yours",
+    "start": 49.125,
+    "end": 53.102,
+    "word_range": [
+     81,
+     92
+    ],
+    "energy": "peak",
+    "visual_op": [
+     "ChangeValue",
+     "Badge"
+    ],
+    "emphasis_words": [
+     "six"
+    ],
+    "pause": {
+     "beat": "b11",
+     "purpose": "land",
+     "seconds": 0.5,
+     "start": 53.102,
+     "end": 53.602
+    }
+   },
+   {
+    "id": "b13",
+    "slot": "close.next_step",
+    "text": "Try the free lesson on Ohm's law.",
+    "headline": "",
+    "start": 53.602,
+    "end": 56.019,
+    "word_range": [
+     92,
+     99
+    ],
+    "energy": "mid",
+    "visual_op": "Badge",
+    "emphasis_words": [],
+    "pause": {
+     "beat": "b13",
+     "purpose": "join",
+     "seconds": 0.2,
+     "start": 56.019,
+     "end": 56.219
+    }
+   },
+   {
+    "id": "b14",
+    "slot": "outro.brand",
+    "text": "Professor Diki Simplified.",
+    "headline": "",
+    "start": 56.219,
+    "end": 58.279,
+    "word_range": [
+     99,
+     102
+    ],
+    "energy": "mid",
+    "visual_op": [
+     "Badge",
+     "EndMotif"
+    ],
+    "emphasis_words": []
+   }
+  ],
+  "think_windows": [
+   {
+    "beat": "b04",
+    "purpose": "think_choice",
+    "seconds": 1.8,
+    "start": 17.392,
+    "end": 19.192
+   },
+   {
+    "beat": "b10",
+    "purpose": "think_calc",
+    "seconds": 2.7,
+    "start": 46.425,
+    "end": 49.125
+   }
+  ],
+  "pauses": [
+   {
+    "beat": "b01",
+    "purpose": "join",
+    "seconds": 0.2,
+    "start": 3.335,
+    "end": 3.535
+   },
+   {
+    "beat": "b02",
+    "purpose": "join",
+    "seconds": 0.2,
+    "start": 7.865,
+    "end": 8.065
+   },
+   {
+    "beat": "b03",
+    "purpose": "land",
+    "seconds": 0.5,
+    "start": 11.625,
+    "end": 12.125
+   },
+   {
+    "beat": "b04",
+    "purpose": "think_choice",
+    "seconds": 1.8,
+    "start": 17.392,
+    "end": 19.192
+   },
+   {
+    "beat": "b05",
+    "purpose": "land",
+    "seconds": 0.5,
+    "start": 23.372,
+    "end": 23.872
+   },
+   {
+    "beat": "b06",
+    "purpose": "join",
+    "seconds": 0.2,
+    "start": 26.332,
+    "end": 26.532
+   },
+   {
+    "beat": "b07",
+    "purpose": "inspect",
+    "seconds": 0.8,
+    "start": 33.348,
+    "end": 34.148
+   },
+   {
+    "beat": "b08",
+    "purpose": "join",
+    "seconds": 0.25,
+    "start": 36.978,
+    "end": 37.228
+   },
+   {
+    "beat": "b09",
+    "purpose": "land",
+    "seconds": 0.5,
+    "start": 41.258,
+    "end": 41.758
+   },
+   {
+    "beat": "b10",
+    "purpose": "think_calc",
+    "seconds": 2.7,
+    "start": 46.425,
+    "end": 49.125
+   },
+   {
+    "beat": "b11",
+    "purpose": "land",
+    "seconds": 0.5,
+    "start": 53.102,
+    "end": 53.602
+   },
+   {
+    "beat": "b13",
+    "purpose": "join",
+    "seconds": 0.2,
+    "start": 56.019,
+    "end": 56.219
+   }
+  ],
+  "energy": [
+   {
+    "beat": "b01",
+    "energy": 4,
+    "start": 0.3,
+    "end": 3.335
+   },
+   {
+    "beat": "b02",
+    "energy": 3,
+    "start": 3.535,
+    "end": 7.865
+   },
+   {
+    "beat": "b03",
+    "energy": 3,
+    "start": 8.065,
+    "end": 11.625
+   },
+   {
+    "beat": "b04",
+    "energy": 4,
+    "start": 12.125,
+    "end": 17.392
+   },
+   {
+    "beat": "b05",
+    "energy": 5,
+    "start": 19.192,
+    "end": 23.372
+   },
+   {
+    "beat": "b06",
+    "energy": 3,
+    "start": 23.872,
+    "end": 26.332
+   },
+   {
+    "beat": "b07",
+    "energy": 2,
+    "start": 26.532,
+    "end": 33.348
+   },
+   {
+    "beat": "b08",
+    "energy": 3,
+    "start": 34.148,
+    "end": 36.978
+   },
+   {
+    "beat": "b09",
+    "energy": 4,
+    "start": 37.228,
+    "end": 41.258
+   },
+   {
+    "beat": "b10",
+    "energy": 4,
+    "start": 41.758,
+    "end": 46.425
+   },
+   {
+    "beat": "b11",
+    "energy": 5,
+    "start": 49.125,
+    "end": 53.102
+   },
+   {
+    "beat": "b13",
+    "energy": 3,
+    "start": 53.602,
+    "end": 56.019
+   },
+   {
+    "beat": "b14",
+    "energy": 3,
+    "start": 56.219,
+    "end": 58.279
+   }
+  ],
+  "end_card": {
+   "brand_line": "Professor Diki Simplified",
+   "free_lesson_line": "Free lesson: Ohm's law",
+   "min_on_screen_s": 1.5
+  }
+ }
+}

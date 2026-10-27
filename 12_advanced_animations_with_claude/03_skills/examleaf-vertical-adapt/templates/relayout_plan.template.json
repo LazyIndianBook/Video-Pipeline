@@ -1,0 +1,21 @@
+{
+  "scene_id": "{{scene_id}}",
+  "zones_ref": "zones.json#<sha256>",
+  "provisional": true,
+  "source_aspect": "16:9",
+  "groups": [
+    {"group": "ransom_title", "zone": "title", "anchor": "centre, max 2 lines, tiles inside zone at max rotation", "crop": false},
+    {"group": "hero_kid", "zone": "visual", "anchor": "lower-left of visual zone, looking up toward title", "crop": false},
+    {"group": "refraction_glass", "zone": "visual", "fit": {"scale": null, "x": null, "y": null, "w": null, "h": null, "crop": false}, "note": "data-bound: contain only; re-compose if labels < style-guide minimum"},
+    {"group": "label_tags", "zone": "caption", "anchor": "labels row with short leader lines", "crop": false},
+    {"group": "paper_bg", "zone": "bleed", "anchor": "full canvas", "crop": false}
+  ],
+  "reading_order": ["ransom_title", "hero_kid", "refraction_glass", "label_tags"],
+  "motion_notes": [
+    "push-in 1.0 -> 1.04 centred on visual zone; check safe rect at 1.04",
+    "no push-in or shake while label_tags or refraction labels are visible (#64)",
+    "horizontal sheet slides for text-heavy sheets; dark sheet drops from top for somber beats",
+    "no white flash/bloom (G15)"
+  ],
+  "reel": {"window": null, "snap": {"kinds": ["transition"], "tol_s": 0.1}}
+}

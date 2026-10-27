@@ -1,0 +1,11 @@
+{
+  "status": "authored-not-agent-executed",
+  "positive": {
+    "input": "NarrationPlan, ProviderProfile, lexicon, rights record",
+    "expected": "Offline requests; usage estimate; later provider-job record"
+  },
+  "negative": {
+    "request": "Reject unsupported SSML, plaintext secrets, unverified voices and unknown-status resubmission.",
+    "expected": "Preserve constraints, report issue; no silent compliance."
+  }
+}

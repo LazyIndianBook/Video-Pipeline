@@ -1,0 +1,20 @@
+{
+  "status": "example-source-ledger-not-external-approval",
+  "claims": [
+    {
+      "id": "water-composition",
+      "claim": "A water molecule has two H atoms and one O atom.",
+      "source": "https://openstax.org/books/chemistry-2e/pages/4-1-writing-and-balancing-chemical-equations"
+    },
+    {
+      "id": "coefficient-quantity",
+      "claim": "In the molecular counting representation, a coefficient multiplies all atoms in each specified molecule.",
+      "source": "https://openstax.org/books/chemistry-2e/pages/4-1-writing-and-balancing-chemical-equations"
+    },
+    {
+      "id": "subscript-identity",
+      "claim": "Do not alter supplied correct chemical formulas merely to balance the equation.",
+      "source": "https://openstax.org/books/chemistry-2e/pages/4-1-writing-and-balancing-chemical-equations"
+    }
+  ]
+}

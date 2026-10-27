@@ -1,0 +1,60 @@
+Fifteen custom narration Skills,,,,
+Authored instructions and evaluation cases. They have not been tested by running Claude Code/Codex agents. Deterministic code tests are separate.,,,,
+,,,,
+,,,,
+Skill,Purpose,Input,Output,Validation status
+super-teacher-scriptwriter,Convert approved academic claims into teachable conversational narration,"Approved LessonPlan, claim IDs, prerequisites, independent answer key",NarrationPlan draft; source-preserving change log,"Authored, not agent-evaluated"
+dialogue-naturalizer,Remove robotic phrasing without changing scientific meaning,Draft narration and claim-preservation list,Minimal wording diff with reasons,"Authored, not agent-evaluated"
+educational-storytelling,Use a small helpful story or analogy with explicit limits,"Concept, misconception, local audience information",Analogy mapping; boundary; return-to-science line,"Authored, not agent-evaluated"
+humour-meme-director,Add optional concept-linked humour without ridicule,Approved explanation and cultural context,Up to a few removable lines; no mandatory quota,"Authored, not agent-evaluated"
+student-psychology-director,Build competence through real attempts and specific feedback,"Objectives, questions, misconceptions and answer keys",Support progression; feedback; calibrated progress text,"Authored, not agent-evaluated"
+interactive-teaching-director,"Create task-specific prompts, hidden answers and response windows","Question bank, segment structure, required drawings/calculations",Question and answer segments with dependency IDs and Pause nodes,"Authored, not agent-evaluated"
+voice-acting-director,Apply a stable identity and purpose-linked delivery,VoiceIdentity plus academically approved narration,"Direction records, emphasis, pronunciation audition list","Authored, not agent-evaluated"
+pacing-controller,Control cognitive pace without rigid scene slots,"Segment text, concepts, actual audio durations and tasks",Duration report; boundary changes; external hold schedule,"Authored, not agent-evaluated"
+stem-pronunciation,Create explicit context-aware readings of notation,"Formula AST/approved notation, locale, glossary",Versioned spoken/display/caption mappings and test corpus,"Authored, not agent-evaluated"
+multilingual-director,Produce audience-appropriate language without semantic drift,"Approved script, examination medium, locale term ledger","Localized script, back-check, native-review issues","Authored, not agent-evaluated"
+tts-provider-adapter,Compile capability-checked provider payloads,"NarrationPlan, ProviderProfile, lexicon, rights record",Offline requests; usage estimate; later provider-job record,"Authored, not agent-evaluated"
+speech-animation-synchronizer,Use measured audio timing for educational visuals,"Final segment WAVs, validated alignments, cue occurrences","Sample-index timeline, cue frames, captions, protected holds","Authored, not agent-evaluated"
+audio-production-engineer,Produce clear dialogue masters without erasing useful dynamics,Accepted raw audio plus mixing and protected-silence manifest,"Archival WAV, deliverable audio, pre/post measurements","Authored, not agent-evaluated"
+narration-quality-reviewer,"Detect text, signal, timing and performance defects","Canonical transcript, independent ASR, alignments, audio, visuals",Severity-ranked issues and hash-bound review evidence,"Authored, not agent-evaluated"
+cost-regeneration-optimizer,Minimize duplicate generation and track actual costs,"Provider requests, quotes, job states, caches, accepted variants",Usage ledger; scoped invalidation; retry decision,"Authored, not agent-evaluated"
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,

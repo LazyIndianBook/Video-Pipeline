@@ -1,0 +1,77 @@
+{
+ "cache_key": "ea8b7892f6ac3558",
+ "beat": "b03",
+ "chars": 59,
+ "request_id": "voxcpm2-4bit-ref-876b843068d2-seed20261016",
+ "model_id": "voxcpm2-4bit",
+ "voice_id": "ref-876b843068d2",
+ "take": 1,
+ "seed": 20261016,
+ "generation_s": 10.6,
+ "unmatched_words": 0,
+ "words": [
+  {
+   "w": "Each",
+   "t0": 0.0,
+   "t1": 0.18
+  },
+  {
+   "w": "wire",
+   "t0": 0.18,
+   "t1": 0.48
+  },
+  {
+   "w": "holds",
+   "t0": 0.48,
+   "t1": 0.76
+  },
+  {
+   "w": "the",
+   "t0": 0.76,
+   "t1": 0.94
+  },
+  {
+   "w": "flow",
+   "t0": 0.94,
+   "t1": 1.16
+  },
+  {
+   "w": "back",
+   "t0": 1.16,
+   "t1": 1.48
+  },
+  {
+   "w": "that",
+   "t0": 1.94,
+   "t1": 1.96
+  },
+  {
+   "w": "is",
+   "t0": 1.96,
+   "t1": 2.1
+  },
+  {
+   "w": "resistance",
+   "t0": 2.1,
+   "t1": 2.58
+  },
+  {
+   "w": "in",
+   "t0": 2.58,
+   "t1": 3.0
+  },
+  {
+   "w": "ohms",
+   "t0": 3.0,
+   "t1": 3.38
+  }
+ ],
+ "provider_alignment": null,
+ "alignment_source": "forced_alignment",
+ "stt": {
+  "model": "models/whisper-small.en-asr-fp16",
+  "heard": "Each wire holds the flow back. That is resistance in ohms.",
+  "match_ratio": 1.0,
+  "diffs": []
+ }
+}

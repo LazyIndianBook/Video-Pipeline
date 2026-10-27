@@ -1,0 +1,353 @@
+{
+ "kit_version": "0.1.0",
+ "date": "2026-10-16",
+ "source": "16_pilot_builds_2026-10-16 (six builds, four blind verdicts)",
+ "restrictions": [
+  {
+   "id": "R-001",
+   "statement": "Never leave the middle_visual zone empty or decoration-only for more than 0.5 s inside a beat, and never for any duration while a science sentence is spoken; carry the previous panel over or reveal a lead element on the beat's first word.",
+   "applies_to": "all-tiers",
+   "enforcement": "verifier:PK-D01 (proposed: 2 fps ink-density scan of the middle_visual band)",
+   "negative_test": "NT-101",
+   "severity": "block",
+   "rationale": "Empty middle-zone seconds: physics A(haiku) 11 vs B(opus) 5, chemistry A 8 vs B 1 (16_pilot_builds_2026-10-16/judging/physics/verdict_visual.json, 16_pilot_builds_2026-10-16/judging/chemistry/verdict_visual.json empty_seconds); physics pedagogy blocking defect: empty circle 4.6 s and empty card 5.8 s while the rule is spoken. QA A1-A9 passed all of these.",
+   "since_kit": "0.1.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-002",
+   "statement": "Show every relationship, equation and condition the narration states on screen on its anchor word (cue at within [t0-0.05, t0]) as a fixture display string, and show it again in the recap visual.",
+   "applies_to": "all-tiers",
+   "enforcement": "verifier:PK-D02 (proposed) + script:SQ-22",
+   "negative_test": "NT-102",
+   "severity": "block",
+   "rationale": "Physics A spoke 'constant temperature' (b03, b06) and 'voltage equals current multiplied by resistance' but never drew either; B showed the amber condition chip on 'temperature' and V = I x R, then repeated both in the recap ticks. Pedagogy A 14 vs B 19 (16_pilot_builds_2026-10-16/judging/physics/verdict_pedagogy.json).",
+   "since_kit": "0.1.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-003",
+   "statement": "Build misconception.confront as the counter-example in the same setup as the preceding worked/compare scene (reuse its setup element ids), with at least one fixture-bound change glyph (e.g. 'R ↑', a changed subscript highlight) revealed on the causal word and the struck shortcut (e.g. struck '×2'); never an isolated prop with a headline.",
+   "applies_to": "all-tiers",
+   "enforcement": "verifier:PK-D05 (proposed) + script:SQ-23",
+   "negative_test": "NT-103",
+   "severity": "block",
+   "rationale": "Physics A s04: bare bulb, no circuit, no R-up, no current comparison (blocking, both lenses); B swapped the filament lamp into the same loop with 'R ↑' on 'rises' and struck '×2' on 'doubles'. Visual D5 A 2 vs B 3, pedagogy D3 A 4 vs B 5 (16_pilot_builds_2026-10-16/judging/physics/verdict_*.json).",
+   "since_kit": "0.1.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-004",
+   "statement": "Make each worked.step change one coefficient or quantity per reveal cue, say the element that moves, and recount on screen from the fixture's intermediate state on that same cue; never announce the final answer in one sentence.",
+   "applies_to": "all-tiers",
+   "enforcement": "verifier:PK-D06 (proposed) + script:SQ-24",
+   "negative_test": "NT-104",
+   "severity": "block",
+   "rationale": "Chemistry A b04 'Put a two in front of hydrogen and a two in front of water' with no recount; B re-derived the tally from results step1 then balanced on each 'two', ending 'Four and four. Balanced.' Pedagogy A 13 vs B 19 (16_pilot_builds_2026-10-16/judging/chemistry/verdict_pedagogy.json).",
+   "since_kit": "0.1.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-005",
+   "statement": "Derive every state-bearing element (tally numerals, circles, =/≠ relation, 'short' highlight, headline) from the state currently shown; when the equation changes state, every dependent element changes on the same cue, and a 'short' highlight is removed once its row balances.",
+   "applies_to": "all-tiers",
+   "enforcement": "verifier:PK-D03 (proposed: data-state agreement at every sample; extends A3)",
+   "negative_test": "NT-105",
+   "severity": "block",
+   "rationale": "Chemistry A end of s03 (~40.9-42.9 s): balanced 2H2 + O2 -> 2H2O above the unbalanced tally 'O 1' under 'Oxygen is short on the right' (blocking, both lenses; 16_pilot_builds_2026-10-16/judging/chemistry/verdict_*.json). A3 passed because each glyph matched some fixture field.",
+   "since_kit": "0.1.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-006",
+   "statement": "Typeset chemical formulas from fixture parts[] as true lowered subscripts (60-70% size, dropped at least 0.25 em, lining figures); never put Unicode subscript digits (U+2080-2089) in formula text; set coefficients full-size in the accent colour.",
+   "applies_to": "all-tiers",
+   "enforcement": "schema:display.species.<key>.parts[].{symbol,sub} + verifier:PK-D04 (proposed glyph test: H2O, 2H2O, H2O2 at 1080 width)",
+   "negative_test": "NT-106",
+   "severity": "block",
+   "rationale": "Chemistry A: Unicode ₂ in Georgia drew old-style digits on the baseline, so '2H2O' coefficient and subscript looked alike (blocking, both lenses); B built spans from parts[].sub with teal coefficients. Visual D4 A 2 vs B 4 (16_pilot_builds_2026-10-16/judging/chemistry/verdict_visual.json).",
+   "since_kit": "0.1.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-007",
+   "statement": "Make the hook ask, never reveal: no hook sentence, headline or visible element before the think window ends may state or show the answer the predict beat asks for (including partial answers such as which side is short).",
+   "applies_to": "all-tiers",
+   "enforcement": "script:SQ-04 + verifier:PK-D09 (proposed: answer tokens absent from DOM before think_windows[].end)",
+   "negative_test": "NT-107",
+   "severity": "block",
+   "rationale": "Contract §3; the chemistry brief's hook gave the answer (COMPARISON L-13); biology Haiku and Opus both cut 'Not mainly from the soil'; chemistry B's 'Did an atom just vanish?' still half-answers (16_pilot_builds_2026-10-16/judging/chemistry/verdict_pedagogy.json notes).",
+   "since_kit": "0.1.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-008",
+   "statement": "Limit each beat's headline to at most 6 words, all drawn from that beat's spoken words in order, set at no less than the tokens' heading size (59 px) in the style's display face.",
+   "applies_to": "all-tiers",
+   "enforcement": "script:check_script.py on-screen subset + verifier:PK-D07 (proposed: word count and computed font-size)",
+   "negative_test": "NT-108",
+   "severity": "flag",
+   "rationale": "Tokens win over brief minimums (COMPARISON L-11); physics A headline was a ~60 px Inter-like sans (visual D4 2); B 84 px hand-lettered (16_pilot_builds_2026-10-16/judging/physics/verdict_visual.json). Haiku notes: the template showed only the first six sheet words, so later beats had no headline.",
+   "since_kit": "0.1.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-009",
+   "statement": "Build the named style's mandatory depth layers and display face into every scene: doodle-handdrawn = L0 paper, L1 shelf, L2 tinted board with hatch shadow, L3 fixture panel, L4 cropped pencil, hand-lettered headline; editorial-vox = grain, halftone title band, tinted card with flat 8/8 shadow, serif claim words; paper-collage-vertical = back, middle, front layers with paper shadows and a word-strip or ransom title. Never use Inter, Helvetica or system-ui as the display face.",
+   "applies_to": "all-tiers",
+   "enforcement": "verifier:PK-D08 (proposed: data-layer attributes present; headline computed font-family not in fonts_ban)",
+   "negative_test": "NT-109",
+   "severity": "block",
+   "rationale": "Visual D4 A 2 vs B 4 in physics and chemistry (16_pilot_builds_2026-10-16/judging/*/verdict_visual.json); physics A 'no L1/L2/L4 depth layers'; chemistry A 'plain paper with no grain, halftone, tinted cards'. Haiku physics notes: depth 'only partly met'.",
+   "since_kit": "0.1.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-010",
+   "statement": "Start the first scene at video time 0 so it carries the narration lead-in, and make the muxed video length equal the timeline total_duration_s within one frame.",
+   "applies_to": "templates",
+   "enforcement": "verifier:A10 (tooling/qa.py)",
+   "negative_test": "NT-110",
+   "severity": "block",
+   "rationale": "All four judged MP4s ran 0.6 s ahead of the audio (physics 73.27 vs 73.87 s and 71.33 vs 71.93 s; chemistry 72.73 vs 73.33 s and 72.60 vs 73.20 s; 16_pilot_builds_2026-10-16/judging/*/verdict_visual.json). A1-A9 missed it. Fixed in tooling/narrate.py (first scene start 0.0); A10 added.",
+   "since_kit": "0.1.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-011",
+   "statement": "Define and verify determinism as the identical procedure: a fresh page, every frame seeked and captured in order, verification re-runs that same procedure and compares every frame; never compare frames captured in different seek orders.",
+   "applies_to": "templates",
+   "enforcement": "verifier:A9 (render manifest deterministic_rerender)",
+   "negative_test": "NT-111",
+   "severity": "block",
+   "rationale": "COMPARISON §1 L-01: Chrome 155 re-rasters transformed layers at history-dependent scales (PSNR ≈ 45 dB); identical procedure gave byte-identical MP4s across three runs.",
+   "since_kit": "0.1.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-012",
+   "statement": "Animate reveals, fades and swaps on text and fixture-bound elements with opacity only; never animate transform, scale or translate on them (headline word spans included) and never use CSS transitions.",
+   "applies_to": "all-tiers",
+   "enforcement": "lint:lint_seek_contract.js W03 (promote to error at L1, COMPARISON L-14) + verifier:A9",
+   "negative_test": "NT-112",
+   "severity": "block",
+   "rationale": "COMPARISON §1 L-01: the template's transform on .w spans gave different pixels in 10 of 11 reverse seeks (chemistry/haiku/build_notes.md); removing it made the build order-independent.",
+   "since_kit": "0.1.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-013",
+   "statement": "Run one render at a time per machine.",
+   "applies_to": "controller",
+   "enforcement": "code:render lock in tooling/render.py (proposed) + verifier:A9",
+   "negative_test": "NT-113",
+   "severity": "block",
+   "rationale": "COMPARISON §1 L-02: two concurrent renders gave 2 mismatched frames of 831 in chemistry s03; chemistry opus QA A9 warn 'deterministic false'.",
+   "since_kit": "0.1.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-014",
+   "statement": "Bind every number, unit, formula, label, condition and UI string on screen (including 'Pause. Predict.') to a fixture field with data-fx; type none of them by hand.",
+   "applies_to": "all-tiers",
+   "enforcement": "verifier:A3 (tooling/qa.py)",
+   "negative_test": "NT-114",
+   "severity": "block",
+   "rationale": "PILOT_CONTRACT §4 and §8; COMPARISON L-12 (UI chrome lives in display.ui.*). A3 passed on all five QA reports.",
+   "since_kit": "0.1.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-015",
+   "statement": "Give every fixture state the narration mentions (unbalanced, step1, balanced; V1/V2; before/after heating) its own named fixture field and bind the scene to that field; never compute or type an intermediate state in scene code.",
+   "applies_to": "all-tiers",
+   "enforcement": "schema:fixture state table (proposed: display.states[] keys referenced by data-state) + verifier:PK-D03",
+   "negative_test": "NT-115",
+   "severity": "block",
+   "rationale": "Chemistry B exposed coefficients.step1 and counts.step1 and recounted live; A had no step1 and could not recount (pedagogy D2 A 3 vs B 4; 16_pilot_builds_2026-10-16/judging/chemistry/verdict_pedagogy.json gap_for_weaker #1).",
+   "since_kit": "0.1.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-016",
+   "statement": "During a think window show only the question's visual and the 'Pause. Predict.' plate in bottom_caption: no answer, no counts, no clock or countdown, boil and drift frozen.",
+   "applies_to": "all-tiers",
+   "enforcement": "verifier:A8 (window present) + PK-D09 (answer absent)",
+   "negative_test": "NT-116",
+   "severity": "block",
+   "rationale": "Both tiers met it in physics and chemistry (5 s windows; 'I = ?' only; chemistry B showed no counts). Kept as a guard: it is the predict loop the confront beat answers (16_pilot_builds_2026-10-16/judging/*/verdict_pedagogy.json).",
+   "since_kit": "0.1.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-017",
+   "statement": "Keep every container (card, board panel, circle, plate) hidden until its first content element reveals; never show an empty hero container.",
+   "applies_to": "all-tiers",
+   "enforcement": "verifier:PK-D11 (proposed: visible container with no visible content child)",
+   "negative_test": "NT-117",
+   "severity": "block",
+   "rationale": "Physics A: empty circle 4.6 s in s04 and empty card 5.8 s in s05 (16_pilot_builds_2026-10-16/judging/physics/verdict_pedagogy.json blocking); chemistry opus caught the same in its own preview (s01 card empty ~4 s; chemistry/opus/build_notes.md).",
+   "since_kit": "0.1.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-018",
+   "statement": "Never let an equation or ratio string wrap (set nowrap and fit-check its box), and keep at least 24 px between any chip or label and a board edge, outline or neighbouring element.",
+   "applies_to": "all-tiers",
+   "enforcement": "verifier:A4 + PK-D12 (proposed: line count = 1 for .eq/.ratio; min clearance 24 px)",
+   "negative_test": "NT-118",
+   "severity": "flag",
+   "rationale": "Physics A 'V / I = 10 Ω' wrapped onto two lines inside the s03 cards; physics B's 'constant temperature' chip crowded the board edge and shelf (16_pilot_builds_2026-10-16/judging/physics/verdict_visual.json).",
+   "since_kit": "0.1.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-019",
+   "statement": "Run fixtures/compute.py and assert every number the script speaks before writing narration; treat numbers in the brief as claims to check, not truth.",
+   "applies_to": "all-tiers",
+   "enforcement": "code:compute.py assert per spoken result + script:SQ-02",
+   "negative_test": "NT-119",
+   "severity": "block",
+   "rationale": "The biology brief said oxygen 24/24; the Haiku builder's assert caught 18/18 and the brief was corrected 16 Oct 2026 (biology/brief.md, biology/haiku/build_notes.md).",
+   "since_kit": "0.1.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-027",
+   "statement": "A Professor Diki short is one persistent scene: one scene file and one cue sheet holding every beat; the hero is placed once and only transforms; the end card is the scene's final state.",
+   "applies_to": "diki-shorts",
+   "enforcement": "verifier:A17 (scene count = 1 for concept_short_60)",
+   "negative_test": "NT-127",
+   "severity": "block",
+   "rationale": "A2-01 critical: every Opus pilot tore the board down at each scene cut (physics 22.4/46.3/57.4 s; biology five representation switches). PD-03.",
+   "since_kit": "0.2.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-028",
+   "statement": "Never tear down the diagram: diagram-lane similarity between samples 1 s apart stays ≥ 0.60 until the end card (last 2.5 s).",
+   "applies_to": "diki-shorts",
+   "enforcement": "verifier:A17 (2 fps edge masks, 3×3 dilation)",
+   "negative_test": "NT-128",
+   "severity": "block",
+   "rationale": "A17 baseline: physics/opus min 0.43 at 46.5 s, chemistry 0.00 at 49.0 s, biology 0.00 at 40.0 s (qa/report.json). A2-01/A2-02.",
+   "since_kit": "0.2.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-029",
+   "statement": "Every silence is a scripted pause with a PD-01 purpose (join 0.2–0.35, land 0.5–0.7, inspect 0.8–1.2, think_recall 1.5, think_choice 2.0, think_calc 3.0, pause_video 1.0 s); measured silence within ±25 % of its band; no unscripted silence > 0.6 s; tail hold ≤ 1.0 s.",
+   "applies_to": "diki-shorts",
+   "enforcement": "verifier:A13 + script:check_script.py v2 (pauses[] in range)",
+   "negative_test": "NT-129",
+   "severity": "block",
+   "rationale": "A3-03/A3-05: a fixed 5.2–5.8 s think window on every prompt and 15–19 unlabelled pauses per video; A13 baseline fails all three Opus builds (e.g. physics 17.00–22.50 s, 5.51 s). PD-01.",
+   "since_kit": "0.2.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-030",
+   "statement": "The only audience-facing brand is 'Professor Diki Simplified': no 'ExamLeaf' or other brand/strings.json forbidden string in spoken text, captions, transcript, scene text, visible DOM text, fixture strings or metadata; the end card shows brand line, disclosure and free-lesson line from literal fixture strings; nothing speaks a disclosure.",
+   "applies_to": "diki-shorts",
+   "enforcement": "verifier:A12 (calls brand/brand_check.py + sampled DOM, captions, transcript)",
+   "negative_test": "NT-130",
+   "severity": "block",
+   "rationale": "A3-02/A2-15: 'AI-generated narration; script by ExamLeaf.' spoken and shown in all three Opus videos; QA A7 certified it. PD-02, PD-04, PD-12, PD-13.",
+   "since_kit": "0.2.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-031",
+   "statement": "Ask the prediction only after its givens (check.answerable_from) are on screen and spoken; include check.transfer (new fixture numbers, think pause) with feedback.transfer, close.next_step and outro.brand in the v2 anchor order.",
+   "applies_to": "diki-shorts",
+   "enforcement": "verifier:A18 + script:check_script.py v2",
+   "negative_test": "NT-131",
+   "severity": "block",
+   "rationale": "A1-01 (unanswerable prediction), A1-02/A3-M5 (no transfer); A18 baseline: every pilot lacks check.transfer. PD-06.",
+   "since_kit": "0.2.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-032",
+   "statement": "The hero fills ≥ 0.70 of the diagram lane height (tokens fill.hero_min_of_diagram) at 25/50/75 % of runtime, and the diagram lane is never empty for ≥ 1.0 s while speaking.",
+   "applies_to": "diki-shorts",
+   "enforcement": "verifier:A16 (Diki.hero / data-role=hero DOM bbox; 2 fps edge density)",
+   "negative_test": "NT-132",
+   "severity": "block",
+   "rationale": "A2-07: explanation used 17–29 % of the frame; judges' empty middle-zone seconds 1–8; A16 baseline: physics empty 3.0 s from 1.0 s, biology 7.0 s from 40.5 s. Supersedes R-023 for shorts.",
+   "since_kit": "0.2.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-033",
+   "statement": "During speech, a meaningful visual change in the diagram or result lane at least every 3.0 s (2 fps novel-edge fraction ≥ 0.0015); aim ≥ 3.3 changes per 10 s.",
+   "applies_to": "diki-shorts",
+   "enforcement": "verifier:A15",
+   "negative_test": "NT-133",
+   "severity": "block",
+   "rationale": "A3-M3/A4-05: chemistry 8.96 s with no change while the law is spoken (A15 baseline: 8.0 s from 29.0 s). Known gap: ambient decorative motion can pass A15 (biology/opus); decoration is banned by R-030/PD-08.",
+   "since_kit": "0.2.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-034",
+   "statement": "concept_short_60 runs 60.0 ± 1.0 s muxed.",
+   "applies_to": "diki-shorts",
+   "enforcement": "verifier:A11 + script:check_script.py planned duration",
+   "negative_test": "NT-134",
+   "severity": "block",
+   "rationale": "A3-01: 67.1–73.2 s; QA A8 accepted 55–80 s as a warning. PD-07.",
+   "since_kit": "0.2.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-035",
+   "statement": "Silence (≥ 0.3 s below −40 dB) is ≤ 15 % of runtime.",
+   "applies_to": "diki-shorts",
+   "enforcement": "verifier:A20 + script:check_script.py planned share",
+   "negative_test": "NT-135",
+   "severity": "block",
+   "rationale": "A3-01: 25.7–28.5 % in the Opus pilots (A20 baseline). PD-07.",
+   "since_kit": "0.2.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-036",
+   "statement": "The first usable idea (insight_beat) starts ≤ 10 s and the diagram lane carries the question's object by 1.5 s.",
+   "applies_to": "diki-shorts",
+   "enforcement": "verifier:A14",
+   "negative_test": "NT-136",
+   "severity": "block",
+   "rationale": "A3-M2: first insight at 21–35 s; A2-04: physics opens on an empty board for 3–3.5 s. PD-07.",
+   "since_kit": "0.2.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-037",
+   "statement": "Each beat of ≥ 4 words speaks at 125–165 wpm (active rate).",
+   "applies_to": "diki-shorts",
+   "enforcement": "verifier:A19",
+   "negative_test": "NT-137",
+   "severity": "flag",
+   "rationale": "A3-08: biology hook 204 wpm, disclosure beats 74–77 wpm.",
+   "since_kit": "0.2.0",
+   "owner": "lead"
+  },
+  {
+   "id": "R-038",
+   "statement": "Beats carry energy marks: ≥ 3 distinct, the peak on reveal.answer, check.transfer or feedback.transfer.",
+   "applies_to": "diki-shorts",
+   "enforcement": "verifier:A21 + script:check_script.py v2",
+   "negative_test": "NT-138",
+   "severity": "flag",
+   "rationale": "A3-09/A3-M1: the energy curve decays after the hook; founder addendum (D8 momentum).",
+   "since_kit": "0.2.0",
+   "owner": "lead"
+  }
+ ],
+ "versions": [
+  "0.1.0",
+  "0.2.0"
+ ],
+ "rule_0_2_0": "A restriction whose checker is still proposed cannot be marked block; it is advisory until the check exists."
+}

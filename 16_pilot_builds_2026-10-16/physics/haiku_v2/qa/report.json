@@ -1,0 +1,402 @@
+{
+ "video_id": "phy-ohm-ci-01",
+ "checks": [
+  {
+   "id": "A1",
+   "name": "seek-contract lint level 1",
+   "status": "pass",
+   "severity": "critical",
+   "detail": "5 scenes ok"
+  },
+  {
+   "id": "A2",
+   "name": "cue sheets valid (production)",
+   "status": "pass",
+   "severity": "critical",
+   "detail": "all valid"
+  },
+  {
+   "id": "A3",
+   "name": "on-screen science text equals fixture",
+   "status": "pass",
+   "severity": "critical",
+   "detail": "every [data-fx] element matches"
+  },
+  {
+   "id": "A4",
+   "name": "safe zones (text inside zones, side margin)",
+   "status": "pass",
+   "severity": "major",
+   "detail": "no critical or major finding"
+  },
+  {
+   "id": "A5",
+   "name": "flash test (luminance deltas, 3 Hz rule)",
+   "status": "pass",
+   "severity": "critical",
+   "detail": {
+    "frames": 2204,
+    "verdict": "pass",
+    "summary": {}
+   }
+  },
+  {
+   "id": "A6",
+   "name": "loudness −16 LUFS ±1, true peak ≤ −1 dBTP",
+   "status": "pass",
+   "severity": "major",
+   "detail": {
+    "integrated_lufs": -16.8,
+    "true_peak_dbtp": -1.5
+   }
+  },
+  {
+   "id": "A7",
+   "name": "transcript matches script (Scribe v2)",
+   "status": "pass",
+   "severity": "critical",
+   "detail": {
+    "match_ratio": 1.0,
+    "diffs": []
+   }
+  },
+  {
+   "id": "A8",
+   "name": "pacing 130–155 wpm, total 55–80 s, think window ≥ 4 s present",
+   "status": "pass",
+   "severity": "major",
+   "detail": {
+    "wpm": 137,
+    "total_s": 73.46666666666667,
+    "spoken_s": 62.2,
+    "think_windows": [
+     [
+      "b02",
+      5.0
+     ]
+    ]
+   }
+  },
+  {
+   "id": "A9",
+   "name": "render: no scene errors, injected sources, re-render determinism",
+   "status": "pass",
+   "severity": "critical",
+   "detail": {
+    "errors": 0,
+    "sources_injected": true,
+    "deterministic": true,
+    "warnings": 0
+   }
+  },
+  {
+   "id": "A10",
+   "name": "video length equals narration timeline (±1 frame)",
+   "status": "pass",
+   "severity": "critical",
+   "detail": {
+    "video_s": 73.467,
+    "timeline_s": 73.46666666666667,
+    "first_scene_start": 0.0
+   }
+  },
+  {
+   "id": "A11",
+   "name": "duration 60 ± 1 s (concept_short_60)",
+   "status": "fail",
+   "severity": "critical",
+   "detail": {
+    "reasons": [
+     "duration 73.47 s outside 60.0 ± 1.0 s"
+    ],
+    "duration_s": 73.47,
+    "target_s": 60.0,
+    "tolerance_s": 1.0,
+    "format": "concept_short_60"
+   }
+  },
+  {
+   "id": "A12",
+   "name": "brand: no forbidden string anywhere; end card",
+   "status": "fail",
+   "severity": "critical",
+   "detail": {
+    "reasons": [
+     "forbidden 'ExamLeaf' (F01) in spoken script.json#b07",
+     "forbidden 'ExamLeaf' (F01) in spoken narration/timeline.json#b07",
+     "missing end-card item header_lockup_text",
+     "missing end-card item end_card.brand_line",
+     "missing end-card item end_card.disclosure_line[B]",
+     "missing end-card item end_card.free_lesson_line",
+     "missing end-card item spoken_outro_line_last",
+     "forbidden 'ExamLeaf' (F01) in on screen s05 @ 68.7 s",
+     "forbidden 'ExamLeaf' (F01) in captions narration/captions.vtt",
+     "forbidden 'ExamLeaf' (F01) in transcript qa/transcript.json"
+    ],
+    "brand_check": {
+     "status": "fail",
+     "violations": 2,
+     "scanned": {
+      "spoken": 14,
+      "on_screen": 5,
+      "fixture": 21,
+      "metadata": 4
+     }
+    },
+    "extra_sources_scanned": 46
+   }
+  },
+  {
+   "id": "A13",
+   "name": "pause policy by purpose (PD-01)",
+   "status": "fail",
+   "severity": "major",
+   "detail": {
+    "reasons": [
+     "script has no pauses[] with purpose labels (legacy pause_after_s/think_window_s)",
+     "unscripted silence 0.00–0.70 s (0.70 s) > 0.6 s",
+     "unscripted silence 9.17–10.10 s (0.93 s) > 0.6 s",
+     "unscripted silence 14.78–20.57 s (5.78 s) > 0.6 s",
+     "unscripted silence 31.32–32.46 s (1.14 s) > 0.6 s",
+     "unscripted silence 44.31–45.35 s (1.04 s) > 0.6 s",
+     "unscripted silence 53.86–54.87 s (1.01 s) > 0.6 s",
+     "unscripted silence 67.19–67.96 s (0.77 s) > 0.6 s",
+     "tail silence 71.74–73.47 s (1.73 s) > 1.0 s end-card hold"
+    ],
+    "silences_ge_0_3": 22,
+    "matched": [],
+    "failures_total": 9
+   }
+  },
+  {
+   "id": "A14",
+   "name": "first usable idea ≤ 10 s; board by 1.5 s",
+   "status": "fail",
+   "severity": "major",
+   "detail": {
+    "reasons": [
+     "no insight_beat declared; first explain beat b03 starts at 20.6 s"
+    ],
+    "board_edge_at_1_5s": 0.04512,
+    "empty_floor": 0.0335
+   }
+  },
+  {
+   "id": "A15",
+   "name": "change events: none > 3 s static during speech",
+   "status": "fail",
+   "severity": "major",
+   "detail": {
+    "reasons": [
+     "no visual change for 4.5 s from 31.0 s during speech (> 3 s)"
+    ],
+    "longest_static_s": 4.5,
+    "longest_static_from_s": 31.0,
+    "changes": 30,
+    "changes_per_10s": 4.88,
+    "change_threshold": 0.0015
+   }
+  },
+  {
+   "id": "A16",
+   "name": "diagram never empty while speaking; hero fill",
+   "status": "fail",
+   "severity": "major",
+   "detail": {
+    "reasons": [
+     "diagram lane empty for 2.0 s from 45.5 s while speaking",
+     "no visible hero (Diki.hero / [data-role=hero]) at 18.4 s",
+     "no visible hero (Diki.hero / [data-role=hero]) at 36.7 s",
+     "no visible hero (Diki.hero / [data-role=hero]) at 55.1 s"
+    ],
+    "empty_floor": 0.0335,
+    "empty_speech_s": 3.0,
+    "empty_runs": [
+     [
+      1.0,
+      0.5
+     ],
+     [
+      45.5,
+      2.0
+     ],
+     [
+      55.0,
+      0.5
+     ]
+    ],
+    "hero_height_px": [
+     [
+      18.4,
+      null
+     ],
+     [
+      36.7,
+      null
+     ],
+     [
+      55.1,
+      null
+     ]
+    ],
+    "hero_min_px": 605
+   }
+  },
+  {
+   "id": "A17",
+   "name": "persistence: no teardown before the end card",
+   "status": "fail",
+   "severity": "critical",
+   "detail": {
+    "reasons": [
+     "5 scene files (PD-03: one persistent scene)",
+     "diagram similarity 0.26 at 20.5 s < 0.60 (teardown)",
+     "diagram similarity 0.11 at 45.0 s < 0.60 (teardown)",
+     "diagram similarity 0.23 at 54.5 s < 0.60 (teardown)"
+    ],
+    "min_similarity": 0.107,
+    "min_similarity_t": 45.0,
+    "end_card_from_s": 70.97,
+    "threshold": 0.6
+   }
+  },
+  {
+   "id": "A18",
+   "name": "teaching order: predict with givens, transfer",
+   "status": "fail",
+   "severity": "critical",
+   "detail": {
+    "reasons": [
+     "missing slot reveal.answer",
+     "missing slot check.transfer",
+     "missing slot feedback.transfer",
+     "missing slot close.next_step",
+     "missing slot outro.brand",
+     "check.predict b02 declares no givens"
+    ],
+    "slots": [
+     "hook.question_reveal",
+     "check.predict",
+     "explain.ladder_step",
+     "worked.step",
+     "misconception.confront",
+     "recap.statement",
+     "outro.disclosure"
+    ],
+    "givens": []
+   }
+  },
+  {
+   "id": "A19",
+   "name": "pace per beat 125–165 wpm",
+   "status": "fail",
+   "severity": "major",
+   "detail": {
+    "reasons": [
+     "b01 167 wpm outside 125–165",
+     "b06 124 wpm outside 125–165",
+     "b07 75 wpm outside 125–165"
+    ],
+    "per_beat": [
+     [
+      "b01",
+      24,
+      167
+     ],
+     [
+      "b02",
+      12,
+      148
+     ],
+     [
+      "b03",
+      28,
+      152
+     ],
+     [
+      "b04",
+      26,
+      130
+     ],
+     [
+      "b05",
+      21,
+      146
+     ],
+     [
+      "b06",
+      26,
+      124
+     ],
+     [
+      "b07",
+      5,
+      75
+     ]
+    ]
+   }
+  },
+  {
+   "id": "A20",
+   "name": "silence ≤ 15 % of runtime",
+   "status": "fail",
+   "severity": "critical",
+   "detail": {
+    "reasons": [
+     "silence 23.2% of runtime > 15%"
+    ],
+    "silence_s": 17.08,
+    "duration_s": 73.47,
+    "share": 0.232
+   }
+  },
+  {
+   "id": "A21",
+   "name": "energy curve: ≥ 3 marks, peak at reveal/transfer",
+   "status": "fail",
+   "severity": "major",
+   "detail": {
+    "reasons": [
+     "no energy marks in script (beats[].energy absent)"
+    ],
+    "tags": [
+     [
+      "b01",
+      "[curious]"
+     ],
+     [
+      "b02",
+      "[curious]"
+     ],
+     [
+      "b03",
+      "[thoughtful]"
+     ],
+     [
+      "b04",
+      "[calm]"
+     ],
+     [
+      "b05",
+      "[thoughtful]"
+     ],
+     [
+      "b06",
+      "[warm]"
+     ],
+     [
+      "b07",
+      null
+     ]
+    ]
+   }
+  }
+ ],
+ "format": "concept_short_60",
+ "summary": {
+  "pass": 10,
+  "warn": 0,
+  "fail": 11,
+  "skipped": 0
+ }
+}

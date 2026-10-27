@@ -1,0 +1,223 @@
+{
+ "graph_id": "LG-bio-photosyn-ci-01",
+ "subject": "biology",
+ "level": "l9_10",
+ "sources": [
+  {
+   "id": "SRC-ncert-sci10-life-processes-autotrophic",
+   "kind": "textbook",
+   "title": "NCERT Class 10 Science",
+   "section": "Chapter 'Life Processes', section 'Nutrition', subsection 'Autotrophic nutrition'",
+   "reliability_class": "official_curriculum"
+  },
+  {
+   "id": "SRC-fixture-photosyn",
+   "kind": "computation",
+   "title": "fixtures/compute.py",
+   "section": "atom balance and carbon mass fraction",
+   "reliability_class": "computed"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "HK-banyan-herd",
+   "type": "hook_colour",
+   "statement": "A banyan tree can weigh more than a herd of elephants.",
+   "assertive": false,
+   "note": "Hook colour only, not a claim: a hedged scale image ('can'), no number spoken or shown, one elephant cutout drawn for scale (no count). The brief's 'fifty' was dropped because no fixture holds it.",
+   "source_ids": []
+  },
+  {
+   "id": "OBJ-mass-from-air",
+   "type": "objective",
+   "statement": "Use the overall photosynthesis equation to explain that the carbon in a plant's sugar and wood comes from carbon dioxide in the air, not from soil."
+  },
+  {
+   "id": "CLM-autotroph",
+   "type": "claim",
+   "statement": "Green plants make their own food; this is autotrophic nutrition.",
+   "source_ids": [
+    "SRC-ncert-sci10-life-processes-autotrophic"
+   ],
+   "fixture_ids": []
+  },
+  {
+   "id": "CLM-raw-materials",
+   "type": "claim",
+   "statement": "The raw materials are carbon dioxide, taken in from the air through stomata, and water, absorbed from the soil by the roots.",
+   "source_ids": [
+    "SRC-ncert-sci10-life-processes-autotrophic"
+   ],
+   "fixture_ids": []
+  },
+  {
+   "id": "CLM-light-chlorophyll",
+   "type": "claim",
+   "statement": "Sunlight energy absorbed by chlorophyll drives the conversion of carbon dioxide and water into carbohydrate.",
+   "assumptions": [
+    "in the presence of sunlight",
+    "in the presence of chlorophyll"
+   ],
+   "source_ids": [
+    "SRC-ncert-sci10-life-processes-autotrophic"
+   ],
+   "fixture_ids": [
+    "FIX-photosyn-balance#display.sunlight",
+    "FIX-photosyn-balance#display.chlorophyll"
+   ]
+  },
+  {
+   "id": "CLM-products",
+   "type": "claim",
+   "statement": "The products are glucose and oxygen: 6CO2 + 6H2O -> C6H12O6 + 6O2, in the presence of sunlight and chlorophyll.",
+   "assumptions": [
+    "in the presence of sunlight",
+    "in the presence of chlorophyll"
+   ],
+   "source_ids": [
+    "SRC-ncert-sci10-life-processes-autotrophic",
+    "SRC-fixture-photosyn"
+   ],
+   "fixture_ids": [
+    "FIX-photosyn-balance#display",
+    "FIX-photosyn-balance#parameters"
+   ]
+  },
+  {
+   "id": "CLM-carbon-balance",
+   "type": "claim",
+   "statement": "The equation is balanced: six carbon atoms on each side (H 12 = 12, O 18 = 18).",
+   "source_ids": [
+    "SRC-fixture-photosyn"
+   ],
+   "fixture_ids": [
+    "FIX-photosyn-balance#results.carbon_left",
+    "FIX-photosyn-balance#results.carbon_right",
+    "FIX-photosyn-balance#results.atoms_left",
+    "FIX-photosyn-balance#results.atoms_right"
+   ]
+  },
+  {
+   "id": "CLM-carbon-from-air",
+   "type": "claim",
+   "statement": "The carbon that builds a plant's sugar, cellulose and wood comes from carbon dioxide in the air, not from the soil.",
+   "reasoning": [
+    "In the overall equation the only carbon-bearing reactant is carbon dioxide; water has no carbon (fixture: 1 C per CO2, 0 per H2O).",
+    "Carbon atoms are conserved: six before, six after (fixture).",
+    "So every carbon atom in glucose arrived as carbon dioxide, which enters the leaf from the air through stomata (CLM-raw-materials).",
+    "Glucose is the starting material the plant uses to build other carbohydrates such as starch and cellulose, so their carbon has the same origin."
+   ],
+   "source_ids": [
+    "SRC-ncert-sci10-life-processes-autotrophic",
+    "SRC-fixture-photosyn"
+   ],
+   "fixture_ids": [
+    "FIX-photosyn-balance#results.carbon_atoms_in_co2_per_molecule",
+    "FIX-photosyn-balance#results.carbon_atoms_in_h2o_per_molecule",
+    "FIX-photosyn-balance#results.carbon_left",
+    "FIX-photosyn-balance#results.carbon_right"
+   ]
+  },
+  {
+   "id": "CLM-soil-supplies",
+   "type": "claim",
+   "statement": "From the soil a plant takes up water and minerals (such as nitrogen, phosphorus, iron and magnesium); these are not the source of the carbon in its sugar.",
+   "source_ids": [
+    "SRC-ncert-sci10-life-processes-autotrophic"
+   ],
+   "fixture_ids": []
+  },
+  {
+   "id": "CLM-carbon-fraction",
+   "type": "claim",
+   "statement": "About forty percent of glucose by mass is carbon: 72 of 180 with integer atomic masses C=12, H=1, O=16.",
+   "source_ids": [
+    "SRC-fixture-photosyn"
+   ],
+   "fixture_ids": [
+    "FIX-photosyn-balance#results.carbon_mass_fraction",
+    "FIX-photosyn-balance#results.carbon_percent",
+    "FIX-photosyn-balance#results.glucose_carbon_mass",
+    "FIX-photosyn-balance#results.glucose_molar_mass"
+   ]
+  },
+  {
+   "id": "MIS-plants-eat-soil",
+   "type": "misconception",
+   "statement": "Plants eat soil; their mass comes from the soil.",
+   "why_wrong": "Soil supplies water and minerals; the carbon that builds sugar, cellulose and wood comes from carbon dioxide in the air.",
+   "confronted_in": "b05"
+  },
+  {
+   "id": "SIM-overall-equation",
+   "type": "simplification",
+   "statement": "Photosynthesis is shown as one overall equation.",
+   "what_is_lost": "The steps (light absorption, splitting of water, reduction of carbon dioxide), that glucose is stored as starch or built into cellulose, and that a plant's dry mass also contains hydrogen, oxygen and minerals, not only carbon."
+  },
+  {
+   "id": "SIM-integer-masses",
+   "type": "simplification",
+   "statement": "Atomic masses are rounded to whole numbers (C=12, H=1, O=16).",
+   "what_is_lost": "Exact relative atomic masses; the fraction 0.4 is spoken as 'about forty percent'."
+  },
+  {
+   "id": "WRK-count-carbon",
+   "type": "worked_item",
+   "prompt": "Where did the six carbon atoms in one glucose molecule come from?",
+   "steps": [
+    "Count carbon on the left: 6 CO2 carry 6 C; 6 H2O carry 0 C.",
+    "Count carbon on the right: one C6H12O6 carries 6 C; 6 O2 carry 0 C.",
+    "Six before, six after: all of glucose's carbon came from carbon dioxide."
+   ],
+   "fixture_ids": [
+    "FIX-photosyn-balance#results.carbon_left",
+    "FIX-photosyn-balance#results.carbon_right",
+    "FIX-photosyn-balance#results.carbon_atoms_in_co2_per_molecule",
+    "FIX-photosyn-balance#results.carbon_atoms_in_h2o_per_molecule"
+   ]
+  },
+  {
+   "id": "ASM-carbon-source",
+   "type": "assessment_item",
+   "stem": "Where do you think the carbon in the wood came from: soil, water, or air?",
+   "answer": "Air: carbon dioxide taken in through the stomata.",
+   "answers_after": "b02 think window",
+   "original": true
+  },
+  {
+   "id": "FIX-photosyn-balance",
+   "type": "fixture",
+   "compute": "fixtures/compute.py",
+   "outputs": [
+    "display.co2",
+    "display.h2o",
+    "display.glucose",
+    "display.o2",
+    "display.plus",
+    "display.arrow",
+    "display.equals",
+    "display.slash",
+    "display.sunlight",
+    "display.chlorophyll",
+    "display.carbon_symbol",
+    "display.percent",
+    "parameters.coef_co2",
+    "parameters.coef_h2o",
+    "parameters.coef_glucose",
+    "parameters.coef_o2",
+    "parameters.atomic_mass",
+    "results.atoms_left",
+    "results.atoms_right",
+    "results.balanced",
+    "results.carbon_left",
+    "results.carbon_right",
+    "results.carbon_atoms_in_co2_per_molecule",
+    "results.carbon_atoms_in_h2o_per_molecule",
+    "results.glucose_carbon_mass",
+    "results.glucose_molar_mass",
+    "results.carbon_mass_fraction",
+    "results.carbon_percent"
+   ]
+  }
+ ]
+}

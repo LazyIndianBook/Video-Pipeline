@@ -1,0 +1,1208 @@
+{
+ "video_id": "phy-ohm-pd-04",
+ "voice": {
+  "path": "B",
+  "provider": "elevenlabs",
+  "model_id": "macos-say",
+  "voice_id": "Rishi",
+  "persona": "persona/super-teacher#core",
+  "rate_scale": 1.2,
+  "note": "stock English voice (PD-05); rate_scale 1.2 is the PD-28 fast-read plan (not yet measured; the quota is exhausted until 15 Nov 2026); re-measure on the first fast narration",
+  "preview": "macOS say -r 170 (not for release)"
+ },
+ "fps": 30,
+ "lead_in_s": 0.3,
+ "script_v2": true,
+ "room_tone_dbfs": -66.0,
+ "tempo": 1.03,
+ "beats": [
+  {
+   "id": "b01",
+   "scene": "s01",
+   "slot": "hook.question_reveal",
+   "start": 0.3,
+   "end": 9.688,
+   "audio_s": 9.398,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 152,
+   "request_id": "macos-say-Rishi-170",
+   "sha256": "14f240c386d9b66a83497f80de81da3ca29f6e3604d792b18a863dc1498d3025",
+   "words": [
+    {
+     "w": "What",
+     "t0": 0.3,
+     "t1": 0.612
+    },
+    {
+     "w": "is",
+     "t0": 0.639,
+     "t1": 0.825
+    },
+    {
+     "w": "Ohm's",
+     "t0": 0.842,
+     "t1": 1.215
+    },
+    {
+     "w": "law",
+     "t0": 1.248,
+     "t1": 1.496
+    },
+    {
+     "w": "When",
+     "t0": 1.518,
+     "t1": 1.829
+    },
+    {
+     "w": "electricity",
+     "t0": 1.856,
+     "t1": 2.604
+    },
+    {
+     "w": "passes",
+     "t0": 2.669,
+     "t1": 3.105
+    },
+    {
+     "w": "through",
+     "t0": 3.143,
+     "t1": 3.641
+    },
+    {
+     "w": "a",
+     "t0": 3.684,
+     "t1": 3.809
+    },
+    {
+     "w": "wire",
+     "t0": 3.819,
+     "t1": 4.131
+    },
+    {
+     "w": "something",
+     "t0": 4.157,
+     "t1": 4.781
+    },
+    {
+     "w": "pushes",
+     "t0": 4.835,
+     "t1": 5.271
+    },
+    {
+     "w": "it",
+     "t0": 5.309,
+     "t1": 5.495
+    },
+    {
+     "w": "along",
+     "t0": 5.512,
+     "t1": 5.884
+    },
+    {
+     "w": "That",
+     "t0": 5.917,
+     "t1": 6.229
+    },
+    {
+     "w": "push",
+     "t0": 6.255,
+     "t1": 6.567
+    },
+    {
+     "w": "is",
+     "t0": 6.594,
+     "t1": 6.781
+    },
+    {
+     "w": "called",
+     "t0": 6.797,
+     "t1": 7.233
+    },
+    {
+     "w": "voltage",
+     "t0": 7.271,
+     "t1": 7.769
+    },
+    {
+     "w": "and",
+     "t0": 7.813,
+     "t1": 8.061
+    },
+    {
+     "w": "we",
+     "t0": 8.083,
+     "t1": 8.27
+    },
+    {
+     "w": "measure",
+     "t0": 8.286,
+     "t1": 8.784
+    },
+    {
+     "w": "it",
+     "t0": 8.827,
+     "t1": 9.015
+    },
+    {
+     "w": "in",
+     "t0": 9.031,
+     "t1": 9.217
+    },
+    {
+     "w": "volts",
+     "t0": 9.234,
+     "t1": 9.608
+    }
+   ],
+   "energy": "high"
+  },
+  {
+   "id": "b02",
+   "scene": "s01",
+   "slot": "explain.definition",
+   "start": 9.808,
+   "end": 13.46,
+   "audio_s": 3.661,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 59,
+   "request_id": "macos-say-Rishi-170",
+   "sha256": "25d983f7f07d85bff3f559e31fb0ef0decbce9b02d659ab1dc89a23849352aa3",
+   "words": [
+    {
+     "w": "The",
+     "t0": 9.808,
+     "t1": 10.037
+    },
+    {
+     "w": "flow",
+     "t0": 10.057,
+     "t1": 10.344
+    },
+    {
+     "w": "is",
+     "t0": 10.368,
+     "t1": 10.54
+    },
+    {
+     "w": "called",
+     "t0": 10.555,
+     "t1": 10.956
+    },
+    {
+     "w": "current",
+     "t0": 10.991,
+     "t1": 11.45
+    },
+    {
+     "w": "this",
+     "t0": 11.489,
+     "t1": 11.776
+    },
+    {
+     "w": "meter",
+     "t0": 11.8,
+     "t1": 12.144
+    },
+    {
+     "w": "reads",
+     "t0": 12.174,
+     "t1": 12.517
+    },
+    {
+     "w": "it",
+     "t0": 12.548,
+     "t1": 12.719
+    },
+    {
+     "w": "in",
+     "t0": 12.734,
+     "t1": 12.907
+    },
+    {
+     "w": "amperes",
+     "t0": 12.921,
+     "t1": 13.38
+    }
+   ],
+   "energy": "mid"
+  },
+  {
+   "id": "b03",
+   "scene": "s01",
+   "slot": "explain.definition",
+   "start": 13.58,
+   "end": 17.798,
+   "audio_s": 4.218,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 59,
+   "request_id": "macos-say-Rishi-170",
+   "sha256": "446ce2277d1f2fc61d2dc5020e1c61ec61719413a4e8e11ab6d6e55645dd3afb",
+   "words": [
+    {
+     "w": "Each",
+     "t0": 13.58,
+     "t1": 13.917
+    },
+    {
+     "w": "wire",
+     "t0": 13.946,
+     "t1": 14.283
+    },
+    {
+     "w": "holds",
+     "t0": 14.312,
+     "t1": 14.717
+    },
+    {
+     "w": "the",
+     "t0": 14.751,
+     "t1": 15.021
+    },
+    {
+     "w": "flow",
+     "t0": 15.045,
+     "t1": 15.382
+    },
+    {
+     "w": "back",
+     "t0": 15.411,
+     "t1": 15.748
+    },
+    {
+     "w": "that",
+     "t0": 15.777,
+     "t1": 16.114
+    },
+    {
+     "w": "is",
+     "t0": 16.143,
+     "t1": 16.346
+    },
+    {
+     "w": "resistance",
+     "t0": 16.363,
+     "t1": 17.104
+    },
+    {
+     "w": "in",
+     "t0": 17.168,
+     "t1": 17.371
+    },
+    {
+     "w": "ohms",
+     "t0": 17.388,
+     "t1": 17.725
+    }
+   ],
+   "energy": "mid"
+  },
+  {
+   "id": "b04",
+   "scene": "s01",
+   "slot": "explain.definition",
+   "start": 17.925,
+   "end": 22.965,
+   "audio_s": 5.04,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 92,
+   "request_id": "macos-say-Rishi-170",
+   "sha256": "ad81e65a9642d2db8676347b4df3d28d85f076ce106a1ef08a3446e555a0031d",
+   "words": [
+    {
+     "w": "Ohm's",
+     "t0": 17.925,
+     "t1": 18.229
+    },
+    {
+     "w": "law",
+     "t0": 18.255,
+     "t1": 18.458
+    },
+    {
+     "w": "says",
+     "t0": 18.476,
+     "t1": 18.729
+    },
+    {
+     "w": "the",
+     "t0": 18.751,
+     "t1": 18.953
+    },
+    {
+     "w": "current",
+     "t0": 18.971,
+     "t1": 19.377
+    },
+    {
+     "w": "goes",
+     "t0": 19.412,
+     "t1": 19.665
+    },
+    {
+     "w": "up",
+     "t0": 19.687,
+     "t1": 19.839
+    },
+    {
+     "w": "with",
+     "t0": 19.852,
+     "t1": 20.105
+    },
+    {
+     "w": "the",
+     "t0": 20.127,
+     "t1": 20.33
+    },
+    {
+     "w": "push",
+     "t0": 20.348,
+     "t1": 20.601
+    },
+    {
+     "w": "as",
+     "t0": 20.622,
+     "t1": 20.775
+    },
+    {
+     "w": "long",
+     "t0": 20.788,
+     "t1": 21.041
+    },
+    {
+     "w": "as",
+     "t0": 21.063,
+     "t1": 21.216
+    },
+    {
+     "w": "the",
+     "t0": 21.228,
+     "t1": 21.431
+    },
+    {
+     "w": "temperature",
+     "t0": 21.449,
+     "t1": 22.056
+    },
+    {
+     "w": "stays",
+     "t0": 22.109,
+     "t1": 22.413
+    },
+    {
+     "w": "the",
+     "t0": 22.44,
+     "t1": 22.642
+    },
+    {
+     "w": "same",
+     "t0": 22.659,
+     "t1": 22.913
+    }
+   ],
+   "energy": "mid"
+  },
+  {
+   "id": "b05",
+   "scene": "s01",
+   "slot": "explain.formal",
+   "start": 23.103,
+   "end": 30.212,
+   "audio_s": 7.109,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 103,
+   "request_id": "macos-say-Rishi-170",
+   "sha256": "22c71d4baacf3042a55cc3d6ace773b960c535188f61659c08233fd29a160564",
+   "words": [
+    {
+     "w": "So",
+     "t0": 23.113,
+     "t1": 23.322
+    },
+    {
+     "w": "voltage",
+     "t0": 23.341,
+     "t1": 23.901
+    },
+    {
+     "w": "equals",
+     "t0": 23.95,
+     "t1": 24.44
+    },
+    {
+     "w": "current",
+     "t0": 24.483,
+     "t1": 25.043
+    },
+    {
+     "w": "times",
+     "t0": 25.091,
+     "t1": 25.512
+    },
+    {
+     "w": "resistance",
+     "t0": 25.548,
+     "t1": 26.318
+    },
+    {
+     "w": "V",
+     "t0": 26.385,
+     "t1": 26.525
+    },
+    {
+     "w": "equals",
+     "t0": 26.537,
+     "t1": 27.027
+    },
+    {
+     "w": "I",
+     "t0": 27.07,
+     "t1": 27.21
+    },
+    {
+     "w": "R",
+     "t0": 27.222,
+     "t1": 27.362
+    },
+    {
+     "w": "Then",
+     "t0": 27.375,
+     "t1": 27.724
+    },
+    {
+     "w": "I",
+     "t0": 27.755,
+     "t1": 27.895
+    },
+    {
+     "w": "is",
+     "t0": 27.907,
+     "t1": 28.117
+    },
+    {
+     "w": "V",
+     "t0": 28.136,
+     "t1": 28.276
+    },
+    {
+     "w": "over",
+     "t0": 28.287,
+     "t1": 28.638
+    },
+    {
+     "w": "R",
+     "t0": 28.668,
+     "t1": 28.808
+    },
+    {
+     "w": "and",
+     "t0": 28.82,
+     "t1": 29.1
+    },
+    {
+     "w": "R",
+     "t0": 29.125,
+     "t1": 29.265
+    },
+    {
+     "w": "is",
+     "t0": 29.277,
+     "t1": 29.487
+    },
+    {
+     "w": "V",
+     "t0": 29.506,
+     "t1": 29.646
+    },
+    {
+     "w": "over",
+     "t0": 29.657,
+     "t1": 30.008
+    },
+    {
+     "w": "I",
+     "t0": 30.038,
+     "t1": 30.178
+    }
+   ],
+   "energy": "low"
+  },
+  {
+   "id": "b06",
+   "scene": "s01",
+   "slot": "explain.mechanism",
+   "start": 30.378,
+   "end": 33.357,
+   "audio_s": 2.98,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 48,
+   "request_id": "macos-say-Rishi-170",
+   "sha256": "eabb10dd9b165a8c2f04a3ab8d233329ba72a8d92984b1482869ab5312d7acc2",
+   "words": [
+    {
+     "w": "Two",
+     "t0": 30.378,
+     "t1": 30.603
+    },
+    {
+     "w": "volts",
+     "t0": 30.623,
+     "t1": 30.961
+    },
+    {
+     "w": "over",
+     "t0": 30.99,
+     "t1": 31.273
+    },
+    {
+     "w": "ten",
+     "t0": 31.297,
+     "t1": 31.522
+    },
+    {
+     "w": "ohms",
+     "t0": 31.542,
+     "t1": 31.824
+    },
+    {
+     "w": "gives",
+     "t0": 31.849,
+     "t1": 32.186
+    },
+    {
+     "w": "point",
+     "t0": 32.217,
+     "t1": 32.554
+    },
+    {
+     "w": "two",
+     "t0": 32.583,
+     "t1": 32.81
+    },
+    {
+     "w": "amperes",
+     "t0": 32.829,
+     "t1": 33.281
+    }
+   ],
+   "energy": "high"
+  },
+  {
+   "id": "b07",
+   "scene": "s01",
+   "slot": "explain.mechanism",
+   "start": 33.481,
+   "end": 37.389,
+   "audio_s": 3.909,
+   "pause_after_s": 0.5,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "land",
+    "seconds": 0.5
+   },
+   "chars": 69,
+   "request_id": "macos-say-Rishi-170",
+   "sha256": "baf7576934f60aaa4571f07f4b16df99639a8c52a1d1134f4b56957aaadba9b0",
+   "words": [
+    {
+     "w": "Double",
+     "t0": 33.481,
+     "t1": 33.848
+    },
+    {
+     "w": "the",
+     "t0": 33.88,
+     "t1": 34.089
+    },
+    {
+     "w": "push",
+     "t0": 34.107,
+     "t1": 34.369
+    },
+    {
+     "w": "to",
+     "t0": 34.392,
+     "t1": 34.55
+    },
+    {
+     "w": "four",
+     "t0": 34.563,
+     "t1": 34.825
+    },
+    {
+     "w": "volts",
+     "t0": 34.848,
+     "t1": 35.162
+    },
+    {
+     "w": "and",
+     "t0": 35.189,
+     "t1": 35.399
+    },
+    {
+     "w": "the",
+     "t0": 35.417,
+     "t1": 35.627
+    },
+    {
+     "w": "current",
+     "t0": 35.646,
+     "t1": 36.065
+    },
+    {
+     "w": "doubles",
+     "t0": 36.101,
+     "t1": 36.52
+    },
+    {
+     "w": "to",
+     "t0": 36.557,
+     "t1": 36.714
+    },
+    {
+     "w": "point",
+     "t0": 36.728,
+     "t1": 37.042
+    },
+    {
+     "w": "four",
+     "t0": 37.07,
+     "t1": 37.332
+    }
+   ],
+   "energy": "peak"
+  },
+  {
+   "id": "b08",
+   "scene": "s01",
+   "slot": "worked.step",
+   "start": 37.832,
+   "end": 43.317,
+   "audio_s": 5.485,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 90,
+   "request_id": "macos-say-Rishi-170",
+   "sha256": "4f020478cf6b3770ffb3876ad4a141b62f314f2af9be424984b89cf2120eb661",
+   "words": [
+    {
+     "w": "Keep",
+     "t0": 37.832,
+     "t1": 38.117
+    },
+    {
+     "w": "two",
+     "t0": 38.142,
+     "t1": 38.37
+    },
+    {
+     "w": "volts",
+     "t0": 38.39,
+     "t1": 38.732
+    },
+    {
+     "w": "double",
+     "t0": 38.762,
+     "t1": 39.161
+    },
+    {
+     "w": "the",
+     "t0": 39.196,
+     "t1": 39.424
+    },
+    {
+     "w": "resistance",
+     "t0": 39.444,
+     "t1": 40.072
+    },
+    {
+     "w": "to",
+     "t0": 40.126,
+     "t1": 40.297
+    },
+    {
+     "w": "twenty",
+     "t0": 40.313,
+     "t1": 40.712
+    },
+    {
+     "w": "ohms",
+     "t0": 40.747,
+     "t1": 41.031
+    },
+    {
+     "w": "and",
+     "t0": 41.056,
+     "t1": 41.284
+    },
+    {
+     "w": "the",
+     "t0": 41.304,
+     "t1": 41.532
+    },
+    {
+     "w": "current",
+     "t0": 41.552,
+     "t1": 42.009
+    },
+    {
+     "w": "halves",
+     "t0": 42.049,
+     "t1": 42.448
+    },
+    {
+     "w": "to",
+     "t0": 42.483,
+     "t1": 42.653
+    },
+    {
+     "w": "point",
+     "t0": 42.668,
+     "t1": 43.011
+    },
+    {
+     "w": "one",
+     "t0": 43.041,
+     "t1": 43.269
+    }
+   ],
+   "energy": "high"
+  },
+  {
+   "id": "b09",
+   "scene": "s01",
+   "slot": "explain.condition",
+   "start": 43.469,
+   "end": 48.585,
+   "audio_s": 5.137,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 88,
+   "request_id": "macos-say-Rishi-170",
+   "sha256": "4cbacd63f343a45d3883031b25696f8d783edda4da13a8167a6de73d02ff0842",
+   "words": [
+    {
+     "w": "Voltage",
+     "t0": 43.469,
+     "t1": 43.899
+    },
+    {
+     "w": "against",
+     "t0": 43.937,
+     "t1": 44.367
+    },
+    {
+     "w": "current",
+     "t0": 44.405,
+     "t1": 44.835
+    },
+    {
+     "w": "makes",
+     "t0": 44.873,
+     "t1": 45.195
+    },
+    {
+     "w": "a",
+     "t0": 45.223,
+     "t1": 45.331
+    },
+    {
+     "w": "straight",
+     "t0": 45.34,
+     "t1": 45.824
+    },
+    {
+     "w": "line",
+     "t0": 45.866,
+     "t1": 46.135
+    },
+    {
+     "w": "through",
+     "t0": 46.159,
+     "t1": 46.589
+    },
+    {
+     "w": "zero",
+     "t0": 46.626,
+     "t1": 46.895
+    },
+    {
+     "w": "Its",
+     "t0": 46.919,
+     "t1": 47.134
+    },
+    {
+     "w": "slope",
+     "t0": 47.152,
+     "t1": 47.476
+    },
+    {
+     "w": "is",
+     "t0": 47.504,
+     "t1": 47.665
+    },
+    {
+     "w": "the",
+     "t0": 47.68,
+     "t1": 47.894
+    },
+    {
+     "w": "resistance",
+     "t0": 47.913,
+     "t1": 48.505
+    }
+   ],
+   "energy": "mid"
+  },
+  {
+   "id": "b10",
+   "scene": "s01",
+   "slot": "explain.condition",
+   "start": 48.705,
+   "end": 52.591,
+   "audio_s": 3.886,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 63,
+   "request_id": "macos-say-Rishi-170",
+   "sha256": "18b4dd908b8cdd689cd88ae1e7f31a890d3fe1dc9ad64e3225bf3f33c0175ce8",
+   "words": [
+    {
+     "w": "But",
+     "t0": 48.705,
+     "t1": 48.933
+    },
+    {
+     "w": "a",
+     "t0": 48.952,
+     "t1": 49.067
+    },
+    {
+     "w": "hot",
+     "t0": 49.077,
+     "t1": 49.305
+    },
+    {
+     "w": "bulb's",
+     "t0": 49.325,
+     "t1": 49.724
+    },
+    {
+     "w": "line",
+     "t0": 49.759,
+     "t1": 50.045
+    },
+    {
+     "w": "bends",
+     "t0": 50.069,
+     "t1": 50.412
+    },
+    {
+     "w": "because",
+     "t0": 50.441,
+     "t1": 50.897
+    },
+    {
+     "w": "its",
+     "t0": 50.937,
+     "t1": 51.165
+    },
+    {
+     "w": "filament",
+     "t0": 51.185,
+     "t1": 51.699
+    },
+    {
+     "w": "resists",
+     "t0": 51.744,
+     "t1": 52.2
+    },
+    {
+     "w": "more",
+     "t0": 52.24,
+     "t1": 52.524
+    }
+   ],
+   "energy": "high"
+  },
+  {
+   "id": "b11",
+   "scene": "s01",
+   "slot": "recap.statement",
+   "start": 52.715,
+   "end": 54.548,
+   "audio_s": 1.834,
+   "pause_after_s": 0.5,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "land",
+    "seconds": 0.5
+   },
+   "chars": 31,
+   "request_id": "macos-say-Rishi-170",
+   "sha256": "ecefe52a439fb388f4148e2a18e17831361be5619ef498ef067844897a10326a",
+   "words": [
+    {
+     "w": "Twice",
+     "t0": 52.724,
+     "t1": 53.054
+    },
+    {
+     "w": "the",
+     "t0": 53.083,
+     "t1": 53.304
+    },
+    {
+     "w": "push",
+     "t0": 53.323,
+     "t1": 53.598
+    },
+    {
+     "w": "twice",
+     "t0": 53.622,
+     "t1": 53.952
+    },
+    {
+     "w": "the",
+     "t0": 53.982,
+     "t1": 54.202
+    },
+    {
+     "w": "flow",
+     "t0": 54.221,
+     "t1": 54.496
+    }
+   ],
+   "energy": "high"
+  },
+  {
+   "id": "b12",
+   "scene": "s01",
+   "slot": "close.next_step",
+   "start": 54.996,
+   "end": 56.915,
+   "audio_s": 1.919,
+   "pause_after_s": 0.2,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "join",
+    "seconds": 0.2
+   },
+   "chars": 41,
+   "request_id": "macos-say-Rishi-170",
+   "sha256": "50b56c8ad51011e8dcc369082b72bf1d0f37e18ed3f1f62a66b92afbaa5ed0fb",
+   "words": [
+    {
+     "w": "Try",
+     "t0": 54.996,
+     "t1": 55.201
+    },
+    {
+     "w": "more",
+     "t0": 55.218,
+     "t1": 55.475
+    },
+    {
+     "w": "cases",
+     "t0": 55.497,
+     "t1": 55.805
+    },
+    {
+     "w": "in",
+     "t0": 55.831,
+     "t1": 55.985
+    },
+    {
+     "w": "the",
+     "t0": 55.998,
+     "t1": 56.203
+    },
+    {
+     "w": "free",
+     "t0": 56.221,
+     "t1": 56.478
+    },
+    {
+     "w": "lesson",
+     "t0": 56.5,
+     "t1": 56.858
+    }
+   ],
+   "energy": "mid"
+  },
+  {
+   "id": "b13",
+   "scene": "s01",
+   "slot": "outro.brand",
+   "start": 57.049,
+   "end": 58.658,
+   "audio_s": 1.623,
+   "pause_after_s": 0.0,
+   "think_window_s": 0.0,
+   "pause": {
+    "purpose": "unlabelled",
+    "seconds": 0.0
+   },
+   "chars": 26,
+   "request_id": "macos-say-Rishi-170",
+   "sha256": "473b46e7a4c3ff773ecf86dde755e54700258abfe26d3624ece4b7b08e34fcd7",
+   "words": [
+    {
+     "w": "Professor",
+     "t0": 57.058,
+     "t1": 57.615
+    },
+    {
+     "w": "Diki",
+     "t0": 57.663,
+     "t1": 57.942
+    },
+    {
+     "w": "Simplified",
+     "t0": 57.966,
+     "t1": 58.578
+    }
+   ],
+   "energy": "mid"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "start": 0.0,
+   "end": 59.5,
+   "duration": 59.5
+  }
+ ],
+ "pauses": [
+  {
+   "beat": "b01",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 9.608,
+   "end": 9.808
+  },
+  {
+   "beat": "b02",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 13.38,
+   "end": 13.58
+  },
+  {
+   "beat": "b03",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 17.725,
+   "end": 17.925
+  },
+  {
+   "beat": "b04",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 22.913,
+   "end": 23.113
+  },
+  {
+   "beat": "b05",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 30.178,
+   "end": 30.378
+  },
+  {
+   "beat": "b06",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 33.281,
+   "end": 33.481
+  },
+  {
+   "beat": "b07",
+   "purpose": "land",
+   "seconds": 0.5,
+   "start": 37.332,
+   "end": 37.832
+  },
+  {
+   "beat": "b08",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 43.269,
+   "end": 43.469
+  },
+  {
+   "beat": "b09",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 48.505,
+   "end": 48.705
+  },
+  {
+   "beat": "b10",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 52.524,
+   "end": 52.724
+  },
+  {
+   "beat": "b11",
+   "purpose": "land",
+   "seconds": 0.5,
+   "start": 54.496,
+   "end": 54.996
+  },
+  {
+   "beat": "b12",
+   "purpose": "join",
+   "seconds": 0.2,
+   "start": 56.858,
+   "end": 57.058
+  }
+ ],
+ "total_duration_s": 59.5,
+ "chars_total": 921,
+ "narration_audio_sha256": "35372dc0ee678bd9aee3695e5404a9d18b6151ed6c81d79f46ceb8c91ec663c8",
+ "script_sha256": "8577b60cc805eb683d2fe91e424fbafe82462ecccdfc20655213c6ca1b7b1e44"
+}

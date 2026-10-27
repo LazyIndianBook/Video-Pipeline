@@ -1,0 +1,34 @@
+<!-- s02 predict pause: 4 V on the same circuit; the unknown current is a question mark. No answer on screen. -->
+<svg width="888" height="659" viewBox="0 0 888 659" style="position:absolute;left:0;top:0;overflow:visible">
+  <g id="shelf" data-rv="1" data-layer="L1">
+    <line x1="0" y1="60" x2="888" y2="60" stroke="#526074" stroke-width="4"/>
+    <rect x="60" y="14" width="34" height="46" fill="#CFDCF1" stroke="#526074" stroke-width="2"/>
+    <rect x="96" y="22" width="26" height="38" fill="#CFDCF1" stroke="#526074" stroke-width="2"/>
+    <rect x="124" y="10" width="40" height="50" fill="#CFDCF1" stroke="#526074" stroke-width="2"/>
+    <rect x="700" y="16" width="30" height="44" fill="#CFDCF1" stroke="#526074" stroke-width="2"/>
+    <rect x="732" y="8" width="44" height="52" fill="#CFDCF1" stroke="#526074" stroke-width="2"/>
+  </g>
+  <g id="board" data-rv="1" data-layer="L2">
+    <rect x="24" y="36" width="840" height="264" rx="18" fill="#B9CCEA"/>
+    <path d="M846 302 L866 282 M836 304 L862 278 M826 306 L858 274" stroke="#14213D" stroke-width="2.5" opacity="0.6"/>
+  </g>
+  <path id="wires" data-rv="1" data-layer="L3" d="M120 150 H690 V290 H120 Z" fill="none" stroke="#14213D" stroke-width="5" stroke-linejoin="round"/>
+  <g id="cell" data-rv="1" data-layer="L3">
+    <path d="M104 212 H136" stroke="#14213D" stroke-width="7"/>
+    <path d="M112 228 H128" stroke="#14213D" stroke-width="4"/>
+  </g>
+  <g id="resistor" data-rv="1" data-layer="L3">
+    <rect x="352" y="136" width="136" height="28" fill="#B9CCEA"/>
+    <path data-pts='[[360,150],[370,140],[380,160],[390,140],[400,160],[410,140],[420,160],[430,140],[440,160],[450,140],[460,160],[470,140],[480,150]]' fill="none" stroke="#14213D" stroke-width="5" stroke-linejoin="round"/>
+  </g>
+  <g id="ammeter" data-rv="1" data-layer="L3">
+    <circle cx="690" cy="220" r="30" fill="#F7F9FC" stroke="#14213D" stroke-width="5"/>
+  </g>
+  <g id="qmark" data-rv="1" data-layer="L3">
+    <path data-pts='[[676,206],[682,198],[692,196],[700,202],[700,210],[690,218],[690,226]]' fill="none" stroke="#185ABD" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="690" cy="238" r="3.5" fill="#185ABD"/>
+  </g>
+</svg>
+<div class="chip" id="r_chip" data-rv="1" style="left:520px;top:60px"><span data-fx="display.r_label"></span>&nbsp;<span data-fx="display.r_value"></span></div>
+<div class="chip" id="v2_chip" data-rv="1" style="left:404px;top:190px"><span data-fx="display.v_label"></span>&nbsp;<span data-fx="display.v2_value"></span></div>
+<div class="lab" id="i_label" data-rv="1" style="left:748px;top:203px"><span data-fx="display.i_label"></span></div>

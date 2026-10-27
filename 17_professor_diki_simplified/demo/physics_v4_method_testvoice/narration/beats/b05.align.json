@@ -1,0 +1,132 @@
+{
+ "cache_key": "13e313d1799fdf92",
+ "beat": "b05",
+ "chars": 103,
+ "request_id": "voxcpm2-4bit-ref-876b843068d2-seed20261016",
+ "model_id": "voxcpm2-4bit",
+ "voice_id": "ref-876b843068d2",
+ "take": 1,
+ "seed": 20261016,
+ "generation_s": 24.7,
+ "unmatched_words": 0,
+ "words": [
+  {
+   "w": "So",
+   "t0": 0.0,
+   "t1": 0.22
+  },
+  {
+   "w": "voltage",
+   "t0": 0.22,
+   "t1": 0.64
+  },
+  {
+   "w": "equals",
+   "t0": 0.64,
+   "t1": 1.0
+  },
+  {
+   "w": "current",
+   "t0": 1.0,
+   "t1": 1.48
+  },
+  {
+   "w": "times",
+   "t0": 1.48,
+   "t1": 1.9
+  },
+  {
+   "w": "resistance",
+   "t0": 1.9,
+   "t1": 2.46
+  },
+  {
+   "w": "V",
+   "t0": 3.02,
+   "t1": 3.12
+  },
+  {
+   "w": "equals",
+   "t0": 3.12,
+   "t1": 3.56
+  },
+  {
+   "w": "I",
+   "t0": 3.56,
+   "t1": 3.9
+  },
+  {
+   "w": "R",
+   "t0": 3.9,
+   "t1": 4.24
+  },
+  {
+   "w": "Then",
+   "t0": 4.7,
+   "t1": 4.82
+  },
+  {
+   "w": "I",
+   "t0": 4.82,
+   "t1": 5.2
+  },
+  {
+   "w": "is",
+   "t0": 5.2,
+   "t1": 5.44
+  },
+  {
+   "w": "V",
+   "t0": 5.44,
+   "t1": 5.68
+  },
+  {
+   "w": "over",
+   "t0": 5.68,
+   "t1": 5.9
+  },
+  {
+   "w": "R",
+   "t0": 5.9,
+   "t1": 6.28
+  },
+  {
+   "w": "and",
+   "t0": 6.72,
+   "t1": 6.78
+  },
+  {
+   "w": "R",
+   "t0": 6.78,
+   "t1": 7.16
+  },
+  {
+   "w": "is",
+   "t0": 7.16,
+   "t1": 7.42
+  },
+  {
+   "w": "V",
+   "t0": 7.42,
+   "t1": 7.66
+  },
+  {
+   "w": "over",
+   "t0": 7.66,
+   "t1": 7.92
+  },
+  {
+   "w": "I",
+   "t0": 7.92,
+   "t1": 8.26
+  }
+ ],
+ "provider_alignment": null,
+ "alignment_source": "forced_alignment",
+ "stt": {
+  "model": "models/whisper-small.en-asr-fp16",
+  "heard": "So voltage equals current times resistance, V equals I R, then I is V over R, and R is V over I.",
+  "match_ratio": 1.0,
+  "diffs": []
+ }
+}

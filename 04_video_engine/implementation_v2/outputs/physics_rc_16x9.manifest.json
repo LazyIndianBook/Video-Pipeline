@@ -1,0 +1,92 @@
+{
+  "scene_id": "physics_rc",
+  "aspect": "16:9",
+  "cache_key": "9487ae93e47b744bd92ef0c9ba3040d178aa1ef64966f46919dcb76c11cb3f02",
+  "cache_hit": false,
+  "sha256": "ff1a3bb4a676bc6060ab57ccc348375cc5018f573ac566be83264f15f2f6a5d4",
+  "video": "physics_rc_16x9.mp4",
+  "render_wall_seconds": 27.338,
+  "frames": 720,
+  "resolution": [
+    1280,
+    720
+  ],
+  "render_status": "passed",
+  "release_status": "blocked_pending_audio_and_expert_review",
+  "audio_status": "intentionally_silent_technical_preview",
+  "science": {
+    "scene_id": "physics_rc",
+    "checks": [
+      {
+        "name": "initial_condition",
+        "passed": true,
+        "detail": "V_C(0)=0 for an initially uncharged capacitor"
+      },
+      {
+        "name": "one_time_constant",
+        "passed": true,
+        "detail": "V_C(tau)/V_s=1-exp(-1)"
+      },
+      {
+        "name": "numerical_ode_crosscheck",
+        "passed": true,
+        "detail": "max absolute voltage error 1.9e-10 V"
+      },
+      {
+        "name": "voltage_law",
+        "passed": true,
+        "detail": "V_s=IR+V_C"
+      },
+      {
+        "name": "monotonic_charge",
+        "passed": true,
+        "detail": "Charging is monotonic for the ideal model"
+      }
+    ],
+    "boundary": "Checks cover the specified model only; they do not establish curriculum fit or expert approval."
+  },
+  "media_qa": {
+    "passed": true,
+    "checks": {
+      "dimensions": true,
+      "duration": true,
+      "frame_count": true,
+      "codec": true,
+      "pixel_format": true
+    },
+    "duration_s": 30.0,
+    "frames": 720,
+    "width": 1280,
+    "height": 720,
+    "audio_present": false
+  },
+  "layout_qa": {
+    "passed": true,
+    "sampled_frames": 10,
+    "issues": [],
+    "boundary": "Canvas bounds only. Does not prove absence of all overlaps or mobile readability."
+  },
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "packages": {
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "sympy": "1.14.0",
+      "pydantic": "2.13.5",
+      "CairoSVG": "2.8.2",
+      "Pillow": "12.3.0",
+      "rdkit": "2025.9.4"
+    },
+    "ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+    "font_sha256": "57f73e11f51999432bf7ab22ce55b6f945d5eca1bf824404cfa9ec2e3718c84e"
+  },
+  "invoice_cost_usd": 0.0,
+  "billing_note": "No external generation APIs invoked. Local execution was not separately invoiced or cloud-priced.",
+  "warnings": [
+    "Not a full ten-minute pilot.",
+    "Academic correctness not signed off by a teacher.",
+    "Voice quality and alignment untested.",
+    "No student-learning study performed."
+  ]
+}

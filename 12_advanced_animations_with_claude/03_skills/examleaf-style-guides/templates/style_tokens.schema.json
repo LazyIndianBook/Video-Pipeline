@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ExamLeaf animation style tokens (structural summary of the canonical file)",
+  "description": "Describes the shape of 12_advanced_animations_with_claude/05_style_guides/style_tokens.json, which is the canonical data and the worked example. Only the keys the validator relies on are listed; other keys are allowed. Semantic rules (display-font bans, Inter roles, Indic coverage, boil range, finite repeats, forbidden flags, version bumps) are enforced by scripts/validate_style_tokens.py.",
+  "type": "object",
+  "required": ["schema_version", "common", "fonts_registry", "styles"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "_meta": {"type": "object", "properties": {"coverage_enum": {"type": "object", "description": "Allowed script_coverage values: yes, claimed_verify, assumed_none, n_a"}}},
+    "common": {
+      "type": "object",
+      "required": ["canvas", "forbidden", "determinism", "font_policy", "holds", "iteration_cap_fix_loops"],
+      "properties": {
+        "canvas": {"type": "object", "properties": {"width": {"const": 1080}, "height": {"const": 1920}, "fps": {"type": "number"}}},
+        "safe_zones": {"type": "object", "description": "Insets are read only from 04_harness_contract/vertical_safe_zones.tokens.json."},
+        "holds": {"type": "object", "properties": {"headline_min_s": {"type": "number", "minimum": 1.2}, "equation_tail_s": {"type": "number", "minimum": 0.5}, "indic_multiplier": {"type": "number", "exclusiveMinimum": 1}, "indic_multiplier_status": {"type": "string"}}},
+        "determinism": {"type": "object", "description": "seeded_prng_required, wall_clock_forbidden, raf_loops_forbidden, finite_repeats_only, fonts_preloaded_before_first_frame, double_render_frame_hash_test must all be true."},
+        "font_policy": {"type": "object", "properties": {
+          "ban_as_display": {"type": "array", "items": {"type": "string"}, "description": "Must include Arial, Inter, Space Grotesk [N51][N55]."},
+          "inter_allowed_for": {"type": "array", "items": {"type": "string"}, "description": "House decision: Inter only for these non-display roles."},
+          "indic_animation_unit": {"type": "string", "description": "word or grapheme cluster, never code point (#55)."},
+          "indic_line_height_min": {"type": "number", "minimum": 1.4}}},
+        "forbidden": {"type": "object", "description": "true means forbidden. Required true: image_model_text_numbers_formulae, full_frame_flash, infinite_repeats, math_random, per_codepoint_indic_animation, camera_fx_during_label_or_measurement_reveal, crop_16x9_into_9x16, agent_writes_or_edits_script, agent_researches_facts, read_other_folders, ultracode, dont_stop_until_perfect."},
+        "iteration_cap_fix_loops": {"type": "integer", "minimum": 1, "maximum": 3},
+        "locale": {"type": "object", "properties": {"indic_rules_active": {"type": "boolean", "description": "When true, every style must route Devanagari and Bengali-Assamese text to a covering font."}}}
+      }
+    },
+    "fonts_registry": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "family", "script_coverage", "licence", "vendored", "sha256"],
+        "properties": {
+          "id": {"type": "string"}, "family": {"type": "string"}, "roles": {"type": "array"},
+          "script_coverage": {"type": "object", "additionalProperties": {"enum": ["yes", "claimed_verify", "assumed_none", "n_a"]}},
+          "licence": {"type": "string", "description": "'verify' until a human records the licence."},
+          "vendored": {"type": "boolean"}, "sha256": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "styles": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["style_id", "version", "guide", "route_tags_allowed", "route_tags_forbidden", "palette", "fonts", "motion", "forbidden"],
+        "properties": {
+          "style_id": {"type": "string", "description": "Equals its key."},
+          "version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+          "guide": {"type": "string", "description": "File next to the tokens file in 05_style_guides/."},
+          "route_tags_allowed": {"type": "array"}, "route_tags_forbidden": {"type": "array"},
+          "credits": {"type": ["number", "null"], "description": "Prices are never stored; the storyboard gate estimates."},
+          "palette": {"type": "object", "description": "Any #rrggbb values; accent limit via usage.max_foreground_accent_hues or max_accent_colours (<= 3) [N52]."},
+          "fonts": {"type": "object", "description": "Lists primary, secondary, handwriting, science_text, number_callout hold fonts_registry ids; each list has a <key>_role text used to detect display roles; indic_fallback maps script-specific roles to registry ids."},
+          "motion": {"type": "object", "description": "boil fps values within 8-10; repeats finite."},
+          "forbidden": {"type": "object", "required": ["ref"], "properties": {"ref": {"const": "common.forbidden"}, "additional": {"type": "object", "additionalProperties": {"const": true}}}}
+        }
+      }
+    }
+  }
+}

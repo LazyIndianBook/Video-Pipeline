@@ -1,0 +1,146 @@
+[
+ {
+  "id": "A6-01",
+  "video": "physics",
+  "t": "00:09-00:35",
+  "evidence": "R = 10 Ω is on the board from about 6 s (seen in t010) but is never called held; b01 turns V ('Now we make it four volts', 8.8-10.7 s; t014 shows V = 4 V, I = ?). 'constant' is first spoken at 34.36 s (b04, timeline.json) and the amber 'constant temperature' chip is first on screen at t036 (absent in t034-t035): 24 s after the turn and 5 s after the 0.2 A and 0.4 A readings it governs (spoken 24.5-29.9 s). In between, the cards (t030) show V and I only, and the resistor itself leaves the board at the 22.4 s cut (t022 to t023) and again at 46.4 s (t047). Kit card rule 3 (physics build_notes §4): 'Put the beat's condition … in the same beat as any claim that needs it (SQ-20)'.",
+  "problem": "No quantity is declared held before the first change. R = 10 Ω is a plain label while V turns, and the condition that makes I follow V (constant temperature) arrives after the readings it governs, then comes back as 'constant resistance' at 55.4 s (see A5-07). A6's Pin, Turn, Release grammar needs the pin first, so that one change, one readout and one release read as 'one thing changes, watch what answers'. Technique 3 (pin and turn) and 4 (release the pin).",
+  "root_cause": {
+   "layer": "registry + skill",
+   "location": "15_content_engine_v2/subsystems/SCRIPTING_REGISTRY.md §15 SQ-20(a) ('same beat or an earlier beat' as the claim) and SQ-22 (glyph on the word where the condition is first spoken) are both satisfied by a late condition; 12_advanced_animations_with_claude/08_production_kit/skills/examleaf-fill-concept-intro/SKILL.md §3 slot s03 ('cond_chip' sits in the compare panel) and rule 3; lesson_graph SIM-constant-temperature is first cited in b04."
+  },
+  "effect": "comprehension and transfer: a weak-foundation learner cannot tell what is held while one quantity changes, so 2 V to 4 V reads as 'more voltage, more current' and not as a controlled test. Control-of-variables training improved performance and transferred [S10]; students doubt that an ohmic R stays fixed as V varies [S11]; the Class 10 practical varies one quantity and reads two [S48, S66].",
+  "severity": "major",
+  "fix": {
+   "what": "Pin before turn: within the first 8 s say and show each held quantity with a named, coloured pin ('Ten ohms, held. Temperature, held.'), then turn exactly one quantity (V 2 to 4 V) with one persistent readout answering, then release once (the heating filament) and restate the rule with the pin's own name. One name for the condition throughout.",
+   "where": "03_PROFESSOR_DIKI_SCRIPT_FRAMEWORK.md §4.1; skills/professor-diki-script/SKILL.md (Step 7 block); references/script_v2_fields.md (new pin, turn, release fields); SCRIPTING_REGISTRY SQ-20 and SQ-22 (the condition glyph must precede the first ChangeValue on the quantity it governs)",
+   "control": "check_pd_script.py: fail unless every pinned quantity is named and shown by 8 s and before the first beat that changes the turned quantity, there is exactly one turned quantity and one release beat, and the release restates the rule with the pin's name. Cue-sheet QA: the pin element is visible in every sample from its beat to the release."
+  }
+ },
+ {
+  "id": "A6-02",
+  "video": "chemistry",
+  "t": "00:36-00:59",
+  "evidence": "b04 turns two coefficients (36.8-48.7 s: 'Put a two in front of water … put a two in front of hydrogen'; the tally recounts at t038 and t046) while no spoken word, and no sampled frame t007-t046, marks the subscripts as fixed. The pin is spoken only in b05, after the release: 'Why not write H two O two? That is hydrogen peroxide' (49.4-55.3 s), then 'Change the coefficients in front, never the subscripts inside' (55.4-59.3 s). The H₂O₂ board first shows at t051 and the subscript highlight at t052.",
+  "problem": "The pin (subscripts stay) is declared after both the turn (coefficients) and the release (peroxide), so the release lands as a new fact and not as the pin slipping. A6 §6 for balancing: pin the subscripts in H₂O, turn a coefficient while the atom tally answers, release once by editing a subscript. Weak subscript grasp makes learners break the rule [S28]. Technique 3 and 4.",
+  "root_cause": {
+   "layer": "contract + script",
+   "location": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 slot grammar has no pin slot, so the subscript rule landed at the end of the confront beat (chemistry/opus/script.json b05); Kit skill §3 slot s04 provides a changed-subscript highlight but no marker for subscripts that stay fixed."
+  },
+  "effect": "comprehension and exam errors: the learner meets 'coefficients only' as a prohibition after the fix, not as the held condition of the fix, so the rule is stored as a fact about H₂O₂ and not as the frame for balancing [S28].",
+  "severity": "major",
+  "fix": {
+   "what": "Mark the subscripts as pinned in the first 8 s (a pin badge on each small 2: 'two atoms stuck together'), say 'coefficients change, subscripts stay', turn one coefficient at a time with the tally answering, release once by editing a subscript (H₂O to H₂O₂) and name the new substance, then restate the rule with the pin's name.",
+   "where": "chemistry lesson_graph (place CLM-subscript-identity before the worked step); 03_PROFESSOR_DIKI_SCRIPT_FRAMEWORK.md §4.1; skills/professor-diki-script/SKILL.md; references/script_v2_fields.md (pin, turn, release)",
+   "control": "Same check as A6-01 (pin precedes the first turn, one turn per beat, one release that restates the rule); cue sheet: a pin element for the subscripts exists from 8 s at the latest to the release beat."
+  }
+ },
+ {
+  "id": "A6-03",
+  "video": "chemistry, biology",
+  "t": "chemistry 00:00-00:11, 00:49; biology 00:00-00:07, 00:40",
+  "evidence": "chemistry b01 'Hydrogen burns in oxygen to make water. Write it down … Did an atom just vanish?' (nodes CLM-reaction-water, SIM-skeletal-only); MIS-change-subscript is first cited in b05 (49.3 s) and the H₂O₂ board first shows at t051. biology b01 'A banyan tree can weigh more than a herd of elephants. So where did all that wood come from?' (HK-banyan-herd, ASM-carbon-source); the brief's hook ended 'Not mainly from the soil', which the builder cut ('it leaks the predict answer', biology build_notes §4 rule 3); 'soil' returns as one of three equal option cards at 9.7 s (complete by t013) and as 'Many think a plant is built from soil' at 40.1 s (MIS-plants-eat-soil, b05). Physics b01 cites MIS-always-doubles and asks 'always?'.",
+  "problem": "Neither hook puts the learner's likely wrong move in front of them: the misconception nodes are used only in the 40-49 s confront beats, and the chemistry hook asks about a conclusion ('vanish') instead of the temptation ('just change the little 2?'). A6 technique 1 opens on the tempting wrong answer and refutes it inside the short [S01, S03, S04, S09]; among the Opus builds only physics does this.",
+  "root_cause": {
+   "layer": "registry + contract",
+   "location": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 ('The hook must not state the answer that check.predict asks for', SQ-04) was applied to cut the tempting error from the biology hook (build_notes §4 rule 3); SCRIPTING_REGISTRY.md §4 F8 sets the hook kind to realworld (§9 offers short.misconception only for F5); Kit skill §3 s01 ('no answer anywhere') has no slot for a tempting answer, and the misconception appears only in s04 (confront)."
+  },
+  "effect": "retention and correction: the learner never commits to the error before the method, so the correction effect for confident errors [S09] cannot operate and the refutation lands as an aside 40-49 s in; refutation versions beat concise ones (d about 0.8, from an abstract summary) [S01].",
+  "severity": "minor",
+  "fix": {
+   "what": "Let the hook (or the predict's options) carry the tempting wrong answer from the lesson graph's MIS node, on the board at frame 0 ('Just change the little 2?', 'Does a tree eat soil?'), with the correct answer still hidden; the confront beat then refutes it with evidence.",
+   "where": "SCRIPTING_REGISTRY.md SQ-04 (clarify: the tempting wrong answer may be shown, the correct answer stays hidden) and §4 F8 hook kinds; PILOT_CONTRACT.md §3; 03_PROFESSOR_DIKI_SCRIPT_FRAMEWORK.md §4.1; skills/professor-diki-script/SKILL.md Step 5",
+   "control": "check_pd_script.py: when the lesson graph holds a MIS node, it must appear in the node_ids of the hook or predict beat and again in misconception.confront; the hook ledger records kind 'tempting_answer' so it varies across a batch."
+  }
+ },
+ {
+  "id": "A6-04",
+  "video": "all",
+  "t": "whole video",
+  "evidence": "No sampled frame carries a caption or keyword line: physics t030, t036, t060; chemistry t030, t046, t062; biology t021, t035, t049 and the three contact sheets show only headlines, the think plate and, at the end, the disclosure; the bottom third is otherwise empty. Build notes: physics 'No captions drawn; assumed the lead's VTT', chemistry 'No captions (the lead owns those)', biology 'Contract §3 \"nothing else on screen\" conflicts with … the style guide's caption track (I burned in no captions)'. Blind judges: 'No narration captions in bottom_caption' (judging/chemistry/verdict_visual.json, Opus) and 'Neither build uses the bottom caption zone for a caption track' (judging/biology/verdict_visual.json). tooling/render.py muxes video and mix_norm.wav only.",
+  "problem": "A viewer with the sound off sees 2-3-word headlines; the explanation exists only in the audio. Creators report that feeds autoplay muted and that text overlays help [S44]; Professor Dave highlights keywords [S38]; narration plus on-screen text beat narration alone for second-language viewers in one study [S62]. No India sound-off data was found (A6 §4).",
+  "root_cause": {
+   "layer": "contract + tooling",
+   "location": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 ('Nothing else is written on screen anywhere') conflicts with the style guides' caption track (editorial-vox.md §6 layout table; paper-collage-vertical.md §5.5) and §1 assigns narration/ to the lead, which the builders read as the lead owning captions (their build notes); tooling/narrate.py ('# captions' block) writes only a sidecar VTT and tooling/render.py has no caption step, so nobody owns a burnt-in track."
+  },
+  "effect": "accessibility and reach: muted viewers, deaf and hard-of-hearing viewers and second-language learners lose the narration; keyword emphasis relies on the headline subset alone.",
+  "severity": "major",
+  "fix": {
+   "what": "Own a caption lane: verbatim beat text in chunks of at most 42 characters by 2 lines and 20 characters per second (six words need at least 1.8 s) [S55], with the changed quantity or negation highlighted as the keyword [S38]; exempt caption text from the on-screen-text subset rule; decide burnt-in versus platform captions per channel and test on Shorts and Reels.",
+   "where": "PILOT_CONTRACT.md §3 (caption exemption); 17_professor_diki_simplified/05_DESIGN_SYSTEM.md layouts and design_system/tokens.json lanes (the caption lane exists only in layout 'captioned', and 'carded' (PD-18) excludes captions, so the default layouts still ship none); design_system/components/caption.js",
+   "control": "QA: OCR the caption lane at 2 fps and require caption text on screen for every spoken sentence; caption lint on the text actually shown (see A6-05)."
+  }
+ },
+ {
+  "id": "A6-05",
+  "video": "all",
+  "t": "whole video (sidecar captions.vtt)",
+  "evidence": "narration/captions.vtt holds one cue per beat with the whole beat text on one line: physics 5 of 7 cues exceed 84 characters (longest 182, b04, 12.6 s), chemistry 5 of 7 (longest 189, b03, 14.8 s), biology 6 of 7 (longest 171, b05, 11.9 s). Speed is within limits (11-16 characters per second); length is not: the guide allows 42 characters per line, two lines, 20 characters per second [S55]. narrate.py writes next(b['text']) per beat.",
+  "problem": "The sidecar caption track cannot be read at speaking pace: a 189-character cue is 4.5 times the 42-character line limit and stays up for 14.8 s, so a player has to wrap it to five lines.",
+  "root_cause": {
+   "layer": "tooling",
+   "location": "16_pilot_builds_2026-10-16/tooling/narrate.py ('# captions' block, about L240-246): one cue per beat, text = beat text, no chunking."
+  },
+  "effect": "If the file is uploaded as the caption track, captions run five lines tall and stay up for 10-15 s over the diagram.",
+  "severity": "minor",
+  "fix": {
+   "what": "Chunk captions on clause boundaries to at most 42 characters by 2 lines and 20 characters per second, timed from words[].t0/t1; use the same chunker for the burnt-in lane (A6-04).",
+   "where": "16_pilot_builds_2026-10-16/tooling/narrate.py (caption builder); 17_professor_diki_simplified/design_system/components/caption.js (it caps chunks at 7 words, not at 42 characters)",
+   "control": "Lint on captions.vtt: at most 84 characters per cue, 42 per line, 2 lines, 20 characters per second; regression: the three Opus VTTs fail."
+  }
+ },
+ {
+  "id": "A6-06",
+  "video": "all",
+  "t": "physics 22.4, 46.4, 57; chemistry 22, 49-50; biology 6.8, 39.8, 52",
+  "evidence": "Frames: physics t022 (circuit, R = 10 Ω, V = 4 V) to t023 (two empty cards); t046 (cards) to t047 (loop without the resistor); t056 (lamp) to t060 (empty board with one resistor symbol). chemistry t019 (molecules) to t025 (tally rows, no molecules); t046 (balanced equation) to t050 (blank board and a divider). biology t004 (banyan and elephant) to t008 (backdrop without the tree); t035 (equation sheet) to t042 (empty sky); the banyan returns at t054. V = 2 V is overwritten by V = 4 V in place (t010 to t014), so the 2 V state is gone before the comparison.",
+  "problem": "No short keeps one object that values and tokens move inside. The diagram is rebuilt at every cut, so the pin and the readout cannot persist from the turn to the release, and each change is a swap that gives the eye nothing to track. Benchmarks keep one visual and move things inside it: 3Blue1Brown wants every movement deliberate and each visual to make the narration's one point [S35]; animated transitions improved object tracking over static swaps [S15]. Same defect as A2-01 and A4-04; A6 adds that the pin and the readout belong to that object. Technique 5.",
+  "root_cause": {
+   "layer": "template + contract",
+   "location": "16_pilot_builds_2026-10-16/tooling/render.py ('# concat + mux': ffmpeg concat of independently built scene MP4s); PILOT_CONTRACT.md §4 (one HTML per scene, scene time from 0); Kit skill §3 (one archetype per scene). See A2-01 and A4-04."
+  },
+  "effect": "comprehension: the learner rebuilds the mental model at each cut, and the pin cannot be seen to slip because the pinned object is gone when the release arrives.",
+  "severity": "major",
+  "fix": {
+   "what": "One persistent board (PD-03): the pin element, the turned quantity and the readout live on it from the pin beat to the release; values and tokens move inside it in steps of at most 0.9 s (a count ticks, atoms travel, a label turns) and the 2 V state is kept for comparison; elements leave only with a named reason.",
+   "where": "17_professor_diki_simplified/DIKI_CONTRACT.md §1 (PD-03) and design_system/diki_runtime.js verbs (CompareStates, SwapPart); 03_PROFESSOR_DIKI_SCRIPT_FRAMEWORK.md §4.1",
+   "control": "QA persistence (A17): hero similarity of at least 0.6 between 1 s samples before the end card; the pin element id is present in every sample from its beat to the release beat."
+  }
+ },
+ {
+  "id": "A6-07",
+  "video": "all",
+  "t": "physics 00:09-00:59; chemistry 00:29-00:45; biology 00:20-00:48",
+  "evidence": "Pixel samples of the 1-fps frames. physics: V, I and R labels share one ink (t030: V = 2 V RGB 32,40,60; I = 0.2 A 31,40,60; V = 4 V 30,38,58; t010: R label 30,43,67), so no quantity has a colour; blue appears on ×2, the underline and ticks, and amber marks both the condition chip (t036) and 'R ↑' (t053). chemistry t046: oxygen atoms (12,113,126), the coefficient 2 (29,125,135) and '=' (26,121,133) are one teal. biology t049: headline tiles change colour per word (carbon 210,159,64; from 60,85,159; the 51,125,120; air 214,82,70) with no mapping, and the correct answer 'air' sits on a red tile.",
+  "problem": "Colour does not carry the variable: in physics V, I and R are indistinguishable, in chemistry one teal means oxygen, coefficient and balanced at once, in biology colour is decoration. A6 technique 6: one colour per quantity across captions, diagram, equation and graph, so the pin can be 'named, coloured, pinned'. Colour coding raised retention and transfer [S16] and signalling has d about 0.38 [S17]. Same defect as A2-09; A6 adds that headline words and the pin share the quantity's colour and that colour is never the only cue.",
+  "root_cause": {
+   "layer": "template + style guide",
+   "location": "12_advanced_animations_with_claude/05_style_guides/doodle-handdrawn.md §1 item 3 ('Subject accents decorate; they never encode …'); editorial-vox.md §4 ('one accent per scene'); paper-collage-vertical.md §5.1 (nine tile styles, no colour roles); vertical_safe_zones.tokens.json palette has hue names and no roles. See A2-09."
+  },
+  "effect": "comprehension: the learner cannot follow which number is which across headline, label and readout; the cheapest tracking aid is unused.",
+  "severity": "major",
+  "fix": {
+   "what": "One colour per quantity, identical in headline words, diagram labels, equation, readout and pin (roles in tokens: voltage, current, resistance, held, changed, mismatch). Never colour alone: V, I and R share lightness (L* 39-47) and resistance versus error is ΔE about 10 under simulated deuteranopia [S60], so every role also carries a letter or a line style.",
+   "where": "17_professor_diki_simplified/design_system/tokens.json colour roles (add a non-colour cue per role) and 05_DESIGN_SYSTEM.md §2; 03_PROFESSOR_DIKI_SCRIPT_FRAMEWORK.md §4.1; A2-09's tokens fix",
+   "control": "Lint: every coloured element declares data-role, one role per hue per short, headline words that name a quantity take its role colour; roles that sit close under simulated deuteranopia must differ by a letter or a line style."
+  }
+ },
+ {
+  "id": "A6-08",
+  "video": "all",
+  "t": "throughout",
+  "evidence": "No analogy in any script (141, 145 and 141 spoken words; no 'like', 'imagine', 'picture', 'pipe', 'crowd' or story marker); the three lesson graphs hold no analogy node (types: objective, claim, misconception, simplification, worked_item, assessment_item, fixture, plus biology's hook_colour) and PILOT_CONTRACT §5 lists no analogy type. Physics defines resistance only as 'the constant' of V/I at 40.2 s (b04) and gives voltage and resistance no everyday picture (the circuit diagram is symbols only).",
+  "problem": "No short offers a familiar-object analogy with its break point. Benchmarks use one analogy and say where it stops: Ciechanowski states each model's limit [S42]; the crowd-through-gates picture fixed a pipe-model error about resistors [S26], and engineers still over-apply water [S27]. Same gap as A1-32 and A4-09. Technique 12.",
+  "root_cause": {
+   "layer": "contract + registry",
+   "location": "16_pilot_builds_2026-10-16/PILOT_CONTRACT.md §3 slots and §5 node types (no analogy slot, no ANL node, and no sentence may assert beyond its nodes); SCRIPTING_REGISTRY.md SQ-10 permits an ANL that the pilot graph schema cannot hold. See A4-09."
+  },
+  "effect": "comprehension and memorability: a weak-foundation learner gets a rule with no picture to hang it on.",
+  "severity": "minor",
+  "fix": {
+   "what": "Allow one analogy per short, with its break point said in the same breath, mapped by an ANL node (maps, breaks_at, formal_return) and drawn from the familiar object the lesson already uses; never causal personification, never two.",
+   "where": "PILOT_CONTRACT.md §5 (ANL node type) and §3; 17_professor_diki_simplified/format/concept_short_60.md graph inputs (already permits one ANL with a non-mapping); 03_PROFESSOR_DIKI_SCRIPT_FRAMEWORK.md §4 analogy rule",
+   "control": "Script ledger field 'analogy: id or none'; if used, the beat states the non-mapping (SQ-10) and check_pd_script.py rejects a second analogy."
+  }
+ }
+]

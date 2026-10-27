@@ -1,0 +1,23 @@
+{
+  "_note": "EXAMPLE. credits_per_image is null on purpose: fill it from the verified provider config or keep code thumbnails.",
+  "segment_id": "phy-10-03-seg2",
+  "lesson_id": "phy-10-03",
+  "style": "paper-collage-vertical@1.0.0",
+  "script_sha256": "<64 hex of approved script>",
+  "fixtures": ["../fixtures/<fixture file>.json"],
+  "style_file": "../../../12_advanced_animations_with_claude/05_style_guides/paper-collage-vertical.md",
+  "_note_15oct2026": "fixtures, style_file and hero_ref paths (relative to this file) are hashed into approval_record.json fixture_hashes, style_hash and hero_hash (audit M10, doc 05 section 5.1).",
+  "caps": {"tokens": 1000000, "credits": 50, "credits_remaining_on_plan": 120},
+  "pricing": {"credits_per_image": null, "source": null},
+  "max_repair_attempts": 2,
+  "token_defaults_by_effort": {},
+  "scenes": [
+    {"scene_id": "phy-10-03-s04", "beats": 4, "thumbnail_source": "code", "effort": "high", "est_tokens": 60000,
+     "new_cutouts": 0, "has_character": false, "hero_ref": null,
+     "beat_descriptions": ["Straw drops into a glass", "Straw looks broken at the surface", "Ray diagram from fx-refraction-glass angle_r_deg", "Title card: refraction"],
+     "beat_cue_ids": ["straw_in", "looks_broken", "ray_bend", "label_refraction"]},
+    {"scene_id": "phy-10-03-s05", "beats": 5, "thumbnail_source": "higgsfield", "effort": "high", "est_tokens": 80000,
+     "new_cutouts": 3, "has_character": true, "hero_ref": "asset:hero-kid-red-beanie@v2",
+     "beat_descriptions": ["Hero peers into a pool", "Coin looks shallower than it is", "Hero reaches, misses", "Dashed true-depth line", "Hero laughs, card: apparent depth"]}
+  ]
+}

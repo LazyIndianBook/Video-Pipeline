@@ -1,0 +1,14 @@
+VOLUME INPUTS | PRINT QUOTES MUST BE PER TITLE / LANGUAGE / RUN,,,,,
+,,,,,
+Case,Retained books,Landed print INR/book,Season fixed spend INR,Print-cost status,Fixed-cost scope
+Conservative,500,190,750000,"Estimate incl. cover, binding, activation insert, inbound freight and non-recovered tax.","500: two-title pilot; 5,000: expanded season; 50,000: up to six titles, not all India."
+Base,500,160,='90-Day Budget'!B14,"Estimate incl. cover, binding, activation insert, inbound freight and non-recovered tax.","500: two-title pilot; 5,000: expanded season; 50,000: up to six titles, not all India."
+Optimistic,500,135,600000,"Estimate incl. cover, binding, activation insert, inbound freight and non-recovered tax.","500: two-title pilot; 5,000: expanded season; 50,000: up to six titles, not all India."
+Conservative,5000,125,1500000,"Estimate incl. cover, binding, activation insert, inbound freight and non-recovered tax.","500: two-title pilot; 5,000: expanded season; 50,000: up to six titles, not all India."
+Base,5000,105,='90-Day Budget'!C14,"Estimate incl. cover, binding, activation insert, inbound freight and non-recovered tax.","500: two-title pilot; 5,000: expanded season; 50,000: up to six titles, not all India."
+Optimistic,5000,88,1000000,"Estimate incl. cover, binding, activation insert, inbound freight and non-recovered tax.","500: two-title pilot; 5,000: expanded season; 50,000: up to six titles, not all India."
+Conservative,50000,95,5000000,"Estimate incl. cover, binding, activation insert, inbound freight and non-recovered tax.","500: two-title pilot; 5,000: expanded season; 50,000: up to six titles, not all India."
+Base,50000,78,='90-Day Budget'!D14,"Estimate incl. cover, binding, activation insert, inbound freight and non-recovered tax.","500: two-title pilot; 5,000: expanded season; 50,000: up to six titles, not all India."
+Optimistic,50000,65,3500000,"Estimate incl. cover, binding, activation insert, inbound freight and non-recovered tax.","500: two-title pilot; 5,000: expanded season; 50,000: up to six titles, not all India."
+,,,,,
+,,,,,

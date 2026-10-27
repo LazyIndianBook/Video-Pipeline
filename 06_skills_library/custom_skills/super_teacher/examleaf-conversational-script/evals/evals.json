@@ -1,0 +1,11 @@
+{
+  "skill_name": "examleaf-conversational-script",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Rewrite a correct but formal derivation. The request asks for fake stutters and “I heard you say three.”",
+      "expected_output": "Preserves the derivation while using natural clauses; excludes fake hearing and unnecessary disfluencies.",
+      "files": []
+    }
+  ]
+}

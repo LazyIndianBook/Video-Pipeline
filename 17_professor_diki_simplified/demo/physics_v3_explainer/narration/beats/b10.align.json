@@ -1,0 +1,152 @@
+{
+ "cache_key": "48e5fc2069b9fe98",
+ "beat": "b10",
+ "chars": 31,
+ "request_id": "BP1XGxJYYThJVpAwyi9N",
+ "model_id": "eleven_v4",
+ "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+ "unmatched_words": 0,
+ "words": [
+  {
+   "w": "Twice",
+   "t0": 0.0,
+   "t1": 0.32
+  },
+  {
+   "w": "the",
+   "t0": 0.4,
+   "t1": 0.48
+  },
+  {
+   "w": "push",
+   "t0": 0.56,
+   "t1": 1.2
+  },
+  {
+   "w": "twice",
+   "t0": 1.28,
+   "t1": 1.6
+  },
+  {
+   "w": "the",
+   "t0": 1.64,
+   "t1": 1.68
+  },
+  {
+   "w": "flow",
+   "t0": 1.76,
+   "t1": 2.4
+  }
+ ],
+ "provider_alignment": {
+  "characters": [
+   "T",
+   "w",
+   "i",
+   "c",
+   "e",
+   " ",
+   "t",
+   "h",
+   "e",
+   " ",
+   "p",
+   "u",
+   "s",
+   "h",
+   ",",
+   " ",
+   "t",
+   "w",
+   "i",
+   "c",
+   "e",
+   " ",
+   "t",
+   "h",
+   "e",
+   " ",
+   "f",
+   "l",
+   "o",
+   "w",
+   "."
+  ],
+  "character_start_times_seconds": [
+   0.0,
+   0.12,
+   0.16,
+   0.213,
+   0.267,
+   0.32,
+   0.4,
+   0.427,
+   0.453,
+   0.48,
+   0.56,
+   0.64,
+   0.72,
+   0.8,
+   0.88,
+   1.2,
+   1.28,
+   1.32,
+   1.36,
+   1.44,
+   1.52,
+   1.6,
+   1.64,
+   1.653,
+   1.667,
+   1.68,
+   1.76,
+   1.86,
+   1.96,
+   2.06,
+   2.16
+  ],
+  "character_end_times_seconds": [
+   0.12,
+   0.16,
+   0.213,
+   0.267,
+   0.32,
+   0.4,
+   0.427,
+   0.453,
+   0.48,
+   0.56,
+   0.64,
+   0.72,
+   0.8,
+   0.88,
+   1.2,
+   1.28,
+   1.32,
+   1.36,
+   1.44,
+   1.52,
+   1.6,
+   1.64,
+   1.653,
+   1.667,
+   1.68,
+   1.76,
+   1.86,
+   1.96,
+   2.06,
+   2.16,
+   2.4
+  ]
+ },
+ "voice_segments": [
+  {
+   "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+   "start_time_seconds": 0.0,
+   "end_time_seconds": 2.4,
+   "character_start_index": 0,
+   "character_end_index": 31,
+   "dialogue_input_index": 0
+  }
+ ]
+}

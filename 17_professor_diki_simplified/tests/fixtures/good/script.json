@@ -1,0 +1,251 @@
+{
+ "video_id": "phy-ohm-60-01",
+ "subject": "physics",
+ "topic": "Ohm's law: does current always double?",
+ "level": "l9_10",
+ "locale": "en-IN",
+ "language": "en",
+ "format": "concept_short_60",
+ "target_duration_s": 60,
+ "style": "professor-diki",
+ "voice": {
+  "path": "B",
+  "provider": "elevenlabs",
+  "model_id": "eleven_v4",
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "persona": "persona/super-teacher#core"
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "file": "scenes/s01.html",
+   "beats": [
+    "b01",
+    "b02",
+    "b03",
+    "b04",
+    "b05",
+    "b06",
+    "b07",
+    "b08",
+    "b09"
+   ],
+   "title": "One persistent board"
+  }
+ ],
+ "beats": [
+  {
+   "id": "b01",
+   "scene": "s01",
+   "slot": "hook.question_reveal",
+   "energy": "high",
+   "visual_op": "PreserveObject",
+   "text": "Double the voltage across this resistor. Does the current double too?",
+   "pauses": [
+    {
+     "purpose": "join"
+    }
+   ],
+   "on_screen": {
+    "headline": "Double the voltage?",
+    "fx_refs": [
+     "parameters.resistance_ohm",
+     "parameters.v1"
+    ]
+   }
+  },
+  {
+   "id": "b02",
+   "scene": "s01",
+   "slot": "explain.givens",
+   "energy": "mid",
+   "visual_op": "ChangeValue",
+   "text": "This resistor is ten ohms, so divide the volts by ten. Two volts gives zero point two amperes.",
+   "pauses": [
+    {
+     "purpose": "land",
+     "after_s": 0.6
+    }
+   ],
+   "on_screen": {
+    "headline": "divide the volts by ten",
+    "fx_refs": [
+     "parameters.resistance_ohm",
+     "parameters.v1",
+     "results.i1"
+    ]
+   },
+   "insight_beat": true
+  },
+  {
+   "id": "b03",
+   "scene": "s01",
+   "slot": "check.predict",
+   "energy": "high",
+   "visual_op": "PauseForPrediction",
+   "text": "Now four volts. Will the current double, yes or no?",
+   "pauses": [
+    {
+     "purpose": "think_recall",
+     "after_s": 1.5
+    }
+   ],
+   "on_screen": {
+    "headline": "four volts",
+    "fx_refs": [
+     "parameters.v2",
+     "parameters.resistance_ohm"
+    ]
+   },
+   "check": {
+    "task_kind": "recall",
+    "asks": "results.ratio_i",
+    "answerable_from": [
+     "parameters.v2",
+     "parameters.resistance_ohm"
+    ]
+   }
+  },
+  {
+   "id": "b04",
+   "scene": "s01",
+   "slot": "reveal.answer",
+   "energy": "peak",
+   "visual_op": "CompareStates",
+   "text": "Yes. Four divided by ten is zero point four amperes. Twice the voltage, twice the current, side by side on the same board.",
+   "pauses": [
+    {
+     "purpose": "land",
+     "after_s": 0.6
+    }
+   ],
+   "on_screen": {
+    "headline": "twice the current",
+    "fx_refs": [
+     "parameters.v2",
+     "results.i2",
+     "results.ratio_i"
+    ]
+   },
+   "payoff_beat": true
+  },
+  {
+   "id": "b05",
+   "scene": "s01",
+   "slot": "explain.formal",
+   "energy": "low",
+   "visual_op": "EquationTransform",
+   "text": "Voltage divided by current stays ten ohms at both points. That steady number is the resistance, and it only holds while the temperature stays the same.",
+   "pauses": [
+    {
+     "purpose": "inspect",
+     "after_s": 1.0
+    }
+   ],
+   "on_screen": {
+    "headline": "stays ten ohms",
+    "fx_refs": [
+     "display.equation",
+     "display.condition"
+    ]
+   }
+  },
+  {
+   "id": "b06",
+   "scene": "s01",
+   "slot": "check.transfer",
+   "energy": "high",
+   "visual_op": "ChangeValue",
+   "text": "Your turn. Six volts across the same resistor. What current does the meter show?",
+   "pauses": [
+    {
+     "purpose": "think_calc",
+     "after_s": 3.0
+    }
+   ],
+   "on_screen": {
+    "headline": "six volts",
+    "fx_refs": [
+     "parameters.v3"
+    ]
+   },
+   "check": {
+    "task_kind": "calc",
+    "asks": "results.i3",
+    "answerable_from": [
+     "parameters.v3",
+     "parameters.resistance_ohm"
+    ]
+   }
+  },
+  {
+   "id": "b07",
+   "scene": "s01",
+   "slot": "feedback.transfer",
+   "energy": "peak",
+   "visual_op": "Reveal",
+   "text": "Zero point six amperes. If you got that, you can use this rule on the next question.",
+   "pauses": [
+    {
+     "purpose": "land",
+     "after_s": 0.6
+    }
+   ],
+   "on_screen": {
+    "headline": "zero point six amperes",
+    "fx_refs": [
+     "results.i3"
+    ]
+   }
+  },
+  {
+   "id": "b08",
+   "scene": "s01",
+   "slot": "close.next_step",
+   "energy": "mid",
+   "visual_op": "Badge",
+   "text": "Try the free lesson on Ohm's law.",
+   "pauses": [
+    {
+     "purpose": "join"
+    }
+   ],
+   "on_screen": {
+    "headline": "",
+    "fx_refs": []
+   }
+  },
+  {
+   "id": "b09",
+   "scene": "s01",
+   "slot": "outro.brand",
+   "energy": "mid",
+   "motif_at": 1.4,
+   "text": "Professor Diki Simplified.",
+   "on_screen": {
+    "headline": "",
+    "fx_refs": [
+     "display.ui.endcard_line1",
+     "display.ui.endcard_line2"
+    ]
+   },
+   "visual_op": "EndMotif",
+   "pauses": []
+  }
+ ],
+ "schema_version": "script/v2",
+ "duration_tolerance_s": 1.0,
+ "outro": {
+  "beat": "b09",
+  "spoken": "Professor Diki Simplified.",
+  "end_card": {
+   "brand_line": "Professor Diki Simplified",
+   "free_lesson_line": "Free lesson: Ohm's law",
+   "min_on_screen_s": 1.5
+  },
+  "motif": "music/diki-end-motif",
+  "motif_starts": "after_last_word",
+  "tail_s": 0.8
+ },
+ "cta_line": "Try the free lesson on Ohm's law."
+}
